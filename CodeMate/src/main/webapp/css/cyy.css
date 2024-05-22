@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+/* 공통 */
 * {
 	margin: 0px;
 	padding: 0px;
@@ -10,17 +10,40 @@ ol {
 }
 
 a {
-	text-decoration: none
+	text-decoration: none;
+	font-family: sans-serif;
+	font-weight:bold;
 }
-
-li.MainName{
+/* 헤더 위치 */
+div #main_logo{
+	font-size:2em;
 	text-align:center;
+	position:relative;
+	top:20px;
 }
 
-li.option{
+ul#option{
 	text-align:left;
+	position:absolute;
+	top:20px; left:10px;
 }
 
-div#main_nav{
+#login{
 	text-align:right;
+	position:absolute;
+	top:20px; right:40px;
+	list-style:none;
+}
+/* 헤더 색*/
+a:link{
+	text-decoration:none;
+	color:#000000;
+}
+a:visited{
+	text-decoration:none;
+	color:#000000;
+}
+a:hover{
+	text-decoration:none;
+	color:#6C6C6C;
 }
