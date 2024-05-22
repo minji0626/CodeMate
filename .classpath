@@ -6,9 +6,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="CodeMate/src/main/java"/>
-	<classpathentry exported="true" kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/jackson-core-asl-1.9.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/jackson-mapper-asl-1.9.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/jstl-1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/jackson-core-asl-1.9.11.jar"/>
+	<classpathentry kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/jackson-mapper-asl-1.9.11.jar"/>
+	<classpathentry kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="CodeMate/src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
