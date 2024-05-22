@@ -1,1 +1,26 @@
-@charset "UTF-8";
+@charset "utf-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+ul,
+ol {
+	list-style: none;
+}
+
+a {
+	text-decoration: none
+}
+
+li.MainName{
+	text-align:center;
+}
+
+li.option{
+	text-align:left;
+}
+
+div#main_nav{
+	text-align:right;
+}
