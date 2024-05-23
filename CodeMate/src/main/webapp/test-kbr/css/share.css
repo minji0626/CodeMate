@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+:root {
+	/* CSS 전역 변수 선언 */
+	--main-color: #5aca7c;
+	--main-color-light: #ccf7d9;
+
+	--gray-1: #f0f0f0;
+	--gray-2: #d4d4d4;
+	--gray-3: #b8b8b8;
+	--gray-4: #9c9c9c;
+	--gray-5: #7f7f7f;
+	--gray-6: #636363;
+	--gray-7: #474747;
+	--gray-8: #2b2b2b;
+	--gray-9: #0f0f0f;
+
+	--green-check-btn: #35B572;
+	--red-check-btn: #FF2910;
+	--blue-check-btn: #326BFF;
+	--id-link-color: #32B0FF;
+	--blue-add-btn: #78AFE2;
+
+	/*color: var(--main-font-color);
+	  변수 선언한 건 이런식으로 사용하면 됨
+	*/
+
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+a {
+	text-decoration: none
+}
+
+
+
+/* 페이지 레이아웃
+---------------------*/
+html {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.page-main {
+	background: #FFFFFF;
+	margin: 40px 0;
+	min-height: 650px;
+}
+
+.content-main {
+	padding: 10px 20px;
+}
+
+/* 공통 메시지
+---------------------*/
+.result-display {
+	width: 400px;
+	height: 200px;
+	margin: 50px auto;
+	border: 1px solid #000;
+	display: flex;
+	align-items: center;
+	/*세로 정렬*/
+	justify-content: center;
+	/*가로 정렬*/
+}
+
+/* 공통 정렬
+---------------------*/
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
+
+
+/*-----------개인설정-------------*/
+
+/*프로필 사진*/
+.profile-photo {
+	width: 40px;
+	border-radius: 50px;
+}
+
+/*하드스킬 로고*/
+.skill-logo {
+	width: 30px;
+	border-radius: 50px;
+}
+
+div {
+	margin: 30px 10px;
+}
+
+ul {
+	margin: 30px auto;
+}
+
+
+
+
+
+
+/* rboardList */
+.category .category-item {
+	display: inline;
+	width: 50px;
+}
+
+
+/* 검색옵션 */
+.search-container {
+	margin: 20px 0;
+}
+
+.search-container .search-menu {
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	margin-right: 10px;
+}
+
+div.search-menu {
+	margin:10px 0;
+	width: 340px;
+}
+
+#r_board {
+	display: flex;
+	flex-wrap: wrap;
+	/* 요소들이 넘치면 다음 줄로 내려갈 수 있도록 설정 */
+	justify-content: space-between;
+	/* 요소들을 왼쪽과 오른쪽으로 정렬하여 간격을 두어 배치 */
+
+}
+
+.r-item {
+	width: calc(25% - 20px);
+	/* 각 요소의 너비를 설정하여 한 줄에 4개씩 표시되도록 함 */
+	height: 340px;
+	margin-bottom: 20px;
+	/* 요소 사이의 간격을 조절 */
+	border: 2px solid var(--gray-4);
+	border-radius: 6px;
+}

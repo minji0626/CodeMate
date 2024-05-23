@@ -5,19 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h4>메인 페이지</h4>
-	</div>
+	<%-- <jsp:include page="/WEB-INF/views/common/AdCarosel.jsp"/>  --%> 
+	
 </div>
 </body>
 </html>
 
-
+ 
 
 
 
