@@ -759,7 +759,7 @@ body {
     justify-content: center; /* Center items horizontally */
     gap: 20px; /* Space between items */
     border-radius: 10px;
-    background-color: #d1d1d1;
+    /* background-color: #d1d1d1; */
 }
 
 .mem_personal {
@@ -774,6 +774,7 @@ body {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Added shadow for better look */
+	margin-right: 40px;
 }
 
 .team_mem_profile_img {
