@@ -35,3 +35,37 @@
         });
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+        const mate_review = document.getElementById("mate_review");
+
+        function modalOn() {
+            mate_review.style.display = "flex";
+        }
+
+        function modalOff() {
+            mate_review.style.display = "none";
+        }
+
+        const reviewLinks = document.querySelectorAll(".review-link");
+
+        reviewLinks.forEach(link => {
+            link.addEventListener("click", e => {
+                e.preventDefault();
+                const nickname = e.target.closest('.mem_personal').querySelector('.team_mem_nickname').getAttribute('data-nickname');
+                document.querySelector('.mate_review_profile .user_nickname').innerText = nickname;
+                const id = e.target.closest('.mem_personal').querySelector('.team_mem_nickname').getAttribute('data-id');
+                document.querySelector('.mate_review_profile .user_id').innerText = id;
+                modalOn();
+            });
+        });
+
+        document.querySelector(".mate_review_close").addEventListener("click", e => {
+            modalOff();
+        });
+
+        document.getElementById("close-btn").addEventListener("click", e => {
+            modalOff();
+        });
+    });
