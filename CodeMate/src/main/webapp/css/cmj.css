@@ -773,7 +773,7 @@ body {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 40px;
+    margin-right: 60px;
 }
 
 .mem_personal ul {
@@ -850,3 +850,16 @@ body {
 .dropdown_menu a:hover {
     background-color: #f1f1f1;
 }
+
+#mem_delete_btn {
+    color: #FF4934;
+}
+
+#mem_auth_btn {
+    color: #326BFF;
+}
+
+.dropdown_menu a:first-child {
+    color: #969696;
+}
+
