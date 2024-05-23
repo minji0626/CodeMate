@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,25 +12,9 @@
     <title>Team Main Page - Test</title>
   </head>
   <body>
-    <div class="left-outer">
-      <div class="profile">
-        <img src="images/account_circle.png" id="profile-img">
-        <span class="team_status">팀원</span>
-        <span class="team_nickname">분모재</span>
-        <div class="written_post">
-          <img src="images/written_post.png" alt="내가 쓴 글" id="post_icon">
-          <span class="my_post">내가 쓴 글</span>
-          <span class="my_post_cnt">20개</span>
-        </div>
-      </div>
-      <!-- 외부 왼쪽 컨테이너 시작 -->
-      <div class="menu-bar">
-        <a href="team_main_test.html" class="menu-item">캘린더 & To-Do</a>
-        <a href="#" class="menu-item">팀 게시판</a>
-        <a href="team_member_test.html" class="menu-item">팀 설정</a>
-        <!-- 다른 메뉴 항목들 추가 -->
-      </div>
-    </div>
+    
+    <%@ include file="team_nav_test.jsp" %>
+    
     <div class="container">
       <div class="left">
         <div class="calendar">

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,35 +12,16 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="left-outer">
-      <div class="profile">
-        <img src="images/account_circle.png" id="profile-img">
-        <span class="team_status">팀원</span>
-        <span class="team_nickname">분모재</span>
-        <div class="written_post">
-          <img src="images/written_post.png" alt="내가 쓴 글" id="post_icon">
-          <span class="my_post">내가 쓴 글</span>
-          <span class="my_post_cnt">20개</span>
-        </div>
-      </div>
-      <!-- 외부 왼쪽 컨테이너 시작 -->
-      <div class="menu-bar">
-        <a href="team_main_test.html" class="menu-item">캘린더 & To-Do</a>
-        <a href="#" class="menu-item">팀 게시판</a>
-        <a href="team_member_test" class="menu-item">팀 설정</a>
-        <!-- 다른 메뉴 항목들 추가 -->
-      </div>
-    </div>
-    
+	<%@ include file="team_nav_test.jsp" %>
   <div id="mem_container">
   
      <div class="mem_personal">
         <ul>
-            <li><img src="images/boy_profile.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/boy_profile.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀장</span></li>
             <li><span class="team_mem_nickname">홍길동</span></li>
             <li>
-                <button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                 <div class="dropdown_menu">
                     <a href="#">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
@@ -49,11 +32,11 @@
     </div>
     <div class="mem_personal">
         <ul>
-            <li><img src="images/girl_profile.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/girl_profile.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
             <li><span class="team_mem_nickname">박길동</span></li>
 			<li>
-                <button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                 <div class="dropdown_menu">
                     <a href="#">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
@@ -64,11 +47,11 @@
     </div>
     <div class="mem_personal">
         <ul>
-            <li><img src="images/girl2_profile.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/girl2_profile.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
             <li><span class="team_mem_nickname">김길동</span></li>
              <li>
-                <button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                 <div class="dropdown_menu">
                     <a href="#">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
@@ -79,10 +62,10 @@
     </div>
     <div class="mem_personal">
         <ul>
-            <li><img src="images/face.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/face.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
             <li><span class="team_mem_nickname">이길동</span></li>
-            <li><button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
             <div class="dropdown_menu">
                    <a href="#">리뷰 쓰기</a>
                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
@@ -93,10 +76,10 @@
     </div>
     <div class="mem_personal">
         <ul>
-            <li><img src="images/account_circle.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/account_circle.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
             <li><span class="team_mem_nickname">분모재</span></li>
-            <li><button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
             <div class="dropdown_menu">
                     <a href="#">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
@@ -107,10 +90,10 @@
     </div>
     <div class="mem_personal">
         <ul>
-            <li><img src="images/girl_profile.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/girl_profile.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
             <li><span class="team_mem_nickname">최길동</span></li>
-            <li><button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
             <div class="dropdown_menu">
                    <a href="#">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
@@ -121,10 +104,10 @@
     </div>
     <div class="mem_personal">
         <ul>
-            <li><img src="images/boy2_profile.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/boy2_profile.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
             <li><span class="team_mem_nickname">박길동</span></li>
-            <li><button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
             <div class="dropdown_menu">
                     <a href="#">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
@@ -135,10 +118,10 @@
     </div>
     <div class="mem_personal">
         <ul>
-            <li><img src="images/boy3_profile.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/images/cmj/boy3_profile.png" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
             <li><span class="team_mem_nickname">박길동</span></li>
-            <li><button class="team_setting_btn"><img src="images/setting_icon.png" class="setting_btn"></button>
+            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
             <div class="dropdown_menu">
                     <a href="#">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
