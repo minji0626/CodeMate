@@ -863,3 +863,75 @@ body {
     color: #969696;
 }
 
+/* 테이블 스타일 */
+table {
+    width: 1180px; /* 전체 테이블 너비 증가 */
+    border-collapse: collapse;
+}
+
+/* 테이블 헤더 스타일 */
+th {
+    background-color: #f2f2f2; /* 헤더 배경색 */
+    padding: 10px;
+    text-align: center;
+}
+
+/* 테이블 셀 스타일 */
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* 번호 칼럼 스타일 */
+td:nth-child(1) {
+    width: calc(100px / 590px * 1180px); /* 비율에 맞게 계산 */
+}
+
+/* 제목 칼럼 스타일 */
+td:nth-child(2) {
+    width: calc(590px / 590px * 1180px); /* 비율에 맞게 계산 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 작성자 칼럼 스타일 */
+td:nth-child(3) {
+    width: calc(158px / 590px * 1180px); /* 비율에 맞게 계산 */
+}
+
+/* 조회수 칼럼 스타일 */
+td:nth-child(4) {
+    width: calc(100px / 590px * 1180px); /* 비율에 맞게 계산 */
+}
+
+/* 작성일 칼럼 스타일 */
+td:nth-child(5) {
+    width: calc(140px / 590px * 1180px); /* 비율에 맞게 계산 */
+}
+
+
+/* 버튼 컨테이너 스타일 */
+.button-container {
+    text-align: right; /* 오른쪽 정렬 */
+    margin-bottom: 20px; /* 버튼과 테이블 사이 여백 */
+}
+
+/* 글쓰기 버튼 스타일 */
+.write-button {
+    display: inline-block;
+    font-weight : bold;
+    font-size : 13px;
+    padding: 10px 20px;
+    background-color: var(--primary-clr);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.write-button:hover {
+    color:#000;
+}
+
