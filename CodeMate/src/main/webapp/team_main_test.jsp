@@ -6,8 +6,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <link rel="stylesheet" href="css/share.css" type="text/css">
-    <link rel="stylesheet" href="css/cmj.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <title>Team Main Page - Test</title>
   </head>
@@ -82,6 +82,6 @@
       </button>
     </div>
 
-<script type="text/javascript" src="js/team.main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main.js"></script>
   </body>
 </html>
