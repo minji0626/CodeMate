@@ -752,20 +752,19 @@ body {
     width: 1200px;
     min-height: 850px;
     margin: 0 auto;
-    padding: 20px; /* Changed for more spacing */
+    padding: 20px;
     color: #3D3D3D;
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap */
-    justify-content: center; /* Center items horizontally */
-    gap: 20px; /* Space between items */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     border-radius: 10px;
-    /* background-color: #d1d1d1; */
 }
 
 .mem_personal {
     position: relative;
     width: 300px;
-    height: 200px; /* Adjusted height for better layout */
+    height: 200px;
     padding: 20px;
     color: #3D3D3D;
     display: flex;
@@ -773,17 +772,27 @@ body {
     align-items: center;
     border-radius: 10px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Added shadow for better look */
-	margin-right: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 40px;
+}
+
+.mem_personal ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .team_mem_profile_img {
-    width: 60px; /* Adjusted size */
-    height: 60px; /* Adjusted size */
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     object-position: top;
     border-radius: 50%;
-    margin-bottom: 10px; /* Space below image */
+    margin-bottom: 10px;
 }
 
 .team_setting_btn {
@@ -794,7 +803,7 @@ body {
     width: 20px;
     height: 20px;
     position: absolute;
-    right: 20px; /* Adjusted positioning */
+    right: 20px;
     top: 20px;
 }
 
@@ -804,15 +813,40 @@ body {
 }
 
 .team_mem_status {
-    font-size: 16px; /* Adjusted size */
+    font-size: 16px;
     font-weight: bold;
     color: #000;
-    margin-bottom: 5px; /* Space below status */
+    margin-bottom: 5px;
 }
 
 .team_mem_nickname {
-
-    font-size: 20px; /* Adjusted size */
+    font-size: 20px;
     font-weight: bold;
     color: #000;
+}
+
+.dropdown_menu {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute;
+    top: 20px; /* 버튼과 같은 높이로 맞춤 */
+    left: 100%; /* 오른쪽에 위치하게 설정 */
+    margin-left: 10px; /* 버튼과 드롭다운 사이의 간격 */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    width: 150px; /* 넓이 설정 */
+}
+
+.dropdown_menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+}
+
+.dropdown_menu a:hover {
+    background-color: #f1f1f1;
 }
