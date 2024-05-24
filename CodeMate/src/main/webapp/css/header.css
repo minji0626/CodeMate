@@ -3,7 +3,13 @@
 *{
 	font-family: "Noto Sans KR", sans-serif;
 }
-div #main_logo{
+
+#main_header {
+	height: 120px;
+	border-bottom: 1px solid #9c9c9c;
+}
+
+div#main_logo{
 	font-size:2em;
 	text-align:center;
 	position:relative;
@@ -23,11 +29,17 @@ div #main_logo{
 }
 
 /* 헤더 색*/
-a:link{
+#main_logo a {
+	font-family: "Noto Sans KR", sans-serif;
+	text-decoration: none;
+	color:#000000;
+}
+
+#main_logo a:link {
 	text-decoration:none;
 	color:#000000;
 }
-a:visited{
+a:visited {
 	text-decoration:none;
 	color:#000000;
 }
