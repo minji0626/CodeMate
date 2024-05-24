@@ -72,7 +72,7 @@ INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_sk
 INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'Android: Kotlin', 4, 'kotlin-logo.png');
 INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'iOS: Swift', 4, 'swift-logo.png');
 INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'iOS: Objective-C', 4, 'objectivec-logo.png');
-INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'React Native', 4, 'react-logo.png');
+INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'React Native', 4, 'reactjs-logo.png');
 INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'Flutter', 4, 'flutter-logo.png');
 INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'Xamarin', 4, 'xamarin-logo.png');
 INSERT INTO hard_skill (hs_code, hs_name, hs_category, hs_photo) VALUES (hard_skill_seq.nextval, 'Ionic', 4, 'ionic-logo.png');
