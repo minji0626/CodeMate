@@ -1,0 +1,124 @@
+@charset "utf-8";
+
+.left-outer {
+    z-index: 1000;
+    background-color: #E7E7E7;
+    border-radius: 0 30px 30px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: fixed; /* 고정 위치 설정 */
+    left: 0px;
+    top: 0px;
+    width: 275px;
+    height: 100vh;
+    overflow: auto;
+}
+
+.menu-bar {
+    margin-top: 329px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.menu-item {
+    padding: 15px 20px;
+    color: #333333;
+    text-decoration: none;
+    display: block;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.profile {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 237px;
+    height: 229px;
+    border-radius: 16px;
+    opacity: 1;
+    background: #FFFFFF;
+    margin-top: 35px;
+    margin-left: 19px;
+    margin-right: 19px;
+}
+
+#profile-img {
+    position: absolute;
+    left: 89px;
+    top: 39px;
+    width: 23%;
+    height: 23%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+}
+
+.team_status {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: normal;
+    font-variation-settings: "opsz" auto;
+    color: #3D3D3D;
+    text-align: center;
+    border-radius: 294px;
+    opacity: 1;
+    background: #D8D8D8;
+    top: 105px;
+    left: 97px;
+}
+
+.team_nickname {
+    position: absolute;
+    top: 135px;
+    left: 88px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    letter-spacing: 0em;
+    font-variation-settings: "opsz" auto;
+    color: #3D3D3D;
+}
+
+#post_icon {
+    position: absolute;
+    left: 60px;
+    top: 180px;
+    width: 7%;
+    height: 7%;
+}
+
+.my_post {
+    position: absolute;
+    width: 52px;
+    height: 14px;
+    left: 84px;
+    top: 180px;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0em;
+    font-variation-settings: "opsz" auto;
+    color: #3D3D3D;
+}
+
+.my_post_cnt {
+    position: absolute;
+    width: 21px;
+    height: 14px;
+    left: 140px;
+    top: 180px;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: normal;
+    text-align: right;
+    letter-spacing: 0em;
+    font-variation-settings: "opsz" auto;
+    color: #3D3D3D;
+}
