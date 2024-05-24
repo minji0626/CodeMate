@@ -12,7 +12,7 @@
 	</ul>
 
 	<div id="main_logo">
-		<a href="${pageContext.request.contextPath}/main/main.do"> <img
+		<a href="${pageContext.request.contextPath}/main/main.do" class="logo-text"> <img
 			id="logo_pic" src="${pageContext.request.contextPath}/images/로고1.png"
 			height="80" width="80"> CODEMATE
 		</a>
@@ -64,18 +64,18 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const headerButton = document.getElementById("header_more");
-    
+
     headerButton.addEventListener('click', function(event) {
         const dropdownMenu = this.nextElementSibling;
         dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-        
+
         // 다른 드롭다운 메뉴 숨기기
         document.querySelectorAll('.dropdown_header_menu').forEach(menu => {
             if (menu !== dropdownMenu) {
                 menu.style.display = 'none';
             }
         });
-        
+
         event.stopPropagation();
     });
 

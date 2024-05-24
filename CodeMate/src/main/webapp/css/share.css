@@ -36,6 +36,7 @@ ul, ol {
 
 a {
 	text-decoration: none;
+	color: #000000;
 }
 
 .page-container {
@@ -48,6 +49,10 @@ a {
 /*메인 헤더*/
 #main_header * {
 	font-family: "Noto Sans KR", sans-serif;
+}
+
+#main_header a {
+	font-weight: bold;
 }
 
 #main_header {
@@ -71,6 +76,10 @@ a {
 	text-align: right;
 }
 
+#main_header .logo-text {
+	font-weight: bold;
+}
+
 
 /* 헤더 색*/
 #main_header #main_logo a {
@@ -82,6 +91,11 @@ a {
 #main_header #main_logo a:link {
 	text-decoration: none;
 	color: #000000;
+}
+
+#main_header #main_logo a:active {
+    text-decoration: none;
+    color: #000000;
 }
 
 #main_header a:visited {
@@ -136,23 +150,22 @@ a {
 	height: 20px;
 }
 
+/* 드롭다운 메뉴 초기 숨김 설정 */
 #main_header .dropdown_header_menu {
-	display: none; /* 초기에는 숨김 */
-	position: absolute;
-	top: 100%; /* 버튼 바로 아래에 위치 */
-	right: 0; /* 부모 요소의 오른쪽 끝에 맞춤 */
-	background-color: white;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	z-index: 1000;
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
 #main_header .dropdown_header_menu a {
-	display: block;
-	padding: 8px 16px;
-	text-decoration: none;
-	color: #333;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
 #main_header .dropdown_header_menu a:hover {
-	background-color: #f0f0f0;
+    background-color: #ddd;
 }
