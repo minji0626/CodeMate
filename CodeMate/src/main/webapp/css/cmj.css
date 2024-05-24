@@ -1047,8 +1047,9 @@ td:nth-child(5) {
 	 font-size: 14pt; 
 }
 
-
-
+/*  
+	
+*/
 .container_write {
     width: 80%;
     max-width: 800px;
@@ -1096,7 +1097,7 @@ form {
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #326BFF;
     color: white;
 }
 
@@ -1108,4 +1109,23 @@ form {
 .btn:hover {
     opacity: 0.9;
 }
+
+/* 라디오 버튼의 기본 스타일 숨기기 */
+    input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #32B0FF;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    /* 라디오 버튼이 체크됐을 때의 스타일 */
+    input[type="radio"]:checked {
+        background-color: #32B0FF; 
+    }
+    
 
