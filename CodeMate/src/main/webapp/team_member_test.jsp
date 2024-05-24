@@ -106,7 +106,7 @@
             </li>
         </ul>
     </div>
-    
+   </div>
 <div id="mate_review" style="display:none;">
     <div class="mate_review_window">
         <div class="mate_review_title">
