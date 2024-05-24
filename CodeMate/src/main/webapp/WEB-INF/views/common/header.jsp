@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="main_header">
-	<ul style="list-style: none;">
+	<ul id="header_left">
 		<!-- 로그인 여부무관 -->
-		<li class="option"><a
+		<li><a
 			href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
 			/ <a
 			href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do">팀원
@@ -18,7 +18,8 @@
 		</a>
 	</div>
 	<!-- end of div#main_logo -->
-	<div>
+	
+	<div id="header_right">
 		<!-- 로그인 X -->
 		<c:if test="${empty mem_num}">
 			<ul class="menu-header" style="list-style: none;">
@@ -32,7 +33,7 @@
 
 		<!-- 로그인 O -->
 		<c:if test="${!empty mem_num}">
-			<div class="menu-header" id="menuOne">
+			<div id="menuOne">
 				<div class="login_profile">
 					<img id="profile_pic"
 						src="${pageContext.request.contextPath}/images/face.png"

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css" type="text/css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <title>팀 게시판 작성 Test</title>
 <script type="text/javascript">
