@@ -155,3 +155,20 @@ div.search-menu {
 	border: 2px solid var(--gray-4);
 	border-radius: 6px;
 }
+
+/* 댓글 */
+#comment_form {
+	margin: 20px;
+}
+
+#comment_form .profile-photo {
+	width: 5%;
+	margin-right: 20px;
+}
+
+#comment_form textarea {
+	width: 85%;
+	padding: 10px;
+	border: 2px solid var(--gray-4);
+	border-radius: 6px;
+}
