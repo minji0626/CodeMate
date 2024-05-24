@@ -57,7 +57,7 @@ public class MemberDAO {
 			pstmt3.setString(4,member.getMem_phone());
 			pstmt3.setString(5,member.getMem_email());
 			pstmt3.setString(6,member.getMem_nickname());
-			pstmt3.setInt(7,member.getMem_level());
+			pstmt3.setInt(7,1);//level
 			pstmt3.executeUpdate();
 
 			//SQL 실행 시 모두 성공하면 commit

@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>헤더</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
-</head>
-<body>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 <div id="main_logo">
 <ul>
@@ -72,15 +64,16 @@
                             </li>
                          </ul>
                         </div>
-                      	  <div class="menu-body3">
+                      	  
+                  </div><!-- end of div menu1 -->
+                  </div><!-- end of div menu-header -->
+                   
+        </c:if>
+
+						<div class="menu-body3">
                         	<ul style="list-style: none;">
                             	<li>
                                 <a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
                             	</li>
                         	</ul>
                      	  </div>
-                  </div><!-- end of div menu1 -->
-                  </div><!-- end of div menu-header -->
-                   
-        </c:if>
-

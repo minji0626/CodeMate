@@ -21,7 +21,7 @@ public class RegisterUserAction implements Action{
 		 member.setMem_phone(request.getParameter("phone"));
 		 member.setMem_email(request.getParameter("email"));
 		 member.setMem_nickname(request.getParameter("nickname"));
-		 member.setMem_level(Integer.parseInt(request.getParameter("level")));
+		
 		 
 		 MemberDAO dao = MemberDAO.getInstance();
 		 dao.insertMember(member);
