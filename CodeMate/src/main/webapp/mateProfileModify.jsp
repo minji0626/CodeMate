@@ -429,111 +429,105 @@ option {
     </div>
 
 <script>
-    const mp_view = document.getElementById("mp_view");
+const mp_view = document.getElementById("mp_view");
 
-    function modalOn() {
-        mp_view.style.display = "flex";
-    }
+function modalOn() {
+    mp_view.style.display = "flex";
+}
 
-    function isModalOn() {
-        return mp_view.style.display === "flex";
-    }
+function isModalOn() {
+    return mp_view.style.display === "flex";
+}
 
-    function modalOff() {
-        mp_view.style.display = "none";
-    }
+function modalOff() {
+    mp_view.style.display = "none";
+}
 
-    const btnModal = document.getElementById("btn-modal");
+const btnModal = document.getElementById("btn-modal");
 
-    btnModal.addEventListener("click", e => {
-        modalOn();
+btnModal.addEventListener("click", e => {
+    modalOn();
+});
+
+// 첫 번째 닫기 버튼 이벤트 리스너 추가
+document.querySelector(".mp_view_close").addEventListener("click", e => {
+    modalOff();
+});
+
+// 마지막 닫기 버튼 이벤트 리스너 추가
+document.getElementById("close-btn").addEventListener("click", e => {
+    modalOff();
+});
+
+// 하드스킬 셀렉트 박스 이벤트 리스너
+document.getElementById('hs-select').addEventListener('change', function(event) {
+    const selectedOptions = Array.from(event.target.selectedOptions);
+    const container = document.getElementById('hs-options');
+
+    selectedOptions.forEach(option => {
+        if (!document.querySelector(`#hs-options [data-value="${option.value}"]`)) {
+            const optionDiv = document.createElement('div');
+            optionDiv.classList.add('option-item');
+            optionDiv.setAttribute('data-value', option.value);
+            optionDiv.textContent = option.text;
+
+            const removeBtn = document.createElement('span');
+            removeBtn.classList.add('remove-btn');
+            removeBtn.textContent = 'X';
+            removeBtn.addEventListener('click', function() {
+                option.selected = false;
+                optionDiv.remove();
+                // 제거 시 옵션 다시 활성화
+                option.disabled = false;
+            });
+
+            optionDiv.appendChild(removeBtn);
+            container.appendChild(optionDiv);
+
+            // 선택된 옵션 비활성화
+            option.disabled = true;
+        }
     });
 
-    // 첫 번째 닫기 버튼
-    document.querySelector(".mp_view_close").addEventListener("click", e => {
-        modalOff();
+    // 중복 추가 방지를 위해 선택된 옵션 초기화
+    event.target.selectedIndex = -1;
+});
+
+// 소프트스킬 셀렉트 박스 이벤트 리스너
+document.getElementById('ss-select').addEventListener('change', function(event) {
+    const selectedOptions = Array.from(event.target.selectedOptions);
+    const container = document.getElementById('ss-options');
+
+    selectedOptions.forEach(option => {
+        if (!document.querySelector(`#ss-options [data-value="${option.value}"]`)) {
+            const optionDiv = document.createElement('div');
+            optionDiv.classList.add('option-item');
+            optionDiv.setAttribute('data-value', option.value);
+            optionDiv.textContent = option.text;
+
+            const removeBtn = document.createElement('span');
+            removeBtn.classList.add('remove-btn');
+            removeBtn.textContent = 'X';
+            removeBtn.addEventListener('click', function() {
+                option.selected = false;
+                optionDiv.remove();
+                // 제거 시 옵션 다시 활성화
+                option.disabled = false;
+            });
+
+            optionDiv.appendChild(removeBtn);
+            container.appendChild(optionDiv);
+
+            // 선택된 옵션 비활성화
+            option.disabled = true;
+        }
     });
 
-    // 마지막 닫기 버튼에 대한 이벤트 리스너 추가
-    document.getElementById("close-btn").addEventListener("click", e => {
-        modalOff();
-    });
-    
-    
-    
-    
-    
- // 셀렉트 (하드스킬)
-    document.getElementById('hs-select').addEventListener('change', function(event) {
-        const selectedOptions = Array.from(event.target.selectedOptions);
-        const container = document.getElementById('hs-options'); // 변경된 ID로 수정
+    // 중복 추가 방지를 위해 선택된 옵션 초기화
+    event.target.selectedIndex = -1;
+});
 
-        selectedOptions.forEach(option => {
-            if (!document.querySelector(`#hs-options [data-value="${option.value}"]`)) {
-                const optionDiv = document.createElement('div');
-                optionDiv.classList.add('option-item');
-                optionDiv.setAttribute('data-value', option.value);
-                optionDiv.textContent = option.text;
-
-                const removeBtn = document.createElement('span');
-                removeBtn.classList.add('remove-btn');
-                removeBtn.textContent = 'X';
-                removeBtn.addEventListener('click', function() {
-                    option.selected = false;
-                    optionDiv.remove();
-                    // Re-enable the option when removed
-                    option.disabled = false;
-                });
-
-                optionDiv.appendChild(removeBtn);
-                container.appendChild(optionDiv);
-
-                // Disable the selected option
-                option.disabled = true;
-            }
-        });
-
-        // Clear the selected options to avoid duplicate additions
-        event.target.selectedIndex = -1;
-    });
-
-    // 셀렉트 (소프트스킬)
-    document.getElementById('ss-select').addEventListener('change', function(event) {
-        const selectedOptions = Array.from(event.target.selectedOptions);
-        const container = document.getElementById('ss-options'); // 변경된 ID로 수정
-
-        selectedOptions.forEach(option => {
-            if (!document.querySelector(`#ss-options [data-value="${option.value}"]`)) {
-                const optionDiv = document.createElement('div');
-                optionDiv.classList.add('option-item');
-                optionDiv.setAttribute('data-value', option.value);
-                optionDiv.textContent = option.text;
-
-                const removeBtn = document.createElement('span');
-                removeBtn.classList.add('remove-btn');
-                removeBtn.textContent = 'X';
-                removeBtn.addEventListener('click', function() {
-                    option.selected = false;
-                    optionDiv.remove();
-                    // Re-enable the option when removed
-                    option.disabled = false;
-                });
-
-                optionDiv.appendChild(removeBtn);
-                container.appendChild(optionDiv);
-
-                // Disable the selected option
-                option.disabled = true;
-            }
-        });
-
-        // Clear the selected options to avoid duplicate additions
-        event.target.selectedIndex = -1;
-    });
-
-    
-    
- // 체크박스 선택 제한 함수
+// 체크박스 선택 제한 함수
 function uncheckOtherCheckbox(checkboxId) {
     var checkboxes = document.getElementsByName('mt_category');
     for (var i = 0; i < checkboxes.length; i++) {
@@ -543,20 +537,16 @@ function uncheckOtherCheckbox(checkboxId) {
         }
     }
 }
- 
-function checkOnlyOne(element) {
-	  
-	  const checkboxes 
-	      = document.getElementsByName("mt_category");
-	  
-	  checkboxes.forEach((cb) => {
-	    cb.checked = false;
-	  })
-	  
-	  element.checked = true;
-	}
 
-    
+function checkOnlyOne(element) {
+    const checkboxes = document.getElementsByName("mt_category");
+
+    checkboxes.forEach((cb) => {
+        cb.checked = false;
+    })
+
+    element.checked = true;
+}
     
     
 </script>
