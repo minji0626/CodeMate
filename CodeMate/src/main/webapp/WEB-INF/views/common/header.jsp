@@ -15,7 +15,7 @@
       <li class="option">
          <a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
             /
-         <a href="${pageContext.request.contextPath}/board/teammateRecruitForm.do">팀원 구하기</a>
+         <a href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do">팀원 구하기</a>
       </li>
    </ul>
 
