@@ -19,7 +19,7 @@
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-			<jsp:include page="/WEB-INF/views/common/AdCarosel.jsp" />
+			
 		</div>
 	</div>
 </body>
