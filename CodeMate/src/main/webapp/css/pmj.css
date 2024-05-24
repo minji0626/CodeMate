@@ -1,38 +1,80 @@
 @charset "UTF-8";
 /* 사이드 시작*/
 .float-A{
- 	margin:140px;
-	width:15%;
+ 	/* margin:8px; */
+ 	margin-top:40px;
+	width:30%;
 	height:600px;
 }
 .myCount a {
     display: block; /* 줄바꿈 효과를 위해 블록 요소로 설정 */
-    margin-bottom: 20px; /* 아래쪽에 20px의 공백을 추가 */
+    margin-bottom: 20px;
     text-decoration: none; /* 링크 밑줄 제거 (선택 사항) */
     color: inherit; /* 링크 색상 상속 (선택 사항) */
-    font-size: 20px;
+    font-size: 15px;
 }
 .myCount a.sideB_font {
-    font-size: 25px;
-    font-weight: bold; /* 볼드체 적용 */
+    font-size: 20px;
+    font-weight: bold;
 }
 /* 호버 기능 추가 - 제외할 항목들을 제외한 나머지 a 태그에만 적용 */
 .myCount a:not(.no-hover):hover {
-    font-weight: bold; /* 폰트 굵게 */
-    color: black; /* 원하는 색상으로 변경 */
+    font-weight: bold;
+    color: black;
 }
 /*사이드 끝*/
+
+/* 메인 */
 .align-center {
    text-align: center;
 }
-.align-left{
+.formBox{/* 이거 옮겨야 가운데 정렬 맞출수 있음.. */
+	margin-right: 100px;
+}
+.text-align-left{
 	text-align: left
 }
 .item-align-center{
 	margin: 0 auto;	
 }
 
+.mYPage-TitleText{
+	font-size: 30px;
+	margin-bottom: 25px;
+}
 
+.input-check {
+	width:250px;/* 안넣어도 사이즈 충분한데 긴게 더 괜찮은것 같아서 추가 */
+    height: 35px;
+    
+    /* 모서리 둥글게 */
+    border-radius: 5px;
+    
+    /* 테두리 스타일 */
+    border: 1px solid #8f8f8f;
+    
+    /* 글꼴 스타일 */
+    font-size: 16px;
+    font-weight: bold;
+    
+    margin-bottom: 10px; /* 각 input 간에 여백 추가 */
+}
+.save_btn {
+	width:250px;
+    height: 50px;
+    background-color: #000;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.small-font{
+	font-size: 15px;
+    color: #8f8f8f;
+    margin-top: -18px;
+}
 ul{
 	width: 150px;
 	
@@ -44,11 +86,8 @@ ul{
 }
 
 #flex_container .float-B {
-	width: 85%;
-	margin-right: 25%;
-	margin-top: 15%;
+	width: 80%;
+	margin-right: 190px;
+	margin-top: 35px;
 }
-
-
-
-/*메인 정보*/
+/*메인 끝*/
