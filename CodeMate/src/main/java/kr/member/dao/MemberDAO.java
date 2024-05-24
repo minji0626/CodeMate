@@ -153,7 +153,7 @@ public class MemberDAO {
 		try {
 			conn = DBUtil.getConnection();
 			//mem_modify_date=SYSDATE
-			sql = "UPDATE member_detail SET mem_name=?,mem_email=?, mem_nickname=?, mem_phone=? WHERE mem_num";
+			sql = "UPDATE member_detail SET mem_name=?,mem_email=?, mem_nickname=?, mem_phone=? WHERE mem_num=?";
 					pstmt = conn.prepareStatement(sql);
 					//?에 데이터 바인딩
 					pstmt.setString(1, member.getMem_name());
