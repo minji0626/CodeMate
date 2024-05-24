@@ -40,12 +40,6 @@ window.onload = function(){
 <%@ include file="team_nav_test.jsp" %>
     <div class="container_write">
         <form action="" id="write_form" method="post" enctype="multipart/form-data">
-        	<div class="form-group">
-				<input type="radio" name="cb_type" value="1" id="cb_type1">
-				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
-				<input type="radio" name="cb_type" value="2" id="cb_type2"> 
-				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
-			</div>
             <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" name="title" id="title" maxlength="50" class="form-control">
