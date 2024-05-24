@@ -40,7 +40,8 @@ a {
 }
 
 .page-container {
-	width: 80%;
+	width: 70%;
+	min-width: 900px;
 	margin: 0 auto;
 }
 
@@ -56,11 +57,17 @@ a {
 }
 
 #main_header {
-	height: 120px;
+	height: 175px;
 	border-bottom: 1px solid #9c9c9c;
+	margin-top: 30px;
+	background-color: white;
+}
+
+#main_header_menu {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	height: 40px;
 }
 
 #main_header div#main_logo {
@@ -76,8 +83,11 @@ a {
 	text-align: right;
 }
 
-#main_header .logo-text {
+#main_header .logo-a {
 	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 
@@ -164,7 +174,8 @@ a {
 }
 
 .dropdown_header_menu a {
-    color: black;
+    color: #2b2b2b;
+    font-size: 11pt;
     padding: 12px 16px;
     text-decoration: none;
     display: block;

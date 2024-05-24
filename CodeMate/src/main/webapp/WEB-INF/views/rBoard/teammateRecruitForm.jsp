@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>코메 구하기</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet"
@@ -16,7 +19,7 @@
 	type="text/css">
 </head>
 <body>
-	<div class="page-main">
+	<div class="page-container">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 			<form id="teammate_recruit_form" action="teammateRecruit.do" method="get">
