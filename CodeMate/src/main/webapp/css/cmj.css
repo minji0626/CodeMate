@@ -623,135 +623,10 @@ body {
 	text-decoration: line-through;
 }
 
-/* 팀 NAV */
-.left-outer {
-	z-index: 1000;
-	background-color: #E7E7E7;
-	border-radius: 0 30px 30px 0;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 275px;
-	height: 100vh;
-	overflow: auto;
-}
-
-.menu-bar {
-	margin-top: 329px;
-	width: 100%;
-	padding-top: 20px;
-}
-
-.menu-item {
-	padding: 15px 20px;
-	color: #333333;
-	text-decoration: none;
-	display: block;
-	border-radius: 10px;
-	transition: background-color 0.3s ease;
-}
-
-.menu-item:hover {
-	background-color: #f5f5f5;
-}
-
-.profile {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 237px;
-	height: 229px;
-	border-radius: 16px;
-	opacity: 1;
-	background: #FFFFFF;
-	margin-top: 35px;
-	margin-left: 19px;
-	margin-right: 19px;
-}
-
-#profile-img {
-	position: absolute;
-	left: 89px;
-	top: 39px;
-	width: 23%;
-	height: 23%;
-	object-fit: cover;
-    object-position: top;
-    border-radius: 50%;
-}
-
-.team_status {
-	position: absolute;
-	width: 40px;
-	height: 20px;
-	font-size: 12px;
-	font-weight: bold;
-	line-height: normal;
-	font-variation-settings: "opsz" auto;
-	color: #3D3D3D;
-	text-align: center;
-	border-radius: 294px;
-	opacity: 1;
-	background: #D8D8D8;
-	top: 105px;
-	left: 97px;
-}
-
-.team_nickname {
-	position: absolute;
-	top: 135px;
-	left: 88px;
-	font-size: 20px;
-	font-weight: bold;
-	line-height: 30px;
-	letter-spacing: 0em;
-	font-variation-settings: "opsz" auto;
-	color: #3D3D3D;
-}
-
-#post_icon {
-	position: absolute;
-	left: 60px;
-	top: 180px;
-	width: 7%;
-	height: 7%;
-}
-
-.my_post {
-	position: absolute;
-	width: 52px;
-	height: 14px;
-	left: 84px;
-	top: 180px;
-	font-size: 10px;
-	font-weight: bold;
-	line-height: normal;
-	letter-spacing: 0em;
-	font-variation-settings: "opsz" auto;
-	color: #3D3D3D;
-}
-
-.my_post_cnt {
-	position: absolute;
-	width: 21px;
-	height: 14px;
-	left: 140px;
-	top: 180px;
-	font-size: 10px;
-	font-weight: bold;
-	line-height: normal;
-	text-align: right;
-	letter-spacing: 0em;
-	font-variation-settings: "opsz" auto;
-	color: #3D3D3D;
-}
-
+/* 팀 설정 CSS */
 #mem_container {
-    position: fixed;
     width: 1200px;
-    min-height: 850px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     color: #3D3D3D;
     display: flex;
@@ -759,6 +634,12 @@ body {
     justify-content: center;
     gap: 20px;
     border-radius: 10px;
+    max-height: calc(100vh - 100px);
+}
+
+body {
+    overflow-y: auto;
+    margin: 0;
 }
 
 .mem_personal {
@@ -773,7 +654,12 @@ body {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 60px;
+     margin-bottom: 40px; /* 아래쪽 간격 */
+    margin-right: 40px; /* 오른쪽 간격 */
+}
+
+.mem-personal:last-child {
+    margin-bottom: 0;
 }
 
 .mem_personal ul {
@@ -795,6 +681,7 @@ body {
     margin-bottom: 10px;
 }
 
+/* 팀 설정 아이콘 버튼  */
 .team_setting_btn {
     background: transparent;
     border: none;
@@ -812,6 +699,7 @@ body {
     height: 100%;
 }
 
+/* 팀원/팀장, 닉네임 스타일 */
 .team_mem_status {
     font-size: 16px;
     font-weight: bold;
@@ -825,17 +713,19 @@ body {
     color: #000;
 }
 
+
+/* 드롭 다운 메뉴 */
 .dropdown_menu {
-    display: none; /* 기본적으로 숨김 */
+    display: none; 
     position: absolute;
-    top: 20px; /* 버튼과 같은 높이로 맞춤 */
-    left: 100%; /* 오른쪽에 위치하게 설정 */
-    margin-left: 10px; /* 버튼과 드롭다운 사이의 간격 */
+    top: 20px; 
+    left: 100%;
+    margin-left: 10px; 
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     z-index: 1000;
-    width: 150px; /* 넓이 설정 */
+    width: 150px;
 }
 
 .dropdown_menu a {
@@ -844,34 +734,35 @@ body {
     color: #333;
     text-decoration: none;
     border-bottom: 1px solid #eee;
-    white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+    white-space: nowrap;
 }
 
 .dropdown_menu a:hover {
     background-color: #f1f1f1;
+    border-radius: 5px;
 }
-
+/* 팀원 삭제 글꼴 스타일 */
 #mem_delete_btn {
     color: #FF4934;
 }
-
+/* 팀장 위임 글꼴 스타일 */
 #mem_auth_btn {
     color: #326BFF;
 }
-
-.dropdown_menu a:first-child {
+/* 리뷰 쓰기 글꼴 스타일 */
+.dropdown_menu a.review-link {
     color: #969696;
 }
 
 /* 테이블 스타일 */
 table {
-    width: 1180px; /* 전체 테이블 너비 증가 */
+    width: 1180px; 
     border-collapse: collapse;
 }
 
 /* 테이블 헤더 스타일 */
 th {
-    background-color: #f2f2f2; /* 헤더 배경색 */
+    background-color: #f2f2f2;
     padding: 10px;
     text-align: center;
 }
@@ -884,12 +775,12 @@ td {
 
 /* 번호 칼럼 스타일 */
 td:nth-child(1) {
-    width: calc(100px / 590px * 1180px); /* 비율에 맞게 계산 */
+    width: calc(100px / 590px * 1180px); 
 }
 
 /* 제목 칼럼 스타일 */
 td:nth-child(2) {
-    width: calc(590px / 590px * 1180px); /* 비율에 맞게 계산 */
+    width: calc(590px / 590px * 1180px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -897,24 +788,24 @@ td:nth-child(2) {
 
 /* 작성자 칼럼 스타일 */
 td:nth-child(3) {
-    width: calc(158px / 590px * 1180px); /* 비율에 맞게 계산 */
+    width: calc(158px / 590px * 1180px);
 }
 
 /* 조회수 칼럼 스타일 */
 td:nth-child(4) {
-    width: calc(100px / 590px * 1180px); /* 비율에 맞게 계산 */
+    width: calc(100px / 590px * 1180px);
 }
 
 /* 작성일 칼럼 스타일 */
 td:nth-child(5) {
-    width: calc(140px / 590px * 1180px); /* 비율에 맞게 계산 */
+    width: calc(140px / 590px * 1180px);
 }
 
 
 /* 버튼 컨테이너 스타일 */
 .button-container {
-    text-align: right; /* 오른쪽 정렬 */
-    margin-bottom: 20px; /* 버튼과 테이블 사이 여백 */
+    text-align: right;
+    margin-bottom: 20px;
 }
 
 /* 글쓰기 버튼 스타일 */
@@ -935,6 +826,8 @@ td:nth-child(5) {
     color:#000;
 }
 
+
+
 #mate_review {
 	width: 100%;
 	height: 100%;
@@ -945,6 +838,7 @@ td:nth-child(5) {
 	align-items: center;
 	justify-content: center;
 	background: rgba(71, 58, 58, 0.8);
+	z-index : 11000;
 }
 
 /********************************
@@ -956,6 +850,7 @@ td:nth-child(5) {
     border-radius: 15px;
     max-height: 80vh; /* 최대 높이를 설정 */
     overflow-y: auto; /* 수직 스크롤바를 추가 */
+    z-index : 11000;
 }
 
 /********************************
@@ -1011,18 +906,44 @@ td:nth-child(5) {
 
 /*닉네임, 아이디 있는 div*/
 .mr_account_nickname {
-	margin-left: 15px;
+    margin-left: 15px;
+}
+
+.user_info {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
 }
 
 .user_nickname {
-	color: black;
-	font-size: 14pt;
-	font-weight: bold;
+    color: black;
+    font-size: 14pt;
+    font-weight: bold;
+    margin-right: 5px; /* 이름과 레벨 사이의 간격 조정 */
 }
 
-.user_id {
-	color: #32B0FF;
+.user_level {
+    font-weight: bold;
+    background-color: #ccf7d9;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    width: 30px; /* 너비 조정 */
+    height: 30px; /* 높이 조정 */
+    text-align: center;
 }
+.mr_account_nickname a{
+	text-decoration: none;
+}
+.user_id {
+    color: #32B0FF;
+}
+
+#share_img {
+    width: 3%;
+    height: 3%;
+}
+
 
 
 /********************************/
@@ -1088,7 +1009,7 @@ td:nth-child(5) {
 	margin-left: 10px;
 }
 
-#close-btn span, #submit-btn {
+#close-btn, #submit-btn {
 	color: white;
 	 font-size: 14pt; 
 }

@@ -38,34 +38,54 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-        const mate_review = document.getElementById("mate_review");
+    const mate_review = document.getElementById("mate_review");
 
-        function modalOn() {
-            mate_review.style.display = "flex";
-        }
+    function modalOn() {
+        mate_review.style.display = "flex";
+    }
 
-        function modalOff() {
-            mate_review.style.display = "none";
-        }
+    function modalOff() {
+        mate_review.style.display = "none";
+    }
 
-        const reviewLinks = document.querySelectorAll(".review-link");
+    const reviewLinks = document.querySelectorAll(".review-link");
 
-        reviewLinks.forEach(link => {
-            link.addEventListener("click", e => {
-                e.preventDefault();
-                const nickname = e.target.closest('.mem_personal').querySelector('.team_mem_nickname').getAttribute('data-nickname');
-                document.querySelector('.mate_review_profile .user_nickname').innerText = nickname;
-                const id = e.target.closest('.mem_personal').querySelector('.team_mem_nickname').getAttribute('data-id');
-                document.querySelector('.mate_review_profile .user_id').innerText = id;
-                modalOn();
-            });
-        });
-
-        document.querySelector(".mate_review_close").addEventListener("click", e => {
-            modalOff();
-        });
-
-        document.getElementById("close-btn").addEventListener("click", e => {
-            modalOff();
+    reviewLinks.forEach(link => {
+        link.addEventListener("click", e => {
+            e.preventDefault();
+            
+            // 개인의 닉네임 가져와서 innerText 시키기
+            const nickname = e.target.closest('.mem_personal').querySelector('.team_mem_nickname').getAttribute('data-nickname');
+            document.querySelector('.mate_review_profile .user_nickname').innerText = nickname;
+            // 개인의 아이디 가져와서 innerText 시키기
+            const id = e.target.closest('.mem_personal').querySelector('.team_mem_nickname').getAttribute('data-id');
+            document.querySelector('.mate_review_profile .user_id').innerText = id;
+            // 개인의 레벨 가져와서 innerText 시키기
+            const level = e.target.closest('.mem_personal').querySelector('.team_mem_nickname').getAttribute('data-level');
+            document.querySelector('.mate_review_profile .user_level').innerText = level;
+            // 개인의 사진 가져와서 setAttribute 시키기
+            const profileImage = e.target.closest('.mem_personal').querySelector('.team_mem_profile_img');
+            const imageUrl = profileImage.getAttribute('src');
+            document.querySelector('.mate_review_profile .profile_image').setAttribute('src', imageUrl);
+            
+            modalOn();
         });
     });
+
+    document.querySelector(".mate_review_close").addEventListener("click", e => {
+        modalOff();
+        document.getElementById("mr_content").val('');
+    });
+
+    document.getElementById("close-btn").addEventListener("click", e => {
+        modalOff();
+        $('#mr_content').val('');
+    });
+
+    mate_review.addEventListener("click", e => {
+        if (e.target === mate_review) {
+            modalOff();
+        }
+    });
+});
+
