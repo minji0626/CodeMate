@@ -22,7 +22,7 @@
             <li><span class="team_mem_nickname" data-nickname="홍길동" data-id="honggildong" data-level="2">홍길동</span></li>
             <li>
                 <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                <div class="dropdown_menu2">
+                <div class="dropdown_menu">
                     <a href="#" class="review-link">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
                     <a href="#" id="mem_auth_btn">팀장 위임</a>
