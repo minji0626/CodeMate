@@ -1,1 +1,54 @@
 @charset "UTF-8";
+/* 사이드 시작*/
+.float-A{
+ 	margin:140px;
+	width:15%;
+	height:600px;
+}
+.myCount a {
+    display: block; /* 줄바꿈 효과를 위해 블록 요소로 설정 */
+    margin-bottom: 20px; /* 아래쪽에 20px의 공백을 추가 */
+    text-decoration: none; /* 링크 밑줄 제거 (선택 사항) */
+    color: inherit; /* 링크 색상 상속 (선택 사항) */
+    font-size: 20px;
+}
+.myCount a.sideB_font {
+    font-size: 25px;
+    font-weight: bold; /* 볼드체 적용 */
+}
+/* 호버 기능 추가 - 제외할 항목들을 제외한 나머지 a 태그에만 적용 */
+.myCount a:not(.no-hover):hover {
+    font-weight: bold; /* 폰트 굵게 */
+    color: black; /* 원하는 색상으로 변경 */
+}
+/*사이드 끝*/
+.align-center {
+   text-align: center;
+}
+.align-left{
+	text-align: left
+}
+.item-align-center{
+	margin: 0 auto;	
+}
+
+
+ul{
+	width: 150px;
+	
+}
+
+#flex_container {
+	display: flex;
+	justify-content: center;
+}
+
+#flex_container .float-B {
+	width: 85%;
+	margin-right: 25%;
+	margin-top: 15%;
+}
+
+
+
+/*메인 정보*/
