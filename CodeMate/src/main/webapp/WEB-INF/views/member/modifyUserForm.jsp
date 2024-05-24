@@ -53,8 +53,8 @@ $(function(){
         <div class="align-left">
             <ul class="item-align-center">
                 <li>
-                    <label for="name" class="red-text">이름</label><br>
-                    <input type="text" id="name" name="name" maxlength="10" class="input-check" value="${member.mem_name}">
+                    <label for="mem_name" class="red-text">이름</label><br>
+                    <input type="text" id="mem_name" name="mem_name" maxlength="10" class="input-check" value="${member.mem_name}">
                 </li>
                 <li>
                     <label for="id" class="blue-text">아이디</label><br>
