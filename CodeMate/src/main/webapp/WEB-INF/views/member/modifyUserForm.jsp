@@ -54,23 +54,23 @@ $(function(){
             <ul class="item-align-center">
                 <li>
                     <label for="name" class="red-text">이름</label><br>
-                    <input type="text" id="name" name="name" maxlength="10" class="input-check">
+                    <input type="text" id="name" name="name" maxlength="10" class="input-check" value="${member.mem_name}">
                 </li>
                 <li>
                     <label for="id" class="blue-text">아이디</label><br>
-                    <input type="text" id="id" name="id" maxlength="20" class="input-check">
+                    <input type="text" id="id" name="id" maxlength="20" class="input-check" value="${member.mem_id}">
                 </li>
                 <li>
                     <label for="email" class="green-text">이메일</label><br>
-                    <input type="email" id="email" name="email" maxlength="50" class="input-check">
+                    <input type="email" id="email" name="email" maxlength="50" class="input-check" value="${member.mem_email}">
                 </li>
                 <li>
                     <label for="nickname" class="gray-text">닉네임</label><br>
-                    <input type="text" id="nickname" name="nickname" maxlength="20" class="input-check">
+                    <input type="text" id="nickname" name="nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
                 </li>
                 <li>
                     <label for="phone" class="default-text">전화번호</label><br>
-                    <input type="text" id="phone" name="phone" maxlength="20" class="input-check">
+                    <input type="text" id="phone" name="phone" maxlength="20" class="input-check" value="${member.mem_phone}">
                 </li>
             </ul>
         </div>

@@ -26,7 +26,7 @@ public class ModifyUserFormAction implements Action {
 		
 		request.setAttribute("member", member);
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/modifyUserForm.jsp";//forward할 경우 내부에 있을땐 jsp
+		return "/WEB-INF/views/member/modifyUserForm.jsp";
 	}
 
 }
