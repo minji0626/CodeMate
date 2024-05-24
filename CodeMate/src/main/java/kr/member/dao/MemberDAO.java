@@ -165,7 +165,7 @@ public class MemberDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.getConnection();
+			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 
