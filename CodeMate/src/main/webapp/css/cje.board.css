@@ -1,17 +1,112 @@
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 테이블 헤더 스타일 */
+th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 테이블 셀 스타일 */
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* 번호 칼럼 스타일 */
+td:nth-child(1) {
+    width: calc(100px / 590px * 1180px); 
+}
+
+/* 제목 칼럼 스타일 */
+td:nth-child(2) {
+    width: calc(590px / 590px * 1180px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 작성자 칼럼 스타일 */
+td:nth-child(3) {
+    width: calc(158px / 590px * 1180px);
+}
+
+/* 조회수 칼럼 스타일 */
+td:nth-child(4) {
+    width: calc(100px / 590px * 1180px);
+}
+
+/* 작성일 칼럼 스타일 */
+td:nth-child(5) {
+    width: calc(140px / 590px * 1180px);
+}
+
+
+/* 버튼 컨테이너 스타일 */
+.button-container {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+/* 글쓰기 버튼 스타일 */
+.write-button {
+    display: inline-block;
+    font-weight : bold;
+    font-size : 13px;
+    padding: 10px 20px;
+    background-color: var(--primary-clr);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.write-button:hover {
+    color:#000;
+}
+
+
+
+#mate_review {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	background: rgba(71, 58, 58, 0.8);
+	z-index : 11000;
+}
+
+*{
+	
+	margin: 0px;
+	padding: 0px;
+}
+
 td {
     font-weight: normal; /* 텍스트 굵기 */
 }
 
-table{
+table.list{
 	background-color: white;
+	
 		
 }
 
-body{
+body.board{
 	background-color: #F6F6F6;
 }
 
-ul{
+ul.menu{
 	list-style:none;
 	margin:0;
 	padding:0;
