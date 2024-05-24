@@ -33,7 +33,7 @@
 
 		<!-- 로그인 O -->
 		<c:if test="${!empty mem_num}">
-			<div id="menuOne">
+			<div>
 				<div class="login_profile">
 					<img id="profile_pic"
 						src="${pageContext.request.contextPath}/images/face.png"
