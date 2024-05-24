@@ -1,4 +1,4 @@
-package kr.board.action;
+package kr.cboard.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

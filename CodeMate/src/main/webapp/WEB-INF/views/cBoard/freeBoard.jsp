@@ -16,7 +16,7 @@
 
 	<div>
 	    <div class="button-container">
-	    	<button class="write-button" onclick="location.href='team_writeForm.jsp'">글쓰기</button>
+	    	<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
 		</div>
 		
 		
@@ -24,10 +24,10 @@
 		<div>		
 		<ul>
 			<li>
-				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon"> <span><a href="${pageContext.request.contextPath}/cboard/community.do"><b>자유 게시판</b></a></span>
+				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon"> <span><a href="community.do"><b>자유 게시판</b></a></span>
 			</li>
 			<li>
-				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="30px" class="board-icon"> <span><a href="${pageContext.request.contextPath}/cboard/community2.do">개발 게시판</a> </span>
+				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="30px" class="board-icon"> <span><a href="community2.do">개발 게시판</a> </span>
 			</li>
 		</ul>
 		</div>
