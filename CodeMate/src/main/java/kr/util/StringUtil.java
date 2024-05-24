@@ -35,6 +35,12 @@ public class StringUtil {
 		return str.replaceAll("\"", "&quot;");
 	}
 	
+	//String으로 받아온 날짜값 number로 변환
+    public static int convertDateToNumber(String dateString) {
+        // 문자열에서 "-"를 제거하고 숫자로 변환
+        return Integer.parseInt(dateString.replace("-", ""));
+    }
+	
 }
 
 
