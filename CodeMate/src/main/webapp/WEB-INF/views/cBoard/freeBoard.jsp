@@ -24,10 +24,10 @@
 		<div>		
 		<ul>
 			<li>
-				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon"> <span><a href="${pageContext.request.contextPath}/board/community.do"><b>자유 게시판</b></a></span>
+				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon"> <span><a href="${pageContext.request.contextPath}/cboard/community.do"><b>자유 게시판</b></a></span>
 			</li>
 			<li>
-				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="30px" class="board-icon"> <span><a href="${pageContext.request.contextPath}/board/community2.do">개발 게시판</a> </span>
+				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="30px" class="board-icon"> <span><a href="${pageContext.request.contextPath}/cboard/community2.do">개발 게시판</a> </span>
 			</li>
 		</ul>
 		</div>
