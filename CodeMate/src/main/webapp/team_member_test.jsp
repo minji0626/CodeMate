@@ -6,13 +6,17 @@
 <meta charset="UTF-8">
 <title>Team Member Test Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-</head>
-<body>
-	<%@ include file="team_nav_test.jsp" %>
+    <title>Team Main Page - Test</title>
+  </head>
+  <body id="team_main_body">
+  <div class="page-container">
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <jsp:include page="team_nav_test.jsp"/>
   <div id="mem_container">
   
      <div class="mem_personal">
@@ -83,7 +87,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script type="text/javascript" src="js/team.member.js"></script>
     
 </body>

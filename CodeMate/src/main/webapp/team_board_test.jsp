@@ -5,15 +5,16 @@
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<title>팀 게시판 Test</title>
-</head>
-<body>
-<%@ include file="team_nav_test.jsp" %>
-<div>
+    <title>Team Main Page - Test</title>
+  </head>
+  <body id="team_main_body">
+  <div class="page-container">
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <jsp:include page="team_nav_test.jsp"/>
     <div class="button-container">
     	<button class="write-button" onclick="location.href='team_writeForm.jsp'">글쓰기</button>
 	</div>
@@ -76,5 +77,6 @@
  	</tr>
  </table>
 </div>
+
 </body>
 </html>
