@@ -5,16 +5,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <title>Team Main Page - Test</title>
   </head>
-  <body>
+  <body id="team_main_body">
+  <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="team_nav_test.jsp"/>
-    
+
     <div class="container">
       <div class="left">
         <div class="calendar">
@@ -81,7 +82,7 @@
         <i class="fas fa-plus"></i>
       </button>
     </div>
-
+</div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main.js"></script>
   </body>
 </html>

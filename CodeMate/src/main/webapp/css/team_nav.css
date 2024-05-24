@@ -7,11 +7,13 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     position: fixed; /* 고정 위치 설정 */
     left: 0px;
-    top: 0px;
+    top: 130px; /* 페이지 상단에서 130px 아래에 고정 */
     width: 275px;
     height: 100vh;
     overflow: auto;
 }
+
+
 
 .menu-bar {
     margin-top: 329px;
