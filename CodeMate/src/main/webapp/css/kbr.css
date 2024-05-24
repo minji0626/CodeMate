@@ -1,1 +1,40 @@
 @charset "UTF-8";
+
+/* 페이지 레이아웃
+---------------------*/
+
+.page-main {
+	background: #FFFFFF;
+	margin: 40px 0;
+	min-height: 650px;
+}
+
+.content-main {
+	margin: 0 auto;
+	padding: 10px 20px;
+	width: 70%;
+}
+
+/* 공통 메시지
+---------------------*/
+.result-display {
+	width: 400px;
+	height: 200px;
+	margin: 50px auto;
+	border: 1px solid #000;
+	display: flex;
+	align-items: center;
+	/*세로 정렬*/
+	justify-content: center;
+	/*가로 정렬*/
+}
+
+/* 공통 정렬
+---------------------*/
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
