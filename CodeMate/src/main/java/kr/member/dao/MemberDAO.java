@@ -57,7 +57,7 @@ public class MemberDAO {
 			pstmt3.setString(4,member.getMem_phone());
 			pstmt3.setString(5,member.getMem_email());
 			pstmt3.setString(6,member.getMem_nickname());
-			pstmt3.setInt(7,1);//level
+			pstmt3.setInt(7,member.getMem_level());
 			pstmt3.executeUpdate();
 
 			//SQL 실행 시 모두 성공하면 commit
@@ -134,6 +134,8 @@ public class MemberDAO {
 				member.setMem_email(rs.getString("mem_email"));
 				member.setMem_nickname(rs.getString("mem_nickname"));
 				member.setMem_phone(rs.getString("mem_phone"));
+				member.setMem_reg_date(rs.getDate("mem_reg_date"));
+				member.setMem_modify_date(rs.getDate("mem_modify_date"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -149,17 +151,15 @@ public class MemberDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			//sql = "UPDATE member_detail SET mem_name=?,mem_id=?,mem_email=?,mem_nickname=?,mem_phone=?,mem_modify_date=SYSDATE WHERE mem_num=?";
-			sql = "UPDATE member_detail "
-					+ "SET mem_name=?, mem_id=?, mem_email=?, mem_nickname=?, mem_phone=?, mem_modify_date=SYSDATE "
-					+ "WHERE mem_num = (SELECT mem_num FROM member WHERE member.mem_num = member_detail.mem_num AND member.mem_num = ?)";;
+			//mem_modify_date=SYSDATE
+			sql = "UPDATE member_detail SET mem_name=?,mem_email=?, mem_nickname=?, mem_phone=? WHERE mem_num";
 					pstmt = conn.prepareStatement(sql);
+					//?에 데이터 바인딩
 					pstmt.setString(1, member.getMem_name());
-					pstmt.setString(2, member.getMem_id());
-					pstmt.setString(3, member.getMem_email());
-					pstmt.setString(4, member.getMem_nickname());
-					pstmt.setString(5, member.getMem_phone());
-					pstmt.setInt(6, member.getMem_num());
+					pstmt.setString(2, member.getMem_email());
+					pstmt.setString(3, member.getMem_nickname());
+					pstmt.setString(4, member.getMem_phone());
+					pstmt.setInt(5, member.getMem_num());
 					pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -169,3 +169,7 @@ public class MemberDAO {
 	}
 
 }
+
+
+
+
