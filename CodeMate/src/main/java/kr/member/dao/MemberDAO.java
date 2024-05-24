@@ -26,6 +26,7 @@ public class MemberDAO {
 		ResultSet rs = null;
 		String sql = null;
 		int num = 0;//시퀀스 번호 저장
+		String phonenum = "";
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
@@ -48,13 +49,13 @@ public class MemberDAO {
 			pstmt2.executeUpdate();
 
 			sql = "INSERT INTO member_detail (mem_num,mem_name,mem_passwd,"
-					+ "mem_phone,mem_email,mem_nickname,mem_level) VALUES ("
-					+ "?,?,?,?,?,?,?)"; 
+					+ "mem_email,mem_nickname,mem_level) VALUES ("
+					+ "?,?,?,?,?,?)"; 
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1,num);
 			pstmt3.setString(2,member.getMem_name());
 			pstmt3.setString(3,member.getMem_passwd());
-			pstmt3.setString(4,member.getMem_phone());
+			pstmt3.setString(4,phonenum);
 			pstmt3.setString(5,member.getMem_email());
 			pstmt3.setString(6,member.getMem_nickname());
 			pstmt3.setInt(7,1);//level

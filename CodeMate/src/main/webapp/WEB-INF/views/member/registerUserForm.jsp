@@ -44,54 +44,7 @@ $(function(){
 			}
 		});
 		 
-		//서버와 통신
-		$.ajax({
-			url:'checkDuplicatedPhone.do',
-			type:'post',
-			data:{phone:$('#phone').val()},
-			dataType:'json',
-			success:function(param){
-				if(param.result == 'phoneNotFound'){
-					phoneChecked = 1;
-					$('#message_phone').css('color','black').text('등록 가능 전화번호');
-				}else if(param.result == 'phoneDuplicated'){
-					phoneChecked = 0;
-					$('#message_phone').css('color','red').text('중복된 전화번호');
-					$('#phone').val('').focus();
-				}else{
-					phoneChecked = 0;
-					alert('전화번호 중복 체크 오류 발생');
-				}
-			},
-			error:function(){
-				phoneChecked = 0;
-				alert('네트워크 오류 발생');
-			}
-		});
 		
-		$.ajax({
-			url:'checkDuplicatedEmail.do',
-			type:'post',
-			data:{phone:$('#email').val()},
-			dataType:'json',
-			success:function(param){
-				if(param.result == 'emailNotFound'){
-					emailChecked = 1;
-					$('#message_email').css('color','black').text('등록 가능 이메일');
-				}else if(param.result == 'emailDuplicated'){
-					emailChecked = 0;
-					$('#message_email').css('color','red').text('중복된 이메일');
-					$('#email').val('').focus();
-				}else{
-					emailChecked = 0;
-					alert('이메일 중복 체크 오류 발생');
-				}
-			},
-			error:function(){
-				emailChecked = 0;
-				alert('네트워크 오류 발생');
-			}
-		});
 		
 	});//end of click
 	
@@ -101,17 +54,7 @@ $(function(){
 		$('#message_id').text('');
 	});//end of keydown
 	
-	 //전화번호 중복 안내 메시지 초기화 및 전화번호 중복값 초기화
-	$('#register_form #phone').keydown(function(){
-		phoneChecked = 0;
-		$('#message_phone').text('');
-	});//end of keydown
-	
-	 //이메일 중복 안내 메시지 초기화 및 이메일 중복값 초기화
-	$('#register_form #email').keydown(function(){
-		emailChecked = 0;
-		$('#message_email').text('');
-	});//end of keydown
+	 
 	
 	//회원 정보 등록 유효성 체크
 	$('#register_form').submit(function(){
@@ -130,17 +73,9 @@ $(function(){
 				return false;
 			}
 			if(items[i].id == 'id' && idChecked == 0){
-				alert('아이디 중복 체크 필수');
+				alert('사용할 수 없는 아이디');
 				return false;
 			} 
-			if(items[i].phone == 'phone' && phoneChecked == 0){
-				alert('전화번호 중복 체크 필수');
-				return false;
-			}
-			if(items[i].email == 'email' && emailChecked == 0){
-				alert('이메일 중복 체크 필수');
-				return false;
-			}
 			
 		}
 	});
@@ -158,35 +93,30 @@ $(function(){
 					<li>
 						<label for="id">아이디</label> <input type="text" name="id"
 						id="id" maxlength="12" autocomplete="off" class="input-check">
-						<input type="button" value="ID중복체크" id="id_check"> 
-						<span id="message_id"></span>
-						<div class="form-notice">*영문 또는 숫자(6자~12자)</div></li>
+							<input type="button" value="ID중복체크" id="id_check"> 
+							<span id="message_id"></span>
+						<div class="form-notice">*영문 또는 숫자(6자~12자)</div>
+					</li>
 					<li>
 						<label for="name">이름</label> 
 						<input type="text" name="name" id="name" maxlength="10" class="input-check">
 					</li>
-					<li><label for="passwd">비밀번호</label> <input type="password"
-						name="passwd" id="passwd" maxlength="12" class="input-check">
-					</li>
-					<li><label for="phone">전화번호</label> <input type="text"
-						name="phone" id="phone" maxlength="15" class="input-check">
-						<input type="button" value="전화번호 중복체크" id="phone_check"> 
-						<span id="message_phone"></span>
-					</li>
-					<li><label for="email">이메일</label> <input type="email"
-						name="email" id="email" maxlength="50" class="input-check">
-						<input type="button" value="이메일 중복체크" id="email_check"> 
-						<span id="email_phone"></span>
+					<li>
+					<label for="passwd">비밀번호</label> 
+						<input type="password" name="passwd" id="passwd" maxlength="12" class="input-check">
 					</li>
 					<li>
 						<label for="nickname">닉네임</label> 
 						<input type="text" name="nickname" id="nickname" maxlength="10" class="input-check">
 					</li>
+					<li>
+					<label for="email">이메일</label> 
+						<input type="email" name="email" id="email" maxlength="50" class="input-check">
+					</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" value="등록"> <input type="button"
-						value="홈으로"
-						onclick="'${pageContext.request.contextPath}/main/main.do'">
+					<input type="submit" value="회원가입완료"> 
+					<input type="button" value="취소" onclick="'${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			</form>
 			

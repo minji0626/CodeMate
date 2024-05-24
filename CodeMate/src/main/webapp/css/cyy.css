@@ -12,58 +12,9 @@ a {
 }
 
 
-/* 헤더 위치 */
-div #main_logo{
-	font-size:2em;
-	text-align:center;
-	position:relative;
-	top:20px;
-}
-
-
- li.option{
-	text-align:left;
-	position:absolute;
-	top:20px; left:50px;
- }
-
-.menu-header{
-	text-align:right;
-	position:absolute;
-	top:20px; right:80px;
-}
-
-/* 헤더 색*/
-a:link{
-	text-decoration:none;
-	color:#000000;
-}
-a:visited{
-	text-decoration:none;
-	color:#000000;
-}
-a:hover{
-	text-decoration:none;
-	color:#6C6C6C;
-}
-
-/* 닉네임을 누르기 전엔 메뉴가 보이지 않게 처리함 */
- .menu1 {
-  &:not(.show) {
-    display: none;
-  }
-}
-
-/* 프로필사진 */
-#profile_pic{
-	border-radius:100px 100px 100px 100px;
-}
-/* 로고 사진 */
-#logo_pic{
-	position:relative;
-	bottom:10px;
-}
-
 /* 광고배너 */
-
+div.container{
+	position:absolute;
+	top:600px;
+}
 
