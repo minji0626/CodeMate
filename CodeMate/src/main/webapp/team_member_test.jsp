@@ -22,7 +22,7 @@
             <li><span class="team_mem_nickname" data-nickname="홍길동" data-id="honggildong" data-level="2">홍길동</span></li>
             <li>
                 <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                <div class="dropdown_menu">
+                <div class="dropdown_menu2">
                     <a href="#" class="review-link">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
                     <a href="#" id="mem_auth_btn">팀장 위임</a>
@@ -46,67 +46,8 @@
             </li>
         </ul>
     </div>
-    <div class="mem_personal">
-        <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/girl2_profile.png" class="team_mem_profile_img"></li>
-            <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="공유" data-id="hadsomeyou" data-level="2">공유</span></li>
-             <li>
-                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                <div class="dropdown_menu">
-                    <a href="#" class="review-link">리뷰 쓰기</a>
-                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                    <a href="#" id="mem_auth_btn">팀장 위임</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    
-    <div class="mem_personal">
-        <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/account_circle.png" class="team_mem_profile_img"></li>
-            <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="분모재" data-id="boonmojae" data-level="1">분모재</span></li>
-            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-            <div class="dropdown_menu">
-                    <a href="#" class="review-link">리뷰 쓰기</a>
-                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                    <a href="#" id="mem_auth_btn">팀장 위임</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    
-    <div class="mem_personal">
-        <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/girl_profile.png" class="team_mem_profile_img"></li>
-            <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="박문수" data-id="parkms" data-level="2">박문수</span></li>
-            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-            <div class="dropdown_menu">
-                   <a href="#" class="review-link">리뷰 쓰기</a>
-                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                    <a href="#" id="mem_auth_btn">팀장 위임</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    
-    <div class="mem_personal">
-        <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/boy2_profile.png" class="team_mem_profile_img"></li>
-            <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="이동욱" data-id="2dongwuk" data-level="1">이동욱</span></li>
-            <li><button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-            <div class="dropdown_menu">
-                    <a href="#" class="review-link">리뷰 쓰기</a>
-                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                    <a href="#" id="mem_auth_btn">팀장 위임</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-   </div>
+
+  </div>
 <div id="mate_review" style="display:none;">
     <div class="mate_review_window">
         <div class="mate_review_title">

@@ -34,10 +34,7 @@
             event.stopPropagation();
         });
     });
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
+    
     const mate_review = document.getElementById("mate_review");
 
     function modalOn() {
@@ -87,5 +84,5 @@ document.addEventListener("DOMContentLoaded", () => {
             modalOff();
         }
     });
+    
 });
-

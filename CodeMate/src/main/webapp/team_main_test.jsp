@@ -12,7 +12,7 @@
     <title>Team Main Page - Test</title>
   </head>
   <body>
-    
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <%@ include file="team_nav_test.jsp" %>
     
     <div class="container">
@@ -20,7 +20,7 @@
         <div class="calendar">
           <div class="month">
             <i class="fas fa-angle-left prev"></i>
-            <div class="date">december 2015</div>
+            <div class="date"></div>
             <i class="fas fa-angle-right next"></i>
           </div>
           <div class="weekdays">
