@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>헤더</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
-</head>
-<body>
-
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/header.css" type="text/css">
 <div id="main_logo">
 <ul>
 	<li class="MainName" style="list-style: none;">
@@ -47,16 +38,13 @@
              
              <!-- 로그인 O -->
       <c:if test="${!empty mem_num}">
-		
 		<div class="menu-header" id="menuOne">
-                    	
-                        <a class="menu-button" data-bs-toggle="collapse" data-bs-target="#menu1"
-                        	href="${pageContext.request.contextPath}/member/mypage.do">
-                        	<img id="profile_pic" src="../images/face.png" height="40" width="40">
-                            닉네임
-                            <%-- [<span>${user_nickname}</span>] --%>
-                        </a>
-                    
+				<div class="login_profile">
+				<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">
+                <span>닉네임</span>
+                <img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
+				</div>
+                 
                     <div id="menu1" class="menu1" data-bs-parent="#Menu-mypage">
                       <div class="menu-body1">
                          <ul style="list-style: none;">  
@@ -80,7 +68,7 @@
                         	</ul>
                      	  </div>
                   </div><!-- end of div menu1 -->
-                  </div><!-- end of div menu-header -->
-                   
+           </div><!-- end of div menu-header -->
         </c:if>
+   </div>
 

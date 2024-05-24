@@ -37,24 +37,6 @@ const months = [
   "12월",
 ];
 
-// const eventsArr = [
-//   {
-//     day: 13,
-//     month: 11,
-//     year: 2022,
-//     events: [
-//       {
-//         title: "Event 1 lorem ipsun dolar sit genfa tersd dsad ",
-//         time: "10:00 AM",
-//       },
-//       {
-//         title: "Event 2",
-//         time: "11:00 AM",
-//       },
-//     ],
-//   },
-// ];
-
 const eventsArr = [];
 getEvents();
 console.log(eventsArr);
@@ -263,8 +245,10 @@ function updateEvents(date) {
               <span class="event-time">${event.time}</span>
             </div>
         </div>
+        <div class="event-buttons">
         <button class="undo-btn">취소</button>
         <button class="del-btn">삭제</button>
+        </div>
         `;
       });
     }
@@ -490,7 +474,7 @@ eventsContainer.addEventListener("click", (e) => {
   }
 }); */
 
-eventsContainer.addEventListener("click", (e) => {
+/*eventsContainer.addEventListener("click", (e) => {
   const eventDiv = e.target.closest(".event");
   const undoBtn = e.target.closest(".undo-btn");
   if (eventDiv) {
@@ -505,6 +489,63 @@ eventsContainer.addEventListener("click", (e) => {
     }
   }
 });
+*/
+
+// 이벤트 완료/취소 및 삭제 기능 추가
+eventsContainer.addEventListener("click", (e) => {
+  const eventDiv = e.target.closest(".event");
+  const undoBtn = e.target.closest(".undo-btn");
+
+  if (eventDiv) {
+    eventDiv.classList.toggle("completed"); // 완료/취소 토글
+  }
+
+  if (undoBtn) {
+    const eventDiv = undoBtn.parentElement.previousElementSibling; // 이벤트 요소 찾기
+    eventDiv.classList.remove("completed"); // 완료 표시 취소
+  }
+
+
+  saveEvents(); // 변경된 이벤트 저장
+});
+
+
+// 이벤트 삭제 기능 추가
+eventsContainer.addEventListener("click", (e) => {
+  const delBtn = e.target.closest(".del-btn"); // 삭제 버튼을 클릭했는지 확인
+
+  if (delBtn) {
+    const eventDiv = delBtn.parentElement.previousElementSibling; // 이벤트 요소 찾기
+    const eventTitle = eventDiv.querySelector(".event-title").textContent; // 삭제할 이벤트의 제목 가져오기
+
+    // 삭제 확인 메시지 출력
+    if (confirm(`"${eventTitle}" 이벤트를 삭제하시겠습니까?`)) {
+      // eventsArr에서 해당 이벤트를 제거
+      eventsArr.forEach((event, index) => {
+        if (
+          event.day === activeDay &&
+          event.month === month + 1 &&
+          event.year === year
+        ) {
+          event.events.forEach((item, itemIndex) => {
+            if (item.title === eventTitle) {
+              eventsArr[index].events.splice(itemIndex, 1); // 이벤트 배열에서 해당 이벤트 제거
+              // 해당 이벤트를 삭제한 후에도 이벤트가 없으면 해당 날짜의 이벤트를 eventsArr에서 제거
+              if (eventsArr[index].events.length === 0) {
+                eventsArr.splice(index, 1);
+              }
+            }
+          });
+        }
+      });
+
+      // 변경된 이벤트를 UI에 반영하고 저장
+      updateEvents(activeDay);
+      saveEvents();
+    }
+  }
+});
+
 
 
 
