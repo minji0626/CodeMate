@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+*{
+	font-family: "Noto Sans KR", sans-serif;
+}
+div #main_logo{
+	font-size:2em;
+	text-align:center;
+	position:relative;
+	top:20px;
+}
+
+ li.option{
+	text-align:left;
+	position:absolute;
+	top:20px; left:50px;
+ }
+
+.menu-header{
+	text-align:right;
+	position:absolute;
+	top:20px; right:80px;
+}
+
+/* 헤더 색*/
+a:link{
+	text-decoration:none;
+	color:#000000;
+}
+a:visited{
+	text-decoration:none;
+	color:#000000;
+}
+a:hover{
+	text-decoration:none;
+	color:#6C6C6C;
+}
+
+
+/* 프로필 사진 */
+#profile_pic {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* 로고 사진 */
+#logo_pic {
+    position: relative;
+    bottom: 10px;
+}
+
+.login_profile {
+    display: flex;
+    align-items: center; /* 아이템들을 수직으로 가운데 정렬 */
+    justify-content: flex-end; /* 오른쪽 끝으로 정렬 */
+    width: 100%; /* 부모 요소의 전체 너비 사용 */
+}
+
+.login_profile span {
+    font-weight: bold;
+    color: #3D3D3D;
+    margin-right: 10px; 
+}
+
+#header_icon {
+    width: 100%;
+    height: 100%;
+}
+
+#header_more {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 5%;
+    height: 5%;
+}
+.dropdown_menu {
+    display: none; /* 초기에는 숨김 */
+    position: absolute;
+    top: 100%; /* 버튼 바로 아래에 위치 */
+    right: 0; /* 부모 요소의 오른쪽 끝에 맞춤 */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.dropdown_menu a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown_menu a:hover {
+    background-color: #f0f0f0;
+}
+
+
