@@ -1,4 +1,4 @@
-package kr.board.action;
+package kr.rboard.action;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class TeammateRecruitFormAction implements Action {
 		request.setAttribute("hskillList", hskillList);
 		
 		//JSP 경로 설정
-		return "/WEB-INF/views/board/teammateRecruitForm.jsp";
+		return "/WEB-INF/views/rBoard/teammateRecruitForm.jsp";
 	}
 	
 }
