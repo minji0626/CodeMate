@@ -1,3 +1,7 @@
+td {
+    font-weight: normal; /* 텍스트 굵기 */
+}
+
 table{
 	background-color: white;
 		
@@ -32,8 +36,12 @@ span{
 	font-size:10pt;
 }
 
-a{
-	text-decoration: none;
-	color:black;
-	
+a.atag {
+    text-decoration: none; /* 밑줄 제거 */
+    font-weight: normal; /* 굵기 제거 */
+    color:black;
+}
+
+.table-container{
+	margin-top:50px;
 }
