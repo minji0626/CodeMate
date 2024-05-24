@@ -75,7 +75,7 @@ a:hover{
     width: 5%;
     height: 5%;
 }
-.dropdown_menu {
+.dropdown_header_menu {
     display: none; /* 초기에는 숨김 */
     position: absolute;
     top: 100%; /* 버튼 바로 아래에 위치 */
@@ -85,14 +85,14 @@ a:hover{
     z-index: 1000;
 }
 
-.dropdown_menu a {
+.dropdown_header_menu a {
     display: block;
     padding: 8px 16px;
     text-decoration: none;
     color: #333;
 }
 
-.dropdown_menu a:hover {
+.dropdown_header_menu a:hover {
     background-color: #f0f0f0;
 }
 

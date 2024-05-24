@@ -13,7 +13,7 @@
    <ul style="list-style: none;">
       <!-- 로그인 여부무관 -->
       <li class="option">
-         <a href="${pageContext.request.contextPath}/board/community.do">커뮤니티</a>
+         <a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
             /
          <a href="${pageContext.request.contextPath}/board/teammateRecruitForm.do">팀원 구하기</a>
       </li>
@@ -37,10 +37,10 @@
                <img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">
                    <span>닉네임</span>
                      <button id="header_more"><img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon"></button>
-               <div class="dropdown_menu">
-                       <a href="${pageContext.request.contextPath}/member/mateProfile.do" class="review-link">메이트프로필</a>
-                       <a href="${pageContext.request.contextPath}/member/MyPage.do" id="mem_delete_btn">마이페이지</a>
-                       <a href="${pageContext.request.contextPath}/member/logout.do" id="mem_auth_btn">로그아웃</a>
+               <div class="dropdown_header_menu">
+                       <a href="${pageContext.request.contextPath}/member/mateProfile.do" class="header_mate_profile">메이트프로필</a>
+                       <a href="${pageContext.request.contextPath}/member/MyPage.do" id="header_my_page">마이페이지</a>
+                       <a href="${pageContext.request.contextPath}/member/logout.do" id="header_logout">로그아웃</a>
                    </div>
             
             </div>
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
         
         // 다른 드롭다운 메뉴 숨기기
-        document.querySelectorAll('.dropdown_menu').forEach(menu => {
+        document.querySelectorAll('.dropdown_header_menu').forEach(menu => {
             if (menu !== dropdownMenu) {
                 menu.style.display = 'none';
             }
@@ -69,13 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 페이지를 클릭하면 모든 드롭다운 메뉴 숨기기
     document.addEventListener('click', function() {
-        document.querySelectorAll('.dropdown_menu').forEach(menu => {
+        document.querySelectorAll('.dropdown_header_menu').forEach(menu => {
             menu.style.display = 'none';
         });
     });
 
     // 드롭다운 메뉴 클릭 시 이벤트 전파 막기
-    document.querySelectorAll('.dropdown_menu').forEach(menu => {
+    document.querySelectorAll('.dropdown_header_menu').forEach(menu => {
         menu.addEventListener('click', function(event) {
             event.stopPropagation();
         });

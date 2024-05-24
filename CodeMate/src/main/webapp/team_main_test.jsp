@@ -12,7 +12,7 @@
     <title>Team Main Page - Test</title>
   </head>
   <body>
-    
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <%@ include file="team_nav_test.jsp" %>
     
     <div class="container">
