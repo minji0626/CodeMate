@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 정보 수정</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -12,35 +13,39 @@
 $(function(){
     // 회원 정보 수정 유효성 체크
     $('#modify_form').submit(function(){
-        /* const items = document.querySelectorAll('.input-check');
-        for(let i = 0;i<items.length;i++){
-            if(items[i].value.trim() == ''){
-                const label = document.querySelector('label[for="'+items[i].id+'"]');
-                alert(label.textContent + ' 항목은 필수 입력');
-                items[i].value = '';
-                items[i].focus();
-                return false;
-            }
-        } */
+        
     	const idField1 = document.getElementById('mem_name');
         if(idField1.value.trim() == ''){
-            alert('이름은 필수 입력.');
+            alert('이름은 필수 입력');
             idField1.focus();
             return false;
         }
         
         const idField2 = document.getElementById('mem_id');
-        if(idField2.value.trim() == ''){
+        const originalId = document.getElementById('original_mem_id').value;
+        if (idField2.value.trim() == '' || idField2.value != originalId) {
             alert('아이디는 변경할 수 없습니다.');
             idField2.focus();
-            idField2.value = '${member.mem_id}';
+            idField2.value = originalId;
+            return false;
+        }
+        const idField3 = document.getElementById('mem_nickname');
+        if(idField3.value.trim() == ''){
+            alert('닉네임 필수 입력');
+            idField3.focus();
+            return false;
+        }
+        const idField4 = document.getElementById('mem_nickname');
+        if(idField4.value.trim() == ''){
+            alert('닉네임 필수 입력');
+            idField4.focus();
             return false;
         }
         
-        const idField3 = document.getElementById('mem_nickname');
-        if(idField3.value.trim() == ''){
-            alert('아이디는 변경할 수 없습니다.');
-            idField3.focus();
+        const idField5 = document.getElementById('mem_phone');
+        if(idField5.value.trim() == ''){
+            alert('닉네임 필수 입력');
+            idField5.focus();
             return false;
         }
   
@@ -84,6 +89,7 @@ $(function(){
                 <li>
                     <label for="mem_id">아이디</label><br>
                     <input type="text" id="mem_id" name="mem_id" maxlength="20" class="input-check" value="${member.mem_id}">
+               		<input type="hidden" id="original_mem_id" value="${member.mem_id}">
                 </li>
                 <li>
                     <label for="mem_email">이메일</label><br>
