@@ -5,12 +5,19 @@
 	<div id="main_header_menu">
 		<ul id="header_left">
 			<!-- 로그인 여부무관 -->
-			<li><a
-				href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
-				/ <a
-				href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do">팀원
-					구하기</a></li>
+			<li>
+				<a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
+				/ <a href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do">팀원 구하기</a>
+			</li>
 		</ul>
+		
+		<div id="main_logo">
+		<a href="${pageContext.request.contextPath}/main/main.do"
+			class="logo-a"> <img id="logo_pic"
+			src="${pageContext.request.contextPath}/images/로고1.png" height="80"
+			width="80"> CODEMATE
+		</a>
+		</div>
 
 		<div id="header_right">
 			<!-- 로그인 X -->
@@ -26,7 +33,6 @@
 
 			<!-- 로그인 O -->
 			<c:if test="${!empty mem_num}">
-				<div>
 					<div class="login_profile">
 						<img id="profile_pic"
 							src="${pageContext.request.contextPath}/images/face.png"
@@ -45,22 +51,11 @@
 								href="${pageContext.request.contextPath}/member/logout.do"
 								id="header_logout">로그아웃</a>
 						</div>
-
 					</div>
-				</div>
 				<!-- end of div menu-header -->
 			</c:if>
-		</div>
+		</div> <!-- end of div header right -->
 	</div>
-	<div id="main_logo">
-		<a href="${pageContext.request.contextPath}/main/main.do"
-			class="logo-a"> <img id="logo_pic"
-			src="${pageContext.request.contextPath}/images/로고1.png" height="80"
-			width="80"> CODEMATE
-		</a>
-	</div>
-	<!-- end of div#main_logo -->
-
 </div>
 
 
