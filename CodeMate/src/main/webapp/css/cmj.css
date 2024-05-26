@@ -1,54 +1,54 @@
 @charset "UTF-8";
 
 :root {
-	--primary-clr: #ACE4BD;
+    --primary-clr: #ACE4BD;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 #team_main_body {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 30px;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
 }
 
 .container {
-	box-sizing: border-box;
-	position: relative;
-	width: 1200px;
-	min-height: 850px;
-	margin: 3% auto;
-	padding: 5px;
-	color: #3D3D3D;
-	display: flex;
-	border-radius: 10px;
-	background-color: #ACE4BD;
+    box-sizing: border-box;
+    position: relative;
+    width: 90%; /* 수정: 백분율로 변경 */
+    max-width: 1200px; /* 추가: 최대 너비 지정 */
+    min-height: 850px;
+    margin: 3% auto;
+    padding: 5px;
+    color: #3D3D3D;
+    display: flex;
+    border-radius: 10px;
+    background-color: #ACE4BD;
 }
 
 .left {
-	width: 60%;
-	padding: 20px;
+    width: 60%;
+    padding: 20px;
 }
 
 .calendar {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	color: #3D3D3D;
-	border-radius: 5px;
-	background-color: #F6F6F6;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #3D3D3D;
+    border-radius: 5px;
+    background-color: #F6F6F6;
 }
 
 /* set after behind the main element */
@@ -298,109 +298,92 @@
 	color: #3D3D3D;
 }
 
-
-.events {
-	width: 100%;
-	height: 100%;
-	max-height: 600px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	display: flex;
-	flex-direction: column;
-	padding-left: 4px;
-}
-
 .events .event {
-	position: relative;
-	width: 95%;
-	min-height: 70px;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	gap: 5px;
-	padding: 0 20px;
-	padding-left: 50px;
-	color: #fff;
-	background: linear-gradient(90deg, #3f4458, transparent);
-	cursor: pointer;
-}
-
-/* even event */
-.events .event:nth-child(even) {
-	background: transparent;
+  margin-left : 5%;
+  margin-bottom : 3%;
+  position: relative;
+  width: 90%;
+  min-height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  padding: 3%;
+  color: #3D3D3D;
+  background-color: #F6F6F6;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .events .event:hover {
-	background: linear-gradient(90deg, var(--primary-clr), transparent);
+  background-color: #E5E5E5;
 }
 
 .events .event .title {
-	display: flex;
-	align-items: center;
-	pointer-events: none;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .events .event .title .event-title {
-	font-size: 1rem;
-	font-weight: 400;
-	margin-left: 20px;
-}
-
-.events .event i {
-	color: var(--primary-clr);
-	font-size: 0.5rem;
-}
-
-.events .event:hover i {
-	color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 20px;
 }
 
 .events .event .event-time {
-	font-size: 0.8rem;
-	font-weight: 400;
-	color: #878895;
-	margin-left: 15px;
-	pointer-events: none;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #878895;
+  margin-left: auto;
 }
 
-.events .event:hover .event-time {
-	color: #fff;
-}
-
-/* 공통 스타일 */
-.undo-btn,
-.del-btn {
-  background-color: #ff6347; /* 배경색 */
-  color: #fff; /* 글자색 */
-  border: none; /* 테두리 없음 */
-  padding: 6px 12px; /* 안쪽 여백 */
-  cursor: pointer; /* 커서 타입 */
-  transition: background-color 0.3s; /* 배경색 변경 시 부드러운 전환 효과 */
-}
-
-.undo-btn:hover,
-.del-btn:hover {
-  background-color: #ff4836; /* 호버 시 배경색 변경 */
-}
-
-/* 부모 요소에 적용할 스타일 */
 .event-buttons {
-  display: flex; /* 자식 요소를 가로로 정렬 */
+  display: flex;
+  align-items: center;
 }
 
-/* 취소 버튼 */
-.undo-btn {
-  margin-right: 5px; /* 오른쪽 마진 */
+.event-buttons button {
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FF6F61;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+.event-buttons button:hover {
+  background-color: #FF887C;
+}
+
+.del-btn {
+  background-color: #ff6347;
+  color: #fff; 
+  border: none; 
+  padding: 6px 12px; 
+  cursor: pointer;
+  transition: background-color 0.3s; 
+}
+
+.del-btn:hover {
+  background-color: #ff4836;
+}
+
+.event-buttons {
+  display: flex;
+}
+
 
 /* 삭제 버튼 */
 .del-btn {
-  margin-left: 5px; /* 왼쪽 마진 */
+  margin-left: 5px; 
 }
 
 /* add tick in event after */
 .events .event::after {
-	content: "✓";
 	position: absolute;
 	top: 50%;
 	right: 0;
@@ -565,66 +548,6 @@
 	color: var(--primary-clr);
 }
 
-/* media queries */
-@media screen and (max-width: 1000px) {
-	body {
-		align-items: flex-start;
-		justify-content: flex-start;
-	}
-	.container {
-		min-height: 100vh;
-		flex-direction: column;
-		border-radius: 0;
-	}
-	.container .left {
-		width: 100%;
-		height: 100%;
-		padding: 20px 0;
-	}
-	.container .right {
-		width: 100%;
-		height: 100%;
-		padding: 20px 0;
-	}
-	.calendar::before, .calendar::after {
-		top: 100%;
-		left: 50%;
-		width: 97%;
-		height: 12px;
-		border-radius: 0 0 5px 5px;
-		transform: translateX(-50%);
-	}
-	.calendar::before {
-		width: 94%;
-		top: calc(100% + 12px);
-	}
-	.events {
-		padding-bottom: 340px;
-	}
-	.add-event-wrapper {
-		bottom: 100px;
-	}
-}
-
-@media screen and (max-width: 500px) {
-	.calendar .month {
-		height: 75px;
-	}
-	.calendar .weekdays {
-		height: 50px;
-	}
-	.calendar .days .day {
-		height: 40px;
-		font-size: 0.8rem;
-	}
-	.calendar .days .day.active, .calendar .days .day.today {
-		font-size: 1rem;
-	}
-	.right .today-date {
-		padding: 20px;
-	}
-}
-
 .goto-btn {
 	width: 30%;
 	padding: 5px 10px;
@@ -634,8 +557,4 @@
 	cursor: pointer;
 	font-weight: bold;
 	color: black;
-}
-
-.event.completed {
-	text-decoration: line-through;
 }

@@ -46,8 +46,8 @@
       </div>
       <div class="right">
         <div class="today-date">
-          <div class="event-day">wed</div>
-          <div class="event-date">2022 december 12th</div>
+          <div class="event-day"></div>
+          <div class="event-date"></div>
         </div>
         <div class="events"></div>
         <div class="add-event-wrapper">
