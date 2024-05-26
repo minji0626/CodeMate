@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글상세</title>
+<title>글상세</title>  
     
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
