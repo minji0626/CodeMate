@@ -40,7 +40,7 @@
 
 .mYPage-TitleText{
 	font-size: 30px;
-	margin-bottom: 25px;
+	margin-bottom: 40px;
 }
 
 .input-check {
@@ -91,3 +91,122 @@ ul{
 	margin-top: 35px;
 }
 /*메인 끝*/
+/*myWrite*/
+#flex_container .float-C {/* 추가하면 사이드바 위치 고정*/
+	width: 80%;
+	margin-right: 190px;
+	margin-top: 35px;
+}
+/* 내가 쓴 글 시작 */
+.box {
+    margin-top:30px;
+    border-radius: 15px;
+    width: 700px;
+    height: 90px;
+    background: #d4d4d4;
+}
+.box-wirte{
+	float:left;
+	width:530px;
+    padding-left: 20px;
+    width:510px;
+    
+}
+.myWrite-board-name{
+	width:150px;
+	font-size: 13px;
+	margin-top: 10px;
+}
+.myWrite-Title{
+	font-size: 18px;
+    font-weight: bold;
+}
+.fav-reply{
+	margin-top: 5px;
+	font-size: 13px;
+}
+.myWrite-fav{
+	width:80px;
+	float:left;
+}
+.myWrite-reply{
+	width:80px;
+	float:left;
+}
+.btn_box_write {
+	float:right;
+	margin-top:28px;
+	margin-right:20px;
+	width:130px;
+}
+/* 내가 쓴 글 끝  */
+
+
+.box_reply {
+    margin-top:50px;
+    border-radius: 15px;
+    width: 700px;
+    height: 80px;
+    background: #d4d4d4;
+}
+.write-box {
+	padding-top:25px;
+	width:530px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+/* .write {
+	float:left;
+	width:530px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}  */
+
+.write_reply {
+	float:left;
+	padding-top:25px;
+	width:530px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+} 
+ 
+.option-container {
+    
+}
+
+.styled-select {
+	text-align:center;
+    background-color: #f0f0f0;
+    border-radius: 30px;
+    font-size: 13px;
+	height:30px;
+    width: 120px;
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 설정 */
+}
+
+.btn_box {
+	float:right;
+	margin-top:22px;
+	margin-right:20px;
+	width:130px;
+}
+
+.myUpdate_btn,
+.myDelete_btn {
+    width: 60px;
+    height: 35px;
+    background-color: #5aca7c;
+    color: white;
+    border-radius: 20px;
+    border:none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.myDelete_btn {
+	margin-left:5px;
+    background-color: #FF2910;
+}

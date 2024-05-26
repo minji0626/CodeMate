@@ -29,9 +29,9 @@ $(function(){
             idField2.value = originalId;
             return false;
         }
-        const idField3 = document.getElementById('mem_nickname');
+        const idField3 = document.getElementById('mem_email');
         if(idField3.value.trim() == ''){
-            alert('닉네임 필수 입력');
+            alert('이메일 필수 입력');
             idField3.focus();
             return false;
         }
@@ -44,7 +44,7 @@ $(function(){
         
         const idField5 = document.getElementById('mem_phone');
         if(idField5.value.trim() == ''){
-            alert('닉네임 필수 입력');
+            alert('전화번호 필수 입력');
             idField5.focus();
             return false;
         }
@@ -66,11 +66,10 @@ $(function(){
         <a href="a">참여중인 팀</a>
         <a href="a">나의 코메 신청</a>
         <a href="a">나의 코메 모집</a>
-        <a href="a">북마크</a>
+        <a href="${pageContext.request.contextPath}/member/myPageBookMark.do">북마크</a>
         <a class="sideB_font">나의 활동</a>
-        <a href="a">쪽지</a>
-        <a href="a">내가 쓴 글</a>
-        <a href="a">내가 쓴 댓글</a>
+        <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a>
+        <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 댓글</a>
     </div>   
 </div>
 <!-- 사이드바 끝 -->
