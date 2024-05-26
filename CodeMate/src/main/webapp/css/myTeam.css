@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.team-left{
+	margin-left: 10px;
+	width:500px;
+	margin-top: 10px;
+}
+.team-right{
+	float:right;
+	width:200px;
+	font-size: 12px;
+	margin-top: 25px;
+	font-weight: bold;
+}
+.skill_font_T{
+	font-size:13px;
+	color:#636363;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+.team-count{
+	margin-bottom: 5px;
+}

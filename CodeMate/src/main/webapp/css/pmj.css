@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* 사이드 시작*/
+/* 사이드 시작============*/
 .float-A{
  	/* margin:8px; */
  	margin-top:40px;
@@ -22,9 +22,9 @@
     font-weight: bold;
     color: black;
 }
-/*사이드 끝*/
+/*사이드 끝================*/
 
-/* 메인 */
+/* 메인 myPage============*/
 .align-center {
    text-align: center;
 }
@@ -90,7 +90,8 @@ ul{
 	margin-right: 190px;
 	margin-top: 35px;
 }
-/*메인 끝*/
+/*메인 끝================*/
+
 /*myWrite*/
 #flex_container .float-C {/* 추가하면 사이드바 위치 고정*/
 	width: 80%;
@@ -99,6 +100,7 @@ ul{
 }
 /* 내가 쓴 글 시작 */
 .box {
+	margin: 0 auto;
     margin-top:30px;
     border-radius: 15px;
     width: 700px;
@@ -143,6 +145,7 @@ ul{
 
 
 .box_reply {
+	margin:0 auto;
     margin-top:50px;
     border-radius: 15px;
     width: 700px;
@@ -173,11 +176,10 @@ ul{
     font-weight: bold;
 } 
  
-.option-container {
-    
-}
+
 
 .styled-select {
+	margin-left:70px;
 	text-align:center;
     background-color: #f0f0f0;
     border-radius: 30px;
@@ -209,4 +211,19 @@ ul{
 .myDelete_btn {
 	margin-left:5px;
     background-color: #FF2910;
+}
+/* 참여중인 팀 */
+.myPage-line-box{
+	display: flex;
+	justify-content: center;
+	border-radius: 15px;
+	width:750px;
+	height:88px;
+	border: 1px solid #8f8f8f;
+	margin: 0 auto;
+}
+.projectName_font {
+    font-size: 22px;
+    font-weight: bold;
+    width:500px;
 }

@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+/* 북마크 시작==============*/
+#flex_container .float-C {/* pmj.css에도 있음*/
+	width: 80%;
+	margin-right: 190px;
+	margin-top: 35px;
+}
+
+.myPage-line-box{
+	border-radius: 15px;
+	width:750px;
+	height:88px;
+	border: 1px solid #8f8f8f;
+	margin: 0 auto;
+}
+.write_move{
+	margin-left:20px;
+	margin-top:20px;
+	width:500px;
+}
+.skill_box {
+    width: 57px;
+    border-radius: 20px;
+    padding: 3px;
+    background: #f0f0f0;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}
+.projectName_font {
+    font-size: 22px;
+    font-weight: bold;
+    width:500px;
+}
+.skill_font{
+	padding: 0 0 0 8px;
+	font-size:13px;
+	color:#636363;
+	font-weight: bold;
+}
+.mark-side{
+	margin-bottom:30px;
+	float:right;
+	width:200px;
+	font-size: 13px;
+	
+}
+/* 북마크 끝================*/

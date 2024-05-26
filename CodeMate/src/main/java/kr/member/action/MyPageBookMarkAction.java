@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
 
-public class MyWriteAction implements Action{
+public class MyPageBookMarkAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		return "/WEB-INF/views/member/myWrite.jsp";
+		//JSP경로 반환
+		return "/WEB-INF/views/member/myPageBookMark.jsp";
 	}
 
 }

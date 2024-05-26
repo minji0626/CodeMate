@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 쓴 글</title>
+<title>북마크</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 </head>
@@ -25,7 +26,7 @@
         <a href="a">나의 코메 신청</a>
         <a href="a">나의 코메 모집</a>
         <a href="${pageContext.request.contextPath}/member/myPageBookMark.do">북마크</a>
-        <a href="" class="sideB_font">나의 활동</a>
+        <a class="sideB_font">나의 활동</a>
         <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a>
         <a href="${pageContext.request.contextPath}/member/myReply.do">내가 쓴 댓글</a>
     </div>   
@@ -34,30 +35,21 @@
 <!-- 메인 정보 수정 -->
 <div class="float-C">
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
-	<h3 class="mYPage-TitleText">내가 쓴 글</h3>
+	<h3 class="mYPage-TitleText">북마크</h3>
 </div>
 
-    <select class="styled-select">
-        <option value="option1">전체</option>
-        <option value="option2">모집</option>
-        <option value="option3">자유</option>
-    </select>
-
-<div class="box">
-<div class="box-wirte">
-<div class="myWrite-board-name">게시판 이름</div>
-<div class="myWrite-Title">내가 쓴 글 제목</div>
-<div class="fav-reply">
-<div class="myWrite-fav">좋아요</div>
-<div class="myWrite-reply">댓글</div>
-</div>
-</div>
-<div class="btn_box_write">
-	<input type="button" value="수정" class="myUpdate_btn" onclick="">
-	<input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
+<div class="myPage-line-box">
+<div class="team-left">
+<div class="skill_font_T">백엔드</div>
+<div class="projectName_font">쇼핑몰 웹페이지 프로젝트 같이 하실분 구해요</div>
 </div>
 
+<div class="team-right">
+<div class="team-count">신청인원:3명</div>
+<div>남은 기간 2024.05.23~2024.06.10</div>
 </div>
+</div>
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
