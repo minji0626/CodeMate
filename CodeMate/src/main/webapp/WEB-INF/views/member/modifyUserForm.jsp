@@ -69,7 +69,7 @@ $(function(){
         <a href="${pageContext.request.contextPath}/member/myPageBookMark.do">북마크</a>
         <a class="sideB_font">나의 활동</a>
         <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a>
-        <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 댓글</a>
+        <a href="">내가 쓴 댓글</a>
     </div>   
 </div>
 <!-- 사이드바 끝 -->
