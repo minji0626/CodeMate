@@ -19,60 +19,99 @@
 <body>
 		<div class="page-container">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	        <div class="container_write">
-	        <form action="" id="write_form" method="post" enctype="multipart/form-data">
-	        	<div class="form-group">
-					<input type="radio" name="cb_type" value="1" id="cb_type1">
-					<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
-					<input type="radio" name="cb_type" value="2" id="cb_type2"> 
-					<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
-				</div>
-	            <div class="form-group">
-	                <label for="title">제목</label>
-	                <input type="text" name="title" id="title" maxlength="50" class="form-control">
-	            </div>
-	            <div class="form-group">
-	                <label for="content">내용</label>
-	                <textarea rows="20" cols="100" name="content" id="content" class="form-control"></textarea>
-	            </div>
-	            <div class="form-group">
-	                <label for="filename">이미지</label>
-	                <input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg" class="form-control">
-	            </div>
-	            <div class="form-actions">
-	                <input type="submit" value="등록" class="btn btn-primary">
-	                <input type="button" value="목록" class="btn btn-secondary" onclick="location.href='team_board_test.jsp'">
-	            </div>
-	        </form>
-	    </div>
+	        <!-- 게시글 상세 부분 -->
+	        <div class="container_board">
+	        	<!-- 게시판 분류 -->
+	       		<div class="board_category">
+	       			<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
+	       		</div>
+	       		<!-- 제목 -->	
+	       		<h2>자유 게시판</h2>
+	       		<!-- 작성자 및 정보 -->
+	       		<div class="board_info">
+	       			<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
+	       			<span> 닉네임</span>
+	       			<span>2024.5.14</span>
+	       			<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png" width="15">
+	       			<span> 223</span>
+	       		</div>
+	       		
+	       		<hr style="color:#d4d4d4">
+	       		
+	       		<!-- 게시글 본문 -->
+	       		<div class="board_content">
+	       			<!-- 이미지 --> 
+	       			<div class="board_file">
+	       				<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
+	       			</div>
+	       			<!-- 내용 -->
+	       			<p>
+	       				오늘 저녁 뭐 먹을까요 추천 좀요!
+	       			</p>
+	       		</div>
+	       		<!-- 좋아요 -->
+	       		<div class="board_like">
+	       			<img src="${pageContext.request.contextPath}/images/cje/boardLikeIcon.png" height="25" width="25">
+	       			<span>25</span>
+	       		</div>
+	   		</div>
+	   		<div class="list-actions">    
+	   			<span>마지막 수정일 : 2024.05.26</span>
+			    <input type="submit" value="수정" class="btn btn-primary list-action">
+			    <input type="button" value="목록" class="btn btn-secondary list-action">
+			</div>
+	   		 
+	   		 
+	   		 <!-- 댓글 목록 -->
+	   		 <div class="container_reList">
+	   		 	<div class="reList">
+		   		 	<div class="re_writer">
+		   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
+		       			<span> 닉네임</span>
+		   		 	</div>
+		   		 	<div class="re_content">
+		   		 		<p>전 갈비찜 먹을라고요</p>
+		   		 	</div>
+		   		 	<div class="delete_button">
+		   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
+		   		 	</div>
+	   		 	</div>
+	   		 	<div class="reList">
+		   		 	<div class="re_writer">
+		   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
+		       			<span> 닉네임</span>
+		   		 	</div>
+		   		 	<div class="re_content">
+		   		 		<p>김치찜이 최곤디</p>
+		   		 	</div>
+		   		 	<div class="delete_button">
+		   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
+		   		 	</div>
+		   		 </div>
+	   		 </div>
+	   		 
 	        <!-- 댓글 시작 -->
-	        <div id="reply_div">
-	        	<span class="re_title">댓글 달기</span>
-	        	<form id="re_form">
-	        		<input type="hidden" name="board_num" value="${board.board_num}" id="board_num">
-	        		<textarea rows="3" cols="50" name="re_content" <c:if test="${empty user_num}">disabled="disabled"</c:if>id="re_content" class="rep-content"><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
-	        		<c:if test="${!empty user_num}">
-	        			<div id="re_first">
-	        				<span class="letter-count">300/300</span>
-	        			</div>
-	        			<div id="re_second" class="align-right">
-	        				<input type="submit" value="전송">
-	        			</div>
-	        		</c:if>
-	        	</form>
+	        <div class="container_re">
+		        <div id="reply_div">
+		        	<form id="re_form">
+		        		<input type="hidden" name="cb_num" value="${cboard.cb_num}" id="cb_num">
+		        		<div class="form-group">
+			                <textarea rows="3" cols="100" name="cb_content" id="cb_content" class="form-control"></textarea>
+			                <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='.do'">
+			            </div>
+		        		<c:if test="${!empty mem_num}">
+		        			<div id="re_first">
+		        				<span class="letter-count">300/300</span>
+		        			</div>
+		        			<div id="re_second" class="align-right"">
+		        				<input type="submit" value="전송">
+		        			</div>
+		        		</c:if>
+		        	</form>
+		        </div>
 	        </div>
-	        <!-- 댓글 목록 출력 시작 -->
-	        <div id="output">
 	        
-	        </div>
-	        <div class="paging-button" style="display:none;">
-	        	<input type="button" value="다음글 보기">
-	        </div>
-	        <div id="loading" style="display:none;">
-	        	<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
-	        </div>
-	        <!-- 댓글 목록 출력 끝 -->
-	        <!-- 댓글 끝 -->
+		        
     </div>
 </body>
 </html>

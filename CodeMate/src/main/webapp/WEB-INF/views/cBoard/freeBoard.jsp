@@ -14,7 +14,7 @@
 	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 	
-<title>팀 게시판 Test</title>
+<title>자유 게시판</title>
 
 <style type="text/css">
 	.page-container {

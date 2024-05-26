@@ -12,7 +12,7 @@
     
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 
-<title>팀 게시판 Test</title>
+<title>개발 게시판</title>
 
 </head>
 <body>
