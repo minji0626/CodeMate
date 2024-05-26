@@ -1,3 +1,12 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 /* 각각의 form을 하나로 묶어 주고 있는 container div */
 .container_write {
     width: 100%;
