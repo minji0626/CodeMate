@@ -18,7 +18,9 @@
 </head>
 <body>
 		<div class="page-container">
-			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+			<div class="page-main">
+				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+			</div>
 	        <div class="container_write">
 	        <form action="" id="write_form" method="post" enctype="multipart/form-data">
 	        	<div class="form-group">

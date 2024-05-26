@@ -18,7 +18,9 @@
 </head>
 <body>
 		<div class="page-container">
-			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+			<div class="page-main">
+				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+			</div>
 	        <!-- 게시글 상세 부분 -->
 	        <div class="container_board">
 	        	<!-- 게시판 분류 -->

@@ -17,7 +17,9 @@
 </head>
 <body>
 	<div class="page-container">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>	
+		<div class="page-main">
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		</div>	
 			<div class="table-container">
 				<div class="button-container">
 			    	<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
