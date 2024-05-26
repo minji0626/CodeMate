@@ -5,11 +5,9 @@
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css" type="text/css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board_write.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <title>팀 게시판 작성 Test</title>
 <script type="text/javascript">
@@ -37,8 +35,10 @@ window.onload = function(){
 };
 </script>
 </head>
-<body>
-<%@ include file="team_nav_test.jsp" %>
+<body id="team_main_body">
+  <div class="page-container">
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <jsp:include page="team_nav_test.jsp"/>
     <div class="container_write">
         <form action="" id="write_form" method="post" enctype="multipart/form-data">
             <div class="form-group">
@@ -47,7 +47,7 @@ window.onload = function(){
             </div>
             <div class="form-group">
                 <label for="content">내용</label>
-                <textarea rows="20" cols="100" name="content" id="content" class="form-control"></textarea>
+                <textarea rows="14" name="content" id="content" class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label for="filename">이미지</label>
@@ -59,5 +59,6 @@ window.onload = function(){
             </div>
         </form>
     </div>
+</div>
 </body>
 </html>
