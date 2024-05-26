@@ -42,6 +42,7 @@ a {
 .page-container {
 	width: 70%;
 	min-width: 900px;
+	height : auto;
 	margin: 0 auto;
 }
 

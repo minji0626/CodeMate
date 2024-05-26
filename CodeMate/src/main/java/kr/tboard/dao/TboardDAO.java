@@ -54,11 +54,34 @@ public class TboardDAO {
 		int count = 0;
 		
 		try {
+			conn = DBUtil.getConnection();
 			
+			if(keyword != null && !"".equals(keyword)) {
+				// 검색 처리
+				if(keyfield.equals("1")) {
+					sub_sql += "WHERE tb_title LIKE '%' || ? || '%'";
+				}
+				else if(keyfield.equals("2")) {
+					sub_sql += "WHERE mem_id LIKE '%' || ? || '%'";
+				}
+				else if(keyfield.equals("3")) {
+					sub_sql += "WHERE tb_content LIKE '%' || ? || '%'";
+				}
+			}
+			
+			sql="SELECT COUNT(*) FROM tboard JOIN member USING(mem_num) " + sub_sql;
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(1, keyword);
+			}
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
 		
@@ -74,7 +97,7 @@ public class TboardDAO {
 		String sub_sql = "";
 		int cnt = 0;
 		try {
-			
+			conn = DBUtil.getConnection();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -93,7 +116,7 @@ public class TboardDAO {
 		ResultSet rs = null;
 		TboardVO board = null;
 		try {
-			
+			conn = DBUtil.getConnection();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -105,12 +128,12 @@ public class TboardDAO {
 	
 	// 조회수 증가
 	public void updateReadcount(int tb_num) throws Exception {
-		Connection con = null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 
 		try {
-
+			conn = DBUtil.getConnection();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -125,7 +148,7 @@ public class TboardDAO {
 		String sql = null;
 		
 		try {
-
+			conn = DBUtil.getConnection();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -143,7 +166,7 @@ public class TboardDAO {
 		int cnt = 0;
 		
 		try {
-			
+			conn = DBUtil.getConnection();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -159,7 +182,7 @@ public class TboardDAO {
 		String sql = null;
 		
 		try {
-			
+			conn = DBUtil.getConnection();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
