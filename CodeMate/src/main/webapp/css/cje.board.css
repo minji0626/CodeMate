@@ -1,4 +1,6 @@
 
+
+
 /* 테이블 스타일 */
 table {
     width: 100%;
@@ -58,8 +60,8 @@ td:nth-child(5) {
     display: inline-block;
     font-weight : bold;
     font-size : 13px;
-    padding: 10px 20px;
-    background-color: var(--primary-clr);
+    padding: 10px 30px;
+    background-color: #4D9964;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -87,7 +89,6 @@ td:nth-child(5) {
 }
 
 *{
-	
 	margin: 0px;
 	padding: 0px;
 }
@@ -97,14 +98,10 @@ td {
 }
 
 table.list{
-	background-color: white;
-	
-		
+	background-color: white;	
 }
 
-body.board{
-	background-color: #F6F6F6;
-}
+
 
 ul.menu{
 	list-style:none;
@@ -113,7 +110,7 @@ ul.menu{
 	padding-bottom: 15px;
 }
 
-ul li {
+ul.menu li {
     display: inline-flex; 
     align-items: center; 
     width: 150px; 
@@ -123,6 +120,7 @@ ul li {
     margin-right: 15px;  
 }
 
+
 .board-icon {
     margin-right: 10px; 
 }
@@ -131,12 +129,16 @@ span{
 	font-size:10pt;
 }
 
-a.atag {
+
+
+.atag {
     text-decoration: none; /* 밑줄 제거 */
     font-weight: normal; /* 굵기 제거 */
     color:black;
 }
 
 .table-container{
-	margin-top:50px;
+	margin-top:30px;
+	margin-bottom:200px;
 }
+

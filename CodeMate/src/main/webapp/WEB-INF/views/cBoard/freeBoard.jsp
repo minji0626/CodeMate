@@ -4,29 +4,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	
+	
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cje.board.css" type="text/css">
     
+	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 	
 <title>팀 게시판 Test</title>
+
+<style type="text/css">
+	.page-container {
+    width: 70%;
+    min-width: 900px;
+    margin: 0 auto;
+}
+</style>
 
 </head>
 <body>
 
 	<div class="page-container">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>			
-			
+		<div class="page-main">
+			<jsp:include page="/WEB-INF/views/common/header.jsp"/>			
+		</div>	
 			<div class="table-container">
 				<div class="button-container">
 		    		<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
 				</div>
 				<!-- 게시판 선택 메뉴 -->
-				<div>		
+				<div>		 
 				<ul class="menu">
 					<li>
 						<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon"> <span><a href="community.do" class="atag"><b>자유 게시판</b></a></span>
