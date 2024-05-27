@@ -53,27 +53,43 @@
 /* 카드 슬라이드 */
 #mini-card{/* div.page-container */
    position:absolute;
-   top:500px;   
+   top:500px; left:350px;   
+   width:3000px; 
 }
+
 .mini-container {
-   overflow: hidden; 
-   width: 1020px; 
-   height:220px;
-} 
-.mini-wrapper {
-   display:flex;
-   gap:30px;
-   width:1500px;
-} 
+   overflow:hidden; 
+   width:1350px; 
+   height:350px;
+}  
+ #miniwrapper {
+   width:1860px;
+   height:350px;
+   display:felx;
+}   
 
 .content{
-    width:200px;    
-   height:220px;
+   width:280px;    
+   height:320px;
+} 
+ .mini{
+	float:left;
+	margin:30px;
 } 
 
+#p{
+	position:absolute;
+	top:225px; left:5px;
+}
+#n{
+	position:absolute;
+	top:225px; right:1700px;
+}
+
+/* 더보기 */
 a#more{
    position:absolute;
-    left:950px;
+   top:15px; left:1280px;
 }
 
 #back_btn{
@@ -81,3 +97,124 @@ a#more{
    border-radius:20px;
    background-color:green;
 }
+
+/* 로그인화면*/
+/* 헤더 위치 */
+#login_logo a{
+	position:absolute;
+	top:140px; left:900px;
+	font-family: "Noto Sans KR", sans-serif;
+	text-decoration: none;
+	color: #000000;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+#logo_pic_login{
+	position:relative;
+	top:20px;
+}
+
+ #login_header {
+	height : 80px;
+	margin-top: 30px;
+	background-color: white;
+}
+
+/*로그인 폼 */
+#insert{
+	position:relative;
+	top:150px;
+}
+.floating-label input{
+	border-radius:5px;
+	margin:20px;
+}
+.floating-label ul li{
+	position:relative;
+	left:20px;
+}
+
+#login_btn{
+	border:none;
+	color:white;
+	background-color:black;
+	border-radius:10px;
+	width:300px; height: 40px;
+	margin:50px;
+	position:absolute;
+	top:530px; left:870px;
+}
+
+#find{
+	text-align:center;
+	position:relative;
+	top:300px; left:25px;
+}
+#sign_up{
+	position:relative;
+	top:350px; left:20px;
+	text-align:center;
+}
+
+/* 회원가입 폼 */
+#insert_register{
+	position:relative;
+	top:100px; left:15px;
+}
+.info input{
+	border-radius:5px;
+	margin:18px;
+	height:40px;
+}
+
+.floating-label-reg ul li{
+	position:relative;
+	left:20px;
+}
+#register_form input[id="id"]{
+	width:312px;
+}
+
+ #btns{
+	position:absolute;
+	top:750px; left:870px;
+}
+
+#reg_btn{
+	border:none;
+	color:white;
+	background-color:black;
+	border-radius:10px;
+	width:300px; height: 40px;
+	margin:50px;
+	
+}
+#cancel_btn{
+	color:blck;
+	background-color:white;
+	border-radius:10px;
+	width:300px; height: 40px;
+	margin:50px;
+	position:relative;
+	top:60px; right:408px;
+}
+ 
+.info label{
+	position:relative;
+	bottom:10px; left:150px;
+}
+
+
+.content-main{
+	height:780px;
+}
+
+#greeting{
+	position:relative;
+	top:110px; left:410px;
+	font-size:0.8em;
+}
+form{
+	border:none !important;
+}
+

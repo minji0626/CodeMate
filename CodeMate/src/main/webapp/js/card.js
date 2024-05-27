@@ -1,9 +1,9 @@
-const miniwrapper = document.getElementById('mini-wrapper');
+const miniwrapper = document.getElementById('miniwrapper');
 const slides = miniwrapper.querySelectorAll('.mini');
 const prevBtn = document.getElementById('p');
 const nextBtn = document.getElementById('n');
 const slideCount = slides.length;
-const slideWidth = 1500;
+const slideWidth = 1030;
 const slideSpeed = 300;
 let currentIndex = 0; // 현재 슬라이드의 인덱스
 const slideTransition = slideSpeed + "ms"; // 슬라이드 전환 시간
@@ -29,7 +29,7 @@ prevBtn.addEventListener('click', function() {
 function moveSlide(direction) {
     currentIndex += direction;
     miniwrapper.style.transition = slideTransition;
-    miniwrapper.style.transform = "translateX(-" + (slideWidth * (currentIndex + 1)) + "px)";
+    miniwrapper.style.transform = "translateX(-" + (slideWidth * currentIndex) + "px)";
 
     // 슬라이드가 첫 번째 또는 마지막일 때 처리
     if (currentIndex === slideCount + 1) {

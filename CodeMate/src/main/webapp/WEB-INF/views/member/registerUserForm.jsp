@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -84,39 +90,53 @@ $(function(){
 </script>
 </head>
 <body>
-	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<div class="page-main">
+	<span id="greeting"><b>팀원 구하기 제일 쉬운 곳 코메!</b></span>
+<div id="login_header">
+	<div id="login_header" class="header">		
+		<div id="login_logo">
+		<a href="${pageContext.request.contextPath}/main/main.do"
+			class="logo"> <img id="logo_pic_login"
+			src="${pageContext.request.contextPath}/images/로고1.png" height="80"
+			width="80"> CODEMATE
+		</a>
+		</div>
+		</div>
+		</div>
+	
 		<div class="content-main">
-			<h2>회원 가입</h2>
 			<form id="register_form" action="registerUser.do" method="post">
-				<ul>
-					<li>
-						<label for="id">아이디</label> <input type="text" name="id"
+				<ul id="insert_register">
+					<li class="info">
+						<label for="id">아이디</label> 
+						<input type="text" name="id"
 						id="id" maxlength="12" autocomplete="off" class="input-check">
-							<input type="button" value="ID중복체크" id="id_check"> 
-							<span id="message_id"></span>
-						<div class="form-notice">*영문 또는 숫자(6자~12자)</div>
+							
 					</li>
-					<li>
+					<li class="info">
 						<label for="name">이름</label> 
 						<input type="text" name="name" id="name" maxlength="10" class="input-check">
 					</li>
-					<li>
+					<li class="info">
 					<label for="passwd">비밀번호</label> 
 						<input type="password" name="passwd" id="passwd" maxlength="12" class="input-check">
 					</li>
-					<li>
+					<li class="info">
 						<label for="nickname">닉네임</label> 
 						<input type="text" name="nickname" id="nickname" maxlength="10" class="input-check">
 					</li>
-					<li>
+					<li class="info">
 					<label for="email">이메일</label> 
 						<input type="email" name="email" id="email" maxlength="50" class="input-check">
 					</li>
+					<li class="info">
+					<label for="phone">전화번호</label> 
+						<input type="text" name="phone" id="phone" maxlength="30" class="input-check">
+					</li>
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="회원가입완료"> 
-					<input type="button" value="취소" onclick="'${pageContext.request.contextPath}/main/main.do'">
+				<div id="btns" class="align-center">
+					<input id="reg_btn" type="submit" value="회원가입완료"> 
+					<input id="cancel_btn" type="button" value="취소" onclick="'${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			</form>
 			

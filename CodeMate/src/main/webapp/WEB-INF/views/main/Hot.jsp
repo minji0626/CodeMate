@@ -7,11 +7,11 @@
 
 <div>이번주 코메 인기글
    <button id="back_btn">백엔드</button>
-   <a id="more" href=#>더보기</a>
+   <a id="more" href=#>더보기</a>	
 </div> 
 
 <div class="mini-container">
-   <div class="mini-wrapper" id="mini-wrapper">
+   <div class="wrapper" id="miniwrapper">
       <div class="mini">
          <img class="content" src="${pageContext.request.contextPath}/images/back1.png">
       </div>
@@ -32,10 +32,9 @@
       </div>
    </div>
    
-</div><!-- end of card-container -->
+</div><!-- end of mini-container -->
    <button class="btn" id="p"><img src="${pageContext.request.contextPath}/images/arrow.png"></button>
-    <button class="btn" id="n"><img src="${pageContext.request.contextPath}/images/arrow.png"></button>
+   <button class="btn" id="n"><img src="${pageContext.request.contextPath}/images/arrow.png"></button> 
 
-
-</div><!-- end of page-container -->
+</div><!-- end of mini-card -->
 <script src="${pageContext.request.contextPath}/js/card.js"></script> 
