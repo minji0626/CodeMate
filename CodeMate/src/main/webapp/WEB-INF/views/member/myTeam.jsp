@@ -38,7 +38,7 @@
 	<h3 class="mYPage-TitleText">참여중인 팀</h3>
 </div>
 
-<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/team_main_test.jsp'" style="cursor: pointer;">
+<div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;">
 <div class="team-left">
 <div class="skill_font_T">백엔드</div>
 <div class="projectName_font">쇼핑몰 웹페이지 프로젝트 같이 하실분 구해요</div>

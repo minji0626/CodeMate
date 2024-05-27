@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <title>Team Main Page - Test</title>
+    <title>팀 게시판</title>
 </head>
 <body>
   <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-    <jsp:include page="team_nav_test.jsp"/>
+    <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     <div class="content-container">
         <div class="button-container">
-            <button class="write-button" onclick="location.href='team_writeForm.jsp'">글쓰기</button>
+            <button class="write-button" onclick="location.href='${pageContext.request.contextPath}/team/teamWriteForm.do'">글쓰기</button>
         </div>
         <form id="search_form" action="list.do" method="get">
     		<div class="search-container">

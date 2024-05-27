@@ -6,17 +6,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <title>Team Main Page - Test</title>
+    <title>팀 프로젝트 이름 명시</title>
   </head>
   <body>
   
   <div class="page-container">
   	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-  	<jsp:include page="team_nav_test.jsp"/>
+    <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     <div class="container">
       <div class="left">
         <div class="calendar">

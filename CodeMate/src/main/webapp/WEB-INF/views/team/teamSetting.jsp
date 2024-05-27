@@ -4,18 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Team Member Test Page</title>
+<title>팀 설정</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_member.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <title>Team Main Page - Test</title>
   </head>
-  <body id="team_main_body">
+  <body>
   <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-    <jsp:include page="team_nav_test.jsp"/>
+    <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
   <div id="mem_container">
   
      <div class="mem_personal">
@@ -36,9 +34,9 @@
 
     <div class="mem_personal">
         <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/girl_profile.png" class="team_mem_profile_img"></li>
+            <li><img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="유재석" data-id="jaeseok" data-level="3">유재석</span></li>
+            <li><span class="team_mem_nickname" data-nickname="${mem_nickname }" data-id="${mem_id }" data-level="3">${mem_nickname }</span></li>
 			<li>
                 <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                 <div class="dropdown_menu">
@@ -49,51 +47,7 @@
             </li>
         </ul>
     </div>
-    <div class="mem_personal">
-        <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/girl_profile.png" class="team_mem_profile_img"></li>
-            <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="유재석" data-id="jaeseok" data-level="3">유재석</span></li>
-			<li>
-                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                <div class="dropdown_menu">
-                   <a href="#" class="review-link">리뷰 쓰기</a>
-                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                    <a href="#" id="mem_auth_btn">팀장 위임</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="mem_personal">
-        <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/girl_profile.png" class="team_mem_profile_img"></li>
-            <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="유재석" data-id="jaeseok" data-level="3">유재석</span></li>
-			<li>
-                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                <div class="dropdown_menu">
-                   <a href="#" class="review-link">리뷰 쓰기</a>
-                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                    <a href="#" id="mem_auth_btn">팀장 위임</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="mem_personal">
-        <ul>
-            <li><img src="${pageContext.request.contextPath}/images/cmj/girl_profile.png" class="team_mem_profile_img"></li>
-            <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="유재석" data-id="jaeseok" data-level="3">유재석</span></li>
-			<li>
-                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                <div class="dropdown_menu">
-                   <a href="#" class="review-link">리뷰 쓰기</a>
-                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                    <a href="#" id="mem_auth_btn">팀장 위임</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+
 
   </div>
 <div id="mate_review" style="display:none;">
@@ -132,7 +86,7 @@
     </div>
 </div>
 </div>
-<script type="text/javascript" src="js/team.member.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.member.js"></script>
     
 </body>
 </html>
