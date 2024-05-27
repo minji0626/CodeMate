@@ -102,7 +102,7 @@ a#more{
 /* 헤더 위치 */
 #login_logo a{
 	position:absolute;
-	top:140px; left:900px;
+	top:135px; left:750px;
 	font-family: "Noto Sans KR", sans-serif;
 	text-decoration: none;
 	color: #000000;
@@ -177,7 +177,7 @@ a#more{
 
  #btns{
 	position:absolute;
-	top:750px; left:870px;
+	top:700px; left:750px;
 }
 
 #reg_btn{
