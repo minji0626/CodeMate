@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +55,13 @@
                     <h4>포지션</h4>
                     <div class="mp_content">
                         <p>
+                        <c:if test="${member.mp_state==0}">
+                        		비공개 정보입니다.
+                        </c:if>
+                        <c:if test="${member.mp_state==1}">
+                        	${member.mp_position}
+                        </c:if>
+                        	
                         </p>
                     </div>
                 </div>
@@ -62,7 +70,7 @@
                     <h4>자기소개</h4>
                     <div class="mp_content">
                         <p>
-                        
+                        	${member.mp_introduce}
                         </p>
                     </div>
                 </div>

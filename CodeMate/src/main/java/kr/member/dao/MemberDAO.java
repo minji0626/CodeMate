@@ -23,11 +23,11 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
 		//pstmt가 3개 -> SQL문이 3개
 		ResultSet rs = null;
 		String sql = null;
 		int num = 0;//시퀀스 번호 저장
-		String phonenum = "";
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
@@ -42,26 +42,29 @@ public class MemberDAO {
 				num = rs.getInt(1);
 			}
 			//auth값은 자동으로 2라고 들어감
-			sql = "INSERT INTO member (mem_num,mem_id,mem_auth) VALUES (?,?,?)";
+			sql = "INSERT INTO member (mem_num,mem_id,mem_auth) VALUES (?,?,2)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1,num);//시퀀스 번호
 			pstmt2.setString(2,member.getMem_id());//아이디
-			pstmt2.setInt(3,2);//auth
 			pstmt2.executeUpdate();
 
-			sql = "INSERT INTO member_detail (mem_num,mem_name,mem_passwd,"
-					+ "mem_email,mem_nickname,mem_level) VALUES ("
-					+ "?,?,?,?,?,?)"; 
+			sql = "INSERT INTO member_detail (mem_num,mem_name,mem_passwd, mem_phone, "
+					+ "mem_email,mem_nickname, mem_reg_date) VALUES ("
+					+ "?,?,?,?,?,?, SYSDATE)"; 
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1,num);
 			pstmt3.setString(2,member.getMem_name());
 			pstmt3.setString(3,member.getMem_passwd());
-			pstmt3.setString(4,phonenum);
+			pstmt3.setString(4,member.getMem_phone());
 			pstmt3.setString(5,member.getMem_email());
 			pstmt3.setString(6,member.getMem_nickname());
-			pstmt3.setInt(7,member.getMem_level());
 			pstmt3.executeUpdate();
 
+			sql = "INSERT INTO mate_profile (mem_num, mp_state) VALUES(?, 0)";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1, num);
+			pstmt4.executeUpdate();
+			
 			//SQL 실행 시 모두 성공하면 commit
 			conn.commit();
 
@@ -70,6 +73,7 @@ public class MemberDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
@@ -171,7 +175,7 @@ public class MemberDAO {
 		}
 	}
 	
-	// 메이트 프로필 작성하기
+	// 메이트 프로필 작성하기 (수정하기)
 		public void insertMP(MemberVO member) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -179,16 +183,15 @@ public class MemberDAO {
 			try {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
-				
-				sql = "INSERT INTO mate_profile (mem_num, mp_introduce, mp_modify_date, mp_state, mp_position)"
-						+ " VALUES(?, ?, SYSDATE, ?, ?)";
+				sql = "UPDATE mate_profile SET mp_introduce=?, mp_modify_date=SYSDATE, mp_state=?, mp_position=? WHERE mem_num=?";
+
 				
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setInt(1, member.getMem_num());
-				pstmt.setString(2, member.getMp_introduce());
-				pstmt.setInt(3, member.getMp_state());
-				pstmt.setString(4, member.getMp_position());
+				pstmt.setString(1, member.getMp_introduce());
+				pstmt.setInt(2, member.getMp_state());
+				pstmt.setString(3, member.getMp_position());
+				pstmt.setInt(4, member.getMem_num());
 				
 				pstmt.executeUpdate();
 				
@@ -197,6 +200,34 @@ public class MemberDAO {
 			}finally {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
+		}
+		
+		public MemberVO detailMP(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO member = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM mate_profile WHERE mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					member = new MemberVO();
+					member.setMem_num(rs.getInt("mem_num"));
+					member.setMp_position(rs.getString("mp_position"));
+					member.setMp_introduce(rs.getString("mp_introduce"));
+					member.setMp_modify_date(rs.getDate("mp_modify_date"));
+					member.setMp_state(rs.getInt("mp_state"));
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return member;
 		}
 
 }
