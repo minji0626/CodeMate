@@ -127,6 +127,30 @@ public class RboardDAO {
 	
 	// rboard 목록 구하기
 	// rboard detail 구하기
+	//프로젝트 모집글 정보 읽어오기-민재가 했음 이상하면 지워주쇼
+    public RboardVO pageMo(int mem_num)throws Exception{
+      Connection conn = null;
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
+      RboardVO rboard = null;
+      String sql = null;
+      try {
+         conn = DBUtil.getConnection();
+         sql = "SELECT * FROM member JOIN r_board USING(mem_num) WHERE mem_num=? ";
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setInt(1, mem_num);
+         rs = pstmt.executeQuery();
+         if(rs.next()) {
+            rboard = new RboardVO();
+            
+         }
+      }catch(Exception e) {
+         throw new Exception(e);
+      }finally {
+         DBUtil.executeClose(rs, pstmt, conn);
+      }
+   return rboard;
+   }
 
 }
 
