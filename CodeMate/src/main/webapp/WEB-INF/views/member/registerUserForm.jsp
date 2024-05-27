@@ -5,12 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -46,8 +43,6 @@ $(function(){
 		}
 		});
 	
-	
-	
 	//아이디가 영문,숫자 조건 맞지 않으면 회원가입 버튼이 안눌림
 	$('#reg_btn').click(function(){
 		if(!/^[A-Za-z0-9]{6,12}$/.test($('#id').val())){
@@ -57,7 +52,6 @@ $(function(){
 		}	
 		
 	
-	 
 	//회원 정보 등록 유효성 체크
 	 $('#register_form').submit(function(){
 		const items = document.querySelectorAll('.input-check');
@@ -81,10 +75,6 @@ $(function(){
 	
 });
 
-	
-		 
-		
-		
 	});//end of click
 	
 	 //아이디 중복 안내 메시지 초기화 및 아이디 중복값 초기화
@@ -92,29 +82,20 @@ $(function(){
 		idChecked = 0;
 		$('#message_id').text('');
 	});//end of keydown
-		
-		
 	}
-
-
-
 </script>
 </head>
 <body>
-<div class="page-main">
-	
-<div id="login_header">
-<span id="greeting"><b>팀원 구하기 제일 쉬운 곳 코메!</b></span>
-	<div id="login_header" class="header">		
+<div class="page-container">
+
+	<div id="login_header" class="header">
+		<span id="greeting">팀원 구하기 제일 쉬운 곳 코메!</span>		
 		<div id="login_logo">
-		<a href="${pageContext.request.contextPath}/main/main.do"
-			class="logo"> <img id="logo_pic_login"
-			src="${pageContext.request.contextPath}/images/로고1.png" height="80"
-			width="80"> CODEMATE
+			<a href="${pageContext.request.contextPath}/main/main.do" class="logo"> 
+			<img id="logo_pic_login" src="${pageContext.request.contextPath}/images/로고1.png" height="80" width="80"> CODEMATE
 		</a>
 		</div>
-		</div>
-		</div>
+	</div>
 	
 		<div class="content-main">
 			<form id="register_form" action="registerUser.do" method="post">
