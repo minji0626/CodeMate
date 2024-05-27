@@ -3,8 +3,8 @@
 @charset "utf-8";
 
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
 
@@ -22,8 +22,11 @@
 
 /* 각각의 form을 하나로 묶어 주고 있는 container div */
 .container_write, .container_re, .container_board, .container_reList {
+    
     width: 70%;
-    margin: 0 auto; 
+    margin-top:30px;
+	margin-bottom:200px;
+    margin: 3% auto; 
     background-color: #f4f4f4;
     border-radius: 8px;
     box-sizing: border-box;
