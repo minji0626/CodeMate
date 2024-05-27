@@ -54,7 +54,7 @@
                     <!-- 임시 게시글 -->
                     <tr>
                         <td>2</td>
-                        <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do">임시 게시글 제목</a></td>
+                        <td><a href="/team/TBoardDetail.do">임시 게시글 제목</a></td>
                         <td>사용자</td>
                         <td>2024-05-02</td>
                     </tr>
@@ -63,6 +63,7 @@
                         <c:if test="${tboard.tb_auth == 1}">
                             <tr class="notice">
                                 <td>${tboard.tb_num}</td>
+                                <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${item.tb_num}">${item.tb_title}</a></td>
                                 <td>${tboard.tb_title}</td>
                                 <td>${tboard.mem_id}</td>
                                 <td>${tboard.tb_reg_date}</td>
