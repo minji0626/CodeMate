@@ -49,8 +49,8 @@ public class MemberDAO {
 			pstmt2.executeUpdate();
 
 			sql = "INSERT INTO member_detail (mem_num,mem_name,mem_passwd, mem_phone, "
-					+ "mem_email,mem_nickname, mem_reg_date) VALUES ("
-					+ "?,?,?,?,?,?, SYSDATE)"; 
+					+ "mem_email,mem_nickname, mem_reg_date, mem_level) VALUES ("
+					+ "?,?,?,?,?,?, SYSDATE, 1)"; 
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1,num);
 			pstmt3.setString(2,member.getMem_name());
