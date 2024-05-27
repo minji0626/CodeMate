@@ -1,0 +1,218 @@
+/********************************
+/*메이트 프로필 페이지 스타일*/
+/********************************/
+
+/********************************
+/*메이트 프로필 모달 창*/
+#mp_view {
+	margin-top:30px;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+/********************************
+/*메이트 프로필 모달 창 제목 바 DIV*/
+.mp_view_title {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    background: #5ACA7C;
+    border-top-left-radius: 15px;
+    border-top-right-radius:15px;
+}
+
+/*메이트 프로필 모달 창 제목 글자*/
+.mp_view_title h2 {
+    font-size: 18px;
+    margin:0;
+    margin-left:10px;
+}
+
+/********************************
+/*메이트 프로필 모달 창 제목의 닫기 버튼*/
+.mp_view_close {
+    cursor: pointer;
+    color: black;
+}
+
+/********************************
+/*메이트 프로필 모달 창 본문 DIV*/
+.content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    color: black;
+}
+
+/********************************
+/* 메이트 프로필 (닉네임, 프사 있는 곳) DIV */
+.mp_account_profile {
+    position: relative; /* 부모 요소의 위치를 설정 */
+    display: flex;
+    align-items: center;
+    height: 80px;
+    padding-bottom: 20px;
+}
+/* 사용자 프사 */
+.profile_image {
+    margin-left: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* 동그라미 모양으로 설정 */
+}
+
+/*닉네임, 아이디 있는 div*/
+.mp_account_nickname {
+    margin-left: 15px;
+}
+
+.user_nickname {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.user_id {
+    color: #32B0FF;
+    font-size: 14px;
+}
+
+
+
+/* 수정하기 버튼 */
+.mp_view_modify {
+    position: absolute; /* 부모 요소인 mp_account_profile에 대해 상대적으로 위치 */
+    background: #4D9964;
+    border-radius: 15px;
+    width: 100px;
+    height: 35px;
+    right: 0; /* 오른쪽 끝에 정렬 */
+    top: 50%; /* 부모 요소의 상단에서 절반 위치로 정렬 */
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mp_view_modify span {
+    text-align: center;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+
+/********************************/
+/*메이트 프로필 컨텐츠란 전체 DIV*/
+.mp_content_div {
+    margin-left: 20px;
+    padding-top: 15px;
+    margin-right: 20px;
+    margin-bottom:40px; 
+}
+
+/*메이트 프로필에 쓰이는 내용란 (회색 박스) DIV*/
+.mp_content {
+    border-radius: 8px;
+    background: #e0e0e0;
+}
+
+.mp_content p, .mp_mate_review p, .mp_project p {
+    padding: 15px;
+}
+
+/*************************/
+.skill-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+/* 각 스킬 요소에 대한 스타일 */
+.skill-item {
+    width: calc(49% - 1px);
+    margin-right: 10px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+.mp_content_skill {
+    width: calc(100% - 10px);
+    margin-right: 10px;
+    margin-bottom: 20px;
+    min-height: 100px;
+    overflow-y: auto;
+    background: #e0e0e0;
+    border-radius: 8px;
+}
+
+
+/*****************************/
+/*프로젝트 경험 DIV*/
+.mp_project {
+    border-radius: 8px;
+    border: 1px solid #adadad;
+    padding-top: 20px;
+}
+
+/*****************************/
+/*코드메이트 후기 DIV*/
+.mp_mate_review {
+    border-radius: 8px;
+    background: #e0e0e0;
+    border: 1px solid #adadad;
+    margin-bottom: 70px;
+    height:200px;
+}
+
+/*****************************/
+/*마지막 닫기 버튼*/
+#close-btn {
+    background: black;
+    width: 200px;
+    height: 50px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    border-radius: 8px;
+}
+
+#close-btn span {
+    color: white;
+}
+
+/*********************************/
+/* 프로젝트 경험*/
+.pj_category{
+    color: green;
+    font-size: 10pt;
+    margin-left: 20px;
+    padding: 0;
+    padding-top:20px;
+    margin-bottom: 20px;
+}
+
+.pj_name{
+    margin-top: 3px;
+    margin-bottom: 1px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.pj_period{
+    color: #bdbdbd;
+    font-size: 8pt;
+    padding: 0;
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+.pj_content{
+    font-size: 11pt;
+    margin-top: 0px;
+    margin-left: 10px;    
+}

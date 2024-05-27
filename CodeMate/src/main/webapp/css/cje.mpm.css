@@ -1,0 +1,312 @@
+@charset "UTF-8";
+
+
+/***************
+메이트 프로필 모달 창
+***************/
+
+/********************************
+/*메이트 프로필 모달창 제외한 나머지 페이지*/
+*{
+	font-family: "Noto Sans KR", sans-serif;
+}
+#mp_view {
+	margin-top:30px;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+/********************************
+/*메이트 프로필 모달 창 제목 바 DIV*/
+.mp_view_title {
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: black;
+	background: #5ACA7C;
+	border-top-left-radius: 15px;
+    border-top-right-radius:15px;
+}
+
+/*메이트 프로필 모달 창 제목 글자*/
+.mp_view_title h2 {
+  font-size: 18px;
+    margin:0;
+    margin-left:10px;
+}
+
+/*메이트 프로필 모달 창 제목의 닫기 버튼*/
+.mp_view_close {
+	cursor: pointer;
+	color: black;
+}
+
+/********************************
+/*메이트 프로필 모달 창 본문 DIV*/
+.content {
+	margin-top: 20px;
+	padding: 0px 10px;
+	color: black;
+}
+
+/********************************
+/*메이트 프로필 (닉네임, 프사 있는 곳) DIV*/
+.mp_account_profile {
+	position: relative; /* 부모 요소의 위치를 설정 */
+	display: flex;
+	align-items: center;
+	height: 80px;
+	padding-bottom: 20px;
+}
+
+/* 사용자 프사 */
+.profile_image {
+	margin-left: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* 동그라미 모양으로 설정 */
+}
+
+/*닉네임, 아이디 있는 div*/
+.mp_account_nickname {
+	margin-left: 15px;
+}
+
+.user_nickname {
+	color: black;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.user_id {
+	color: #32B0FF;
+}
+
+/********************************/
+/*메이트 프로필 컨텐츠란 전체 DIV*/
+.mp_content_div {
+	margin-left: 20px;
+    padding-top: 15px;
+    margin-right: 20px;
+    margin-bottom:40px; 
+	 
+}
+
+/*메이트 프로필에 쓰이는 내용란 (회색 박스) DIV*/
+.mp_content {
+    border-radius: 8px;
+    background: #e0e0e0;
+    min-height:100px;
+}
+
+.mp_content p, .mp_mate_review p, .mp_project p {
+    padding: 15px;
+}
+
+/*스킬 회색 박스 DIV 스타일*/
+.skill_div{
+	border-radius: 8px;
+	background: #e0e0e0;
+	min-height: 130px;
+}
+
+/*포지션 input 태그 스타일*/
+.in_position {
+	border-radius: 8px;
+	background: #e0e0e0;
+	width: 710px;
+	height: 40px;
+	overflow: auto;
+	box-sizing: border-box;
+	border:none;
+}
+
+/*자기소개 textarea 스타일*/
+#mp_position,
+#mp_introduce {
+    border-radius: 8px;
+	background: #e0e0e0;
+	width: 100%;
+	min-height:100px;
+	border:none;
+}
+
+
+/*************************/
+/* 하드 스킬과 소프트 스킬을 감싸는 div에 대한 스타일 */
+.skill-container {
+    display: flex;
+}
+
+/* 각 스킬 요소에 대한 스타일 */
+.skill-item {
+    width: calc(49% - 10px); /* 기존 스타일에서 마진 값 조정 */
+    margin-right: 10px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+.mp_content_skill {
+    width: calc(100% - 20px); /* 기존 스타일에서 마진 값 조정 */
+    margin-right: 10px;
+    margin-bottom: 20px;
+    min-height: 100px;
+    overflow-y: auto;
+    background: #e0e0e0;
+    border-radius: 8px;
+}
+
+/*****************************/
+/*프로젝트 경험 DIV*/
+.mp_project {
+	border-radius: 8px;
+	border: 1px solid #adadad;
+	padding-top: 20px;
+}
+
+/*****************************/
+/*코드메이트 후기 DIV*/
+.mp_mate_review {
+	border-radius: 8px;
+	background: #e0e0e0;
+	border: 1px solid #adadad;
+	margin-bottom: 70px;
+}
+
+
+/*****************************/
+/*버튼*/
+.btn-div {
+    display: flex !important;
+    justify-content: space-between  !important; /* 두 버튼을 좌우로 나란히 정렬합니다 */
+    align-items: center  !important; /* 버튼을 수직으로 중앙 정렬합니다 */
+    margin-top: 25px !important;
+    margin-bottom: 40px !important;
+}
+
+/* 닫기 버튼과 수정 버튼에 대한 공통 스타일 */
+#close-btn, #modify-btn {
+    background: black;
+    width: 320px !important;
+    height: 50px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;   
+    text-align: center !important;
+    border-radius: 30px !important;
+    margin: 0 10px !important; /* 버튼 간격을 조정합니다 */
+    color: white;
+    font-size: 14pt;
+}
+
+#close-btn{
+	margin-right:100px!important;
+}
+
+#modify-btn{
+	margin-left:100px!important;
+}
+/*********************************/
+/* 프로젝트 경험*/
+.pj_category{
+	color: green;
+	font-size: 10pt;
+	margin-left: 20px;
+	padding: 0;
+	padding-top:20px;
+	margin-bottom: 20px;
+}
+
+.pj_name{
+	margin-top: 3px;
+	margin-bottom: 1px;
+	margin-left: 20px;
+	padding: 0;
+}
+
+.pj_period{
+	color: #bdbdbd;
+	font-size: 8pt;
+	padding: 0;
+	margin-top: 0px;
+	margin-left: 20px;
+	margin-bottom: 0px;
+}
+
+.pj_content{
+	font-size: 11pt;
+	margin-top: 0px;
+	margin-left: 10px;
+	
+}
+
+
+
+/*셀렉트*/
+/* 스킬 선택 셀렉트 박스 스타일 */
+.option-container {
+    margin-top: 10px;
+    border: none;
+}
+
+.option-item {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #505050;
+    border: none;
+    border-radius: 5px;
+    font-size: 9pt;
+    color:white;
+}
+
+.remove-btn {
+    margin-left: 10px;
+    color: #FF9090; /* 수정된 부분: X 버튼 색상 변경 */
+    cursor: pointer;
+}
+
+#hs-select, #ss-select {
+    border: none;
+    color: #bdbdbd;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border-radius: 30px;
+    -webkit-appearance: none; /* 웹킷 기반 브라우저에서 화살표 숨기기 */
+    -moz-appearance: none; /* 모질라 기반 브라우저에서 화살표 숨기기 */
+    appearance: none; /* 표준 방법으로 화살표 숨기기 */
+    background-image: none; /* 기본 화살표 이미지 숨기기 */
+    background-position: right center; /* 선택된 옵션의 표시 위치 설정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 없애기 */
+    padding-right: 20px; /* 우측 여백을 추가하여 텍스트와 화살표 간격 유지 */
+}
+
+option {
+    color: #00380d;
+}
+
+.hs {
+    color: black;
+}
+
+
+/********************/
+/*프로젝트 분류*/
+.pjct, .pjtt, .pjct, .pjpr{
+	font-weight: bold;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+/*mt_input 인풋 박스*/
+.mt_input{
+	border-radius: 8px;
+	background: #e0e0e0;
+	border: none;
+	width: 550px;
+}
