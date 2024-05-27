@@ -88,16 +88,13 @@ $(function(){
 <body>
 <div class="page-container">
 
-	<div id="login_header" class="header">
 		<span id="greeting">팀원 구하기 제일 쉬운 곳 코메!</span>		
 		<div id="login_logo">
 			<a href="${pageContext.request.contextPath}/main/main.do" class="logo"> 
 			<img id="logo_pic_login" src="${pageContext.request.contextPath}/images/로고1.png" height="80" width="80"> CODEMATE
 		</a>
 		</div>
-	</div>
-	
-		<div class="content-main">
+
 			<form id="register_form" action="registerUser.do" method="post">
 				<ul id="insert_register">
 					<li class="info">
@@ -128,12 +125,10 @@ $(function(){
 					</li>
 				</ul>
 				<div id="btns" class="align-center">
-					<input id="reg_btn" type="submit" value="회원가입완료"> 
+					<input id="reg_btn" type="submit" value="회원 가입"> 
 					<input id="cancel_btn" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			</form>
-			
-		</div>
 	</div>
 </body>
 </html>

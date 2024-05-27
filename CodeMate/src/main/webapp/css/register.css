@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* 공통 스타일 */
 body {
 	font-family: "Noto Sans KR", sans-serif;
@@ -17,17 +15,9 @@ body {
 }
 
 /* 로고 스타일 */
-#login_header {
-	display: flex;
-	align-items: center;
-	justify-content: center; /* 로고와 greeting 요소를 수평으로 정렬합니다. */
-	flex-direction: column; /* 로고와 greeting 요소를 수직으로 정렬합니다. */
-	text-align: center; /* 텍스트를 가운데 정렬합니다. */
-}
-
 #greeting {
 	position: absolute;
-	top: 100px;
+	top: 30px;
 	left: 50.5%;
 	transform: translateX(-50%);
 	font-weight: bold;
@@ -35,7 +25,7 @@ body {
 
 #login_logo {
 	position: absolute;
-	top: 100px;
+	top: 30px;
 	left: 50%;
 	transform: translateX(-50%);
 	font-size: 2em;
@@ -59,50 +49,52 @@ body {
 	margin-bottom: 20px;
 }
 
-.info label {
-	display: inline-block;
-	width: 80px; /* 아이디, 이름 등 입력 항목의 label 너비 조정 */
-	font-weight: bold;
-}
-
 /* 입력 폼 스타일 수정 */
 .input-check {
-	width: calc(100% - 100px); /* 넓이를 더 넓게 조정 */
-	height: 30px; /* 높이를 줄임 */
-	padding: 5px; /* 내부 여백을 줄임 */
-	border: 1px solid #ccc;
-	border-radius: 5px;
+    width: 100%;
+    height: 30px; 
+    padding: 5px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    margin-top: 5px;
 }
+
+.info label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px; /* label 아래의 간격 조절 */
+}
+
 
 /* 회원가입 버튼 스타일 */
 #btns {
 	margin-top: 20px;
 }
 
-#reg_btn {
-	width: calc(50% - 5px); /* 회원가입 완료 버튼 너비 설정 */
-	padding: 10px;
-	font-size: 16px;
-	background-color: #007bff;
-	color: white;
+#reg_btn,
+#cancel_btn {
+	width: calc(50% - 20px); /* 버튼 너비 설정 */
+	padding: 10px 20px;
+	font-size: 14px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
+	transition: opacity 0.3s ease-in-out;
+}
+
+#reg_btn {
+	background-color: #326BFF;
+	color: #fff;
+	opacity: 0.8;
 }
 
 #cancel_btn {
-	width: calc(50% - 5px); /* 취소 버튼 너비 설정 */
-	padding: 10px;
-	font-size: 16px;
-	background-color: #ccc;
-	color: black;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+	background-color: #636363;
+	color: #fff;
+	opacity: 0.8;
 }
 
 #reg_btn:hover, #cancel_btn:hover {
-	background-color: #0056b3; /* 버튼에 호버 시 배경색 변경 */
+    opacity: 1.0;
 }

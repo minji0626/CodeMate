@@ -63,14 +63,14 @@ body {
 
 .floating-label>.form-input:focus,
 .floating-label>.form-input:not(:placeholder-shown) {
-    border-color: #007bff;
+    border-color: #326BFF;
 }
 
 .floating-label>.form-input:focus+label,
 .floating-label>.form-input:not(:placeholder-shown)+label {
     top: 5px;
     font-size: 12px;
-    color: #007bff;
+    color: #326BFF;
 }
 
 /* 로그인 버튼 스타일 */
@@ -80,16 +80,15 @@ body {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #326BFF;;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    transition: opacity 0.3s ease-in-out;}
 
 #login_btn:hover {
-    background-color: #0056b3;
+    opacity: 0.8;
 }
 
 /* 링크 스타일 */
