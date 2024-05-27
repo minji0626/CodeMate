@@ -1,14 +1,83 @@
 @charset "utf-8";
 
-
 /* 광고배너 */
-.carousel-item {
-  height: 350px; /* 원하는 높이로 설정 */
+.slider-container {
+   overflow: hidden; 
+   width: 1043px; /* 슬라이드 컨테이너의 너비 설정 */
+   height:300px;
+   position:absolute;
+   left:223px;
 }
 
-.carousel-item img{
-  height: 100%;
-  object-fit:cover; /* 이미지를 컨테이너에 맞추되, 비율을 유지합니다 */
-  width: 100%;
+.slider-wrapper {
+   display: flex;  /* 가로로 슬라이드들을 나란히 배치하기 위해 */
+   width:3129px;
 }
 
+.ad{
+    width:1043px;    /* 슬라이드의 너비 설정 */
+   height:300px;
+}
+
+/* 배너 버튼 */
+#prev{
+   position:absolute;
+   top:270px; left:250px;
+   transform:rotate(90deg);
+}
+#next{
+   position:absolute;
+   top:270px; right:250px;
+   transform:rotate(270deg);
+}
+button img{
+   width:20px; height:20px;
+   filter: invert(100%);
+}
+
+ button:hover{
+   opacity: 0.5;
+}
+
+/* button{
+   z-index: 1;
+   opacity: 0; 
+   border:none;
+   border-radius:100px;
+   background:#FFFFFF; 
+   width:30px; height:30px;
+}  */
+   
+
+
+/* 카드 슬라이드 */
+#mini-card{/* div.page-container */
+   position:absolute;
+   top:500px;   
+}
+.mini-container {
+   overflow: hidden; 
+   width: 1020px; 
+   height:220px;
+} 
+.mini-wrapper {
+   display:flex;
+   gap:30px;
+   width:1500px;
+} 
+
+.content{
+    width:200px;    
+   height:220px;
+} 
+
+a#more{
+   position:absolute;
+    left:950px;
+}
+
+#back_btn{
+   color:white;
+   border-radius:20px;
+   background-color:green;
+}

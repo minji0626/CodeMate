@@ -5,59 +5,43 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<div class="page-container">
+<div class="page-container" id="mini-card">
 
-<div id="back" style="width:18rem;">
-	<div>
-	이번주 코메 인기글
-	<a>더보기</a>
-	<div class="card">
-		<div class="card-body">
-		</div>
-	</div>
-		
-	</div>
-</div>
+<div>이번주 코메 인기글
+   <button id="back_btn">백엔드</button>
+   <a id="more" href=#>더보기</a>
+</div> 
 
-<div id="front">
-	<div>
-	이번주 코메 인기글
-	<a>더보기</a>
-	<div class="card">
-		<div class="card-body">
-		</div>
-	</div>
-	</div>
-</div>
-
-<div id="dev">
-	<div>
-	커뮤니티 인기글
-	<a>더보기</a>
-	<div class="card">
-		<div class="card-body">
-		</div>
-	</div>
-	</div>
-</div>
-
-<div id="free">
-	<div>
-	커뮤니티 인기글
-	<a>더보기</a>
-	<div class="card">
-		<div class="card-body">
-		</div>
-	</div>
-	</div>
-</div>
+<div class="mini-container">
+   <div class="mini-wrapper" id="mini-wrapper">
+      <div class="mini">
+         <img class="content" src="${pageContext.request.contextPath}/images/back1.png">
+      </div>
+      <div class="mini">
+         <img class="content" src="${pageContext.request.contextPath}/images/back2.png">
+      </div>
+      <div class="mini">
+         <img class="content" src="${pageContext.request.contextPath}/images/back3.png">
+      </div>
+      <div class="mini">
+         <img class="content" src="${pageContext.request.contextPath}/images/back1.png">
+      </div>
+      <div class="mini">
+         <img class="content" src="${pageContext.request.contextPath}/images/back2.png">
+      </div>
+      <div class="mini">
+         <img class="content" src="${pageContext.request.contextPath}/images/back3.png">
+      </div>
+   </div>
+   
+</div><!-- end of card-container -->
+   <button class="btn" id="p"><img src="${pageContext.request.contextPath}/images/arrow.png"></button>
+    <button class="btn" id="n"><img src="${pageContext.request.contextPath}/images/arrow.png"></button>
 
 
-<!-- 우측 하단 문의하기 => 부트스트랩 토스트  -->
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</div><!-- end of page-container -->
+<script src="${pageContext.request.contextPath}/js/card.js"></script> 
 </body>
 </html>
