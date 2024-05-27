@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="main_header">
-	<div id="main_header_menu">
+	<div id="main_header_menu" class="header">
 		<ul id="header_left">
 			<!-- 로그인 여부무관 -->
 			<li>

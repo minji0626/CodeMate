@@ -24,15 +24,15 @@
    position:absolute;
    top:270px; left:250px;
    transform:rotate(90deg);
+   filter: invert(100%);
+   width:20px; height:20px;
 }
 #next{
    position:absolute;
    top:270px; right:250px;
    transform:rotate(270deg);
-}
-button img{
-   width:20px; height:20px;
    filter: invert(100%);
+   width:20px; height:20px;
 }
 
  button:hover{

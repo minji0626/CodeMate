@@ -15,12 +15,38 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cje.boardDetail.css" type="text/css">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript">
+window.onload = function(){
+    const myForm = document.getElementById('write_form');
+    myForm.onsubmit = function(){
+        const title = document.getElementById('cb_title');
+        const content = document.getElementById('cb_content');
+
+        if(title.value.trim()==''){
+                alert('제목을 입력하세요.');
+                title.value='';
+                title.focus();
+                return false;
+        };
+        
+        if(content.value.trim()==''){
+            alert('내용을 입력하세요.');
+            content.value='';
+            content.focus();
+            return false;
+        };
+
+    };
+};
+</script>
+    
 </head>
 <body>
 		<div class="page-container">
-			<div class="page-main">
+			<div class="header"> 
 				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			</div>
+			</div>	
 	        <div class="container_write">
 		        <form action="" id="write_form" method="post" enctype="multipart/form-data">
 		        	<div class="form-group">

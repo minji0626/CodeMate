@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
-</head>
-<body>
-<div class="page-container" id="mini-card">
+
+<div id="mini-card">
 
 <div>이번주 코메 인기글
    <button id="back_btn">백엔드</button>
@@ -43,5 +39,3 @@
 
 </div><!-- end of page-container -->
 <script src="${pageContext.request.contextPath}/js/card.js"></script> 
-</body>
-</html>

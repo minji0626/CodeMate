@@ -23,7 +23,6 @@
 			<div class="page-main">
 				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			</div>
-			<div class="page-board">
 		        <!-- 게시글 상세 부분 -->
 		        <div class="container_board">
 		        	<!-- 게시판 분류 -->
@@ -64,8 +63,8 @@
 		   			<span>마지막 수정일 : 2024.05.26</span>
 				    <button class="btn btn-primary list-action" onclick="location.href='.do'">수정</button>
 				    <button class="btn btn-secondary list-action" onclick="location.href='community.do'">목록</button>
+				    
 				</div>
-		   		 
 		   		 
 		   		 <!-- 댓글 목록 -->
 		   		 <div class="container_reList">
@@ -104,18 +103,11 @@
 				                <textarea rows="3" cols="100" name="cb_content" id="cb_content" class="form-control"></textarea>
 				                <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='.do'">
 				            </div>
-			        		<c:if test="${!empty mem_num}">
-			        			<div id="re_first">
-			        				<span class="letter-count">300/300</span>
-			        			</div>
-			        			<div id="re_second" class="align-right"">
-			        				<input type="submit" value="전송">
-			        			</div>
-			        		</c:if>
+			        		
 			        	</form>
 			        </div>
 		        </div>
+		   		 
 	      </div>
-    </div>
 </body>
 </html>

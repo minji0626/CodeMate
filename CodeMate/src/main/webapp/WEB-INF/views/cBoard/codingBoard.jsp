@@ -17,9 +17,10 @@
 </head>
 <body>
 	<div class="page-container">
-		<div class="page-main">
+		
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		</div>	
+			<div class="page-main">
+		
 			<div class="table-container">
 				<div class="button-container">
 			    	<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
@@ -86,36 +87,9 @@
 				 		<td>10</td>
 				 		<td>2024-05-21</td>
 				 	</tr>
-				    <tr>
-				 		<td>7</td>
-				 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-				 		<td>홍길동</td>
-				 		<td>10</td>
-				 		<td>2024-05-21</td>
-				 	</tr>
-				 	<tr>
-				 		<td>8</td>
-				 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-				 		<td>홍길동</td>
-				 		<td>10</td>
-				 		<td>2024-05-21</td>
-				 	</tr>
-				 	<tr>
-				 		<td>9</td>
-				 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-				 		<td>홍길동</td>
-				 		<td>10</td>
-				 		<td>2024-05-21</td>
-				 	</tr>
-				 	<tr>
-				 		<td>10</td>
-				 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-				 		<td>홍길동</td>
-				 		<td>10</td>
-				 		<td>2024-05-21</td>
-				 	</tr>
 				 </table>
 			 </div>
+			 </div>	
 		</div>
 </body>
 </html>
