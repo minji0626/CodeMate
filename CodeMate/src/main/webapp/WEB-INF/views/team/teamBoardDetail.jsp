@@ -5,41 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-	
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cje.boardDetail.css" type="text/css">
-    <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board_detail.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    
     <title>글상세</title>  
 </head>
 <body>
-		<div class="page-container">
-			<div class="page-main">
-				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			</div>
+	<div class="page-container">
+   			 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+   			 <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
 				<div class="board_container">
 		        <!-- 게시글 상세 부분 -->
 		        <div class="container_board">
-		        	<!-- 게시판 분류 -->
-		       		<div class="board_category">
-		       			<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
-		       		</div>
 		       		<!-- 제목 -->	
-		       		<h2>자유 게시판</h2>
+		       		<h2>팀 게시판</h2>
 		       		<!-- 작성자 및 정보 -->
 		       		<div class="board_info">
 		       			<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-		       			<span> 닉네임</span>
+		       			<span>작성자(닉네임)</span>
 		       			<span>2024.5.14</span>
-		       			<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png" width="15">
-		       			<span> 223</span>
 		       		</div>
 		       		
 		       		<hr style="color:#d4d4d4">
@@ -55,17 +40,11 @@
 		       				오늘 저녁 뭐 먹을까요 추천 좀요!
 		       			</p>
 		       		</div>
-		       		<!-- 좋아요 -->
-		       		<div class="board_like">
-		       			<img src="${pageContext.request.contextPath}/images/cje/boardLikeIcon.png" height="25" width="25">
-		       			<span>25</span>
-		       		</div>
 		   		</div>
 		   		<div class="list-actions">    
 		   			<span>마지막 수정일 : 2024.05.26</span>
 				    <button class="btn btn-primary list-action" onclick="location.href='.do'">수정</button>
-				    <button class="btn btn-secondary list-action" onclick="location.href='community.do'">목록</button>
-				    
+				    <button class="btn btn-secondary list-action" onclick="location.href='${pageContext.request.contextPath}/team/teamBoard.do'">목록</button>
 				</div>
 		   		 
 		   		 <!-- 댓글 목록 -->

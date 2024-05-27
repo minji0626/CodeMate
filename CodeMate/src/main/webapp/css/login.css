@@ -1,0 +1,126 @@
+/* 공통 스타일 */
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.align-center {
+    text-align: center;
+}
+
+/* 로고 스타일 */
+#login_logo {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#logo_pic_login {
+    position: relative;
+    top: 20px;
+}
+
+/* 입력 폼 스타일 */
+#login_form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+}
+
+.floating-label {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.floating-label>.form-input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.floating-label>label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #777;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.floating-label>.form-input:focus,
+.floating-label>.form-input:not(:placeholder-shown) {
+    border-color: #007bff;
+}
+
+.floating-label>.form-input:focus+label,
+.floating-label>.form-input:not(:placeholder-shown)+label {
+    top: 5px;
+    font-size: 12px;
+    color: #007bff;
+}
+
+/* 로그인 버튼 스타일 */
+#login_btn {
+    margin-top: 30px;
+    margin-left : 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login_btn:hover {
+    background-color: #0056b3;
+}
+
+/* 링크 스타일 */
+#find,
+#sign_up {
+    margin-top: 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#find a,
+#sign_up a {
+    color: #777;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-right: 3px;
+}
+
+#find a:hover,
+#sign_up a:hover {
+    text-decoration: underline;
+    color: #007bff;
+}
+
+#find a::before,
+#sign_up a::before {
+    content: " ";
+    display: inline-block;
+    margin-right: 5px;
+}
+
