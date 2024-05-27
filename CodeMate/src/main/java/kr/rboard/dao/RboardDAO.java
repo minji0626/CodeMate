@@ -18,7 +18,6 @@ public class RboardDAO {
 	};
 
 	// rboard 등록
-	// 팀 테이블에도 레코드 추가해라!!!!!!!!!!
 	public void insertRboard(RboardVO rboard) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -129,7 +128,7 @@ public class RboardDAO {
 	// rboard 목록 구하기
 	// rboard detail 구하기
 	//프로젝트 모집글 상세정보 읽어오기-민재가 했음 이상하면 지워주쇼
-    public RboardVO pageMo(int mem_num)throws Exception{
+    public RboardVO getrboard(int mem_num)throws Exception{
       Connection conn = null;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
@@ -145,11 +144,14 @@ public class RboardDAO {
             rboard = new RboardVO();
             rboard.setMem_num(rs.getInt("mem_num"));
             rboard.setRb_category(rs.getInt("rb_category"));
-            rboard.setRb_meet(rs.getInt(mem_num));
-            
-            
-            
-            
+            rboard.setRb_meet(rs.getInt("rb_meet"));
+            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+            rboard.setRb_period(rs.getInt("rb_period"));
+            rboard.setRb_start(rs.getString("rb_start"));
+            rboard.setRb_title(rs.getString("rb_title"));
+            rboard.setRb_content(rs.getString("rb_content"));
+            rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
+            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
          }
       }catch(Exception e) {
          throw new Exception(e);
