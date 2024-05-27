@@ -42,6 +42,7 @@ $(function(){
 		</div>
 		</div>
 		
+		
 	<div class="content-main">
 		<form id="login_form" action="login.do" method="post">
 			<ul id="insert">

@@ -49,8 +49,8 @@ public class MemberDAO {
 			pstmt2.executeUpdate();
 
 			sql = "INSERT INTO member_detail (mem_num,mem_name,mem_passwd, mem_phone, "
-					+ "mem_email,mem_nickname, mem_reg_date) VALUES ("
-					+ "?,?,?,?,?,?, SYSDATE)"; 
+					+ "mem_email,mem_nickname, mem_reg_date, mem_level) VALUES ("
+					+ "?,?,?,?,?,?, SYSDATE, 1)"; 
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1,num);
 			pstmt3.setString(2,member.getMem_name());
@@ -210,8 +210,8 @@ public class MemberDAO {
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "SELECT * FROM mate_profile WHERE mem_num=?";
-				pstmt = conn.prepareStatement(sql);
+				sql = "SELECT * FROM mate_profile JOIN member_detail USING(mem_num) WHERE mem_num=?";
+				pstmt = conn.prepareStatement(sql); 
 				pstmt.setInt(1, mem_num);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
@@ -221,6 +221,7 @@ public class MemberDAO {
 					member.setMp_introduce(rs.getString("mp_introduce"));
 					member.setMp_modify_date(rs.getDate("mp_modify_date"));
 					member.setMp_state(rs.getInt("mp_state"));
+					member.setMem_nickname(rs.getString("mem_nickname"));
 				}
 			}catch(Exception e) {
 				throw new Exception(e);

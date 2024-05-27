@@ -18,6 +18,7 @@ public class MyPageShinAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
+		//로그인이 된 경우
 		
 		
 		//JSP 경로 반환
