@@ -1,57 +1,7 @@
 @charset "utf-8";
 
-/* 광고배너 */
-.slider-container {
-   overflow: hidden; 
-   width: 1455px; /* 슬라이드 컨테이너의 너비 설정 */
-   height:300px;
-   position:absolute;
-   left:315px;
-}
-
-.slider-wrapper {
-   display: flex;  /* 가로로 슬라이드들을 나란히 배치하기 위해 */
-   width:3129px;
-}
-
-.ad{
-    width:1455px;    /* 슬라이드의 너비 설정 */
-    height:300px;
-}  
-
-/* 배너 버튼 */
-#prev{
-   position:absolute;
-   top:270px; left:250px;
-   transform:rotate(90deg);
-   filter: invert(100%);
-   width:20px; height:20px;
-}
-#next{
-   position:absolute;
-   top:270px; right:250px;
-   transform:rotate(270deg);
-   filter: invert(100%);
-   width:20px; height:20px;
-}
-
- button:hover{
-   opacity: 0.5;
-}
-
-/* button{
-   z-index: 1;
-   opacity: 0; 
-   border:none;
-   border-radius:100px;
-   background:#FFFFFF; 
-   width:30px; height:30px;
-}  */
-   
-
-
 /* 카드 슬라이드 */
-#mini-card{/* div.page-container */
+#mini-card {
    position:absolute;
    top:500px; left:350px;   
    width:3000px; 
