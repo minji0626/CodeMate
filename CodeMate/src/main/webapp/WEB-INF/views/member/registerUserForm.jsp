@@ -105,6 +105,7 @@ $(function(){
 		</div>
 		</div>
 	
+	
 		<div class="content-main">
 			<form id="register_form" action="registerUser.do" method="post">
 				<ul id="insert_register">
