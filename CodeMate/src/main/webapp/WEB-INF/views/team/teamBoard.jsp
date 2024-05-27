@@ -54,7 +54,7 @@
                     <!-- 임시 게시글 -->
                     <tr>
                         <td>2</td>
-                        <td>임시 게시글 제목</td>
+                        <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do">임시 게시글 제목</a></td>
                         <td>사용자</td>
                         <td>2024-05-02</td>
                     </tr>

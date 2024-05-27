@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <title>글상세</title>  
 </head>
-<body>
+<body> 
 	<div class="page-container">
    			 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
    			 <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
