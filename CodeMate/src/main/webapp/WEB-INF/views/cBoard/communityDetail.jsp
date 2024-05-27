@@ -7,12 +7,13 @@
 <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+    
 	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cje.boardDetail.css" type="text/css">
+    <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     
@@ -23,6 +24,7 @@
 			<div class="page-main">
 				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			</div>
+				<div class="board_container">
 		        <!-- 게시글 상세 부분 -->
 		        <div class="container_board">
 		        	<!-- 게시판 분류 -->
@@ -107,7 +109,8 @@
 			        	</form>
 			        </div>
 		        </div>
-		   		 
-	      </div>
+		   		 </div>
+		   	</div>
+	      
 </body>
 </html>
