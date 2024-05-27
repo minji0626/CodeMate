@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 쓴 댓글</title>
+<title>나의 코메 모집</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
 </head>
@@ -34,17 +35,22 @@
 <!-- 메인 정보 수정 -->
 <div class="float-C">
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
-	<h3 class="mYPage-TitleText">내가 쓴 댓글</h3>
+	<h3 class="mYPage-TitleText">나의 코메 모집</h3>
 </div>
-<div class="box_reply">
-<div class="write_reply">
-내가 쓴 글 내가 쓴 글 내가 쓴 내가 쓴 글 내가 쓴 내가 쓴 글 내가 쓴
+
+<div class="myPage-line-box">
+<div class="team-left">
+<div class="skill_font_T">백엔드</div>
+<div class="projectName_font">쇼핑몰 웹페이지 프로젝트</div>
 </div>
-<div class="btn_box">
-	<input type="submit" value="수정" class="myUpdate_btn" onclick="location.href=''">
-	<input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
+
+<div class="team-right">
+<div class="delete-green">신청 취소</div>
+<div class="team-count">모집인원:6명</div>
+<div>남은 기간 2024.05.23~2024.06.10</div>
 </div>
 </div>
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->

@@ -8,7 +8,14 @@
 	float:right;
 	width:200px;
 	font-size: 12px;
-	margin-top: 25px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+.team-right-myTeam{
+	float:right;
+	width:200px;
+	font-size: 12px;
+	margin-top: 22px;
 	font-weight: bold;
 }
 .skill_font_T{
@@ -19,4 +26,11 @@
 }
 .team-count{
 	margin-bottom: 5px;
+}
+/* 신청 취소 */
+.delete-green{
+	color:#5aca7c;
+	margin-bottom: 5px;
+	width:70px;
+
 }

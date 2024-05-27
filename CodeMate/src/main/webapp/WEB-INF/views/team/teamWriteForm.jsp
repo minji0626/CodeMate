@@ -38,7 +38,7 @@ window.onload = function(){
 <body id="team_main_body">
   <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-    <jsp:include page="team_nav_test.jsp"/>
+    <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     <div class="container_write">
         <form action="" id="write_form" method="post" enctype="multipart/form-data">
             <div class="form-group">

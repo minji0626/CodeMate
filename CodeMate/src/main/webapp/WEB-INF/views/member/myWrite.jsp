@@ -22,8 +22,8 @@
         <a href="${pageContext.request.contextPath}/member/modifyUserForm.do" class="sideB_font">나의 정보</a>
         <a class="sideB_font">My 코메</a>
         <a href="${pageContext.request.contextPath}/member/myTeam.do">참여중인 팀</a>
-        <a href="a">나의 코메 신청</a>
-        <a href="a">나의 코메 모집</a>
+        <a href="${pageContext.request.contextPath}/member/myPageShin.do">나의 코메 신청</a>
+        <a href="${pageContext.request.contextPath}/member/myPageMo.do">나의 코메 모집</a>
         <a href="${pageContext.request.contextPath}/member/myPageBookMark.do">북마크</a>
         <a href="" class="sideB_font">나의 활동</a>
         <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a>
