@@ -29,9 +29,11 @@ public class LoginAction implements Action{
 			request.setAttribute("auth", member.getMem_auth());
 		}
 		if(check) {//인증 성공
+			MemberVO mem = dao.getMember(member.getMem_num());
 			//로그인 처리
 			HttpSession session = request.getSession();
 			session.setAttribute("mem_num", member.getMem_num());
+			request.setAttribute("mem", mem);
 			
 			session.setAttribute("mem_id", member.getMem_id());
 			session.setAttribute("mem_auth", member.getMem_auth());
