@@ -2,25 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="main_header">
-	<div id="main_header_menu" class="header">
-		<ul id="header_left">
+	<div id="main_header_menu">
 			<!-- 로그인 여부무관 -->
-			<div id="community_href">
-			<a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
+			<div id="header_left">
+			<a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a> / 
+			<a href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do"> 팀원 구하기</a>
 			</div>
-			<li>
-				<a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
-				/ <a href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do">팀원 구하기</a>
-			</li>
-		</ul>
-		
-		<div id="main_logo">
-		<a href="${pageContext.request.contextPath}/main/main.do"
-			class="logo-a"> <img id="logo_pic"
-			src="${pageContext.request.contextPath}/images/로고1.png" height="80"
-			width="80"> CODEMATE
-		</a>
-		</div>
+			
+			<div id="main_logo">
+			<a href="${pageContext.request.contextPath}/main/main.do" class="logo-a"> 
+			<img id="logo_pic" src="${pageContext.request.contextPath}/images/로고1.png" height="80"width="80"> CODEMATE
+			</a>
+			</div>
 
 		<div id="header_right">
 			<!-- 로그인 X -->
@@ -39,7 +32,7 @@
 					<div class="login_profile">
 						<img id="profile_pic"
 							src="${pageContext.request.contextPath}/images/face.png"
-							height="40" width="40"> <span>${mem_nickname }</span>
+							height="40" width="40"> <span>${mem_nickname}</span>
 						<button id="header_more">
 							<img
 								src="${pageContext.request.contextPath}/images/header_icon.png"

@@ -4,7 +4,9 @@
 <div class="left-outer">
     <div class="profile">
         <img src="${pageContext.request.contextPath}/images/cmj/account_circle.png" id="profile-img">
-        <span class="team_status">팀원</span>
+        <div class="team_status">
+        	<p>팀원</p>
+        </div>
         <span class="team_nickname">분모재</span>
         <div class="written_post">
             <img src="${pageContext.request.contextPath}/images/cmj/written_post.png" alt="내가 쓴 글" id="post_icon">

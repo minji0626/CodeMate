@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* nav 전체 container 지정 */
 .left-outer {
 	z-index: 1000;
 	background-color: #E7E7E7;
@@ -8,25 +9,25 @@
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 12%;
+	width: 230px;
 	height: 100vh;
-	overflow: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
+/* 메뉴가 표시되는 menu-bar */
 .menu-bar {
-	margin-top: 10px;
+	margin-top: 20px;
 	width: 100%;
 	padding-top: 5px;
 	display: flex;
 	flex-direction: column;
-	align-items: center; /* 중앙 정렬 */
+	align-items: center;
 }
 
 .menu-item {
-	padding: 5% 8%;
+	padding: 10px 30px;
 	color: #333333;
 	text-decoration: none;
 	display: block;
@@ -75,10 +76,7 @@
 	text-align: center;
 	border-radius: 294px;
 	background: #D8D8D8;
-	margin-top: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	margin-top: 8px;
 }
 
 .team_nickname {
@@ -91,15 +89,13 @@
 
 .written_post {
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	margin-top: 7%;
-	height: 10%;
+	margin-top: 10px;
 }
 
 #post_icon {
-	width: 10%;
-	height: auto;
+	width: 18px;
+	height: 18px;
 }
 
 .my_post {

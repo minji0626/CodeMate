@@ -13,10 +13,10 @@
     <title>Team Main Page - Test</title>
   </head>
   <body>
+  
   <div class="page-container">
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-    <jsp:include page="team_nav_test.jsp"/>
-
+  	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  	<jsp:include page="team_nav_test.jsp"/>
     <div class="container">
       <div class="left">
         <div class="calendar">
