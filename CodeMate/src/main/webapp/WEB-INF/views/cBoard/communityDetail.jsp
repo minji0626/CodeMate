@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글상세</title>  
-    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	
@@ -15,12 +15,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cje.boardDetail.css" type="text/css">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    
+    <title>글상세</title>  
 </head>
 <body>
 		<div class="page-container">
 			<div class="page-main">
 				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			</div>
+			<div class="page-board">
 	        <!-- 게시글 상세 부분 -->
 	        <div class="container_board">
 	        	<!-- 게시판 분류 -->
@@ -59,8 +62,8 @@
 	   		</div>
 	   		<div class="list-actions">    
 	   			<span>마지막 수정일 : 2024.05.26</span>
-			    <input type="submit" value="수정" class="btn btn-primary list-action">
-			    <input type="button" value="목록" class="btn btn-secondary list-action">
+			    <button class="btn btn-primary list-action" onclick="location.href='.do'">수정</button>
+			    <button class="btn btn-secondary list-action" onclick="location.href='community.do'">목록</button>
 			</div>
 	   		 
 	   		 
@@ -112,8 +115,7 @@
 		        	</form>
 		        </div>
 	        </div>
-	        
-		        
+	      </div>
     </div>
 </body>
 </html>

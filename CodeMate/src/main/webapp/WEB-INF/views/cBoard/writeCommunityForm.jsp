@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	

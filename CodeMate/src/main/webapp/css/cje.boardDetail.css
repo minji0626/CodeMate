@@ -5,13 +5,17 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    
+}
+
+.page-board{
+	width: 100%;
 }
 
 
 /* 각각의 form을 하나로 묶어 주고 있는 container div */
 .container_write, .container_re, .container_board, .container_reList {
-    width: 100%;
+    width: 90%;
     margin: 3% auto; 
     background-color: #f4f4f4;
     border-radius: 8px;
@@ -144,6 +148,7 @@
     display: flex;
     justify-content: flex-end; 
     align-items: center;
+    margin-right:38px;
 }
 
 .list-action {
