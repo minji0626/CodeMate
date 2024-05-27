@@ -124,7 +124,7 @@
         <div class="team_status">
         	<p>팀원</p>
         </div>
-        <span class="team_nickname">${mem_nickname }</span>
+        <span class="team_nickname">${mem_id}</span>
         <div class="written_post">
             <img src="${pageContext.request.contextPath}/images/cmj/written_post.png" alt="내가 쓴 글" id="post_icon">
             <span class="my_post">내가 쓴 글</span>

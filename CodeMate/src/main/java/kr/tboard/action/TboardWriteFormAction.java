@@ -16,6 +16,7 @@ public class TboardWriteFormAction implements Action{
 		if(mem_num == null) {// 로그인 미실시
 			return "redirect:/member/loginForm.do";
 		} 
+		
 		return "/WEB-INF/views/team/teamWriteForm.jsp";
 	}
 
