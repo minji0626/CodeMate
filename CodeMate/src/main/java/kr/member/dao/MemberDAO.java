@@ -1,6 +1,7 @@
 package kr.member.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -169,6 +170,34 @@ public class MemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	// 메이트 프로필 작성하기
+		public void insertMP(MemberVO member) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				
+				sql = "INSERT INTO mate_profile (mem_num, mp_introduce, mp_modify_date, mp_state, mp_position)"
+						+ " VALUES(?, ?, SYSDATE, ?, ?)";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, member.getMem_num());
+				pstmt.setString(2, member.getMp_introduce());
+				pstmt.setInt(3, member.getMp_state());
+				pstmt.setString(4, member.getMp_position());
+				
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 
 }
 

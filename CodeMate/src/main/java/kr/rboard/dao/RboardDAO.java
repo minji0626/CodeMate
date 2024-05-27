@@ -97,7 +97,34 @@ public class RboardDAO {
 
 	// rboard 수정
 	// rboard 삭제
-	// rboard 목록 개수
+	// rboard 글 개수, 검색 개수
+	public int getRboardCount() throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT COUNT(*) FROM r_board";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
+	
+	
 	// rboard 목록 구하기
 	// rboard detail 구하기
 

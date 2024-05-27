@@ -32,4 +32,6 @@ public class TeamDAO {
         	DBUtil.executeClose(null, pstmt, conn);
         }
     }
+    
+    // 팀 불러오기
 }

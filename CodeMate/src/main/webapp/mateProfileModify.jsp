@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,31 +38,37 @@
                     </div>  
                     <!-- 닉네임 -->
                     <div class="mp_account_nickname">
-                        <span class="user_nickname">분모재</span>
+                        <span class="user_nickname">${mem_nickname}</span>
                         <!-- 레벨 이미지 추가하기 -->
                         <img>
                         <br>
-                        <span class="user_id">boonmojae</span>
+                        <span class="user_id">${mem_id}</span>
                         <!-- 아이디 옆 이미지 추가하기 -->
                         <img>
                     </div>
                 </div>
                 <!-- 포지션 DIV -->
-                <form id="mp_modify_form" action="">
+                <form id="mpModifyForm" action="mpModifyForm.do" method="post">
+                <input type="radio" id="mt_state_0" name="mt_state" value="비공개">
+							<label for="mt_state_0">비공개</label>
+
+							<input type="radio" id="mt_state_1" name="mt_state" value="공개">
+							<label for="mt_state">공개</label>
                 <div class="mp_content_div">
                     <h4>포지션</h4>
-                        <input type="text" name="" id="" value="" class="in_position">
+                        <input type="text" name="mp_position" id="mp_position" <c:if test="${!empty mp_position}">value="${mp_position}"</c:if> class="in_position">
+
                 </div>
                 <!-- 자기소개 DIV -->
                 <div class="mp_content_div">
                     <h4>자기소개</h4>
                     <div class="mp_content">
-                        <textarea name="" id="" class="in_introduce"> </textarea>
+                        <textarea name="mp_introduce" id="mp_introduce" class="in_introduce"> <c:if test="${!empty mp_position}">${mp_position}</c:if> </textarea>
                     </div>
                 </div>
                 <!-- 스킬 DIV -->
-                <div class="skill-container">
-                    <!-- 하드스킬 DIV -->
+                <!-- <div class="skill-container">
+                    하드스킬 DIV
                     <div class="mp_content_div skill-item">
                         <h4>하드스킬</h4>
                         <div class="skill_div">
@@ -76,7 +83,7 @@
                             <div id="hs-options" class="option-container"></div>
                         </div>
                     </div>
-                    <!-- 소프트스킬 DIV -->
+                    소프트스킬 DIV
                     <div class="mp_content_div skill-item">
                         <h4>소프트스킬</h4>
                         <div class="skill_div">
@@ -90,13 +97,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- 프로젝트 경험 DIV -->
+                프로젝트 경험 DIV
                 <div class="mp_content_div">
                     <h4>프로젝트 경험</h4>
                     <div class="mp_project">
                         <span class="pjct">프로젝트 분류</span>  
-                            개인 <input type="checkbox" id="mt_category_0" name="mt_category" value="개인" onclick=checkOnlyOne(this)>
-							기업 <input type="checkbox" id="mt_category_1" name="mt_category" value="기업" onclick=checkOnlyOne(this)>
+                            <input type="radio" id="mt_category_0" name="mt_category" value="개인">
+							<label for="mt_category_0">개인</label>
+
+							<input type="radio" id="mt_category_1" name="mt_category" value="기업">
+							<label for="mt_category_1">기업</label>
+
 							<br><br>
                         <span class="pjtt">프로젝트 제목</span>
                         	<input type="text" id="mt_title" name="mt_title" value="" class="mt_input">
@@ -108,7 +119,7 @@
                         <input type="text" id="mt_content" name="mt_content" value="" class="mt_input">
                         <br><br>
                     </div>
-                </div>
+                </div> -->
                  <!-- 버튼 -->
 		                <div class="btn-div">
 		                    <input type="submit" id="modify-btn" value="수정">
@@ -220,27 +231,7 @@ document.getElementById('ss-select').addEventListener('change', function(event) 
     event.target.selectedIndex = -1;
 });
 
-// 체크박스 선택 제한 함수
-function uncheckOtherCheckbox(checkboxId) {
-    var checkboxes = document.getElementsByName('mt_category');
-    for (var i = 0; i < checkboxes.length; i++) {
-        var checkbox = checkboxes[i];
-        if (checkbox.id !== checkboxId) {
-            checkbox.checked = false;
-        }
-    }
-}
 
-function checkOnlyOne(element) {
-    const checkboxes = document.getElementsByName("mt_category");
-
-    checkboxes.forEach((cb) => {
-        cb.checked = false;
-    })
-
-    element.checked = true;
-}
-    
     
 </script>
 

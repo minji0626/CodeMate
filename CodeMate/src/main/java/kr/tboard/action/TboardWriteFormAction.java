@@ -1,14 +1,12 @@
- package kr.team.action;
+package kr.tboard.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.team.dao.TeamDAO;
-import kr.team.vo.TeamVO;
 
-public class TeamMainAction implements Action{
+public class TboardWriteFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,10 +15,8 @@ public class TeamMainAction implements Action{
 		
 		if(mem_num == null) {// 로그인 미실시
 			return "redirect:/member/loginForm.do";
-		}
-
-		
-		return "/WEB-INF/views/team/teamTo_Do.jsp";
+		} 
+		return "/WEB-INF/views/team/teamWriteForm.jsp";
 	}
 
 }
