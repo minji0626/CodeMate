@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나의 코메 모집</title>
+<title>나의 코메 모집 신청자</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
@@ -35,22 +35,27 @@
 <!-- 메인 정보 수정 -->
 <div class="float-C">
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
-	<h3 class="mYPage-TitleText">나의 코메 모집</h3>
+	<h3 class="mYPage-TitleText">나의 코메 신청</h3>
 </div>
 
-<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do'">
-<div class="team-left">
-<div class="skill_font_T">백엔드</div>
-<div class="projectName_font">쇼핑몰 웹페이지 프로젝트</div>
+<div class="myPage-line-box-moshin">
+<div class="profile_mypage">
+<img class="profile_pic_mypage" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40"> 
+<div class="nickname_mypage">${member.mem_nickname}</div>
+
+<div class="mo_check">
+<div class="yes">YES</div>
+<span class="bar">/</span>
+<div class="no">NO</div>
 </div>
 
-<div class="team-right">
-<div class="delete-green">신청 취소</div>
-<div class="team-count">모집인원:6명</div>
-<div>남은 기간 2024.05.23~2024.06.10</div>
+<br>
+<div class="mypage_clob">
+<div class="shin-text">신청동기</div>
+<div class="content">${member.mem_nickname}</div><!-- dao에서 메서드 만들고 action에서 cboard,rboard 신청지원서 글 가져오기 -->
 </div>
 </div>
-
+</div>
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->

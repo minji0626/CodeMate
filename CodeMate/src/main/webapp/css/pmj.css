@@ -199,6 +199,11 @@
 	height:88px;
 	border: 1px solid #8f8f8f;
 	margin: 0 auto;
+	cursor: pointer;
+}
+
+.myPage-line-box:hover {
+    background-color: #f0f0f0;
 }
 .projectName_font {
     font-size: 22px;
