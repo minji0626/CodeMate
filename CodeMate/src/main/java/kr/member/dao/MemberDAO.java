@@ -103,7 +103,7 @@ public class MemberDAO {
 				member.setMem_auth(rs.getInt("mem_auth"));
 				member.setMem_passwd(rs.getString("mem_passwd"));
 				member.setMem_photo(rs.getString("mem_photo"));
-				member.setMem_email(rs.getString("mem_email"));//회원 탈퇴 시 필요 } }catch(Exception e)
+				member.setMem_email(rs.getString("mem_email"));//회원 탈퇴 시 필요 
 				member.setMem_nickname(rs.getString("mem_nickname"));
 			}
 		}catch(Exception e){ 

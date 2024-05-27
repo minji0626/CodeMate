@@ -33,6 +33,7 @@ public class LoginAction implements Action{
 			HttpSession session = request.getSession();
 			session.setAttribute("mem_num", member.getMem_num());
 			
+			
 			session.setAttribute("mem_id", member.getMem_id());
 			session.setAttribute("mem_auth", member.getMem_auth());
 			session.setAttribute("mem_nickname", member.getMem_nickname());
