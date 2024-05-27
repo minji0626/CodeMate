@@ -232,15 +232,15 @@ public class MemberDAO {
 			return member;
 		}
 		//프로필 사진 수정(ajax)
-		public void updateMyphoto(String photo,int mem_num)throws Exception{
+		public void updateMyPhoto(String mem_photo,int mem_num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "UPDATE member_detail SET photo=? WHERE mem_num=?";
+				sql = "UPDATE member_detail SET mem_photo=? WHERE mem_num=?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, photo);
+				pstmt.setString(1, mem_photo);
 				pstmt.setInt(2, mem_num);
 				pstmt.executeUpdate();
 			}catch(Exception e) {
