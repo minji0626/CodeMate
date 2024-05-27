@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
-public class MyTeamAction implements Action{
+public class MyPageShinAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,8 +17,11 @@ public class MyTeamAction implements Action{
 		if(mem_num == null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
+		
+		
+		
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/myTeam.jsp";
+		return "/WEB-INF/views/member/myPageShin.jsp";
 	}
 
 }

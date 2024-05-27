@@ -7,7 +7,11 @@
 
 <div>이번주 코메 인기글
    <button id="back_btn">백엔드</button>
+<<<<<<< HEAD
    <a id="more" href=#>더보기</a>	
+=======
+   <a id="more" href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
+>>>>>>> branch 'main' of https://github.com/reumeum/CodeMate.git
 </div> 
 
 <div class="mini-container">

@@ -19,6 +19,43 @@ public class MemberVO {
 	private Date mem_modify_date;
 	private String mem_photo;
 	
+	private String mp_position; // 메이트 프로필에서의 포지션
+	private String mp_introduce; // 메이트 프로필에서의 자기소개
+ 	private Date mp_modify_date; // 메이트 프로필 수정일
+	private int mp_state; // 메이트 프로필 공개 여부
+	
+	public String getMp_position() {
+		return mp_position;
+	}
+
+	public void setMp_position(String mp_position) {
+		this.mp_position = mp_position;
+	}
+
+	public String getMp_introduce() {
+		return mp_introduce;
+	}
+
+	public void setMp_introduce(String mp_introduce) {
+		this.mp_introduce = mp_introduce;
+	}
+
+	public Date getMp_modify_date() {
+		return mp_modify_date;
+	}
+
+	public void setMp_modify_date(Date mp_modify_date) {
+		this.mp_modify_date = mp_modify_date;
+	}
+
+	public int getMp_state() {
+		return mp_state;
+	}
+
+	public void setMp_state(int mp_state) {
+		this.mp_state = mp_state;
+	}
+	
 	//비밀번호 일치 여부 체크
 		public boolean isCheckedPassword(String userPasswd) {
 				//회원등급(auth) : 0탈퇴,1정지 는 가입 불가 / (0:탈퇴,1:정지,2:일반,9:관리)

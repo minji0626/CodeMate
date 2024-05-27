@@ -64,8 +64,8 @@ $(function(){
         <a href="${pageContext.request.contextPath}/member/modifyUserForm.do" class="sideB_font">나의 정보</a>
         <a class="sideB_font">My 코메</a>
         <a href="${pageContext.request.contextPath}/member/myTeam.do">참여중인 팀</a>
-        <a href="a">나의 코메 신청</a>
-        <a href="a">나의 코메 모집</a>
+        <a href="${pageContext.request.contextPath}/member/myPageShin.do">나의 코메 신청</a>
+        <a href="${pageContext.request.contextPath}/member/myPageMo.do">나의 코메 모집</a>
         <a href="${pageContext.request.contextPath}/member/myPageBookMark.do">북마크</a>
         <a class="sideB_font">나의 활동</a>
         <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a>
@@ -82,24 +82,24 @@ $(function(){
         <div class="text-align-left">
             <ul class="item-align-center">
                 <li>
-                    <label for="mem_name">이름</label><br>
+                    <label for="mem_name" class="form_label">이름</label><br>
                     <input type="text" id="mem_name" name="mem_name" maxlength="10" class="input-check" value="${member.mem_name}">
                 </li>
                 <li>
-                    <label for="mem_id">아이디</label><br>
+                    <label for="mem_id" class="form_label">아이디</label><br>
                     <input type="text" id="mem_id" name="mem_id" maxlength="20" class="input-check" value="${member.mem_id}">
                		<input type="hidden" id="original_mem_id" value="${member.mem_id}">
                 </li>
                 <li>
-                    <label for="mem_email">이메일</label><br>
+                    <label for="mem_email" class="form_label">이메일</label><br>
                     <input type="email" id="mem_email" name="mem_email" maxlength="50" class="input-check" value="${member.mem_email}">
                 </li>
                 <li>
-                    <label for="mem_nickname">닉네임</label><br>
+                    <label for="mem_nickname" class="form_label">닉네임</label><br>
                     <input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
                 </li>
                 <li>
-                    <label for="mem_phone">전화번호</label><br>
+                    <label for="mem_phone" class="form_label">전화번호</label><br>
                     <input type="text" id="mem_phone" name="mem_phone" maxlength="20" class="input-check" value="${member.mem_phone}">
                 </li>
             </ul>

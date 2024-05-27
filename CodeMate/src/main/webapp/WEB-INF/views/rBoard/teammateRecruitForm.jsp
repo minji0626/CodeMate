@@ -22,7 +22,7 @@
 	<div class="page-container">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<form id="teammate_recruit_form" action="teammateRecruit.do" method="get">
+			<form id="teammate_recruit_form" action="teammateRecruit.do" method="post">
 				<!--프로젝트 정보-->
 				<div class="content">
 					<h3>1.프로젝트 기본 정보를 입력해주세요.</h3>
@@ -33,8 +33,8 @@
 								<option value="0">스터디</option>
 								<option value="1">프로젝트</option>
 						</select></li>
-						<li><label for="rb_period">모집 인원</label> <select
-							name="rb_period" id="rb_period" required>
+						<li><label for="rb_teamsize">모집 인원</label> <select
+							name="rb_teamsize" id="rb_teamsize" required>
 								<option value="" disabled selected>인원 미정~10명 이상</option>
 								<option value="0">인원 미정</option>
 								<option value="1">1명</option>
@@ -48,11 +48,12 @@
 								<option value="9">9명</option>
 								<option value="10">10명 이상</option>
 						</select></li>
-						<li><label for="rb_meet">진행 방식</label> <select name="meet"
-							id="meet" required>
-								<option value="" disabled selected>스터디/프로젝트</option>
+						<li><label for="rb_meet">진행 방식</label> <select name="rb_meet"
+							id="rb_meet" required>
+								<option value="" disabled selected>온라인/오프라인</option>
 								<option value="0">온라인</option>
 								<option value="1">오프라인</option>
+								<option value="2">온라인/오프라인</option>
 						</select></li>
 						<li><label for="rb_start">시작 예정일</label> <input type="date"
 							name="rb_start" id="rb_start"></li>
@@ -67,12 +68,14 @@
 								<option value="5">5개월</option>
 								<option value="6">6개월 이상</option>
 						</select></li>
+						<li><label for="rb_endRecruit">모집 종료일</label> <input type="date"
+							name="rb_endRecruit" id="rb_endRecruit"></li>
 						<li>
 						<label class="block">요구 기술</label>
 							<ul>
 								<c:forEach var="hskill" items="${hskillList}">
 									<li class="block">
-										<input type="checkbox" name="r_skill" id="r_skill_${hskill.hs_code}" value="${hskill.hs_code}">
+										<input type="checkbox" name="r_skills" id="r_skill_${hskill.hs_code}" value="${hskill.hs_code}">
 										<label for="r_skill_${hskill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">${hskill.hs_name}</label>
 									</li>
 								</c:forEach>
@@ -82,7 +85,7 @@
 							<ul>
 								<c:forEach var="field" items="${fieldList}">
 									<li class="block">
-										<input type="checkbox" name="r_field" id="r_field_${field.f_code}" value="${field.f_code}">
+										<input type="checkbox" name="r_fields" id="r_field_${field.f_code}" value="${field.f_code}">
 										<label for="r_field_${field.f_code}">${field.f_name}</label>
 									</li>
 								</c:forEach>

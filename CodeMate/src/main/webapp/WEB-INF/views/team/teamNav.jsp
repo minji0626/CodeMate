@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
 @charset "utf-8";
 
 /* nav 전체 container 지정 */
@@ -113,3 +117,25 @@
 	color: #3D3D3D;
 	margin-left: 5px;
 }
+</style>
+<div class="left-outer">
+    <div class="profile">
+        <img src="${pageContext.request.contextPath}/images/cmj/account_circle.png" id="profile-img">
+        <div class="team_status">
+        	<p>팀원</p>
+        </div>
+        <span class="team_nickname">${mem_nickname }</span>
+        <div class="written_post">
+            <img src="${pageContext.request.contextPath}/images/cmj/written_post.png" alt="내가 쓴 글" id="post_icon">
+            <span class="my_post">내가 쓴 글</span>
+            <span class="my_post_cnt">20개</span>
+        </div>
+    </div>
+    <!-- 외부 왼쪽 컨테이너 시작 -->
+    <div class="menu-bar">
+        <a href="${pageContext.request.contextPath}/team/teamTo_Do.do" class="menu-item">캘린더 & To-Do</a>
+        <a href="${pageContext.request.contextPath}/team/teamBoard.do" class="menu-item">팀 게시판</a>
+        <a href="${pageContext.request.contextPath}/team/teamSetting.do" class="menu-item">팀 설정</a>
+        <!-- 다른 메뉴 항목들 추가 -->
+    </div>
+</div>

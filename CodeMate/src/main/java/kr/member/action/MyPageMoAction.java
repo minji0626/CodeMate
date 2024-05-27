@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
-public class MyTeamAction implements Action{
+public class MyPageMoAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,7 +18,7 @@ public class MyTeamAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/myTeam.jsp";
+		return "/WEB-INF/views/member/myPageMo.jsp";
 	}
 
 }

@@ -38,9 +38,15 @@ window.onload = function(){
 <body id="team_main_body">
   <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-    <jsp:include page="team_nav_test.jsp"/>
+    <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     <div class="container_write">
         <form action="" id="write_form" method="post" enctype="multipart/form-data">
+        	<div class="form-group">
+				<input type="radio" name="tb_auth" value="1" id="tb_auth1">
+				공지사항
+				<input type="radio" name="tb_auth" value="2" id="tb_auth2"> 
+				일반 게시글
+			</div>
             <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" name="title" id="title" maxlength="50" class="form-control">
@@ -55,7 +61,7 @@ window.onload = function(){
             </div>
             <div class="form-actions">
                 <input type="submit" value="등록" class="btn btn-primary">
-                <input type="button" value="목록" class="btn btn-secondary" onclick="location.href='team_board_test.jsp'">
+                <input type="button" value="목록" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/team/teamBoard.do'">
             </div>
         </form>
     </div>

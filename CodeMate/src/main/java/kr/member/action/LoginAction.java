@@ -32,9 +32,9 @@ public class LoginAction implements Action{
 			//로그인 처리
 			HttpSession session = request.getSession();
 			session.setAttribute("mem_num", member.getMem_num());
-			
 			session.setAttribute("mem_id", member.getMem_id());
 			session.setAttribute("mem_auth", member.getMem_auth());
+			session.setAttribute("mem_nickname", member.getMem_nickname());
 			
 			//메인으로 리다이렉트
 			return "redirect:/main/main.do"; 
