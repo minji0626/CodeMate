@@ -10,18 +10,9 @@
     box-sizing: border-box;
 }
 
-#team_main_body {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 30px;
-}
-
 .container {
     position: relative;
-    width: 90%; 
+    width: 100%; 
   	height : auto;
     max-width: 1200px; /* 추가: 최대 너비 지정 */
     min-height: 850px;
@@ -37,6 +28,7 @@
     width: 60%;
     padding: 20px;
 }
+
 
 .calendar {
     position: relative;
