@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+/*페이지 설정*/
+.align-center {
+	text-align: center;
+}
+
+/* rboardList */
+.category .category-item {
+	display: inline;
+	width: 50px;
+}
+
+.skill-logo {
+	width: 30px;
+	border-radius: 50px;
+}
+
+
+/* 검색옵션 */
+.search-container {
+	margin: 20px 0;
+}
+
+.search-container .search-menu {
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	margin-right: 10px;
+}
+
+div.search-menu {
+	margin:10px 0;
+	width: 340px;
+}
+
+#r_board {
+	display: flex;
+	flex-wrap: wrap;
+	/* 요소들이 넘치면 다음 줄로 내려갈 수 있도록 설정 */
+	justify-content: space-between;
+	/* 요소들을 왼쪽과 오른쪽으로 정렬하여 간격을 두어 배치 */
+
+}
+
+.r-item {
+    width: calc(25% - 30px); /* 각 요소의 너비를 설정하여 한 줄에 4개씩 표시되도록 함 */
+    height: 340px;
+    margin-bottom: 20px; /* 요소 사이의 간격을 조절 */
+    padding: 10px; /* padding 추가 */
+    border: 2px solid var(--gray-4);
+    border-radius: 6px;
+}
+
+#search_key {
+	border: none;
+	font-size: 16px;
+	width: 340px;
+	height: 26px;
+}
+
+#search_key:focus {
+	outline: none;
+} 
+
+/* 댓글 */
+#comment_form {
+	margin: 20px;
+}
+
+#comment_form .profile-photo {
+	width: 5%;
+	margin-right: 20px;
+}
+
+#comment_form textarea {
+	width: 85%;
+	padding: 10px;
+	border: 2px solid var(--gray-4);
+	border-radius: 6px;
+}

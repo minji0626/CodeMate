@@ -18,6 +18,10 @@
 	href="${pageContext.request.contextPath}/css/teammateRecruitForm.css"
 	type="text/css">
 </head>
+
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/teammateRecruitForm.js"></script>
+
 <body>
 	<div class="page-container">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -71,8 +75,9 @@
 						<li><label for="rb_endRecruit">모집 종료일</label> <input type="date"
 							name="rb_endRecruit" id="rb_endRecruit"></li>
 						<li>
-						<label class="block">요구 기술</label>
-							<ul>
+						<label>요구 기술</label>
+							<div id="scrollable_trigger" class="input-style">요구하는 기술 스택을 선택하세요.</div	>
+							<ul class="scrollable">
 								<c:forEach var="hskill" items="${hskillList}">
 									<li class="block">
 										<input type="checkbox" name="r_skills" id="r_skill_${hskill.hs_code}" value="${hskill.hs_code}">
@@ -80,6 +85,7 @@
 									</li>
 								</c:forEach>
 							</ul>
+						</li>
 						<li>
 							<label class="block">모집 필드</label>
 							<ul>

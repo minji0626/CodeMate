@@ -18,6 +18,7 @@ public class RboardDAO {
 	};
 
 	// rboard 등록
+	// 팀 테이블에도 레코드 추가해라!!!!!!!!!!
 	public void insertRboard(RboardVO rboard) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -61,7 +61,7 @@ public class DBDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM hard_skill";
+			sql = "SELECT * FROM hard_skill ORDER BY hs_name ASC";
 			pstmt  = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
