@@ -20,17 +20,19 @@
         <div class="button-container">
             <button class="write-button" onclick="location.href='${pageContext.request.contextPath}/team/teamWriteForm.do'">글쓰기</button>
         </div>
+        <!-- 검색 폼 -->
         <form id="search_form" action="list.do" method="get">
-    		<div class="search-container">
-       		<select name="keyfield" class="search-select">
-            	<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
-            	<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>
-            	<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
-        	</select>
-        <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input">
-        <input type="submit" value="검색" class="search-submit">
-    </div>
-</form>
+            <div class="search-container">
+                <select name="keyfield" class="search-select">
+                    <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
+                    <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>
+                    <option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
+                </select>
+                <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input">
+                <input type="submit" value="검색" class="search-submit">
+            </div>
+        </form>
+        <!-- 테이블 -->
         <div class="table-container">
             <table>
                 <thead>
@@ -38,25 +40,44 @@
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
-                        <th>조회수</th>
                         <th>작성일</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- 임시 공지사항 -->
+                    <tr class="notice">
                         <td>1</td>
-                        <td>오늘 날씨가 되게 좋아요</td>
-                        <td>홍길동</td>
-                        <td>4</td>
-                        <td>2024-05-17</td>
+                        <td>임시 공지사항 제목</td>
+                        <td>관리자</td>
+                        <td>2024-05-01</td>
                     </tr>
+                    <!-- 임시 게시글 -->
                     <tr>
                         <td>2</td>
-                        <td>내일은 비가 올 예정입니다.</td>
-                        <td>이길동</td>
-                        <td>6</td>
-                        <td>2024-05-18</td>
+                        <td>임시 게시글 제목</td>
+                        <td>사용자</td>
+                        <td>2024-05-02</td>
                     </tr>
+                    <!-- 공지사항 -->
+                    <c:forEach var="item" items="${noticeList}">
+                        <c:if test="${tboard.tb_auth == 1}">
+                            <tr class="notice">
+                                <td>${tboard.tb_num}</td>
+                                <td>${tboard.tb_title}</td>
+                                <td>${tboard.mem_id}</td>
+                                <td>${tboard.tb_reg_date}</td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                    <!-- 일반 게시글 -->
+                    <c:forEach var="item" items="${postList}">
+                        <tr>
+                            <td>${tboard.tb_num}</td>
+                            <td>${tboard.tb_title}</td>
+                            <td>${tboard.mem_id}</td>
+                            <td>${tboard.tb_reg_date}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
