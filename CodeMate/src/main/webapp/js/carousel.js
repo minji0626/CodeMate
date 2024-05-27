@@ -3,7 +3,7 @@ const slides = sliderWrapper.querySelectorAll('.slide');
 const prevBtn = document.getElementById('prev'); 
 const nextBtn = document.getElementById('next'); 
 const slideCount = slides.length;//이미지 3개 넣어서 3개임 
-const slideWidth = 1043;
+const slideWidth = 1455;
 const slideSpeed = 300;
 let startNum = 0; 
 

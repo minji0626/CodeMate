@@ -3,10 +3,10 @@
 /* 광고배너 */
 .slider-container {
    overflow: hidden; 
-   width: 1043px; /* 슬라이드 컨테이너의 너비 설정 */
+   width: 1455px; /* 슬라이드 컨테이너의 너비 설정 */
    height:300px;
    position:absolute;
-   left:223px;
+   left:315px;
 }
 
 .slider-wrapper {
@@ -15,8 +15,8 @@
 }
 
 .ad{
-    width:1043px;    /* 슬라이드의 너비 설정 */
-   height:300px;
+    width:1455px;    /* 슬라이드의 너비 설정 */
+    height:300px;
 }
 
 /* 배너 버튼 */
