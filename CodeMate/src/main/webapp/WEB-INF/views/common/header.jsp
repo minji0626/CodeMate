@@ -5,6 +5,9 @@
 	<div id="main_header_menu" class="header">
 		<ul id="header_left">
 			<!-- 로그인 여부무관 -->
+			<div id="community_href">
+			<a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
+			</div>
 			<li>
 				<a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a>
 				/ <a href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do">팀원 구하기</a>
@@ -36,7 +39,7 @@
 					<div class="login_profile">
 						<img id="profile_pic"
 							src="${pageContext.request.contextPath}/images/face.png"
-							height="40" width="40"> <span>닉네임</span>
+							height="40" width="40"> <span>${mem_nickname }</span>
 						<button id="header_more">
 							<img
 								src="${pageContext.request.contextPath}/images/header_icon.png"
