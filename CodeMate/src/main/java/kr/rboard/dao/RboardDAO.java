@@ -127,7 +127,7 @@ public class RboardDAO {
 	
 	// rboard 목록 구하기
 	// rboard detail 구하기
-	//프로젝트 모집글 정보 읽어오기-민재가 했음 이상하면 지워주쇼
+	//프로젝트 모집글 상세정보 읽어오기-민재가 했음 이상하면 지워주쇼
     public RboardVO pageMo(int mem_num)throws Exception{
       Connection conn = null;
       PreparedStatement pstmt = null;
@@ -142,6 +142,12 @@ public class RboardDAO {
          rs = pstmt.executeQuery();
          if(rs.next()) {
             rboard = new RboardVO();
+            rboard.setMem_num(rs.getInt("mem_num"));
+            rboard.setRb_category(rs.getInt("rb_category"));
+            rboard.setRb_meet(rs.getInt(mem_num));
+            
+            
+            
             
          }
       }catch(Exception e) {
