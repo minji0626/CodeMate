@@ -33,7 +33,7 @@
 					<div class="login_profile">
 						<img id="profile_pic"
 							src="${pageContext.request.contextPath}/images/face.png"
-							height="40" width="40"> <span>${mem_nickname}</span>
+							height="40" width="40"> <span>${member.mem_nickname}</span>
 						<button id="header_more">
 							<img
 								src="${pageContext.request.contextPath}/images/header_icon.png"
