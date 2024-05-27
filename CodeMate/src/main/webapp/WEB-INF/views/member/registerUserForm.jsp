@@ -63,7 +63,7 @@ $(function(){
 	 
 	
 	//회원 정보 등록 유효성 체크
-	$('#register_form').submit(function(){
+	/* $('#register_form').submit(function(){
 		const items = document.querySelectorAll('.input-check');
 		for(let i = 0;i<items.length;i++){
 			if(items[i].value.trim()==''){
@@ -84,15 +84,16 @@ $(function(){
 			} 
 			
 		}
-	});
+	}); */
 	
 });
 </script>
 </head>
 <body>
 <div class="page-main">
-	<span id="greeting"><b>팀원 구하기 제일 쉬운 곳 코메!</b></span>
+	
 <div id="login_header">
+<span id="greeting"><b>팀원 구하기 제일 쉬운 곳 코메!</b></span>
 	<div id="login_header" class="header">		
 		<div id="login_logo">
 		<a href="${pageContext.request.contextPath}/main/main.do"
