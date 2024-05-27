@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.myCount {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+#flex_container {
+	display: flex;
+	justify-content: center;
+}
+
+#flex_container .float-B {
+	width: 80%;
+	margin-right: 190px;
+	margin-top: 35px;
+}
+
+/* 입력 창 중앙 정렬 */
+.formBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-check {
+    width: 220px;
+    height: 25px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* label 정렬 */
+.item-align-center li {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-align-center li label {
+    align-self: flex-start;
+}
+
+.save_btn {
+    width: 100px;
+    height: 40px;
+    background-color: #35B572;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.save_btn:hover {
+    background-color: #35B572;
+}
+
+.small-font {
+    font-size: 14px;
+}
+
+.small-font span {
+    margin-right: 5px;
+    padding-bottom: 10%;
+}
