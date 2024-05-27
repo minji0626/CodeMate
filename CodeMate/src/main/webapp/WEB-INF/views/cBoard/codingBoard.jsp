@@ -18,14 +18,14 @@
 <body>
 	<div class="page-container">
 		<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		</div>	
 			<div class="table-container">
 				<div class="button-container">
 			    	<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
 				</div>
 				<!-- 게시판 선택 메뉴 --> <!-- 이것도 굳이 게시판 두 개 jsp 안 만들고 하나로 표시할 수도 있을 듯 싶음 아님 망고 -->
-				<div>		
+				<div>	
 					<ul class="menu">
 						<li>
 							<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon"> <span><a href="community.do" class="atag">자유 게시판</a></span>
