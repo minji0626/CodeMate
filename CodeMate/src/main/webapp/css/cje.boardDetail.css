@@ -9,6 +9,17 @@
 }
 
 
+.page-container {
+    width: 70%; /* 너비 설정 */
+    min-width: 900px; /* 최소 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+.board_container{
+	margin-top:50px;
+	width:100%;
+	box-sizing: border-box;
+}
+
 /* 각각의 form을 하나로 묶어 주고 있는 container div */
 .container_write, .container_re, .container_board, .container_reList {
     width: 70%;
