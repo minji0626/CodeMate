@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
 
 <div id="mini-card">
 
-<div>ÀÌ¹øÁÖ ÄÚ¸Þ ÀÎ±â±Û
-   <button id="back_btn">¹é¿£µå</button>
-   <a id="more" href=#>´õº¸±â</a>
+<div>ì´ë²ˆì£¼ ì½”ë©” ì¸ê¸°ê¸€
+   <button id="back_btn">ë°±ì—”ë“œ</button>
+   <a id="more" href=#>ë”ë³´ê¸°</a>
 </div> 
 
 <div class="mini-container">
