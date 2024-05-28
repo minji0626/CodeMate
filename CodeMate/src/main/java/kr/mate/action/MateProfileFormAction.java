@@ -1,4 +1,4 @@
-package kr.member.action;
+package kr.mate.action;
 
 import java.util.List;
 

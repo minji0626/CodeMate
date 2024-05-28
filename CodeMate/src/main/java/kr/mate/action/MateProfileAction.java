@@ -1,4 +1,4 @@
-package kr.member.action;
+package kr.mate.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

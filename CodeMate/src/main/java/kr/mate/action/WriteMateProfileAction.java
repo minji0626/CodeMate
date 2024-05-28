@@ -1,4 +1,4 @@
-package kr.member.action;
+package kr.mate.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +43,7 @@ public class WriteMateProfileAction implements Action{
         dao.insertMP(member);
         
         request.setAttribute("notice_msg", "메이트 프로필을 수정했습니다");
-        request.setAttribute("notice_url", request.getContextPath() + "/member/mateProfile.do");
+        request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfile.do");
         
         return "/WEB-INF/views/common/alert_view.jsp";
     }
