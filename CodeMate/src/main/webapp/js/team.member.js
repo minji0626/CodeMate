@@ -69,15 +69,16 @@
         });
     });
 
+		 document.getElementById("close-btn").addEventListener("click", e => {
+		 modalOff(); // 모달창 닫기 함수 호출
+	 });
+
+
     document.querySelector(".mate_review_close").addEventListener("click", e => {
         modalOff();
-        document.getElementById("mr_content").val('');
     });
 
-    document.getElementById("close-btn").addEventListener("click", e => {
-        modalOff();
-        $('#mr_content').val('');
-    });
+
 
     mate_review.addEventListener("click", e => {
         if (e.target === mate_review) {

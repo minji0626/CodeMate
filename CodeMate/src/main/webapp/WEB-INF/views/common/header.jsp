@@ -26,24 +26,36 @@
 					</li>
 				</ul>
 			</c:if>
-
+			
 			<!-- 로그인 O -->
-			<c:if test="${!empty mem_num}">
+			<c:if test="${!empty mem_num && !empty mem_photo}">
 					<div class="login_profile">
 					<img id="profile_pic"
 						src="${pageContext.request.contextPath}/upload/${mem_photo}"
 						height="40" width="40"> <span>${mem_id}</span>
 					<button id="header_more">
-							<img
-								src="${pageContext.request.contextPath}/images/header_icon.png"
-								id="header_icon">
+					<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
 						</button>
 						<div class="dropdown_header_menu">
 							<a href="${pageContext.request.contextPath}/member/mateProfile.do" class="header_mate_profile">메이트프로필</a>
-							<a href="${pageContext.request.contextPath}/member/modifyUserForm.do"
-								id="header_my_page">마이페이지</a> <a
-								href="${pageContext.request.contextPath}/member/logout.do"
-								id="header_logout">로그아웃</a>
+							<a href="${pageContext.request.contextPath}/member/modifyUserForm.do" id="header_my_page">마이페이지</a> 
+							<a href="${pageContext.request.contextPath}/member/logout.do" id="header_logout">로그아웃</a>
+						</div>
+					</div>
+				<!-- end of div menu-header -->
+			</c:if>
+			<c:if test="${!empty mem_num && empty mem_photo}">
+					<div class="login_profile">
+					<img id="profile_pic"
+						src="${pageContext.request.contextPath}/images/face.png"
+						height="40" width="40"> <span>${mem_id}</span>
+					<button id="header_more">
+					<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
+						</button>
+						<div class="dropdown_header_menu">
+							<a href="${pageContext.request.contextPath}/member/mateProfile.do" class="header_mate_profile">메이트프로필</a>
+							<a href="${pageContext.request.contextPath}/member/modifyUserForm.do" id="header_my_page">마이페이지</a> 
+							<a href="${pageContext.request.contextPath}/member/logout.do" id="header_logout">로그아웃</a>
 						</div>
 					</div>
 				<!-- end of div menu-header -->
