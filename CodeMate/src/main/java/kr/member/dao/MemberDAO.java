@@ -160,15 +160,14 @@ public class MemberDAO {
 		try {
 			conn = DBUtil.getConnection();
 			//mem_modify_date=SYSDATE
-			sql = "UPDATE member_detail SET mem_name=?,mem_email=?, mem_nickname=?, mem_phone=?, mem_photo=? WHERE mem_num=?";
+			sql = "UPDATE member_detail SET mem_name=?,mem_email=?, mem_nickname=?, mem_phone=? WHERE mem_num=?";
 					pstmt = conn.prepareStatement(sql);
 					//?에 데이터 바인딩
 					pstmt.setString(1, member.getMem_name());
 					pstmt.setString(2, member.getMem_email());
 					pstmt.setString(3, member.getMem_nickname());
 					pstmt.setString(4, member.getMem_phone());
-					pstmt.setString(5, member.getMem_photo());
-					pstmt.setInt(6, member.getMem_num());
+					pstmt.setInt(5, member.getMem_num());
 					pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);

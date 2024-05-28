@@ -14,8 +14,8 @@
 window.onload = function(){
     const myForm = document.getElementById('write_form');
     myForm.onsubmit = function(){
-        const title = document.getElementById('title');
-        const content = document.getElementById('content');
+        const title = document.getElementById('tb_title');
+        const content = document.getElementById('tb_content');
 
         if(title.value.trim()==''){
                 alert('제목을 입력하세요.');
@@ -40,7 +40,7 @@ window.onload = function(){
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     <div class="container_write">
-        <form action="" id="write_form" method="post" enctype="multipart/form-data">
+        <form action="tboardWrite.do" id="write_form" method="post" enctype="multipart/form-data">
         	<div class="form-group">
 				<input type="radio" name="tb_auth" value="1" id="tb_auth1">
 				공지사항
@@ -48,12 +48,12 @@ window.onload = function(){
 				일반 게시글
 			</div>
             <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" name="title" id="title" maxlength="50" class="form-control">
+                <label for="tb_title">제목</label>
+                <input type="text" name="tb_title" id="tb_title" maxlength="50" class="form-control">
             </div>
             <div class="form-group">
-                <label for="content">내용</label>
-                <textarea rows="14" name="content" id="content" class="form-control"></textarea>
+                <label for="tb_content">내용</label>
+                <textarea rows="14" name="tb_content" id="tb_content" class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label for="filename">이미지</label>

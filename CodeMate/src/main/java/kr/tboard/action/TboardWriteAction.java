@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.tboard.dao.TboardDAO;
 import kr.tboard.vo.TboardVO;
 import kr.util.FileUtil;
 
@@ -23,16 +24,19 @@ public class TboardWriteAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 
 		TboardVO tboard = new TboardVO();
-		tboard.setTb_title(request.getParameter("title"));
-		tboard.setTb_content(request.getParameter("content"));
+		tboard.setTb_title(request.getParameter("tb_title"));
+		tboard.setTb_content(request.getParameter("tb_content"));
 		tboard.setTb_auth(Integer.parseInt(request.getParameter("tb_auth")));
-		tboard.setTb_file(FileUtil.createFile(request, "file"));
+		tboard.setTb_file(FileUtil.createFile(request, "filename"));
 		tboard.setTeam_num(team_num);
 		tboard.setMem_num(mem_num);
 		
+		TboardDAO dao = TboardDAO.getInstance();
+		dao.insertTboard(tboard);
 		
-		
-		return null;
+		request.setAttribute("notice_msg", "글 작성이 완료되었습니다.");
+		request.setAttribute("notice_url", request.getContextPath()+"/team/teamBoard.do");
+		return "/WEB-INF/views/common/alert_view.jsp";
 	}
 
 }

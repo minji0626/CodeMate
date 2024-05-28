@@ -302,31 +302,6 @@ addEventTo.addEventListener("input", (e) => {
   }
 });
 
-/* //function to add event to eventsArr
-addEventSubmit.addEventListener("click", () => {
-  const eventTitle = addEventTitle.value;
-  const eventTimeFrom = addEventFrom.value;
-  const eventTimeTo = addEventTo.value;
-  if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
-    alert("Please fill all the fields");
-    return;
-  }
-
-  //check correct time format 24 hour
-  const timeFromArr = eventTimeFrom.split(":");
-  const timeToArr = eventTimeTo.split(":");
-  if (
-    timeFromArr.length !== 2 ||
-    timeToArr.length !== 2 ||
-    timeFromArr[0] > 23 ||
-    timeFromArr[1] > 59 ||
-    timeToArr[0] > 23 ||
-    timeToArr[1] > 59
-  ) {
-    alert("Invalid Time Format");
-    return;
-  } */
-
   addEventSubmit.addEventListener("click", () => {
     const eventTitle = addEventTitle.value;
     const eventTimeFrom = addEventFrom.value.trim(); // 시간 입력란 값에서 앞뒤 공백을 제거
@@ -423,71 +398,6 @@ addEventSubmit.addEventListener("click", () => {
   }
 });
 
-/* //function to delete event when clicked on event
-eventsContainer.addEventListener("click", (e) => {
-  if (e.target.classList.contains("event")) {
-    if (confirm("이벤트를 삭제하시겠습니까?")) {
-      const eventTitle = e.target.children[0].children[1].innerHTML;
-      eventsArr.forEach((event) => {
-        if (
-          event.day === activeDay &&
-          event.month === month + 1 &&
-          event.year === year
-        ) {
-          event.events.forEach((item, index) => {
-            if (item.title === eventTitle) {
-              event.events.splice(index, 1);
-            }
-          });
-          //if no events left in a day then remove that day from eventsArr
-          if (event.events.length === 0) {
-            eventsArr.splice(eventsArr.indexOf(event), 1);
-            //remove event class from day
-            const activeDayEl = document.querySelector(".day.active");
-            if (activeDayEl.classList.contains("event")) {
-              activeDayEl.classList.remove("event");
-            }
-          }
-        }
-      });
-      updateEvents(activeDay);
-    }
-  }
-}); */
-
-/* // 이벤트를 취소선으로 표시하고 취소선 해제 버튼의 동작을 설정
-eventsContainer.addEventListener("click", (e) => {
-  const eventDiv = e.target.closest(".event");
-  const undoBtn = e.target.closest(".undo-btn");
-  if (eventDiv) {
-    if (confirm("이벤트를 완료로 표시하시겠습니까?")) {
-      eventDiv.classList.add("completed");
-    }
-  }
-  if (undoBtn) {
-    const eventItem = e.target.closest(".undo-btn");
-    if (confirm("이벤트를 완료를 취소하시겠습니까?")) {
-      eventDiv.classList.remove("completed");
-    }
-  }
-}); */
-
-/*eventsContainer.addEventListener("click", (e) => {
-  const eventDiv = e.target.closest(".event");
-  const undoBtn = e.target.closest(".undo-btn");
-  if (eventDiv) {
-    if (confirm("이벤트를 완료로 표시하시겠습니까?")) {
-      eventDiv.classList.add("completed");
-    }
-  }
-  if (undoBtn) {
-    const eventDiv = undoBtn.previousElementSibling; // 이벤트 요소 찾기
-    if (confirm("이벤트를 완료를 취소하시겠습니까?")) {
-      eventDiv.classList.remove("completed");
-    }
-  }
-});
-*/
 
 eventsContainer.addEventListener("click", (e) => {
 	// 이벤트 완료 취소 토글 만들기
@@ -543,8 +453,6 @@ eventsContainer.addEventListener("click", (e) => {
 		}
 	}
 });
-
-
 
 //function to save events in local storage
 function saveEvents() {

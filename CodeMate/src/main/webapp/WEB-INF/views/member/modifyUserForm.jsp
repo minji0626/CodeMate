@@ -53,55 +53,86 @@ $(function(){
   
     });
     
-    
     /* 프로필 사진 추가 */
-	$('#mem_photo_btn').click(function(){
-		$('#mem_photo').click();// 버튼 클릭 시 숨겨진 파일 입력 필드를 클릭하도록 설정
-	});
+    $('#mem_photo_btn').click(function(){
+        $('#mem_photo_choice').show();
+        $(this).hide();
+    }); // end of Click
+    
+    // 이미지 미리 보기
+    let photo_path = $('.my-photo').attr('src'); // 처음 화면에 보여지는 이미지 읽기
+    $('#mem_photo').change(function(){
+        let my_photo = this.files[0]; // 업로드한 파일 정보
+        if(!my_photo){
+            // 선택을 취소하면 원래 처음 화면으로 되돌림
+            $('.my-photo').attr('src', photo_path);
+            return;
+        }
+        // 용량 체크
+        if(my_photo.size > 1024*1024){
+            alert(Math.round(my_photo.size/1024) + 'kbytes(1024kbytes까지만 업로드 가능)');
+            $('.my-photo').attr('src', photo_path);
+            $(this).val(''); // 선택한 파일 정보 지우기
+            return;
+        }
+        
+        // 화면에 이미지 미리 보기
+        const reader = new FileReader();
+        reader.readAsDataURL(my_photo);
+        
+        reader.onload=function(){
+            $('.my-photo').attr('src', reader.result);
+        };
+    }); // end of Change
+    
+    // 이미지 전송하기
+    $('#mem_photo_submit').click(function(){
+    	if($('#mem_photo').val()==''){
+    		alert('파일을 선택하세요');
+    		$('#mem_photo').focus();
+    		return;
+    	}
+    	//파일 전송
+    	const form_data = new FormData();
+    	form_data.append('mem_photo',$('#mem_photo')[0].files[0])
+    	//dao에서 p를 소문자로 씀
+    	$.ajax({
+    		url:'updateMyPhoto.do', 
+    		type:'post',
+    		data:form_data,
+    		dataType:'json',
+    		contentType:false, //데이터 객체를 문자열로 바꿀지 설정.true이면 일반 문자 false면 파일이 섞여있음
+    		processData:false, //해당 타입을 true로 하면 일반 text로 구분	//위에 두개를 false로 설정해 파일이 섞여있다는걸 나타냄
+    		success:function(param){
+    			if(param.result == 'logout'){
+    				alert('로그인 후 사용하세요');
+    			}else if(param.result == 'success'){
+    				alert('프로필 사진이 수정되었습니다.');
+    				//수정된 이미지 정보 저장
+    				photo_path = $('.my-photo').attr('src');
+    				//변경 전으로 초기화
+    				$('#mem_photo').val('');
+    				$('#mem_photo_choice').hide();
+    				$('#mem_photo_btn').show();//수정 버튼 표시
+    			}else{
+    				alert('파일 전송 오류 발생');	
+    			}
+    		},
+    		error:function(){
+    			alert('네트워크 오류 발생');
+    		}
+    	})
+    }); // end of click
 
-	// 이미지 미리 보기
-	let photo_path = $('.my-photo').attr('src'); // 처음 화면에 보여지는 이미지 읽기
-	$('#mem_photo').change(function(){
-		let my_photo = this.files[0]; // 업로드한 파일 정보
-		if(!my_photo){
-			// 선택을 취소하면 원래 처음 화면으로 되돌림
-			$('.my-photo').attr('src', photo_path);
-			return;
-		}
-		
-		// 용량 체크
-		if(my_photo.size > 1024*1024){
-			alert(Math.round(my_photo.size/1024) + 'kbytes(1024kbytes까지만 업로드 가능)');
-			$('.my-photo').attr('src', photo_path);
-			$(this).val(''); // 선택한 파일 정보 지우기
-			return;
-		}
-		// 화면에 이미지 미리 보기 + 이게 62줄에 있는 이미지 미리 보기랑 무엇이 다른건지
-		const reader = new FileReader();
-		reader.readAsDataURL(my_photo);
-		
-		reader.onload=function(){
-			$('.my-photo').attr('src', reader.result);
-		};
-	});
-
-	// 이미지 삭제 버튼 클릭 시
-	$('#delete_photo_btn').click(function(){
-		if(confirm('프로필 사진을 삭제하시겠습니까?')){
-			$('.my-photo').attr('src', '${pageContext.request.contextPath}/images/face.png'); // 기본 이미지로 변경
-			$('#mem_photo').val(''); // 파일 선택 창 초기화
-		}
-	});
-
-	// 이미지 미리보기 취소
-	$('#mem_photo_reset').click(function(){
-		// 초기 이미지 표시
-		$('.my-photo').attr('src', photo_path); // 이미지 미리보기 전 이미지로 되돌리기
-		$('#mem_photo').val('');
-		$('#mem_photo_choice').hide();
-		$('#mem_photo_btn').show(); // 수정 버튼 표시
-	});
-	/* 프로필 사진 추가 */
+    // 이미지 미리보기 취소
+    $('#mem_photo_reset').click(function(){
+        // 초기 이미지 표시
+        $('.my-photo').attr('src', photo_path); // 이미지 미리보기 전 이미지로 되돌리기
+        $('#mem_photo').val('');
+        $('#mem_photo_choice').hide();
+        $('#mem_photo_btn').show(); // 수정 버튼 표시
+    });
+    
 });
 
 </script>
@@ -121,32 +152,26 @@ $(function(){
     <h3 class="mYPage-TitleText">나의 정보 수정</h3>
     
     <!-- 프로필 사진 추가 -->
-			<ul>
-				<li>
-					<c:if test="${empty member.mem_photo}"><%--memberdao 상세정보에 photo넣어서 아용할 수 있음 --%>
-						<img src="${pageContext.request.contextPath}/images/face.png" width="150" height="150" class="my-photo">
-					</c:if>
-					<c:if test="${!empty member.mem_photo}">
-						<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}" width="150" height="150" class="my-photo">
-					</c:if>
-				</li>
-				<li>
-					<div class="align-center">
-					<!-- 프로필 사진 추가 버튼 -->
-    				<button type="button" id="mem_photo_btn"  style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">
-        			<img src="${pageContext.request.contextPath}/images/photo_icon.png" width="15" />
-   					 </button>
-    				<!-- 프로필 사진 삭제 버튼 -->
-    				<button type="button" id="delete_photo_btn" style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">
-        			<img src="${pageContext.request.contextPath}/images/delete_icon.png" width="15" />
-   					</button>
-					</div>
-					
-					<!-- 파일 입력 필드를 직접 숨김 -->
-					<input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg" style="display:none;">
-					
-				</li>
-			</ul>
+    <ul>
+        <li>
+            <c:if test="${empty member.mem_photo}">
+                <img src="${pageContext.request.contextPath}/images/face.png" width="150" height="150" class="my-photo">
+            </c:if>
+            <c:if test="${!empty member.mem_photo}">
+                <img src="${pageContext.request.contextPath}/upload/${member.mem_photo}" width="150" height="150" class="my-photo">
+            </c:if>
+        </li>
+        <li>
+            <div class="align-center">
+                <input type="button" value="수정" id="mem_photo_btn">
+            </div>
+            <div id="mem_photo_choice" style="display: none;">
+                <input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg">
+                <input type="button" value="전송" id="mem_photo_submit">
+                <input type="button" value="취소" id="mem_photo_reset">
+            </div>
+        </li>
+    </ul>
     <!-- 프로필 사진 추가 끝 -->
     
     <div class="formBox">

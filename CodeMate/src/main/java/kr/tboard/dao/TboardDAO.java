@@ -3,6 +3,7 @@ package kr.tboard.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.tboard.vo.TboardVO;
@@ -18,31 +19,31 @@ public class TboardDAO {
 	private TboardDAO() {
 	}
 
-	// 글 등록하기
+	// 글 등록하기	
 	public void insertTboard(TboardVO tboard) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			sql = "INSERT INTO team_board(tb_num, team_num, mem_num, tb_title, tb_content, tb_file, tb_auth)"
-                    + "VALUES(team_board_seq.nextval,?,?,?,?,?,?)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = null;
+
+        try {
+            conn = DBUtil.getConnection();
+            sql = "INSERT INTO team_board(tb_num,team_num, mem_num, tb_title, tb_content, tb_file, tb_auth) " +
+                  "VALUES (team_board_seq.nextval,?, ?, ?, ?, ?, ?)";
             
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, tboard.getTb_num());
+            pstmt.setInt(1, tboard.getTeam_num());
             pstmt.setInt(2, tboard.getMem_num());
             pstmt.setString(3, tboard.getTb_title());
             pstmt.setString(4, tboard.getTb_content());
             pstmt.setString(5, tboard.getTb_file());
             pstmt.setInt(6, tboard.getTb_auth());
             pstmt.executeUpdate();
-		} catch (Exception e) {
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
-	}
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            DBUtil.executeClose(null, pstmt, conn);
+        }
+    }
 	
 	// 팀 게시판 총 글의 개수, 검색 개수 
 	public int getTboardCount(String keyfield, String keyword) throws Exception{
@@ -52,7 +53,6 @@ public class TboardDAO {
 		String sql = null;
 		String sub_sql = "";
 		int count = 0;
-		
 		try {
 			conn = DBUtil.getConnection();
 			
@@ -88,20 +88,49 @@ public class TboardDAO {
 		return count;
 	}
 	
-	// 팀 게시판 목록 가져오기
+	// 팀 게시판 목록 가져오기(공지사항 list, 일반 게시글 list 따로 지정해야함)
 	public List<TboardVO> getListBoard(int start, int end, String keyfield,String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		List<TboardVO> list = null;
 		String sql = null;
 		String sub_sql = "";
 		int cnt = 0;
 		try {
 			conn = DBUtil.getConnection();
+			if(keyword != null && !"".equals(keyword)) {
+				// 검색 처리
+				if(keyfield.equals("1")) {
+					sub_sql += "WHERE tb_title LIKE '%' || ? || '%'";
+				}
+				else if(keyfield.equals("2")) {
+					sub_sql += "WHERE mem_id '%' || ? || '%'";
+				}else if(keyfield.equals("3")) {
+					sub_sql += "WHERE tb_content LIKE '%' || ? || '%'";
+				}
+			}
+			sql = "SELECT * FROM(SELECT a.*,rownum rnum FROM (SELECT * FROM tboard JOIN team_member USING(mem_num) "
+					+ sub_sql + " ORDER BY tb_num DESC)a) WHERE rnum >=? AND rnum<=?";
+			pstmt = conn.prepareStatement(sql);
+
+			if (keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, keyword);
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			rs= pstmt.executeQuery();
+			
+			list = new ArrayList<TboardVO>();
+			while (rs.next()) {
+				TboardVO tboard = new TboardVO();
+				tboard.setMem_id(rs.getString("mem_id"));
+				tboard.setTb_title(rs.getString("tb_title"));
+			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
 		
