@@ -12,9 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cje.mpm.css" type="text/css">
 
-<style>
-/* 여기에 CSS 코드를 추가하세요 */
-</style>
+
 </head>
 <body>
 <div class="page-container">
@@ -64,7 +62,7 @@
                 <div class="mp_content_div">
                     <h4>자기소개</h4>
                     <div class="mp_content">
-                        <textarea name="mp_introduce" id="mp_introduce" class="in_introduce"> <c:if test="${!empty member.mp_introduce}">${member.mp_introduce}</c:if> </textarea>
+                        <textarea name="mp_introduce" id="mp_introduce" class="in_introduce"><c:if test="${!empty member.mp_introduce}">${member.mp_introduce}</c:if></textarea>
                     </div>
                 </div>
                 <!-- 스킬 DIV -->
@@ -72,14 +70,16 @@
                     <div class="mp_content_div skill-item">
                         <h4>하드스킬</h4>
                         <div class="skill_div">
-                            <select id="hs-select">
-                                <option value="hs" class="hs" selected disabled >하드 스킬을 선택해주세요</option>
-                                <option value="option1">HTML</option>
-                                <option value="option2">CSS</option>
-                                <option value="option3">JAVA SCRIPT</option>
-                                <option value="option4">JAVA</option>
-                                <option value="option5">JSP</option>
-                            </select>
+                            <label>요구 기술</label>
+							<div id="scrollable_trigger" class="input-style">요구하는 기술 스택을 선택하세요.</div>
+							<ul class="scrollable">
+								<c:forEach var="hskill" items="${hskillList}">
+									<li class="block">
+										<input type="checkbox" name="mh_num" id="mh_num_${hskill.hs_code}" value="${hskill.hs_code}">
+										<label for="mh_num_${hskill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">${hskill.hs_name}</label>
+									</li>
+								</c:forEach>
+							</ul>
                             <div id="hs-options" class="option-container"></div>
                         </div>
                     </div>
@@ -129,39 +129,41 @@
     </div>
 </div>
 <script type="text/javascript">
-//하드스킬 셀렉트 박스 이벤트 리스너
-document.getElementById('hs-select').addEventListener('change', function(event) {
-    const selectedOptions = Array.from(event.target.selectedOptions);
-    const container = document.getElementById('hs-options');
+//모든 체크박스에 이벤트 리스너 추가
+document.querySelectorAll('input[name="mh_num"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function(event) {
+        const option = event.target;
+        const container = document.getElementById('hs-options');
+        const label = option.nextElementSibling.textContent.trim();
+        const optionDiv = document.querySelector(`#hs-options [data-value="${option.value}"]`);
 
-    selectedOptions.forEach(option => {
-        if (!document.querySelector(`#hs-options [data-value="${option.value}"]`)) {
-            const optionDiv = document.createElement('div');
-            optionDiv.classList.add('option-item');
-            optionDiv.setAttribute('data-value', option.value);
-            optionDiv.textContent = option.text;
+        if (option.checked) {
+            if (!optionDiv) {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('option-item');
+                optionDiv.setAttribute('data-value', option.value);
+                optionDiv.textContent = label;
 
-            const removeBtn = document.createElement('span');
-            removeBtn.classList.add('remove-btn');
-            removeBtn.textContent = 'X';
-            removeBtn.addEventListener('click', function() {
-                option.selected = false;
+                const removeBtn = document.createElement('span');
+                removeBtn.classList.add('remove-btn');
+                removeBtn.textContent = 'X';
+
+                removeBtn.addEventListener('click', function() {
+                    option.checked = false;
+                    optionDiv.remove();
+                });
+
+                optionDiv.appendChild(removeBtn);
+                container.appendChild(optionDiv);
+            }
+        } else if(option.checked != flase){
+            if (optionDiv) {
                 optionDiv.remove();
-                // 제거 시 옵션 다시 활성화
-                option.disabled = false;
-            });
-
-            optionDiv.appendChild(removeBtn);
-            container.appendChild(optionDiv);
-
-            // 선택된 옵션 비활성화
-            option.disabled = true;
+            }
         }
     });
-
-    // 중복 추가 방지를 위해 선택된 옵션 초기화
-    event.target.selectedIndex = -1;
 });
+
 
 // 소프트스킬 셀렉트 박스 이벤트 리스너
 document.getElementById('ss-select').addEventListener('change', function(event) {
