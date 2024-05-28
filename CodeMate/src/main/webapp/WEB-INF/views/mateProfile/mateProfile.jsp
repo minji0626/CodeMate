@@ -14,7 +14,6 @@
 </head>
 <body>
 	<div class="page-container">
-		
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <!-- 메이트 프로필 -->
     <div id="mp_view">
@@ -32,12 +31,12 @@
                 <div class="mp_account_profile">
                     <!-- 프로필 사진 -->
                     <div class="photo_div">
-	                    <c:if test="${empty member.mem_photo}">
+	                    <c:if test="${empty mem.mem_photo}">
 						<img src="${pageContext.request.contextPath}/images/face.png" 
 											class="profile_image">
 					</c:if>
-					<c:if test="${!empty member.mem_photoo}">
-						<img src="${pageContext.request.contextPath}/upload/${member.photo}" 
+					<c:if test="${!empty mem.mem_photo}">
+						<img src="${pageContext.request.contextPath}/upload/${mem.mem_photo}" 
 												class="profile_image">
 					</c:if>
                     </div> 

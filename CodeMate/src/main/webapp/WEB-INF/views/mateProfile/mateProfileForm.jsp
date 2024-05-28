@@ -31,12 +31,12 @@
             <!-- 본인 프로필 (닉네임, 프사) -->
             <div class="mp_account_profile">
                 <!-- 프로필 사진 -->
-                    <c:if test="${empty member.mem_photo}">
+                    <c:if test="${empty mem.mem_photo}">
 						<img src="${pageContext.request.contextPath}/images/face.png" 
 											class="profile_image">
 					</c:if>
-					<c:if test="${!empty member.mem_photoo}">
-						<img src="${pageContext.request.contextPath}/upload/${member.photo}" 
+					<c:if test="${!empty mem.mem_photo}">
+						<img src="${pageContext.request.contextPath}/upload/${mem.mem_photo}" 
 												class="profile_image">
 					</c:if>
                 <!-- 닉네임 -->

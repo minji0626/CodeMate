@@ -223,7 +223,6 @@ public class MemberDAO {
 					member.setMp_modify_date(rs.getDate("mp_modify_date"));
 					member.setMp_state(rs.getInt("mp_state"));
 					member.setMem_nickname(rs.getString("mem_nickname"));
-					member.setMem_photo(rs.getString("mem_photo"));
 				}
 			}catch(Exception e) {
 				throw new Exception(e);

@@ -42,6 +42,9 @@ public class WriteMateProfileAction implements Action{
         MemberDAO dao = MemberDAO.getInstance();
         dao.insertMP(member);
         
+        MemberVO mem = dao.getMember(mem_num);
+        
+        request.setAttribute("mem", mem);
         request.setAttribute("notice_msg", "메이트 프로필을 수정했습니다");
         request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfile.do");
         

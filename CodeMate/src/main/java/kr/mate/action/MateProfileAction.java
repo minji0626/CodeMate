@@ -25,6 +25,9 @@ public class MateProfileAction implements Action {
         MemberDAO dao = MemberDAO.getInstance();
         MemberVO member = dao.detailMP(mem_num);
         
+        MemberVO mem = dao.getMember(mem_num);
+        
+        request.setAttribute("mem", mem);
         request.setAttribute("member", member);
         
 		return "/WEB-INF/views/mateProfile/mateProfile.jsp";    

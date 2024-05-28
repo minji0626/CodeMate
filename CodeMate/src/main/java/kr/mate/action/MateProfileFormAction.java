@@ -33,6 +33,10 @@ public class MateProfileFormAction implements Action{
 		List<FieldVO> fieldList = dbdao.getFieldList();
 		List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 		
+		MemberVO mem = dao.getMember(mem_num);
+        
+        request.setAttribute("mem", mem);
+		
 		request.setAttribute("member", member);
 		
 		request.setAttribute("fieldList", fieldList);
