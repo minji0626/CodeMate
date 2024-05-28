@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.mate.dao.MateDAO;
+import kr.mate.vo.MateVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 
@@ -46,6 +48,25 @@ public class WriteMateProfileAction implements Action{
         
         request.setAttribute("mem", mem);
         request.setAttribute("notice_msg", "메이트 프로필을 수정했습니다");
+        
+        
+        MateVO mate = new MateVO();
+        mate.setMem_num(mem_num);
+        
+        MateDAO mateDao = MateDAO.getInstance();
+        
+        
+        // 체크된 체크 박스 요소를 배열로 받기
+        String[] hs_codes = request.getParameterValues("mh_num");
+        
+        // 체크된 하드 스킬이 있을 때 (배열이 null이 아닐 때)
+        if(hs_codes!= null) {
+        	for(String code : hs_codes) {
+        		int hs_code = Integer.parseInt(code);
+        		mate.setHs_code(hs_code);
+        		mateDao.insertMateHardSkill(mate);
+        	}
+        }
         request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfile.do");
         
         return "/WEB-INF/views/common/alert_view.jsp";
