@@ -30,6 +30,7 @@ public class ModifyUserAction implements Action{
 		member.setMem_email(request.getParameter("mem_email"));
 		member.setMem_nickname(request.getParameter("mem_nickname"));
 		member.setMem_phone(request.getParameter("mem_phone"));
+		member.setMem_photo(request.getParameter("mem_photo"));
 	
 		//데이터 전달
 		MemberDAO dao = MemberDAO.getInstance();

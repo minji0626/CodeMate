@@ -56,7 +56,7 @@ $(function(){
     
     /* 프로필 사진 추가 */
 	$('#mem_photo_btn').click(function(){
-		$('#mem_photo').click(); // 파일 입력 필드 클릭
+		$('#mem_photo').click();// 버튼 클릭 시 숨겨진 파일 입력 필드를 클릭하도록 설정
 	});
 
 	// 이미지 미리 보기
@@ -76,7 +76,7 @@ $(function(){
 			$(this).val(''); // 선택한 파일 정보 지우기
 			return;
 		}
-		// 화면에 이미지 미리 보기
+		// 화면에 이미지 미리 보기 + 이게 62줄에 있는 이미지 미리 보기랑 무엇이 다른건지
 		const reader = new FileReader();
 		reader.readAsDataURL(my_photo);
 		
@@ -91,46 +91,6 @@ $(function(){
 			$('.my-photo').attr('src', '${pageContext.request.contextPath}/images/face.png'); // 기본 이미지로 변경
 			$('#mem_photo').val(''); // 파일 선택 창 초기화
 		}
-	});
-
-	// 이미지 전송
-	$('#mem_photo_submit').click(function(){
-		if($('#mem_photo').val()==''){
-			alert('파일을 선택하세요');
-			$('#mem_photo').focus();
-			return;
-		}
-		// 파일 전송
-		const form_data = new FormData();
-		
-		form_data.append('mem_photo', $('#mem_photo')[0].files[0]);
-		// dao에서 p를 소문자로 씀
-		$.ajax({
-			url: 'updateMyPhoto.do',
-			type: 'post',
-			data: form_data,
-			dataType: 'json',
-			contentType: false, // 데이터 객체를 문자열로 바꿀지 설정. true이면 일반 문자, false면 파일이 섞여있음
-			processData: false, // 해당 타입을 true로 하면 일반 text로 구분. 위에 두개를 false로 설정해 파일이 섞여있다는걸 나타냄
-			success: function(param){
-				if(param.result == 'logout'){
-					alert('로그인 후 사용하세요');
-				}else if(param.result == 'success'){
-					alert('프로필 사진이 수정되었습니다.');
-					// 수정된 이미지 정보 저장
-					photo_path = $('.my-photo').attr('src');
-					// 변경 전으로 초기화
-					$('#mem_photo').val('');
-					$('#mem_photo_choice').hide();
-					$('#mem_photo_btn').show(); // 수정 버튼 표시
-				}else{
-					alert('파일 전송 오류 발생');	
-				}
-			},
-			error: function(){
-				alert('네트워크 오류 발생');
-			}
-		});
 	});
 
 	// 이미지 미리보기 취소
@@ -160,7 +120,6 @@ $(function(){
     <form id="modify_form" name="modify_form" action="modifyUser.do" method="post">
     <h3 class="mYPage-TitleText">나의 정보 수정</h3>
     
-    
     <!-- 프로필 사진 추가 -->
 			<ul>
 				<li>
@@ -173,6 +132,7 @@ $(function(){
 				</li>
 				<li>
 					<div class="align-center">
+					<!-- 프로필 사진 추가 버튼 -->
     				<button type="button" id="mem_photo_btn"  style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">
         			<img src="${pageContext.request.contextPath}/images/photo_icon.png" width="15" />
    					 </button>
@@ -181,22 +141,22 @@ $(function(){
         			<img src="${pageContext.request.contextPath}/images/delete_icon.png" width="15" />
    					</button>
 					</div>
-
-					<!-- save-btn이 있어서 없어도 되는건지 -->
-					<div id="mem_photo_choice" style="display:none;"><%--display인식안되면 파일업로드 수정폼 나옴 --%>
-						<input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg">
-						<input type="button" value="전송" id="mem_photo_submit"><%-- aja통신할거라 submit아님 --%>
-						<input type="button" value="취소" id="mem_photo_reset">
-					</div>
-					<!-- save-btn이 있어서 없어도 되는건지 -->
+					
+					<!-- 파일 입력 필드를 직접 숨김 -->
+					<input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg" style="display:none;">
 					
 				</li>
 			</ul>
-    <!-- 프로필 사진 추가 -->
+    <!-- 프로필 사진 추가 끝 -->
     
     <div class="formBox">
         <div class="text-align-left">
             <ul class="item-align-center">
+            
+            	<li>
+            	
+            	</li>
+            
                 <li>
                     <label for="mem_name" class="form_label">이름</label><br>
                     <input type="text" id="mem_name" name="mem_name" maxlength="10" class="input-check" value="${member.mem_name}">
