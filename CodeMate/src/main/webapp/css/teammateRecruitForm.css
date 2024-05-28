@@ -33,39 +33,67 @@
 }
 
 .scrollable {
-    max-height: 300px; /* 원하는 높이로 설정 */
-    width: 500px;
-    overflow-y: auto; /* 세로 스크롤 활성화 */
-    border: 1px solid #ddd;
-    padding: 10px; /* 안쪽 여백 추가 (선택 사항) */
-    margin-top: 4px;
-    border-radius: 10px;
-    box-sizing: border-box; /* 패딩과 보더를 포함하도록 설정 */
+	max-height: 300px; /* 원하는 높이로 설정 */
+	width: 500px;
+	overflow-y: auto; /* 세로 스크롤 활성화 */
+	border: 1px solid #ddd;
+	padding: 10px; /* 안쪽 여백 추가 (선택 사항) */
+	margin-top: 4px;
+	border-radius: 10px;
+	box-sizing: border-box; /* 패딩과 보더를 포함하도록 설정 */
+}
+
+.scrollable li {
+	display: flex;
+	vertical-align: middle;
+}
+
+.scrollable li label {
+	margin-left: 4px;
+	display: flex;
+	vertical-align: middle;
+}
+
+.scrollable li label img.hskill-photo {
+	margin-right: 2px;
+}
+
+#scrollable_trigger {
+	display: inline-flex;
+	vertical-align: middle;
 }
 
 #scrollable_trigger .skill-tag {
+	display: inline-flex; /* flexbox를 사용하여 자식 요소 정렬 */
+	align-items: center; /* 자식 요소 수직 정렬 */
 	padding: 1px 4px;
 	margin: 1px 3px;
 	background-color: #474747;
 	border-radius: 8px;
 	color: #fff;
+	line-height: 1.5;
+}
+
+#scrollable_trigger .skill-tag .remove-btn {
+	color: #eb9696;
+	margin-left: 5px; /* 텍스트와 버튼 사이 간격 조절 */
 }
 
 /* 스크롤바 스타일 */
 .scrollable::-webkit-scrollbar {
-    width: 20px;
+	width: 20px;
 }
 
 .scrollable::-webkit-scrollbar-thumb {
-    background-color: grey; /* 회색 스크롤바 */
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 2px solid white; /* 스크롤바 사이의 간격을 위해 흰색 테두리 */
+	background-color: grey; /* 회색 스크롤바 */
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid white; /* 스크롤바 사이의 간격을 위해 흰색 테두리 */
 }
 
 .scrollable::-webkit-scrollbar-track {
-    background-color: white;
-    border-radius: 10px;
+	background-color: white;
+	border-radius: 10px;
 }
 
 .hskill-photo {
@@ -76,7 +104,8 @@
 }
 
 /*input 필드*/
-#teammate_recruit_form #project_info input, #teammate_recruit_form #project_info select {
+#teammate_recruit_form #project_info input, #teammate_recruit_form #project_info select
+	{
 	height: 28px;
 	border: 1px solid var(--gray-4);
 	box-sizing: border-box;

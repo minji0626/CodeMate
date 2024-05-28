@@ -81,6 +81,9 @@ public class RboardDAO {
 				pstmt4.setInt(2, intField);
 				pstmt4.executeUpdate();
 			}
+			
+			//team 테이블에 생성
+			
 
 			conn.commit();
 

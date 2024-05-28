@@ -287,3 +287,9 @@ CREATE SEQUENCE team_seq;
 CREATE SEQUENCE team_board_seq;
 CREATE SEQUENCE team_comment_seq;
 CREATE SEQUENCE team_todo_seq;
+
+
+ALTER TABLE team
+ADD CONSTRAINT fk_team_rb_num
+FOREIGN KEY (team_num)
+REFERENCES r_board(rb_num);
