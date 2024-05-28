@@ -120,7 +120,12 @@
 </style>
 <div class="left-outer">
     <div class="profile">
-        <img src="${pageContext.request.contextPath}/images/cmj/account_circle.png" id="profile-img">
+    	<c:if test="${!empty mem_num && !empty mem_photo}">
+			<img src="${pageContext.request.contextPath}/upload/${mem_photo}" id="profile-img">
+		</c:if>
+		<c:if test="${!empty mem_num && empty mem_photo}">
+			<img src="${pageContext.request.contextPath}/images/face.png" id="profile-img">
+		</c:if>
         <div class="team_status">
         	<p>팀원</p>
         </div>

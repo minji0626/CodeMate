@@ -35,12 +35,17 @@ public class UpdateMyPhotoAction implements Action{
                 MemberDAO dao = MemberDAO.getInstance();
                 // 프로필 사진 수정
                 dao.updateMyPhoto(mem_photo, mem_num);
+        		session.setAttribute("mem_photo", mem_photo);
 
                 // 새롭게 업로드하면 이전 파일 삭제
                 String user_photo = (String)session.getAttribute("user_photo");
                 FileUtil.removeFile(request, user_photo);
+                
+                String contextPath = request.getContextPath();
+                
                 // 현재 파일로 세션 정보 갱신
                 session.setAttribute("user_photo", mem_photo);
+                session.setAttribute("contextPath", contextPath);
                 mapAjax.put("result", "success");
 		}
 		
