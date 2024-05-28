@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_member.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
   </head>
   <body>
   <div class="page-container">
@@ -40,7 +41,7 @@
 			<li>
                 <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                 <div class="dropdown_menu">
-                   <a href="#" class="review-link">리뷰 쓰기</a>
+                   <a class="review-link">리뷰 쓰기</a>
                     <a href="#" id="mem_delete_btn">팀원 삭제</a>
                     <a href="#" id="mem_auth_btn">팀장 위임</a>
                 </div>
