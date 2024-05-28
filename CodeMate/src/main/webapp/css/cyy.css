@@ -1,36 +1,35 @@
 @charset "utf-8";
 
 /* 카드 슬라이드 */
-.w{
-	width:50%;
-}
-
 #mini-card {/* 1 */
    position:relative;
    top:70px; left:80px;
    width:90%; 
 }
+.w{/* 설명글 */
+   width:50%;
+}
 
-.mini-container {
-   /* overflow:hidden;  */
-   width:100%; 
+.mini-container {/* 보여지는 창 */
+   overflow:hidden; 
    height:300px;
-   border:1px solid;
 }  
- #miniwrapper {
-   width:150%;
-   height:300px;
-   display:flex;
+ #miniwrapper {/* 움직이는 부분 */
+   height:250px;
 }   
 
 .content{
-   width:90%;    
-   height:100%;
+   height:250px;
+   float:left;
+   width:200px;
+   margin-right:10px;
+    border:1px solid;
 } 
- .mini{
-	float:left;
-	
-} 
+
+.content .animated{
+   transition:0.5s ease-out;
+}
+
 
 
 
@@ -49,120 +48,119 @@
 /* 로그인화면*/
 /* 헤더 위치 */
 #login_logo a{
-	position:absolute;
-	top:135px; left:750px;
-	font-family: "Noto Sans KR", sans-serif;
-	text-decoration: none;
-	color: #000000;
-	font-size: 2.5em;
-	font-weight: bold;
+   position:absolute;
+   top:135px; left:750px;
+   font-family: "Noto Sans KR", sans-serif;
+   text-decoration: none;
+   color: #000000;
+   font-size: 2.5em;
+   font-weight: bold;
 }
 #logo_pic_login{
-	position:relative;
-	top:20px;
+   position:relative;
+   top:20px;
 }
 
  #login_header {
-	height : 80px;
-	margin-top: 30px;
-	background-color: white;
+   height : 80px;
+   margin-top: 30px;
+   background-color: white;
 }
 
 /*로그인 폼 */
 #insert{
-	position:relative;
-	top:150px; right:35px;
+   position:relative;
+   top:150px; right:35px;
 }
 .floating-label input{
-	border-radius:5px;
-	margin:20px;
+   border-radius:5px;
+   margin:20px;
 }
 .floating-label ul li{
-	position:relative;
-	left:20px;
+   position:relative;
+   left:20px;
 }
 
 #login_btn{
-	border:none;
-	color:white;
-	background-color:black;
-	border-radius:10px;
-	width:300px; height: 40px;
-	margin:50px;
-	position:absolute;
-	top:530px; left:720px;
+   border:none;
+   color:white;
+   background-color:black;
+   border-radius:10px;
+   width:300px; height: 40px;
+   margin:50px;
+   position:absolute;
+   top:530px; left:720px;
 }
 
 #find{
-	text-align:center;
-	position:relative;
-	top:300px; right:5px;
+   text-align:center;
+   position:relative;
+   top:300px; right:5px;
 } 
 #sign_up{
-	position:relative;
-	top:350px; right:5px;  
-	text-align:center;
+   position:relative;
+   top:350px; right:5px;  
+   text-align:center;
 }
 
 /* 회원가입 폼 */
 #insert_register{
-	position:relative;
-	top:100px; left:15px;
+   position:relative;
+   top:100px; left:15px;
 }
 .info input{
-	border-radius:5px;
-	margin:18px;
-	height:40px;
+   border-radius:5px;
+   margin:18px;
+   height:40px;
 }
 
 .floating-label-reg ul li{
-	position:relative;
-	left:20px;
+   position:relative;
+   left:20px;
 }
 #register_form input[id="id"]{
-	width:312px;
+   width:312px;
 }
 
  #btns{
-	position:absolute;
-	top:700px; left:750px;
+   position:absolute;
+   top:700px; left:750px;
 }
 
 #reg_btn{
-	border:none;
-	color:white;
-	background-color:black;
-	border-radius:10px;
-	width:300px; height: 40px;
-	margin:50px;
-	
+   border:none;
+   color:white;
+   background-color:black;
+   border-radius:10px;
+   width:300px; height: 40px;
+   margin:50px;
+   
 }
 #cancel_btn{
-	color:blck;
-	background-color:white;
-	border-radius:10px;
-	width:300px; height: 40px;
-	margin:50px;
-	position:relative;
-	top:60px; right:408px;
+   color:blck;
+   background-color:white;
+   border-radius:10px;
+   width:300px; height: 40px;
+   margin:50px;
+   position:relative;
+   top:60px; right:408px;
 }
  
 .info label{
-	position:relative;
-	bottom:10px; left:150px;
+   position:relative;
+   bottom:10px; left:150px;
 }
 
 
 .content-main{
-	height:780px;
+   height:780px;
 }
 
 #greeting{
-	position:relative;
-	top:110px; left:410px;
-	font-size:0.8em;
+   position:relative;
+   top:110px; left:410px;
+   font-size:0.8em;
 }
 form{
-	border:none !important;
+   border:none !important;
 }
-
