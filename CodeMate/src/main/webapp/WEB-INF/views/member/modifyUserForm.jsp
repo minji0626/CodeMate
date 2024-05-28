@@ -114,6 +114,7 @@ $(function(){
     				$('#mem_photo').val('');
     				$('#mem_photo_choice').hide();
     				$('#mem_photo_btn').show();//수정 버튼 표시
+    				$('#profile_pic').attr('src', contextPath + "/upload/" + mem_photo);
     			}else{
     				alert('파일 전송 오류 발생');	
     			}
