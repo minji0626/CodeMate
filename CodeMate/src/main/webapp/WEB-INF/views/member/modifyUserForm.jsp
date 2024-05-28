@@ -212,7 +212,7 @@ $(function(){
         </div>
         <div class="small-font">
             <br><br>
-            <span>회원 탈퇴하기</span>
+            <span><a href="${pageContext.request.contextPath}/member/deleteUserForm.do" id="header_logout">회원 탈퇴하기</a></span>
             <span>/</span>
             <span><a href="${pageContext.request.contextPath}/member/logout.do" id="header_logout">로그아웃</a></span>
         </div>

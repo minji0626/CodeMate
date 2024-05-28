@@ -24,6 +24,10 @@ public class MyPageMoAction implements Action{
 		RboardDAO rdao = RboardDAO.getInstance();
 		RboardVO rboard = rdao.getrboard(mem_num);
 		
+		//내가 쓴 모집글 메서드 불러오기 rboar에서 
+		
+		
+		
 		request.setAttribute("rboard", rboard);
 		
 		//JSP 경로 반환

@@ -33,7 +33,9 @@
 </div>
 
 <div class="team-right">
-<div class="delete-green">신청 취소</div>
+<div class="delete-green-box">
+<div class="delete-green">모집글 삭제</div>
+</div>
 <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
 <div>모집마감:${rboard.rb_endRecruit}</div>
 </div>
