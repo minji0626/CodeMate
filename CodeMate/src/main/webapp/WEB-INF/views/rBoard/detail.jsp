@@ -9,9 +9,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>코메 모집글 상세페이지</title>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
-	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link rel="stylesheet"
@@ -19,7 +19,7 @@
 </head>
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/rboardList.js"></script>
+<script src="${pageContext.request.contextPath}/js/rboardDetail.js"></script>
 
 <body>
 	<div class="page-container">
@@ -45,10 +45,11 @@
 						<span>${rboard.mem_nickname}</span>
 						<span>${rboard.rb_reg_date}(작성일자)</span> 
 						<c:if test="${mem_num == rboard.mem_num}">
-						<input type="button" value="수정하기" id="apply-btn">
+						<input type="button" value="수정하기" id="modify_btn" class="btn" onclick='location.href="modifyForm.do"'>
 						</c:if>
 						<c:if test="${mem_num != rboard.mem_num}">
-						<input type="button" value="신청하기" id="apply-btn">
+						<input type="button" value="신청하기" id="btn-modal" class="btn">
+						<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
 						</c:if>
 					</div>
 				</div>
