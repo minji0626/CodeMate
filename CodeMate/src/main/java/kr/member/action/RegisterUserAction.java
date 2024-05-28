@@ -26,12 +26,10 @@ public class RegisterUserAction implements Action{
 		 MemberDAO dao = MemberDAO.getInstance();
 		 dao.insertMember(member);
 		 
-		 request.setAttribute("result_title", "회원 가입 완료");
-		 request.setAttribute("result_msg", "회원 가입이 완료되었습니다.");
-		 request.setAttribute("result_url", request.getContextPath()+"/main/main.do");
+		 request.setAttribute("notice_msg", "회원 가입이 완료되었습니다.");
+		 request.setAttribute("notice_url", request.getContextPath()+"/main/main.do");
 		 
-		 
-		return "/WEB-INF/views/common/result_view.jsp";
+		 return "/WEB-INF/views/common/alert_view.jsp";
 	}
 	
 

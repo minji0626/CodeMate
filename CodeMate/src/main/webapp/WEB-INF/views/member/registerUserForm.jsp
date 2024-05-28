@@ -14,7 +14,7 @@ $(function(){
 	let idChecked = 0;     //0:중복,아이디 중복 체크 미실시,1:미중복
 	
 	//아이디 중복 체크
-	$('#id').keyup(function(){
+	/* $('#id').keyup(function(){
 		let id = $(this).val();//이벤트가 발생하는 이 곳에서 값을 불러와 id라는 변수에 지정하려고 함
 		
 			//서버와 통신
@@ -41,7 +41,7 @@ $(function(){
 					alert('네트워크 오류 발생');
 				}
 		}
-		});
+		}); */
 	
 	//아이디가 영문,숫자 조건 맞지 않으면 회원가입 버튼이 안눌림
 	$('#reg_btn').click(function(){
@@ -87,7 +87,6 @@ $(function(){
 </head>
 <body>
 <div class="page-container">
-
 		<span id="greeting">팀원 구하기 제일 쉬운 곳 코메!</span>		
 		<div id="login_logo">
 			<a href="${pageContext.request.contextPath}/main/main.do" class="logo"> 

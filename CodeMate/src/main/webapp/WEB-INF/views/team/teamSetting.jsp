@@ -36,7 +36,7 @@
         <ul>
             <li><img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="team_mem_profile_img"></li>
             <li><span class="team_mem_status">팀원</span></li>
-            <li><span class="team_mem_nickname" data-nickname="${mem_nickname }" data-id="${mem_id }" data-level="3">${mem_nickname }</span></li>
+            <li><span class="team_mem_nickname" data-memnum="${mem_num }" data-nickname="${mem_nickname }" data-id="${mem_id }" data-level="3">${mem_nickname }</span></li>
 			<li>
                 <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                 <div class="dropdown_menu">
@@ -66,7 +66,7 @@
 						<span class="user_nickname"></span> 
 						<span class="user_level"></span>
 					</div>
-					<a href="#"> 
+					<a class="user_mp" href="#"> 
 					  <span class="user_id"></span>
                       <img src="${pageContext.request.contextPath}/images/cmj/share_icon.png" id="share_img">
                     </a>  
