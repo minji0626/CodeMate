@@ -3,6 +3,8 @@ package kr.rboard.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.rboard.vo.RboardVO;
 import kr.util.DBUtil;
@@ -24,6 +26,7 @@ public class RboardDAO {
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
 		PreparedStatement pstmt4 = null;
+		PreparedStatement pstmt5 = null;
 		ResultSet rs = null;
 		String sql = null;
 		int rb_num = 0;
@@ -82,15 +85,21 @@ public class RboardDAO {
 				pstmt4.executeUpdate();
 			}
 			
-			//team 테이블에 생성
+			//team 테이블에 추가
+			sql = "INSERT INTO team (team_num) VALUES(?)";
 			
-
+			pstmt5 = conn.prepareStatement(sql);
+			pstmt5.setInt(1, rb_num);
+			pstmt5.executeUpdate();
+			
+			//전체 커밋
 			conn.commit();
 
 		} catch (Exception e) {
 			conn.rollback();
 			throw new Exception(e);
 		} finally {
+			DBUtil.executeClose(null, pstmt5, null);
 			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
@@ -129,6 +138,54 @@ public class RboardDAO {
 	
 	
 	// rboard 목록 구하기
+	public List<RboardVO> getRboardList(int start, int end) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RboardVO> list = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM r_board JOIN"
+					+ " (SELECT rb_num, LISTAGG(hs_name,',') within group ( order by hs_name) hs_name,"
+					+ " LISTAGG(hs_photo,',') within group ( order by hs_name) hs_photo"
+					+ " FROM r_skill JOIN hard_skill USING(hs_code) group by rb_num) USING(rb_num) ORDER BY rb_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<RboardVO>();
+			while (rs.next()) {
+				RboardVO rboard = new RboardVO();
+				rboard.setRb_num(rs.getInt("rb_num"));
+				rboard.setReg_date(rs.getDate("rb_reg_date"));
+				rboard.setRb_category(rs.getInt("rb_category"));
+				rboard.setRb_meet(rs.getInt("rb_meet"));
+				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+				rboard.setRb_period(rs.getInt("rb_period"));
+				rboard.setRb_start(rs.getString("rb_start"));
+				rboard.setRb_title(rs.getString("rb_title"));
+				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
+				rboard.setHs_name_string(rs.getString("hs_name"));
+				rboard.setHs_photo_string(rs.getString("hs_photo"));
+				list.add(rboard);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	
 	// rboard detail 구하기
 	//프로젝트 모집글 상세정보 읽어오기-민재가 했음 이상하면 지워주쇼
     public RboardVO getrboard(int mem_num)throws Exception{

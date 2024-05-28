@@ -51,6 +51,7 @@ div.search-menu {
     padding: 10px; /* padding 추가 */
     border: 2px solid var(--gray-4);
     border-radius: 6px;
+    cursor: pointer;
 }
 
 #search_key {

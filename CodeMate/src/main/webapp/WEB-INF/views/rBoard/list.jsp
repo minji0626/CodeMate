@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +13,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
 	rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rboardlist.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rboardList.css" type="text/css">
 </head>
 <script>
     // 드롭다운 메뉴에서 옵션을 선택할 때마다 검색 함수 실행
@@ -39,6 +40,8 @@
 
     document.addEventListener('DOMContentLoaded', addEventListeners);
 </script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/rboardList.js"></script>
 
 <body>
 <div class="page-container">
@@ -47,9 +50,9 @@
         <div class="content-main">
             <!--모집 구분-->
             <ul class="category">
-                <li class="category-item">전체</li>
-                <li class="category-item">프로젝트</li>
-                <li class="category-item">스터디</li>
+                <li class="category-item" data-category="2">전체</li>
+                <li class="category-item" data-category="1">프로젝트</li>
+                <li class="category-item" data-category="0">스터디</li>
             </ul>
             <!--검색-->
             <div class="search-container">
@@ -86,101 +89,44 @@
             </div>
 
             <!--모집글 리스트-->
+            <c:if test="${count == 0}">
+				<div>표시할 게시물이 없습니다.</div>
+			</c:if>
+			<c:if test="${count > 0}">
             <ul id="r_board">
-                <li class="r-item">
+            <c:forEach var="rboard" items="${rboardList}">
+                <li class="r-item" data-rbnum="${rboard.rb_num}">
                     <div class="r-item-header">
                         <span>마감일 | </span>
-                        <span>2024.05.20</span>
+                        <span>${rboard.rb_endRecruit}</span>
                     </div>
                     <div class="r-item-main">
-                        <span>[프로젝트]</span>
-                        <p>도서관 프로젝트 FE 팀원 모집합니다.</p>
+                        <span>
+						<c:if test="${rboard.rb_category == 0}">
+						[스터디]
+						</c:if>
+						<c:if test="${rboard.rb_category == 1}">
+						[프로젝트]
+						</c:if>
+						</span>
+                        <p>${rboard.rb_title}</p>
                     </div>
                     <div>
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/reactjs-logo.png" class="skill-logo">
+                    <c:forEach var="i" begin="0" end="${fn:length(rboard.hs_photo_arr) - 1}">
+    				<img src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}" title="${rboard.hs_name_arr[i]}" class="skill-logo">
+					</c:forEach>
                     </div>
                     <div class="r-item-number">
                         <span>신청인원 | </span>
-                        <span>30/5</span>
+                        <span>30/${rboard.rb_teamsize}</span>
                     </div>
                 </li>
-                <li class="r-item">
-                    <div class="r-item-header">
-                        <span>마감일 | </span>
-                        <span>2024.06.30</span>
-                    </div>
-                    <div class="r-item-main">
-                        <span>[스터디]</span>
-                        <p>취준/포폴) 약 알림 서비스 함께 만들어요...</p>
-                    </div>
-                    <div>
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                    </div>
-                    <div class="r-item-number">
-                        <span>신청인원 | </span>
-                        <span>0/3</span>
-                    </div>
-                </li>
-                <li class="r-item">
-                    <div class="r-item-header">
-                        <span>마감일 | </span>
-                        <span>2024.07.25</span>
-                    </div>
-                    <div class="r-item-main">
-                        <span>[프로젝트]</span>
-                        <p>[ 취준용 / 재미용 ] ⚾️ 야구 덕후 사이드 프로젝트 - 직관 친구 구하기 APP 디자이너/ 백엔드 팀원 모집</p>
-                    </div>
-                    <div>
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                    </div>
-                    <div class="r-item-number">
-                        <span>신청인원 | </span>
-                        <span>1/2</span>
-                    </div>
-                </li>
-                <li class="r-item">
-                    <div class="r-item-header">
-                        <span>마감일 | </span>
-                        <span>2024.07.25</span>
-                    </div>
-                    <div class="r-item-main">
-                        <span>...</span>
-                        <p>...</p>
-                    </div>
-                    <div>
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                    </div>
-                    <div class="r-item-number">
-                        <span>신청인원 | </span>
-                        <span>0/0</span>
-                    </div>
-                </li>
-                <li class="r-item">
-                    <div class="r-item-header">
-                        <span>마감일 | </span>
-                        <span>2024.07.25</span>
-                    </div>
-                    <div class="r-item-main">
-                        <span>...</span>
-                        <p>...</p>
-                    </div>
-                    <div>
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                        <img src="${pageContext.request.contextPath}/images/hard_skill_logo/cpp-logo.png" class="skill-logo">
-                    </div>
-                    <div class="r-item-number">
-                        <span>신청인원 | </span>
-                        <span>0/0</span>
-                    </div>
-                </li>
+            </c:forEach>
             </ul>
 
             <!--페이지 표시-->
-            <div class="align-center">&lt; 1 2 3 4 5 6 &gt;</div>
+            <div class="align-center">${page}</div>
+			</c:if>
         </div>
     </div>
     </div>
