@@ -21,7 +21,14 @@ public class RboardVO {
 	private String rb_pj_title;	//프로젝트명
 	
     private String[] r_skills;	//요구기술 list
-    private String[] r_fields;		//모집필드 list
+    private String[] r_fields;	//모집필드 list
+    
+	private String hs_name_string; //요구기술 이름 list string화
+	private String hs_photo_string; //요구기술 이름 list string화
+	
+	private String[] hs_name_arr;
+	private String[] hs_photo_arr;
+	
 	
 	public int getRb_num() {
 		return rb_num;
@@ -106,6 +113,30 @@ public class RboardVO {
 	}
 	public void setR_fields(String[] r_fields) {
 		this.r_fields = r_fields;
+	}
+	public String getHs_name_string() {
+		return hs_name_string;
+	}
+	public void setHs_name_string(String hs_name_string) {
+		this.hs_name_string = hs_name_string;
+	}
+	public String getHs_photo_string() {
+		return hs_photo_string;
+	}
+	public void setHs_photo_string(String hs_photo_string) {
+		this.hs_photo_string = hs_photo_string;
+	}
+	public String[] getHs_name_arr() {
+		return hs_name_arr;
+	}
+	public void setHs_name_arr(String[] hs_name_arr) {
+		this.hs_name_arr = hs_name_arr;
+	}
+	public String[] getHs_photo_arr() {
+		return hs_photo_arr;
+	}
+	public void setHs_photo_arr(String[] hs_photo_arr) {
+		this.hs_photo_arr = hs_photo_arr;
 	}
 	
 	
