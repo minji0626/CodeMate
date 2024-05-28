@@ -27,7 +27,7 @@ public class MateProfileAction implements Action {
         
         request.setAttribute("member", member);
         
-		return "/WEB-INF/views/member/mateProfile.jsp";    
+		return "/WEB-INF/views/mateProfile/mateProfile.jsp";    
 	}
 
 }

@@ -70,8 +70,7 @@
                     <div class="mp_content_div skill-item">
                         <h4>하드스킬</h4>
                         <div class="skill_div">
-                            <label>요구 기술</label>
-							<div id="scrollable_trigger" class="input-style">요구하는 기술 스택을 선택하세요.</div>
+							<div id="scrollable_trigger" class="hs-select">하드 스킬을 선택해주세요.</div>
 							<ul class="scrollable">
 								<c:forEach var="hskill" items="${hskillList}">
 									<li class="block">
@@ -129,17 +128,16 @@
     </div>
 </div>
 <script type="text/javascript">
-//모든 체크박스에 이벤트 리스너 추가
 document.querySelectorAll('input[name="mh_num"]').forEach(checkbox => {
     checkbox.addEventListener('change', function(event) {
         const option = event.target;
         const container = document.getElementById('hs-options');
         const label = option.nextElementSibling.textContent.trim();
-        const optionDiv = document.querySelector(`#hs-options [data-value="${option.value}"]`);
+        let optionDiv = document.querySelector(`#hs-options [data-value="${option.value}"]`);
 
         if (option.checked) {
             if (!optionDiv) {
-                const optionDiv = document.createElement('div');
+                optionDiv = document.createElement('div');
                 optionDiv.classList.add('option-item');
                 optionDiv.setAttribute('data-value', option.value);
                 optionDiv.textContent = label;
@@ -150,19 +148,21 @@ document.querySelectorAll('input[name="mh_num"]').forEach(checkbox => {
 
                 removeBtn.addEventListener('click', function() {
                     option.checked = false;
+                    option.disabled = false; // 체크박스 해제 후 다시 활성화
                     optionDiv.remove();
                 });
 
                 optionDiv.appendChild(removeBtn);
                 container.appendChild(optionDiv);
+
+                option.disabled = true; // 체크박스 비활성화
             }
-        } else if(option.checked != flase){
-            if (optionDiv) {
-                optionDiv.remove();
-            }
+        } else {
+            option.checked = true; // 체크박스가 해제되지 않도록 유지
         }
     });
 });
+
 
 
 // 소프트스킬 셀렉트 박스 이벤트 리스너

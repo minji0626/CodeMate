@@ -5,10 +5,13 @@
 /********************************
 /*메이트 프로필 모달 창*/
 #mp_view {
+	margin: 0 auto;
 	margin-top:30px;
     align-items: center;
     justify-content: center;
     background: white;
+    width:80%;
+    
 }
 
 /********************************

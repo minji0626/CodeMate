@@ -11,10 +11,12 @@
 	font-family: "Noto Sans KR", sans-serif;
 }
 #mp_view {
+	margin: 0 auto;
 	margin-top:30px;
     align-items: center;
     justify-content: center;
     background: white;
+    width:80%;
 }
 
 /********************************
@@ -268,22 +270,18 @@
     cursor: pointer;
 }
 
-#hs-select, #ss-select {
+.hs-select, .ss-select {
     border: none;
     color: #bdbdbd;
     width: 200px;
     height: 30px;
     text-align: center;
-    margin: 5px;
+    margin: 7px;
+    display: flex;
+    justify-content: center;
+	align-items: center;
     background-color: #f0f0f0;
     border-radius: 30px;
-    -webkit-appearance: none; /* 웹킷 기반 브라우저에서 화살표 숨기기 */
-    -moz-appearance: none; /* 모질라 기반 브라우저에서 화살표 숨기기 */
-    appearance: none; /* 표준 방법으로 화살표 숨기기 */
-    background-image: none; /* 기본 화살표 이미지 숨기기 */
-    background-position: right center; /* 선택된 옵션의 표시 위치 설정 */
-    background-repeat: no-repeat; /* 배경 이미지 반복 없애기 */
-    padding-right: 20px; /* 우측 여백을 추가하여 텍스트와 화살표 간격 유지 */
 }
 
 option {
@@ -320,7 +318,7 @@ option {
 
 .scrollable {
 	max-height: 300px; /* 원하는 높이로 설정 */
-	width: 500px;
+	width: 100%;
 	overflow-y: auto; /* 세로 스크롤 활성화 */
 	border: 1px solid #ddd;
 	padding: 10px; /* 안쪽 여백 추가 (선택 사항) */

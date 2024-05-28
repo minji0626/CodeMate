@@ -38,7 +38,7 @@ public class MateProfileFormAction implements Action{
 		request.setAttribute("fieldList", fieldList);
 		request.setAttribute("hskillList", hskillList);
         
-		return "/WEB-INF/views/member/mateProfileForm.jsp";
+		return "/WEB-INF/views/mateProfile/mateProfileForm.jsp";
 	}
 
 }
