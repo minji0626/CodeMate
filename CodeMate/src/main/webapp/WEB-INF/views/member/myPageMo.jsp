@@ -28,14 +28,14 @@
 
 <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do'">
 <div class="team-left">
-<div class="skill_font_T">글자</div>
-<div class="projectName_font">${rboard.rb_pj_title}</div>
+<div class="skill_font_T">${rboard.rb_pj_title}</div>
+<div class="projectName_font">${rboard.rb_title}</div>
 </div>
 
 <div class="team-right">
 <div class="delete-green">신청 취소</div>
 <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
-<div>남은 기간 2024.05.23~2024.06.10</div>
+<div>모집마감:${rboard.rb_endRecruit}</div>
 </div>
 </div>
 

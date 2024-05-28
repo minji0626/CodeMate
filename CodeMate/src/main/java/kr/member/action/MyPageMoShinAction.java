@@ -22,10 +22,12 @@ public class MyPageMoShinAction implements Action{
 			//로그인이 된 경우
 		}
 		//로그인이 된 경우
-				MemberDAO dao = MemberDAO.getInstance();
-				MemberVO member = dao.getMember(mem_num);//한건의 데이터 읽어옴
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberVO member = dao.getMember(mem_num);//한건의 데이터 읽어옴
 				
-				request.setAttribute("member", member);
+		request.setAttribute("member", member);
+		
+		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPageMoShin.jsp";
 	}
