@@ -95,7 +95,7 @@
 			<c:if test="${count > 0}">
             <ul id="r_board">
             <c:forEach var="rboard" items="${rboardList}">
-                <li class="r-item" data-rbnum="${rboard.rb_num}">
+                <li class="r-item" onclick="location.href= '${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'" >
                     <div class="r-item-header">
                         <span>마감일 | </span>
                         <span>${rboard.rb_endRecruit}</span>
@@ -114,6 +114,12 @@
                     <div>
                     <c:forEach var="i" begin="0" end="${fn:length(rboard.hs_photo_arr) - 1}">
     				<img src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}" title="${rboard.hs_name_arr[i]}" class="skill-logo">
+					</c:forEach>
+                    </div>
+                    <div>
+                    <span>모집필드 | </span>
+                    <c:forEach var="field" items="${rboard.f_name_arr}">
+	    				<span>${field}</span>
 					</c:forEach>
                     </div>
                     <div class="r-item-number">

@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+/*프로필 사진*/
+.profile-photo {
+	width: 40px;
+	border-radius: 50px;
+}
+
+/*하드스킬 로고*/
+.skill-logo {
+	width: 30px;
+	border-radius: 50px;
+}
+
+/* 댓글 */
+#comment_form {
+	margin: 20px;
+}
+
+#comment_form .profile-photo {
+	width: 5%;
+	margin-right: 20px;
+}
+
+#comment_form textarea {
+	width: 85%;
+	padding: 10px;
+	border: 2px solid var(--gray-4);
+	border-radius: 6px;
+}
