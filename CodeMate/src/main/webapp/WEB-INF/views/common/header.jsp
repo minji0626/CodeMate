@@ -30,10 +30,10 @@
 			<!-- 로그인 O -->
 			<c:if test="${!empty mem_num}">
 					<div class="login_profile">
-						<img id="profile_pic"
-							src="${pageContext.request.contextPath}/images/face.png"
-							height="40" width="40"> <span>${mem_id}</span>
-						<button id="header_more">
+					<img id="profile_pic"
+						src="${pageContext.request.contextPath}/upload/${mem_photo}"
+						height="40" width="40"> <span>${mem_id}</span>
+					<button id="header_more">
 							<img
 								src="${pageContext.request.contextPath}/images/header_icon.png"
 								id="header_icon">
