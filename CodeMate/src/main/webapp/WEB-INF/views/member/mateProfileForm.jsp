@@ -33,9 +33,9 @@
             <!-- 본인 프로필 (닉네임, 프사) -->
             <div class="mp_account_profile">
                 <!-- 프로필 사진 -->
-                <div class="photo_div">
-                    <img src="images/face.png" class="profile_image">
-                </div>  
+                    <div class="photo_div">
+                        <img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="profile_image">
+                    </div> 
                 <!-- 닉네임 -->
                 <div class="mp_account_nickname">
                     <span class="user_nickname">${mem_nickname}</span>
