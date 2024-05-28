@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.util.FileUtil;
 
 public class ModifyUserAction implements Action{
 
@@ -22,6 +23,7 @@ public class ModifyUserAction implements Action{
 		//전송된 데이터 인코딩 타입 지정
 		request.setCharacterEncoding("utf-8");
 		
+		
 		//자바빈 생성해서 전송된 데이터 담고 전달
 		MemberVO member = new MemberVO();
 		member.setMem_num(mem_num);//회원번호
@@ -31,7 +33,7 @@ public class ModifyUserAction implements Action{
 		member.setMem_nickname(request.getParameter("mem_nickname"));
 		member.setMem_phone(request.getParameter("mem_phone"));
 		member.setMem_photo(request.getParameter("mem_photo"));
-	
+		
 		//데이터 전달
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.updateMember(member);
