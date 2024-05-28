@@ -63,9 +63,6 @@
 		<div class="slide">
             <img class="ad" src="${pageContext.request.contextPath}/images/ad2.gif" alt="광고 2">
         </div>
-        <div class="slide">
-            <img class="ad" src="${pageContext.request.contextPath}/images/ad3.png" alt="광고 3">
-        </div>
     </div>
 </div>
 
