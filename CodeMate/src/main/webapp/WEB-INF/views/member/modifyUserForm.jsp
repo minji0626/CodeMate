@@ -182,12 +182,14 @@ $(function(){
    					</button>
 					</div>
 
-
+					<!-- save-btn이 있어서 없어도 되는건지 -->
 					<div id="mem_photo_choice" style="display:none;"><%--display인식안되면 파일업로드 수정폼 나옴 --%>
 						<input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg">
 						<input type="button" value="전송" id="mem_photo_submit"><%-- aja통신할거라 submit아님 --%>
 						<input type="button" value="취소" id="mem_photo_reset">
 					</div>
+					<!-- save-btn이 있어서 없어도 되는건지 -->
+					
 				</li>
 			</ul>
     <!-- 프로필 사진 추가 -->
