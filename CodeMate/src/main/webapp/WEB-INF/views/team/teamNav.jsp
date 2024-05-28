@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 @charset "utf-8";
-
+a{
+	text-decoration: none;
+}
 /* nav 전체 container 지정 */
 .left-outer {
 	z-index: 1000;
@@ -61,11 +63,6 @@
 /* 프로필 사진 1:1비율 유지시키기 */
 #profile-img {
 	margin: 15px auto;
-	width: 30%;
-	height: auto;
-	aspect-ratio: 1/1;
-	object-fit: cover;
-	object-position: top;
 	border-radius: 50%;
 }
 
@@ -121,20 +118,22 @@
 <div class="left-outer">
     <div class="profile">
     	<c:if test="${!empty mem_num && !empty mem_photo}">
-			<img src="${pageContext.request.contextPath}/upload/${mem_photo}" id="profile-img">
+			<img src="${pageContext.request.contextPath}/upload/${mem_photo}" id="profile-img" width="55" height="55">
 		</c:if>
 		<c:if test="${!empty mem_num && empty mem_photo}">
-			<img src="${pageContext.request.contextPath}/images/face.png" id="profile-img">
+			<img src="${pageContext.request.contextPath}/images/face.png" id="profile-img" width="55" height="55">
 		</c:if>
         <div class="team_status">
         	<p>팀원</p>
         </div>
         <span class="team_nickname">${mem_id}</span>
+        <a href="${pageContext.request.contextPath}/member/myWrite.do">
         <div class="written_post">
             <img src="${pageContext.request.contextPath}/images/cmj/written_post.png" alt="내가 쓴 글" id="post_icon">
             <span class="my_post">내가 쓴 글</span>
             <span class="my_post_cnt">20개</span>
         </div>
+        </a>
     </div>
     <!-- 외부 왼쪽 컨테이너 시작 -->
     <div class="menu-bar">
