@@ -9,7 +9,7 @@ import kr.db.vo.HardSkillVO;
 public class RboardVO {
 	private int rb_num;			//모집글 번호
 	private int mem_num;		//글 작성 회원 번호
-	private Date reg_date;		//모집글 등록일
+	private Date rb_reg_date;		//모집글 등록일
 	private int rb_category;	//모집글 분류 (스터디/프로젝트)
 	private int rb_meet;		//진행방식(0온라인/1오프라인/2온라인+오프라인)
 	private int rb_teamsize;	//모집인원
@@ -31,6 +31,9 @@ public class RboardVO {
 	private String[] hs_photo_arr;
 	private String[] f_name_arr;
 	
+	private String mem_nickname;
+	private String mem_photo;
+	
 	public int getRb_num() {
 		return rb_num;
 	}
@@ -43,11 +46,11 @@ public class RboardVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRb_reg_date() {
+		return rb_reg_date;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRb_reg_date(Date rb_reg_date) {
+		this.rb_reg_date = rb_reg_date;
 	}
 	public int getRb_category() {
 		return rb_category;
@@ -150,6 +153,18 @@ public class RboardVO {
 	}
 	public void setF_name_arr(String[] f_name_arr) {
 		this.f_name_arr = f_name_arr;
+	}
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+	public String getMem_photo() {
+		return mem_photo;
+	}
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
 	}
 	
 	

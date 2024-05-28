@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -34,37 +34,77 @@
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
 				<div class="content-header">
-					<h2>🍰[프론트 개발자] 베이커리 프로젝트 프론트 개발자 한 분 모집합니다🍰</h2>
+					<h2>${rboard.rb_title}</h2>
 					<div>
-						<img src="../images/face.png" class="profile-photo"> <span>닉네임</span>
-						<span>2024.05.22(작성일자)</span> <input type="button" value="신청하기"
-							id="apply-btn">
+						<c:if test="${rboard.mem_photo != null}">
+						<img src="${pageContext.request.contextPath}/upload/${rboard.mem_photo}" class="profile-photo">						
+						</c:if>
+						<c:if test="${rboard.mem_photo == null}">
+						<img src="${pageContext.request.contextPath}/images/face.png" class="profile-photo">
+						</c:if>
+						<span>${rboard.mem_nickname}</span>
+						<span>${rboard.rb_reg_date}(작성일자)</span> 
+						<c:if test="${mem_num == rboard.mem_num}">
+						<input type="button" value="수정하기" id="apply-btn">
+						</c:if>
+						<c:if test="${mem_num != rboard.mem_num}">
+						<input type="button" value="신청하기" id="apply-btn">
+						</c:if>
 					</div>
 				</div>
 				<div class="content">
 					<h3>모집 정보</h3>
 					<ul>
-						<li><span>모집 구분</span> <span>프로젝트</span></li>
-						<li><span>시작 예정</span> <span>2024.06.01</span></li>
-						<li><span>진행 방식</span> <span>온라인/오프라인</span></li>
-						<li><span>예상 기간</span> <span>3개월</span></li>
-						<li><span>모집 인원</span> <span>3명</span></li>
-						<li><span>요구 스킬</span> <span> <img
-								src="../images/c++_logo.png" class="skill-logo"> <img
-								src="../images/react_logo.png" class="skill-logo">
-						</span></li>
-						<li><span>모집 필드</span> <span>프론트엔드</span> <span>백엔드</span> <span>디자이너</span>
+						<li><span>모집 구분</span> <span>
+							<c:if test="${rboard.rb_category == 0}">
+							스터디
+							</c:if>
+							<c:if test="${rboard.rb_category == 1}">
+							프로젝트
+							</c:if>
+							</span></li>
+						<li><span>시작 예정</span> <span>${rboard.rb_start}</span></li>
+						<li><span>진행 방식</span> <span>
+							<c:if test="${rboard.rb_meet == 0}">
+							온라인
+							</c:if>
+							<c:if test="${rboard.rb_meet == 1}">
+							오프라인
+							</c:if>
+							<c:if test="${rboard.rb_meet == 2}">
+							온라인/오프라인	
+							</c:if>
+							</span></li>
+						<li><span>예상 기간</span> 
+							<c:if test="${rboard.rb_period == 0}">
+							<span>1개월 미만</span>
+							</c:if>
+							<c:if test="${rboard.rb_period == 6}">
+							<span>6개월 이상</span>
+							</c:if>
+							<c:if test="${rboard.rb_period != 0 && rboard.rb_period != 6}">
+							<span>${rboard.rb_period}개월</span>
+							</c:if>
+						</li>
+						<li><span>모집 인원</span> <span>${rboard.rb_teamsize}명</span></li>
+						<li><span>요구 스킬</span> 
+							<span>
+			                    <c:forEach var="i" begin="0" end="${fn:length(rboard.hs_photo_arr) - 1}">
+			    				<img src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}" title="${rboard.hs_name_arr[i]}" class="skill-logo">
+								</c:forEach>
+							</span>
+						</li>
+						<li><span>모집 필드</span> 
+							<c:forEach var="field" items="${rboard.f_name_arr}">
+								<span>${field}</span>
+							</c:forEach>
 						</li>
 					</ul>
 				</div>
 				<div class="content">
 					<h3>프로젝트 소개</h3>
 					<div>
-						이곳저곳 널리 퍼져있는 건강 디저트를 한 눈에 편리하게 볼 수 있는 건강 베이커리 플랫폼 프로젝트 입니다.<br>
-						함께하실 프론트 개발자 모집합니다 !☺<br>
-						<br> 🍰 건강 디저트 e-커머스 🍰<br>
-						<br> 백엔드도 모집합니다...<br> 암튼 모집~ 지금까지 두명 모였고요 세명 더 받습니다<br>
-						<br> ...<br>
+					${rboard.rb_content}
 					</div>
 				</div>
 			</div>

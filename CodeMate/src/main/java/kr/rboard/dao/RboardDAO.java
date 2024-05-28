@@ -167,7 +167,7 @@ public class RboardDAO {
 			while (rs.next()) {
 				RboardVO rboard = new RboardVO();
 				rboard.setRb_num(rs.getInt("rb_num"));
-				rboard.setReg_date(rs.getDate("rb_reg_date"));
+				rboard.setRb_reg_date(rs.getDate("rb_reg_date"));
 				rboard.setRb_category(rs.getInt("rb_category"));
 				rboard.setRb_meet(rs.getInt("rb_meet"));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
@@ -227,7 +227,7 @@ public class RboardDAO {
 	
 	// rboard detail 구하기
 	//프로젝트 모집글 상세정보 읽어오기-민재가 했음 이상하면 지워주쇼
-    public RboardVO getrboard(int mem_num)throws Exception{
+    public RboardVO getrboard(int rb_num)throws Exception{
       Connection conn = null;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
@@ -235,18 +235,32 @@ public class RboardDAO {
       String sql = null;
       try {
          conn = DBUtil.getConnection();
-         sql = "SELECT * FROM member JOIN r_board USING(mem_num) WHERE mem_num=? ";
+         sql = "SELECT * FROM member JOIN member_detail USING(mem_num) JOIN r_board USING(mem_num) JOIN"
+         		+ " (SELECT rb_num, LISTAGG(hs_name,',') within group ( order by hs_name) hs_name ,"
+         		+ " LISTAGG(hs_photo,',') within group ( order by hs_name)  hs_photo"
+         		+ " FROM r_skill JOIN hard_skill USING(hs_code) group by rb_num) USING(rb_num) JOIN"
+         		+ " (SELECT rb_num, LISTAGG(f_name,',') within group ( order by f_name) f_name"
+         		+ " FROM r_field JOIN field_db USING(f_code) group by rb_num) USING(rb_num)"
+         		+ " WHERE rb_num=?";
          pstmt = conn.prepareStatement(sql);
-         pstmt.setInt(1, mem_num);
+         pstmt.setInt(1, rb_num);
          rs = pstmt.executeQuery();
+         
+         rboard = new RboardVO();
          if(rs.next()) {
-            rboard = new RboardVO();
             rboard.setMem_num(rs.getInt("mem_num"));
+            rboard.setRb_num(rs.getInt("rb_num"));
+            rboard.setMem_nickname(rs.getString("mem_nickname"));
+            rboard.setMem_photo(rs.getString("mem_photo"));
+            rboard.setRb_reg_date(rs.getDate("rb_reg_date"));
             rboard.setRb_category(rs.getInt("rb_category"));
-            rboard.setRb_meet(rs.getInt("rb_meet"));
-            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
-            rboard.setRb_period(rs.getInt("rb_period"));
             rboard.setRb_start(rs.getString("rb_start"));
+            rboard.setRb_meet(rs.getInt("rb_meet"));
+            rboard.setRb_period(rs.getInt("rb_period"));
+            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+            rboard.setHs_name_string(rs.getString("hs_name"));
+            rboard.setHs_photo_string(rs.getString("hs_photo"));
+            rboard.setF_name_string(rs.getString("f_name"));
             rboard.setRb_title(rs.getString("rb_title"));
             rboard.setRb_content(rs.getString("rb_content"));
             rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
