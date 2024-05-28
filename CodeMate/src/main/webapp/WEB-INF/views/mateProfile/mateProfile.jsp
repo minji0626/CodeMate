@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>메이트 프로필 페이지</title>
+    <title>메이트 프로필</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
@@ -32,7 +32,14 @@
                 <div class="mp_account_profile">
                     <!-- 프로필 사진 -->
                     <div class="photo_div">
-                        <img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="profile_image">
+	                    <c:if test="${empty member.mem_photo}">
+						<img src="${pageContext.request.contextPath}/images/face.png" 
+											class="profile_image">
+					</c:if>
+					<c:if test="${!empty member.mem_photoo}">
+						<img src="${pageContext.request.contextPath}/upload/${member.photo}" 
+												class="profile_image">
+					</c:if>
                     </div> 
                     <!-- 닉네임 -->
                     <div class="mp_account_nickname">
