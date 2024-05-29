@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.tboard.vo.TboardVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class TboardDAO {
 	private static TboardDAO instance = new TboardDAO();
@@ -69,7 +70,7 @@ public class TboardDAO {
 				}
 			}
 			
-			sql="SELECT COUNT(*) FROM tboard JOIN member USING(mem_num) " + sub_sql;
+			sql="SELECT COUNT(*) FROM team_board JOIN member USING(mem_num) " + sub_sql;
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(1, keyword);
@@ -88,7 +89,7 @@ public class TboardDAO {
 		return count;
 	}
 	
-	// 팀 게시판 목록 가져오기(공지사항 list, 일반 게시글 list 따로 지정해야함)
+	// 팀 게시판 목록 가져오기
 	public List<TboardVO> getListBoard(int start, int end, String keyfield,String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -110,7 +111,7 @@ public class TboardDAO {
 					sub_sql += "WHERE tb_content LIKE '%' || ? || '%'";
 				}
 			}
-			sql = "SELECT * FROM(SELECT a.*,rownum rnum FROM (SELECT * FROM tboard JOIN team_member USING(mem_num) "
+			sql = "SELECT * FROM(SELECT a.*,rownum rnum FROM (SELECT * FROM team_board JOIN member USING(mem_num) "
 					+ sub_sql + " ORDER BY tb_num DESC)a) WHERE rnum >=? AND rnum<=?";
 			pstmt = conn.prepareStatement(sql);
 
@@ -125,7 +126,11 @@ public class TboardDAO {
 			while (rs.next()) {
 				TboardVO tboard = new TboardVO();
 				tboard.setMem_id(rs.getString("mem_id"));
-				tboard.setTb_title(rs.getString("tb_title"));
+				tboard.setTb_title(StringUtil.useNoHTML(rs.getString("tb_title")));
+				tboard.setTb_reg_date(rs.getDate("tb_reg_date"));
+				tboard.setTb_auth(rs.getInt("tb_auth"));
+				tboard.setTb_num(rs.getInt("tb_num"));
+				list.add(tboard);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -146,6 +151,7 @@ public class TboardDAO {
 		TboardVO board = null;
 		try {
 			conn = DBUtil.getConnection();
+		
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {

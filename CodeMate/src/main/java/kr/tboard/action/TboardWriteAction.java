@@ -35,7 +35,7 @@ public class TboardWriteAction implements Action{
 		dao.insertTboard(tboard);
 		
 		request.setAttribute("notice_msg", "글 작성이 완료되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath()+"/team/teamBoard.do");
+		request.setAttribute("notice_url", request.getContextPath()+"/team/teamBoardList.do");
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}
 

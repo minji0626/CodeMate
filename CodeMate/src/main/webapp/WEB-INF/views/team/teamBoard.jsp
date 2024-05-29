@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>팀 게시판</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <title>팀 게시판</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
   <div class="page-container">
@@ -20,7 +21,7 @@
             <button class="write-button" onclick="location.href='${pageContext.request.contextPath}/team/teamWriteForm.do'">글쓰기</button>
         </div>
         <!-- 검색 폼 -->
-        <form id="search_form" action="list.do" method="get">
+        <form id="search_form" action="teamBoardList.do" method="get">
             <div class="search-container">
                 <select name="keyfield" class="search-select">
                     <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
@@ -33,6 +34,11 @@
         </form>
         <!-- 테이블 -->
         <div class="table-container">
+        <c:if test="${count == 0 }">
+        	<p>표시할 글 정보가 없습니다.</p>
+        </c:if>
+        
+        <c:if test="${count > 0 }">
             <table>
                 <thead>
                     <tr>
@@ -43,43 +49,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 임시 공지사항 -->
-                    <tr class="notice">
-                        <td>1</td>
-                        <td>임시 공지사항 제목</td>
-                        <td>관리자</td>
-                        <td>2024-05-01</td>
-                    </tr>
-                    <!-- 임시 게시글 -->
-                    <tr>
-                        <td>2</td>
-                        <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do">임시 게시글 제목</a></td>
-                        <td>사용자</td>
-                        <td>2024-05-02</td>
-                    </tr>
                     <!-- 공지사항 -->
-                    <c:forEach var="item" items="${noticeList}">
+                    <c:forEach var="tboard" items="${list}">
                         <c:if test="${tboard.tb_auth == 1}">
                             <tr class="notice">
                                 <td>${tboard.tb_num}</td>
-                                <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${item.tb_num}">${item.tb_title}</a></td>
-                                <td>${tboard.tb_title}</td>
+                                <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}">${tboard.tb_title}</a></td>
                                 <td>${tboard.mem_id}</td>
                                 <td>${tboard.tb_reg_date}</td>
                             </tr>
                         </c:if>
                     </c:forEach>
                     <!-- 일반 게시글 -->
-                    <c:forEach var="item" items="${postList}">
+                    <c:forEach var="tboard" items="${list}">
+                    <c:if test="${tboard.tb_auth == 2}">
                         <tr>
                             <td>${tboard.tb_num}</td>
                             <td>${tboard.tb_title}</td>
                             <td>${tboard.mem_id}</td>
                             <td>${tboard.tb_reg_date}</td>
                         </tr>
+                    </c:if>
                     </c:forEach>
                 </tbody>
             </table>
+            <div class="align-center">${page}</div>
+            </c:if>
         </div>
     </div>
   </div>

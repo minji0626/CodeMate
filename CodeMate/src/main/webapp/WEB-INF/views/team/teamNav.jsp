@@ -137,9 +137,9 @@ a{
     </div>
     <!-- 외부 왼쪽 컨테이너 시작 -->
     <div class="menu-bar">
-        <a href="${pageContext.request.contextPath}/team/teamTo_Do.do" class="menu-item">캘린더 & To-Do</a>
-        <a href="${pageContext.request.contextPath}/team/teamBoard.do" class="menu-item">팀 게시판</a>
-        <a href="${pageContext.request.contextPath}/team/teamSetting.do" class="menu-item">팀 설정</a>
+        <a href="${pageContext.request.contextPath}/team/teamTo_Do.do?team_num=${team_num}" class="menu-item">캘린더 & To-Do</a>
+        <a href="${pageContext.request.contextPath}/team/teamBoardList.do?team_num=${team_num}" class="menu-item">팀 게시판</a>
+        <a href="${pageContext.request.contextPath}/team/teamSetting.do?team_num=${team_num}" class="menu-item">팀 설정</a>
         <!-- 다른 메뉴 항목들 추가 -->
     </div>
 </div>
