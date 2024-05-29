@@ -32,10 +32,10 @@ public class MyTeamAction implements Action{
 		//모집 게시물 정보
 		RboardDAO rboardDAO = RboardDAO.getInstance();
 		//List 반환
-		List<RboardVO> rboardList = rboardDAO.getRboardListByMemNum(mem_num);
+		//List<RboardVO> rboardList = rboardDAO.get
 		
 		request.setAttribute("member", member);
-		request.setAttribute("rboardList", rboardList);
+		//request.setAttribute("rboardList", rboardList);
 		
 		TmemberDAO tdao = TmemberDAO.getInstance();
 		TmemberVO tmember = tdao.getTmember(mem_num);

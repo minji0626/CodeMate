@@ -33,7 +33,7 @@
 <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;">
 <div class="team-left">
 <div class="skill_font_T">${member.mem_nickname}</div>
-<div class="projectName_font">${rboardList.rb_endrecruit}</div>
+<div class="projectName_font">${rboardList.}</div>
 </div>
 <div class="team-right">
 <div class="delete-green-box">
