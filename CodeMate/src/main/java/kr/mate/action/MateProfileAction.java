@@ -1,10 +1,14 @@
 package kr.mate.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+ 
 import kr.controller.Action;
+import kr.mate.dao.MateDAO;
+import kr.mate.vo.MateVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 
@@ -27,8 +31,13 @@ public class MateProfileAction implements Action {
         
         MemberVO mem = dao.getMember(mem_num);
         
+        MateDAO mateDAO = MateDAO.getInstance();
+        List<MateVO> hardSkillList = null;
+        hardSkillList = mateDAO.getListMatHardSkill(mem_num);
+        
         request.setAttribute("mem", mem);
         request.setAttribute("member", member);
+        request.setAttribute("hardSkillList", hardSkillList);
         
 		return "/WEB-INF/views/mateProfile/mateProfile.jsp";    
 	}

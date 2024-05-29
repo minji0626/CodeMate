@@ -219,3 +219,33 @@
     margin-top: 0px;
     margin-left: 10px;    
 }
+
+
+
+
+.hskill-photo {
+	width: 25px;
+	height: 25px;
+	object-fit: cover;
+	border-radius: 50px;
+	vertical-align: middle;
+}
+
+
+.option-container {
+	display:inline-block;
+	margin-left:10px;
+    margin-top: 10px;
+    border: none;
+}
+
+.option-item {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #505050;
+    border: none;
+    border-radius: 5px;
+    font-size: 9pt;
+    color:white;
+}

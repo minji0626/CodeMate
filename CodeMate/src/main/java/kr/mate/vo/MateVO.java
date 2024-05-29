@@ -19,6 +19,30 @@ public class MateVO {
 	private int mr_receiver;		// 리뷰 받는 사람
 	private Date mr_regDate;		// 리뷰 작성일
 	private String mr_content;		// 리뷰 내용
+	
+	// 하드스킬
+	private String hs_name;
+	private int hs_category; //1:프론트엔드, 2:백엔드, 3:데이터, 4:모바일, 5:인프라
+	private String hs_photo;
+	
+	public String getHs_name() {
+		return hs_name;
+	}
+	public void setHs_name(String hs_name) {
+		this.hs_name = hs_name;
+	}
+	public int getHs_category() {
+		return hs_category;
+	}
+	public void setHs_category(int hs_category) {
+		this.hs_category = hs_category;
+	}
+	public String getHs_photo() {
+		return hs_photo;
+	}
+	public void setHs_photo(String hs_photo) {
+		this.hs_photo = hs_photo;
+	}
 	public int getMh_num() {
 		return mh_num;
 	}

@@ -78,11 +78,16 @@
 							<div id="scrollable_trigger" class="hs-select">하드 스킬을 선택해주세요.</div>
 							<ul class="scrollable">
 								<c:forEach var="hskill" items="${hskillList}">
-									<li class="block">
-										<input type="checkbox" name="mh_num" id="mh_num_${hskill.hs_code}" value="${hskill.hs_code}">
-										<label for="mh_num_${hskill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">${hskill.hs_name}</label>
-									</li>
-								</c:forEach>
+							       <li class="block">
+							            <input type="checkbox" name="hs_codes" id="hs_codes_${hskill.hs_code}" value="${hskill.hs_code}" 
+							                <c:if test="${checkedHardSkills.contains(hskill.hs_code)}">checked</c:if>>
+							            <label for="hs_codes_${hskill.hs_code}">
+							                <img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">
+							                ${hskill.hs_name}
+							            </label>
+							        </li>
+							    </c:forEach>
+
 							</ul>
                             <div id="hs-options" class="option-container"></div>
                         </div>
@@ -133,7 +138,7 @@
     </div>
 </div>
 <script type="text/javascript">
-document.querySelectorAll('input[name="mh_num"]').forEach(checkbox => {
+document.querySelectorAll('input[name="hs_codes"]').forEach(checkbox => {
     checkbox.addEventListener('change', function(event) {
         const option = event.target;
         const container = document.getElementById('hs-options');
@@ -158,7 +163,8 @@ document.querySelectorAll('input[name="mh_num"]').forEach(checkbox => {
                 });
 
                 optionDiv.appendChild(removeBtn);
-                container.appendChild(optionDiv);
+                // 새로운 div가 마지막에 추가되도록 appendChild 대신 insertBefore 사용
+                container.insertBefore(optionDiv, null);
 
                 option.disabled = true; // 체크박스 비활성화
             }
@@ -168,6 +174,49 @@ document.querySelectorAll('input[name="mh_num"]').forEach(checkbox => {
     });
 });
 
+// 추가된 하드 스킬에 대해 처리하는 함수
+function handleAddedHardSkills() {
+    const container = document.getElementById('hs-options');
+    const checkboxes = document.querySelectorAll('input[name="hs_codes"]:checked');
+    
+    checkboxes.forEach(checkbox => {
+        const value = checkbox.value;
+        const label = checkbox.nextElementSibling.textContent.trim();
+        let optionDiv = document.querySelector(`#hs-options [data-value="${value}"]`);
+
+        if (!optionDiv) {
+            optionDiv = document.createElement('div');
+            optionDiv.classList.add('option-item');
+            optionDiv.setAttribute('data-value', value);
+            optionDiv.textContent = label;
+
+            const removeBtn = document.createElement('span');
+            removeBtn.classList.add('remove-btn');
+            removeBtn.textContent = 'X';
+
+            removeBtn.addEventListener('click', function() {
+                checkbox.checked = false;
+                checkbox.disabled = false; // 체크박스 해제 후 다시 활성화
+                optionDiv.remove();
+            });
+
+            optionDiv.appendChild(removeBtn);
+            // 새로운 div가 마지막에 추가되도록 appendChild 대신 insertBefore 사용
+            container.insertBefore(optionDiv, null);
+
+            checkbox.disabled = true; // 체크박스 비활성화
+        }
+    });
+}
+
+// 페이지 로드 시 추가된 하드 스킬에 대한 처리 실행
+handleAddedHardSkills();
+
+document.getElementById('mpModifyForm').addEventListener('submit', function() {
+    document.querySelectorAll('input[name="hs_codes"]:disabled').forEach(checkbox => {
+        checkbox.disabled = false; // 폼 제출 전에 체크박스를 다시 활성화
+    });
+});
 
 
 // 소프트스킬 셀렉트 박스 이벤트 리스너
