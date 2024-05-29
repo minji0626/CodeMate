@@ -400,7 +400,6 @@ public class RboardDAO {
     	ResultSet rs = null;
     	List<RboardVO> list = null;
     	String sql = null;
-    	int count = 0;
     	
     	try {
     		conn = DBUtil.getConnection();

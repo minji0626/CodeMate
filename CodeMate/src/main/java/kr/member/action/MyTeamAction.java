@@ -31,15 +31,18 @@ public class MyTeamAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(mem_num);
 		 
-		//List 반환
+		//모집 게시물 정보
 		RboardDAO rboardDAO = RboardDAO.getInstance();
+		//List 반환
 		List<RboardVO> rboardList = rboardDAO.getTeamList(mem_num);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("rboardList", rboardList);
 		
 		TmemberDAO tdao = TmemberDAO.getInstance();
-		TmemberVO tmember = tdao.get
+		TmemberVO tmember = tdao.getTmember(mem_num);
+		
+		request.setAttribute("tmember", tmember);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myTeam.jsp";
