@@ -11,6 +11,7 @@ import kr.rboard.vo.RboardVO;
 import kr.rboard.vo.RcommentVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
+import kr.util.StringUtil;
 
 public class RboardDAO {
 	private static RboardDAO instance = new RboardDAO();
@@ -344,7 +345,7 @@ public class RboardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rcomment.getMem_num());
 			pstmt.setInt(2, rcomment.getRb_num());
-			pstmt.setString(3, rcomment.getRc_content());
+			pstmt.setString(3, StringUtil.useBrNoHTML(rcomment.getRc_content()));
 
 			pstmt.executeUpdate();
 

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 import kr.controller.Action;
 import kr.rboard.dao.RboardDAO;
 import kr.rboard.vo.RcommentVO;
@@ -34,6 +36,11 @@ public class DeleteCommentAction implements Action {
 		} else { //로그인한 회원번호와 작성자 회원번호 불일치
 			mapAjax.put("result", "wrongAccess");
 		}
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String ajaxData = mapper.writeValueAsString(mapAjax);
+		
+		request.setAttribute("ajaxData", ajaxData);
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
