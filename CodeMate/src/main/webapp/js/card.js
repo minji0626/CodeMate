@@ -2,11 +2,13 @@ var slides = document.querySelector('.wrapper'),
   slide = document.querySelectorAll('.mini'),
   prevBtn = document.querySelector('.p'),
   nextBtn = document.querySelector('.n'),
-currentIdx = 0,
-  slideCount = slide.length,//기존 슬라이드 개수(6)
+  currentIdx = 0,
+  slideCount = slide.length,//기존 슬라이드 개수(4)
   slideWidth = 250,//슬라이드 이미지 넓이
-  slideMargin = 40,//좌우마진있어서 *2함
+  slideMargin = 40,//좌,우 마진있어서 * 2함
+  position = 0,
 
+  move = 0,
   AllSlideCount = slideCount * 3, //전체 슬라이드 개수
 
   newWidth = (slideWidth+slideMargin+12) * AllSlideCount  + 'px';//wrapper 너비
@@ -34,42 +36,43 @@ function makeClone(){
    
    //전체 슬라이드의 길이를 구해 wrapper의 길이로 넣어야 가로로 정렬이 됨
    slides.style.width = newWidth;
+   position = -((slideWidth+slideMargin) * slideCount);//290 * 4 = 1160
+  //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
+  slides.style.transform = 'translateX('+ position +'px)';//x축 -1160px
    
-   //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
-   slides.style.transform = 'translateX('+ -((slideWidth+slideMargin) * slideCount) +'px)';
   
 }
 
-/* 무한루프 */
-function moveSlide(num){
-		currentIdx = num;
-		console.log(currentIdx, -(slideWidth +slideMargin) * num);
-	  
-	  /* 좌,우 이동방향 */	
-	  if(currentIdx > 0 ){//다음
-		  slides.style.transform = 'translateX(' + -(slideWidth +slideMargin) * num + 'px)';
-	  }else if(currentIdx < 0){//이전
-	  		 currentIdx * -1;
-		  slides.style.transform = 'translateX(' + (slideWidth +slideMargin) * num + 'px)';
-	  }/* ??????뭐임 왜  */
-      
-      /* 다시 돌아옴 */
-      if(currentIdx == slideCount){//4인 경우
-         slides.style.left = -(slideWidth +slideMargin)+'px';
-         currentIdx = 0;
-      }else if(currentIdx == -slideCount){//-4인 경우
-         slides.style.transform = 'translateX('+ (slideWidth +slideMargin)* num + 'px)';
-         currentIdx = 0;
-      }
-}
+/*------------------------------------------------------------------*/
 
 /* 버튼 */
-nextBtn.addEventListener('click', function () {
+nextBtn.addEventListener('click', function () {//다음->왼쪽으로 이동->x축 마이너스로 이동
    moveSlide(currentIdx + 1);//currentIdx 는 양수가 됨
 });
 
-prevBtn.addEventListener('click', function () {
+prevBtn.addEventListener('click', function () {//이전->x축 플러스로 이동
    moveSlide(currentIdx - 1);//currentIdx 는 음수가 됨
 });
+
+/* 무한루프 */
+function moveSlide(num){
+	 currentIdx = num;
+	  
+	  /* 좌,우 이동방향 */	
+	  /* 다음은 -, 이전은 + 로 이동 */
+	  move = position + (-(slideWidth +slideMargin) * currentIdx) ;//다음1번)-290,
+	  
+	  slides.style.transform = 'translateX(' + move + 'px)';
+	  
+	  
+      /* 다시 돌아옴 */
+      if(currentIdx == slideCount+1 || currentIdx == -(slideCount+1)){//4이거나 -4인 경우
+         slides.style.transform = 'translateX('+ position +'px)';
+            currentIdx = 0;
+      }
+      
+      console.log(currentIdx,position ,slides.style.transform);
+}
+
 
 
