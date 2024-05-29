@@ -52,6 +52,7 @@ public class TmemberDAO {
     	return tmember;
     }
 	
+	// team_setting에서 사용되는 팀멤버 count 하기
 	public int getTmemberCount (int team_num) throws Exception{
 		Connection conn = null;
 	    PreparedStatement pstmt = null;

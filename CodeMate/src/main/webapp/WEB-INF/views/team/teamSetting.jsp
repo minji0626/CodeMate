@@ -16,13 +16,39 @@
 <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
+    
+    <c:if test="${param.team_num != team_num }">
+    <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
+    	잘못된 접근입니다.
+    </div>
+    </c:if>
+    
+    <c:if test="${param.team_num == team_num }">
     <div id="mem_container">
         <input type="hidden" name="team_num" value="${param.team_num}">
+        
+         <div class="mem_personal">
+        <ul>
+            <li><img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="team_mem_profile_img"></li>
+            <li><span class="team_mem_status">팀원</span></li>
+            <li><span class="team_mem_nickname" data-memnum="${mem_num }" data-nickname="${mem_nickname }" data-id="${mem_id }" data-level="3">${mem_nickname }</span></li>
+			<li>
+                <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
+                <div class="dropdown_menu">
+                   <a class="review-link">리뷰 쓰기</a>
+                    <a href="#" id="mem_delete_btn">팀원 삭제</a>
+                    <a href="#" id="mem_auth_btn">팀장 위임</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+        
         <c:if test="${count == 0}">
             저장된 정보가 없습니다.
         </c:if>
         <c:if test="${count > 0}">
-            <c:forEach items="${list}" var="member">
+        <!-- 팀원 목록 출력! -->
+            <c:forEach items="${list}" var="tmember">
                 <div class="mem_personal">
                     <ul>
                         <li>
@@ -52,7 +78,9 @@
             </c:forEach>
         </c:if>
     </div>
+    </c:if>
 </div>
+
 <div id="mate_review" style="display:none;">
     <div class="mate_review_window">
         <div class="mate_review_title">
