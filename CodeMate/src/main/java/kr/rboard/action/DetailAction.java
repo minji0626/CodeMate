@@ -21,10 +21,6 @@ public class DetailAction implements Action {
 		
 		RboardVO rboard = rdao.getrboard(rb_num);
 		
-		rboard.setHs_photo_arr(rboard.getHs_photo_string().split(","));
-		rboard.setHs_name_arr(rboard.getHs_name_string().split(","));
-		rboard.setF_name_arr(rboard.getF_name_string().split(","));
-		
 		rboard.setRb_content(StringUtil.useBrNoHTML(rboard.getRb_content()));
 
 		request.setAttribute("rboard", rboard);

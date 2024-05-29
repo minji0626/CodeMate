@@ -22,11 +22,8 @@ public class RboardVO {
 	
     private String[] r_skills;	//요구기술 list
     private String[] r_fields;	//모집필드 list
-    
-	private String hs_name_string; //요구기술 이름 list string화
-	private String hs_photo_string; //요구기술 이름 list string화
-	private String f_name_string; //모집필드 이름 list string화
 	
+    //요구기술, 모집필드 이름 및 사진 변수 배열
 	private String[] hs_name_arr;
 	private String[] hs_photo_arr;
 	private String[] f_name_arr;
@@ -118,18 +115,6 @@ public class RboardVO {
 	public void setR_fields(String[] r_fields) {
 		this.r_fields = r_fields;
 	}
-	public String getHs_name_string() {
-		return hs_name_string;
-	}
-	public void setHs_name_string(String hs_name_string) {
-		this.hs_name_string = hs_name_string;
-	}
-	public String getHs_photo_string() {
-		return hs_photo_string;
-	}
-	public void setHs_photo_string(String hs_photo_string) {
-		this.hs_photo_string = hs_photo_string;
-	}
 	public String[] getHs_name_arr() {
 		return hs_name_arr;
 	}
@@ -141,12 +126,6 @@ public class RboardVO {
 	}
 	public void setHs_photo_arr(String[] hs_photo_arr) {
 		this.hs_photo_arr = hs_photo_arr;
-	}
-	public String getF_name_string() {
-		return f_name_string;
-	}
-	public void setF_name_string(String f_name_string) {
-		this.f_name_string = f_name_string;
 	}
 	public String[] getF_name_arr() {
 		return f_name_arr;

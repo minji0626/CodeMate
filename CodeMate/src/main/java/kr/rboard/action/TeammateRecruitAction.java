@@ -40,9 +40,6 @@ public class TeammateRecruitAction implements Action {
 		String r_skills[] = request.getParameterValues("r_skills");
 		String r_fields[] = request.getParameterValues("r_fields");
 		
-		for (String r_skill : r_skills) {
-			System.out.println(r_skill);
-		}
 		rboard.setR_skills(r_skills);
 		rboard.setR_fields(r_fields);
 		
