@@ -22,6 +22,7 @@
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/rboardDetail.js"></script>
+<script src="${pageContext.request.contextPath}/js/rboardComment.js"></script>
 
 <body id="modal_background">
 	<div class="page-container">
@@ -111,26 +112,32 @@
 					</div>
 				</div>
 			</div>
-			<div class="comments">
+			<%-- 댓글 섹션 --%>
+			<div id="comments_container">
 				<h4>
 					댓글 <span>2</span>
 				</h4>
-				<form id="comment_form" action="">
-					<img src="../images/face.png" class="profile-photo">
-					<textarea name="rc_content" id="rc_content"
-						placeholder="댓글을 입력하세요." cols="100" rows="6"></textarea>
-					<div class="align-right">
-						<input type="submit" value="댓글 등록">
-					</div>
-				</form>
-				<hr size="1" width="100%">
-				<div class="comment-item">
-					<div class="comment-item-header">
-						<img src="../images/face.png" class="profile-photo"> <span>닉네임</span>
-						<span>30분전</span>
-					</div>
-					<p>와!! 이 프로젝트... 궁금한게 있는데 오픈카톡 좀 주실 수 있나요?</p>
+				<%-- 새 댓글창 --%>
+				<div id="new_comment">
+					<form id="comment_form">
+						<img src="../images/face.png" class="profile-photo">
+						<input type="hidden" name="rb_num" value="${rboard.rb_num}" >
+						<textarea name="rc_content" id="rc_content"
+							placeholder="댓글을 입력하세요." cols="100" rows="6"></textarea>
+						<div class="align-right">
+							<input type="submit" value="댓글 등록">
+						</div>
+					</form>
 				</div>
+				<hr size="1" width="100%">
+				<%-- 댓글 목록 --%>
+				<div id="comments_list">
+				
+				</div>
+				
+				
+				
+				
 				<div class="comment-item">
 					<div class="comment-item-header">
 						<img src="../images/face.png" class="profile-photo"> <span>아이스아메리카노</span>

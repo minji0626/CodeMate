@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import kr.rboard.vo.RapplyVO;
 import kr.rboard.vo.RboardVO;
+import kr.rboard.vo.RcommentVO;
 import kr.util.DBUtil;
 
 public class RboardDAO {
@@ -329,6 +328,70 @@ public class RboardDAO {
 		}
 
 		return alreadyApplied;
+	}
+	
+	//댓글 등록
+	public void writeComment(RcommentVO rcomment) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO r_comment(rc_num,mem_num,rb_num,rc_content) VALUES(r_comment_seq.nextval,?,?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rcomment.getMem_num());
+			pstmt.setInt(2, rcomment.getRb_num());
+			pstmt.setString(3, rcomment.getRc_content());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//댓글 목록
+	public List<RcommentVO> getRcommentList(int rb_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RcommentVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT c.*, m.mem_nickname, m.mem_photo FROM r_comment c LEFT OUTER JOIN"
+					+ " member_detail m ON(c.mem_num = m.mem_num) WHERE rb_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<RcommentVO>();
+			while (rs.next()) {
+				RcommentVO rcomment = new RcommentVO();
+				rcomment.setRc_num(rs.getInt("rc_num"));
+				rcomment.setRb_num(rs.getInt("rb_num"));
+				rcomment.setMem_num(rs.getInt("mem_num"));
+				rcomment.setRc_content(rs.getString("rc_content"));
+				rcomment.setMem_photo(rs.getString("mem_photo"));
+				rcomment.setMem_nickname(rs.getString("mem_nickname"));
+				rcomment.setRc_reg_date(rs.getDate("rc_reg_date"));
+				rcomment.setRc_modify_date(rs.getDate("rc_modify_date"));
+				list.add(rcomment);
+			}
+		} catch (Exception e) {
+			throw new Exception();
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
 	}
 
 }
