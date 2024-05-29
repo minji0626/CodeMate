@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$('.feather-arrow-left').click(function() {
-		history.go(-1);
+		location.href='list.do';
 	});
 	
 });

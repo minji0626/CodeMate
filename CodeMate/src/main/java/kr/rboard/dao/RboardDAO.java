@@ -294,6 +294,37 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//이미 신청한 글인지 확인
+	public boolean alreadyApplied(int rb_num, int mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean alreadyApplied = false;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT ra_num FROM r_apply WHERE rb_num=? AND mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+			pstmt.setInt(2, mem_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				alreadyApplied = true;
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return alreadyApplied;
+	}
 
 }
 

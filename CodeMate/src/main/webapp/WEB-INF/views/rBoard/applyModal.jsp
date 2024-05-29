@@ -21,8 +21,8 @@
                         <textarea id="ra_content" name="ra_content"></textarea>
                         <!-- 버튼 -->
 		                <div class="btn-div">
-		                    <input type="submit" id="apply_btn" value="신청" >
-		                    <div class="r_apply_close" id="close_btn">
+		                    <input type="submit" id="apply_btn" value="신청" class="btn" >
+		                    <div class="r_apply_close btn" id="close_btn">
 		                        <span>취소</span>
 		                    </div>
 		                </div>

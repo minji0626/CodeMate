@@ -94,6 +94,7 @@
 
 /*메이트 프로필 모달 창 제목의 닫기 버튼*/
 .r_apply_close {
+	margin-right: 5px;
 	cursor: pointer;
 	color: black;
 }
@@ -118,15 +119,6 @@
 }
 
 /*메이트 프로필에 쓰이는 내용란 (회색 박스) DIV*/
-.ra_content {
-	border-radius: 8px;
-	background: #e0e0e0;
-}
-
-.ra_content p {
-	padding: 15px;
-}
-
 #ra_content {
 	border-radius: 8px;
 	background: #e0e0e0;
@@ -136,13 +128,19 @@
 	width: 535px;
 	height: 300px;
 	margin: 0 auto;
+	resize: none;
+}
+
+
+.ra_content p {
+	padding: 15px;
 }
 
 /*****************************/
 /*버튼*/
 .btn-div {
 	display: flex;
-	justify-content: space-between; /* 두 버튼을 좌우로 나란히 정렬합니다 */
+	justify-content: center; /* 두 버튼을 좌우로 나란히 정렬합니다 */
 	align-items: center; /* 버튼을 수직으로 중앙 정렬합니다 */
 	margin-top: 25px;
 	margin-bottom: 40px;
@@ -150,26 +148,26 @@
 
 /*닫기 버튼*/
 #close_btn, #apply_btn {
-	background: black;
-	width: 320px;
-	height: 50px;
+	width: 100px;
+	height: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	border: 1px solid #000;
 	border-radius: 30px;
 	margin: 0 10px; /* 버튼 간격을 조정합니다 */
+	font-size: 11pt;
 }
 
 #close_btn {
-	margin-right: 10px;
+	background: white;
+	margin-left: 10px;
+	color: black;
 }
 
 #apply_btn {
-	margin-left: 10px;
-}
-
-#close_btn span, #apply_btn {
+	background: black;
+	margin-right: 10px;
 	color: white;
-	font-size: 14pt;
 }

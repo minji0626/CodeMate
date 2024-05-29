@@ -14,6 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+		<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/kbr.css" type="text/css">
 	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/rboardDetail.css" type="text/css">
 </head>
@@ -45,10 +47,10 @@
 						<span>${rboard.mem_nickname}</span>
 						<span>${rboard.rb_reg_date}(작성일자)</span> 
 						<c:if test="${mem_num == rboard.mem_num}">
-						<input type="button" value="수정하기" id="modify_btn" class="btn" onclick='location.href="modifyForm.do"'>
+						<input type="button" value="수정하기" id="modify_btn" class="btn-basic btn" onclick='location.href="modifyForm.do"'>
 						</c:if>
 						<c:if test="${mem_num != rboard.mem_num}">
-						<input type="button" value="신청하기" id="btn-modal" class="btn">
+						<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn">
 						<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
 						</c:if>
 					</div>
