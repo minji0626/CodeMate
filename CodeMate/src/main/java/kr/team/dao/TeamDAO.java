@@ -38,7 +38,7 @@ public class TeamDAO {
         }
     }
     
-    
+    //public 
     
     
     // 팀 불러오기
