@@ -60,18 +60,17 @@ function moveSlide(num){
 	  
 	  /* 좌,우 이동방향 */	
 	  /* 다음은 -, 이전은 + 로 이동 */
-	  move = position + (-(slideWidth +slideMargin) * currentIdx) ;//다음1번)-290,
-	  
+	  move = position + (-(slideWidth +slideMargin) * currentIdx) ;
 	  slides.style.transform = 'translateX(' + move + 'px)';
-	  
+	  /* transform='translate'는 명시된 거리만큼 이동함
+	  	여기서는 이미 postion만큼 이동한 상태여서 그런지 position의 위치에서 플러스로 더 이동하지 않고
+	  	0에서부터 이동하는 것처럼 동작되어서 position을 더한 값을 거리로 잡음 */
 	  
       /* 다시 돌아옴 */
-      if(currentIdx == slideCount+1 || currentIdx == -(slideCount+1)){//4이거나 -4인 경우
+      if(currentIdx == slideCount || currentIdx == -slideCount){//4이거나 -4인 경우
          slides.style.transform = 'translateX('+ position +'px)';
             currentIdx = 0;
       }
-      
-      console.log(currentIdx,position ,slides.style.transform);
 }
 
 

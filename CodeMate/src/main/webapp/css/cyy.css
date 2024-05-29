@@ -3,7 +3,8 @@
 /* 카드 슬라이드 */
 #mini-card {/* 1 */
    position:relative;
-   top:70px; left:80px;
+   top:70px; 
+   margin:0 auto;
    width:90%; 
 }
 .w{/* 설명글 */
@@ -11,7 +12,7 @@
 }
 
 .mini-container {/* 보여지는 창 */
-   overflow:hidden; 
+   /* overflow:hidden; */ 
    height:300px;
    border:1px solid;
    width:1180px;
@@ -21,7 +22,7 @@
 }   
 
 .content{/* 이미지 */
-   height:250px;
+   height:300px;
    float:left;
    width:250px;
    margin:0 20px;
