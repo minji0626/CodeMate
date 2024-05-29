@@ -39,10 +39,10 @@ $(document).ready(function() {
     <option value="option3">자유</option>
 </select>
 
-<c:forEach var="변수" items="${변수}">
+<%-- <c:forEach var="변수" items="${변수}"> --%>
     <div class="myPage-line-box">
     <div class="team-left">
-        <div class="board_name">게시판 이름</div>
+        <div class="board_name">자유게시판</div>
         <div class="projectName_font">내가 쓴 글 제목</div>
         <div class="fav-reply">
             <div class="myWrite-fav">좋아요</div>
@@ -54,7 +54,7 @@ $(document).ready(function() {
         <input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
     </div>
     </div>
-</c:forEach>   
+<%-- </c:forEach>   --%> 
 
 </div>
 <!-- 메인 정보 수정 끝 -->

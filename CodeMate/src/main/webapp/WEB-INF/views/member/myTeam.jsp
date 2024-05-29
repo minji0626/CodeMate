@@ -29,16 +29,16 @@
 
 <!-- <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;"> -->
 
-<%-- <c:forEach var="rboard" items="${rboardList}">--%>
+<%-- <c:forEach var="rboard" items="${rboardList}"> --%>
 <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;">
 <div class="team-left">
 <div class="skill_font_T">${member.mem_nickname}</div>
-<div class="projectName_font">${rboardList.}</div>
+<div class="projectName_font">${member.mem_nickname}</div>
 </div>
 <div class="team-right">
 <div class="delete-green-box">
 </div>
-<div>모집마감:${rboard.rb_endRecruit}</div>
+<div>모집마감:${member.mem_nickname}</div>
 </div>
 </div>
 <%-- </c:forEach> --%>

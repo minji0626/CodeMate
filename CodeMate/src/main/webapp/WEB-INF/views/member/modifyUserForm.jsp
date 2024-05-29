@@ -31,9 +31,18 @@ $(function(){
             idField2.value = originalId;
             return false;
         }
+        
         const idField3 = document.getElementById('mem_email');
-        if(idField3.value.trim() == ''){
+        const emailValue = idField3.value.trim();
+
+        if (emailValue === '') {
             alert('이메일 필수 입력');
+            idField3.focus();
+            return false;
+        }
+
+        if (emailValue.indexOf('@') === -1) {
+            alert('이메일 형식이 올바르지 않습니다.');
             idField3.focus();
             return false;
         }
@@ -45,8 +54,15 @@ $(function(){
         }
         
         const idField5 = document.getElementById('mem_phone');
-        if(idField5.value.trim() == ''){
-            alert('전화번호 필수 입력');
+        const phoneNumber = idField5.value.replace(/-/g, ''); // 하이픈 제외한 숫자만 추출
+
+        if (phoneNumber.length !== 11) {
+            if (phoneNumber.length === 0) {
+                alert('전화번호 필수 입력');
+            } else {
+                alert('하이픈 제외 숫자 11자 입력 필수');
+            }
+            idField5.value = '';
             idField5.focus();
             return false;
         }
