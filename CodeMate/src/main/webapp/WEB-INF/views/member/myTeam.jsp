@@ -27,7 +27,7 @@
 	<h3 class="mYPage-TitleText">참여중인 팀</h3>
 </div>
 
-<c:forEach var="team" items="${teamList}"><!-- 이게 아닌디 -->
+<%-- <c:forEach> --%>
 <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;">
 <div class="team-left">
 <div class="skill_font_T">백엔드</div>
@@ -39,7 +39,7 @@
 <div>진행 기간 2024.05.23~2024.06.10</div>
 </div>
 </div>
-</c:forEach>
+<%-- </c:forEach> --%>
 
 
 </div>

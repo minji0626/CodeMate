@@ -31,10 +31,10 @@ public class MyTeamAction implements Action{
 		TeamDAO teamDAO = TeamDAO.getInstance();
 		//List 반환
 		int team_num = Integer.parseInt(request.getParameter("team_num"));
-		List<TeamVO> teamList = teamDAO.getTeamListByMemNum(mem_num,team_num);
+		//List<TeamVO> teamList = teamDAO.getTeamList(mem_num,team_num);
 		
 		request.setAttribute("member", member);
-		request.setAttribute("teamList", teamList);
+		//request.setAttribute("teamList", teamList);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myTeam.jsp";
