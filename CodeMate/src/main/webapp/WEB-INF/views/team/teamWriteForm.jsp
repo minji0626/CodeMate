@@ -29,6 +29,12 @@ window.onload = function(){
             content.focus();
             return false;
         };
+        
+        const radio = document.querySelectorAll('input[type=radio]:checked');
+		if(radio.length < 1){
+			alert('글 종류를 선택해주세요.');
+			return false;
+		};
 
     };
 };
@@ -55,8 +61,8 @@ window.onload = function(){
                 <textarea rows="14" name="tb_content" id="tb_content" class="form-control"></textarea>
             </div>
             <div class="form-group">
-                <label for="filename">이미지</label>
-                <input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg" class="form-control">
+                <label for="tb_file">이미지</label>
+                <input type="file" name="tb_file" id="tb_file" accept="image/gif,image/png,image/jpeg" class="form-control">
             </div>
             <div class="form-actions">
                 <input type="submit" value="등록" class="btn btn-primary">

@@ -27,7 +27,7 @@ public class TboardWriteAction implements Action{
 		tboard.setTb_title(request.getParameter("tb_title"));
 		tboard.setTb_content(request.getParameter("tb_content"));
 		tboard.setTb_auth(Integer.parseInt(request.getParameter("tb_auth")));
-		tboard.setTb_file(FileUtil.createFile(request, "filename"));
+		tboard.setTb_file(FileUtil.createFile(request, "tb_file"));
 		tboard.setTeam_num(team_num);
 		tboard.setMem_num(mem_num);
 		

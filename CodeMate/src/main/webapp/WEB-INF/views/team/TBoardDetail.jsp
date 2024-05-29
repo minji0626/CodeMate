@@ -55,7 +55,7 @@
 					</span>
 				    
 				    <c:if test="${mem_num == tboard.mem_num }">
-        			<button id="modify_btn" class="btn btn-primary list-action" onclick="location.href='.do'">수정</button>
+        			<button id="modify_btn" class="btn btn-primary list-action" onclick="location.href='${pageContext.request.contextPath}/team/teamUpdateForm.do?tb_num=${tboard.tb_num}'">수정</button>
 				    <button id="delete_btn" class="btn btn-primary list-action">삭제</button>
 						<script type="text/javascript">
 							const delete_btn = document.getElementById('delete_btn');

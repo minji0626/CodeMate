@@ -177,26 +177,28 @@ public class TboardDAO {
 		return tboard;
 	}
 	
-	
 	// 파일 삭제
-	public void deleteFile(int board_num) throws Exception {
+	public void deleteFile(int tb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
-			
+			sql = "UPDATE team_board SET tb_file='' WHERE tb_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tb_num);
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-
+			DBUtil.executeClose(null, pstmt, conn);
 		}
 		
 	}
 	
 	// 글 수정하기
-	public void updateTboard(TboardVO board) throws Exception {
+	public void updateTboard(TboardVO tboard) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -205,10 +207,23 @@ public class TboardDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
+			if(tboard.getTb_file()!=null && !"".equals(tboard.getTb_file())) {
+				sub_sql += ", tb_file=?";
+			}
+			sql = "UPDATE team_board SET tb_title=?,tb_content=?,tb_modify_date=SYSDATE, tb_auth=?"+sub_sql+" WHERE tb_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(++cnt, tboard.getTb_title());
+			pstmt.setString(++cnt, tboard.getTb_content());
+			pstmt.setInt(++cnt, tboard.getTb_auth());
+			if(tboard.getTb_file()!=null && !"".equals(tboard.getTb_file())) {
+				pstmt.setString(++cnt, tboard.getTb_file());
+			}
+			pstmt.setInt(++cnt, tboard.getTb_num());
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			
+			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 
@@ -221,6 +236,7 @@ public class TboardDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
+			sql="";
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
