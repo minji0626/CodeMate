@@ -13,22 +13,22 @@
 <div class="mini-container"> 
    <div class="wrapper">
       <div class="mini">
-         <img class="content" src="${pageContext.request.contextPath}/images/back1.png">
+         <div class="content">slide1</div>
       </div>
       <div class="mini">
-         <img class="content" src="${pageContext.request.contextPath}/images/back2.png">
+         <div class="content">slide2</div>
       </div>
       <div class="mini">
-         <img class="content" src="${pageContext.request.contextPath}/images/back3.png">
+         <div class="content">slide3</div>
       </div>
       <div class="mini">
-         <img class="content" src="${pageContext.request.contextPath}/images/back1.png">
+         <div class="content">slide4</div>
       </div>
       <div class="mini">
-         <img class="content" src="${pageContext.request.contextPath}/images/back2.png">
+         <div class="content">slide5</div>
       </div>
       <div class="mini">
-         <img class="content" src="${pageContext.request.contextPath}/images/back3.png">
+        <div class="content">slide6</div>
       </div>
     </div> 
    
