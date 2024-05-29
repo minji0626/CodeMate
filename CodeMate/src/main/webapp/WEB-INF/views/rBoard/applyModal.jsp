@@ -15,11 +15,13 @@
                 <!-- 신청하기 DIV -->
                 <div class="ra_content_div">
                     <h4>프로젝트 신청하기</h4>
-                    <form id="ra_form" action="">
-                        <textarea id="ra_content"></textarea>
+                    <form id="ra_form" action="apply.do" method="post">
+                    	<input type="hidden" name="rb_num" value="${rboard.rb_num}">
+                    	<input type="hidden" name="rb_title" value="${rboard.rb_title}">
+                        <textarea id="ra_content" name="ra_content"></textarea>
                         <!-- 버튼 -->
 		                <div class="btn-div">
-		                    <input type="submit" id="apply_btn" value="신청">
+		                    <input type="submit" id="apply_btn" value="신청" >
 		                    <div class="r_apply_close" id="close_btn">
 		                        <span>취소</span>
 		                    </div>
@@ -36,6 +38,8 @@
         const r_apply = document.getElementById("r_apply");
 
         function modalOn() {
+        	const background = document.getElementById("modal_background");
+        	background.classList.add("modal-on-background");
         	r_apply.style.display = "flex";
         }
 
@@ -44,6 +48,8 @@
         }
 
         function modalOff() {
+        	const background = document.getElementById("modal_background");
+        	background.classList.remove("modal-on-background");
         	r_apply.style.display = "none";
         }
 
