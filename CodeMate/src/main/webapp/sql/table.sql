@@ -87,7 +87,6 @@ CREATE TABLE MATE_EXP (
     mem_num NUMBER NOT NULL,
     me_title VARCHAR2(210) NOT NULL,
     me_content CLOB NOT NULL,
-    me_position VARCHAR2(90) NOT NULL,
     me_period NUMBER(3) NOT NULL,
     me_category NUMBER(1) NOT NULL,
     CONSTRAINT PK_MATE_EXP PRIMARY KEY (me_num),
