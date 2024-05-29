@@ -144,9 +144,8 @@
                     </div>
                 </div>
                 <!-- 닫기 버튼 -->
-                <div class="mp_view_close" id="close-btn">
-                <span>닫기</span>
-                </div>
+                <button class="mp_view_close" id="close-btn" onclick="location.href='/main/main.do'"> <span>닫기</span> </button>
+
             </div>
         </div>
     </div>
