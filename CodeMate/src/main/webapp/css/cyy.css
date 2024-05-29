@@ -11,19 +11,20 @@
 }
 
 .mini-container {/* 보여지는 창 */
-   overflow:hidden; 
+   /* overflow:hidden;  */
    height:300px;
+   border:1px solid;
 }  
  #miniwrapper {/* 움직이는 부분 */
-   height:250px;
+   height:300px;
 }   
 
-.content{
+.content{/* 이미지 */
    height:250px;
    float:left;
-   width:200px;
+   width:230px;
    margin-right:10px;
-    border:1px solid;
+   border:1px solid;
 } 
 
 .content .animated{

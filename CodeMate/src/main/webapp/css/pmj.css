@@ -157,7 +157,8 @@
 
 
 .styled-select {
-	margin-left:110px;
+	margin-left:85px;
+	margin-bottom: 5%;
 	text-align:center;
     background-color: #f0f0f0;
     border-radius: 30px;
@@ -200,6 +201,7 @@
 	border: 1px solid #8f8f8f;
 	margin: 0 auto;
 	cursor: pointer;
+	margin-bottom: 3%;
 }
 
 .myPage-line-box:hover {

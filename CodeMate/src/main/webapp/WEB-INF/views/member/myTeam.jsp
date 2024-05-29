@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -26,6 +27,7 @@
 	<h3 class="mYPage-TitleText">참여중인 팀</h3>
 </div>
 
+<c:forEach var="team" items="${teamList}"><!-- 이게 아닌디 -->
 <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;">
 <div class="team-left">
 <div class="skill_font_T">백엔드</div>
@@ -37,6 +39,8 @@
 <div>진행 기간 2024.05.23~2024.06.10</div>
 </div>
 </div>
+</c:forEach>
+
 
 </div>
 <!-- 메인 정보 수정 끝 -->

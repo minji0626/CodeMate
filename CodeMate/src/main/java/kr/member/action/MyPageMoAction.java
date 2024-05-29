@@ -1,5 +1,7 @@
 package kr.member.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,22 +27,18 @@ public class MyPageMoAction implements Action{
 		//로그인 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(mem_num);
-		//list에 반환된 데이터 정보를 띄우는거니까 상세보기 getboad가 지금 여기서 안필요함??
-		/*
-		 * 
-		 * RboardVO rboard = rdao.getrboard(mem_num);
-		 */
 		
-		//내가 쓴 모집글 메서드 불러오기 rboard에서 
+		//모집 게시물 정보
 		RboardDAO rboardDAO = RboardDAO.getInstance(); 
-		//list 반환
-		//request.setAttribute("", rboardDAO)
+		//List 반환
+		List<RboardVO> rboardList = rboardDAO.getRboardListByMemNum(mem_num);
 		
-		
-		//request.setAttribute("rboard", rboard);
+		request.setAttribute("member", member);
+		request.setAttribute("rboardList", rboardList);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPageMo.jsp";
+
 	}
 
 }

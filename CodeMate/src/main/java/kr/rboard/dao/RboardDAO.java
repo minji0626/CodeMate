@@ -175,9 +175,12 @@ public class RboardDAO {
 				rboard.setRb_start(rs.getString("rb_start"));
 				rboard.setRb_title(rs.getString("rb_title"));
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
-				rboard.setHs_name_string(rs.getString("hs_name"));
-				rboard.setHs_photo_string(rs.getString("hs_photo"));
-				rboard.setF_name_string(rs.getString("f_name"));
+
+				//요구기술, 모집필드 배열로 저장
+				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
+				rboard.setHs_photo_arr(rs.getString("hs_photo").split(","));
+				rboard.setF_name_arr(rs.getString("f_name").split(","));
+
 				list.add(rboard);
 			}
 
@@ -256,13 +259,15 @@ public class RboardDAO {
 				rboard.setRb_meet(rs.getInt("rb_meet"));
 				rboard.setRb_period(rs.getInt("rb_period"));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
-				rboard.setHs_name_string(rs.getString("hs_name"));
-				rboard.setHs_photo_string(rs.getString("hs_photo"));
-				rboard.setF_name_string(rs.getString("f_name"));
 				rboard.setRb_title(rs.getString("rb_title"));
 				rboard.setRb_content(rs.getString("rb_content"));
 				rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+				
+				//요구기술, 모집필드 배열로 저장
+				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
+				rboard.setHs_photo_arr(rs.getString("hs_photo").split(","));
+				rboard.setF_name_arr(rs.getString("f_name").split(","));
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -277,16 +282,16 @@ public class RboardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO r_apply (ra_num, rb_num, mem_num, ra_content) VALUES(r_apply_seq.nextval,?,?,?)";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rapply.getRb_num());
 			pstmt.setInt(2, rapply.getMem_num());
 			pstmt.setString(3, rapply.getRa_content());
-			
+
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -294,48 +299,36 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	//이미 신청한 글인지 확인
+
+	// 이미 신청한 글인지 확인
 	public boolean alreadyApplied(int rb_num, int mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		boolean alreadyApplied = false;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT ra_num FROM r_apply WHERE rb_num=? AND mem_num=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
 			pstmt.setInt(2, mem_num);
-			
+
 			rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				alreadyApplied = true;
 			}
-			
+
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
+
 		return alreadyApplied;
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

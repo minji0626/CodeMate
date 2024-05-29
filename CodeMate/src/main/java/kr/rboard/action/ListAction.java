@@ -36,12 +36,6 @@ public class ListAction implements Action {
 			rboardList = rdao.getRboardList(page.getStartRow(), page.getEndRow());
 		}
 		
-		for (RboardVO rboard : rboardList) {
-			rboard.setHs_name_arr(rboard.getHs_name_string().split(","));
-			rboard.setHs_photo_arr(rboard.getHs_photo_string().split(","));
-			rboard.setF_name_arr(rboard.getF_name_string().split(","));
-		}
-		
 		request.setAttribute("fieldList", fieldList);
 		request.setAttribute("rboardList", rboardList);
 		request.setAttribute("count", count);

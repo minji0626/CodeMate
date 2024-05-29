@@ -9,7 +9,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function() {
+    // '취소' 버튼 클릭 이벤트
+    $('.myDelete_btn').click(function(event) {
+        event.preventDefault(); // 기본 동작 방지
+        $(this).closest('.box').remove(); // 부모 요소인 .box 삭제
+    });
+});
+</script>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -21,31 +29,32 @@
 <!-- 사이드바 끝 -->
 <!-- 메인 정보 수정 -->
 <div class="float-C">
-<div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
-	<h3 class="mYPage-TitleText">내가 쓴 글</h3>
+<div class="align-center"><!-- myPage-TitleText만 가운데 정렬됨 -->
+    <h3 class="mYPage-TitleText">내가 쓴 글</h3>
 </div>
 
-    <select class="styled-select">
-        <option value="option1">전체</option>
-        <option value="option2">모집</option>
-        <option value="option3">자유</option>
-    </select>
+<select class="styled-select">
+    <option value="option1">전체</option>
+    <option value="option2">모집</option>
+    <option value="option3">자유</option>
+</select>
 
-<div class="box">
-<div class="box-wirte">
-<div class="myWrite-board-name">게시판 이름</div>
-<div class="myWrite-Title">내가 쓴 글 제목</div>
-<div class="fav-reply">
-<div class="myWrite-fav">좋아요</div>
-<div class="myWrite-reply">댓글</div>
-</div>
-</div>
-<div class="btn_box_write">
-	<input type="button" value="수정" class="myUpdate_btn" onclick="">
-	<input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
-</div>
 
-</div>
+    <div class="myPage-line-box">
+    <div class="team-left">
+        <div class="skill_font_T">게시판 이름</div>
+        <div class="projectName_font">내가 쓴 글 제목</div>
+    </div>
+        <div class="fav-reply">
+            <div class="myWrite-fav">좋아요</div>
+            <div class="myWrite-reply">댓글</div>
+        </div>
+    </div>
+    <div class="btn_box_write">
+        <input type="button" value="수정" class="myUpdate_btn" onclick="">
+        <input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
+    </div>
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->

@@ -91,9 +91,13 @@
                     <div class="mp_content_div skill-item">
                         <h4>하드스킬</h4>
                         <div class="mp_content_skill">
-                            <p>
-                                <!-- 내용 -->
-                            </p>
+                            <c:if test="${!empty hardSkillList}">
+                            	<c:forEach var="hs_skill" items="${hardSkillList}">
+                            		<div id="hs-options" class="option-container">
+                            			<label for="hs_code_${hs_skill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hs_skill.hs_photo}"><span class="option-item">${hs_skill.hs_name}</span></label>
+                            		</div>
+                            	</c:forEach>
+                            </c:if>
                         </div>
                     </div>
                     <!-- 소프트스킬 DIV -->

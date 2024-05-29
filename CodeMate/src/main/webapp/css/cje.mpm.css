@@ -249,6 +249,8 @@
 /*셀렉트*/
 /* 스킬 선택 셀렉트 박스 스타일 */
 .option-container {
+	display:inline-block;
+	margin-left:10px;
     margin-top: 10px;
     border: none;
 }
@@ -263,7 +265,6 @@
     font-size: 9pt;
     color:white;
 }
-
 .remove-btn {
     margin-left: 10px;
     color: #FF9090; /* 수정된 부분: X 버튼 색상 변경 */
