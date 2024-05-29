@@ -12,13 +12,14 @@
 }
 
 .mini-container {/* 보여지는 창 */
-   /* overflow:hidden; */ 
-   height:300px;
-   border:1px solid;
+   position:relative;
+   top:30px;
+   overflow:hidden; 
+   height:320px;
    width:1180px;
 }  
- #miniwrapper {/* 움직이는 부분 */
-   height:300px;
+ .wrapper {/* 움직이는 부분 */
+   height:320px;
 }   
 
 .content{/* 이미지 */
@@ -26,26 +27,37 @@
    float:left;
    width:250px;
    margin:0 20px;
-   border:1px solid;
+   border:2px solid #d4d4d4;
+   border-radius:10px;
+   background-color:#f0f0f0;
 } 
 
 .animated{
    transition:0.5s ease-out;
 }
 
-
-
+.p{
+	position:relative;
+	bottom:150px;
+}
+.n{
+	position:relative;
+	bottom:150px; left:1150px; 
+	
+}
 
 /* 더보기 */
-/* a#more{
-   position:absolute;
-   top:15px; left:1280px;
-} */
+ a#more{
+   position:relative;
+   top:20px; left:950px; 
+} 
 
 #back_btn{
+   width:50px;
    color:white;
    border-radius:20px;
    background-color:green;
+   padding:5px 15px;
 }
 
 /* 로그인화면*/

@@ -6,7 +6,7 @@
 <div id="mini-card">
 
 <div class="w">이번주 코메 인기글
-   <button id="back_btn">백엔드</button>
+   <div id="back_btn">백엔드</div>
    <a id="more" href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
 </div> 
 
