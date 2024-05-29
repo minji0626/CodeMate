@@ -60,7 +60,7 @@ a{
 	position: relative;
 }
 
-/* 프로필 사진 1:1비율 유지시키기 */
+/* 프로필 사진 */
 #profile-img {
 	margin: 15px auto;
 	border-radius: 50%;

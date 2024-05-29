@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_nav.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
