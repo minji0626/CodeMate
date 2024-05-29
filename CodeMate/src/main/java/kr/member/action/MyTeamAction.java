@@ -11,8 +11,6 @@ import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.rboard.dao.RboardDAO;
 import kr.rboard.vo.RboardVO;
-import kr.team.dao.TeamDAO;
-import kr.team.vo.TeamVO;
 import kr.tmember.dao.TmemberDAO;
 import kr.tmember.vo.TmemberVO;
 
@@ -34,7 +32,7 @@ public class MyTeamAction implements Action{
 		//모집 게시물 정보
 		RboardDAO rboardDAO = RboardDAO.getInstance();
 		//List 반환
-		List<RboardVO> rboardList = rboardDAO.getTeamList(mem_num);
+		List<RboardVO> rboardList = rboardDAO.getRboardListByMemNum(mem_num);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("rboardList", rboardList);
