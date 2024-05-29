@@ -157,7 +157,8 @@
 
 
 .styled-select {
-	margin-left:110px;
+	margin-left:85px;
+	margin-bottom: 5%;
 	text-align:center;
     background-color: #f0f0f0;
     border-radius: 30px;
