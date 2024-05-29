@@ -27,19 +27,20 @@
 	<h3 class="mYPage-TitleText">참여중인 팀</h3>
 </div>
 
-<%-- <c:forEach> --%>
+<!-- <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;"> -->
+
+<c:forEach var="rboard" items="${rboardList}">
 <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;">
 <div class="team-left">
-<div class="skill_font_T">백엔드</div>
-<div class="projectName_font">쇼핑몰 웹페이지 프로젝트 같이 하실분 구해요</div>
+<div class="skill_font_T">${rboard.rb_pj_title}</div>
 </div>
-
-<div class="team-right-myTeam">
-<div class="team-count">팀원:6명</div>
-<div>진행 기간 2024.05.23~2024.06.10</div>
+<div class="team-right">
+<div class="delete-green-box">
+</div>
+<div>모집마감:${rboard.rb_endRecruit}</div>
 </div>
 </div>
-<%-- </c:forEach> --%>
+</c:forEach>
 
 
 </div>

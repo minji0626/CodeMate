@@ -393,5 +393,27 @@ public class RboardDAO {
 		
 		return list;
 	}
+	//팀 프로젝트 불러오기
+    public List<RboardVO> getTeamList(int team_num)throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	List<RboardVO> list = null;
+    	String sql = null;
+    	int count = 0;
+    	
+    	try {
+    		conn = DBUtil.getConnection();
+    		sql = "SELECT rb_endrecruit, rb_pj_title FROM r_board WHERE rb_num=?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, team_num);
+    	}catch(Exception e) {
+    		throw new Exception(e);
+    	}finally {
+    		DBUtil.executeClose(rs, pstmt, conn);
+    	}
+    	
+    	return list;
+    }
 
 }

@@ -9,8 +9,12 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.rboard.dao.RboardDAO;
+import kr.rboard.vo.RboardVO;
 import kr.team.dao.TeamDAO;
 import kr.team.vo.TeamVO;
+import kr.tmember.dao.TmemberDAO;
+import kr.tmember.vo.TmemberVO;
 
 public class MyTeamAction implements Action{
 
@@ -26,15 +30,16 @@ public class MyTeamAction implements Action{
 		//로그인 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(mem_num);
-		
-		//내가 참여중인
-		TeamDAO teamDAO = TeamDAO.getInstance();
+		 
 		//List 반환
-		int team_num = Integer.parseInt(request.getParameter("team_num"));
-		//List<TeamVO> teamList = teamDAO.getTeamList(mem_num,team_num);
+		RboardDAO rboardDAO = RboardDAO.getInstance();
+		List<RboardVO> rboardList = rboardDAO.getTeamList(mem_num);
 		
 		request.setAttribute("member", member);
-		//request.setAttribute("teamList", teamList);
+		request.setAttribute("rboardList", rboardList);
+		
+		TmemberDAO tdao = TmemberDAO.getInstance();
+		TmemberVO tmember = tdao.get
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myTeam.jsp";
