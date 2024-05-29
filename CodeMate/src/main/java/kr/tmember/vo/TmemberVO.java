@@ -6,6 +6,30 @@ public class TmemberVO {
 	private int tm_auth;			// 팀 지위 (3 : 팀원 4: 팀장 (정지회원, 탈퇴회원은 팀테이블에서 삭제)
 	private int tm_review_status;	// 0: 안 씀 1: 씀 (default 0) => 다 써야만 완료한 프로젝트 카운트
 	
+	private String mem_nickname;
+	private String mem_id;
+	private int mem_level;
+	
+	
+	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	public int getMem_level() {
+		return mem_level;
+	}
+	public void setMem_level(int mem_level) {
+		this.mem_level = mem_level;
+	}
 	public int getMem_num() {
 		return mem_num;
 	}

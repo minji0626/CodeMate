@@ -16,6 +16,7 @@ public class TboardDetailAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		
 		int tb_num = Integer.parseInt(request.getParameter("tb_num"));
+		int team_num = Integer.parseInt(request.getParameter("team_num"));
 		
 		TboardVO tboard = new TboardVO();
 		TboardDAO dao = TboardDAO.getInstance();
@@ -23,7 +24,7 @@ public class TboardDetailAction implements Action{
 		tboard = dao.detailTboard(tb_num);
 		
 		request.setAttribute("tboard", tboard);
-		
+		request.setAttribute("team_num", team_num);
 		return "/WEB-INF/views/team/TBoardDetail.jsp";
 	}
 

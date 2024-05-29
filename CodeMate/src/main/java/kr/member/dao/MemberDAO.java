@@ -110,6 +110,7 @@ public class MemberDAO {
 				member.setMem_photo(rs.getString("mem_photo"));
 				member.setMem_email(rs.getString("mem_email"));//회원 탈퇴 시 필요 
 				member.setMem_nickname(rs.getString("mem_nickname"));
+				member.setMem_level(rs.getInt("mem_level"));
 			}
 		}catch(Exception e){ 
 			throw new Exception (e); 

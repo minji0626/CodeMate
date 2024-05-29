@@ -67,7 +67,7 @@
 							}
 						</script>
         			</c:if>
-				    <button class="btn btn-secondary list-action" onclick="location.href='${pageContext.request.contextPath}/team/teamBoardList.do?team_num=${tboard.team_num }'">목록</button>
+				    <button class="btn btn-secondary list-action" onclick="location.href='${pageContext.request.contextPath}/team/teamBoardList.do?team_num=${team_num }'">목록</button>
 				</div>
 		   		 
 		   		 <!-- 댓글 목록 -->

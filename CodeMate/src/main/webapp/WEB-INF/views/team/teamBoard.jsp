@@ -16,6 +16,14 @@
   <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
+    
+    <c:if test="${param.team_num != team_num }">
+    <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
+    	잘못된 접근입니다.
+    </div>
+    </c:if>
+    
+    <c:if test="${param.team_num == team_num }">
     <div class="content-container">
         <div class="button-container">
             <button class="write-button" onclick="location.href='${pageContext.request.contextPath}/team/teamWriteForm.do'">글쓰기</button>
@@ -23,6 +31,11 @@
         <!-- 검색 폼 -->
         <form id="search_form" action="teamBoardList.do" method="get">
             <div class="search-container">
+            <input type="hidden" name="team_num" value="${param.team_num}"/>
+            <c:if test="${param.team_num != team_num }">
+            <p> 잘못된 접근입니다.</p>
+            </c:if>
+            <c:if test="${param.team_num == team_num }">
                 <select name="keyfield" class="search-select">
                     <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
                     <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>
@@ -30,6 +43,7 @@
                 </select>
                 <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input">
                 <input type="submit" value="검색" class="search-submit">
+            </c:if>
             </div>
         </form>
         <!-- 테이블 -->
@@ -77,6 +91,7 @@
             </c:if>
         </div>
     </div>
+    </c:if>
   </div>
 </body>
 </html>

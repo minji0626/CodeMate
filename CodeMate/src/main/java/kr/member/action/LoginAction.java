@@ -36,6 +36,7 @@ public class LoginAction implements Action{
 			session.setAttribute("mem_photo", member.getMem_photo());
 			session.setAttribute("mem_auth", member.getMem_auth());
 			session.setAttribute("mem_nickname", member.getMem_nickname());
+			session.setAttribute("mem_level", member.getMem_level());
 			//메인으로 리다이렉트
 			return "redirect:/main/main.do"; 
 		}
