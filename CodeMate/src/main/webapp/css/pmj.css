@@ -123,7 +123,8 @@
 .btn_box_write {
 	float:right;
 	margin-top:28px;
-	margin-right:20px;
+	margin-left:35px;
+	margin-right:10px;
 	width:130px;
 }
 /* 내가 쓴 글 끝  */
@@ -158,7 +159,7 @@
 
 .styled-select {
 	margin-left:85px;
-	margin-bottom: 5%;
+	margin-bottom: 2%;
 	text-align:center;
     background-color: #f0f0f0;
     border-radius: 30px;
@@ -171,7 +172,7 @@
 .btn_box {
 	float:right;
 	margin-top:22px;
-	margin-right:20px;
+	margin-right:10px;
 	width:130px;
 }
 
@@ -213,4 +214,9 @@
     width:500px;
 }.delete-green{
 	color:#5aca7c;
+}
+.board_name{
+	font-size: 13px;
+	margin-top: 6px;
+	
 }

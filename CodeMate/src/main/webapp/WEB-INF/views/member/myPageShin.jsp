@@ -10,7 +10,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".delete-green").click(function() {
+            $(this).closest(".myPage-line-box").remove();
+        });
+    });
+</script>
 </head>
 <body>
 <!-- 헤더 링크-->

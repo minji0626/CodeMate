@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".delete-green").click(function() {
+            $(this).closest(".myPage-line-box").remove();
+        });
+    });
+</script>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -25,7 +32,7 @@
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
 	<h3 class="mYPage-TitleText">북마크</h3>
 </div>
-
+<%-- <c:forEach var="변수명" items="${액션에서 반환한 리스트 변수}"> --%>
 <div class="myPage-line-box">
 <div class="team-left">
 <div class="skill_font_T">백엔드</div>
@@ -38,7 +45,7 @@
 <div>남은 기간 2024.05.23~2024.06.10</div>
 </div>
 </div>
-
+<%-- </c:forEach> --%>
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->

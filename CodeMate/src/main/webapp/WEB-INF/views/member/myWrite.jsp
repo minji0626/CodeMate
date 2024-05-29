@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -13,8 +13,8 @@
 $(document).ready(function() {
     // '취소' 버튼 클릭 이벤트
     $('.myDelete_btn').click(function(event) {
-        event.preventDefault(); // 기본 동작 방지
-        $(this).closest('.box').remove(); // 부모 요소인 .box 삭제
+        event.preventDefault();
+        $(this).closest('.myPage-line-box').remove(); 
     });
 });
 </script>
@@ -39,21 +39,22 @@ $(document).ready(function() {
     <option value="option3">자유</option>
 </select>
 
-
+<c:forEach var="변수" items="${변수}">
     <div class="myPage-line-box">
     <div class="team-left">
-        <div class="skill_font_T">게시판 이름</div>
+        <div class="board_name">게시판 이름</div>
         <div class="projectName_font">내가 쓴 글 제목</div>
-    </div>
         <div class="fav-reply">
             <div class="myWrite-fav">좋아요</div>
             <div class="myWrite-reply">댓글</div>
         </div>
     </div>
-    <div class="btn_box_write">
+        <div class="btn_box_write">
         <input type="button" value="수정" class="myUpdate_btn" onclick="">
         <input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
     </div>
+    </div>
+</c:forEach>   
 
 </div>
 <!-- 메인 정보 수정 끝 -->
