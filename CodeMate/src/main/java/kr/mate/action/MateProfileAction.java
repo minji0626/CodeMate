@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
  
 import kr.controller.Action;
+import kr.db.vo.SoftSkillVO;
 import kr.mate.dao.MateDAO;
 import kr.mate.vo.MateVO;
 import kr.member.dao.MemberDAO;
@@ -34,6 +35,11 @@ public class MateProfileAction implements Action {
         MateDAO mateDAO = MateDAO.getInstance();
         List<MateVO> hardSkillList = null;
         hardSkillList = mateDAO.getListMatHardSkill(mem_num);
+        
+        List<MateVO> softSkillList = null;
+        softSkillList = mateDAO.getListMatSoftSkill(mem_num);
+        
+        request.setAttribute("softSkillList", softSkillList);
         
         request.setAttribute("mem", mem);
         request.setAttribute("member", member);

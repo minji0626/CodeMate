@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.db.vo.FieldVO;
 import kr.db.vo.HardSkillVO;
+import kr.db.vo.SoftSkillVO;
 import kr.util.DBUtil;
 
 public class DBDAO {
@@ -146,5 +147,69 @@ public class DBDAO {
 		}
 		
 		return field;
+	}
+
+
+//soft_skill 리스트 가져오기
+	public List<SoftSkillVO> getSoftSkillList() throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<SoftSkillVO> list = null;
+		String sql = "";
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM soft_skill ORDER BY ss_name ASC";
+			pstmt  = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<SoftSkillVO>();
+			while (rs.next()) {
+				SoftSkillVO sskill= new SoftSkillVO();
+				sskill.setSs_code(rs.getInt("ss_code"));
+				sskill.setSs_name(rs.getString("Ss_name"));
+				list.add(sskill);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	};
+	
+	//ss_name으로 소프트 스킬 상세 가져오기
+	public SoftSkillVO getSoftSkillByName(String ss_name) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SoftSkillVO sskill = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM Soft_SKILL WHERE ss_name=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ss_name);
+			
+			rs = pstmt.executeQuery();
+			
+			sskill = new SoftSkillVO();
+			if (rs.next()) {
+				sskill.setSs_code(rs.getInt("ss_code"));
+				sskill.setSs_name(rs.getString("ss_name"));
+				
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return sskill;
 	}
 }

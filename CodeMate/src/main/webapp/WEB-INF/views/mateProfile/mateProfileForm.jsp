@@ -87,7 +87,6 @@
 							            </label>
 							        </li>
 							    </c:forEach>
-
 							</ul>
                             <div id="hs-options" class="option-container"></div>
                         </div>
@@ -95,12 +94,18 @@
                     <div class="mp_content_div skill-item">
                         <h4>소프트스킬</h4>
                         <div class="skill_div">
-                            <select id="ss-select">
-                                <option value="ss" class="ss" selected disabled >소프트 스킬을 선택해주세요</option>
-                                <option value="option1">소통의 왕</option>
-                                <option value="option2">시간 잘 지킴</option>
-                                <option value="option3">코딩의 신</option>
-                            </select>
+                            <div id="scrollable_trigger" class="ss-select">소프트 스킬을 선택해주세요.</div>
+							<ul class="scrollable">
+								<c:forEach var="sskill" items="${sskillList}">
+							       <li class="block">
+							            <input type="checkbox" name="ss_codes" id="ss_codes_${sskill.ss_code}" value="${sskill.ss_code}" 
+							                <c:if test="${checkedSoftSkills.contains(sskill.ss_code)}">checked</c:if>>
+							            <label for="ss_codes_${hskill.hs_code}">
+							                ${sskill.ss_name}
+							            </label>
+							        </li>
+							    </c:forEach>
+							</ul>
                             <div id="ss-options" class="option-container"></div>
                         </div>
                     </div>
@@ -109,21 +114,21 @@
                     <h4>프로젝트 경험</h4>
                     <div class="mp_project">
                         <span class="pjct">프로젝트 분류</span>  
-                        <input type="radio" id="mt_category_0" name="mt_category" value="개인">
-                        <label for="mt_category_0">개인</label>
+                        <input type="radio" id="me_category_0" name="me_category" value="개인">
+                        <label for="me_category_0">개인</label>
 
-                        <input type="radio" id="mt_category_1" name="mt_category" value="기업">
-                        <label for="mt_category_1">기업</label>
+                        <input type="radio" id="me_category_1" name="me_category" value="기업">
+                        <label for="me_category_1">기업</label>
 
                         <br><br>
                         <span class="pjtt">프로젝트 제목</span>
-                        <input type="text" id="mt_title" name="mt_title" value="" class="mt_input">
+                        <input type="text" id="me_title" name="me_title" value="" class="mt_input">
                         <br><br>
                         <span class="pjpr">프로젝트 기간</span>
-                        <input type="text" id="mt_period" name="mt_period" value="" class="mt_input">
+                        <input type="text" id="me_period" name="me_period" value="" class="mt_input">
                         <br><br>
                         <span class="pjct">프로젝트 설명</span>
-                        <input type="text" id="mt_content" name="mt_content" value="" class="mt_input">
+                        <input type="text" id="me_content" name="me_content" value="" class="mt_input">
                         <br><br>
                     </div>
                 </div> 
@@ -212,6 +217,7 @@ function handleAddedHardSkills() {
 // 페이지 로드 시 추가된 하드 스킬에 대한 처리 실행
 handleAddedHardSkills();
 
+// 제출시 disabled 해제
 document.getElementById('mpModifyForm').addEventListener('submit', function() {
     document.querySelectorAll('input[name="hs_codes"]:disabled').forEach(checkbox => {
         checkbox.disabled = false; // 폼 제출 전에 체크박스를 다시 활성화
@@ -219,38 +225,85 @@ document.getElementById('mpModifyForm').addEventListener('submit', function() {
 });
 
 
-// 소프트스킬 셀렉트 박스 이벤트 리스너
-document.getElementById('ss-select').addEventListener('change', function(event) {
-    const selectedOptions = Array.from(event.target.selectedOptions);
-    const container = document.getElementById('ss-options');
+document.querySelectorAll('input[name="ss_codes"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function(event) {
+        const option = event.target;
+        const container = document.getElementById('ss-options');
+        const label = option.nextElementSibling.textContent.trim();
+        let optionDiv = document.querySelector(`#hs-options [data-value="${option.value}"]`);
 
-    selectedOptions.forEach(option => {
-        if (!document.querySelector(`#ss-options [data-value="${option.value}"]`)) {
-            const optionDiv = document.createElement('div');
+        if (option.checked) {
+            if (!optionDiv) {
+                optionDiv = document.createElement('div');
+                optionDiv.classList.add('option-item');
+                optionDiv.setAttribute('data-value', option.value);
+                optionDiv.textContent = label;
+
+                const removeBtn = document.createElement('span');
+                removeBtn.classList.add('remove-btn');
+                removeBtn.textContent = 'X';
+
+                removeBtn.addEventListener('click', function() {
+                    option.checked = false;
+                    option.disabled = false; // 체크박스 해제 후 다시 활성화
+                    optionDiv.remove();
+                });
+
+                optionDiv.appendChild(removeBtn);
+                // 새로운 div가 마지막에 추가되도록 appendChild 대신 insertBefore 사용
+                container.insertBefore(optionDiv, null);
+
+                option.disabled = true; // 체크박스 비활성화
+            }
+        } else {
+            option.checked = true; // 체크박스가 해제되지 않도록 유지
+        }
+    });
+});
+
+// 추가된 하드 스킬에 대해 처리하는 함수
+function handleAddedSoftSkills() {
+    const container = document.getElementById('ss-options');
+    const checkboxes = document.querySelectorAll('input[name="ss_codes"]:checked');
+    
+    checkboxes.forEach(checkbox => {
+        const value = checkbox.value;
+        const label = checkbox.nextElementSibling.textContent.trim();
+        let optionDiv = document.querySelector(`#hs-options [data-value="${value}"]`);
+
+        if (!optionDiv) {
+            optionDiv = document.createElement('div');
             optionDiv.classList.add('option-item');
-            optionDiv.setAttribute('data-value', option.value);
-            optionDiv.textContent = option.text;
+            optionDiv.setAttribute('data-value', value);
+            optionDiv.textContent = label;
 
             const removeBtn = document.createElement('span');
             removeBtn.classList.add('remove-btn');
             removeBtn.textContent = 'X';
+
             removeBtn.addEventListener('click', function() {
-                option.selected = false;
+                checkbox.checked = false;
+                checkbox.disabled = false; // 체크박스 해제 후 다시 활성화
                 optionDiv.remove();
-                // 제거 시 옵션 다시 활성화
-                option.disabled = false;
             });
 
             optionDiv.appendChild(removeBtn);
-            container.appendChild(optionDiv);
+            // 새로운 div가 마지막에 추가되도록 appendChild 대신 insertBefore 사용
+            container.insertBefore(optionDiv, null);
 
-            // 선택된 옵션 비활성화
-            option.disabled = true;
+            checkbox.disabled = true; // 체크박스 비활성화
         }
     });
+}
 
-    // 중복 추가 방지를 위해 선택된 옵션 초기화
-    event.target.selectedIndex = -1;
+// 페이지 로드 시 추가된 하드 스킬에 대한 처리 실행
+handleAddedSoftSkills();
+
+// 제출시 disabled 해제
+document.getElementById('mpModifyForm').addEventListener('submit', function() {
+    document.querySelectorAll('input[name="ss_codes"]:disabled').forEach(checkbox => {
+        checkbox.disabled = false; // 폼 제출 전에 체크박스를 다시 활성화
+    });
 });
 </script>
 </body>

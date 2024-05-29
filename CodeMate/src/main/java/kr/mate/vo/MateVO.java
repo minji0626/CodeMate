@@ -25,6 +25,55 @@ public class MateVO {
 	private int hs_category; //1:프론트엔드, 2:백엔드, 3:데이터, 4:모바일, 5:인프라
 	private String hs_photo;
 	
+	// 소프트 스킬
+	private String ss_name;
+	
+	// 메이트 프로젝트 경험 
+	private int me_num;
+	private String me_title;
+	private String me_content;
+	private int me_period;
+	private int me_category;
+	
+	
+	
+	public int getMe_num() {
+		return me_num;
+	}
+	public void setMe_num(int me_num) {
+		this.me_num = me_num;
+	}
+	public String getMe_title() {
+		return me_title;
+	}
+	public void setMe_title(String me_title) {
+		this.me_title = me_title;
+	}
+	public String getMe_content() {
+		return me_content;
+	}
+	public void setMe_content(String me_content) {
+		this.me_content = me_content;
+	}
+	
+	public int getMe_period() {
+		return me_period;
+	}
+	public void setMe_period(int me_period) {
+		this.me_period = me_period;
+	}
+	public int getMe_category() {
+		return me_category;
+	}
+	public void setMe_category(int me_category) {
+		this.me_category = me_category;
+	}
+	public String getSs_name() {
+		return ss_name;
+	}
+	public void setSs_name(String ss_name) {
+		this.ss_name = ss_name;
+	}
 	public String getHs_name() {
 		return hs_name;
 	}

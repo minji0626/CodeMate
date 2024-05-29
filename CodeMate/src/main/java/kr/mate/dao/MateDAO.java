@@ -125,5 +125,142 @@ public class MateDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	
+	// 메이트 하드 스킬 목록 보기
+		public List<MateVO> getListMatSoftSkill(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<MateVO> list = null; 
+			String sql = null;
+
+			try {
+				conn = DBUtil.getConnection();
+
+				sql =  "SELECT * FROM mate_soft_skill JOIN soft_skill USING(ss_code) WHERE mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, mem_num);
+
+				rs = pstmt.executeQuery();
+				list = new ArrayList<MateVO>();
+				while(rs.next()) {
+					MateVO mate = new MateVO();
+					mate.setSs_code(mem_num);
+					mate.setSs_code(rs.getInt("ss_code"));
+					mate.setMs_num(rs.getInt("ms_num"));
+					mate.setSs_name(rs.getString("ss_name"));
+					list.add(mate);
+				}
+
+			} catch(Exception e) {
+				throw new Exception(e);
+			} finally {
+				// 자원 정리
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+
+		// 초기화
+		public void deleteMateSoftSkill(MateVO mate) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+			try {
+				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
+
+				sql = "SELECT COUNT(*) FROM mate_soft_skill WHERE mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mate.getMem_num());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+
+				if(count!=0) {
+					sql = "DELETE FROM mate_soft_skill WHERE mem_num=?";
+
+					pstmt2 = conn.prepareStatement(sql);
+
+					//?에 데이터 바인딩
+					pstmt2.setInt(1, mate.getMem_num());
+
+					pstmt2.executeUpdate();
+				}		
+
+				conn.commit();
+			}catch(Exception e) {
+				conn.rollback();
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt2, null);
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+
+
+
+		// 메이트 하드 스킬 추가
+		public void insertMateSoftSkill(MateVO mate) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+				
+				
+				sql = "INSERT INTO mate_soft_skill (ms_num, mem_num, ss_code) "
+						+ "VALUES (mate_soft_skill_seq.nextval, ?, ?)";
+				pstmt = conn.prepareStatement(sql);
+
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mate.getMem_num());
+				pstmt.setInt(2, mate.getSs_code());
+
+				pstmt.executeUpdate();
+
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
+		// 메이트 프로젝트 경험 추가
+		public void insertMateExp(MateVO mate) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+				
+				
+				sql = "INSERT INTO mate_exp (me_num, mem_num, me_title, me_content, me_period, me_category) "
+						+ "VALUES (mate_exp_seq.nextval, ?, ?, ?, ?, ?)";
+				
+				pstmt = conn.prepareStatement(sql);
+
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mate.getMem_num());
+				pstmt.setString(2, mate.getMe_title());
+				pstmt.setString(3, mate.getMe_content());
+				pstmt.setInt(4, mate.getMe_period());
+				pstmt.setInt(5, mate.getMe_category());
+				
+				pstmt.executeUpdate();
+
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
 
 }
