@@ -96,26 +96,7 @@ public class WriteMateProfileAction implements Action{
 		List<SoftSkillVO> sskillList = dbdao.getSoftSkillList();
 		
 		//----------------------------------------------------------
-		// 프로젝트 경험
-		String me_category = request.getParameter("me_category");
-	    if (me_category != null) {
-	        if (me_category.equals("개인")) {
-	        	 mate.setMe_category(0);
-	        } else if (me_category.equals("기업")) {
-	            mate.setMe_category(1);
-	        }
-	    } else {
-	    	System.out.println("zkxpzhfl");
-	    }
-	    
-	    mate.setMe_title(request.getParameter("me_title"));
-	    mate.setMe_content(request.getParameter("me_content"));
-	    mate.setMe_period(Integer.parseInt(request.getParameter("me_period")));
-	    
-	    mateDao.insertMateExp(mate);
-	    
-
-	    request.setAttribute("mate", mate);
+	
 		request.setAttribute("sskillList", sskillList);
 		request.setAttribute("hskillList", hskillList);
 		request.setAttribute("mem", mem);

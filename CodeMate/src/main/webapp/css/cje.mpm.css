@@ -201,14 +201,24 @@
     margin: 0 10px !important; /* 버튼 간격을 조정합니다 */
     color: white;
     font-size: 14pt;
+    border:none;
+}
+
+#insert-btn{
+	background: #5ACA7C;
+	margin: 0 auto;
+	width: 100px;
+	height: 50px;
+	border:none;
+	border-radius: 30px !important;
 }
 
 #close-btn{
-	margin-right:100px!important;
+	margin-right:20%!important;
 }
 
 #modify-btn{
-	margin-left:100px!important;
+	margin-left:20%!important;
 }
 /*********************************/
 /* 프로젝트 경험*/
@@ -307,8 +317,14 @@ option {
 	border-radius: 8px;
 	background: #e0e0e0;
 	border: none;
-	width: 550px;
+	width:70%;
 }
+
+.inputinput {
+    display: inline-block;
+    width: 80%; 
+}
+
 
 /*****************************/
 

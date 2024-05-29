@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+ 
 import kr.mate.vo.MateVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -241,8 +242,8 @@ public class MateDAO {
 				conn = DBUtil.getConnection();
 				
 				
-				sql = "INSERT INTO mate_exp (me_num, mem_num, me_title, me_content, me_period, me_category) "
-						+ "VALUES (mate_exp_seq.nextval, ?, ?, ?, ?, ?)";
+				sql = "INSERT INTO mate_exp (me_num, mem_num, me_title, me_content, me_category) "
+						+ "VALUES (mate_exp_seq.nextval, ?, ?, ?, ?)";
 				
 				pstmt = conn.prepareStatement(sql);
 
@@ -250,8 +251,7 @@ public class MateDAO {
 				pstmt.setInt(1, mate.getMem_num());
 				pstmt.setString(2, mate.getMe_title());
 				pstmt.setString(3, mate.getMe_content());
-				pstmt.setInt(4, mate.getMe_period());
-				pstmt.setInt(5, mate.getMe_category());
+				pstmt.setInt(4, mate.getMe_category());
 				
 				pstmt.executeUpdate();
 
@@ -262,5 +262,64 @@ public class MateDAO {
 			}
 		}
 		
+		// 메이트 프로젝트 불러오기
+		public List<MateVO> getMateExp(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<MateVO> list = null; 
+			String sql = null;
+			int cnt = 0;
+			try {
+				conn = DBUtil.getConnection();
+
+				sql = "SELECT * FROM mate_exp WHERE mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, mem_num);
+				
+				rs = pstmt.executeQuery();
+				list = new ArrayList<MateVO>();
+				while(rs.next()) {
+					MateVO mate = new MateVO();
+					mate.setMem_num(mem_num);
+					mate.setMe_num(rs.getInt("me_num"));
+					mate.setMe_title(rs.getString("me_title"));
+					mate.setMe_content(rs.getString("me_content"));
+					mate.setMe_category(rs.getInt("me_category"));
+					list.add(mate);
+				}
+				
+			} catch(Exception e) {
+				throw new Exception(e);
+			} finally {
+				// 자원 정리
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		// 메이트 프로젝트 경험 삭제하기
+		public void  deleteMateExp(int me_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+				
+				
+				sql = "DELETE FROM mate_exp WHERE me_num =?";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, me_num);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 
 }

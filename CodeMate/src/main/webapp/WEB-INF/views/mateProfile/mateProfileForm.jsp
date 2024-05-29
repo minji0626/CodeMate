@@ -110,33 +110,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="mp_content_div">
+                
+                <!-- 버튼 -->
+                <div class="btn-div">
+                    <input type="submit" id="modify-btn" value="수정">
+                    <input type="button" id="close-btn" value="취소" onclick="location.href='mateProfile.do'">
+                    
+                </div>
+            </form>
+            <form id="meInsertForm" action="insertEXP.do" method="post">
+            <div class="mp_content_div">
                     <h4>프로젝트 경험</h4>
                     <div class="mp_project">
-                        <span class="pjct">프로젝트 분류</span>  
-                        <input type="radio" id="me_category_0" name="me_category" value="개인">
-                        <label for="me_category_0">개인</label>
-
+	                        <span class="pjct">프로젝트 분류</span>  
+	                        <input type="radio" id="me_category_0" name="me_category" value="개인">
+	                        <label for="me_category_0">개인</label>
                         <input type="radio" id="me_category_1" name="me_category" value="기업">
                         <label for="me_category_1">기업</label>
 
                         <br><br>
-                        <span class="pjtt">프로젝트 제목</span>
-                        <input type="text" id="me_title" name="me_title" value="" class="mt_input">
+                        <div class="inputinput">
+	                        <span class="pjtt">프로젝트 제목</span>
+	                        <input type="text" id="me_title" name="me_title" class="mt_input">
+                        </div>
                         <br><br>
-                        <span class="pjpr">프로젝트 기간</span>
-                        <input type="text" id="me_period" name="me_period" value="" class="mt_input">
+                        <div class="inputinput">
+	                        <span class="pjct">프로젝트 설명</span>
+	                        <input type="text" id="me_content" name="me_content" class="mt_input">
+                        </div>
                         <br><br>
-                        <span class="pjct">프로젝트 설명</span>
-                        <input type="text" id="me_content" name="me_content" value="" class="mt_input">
-                        <br><br>
+                        <div class="btn-div">
+                    		<input type="submit" id="insert-btn" value="추가">
+                		</div>
                     </div>
                 </div> 
-                <!-- 버튼 -->
-                <div class="btn-div">
-                    <input type="submit" id="modify-btn" value="수정">
-                    <input type="button" id="close-btn" value="취소">
-                </div>
             </form>
         </div>
         </div>
@@ -305,6 +312,58 @@ document.getElementById('mpModifyForm').addEventListener('submit', function() {
         checkbox.disabled = false; // 폼 제출 전에 체크박스를 다시 활성화
     });
 });
+
+
+//HTML 요소 가져오기
+var categoryRadios = document.getElementsByName("me_category");
+var titleInput = document.getElementById("me_title");
+var contentInput = document.getElementById("me_content");
+var submitButton = document.getElementById("insert-btn");
+
+//입력값 검증 함수
+function validateInputs() {
+ var filledCount = 0;
+
+ // 입력값이 비어있지 않은 경우 카운트 증가
+ if (titleInput.value.trim() !== "") {
+     filledCount++;
+ }
+ if (contentInput.value.trim() !== "") {
+     filledCount++;
+ }
+
+ // "프로젝트 분류" 중 하나가 선택되었는지 확인
+ var categoryChecked = false;
+ for (var i = 0; i < categoryRadios.length; i++) {
+     if (categoryRadios[i].checked) {
+         categoryChecked = true;
+         break;
+     }
+ }
+
+ // 필수 입력 조건을 충족하는 경우 제출 버튼 활성화
+ if (categoryChecked && filledCount >= 2) {
+     submitButton.disabled = false;
+ } else {
+     submitButton.disabled = true;
+ }
+
+ // 모든 필드가 비어있는 경우 제출 버튼 비활성화
+ if (titleInput.value.trim() === "" && contentInput.value.trim() === "" && !categoryChecked) {
+     submitButton.disabled = true;
+ }
+}
+
+//입력값 변화 감지를 위한 이벤트 리스너 추가
+for (var i = 0; i < categoryRadios.length; i++) {
+ categoryRadios[i].addEventListener("change", validateInputs);
+}
+titleInput.addEventListener("input", validateInputs);
+contentInput.addEventListener("input", validateInputs);
+
+//페이지 로드 시에도 검증 수행
+validateInputs();
+
 </script>
 </body>
 </html>

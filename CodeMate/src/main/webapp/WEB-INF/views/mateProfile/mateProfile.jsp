@@ -125,16 +125,41 @@
                     </div>
                 </div>
                 <!-- 프로젝트 경험 DIV -->
+                
                 <div class="mp_content_div">
                     <h4>프로젝트 경험</h4>
-                    <div class="mp_project">
-                        <span class="pj_category"> 프로젝트 분류</span>
-                        <h4 class="pj_name">프로젝트 이름</h4>
-                        <span class="pj_period">프로젝트 기간</span>
-                        <p class="pj_content">프로젝트 설명</p>
-                    </div>
-                </div>
+                     <c:if test="${member.mp_state==0}">
+	                       <div class="mp_content"><p>비공개 정보입니다.</p></div>
+	                 </c:if>
+	                 <c:if test="${member.mp_state==1}">
+	                 	<c:if test="${!empty mateExpList}"> 	
+		                 	<c:forEach var="exp" items="${mateExpList}">
+		                 		 <div class="mp_project">
+			                        <span class="pj_category"> 프로젝트 분류 : 
+			                        	<c:if test="${exp.me_category==0}">
+			                        		개인
+			                        	</c:if>
+			                        	<c:if test="${exp.me_category==1}">
+			                        		기업
+			                        	</c:if>
+			                        </span> 
+			                        <h4 class="pj_name">프로젝트 이름 : ${exp.me_title}</h4> 
+			                        <p class="pj_content">프로젝트 설명 : ${exp.me_content} </p> 
+			                        <form action="deleteEXP.do" method="post">
+	            						<input type="hidden" name="me_num" value="${exp.me_num}">
+	            						<button type="submit" class="delete-btn">삭제</button>
+	        						</form>
+			                    </div>
+		                 	</c:forEach>
+	                 	</c:if>
+	                 	<c:if test="${empty mateExpList}">
+	                 		<div class="mp_project">
+			                    </div>
+	                 	</c:if>
+	                 </c:if>
+                </div>   
                 <!-- 코드메이트 후기 DIV -->
+                
                 <div class="mp_content_div">
                     <h4>메이트 후기</h4>
                     <div class="mp_mate_review">
@@ -144,7 +169,7 @@
                     </div>
                 </div>
                 <!-- 닫기 버튼 -->
-                <button class="mp_view_close" id="close-btn" onclick="location.href='/main/main.do'"> <span>닫기</span> </button>
+                <button class="mp_view_close" id="close-btn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"> <span>닫기</span> </button>
 
             </div>
         </div>

@@ -73,7 +73,7 @@
 
 .user_nickname {
     color: black;
-    font-size: 16px;
+    font-size: 16px; /* 통일된 폰트 크기 */
     font-weight: bold;
 }
 
@@ -123,6 +123,10 @@
 
 .mp_content p, .mp_mate_review p, .mp_project p {
     padding: 15px;
+}
+
+.mp_project{
+	margin-top:20px;
 }
 
 /*************************/
@@ -248,4 +252,25 @@
     border-radius: 5px;
     font-size: 9pt;
     color:white;
+}
+
+
+.mp_project {
+    position: relative;
+}
+
+.delete-btn {
+	width:50px;
+	height:30px;
+	background: #5ACA7C;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    border: none;
+}
+
+/*span 태그*/
+.noList{
+	    display: flex; 
+    align-items: center; 
 }

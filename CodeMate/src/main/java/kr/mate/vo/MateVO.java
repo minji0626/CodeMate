@@ -32,7 +32,6 @@ public class MateVO {
 	private int me_num;
 	private String me_title;
 	private String me_content;
-	private int me_period;
 	private int me_category;
 	
 	
@@ -56,12 +55,6 @@ public class MateVO {
 		this.me_content = me_content;
 	}
 	
-	public int getMe_period() {
-		return me_period;
-	}
-	public void setMe_period(int me_period) {
-		this.me_period = me_period;
-	}
 	public int getMe_category() {
 		return me_category;
 	}

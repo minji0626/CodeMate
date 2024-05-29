@@ -91,15 +91,15 @@
 }
 
 .user_nickname {
-	color: black;
-	font-size: 14pt;
-	font-weight: bold;
+    color: black;
+    font-size: 16px; /* 통일된 폰트 크기 */
+    font-weight: bold;
 }
 
 .user_id {
-	color: #32B0FF;
+    color: #32B0FF;
+    font-size: 14px;
 }
-
 
 /********************************/
 /*리뷰 쓰기 컨텐츠란 전체 DIV*/
