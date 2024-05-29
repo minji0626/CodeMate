@@ -143,38 +143,40 @@ public class TboardDAO {
 	}
 	
 	// 글 세부
-	public TboardVO detailTboard(TboardVO tboard) throws Exception {
+	public TboardVO detailTboard(int tb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		ResultSet rs = null;
-		TboardVO board = null;
+		TboardVO tboard = null;
 		try {
 			conn = DBUtil.getConnection();
-		
+			sql="SELECT * FROM team_board JOIN member USING (mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE tb_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tb_num);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tboard = new TboardVO();
+				tboard.setTb_num(rs.getInt("tb_num"));
+				tboard.setMem_id(rs.getString("mem_id"));
+				tboard.setTb_num(rs.getInt("tb_num"));
+				tboard.setTb_title(rs.getString("tb_title"));
+				tboard.setTb_content(rs.getString("tb_content"));
+				tboard.setTb_reg_date(rs.getDate("tb_reg_date"));
+				tboard.setTb_modify_date(rs.getDate("tb_modify_date"));
+				tboard.setMem_num(rs.getInt("mem_num"));
+				tboard.setTb_file(rs.getString("tb_file"));
+				tboard.setMem_photo(rs.getString("mem_photo"));
+			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
-		return board;
+		return tboard;
 	}
 	
-	// 조회수 증가
-	public void updateReadcount(int tb_num) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-
-		try {
-			conn = DBUtil.getConnection();
-		} catch (Exception e) {
-			throw new Exception(e);
-		} finally {
-
-		}
-	}
 	
 	// 파일 삭제
 	public void deleteFile(int board_num) throws Exception {
@@ -184,6 +186,7 @@ public class TboardDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {

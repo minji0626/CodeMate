@@ -14,6 +14,15 @@ public class TboardVO {
 		private int tb_auth;		// 팀 게시글 공지사항(0:일반 글, 1: 공지사항 default는 0)
 		
 		private String mem_id;
+		private String mem_photo;
+		
+		public String getMem_photo() {
+			return mem_photo;
+		}
+
+		public void setMem_photo(String mem_photo) {
+			this.mem_photo = mem_photo;
+		}
 
 		public int getTb_num() {
 			return tb_num;

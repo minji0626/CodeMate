@@ -65,7 +65,7 @@
                     <c:if test="${tboard.tb_auth == 2}">
                         <tr>
                             <td>${tboard.tb_num}</td>
-                            <td>${tboard.tb_title}</td>
+                            <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}">${tboard.tb_title}</a></td>
                             <td>${tboard.mem_id}</td>
                             <td>${tboard.tb_reg_date}</td>
                         </tr>
