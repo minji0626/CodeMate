@@ -61,7 +61,7 @@ public class TmemberDAO {
 	    int count = 0;
 	    try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT COUNT(*) FROM team_member JOIN member_detail USING(mem_num) WHERE team_num=?";
+			sql = "SELECT COUNT(*) FROM team_member JOIN member USING(mem_num) JOIN member_detail USING(mem_num) WHERE team_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, team_num);
 			rs = pstmt.executeQuery();
@@ -86,7 +86,7 @@ public class TmemberDAO {
 		 List<TmemberVO> list = null;
 		 try {
 			 conn = DBUtil.getConnection();
-			 sql = "SELECT * FROM team_member JOIN member_detail USING(mem_num) WHERE team_num=?";
+			 sql = "SELECT * FROM team_member JOIN member USING(mem_num) JOIN member_detail USING(mem_num) WHERE team_num=?";
 			 pstmt = conn.prepareStatement(sql);
 			 pstmt.setInt(1,team_num);
 			 rs = pstmt.executeQuery();
@@ -94,6 +94,8 @@ public class TmemberDAO {
 			 list = new ArrayList<TmemberVO>();
 			 while (rs.next()) {
 				TmemberVO tmember = new TmemberVO();
+				tmember.setMem_photo(rs.getString("mem_photo"));
+				tmember.setMem_num(rs.getInt("mem_num"));
 				tmember.setMem_id(rs.getString("mem_id"));
 				tmember.setMem_level(rs.getInt("mem_level"));
 				tmember.setTeam_num(rs.getInt("team_num"));

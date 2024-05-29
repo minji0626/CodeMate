@@ -9,9 +9,16 @@ public class TmemberVO {
 	private String mem_nickname;
 	private String mem_id;
 	private int mem_level;
+	private String mem_photo;
 	
 	
 	
+	public String getMem_photo() {
+		return mem_photo;
+	}
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
+	}
 	public String getMem_nickname() {
 		return mem_nickname;
 	}
