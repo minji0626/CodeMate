@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,9 @@
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
 	<h3 class="mYPage-TitleText">내가 쓴 댓글</h3>
 </div>
+
+<!-- 내가 쓴 댓글  -->
+<%-- <c:forEach var="" items="${ }"> --%>
 <div class="box_reply">
 <div class="write_reply">
 내가 쓴 글 내가 쓴 글 내가 쓴 내가 쓴 글 내가 쓴 내가 쓴 글 내가 쓴
@@ -33,6 +37,8 @@
 	<input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
 </div>
 </div>
+<%-- </c:forEach> --%>
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
