@@ -13,7 +13,22 @@ public class RcommentVO {
 	private String mem_photo;		//member_detail에서 불러옴
 	private String mem_nickname;	//member_detail에서 불러옴
 	
+	private String reg_date_string;
+	private String modify_date_string;
 	
+	
+	public String getReg_date_string() {
+		return reg_date_string;
+	}
+	public void setReg_date_string(String reg_date_string) {
+		this.reg_date_string = reg_date_string;
+	}
+	public String getModify_date_string() {
+		return modify_date_string;
+	}
+	public void setModify_date_string(String modify_date_string) {
+		this.modify_date_string = modify_date_string;
+	}
 	public int getRc_num() {
 		return rc_num;
 	}

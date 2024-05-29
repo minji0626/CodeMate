@@ -33,7 +33,7 @@ public class WriteCommentAction implements Action {
 			rcomment.setRc_content(request.getParameter("rc_content"));
 
 			RboardDAO rdao = RboardDAO.getInstance();
-			rdao.writeComment(rcomment);
+			rdao.writeRcomment(rcomment);
 
 			mapAjax.put("result", "success");
 		}

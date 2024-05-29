@@ -115,35 +115,25 @@
 			<%-- 댓글 섹션 --%>
 			<div id="comments_container">
 				<h4>
-					댓글 <span>2</span>
+					댓글 <span id="comments-cnt">0</span>
 				</h4>
 				<%-- 새 댓글창 --%>
 				<div id="new_comment">
 					<form id="comment_form">
-						<img src="../images/face.png" class="profile-photo">
-						<input type="hidden" name="rb_num" value="${rboard.rb_num}" >
-						<textarea name="rc_content" id="rc_content"
-							placeholder="댓글을 입력하세요." cols="100" rows="6"></textarea>
+						<input type="hidden" id="rb_num" name="rb_num" value="${rboard.rb_num}" >
+						<div class="flex-container">
+							<img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="profile-photo">
+							<textarea name="rc_content" id="rc_content"
+								placeholder="댓글을 입력하세요." cols="100" rows="6"></textarea>						
+						</div>
 						<div class="align-right">
-							<input type="submit" value="댓글 등록">
+							<input type="submit" class="btn btn-basic" value="댓글 등록">
 						</div>
 					</form>
 				</div>
-				<hr size="1" width="100%">
 				<%-- 댓글 목록 --%>
 				<div id="comments_list">
 				
-				</div>
-				
-				
-				
-				
-				<div class="comment-item">
-					<div class="comment-item-header">
-						<img src="../images/face.png" class="profile-photo"> <span>아이스아메리카노</span>
-						<span>3일전</span>
-					</div>
-					<p>pm은 따로 안구하시나요??</p>
 				</div>
 			</div>
 		</div>

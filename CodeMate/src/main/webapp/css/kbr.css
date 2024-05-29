@@ -12,6 +12,10 @@
 
 /* 공통 버튼
 ---------------------*/
+.btn {
+	cursor: pointer;
+}
+
 .btn-basic {
 	padding: 8px 15px;
 	margin: 0 4px;

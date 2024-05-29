@@ -1,4 +1,6 @@
 $(function() {
+	selectList();
+	
 	/* ===============================
 	 * 댓글 등록
 	 * =============================== */
@@ -47,11 +49,47 @@ $(function() {
 	 * =============================== */
 	function selectList() {
 		$.ajax({
-			
+			url: 'commentsList.do',
+			type: 'get',
+			data: {rb_num: $('#rb_num').val()},
+			dataType: 'json',
+			success: function(param) {
+				let output = '';
+				$(param.commentsList).each(function(index, item) {
+					output += '<div class="comment-item">'
+					output += '<div class="comment-item-header">';
+					output += '<img src="../upload/' +item.mem_photo+'" class="profile-photo">';
+					output += '<div class="flex-container">'
+					output += '<span class="mem_nickname">'+item.mem_nickname+'</span>';
+					if (item.modify_date_string) {
+					output += '<span class="rc_reg_date">'+item.modify_date_string+' 수정</span>';						
+					} else {
+					output += '<span class="rc_reg_date">'+item.reg_date_string+' 작성</span>';						
+					}
+					output += '</div>'
+					output += '</div>'
+					output += '<p>'+ item.rc_content +'</p>'
+					
+					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
+					if (param.mem_num == item.mem_num) {
+						output += ' <input type="button" data-rcnum="' + item.rc_num + '" value="수정" class="modify-btn btn">';
+						output += ' <input type="button" data-rcnum="' + item.rc_num + '" value="삭제" class="delete-btn btn">';
+					}
+					
+					output += '</div>'
+				});
+					$('#comments_list').empty().append(output);
+					setCommentsCount(param.commentsList.length);
+			},
+			error: function() {
+				alert('네트워크 오류 발생');
+			}
 			
 		});
-		
-		alert('댓글 작성 완료!');
+	}
+	
+	function setCommentsCount(commentsCount) {
+		$('#comments-cnt').text(commentsCount);
 	}
 
 });

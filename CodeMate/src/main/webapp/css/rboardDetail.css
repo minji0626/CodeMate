@@ -8,12 +8,10 @@
 /*프로필 사진*/
 .profile-photo {
 	width: 40px;
+	height: 40px;
 	border-radius: 50px;
 }
 
-.btn {
-	cursor: pointer;
-}
 
 /*하드스킬 로고*/
 .skill-logo {
@@ -21,21 +19,82 @@
 	border-radius: 50px;
 }
 
+/********************************
+/* 글 */
+.content-header h2 {
+	margin: 30px 0 40px 0;
+	font-size: 26pt;
+}
+
+.content {
+	padding: 0 20px;
+	margin-top: 30px;
+}
+
+.content h3 {
+	margin-bottom: 10px;
+}
+
+/********************************
 /* 댓글 */
+#comments_container {
+	margin-top: 40px;
+}
+
+/* 댓글 작성폼 */
 #comment_form {
 	margin: 20px;
 }
 
+#comment_form .flex-container {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0;
+}
+
 #comment_form .profile-photo {
-	width: 5%;
 	margin-right: 20px;
 }
 
 #comment_form textarea {
-	width: 85%;
+	width: 100%;
 	padding: 10px;
 	border: 2px solid var(--gray-4);
 	border-radius: 6px;
+}
+
+/* 댓글 목록 */
+#comments_list {
+	margin: 30px 0;
+}
+
+.comment-item {
+	margin-top: 40px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #b8b8b8;
+}
+
+.comment-item-header {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.comment-item-header .profile-photo {
+	margin-right: 10px;
+}
+
+.comment-item-header .flex-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.comment-item-header .rc_reg_date {
+	font-size: 10pt;
+}
+
+.comment-item p {
+	margin-bottom: 20px;
 }
 
 /********************************
@@ -101,7 +160,7 @@
 
 /********************************
 /*모달 창 본문 DIV*/
-.content {
+#r_apply .content {
 	padding: 0px 10px;
 	color: black;
 }

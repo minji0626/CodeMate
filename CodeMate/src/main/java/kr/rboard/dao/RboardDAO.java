@@ -10,6 +10,7 @@ import kr.rboard.vo.RapplyVO;
 import kr.rboard.vo.RboardVO;
 import kr.rboard.vo.RcommentVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 
 public class RboardDAO {
 	private static RboardDAO instance = new RboardDAO();
@@ -175,7 +176,7 @@ public class RboardDAO {
 				rboard.setRb_title(rs.getString("rb_title"));
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
 
-				//요구기술, 모집필드 배열로 저장
+				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
 				rboard.setHs_photo_arr(rs.getString("hs_photo").split(","));
 				rboard.setF_name_arr(rs.getString("f_name").split(","));
@@ -262,8 +263,8 @@ public class RboardDAO {
 				rboard.setRb_content(rs.getString("rb_content"));
 				rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
-				
-				//요구기술, 모집필드 배열로 저장
+
+				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
 				rboard.setHs_photo_arr(rs.getString("hs_photo").split(","));
 				rboard.setF_name_arr(rs.getString("f_name").split(","));
@@ -329,49 +330,49 @@ public class RboardDAO {
 
 		return alreadyApplied;
 	}
-	
-	//댓글 등록
-	public void writeComment(RcommentVO rcomment) throws Exception {
+
+	// 댓글 등록
+	public void writeRcomment(RcommentVO rcomment) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO r_comment(rc_num,mem_num,rb_num,rc_content) VALUES(r_comment_seq.nextval,?,?,?)";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rcomment.getMem_num());
 			pstmt.setInt(2, rcomment.getRb_num());
 			pstmt.setString(3, rcomment.getRc_content());
-			
+
 			pstmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	//댓글 목록
+
+	// 댓글 목록
 	public List<RcommentVO> getRcommentList(int rb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<RcommentVO> list = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT c.*, m.mem_nickname, m.mem_photo FROM r_comment c LEFT OUTER JOIN"
-					+ " member_detail m ON(c.mem_num = m.mem_num) WHERE rb_num=?";
-			
+					+ " member_detail m ON(c.mem_num = m.mem_num) WHERE rb_num=? ORDER BY rc_num DESC";
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
-			
+
 			rs = pstmt.executeQuery();
-			
+
 			list = new ArrayList<RcommentVO>();
 			while (rs.next()) {
 				RcommentVO rcomment = new RcommentVO();
@@ -381,8 +382,13 @@ public class RboardDAO {
 				rcomment.setRc_content(rs.getString("rc_content"));
 				rcomment.setMem_photo(rs.getString("mem_photo"));
 				rcomment.setMem_nickname(rs.getString("mem_nickname"));
-				rcomment.setRc_reg_date(rs.getDate("rc_reg_date"));
-				rcomment.setRc_modify_date(rs.getDate("rc_modify_date"));
+
+				rcomment.setReg_date_string(DurationFromNow.getTimeDiffLabel(rs.getDate("rc_reg_date")));
+
+				if (rs.getDate("rc_modify_date") != null) {
+					rcomment.setModify_date_string(DurationFromNow.getTimeDiffLabel(rs.getDate("rc_modify_date")));
+				}
+
 				list.add(rcomment);
 			}
 		} catch (Exception e) {
@@ -390,29 +396,63 @@ public class RboardDAO {
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
+
 		return list;
 	}
-	//팀 프로젝트 불러오기
-    public List<RboardVO> getTeamList(int team_num)throws Exception{
-    	Connection conn = null;
-    	PreparedStatement pstmt = null;
-    	ResultSet rs = null;
-    	List<RboardVO> list = null;
-    	String sql = null;
-    	
-    	try {
-    		conn = DBUtil.getConnection();
-    		sql = "SELECT rb_endrecruit, rb_pj_title FROM r_board WHERE rb_num=?";
-    		pstmt = conn.prepareStatement(sql);
-    		pstmt.setInt(1, team_num);
-    	}catch(Exception e) {
-    		throw new Exception(e);
-    	}finally {
-    		DBUtil.executeClose(rs, pstmt, conn);
-    	}
-    	
-    	return list;
-    }
+
+	// 개별 댓글vo 구하기
+	public RcommentVO getRcomment(int rc_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RcommentVO rcomment = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM r_comment WHERE rc_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rc_num);
+			
+			rs = pstmt.executeQuery();
+			
+			rcomment = new RcommentVO();
+			if (rs.next()) {
+				rcomment.setRc_num(rs.getInt("rc_num"));
+				rcomment.setRc_content(rs.getString("rc_content"));
+				rcomment.setMem_num(rs.getInt("mem_num"));
+			}
+			
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return rcomment;
+	}
+
+	// 댓글 수정
+
+	// 댓글 삭제
+	public void deleteRcomment(int rc_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM r_comment WHERE rc_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rc_num);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 
 }
