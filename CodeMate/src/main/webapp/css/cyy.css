@@ -11,7 +11,7 @@
 }
 
 .mini-container {/* 보여지는 창 */
-   /* overflow:hidden;  */
+   overflow:hidden; 
    height:300px;
    border:1px solid;
 }  
@@ -22,8 +22,8 @@
 .content{/* 이미지 */
    height:250px;
    float:left;
-   width:230px;
-   margin-right:10px;
+   width:250px;
+   margin:0 20px;
    border:1px solid;
 } 
 

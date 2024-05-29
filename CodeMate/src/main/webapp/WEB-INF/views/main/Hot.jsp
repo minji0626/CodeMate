@@ -24,12 +24,6 @@
       <div class="mini">
          <div class="content">slide4</div>
       </div>
-      <div class="mini">
-         <div class="content">slide5</div>
-      </div>
-      <div class="mini">
-        <div class="content">slide6</div>
-      </div>
     </div> 
    
 </div><!-- end of mini-container -->
