@@ -55,7 +55,7 @@
                             <tr class="notice">
                                 <td>${tboard.tb_num}</td>
                                 <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}">${tboard.tb_title}</a></td>
-                                <td>${tboard.mem_id}</td>
+                                <td>${tboard.mem_nickname}</td>
                                 <td>${tboard.tb_reg_date}</td>
                             </tr>
                         </c:if>
@@ -66,7 +66,7 @@
                         <tr>
                             <td>${tboard.tb_num}</td>
                             <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}">${tboard.tb_title}</a></td>
-                            <td>${tboard.mem_id}</td>
+                            <td>${tboard.mem_nickname}</td>
                             <td>${tboard.tb_reg_date}</td>
                         </tr>
                     </c:if>

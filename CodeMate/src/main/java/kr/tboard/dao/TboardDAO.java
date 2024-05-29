@@ -106,12 +106,12 @@ public class TboardDAO {
 					sub_sql += "WHERE tb_title LIKE '%' || ? || '%'";
 				}
 				else if(keyfield.equals("2")) {
-					sub_sql += "WHERE mem_id '%' || ? || '%'";
+					sub_sql += "WHERE mem_id LIKE '%' || ? || '%'";
 				}else if(keyfield.equals("3")) {
 					sub_sql += "WHERE tb_content LIKE '%' || ? || '%'";
 				}
 			}
-			sql = "SELECT * FROM(SELECT a.*,rownum rnum FROM (SELECT * FROM team_board JOIN member USING(mem_num) "
+			sql = "SELECT * FROM(SELECT a.*,rownum rnum FROM (SELECT * FROM team_board JOIN member USING(mem_num) JOIN member_detail USING(mem_num)"
 					+ sub_sql + " ORDER BY tb_num DESC)a) WHERE rnum >=? AND rnum<=?";
 			pstmt = conn.prepareStatement(sql);
 
@@ -130,6 +130,7 @@ public class TboardDAO {
 				tboard.setTb_reg_date(rs.getDate("tb_reg_date"));
 				tboard.setTb_auth(rs.getInt("tb_auth"));
 				tboard.setTb_num(rs.getInt("tb_num"));
+				tboard.setMem_nickname(rs.getString("mem_nickname"));
 				list.add(tboard);
 			}
 		} catch (Exception e) {

@@ -23,7 +23,7 @@
 		       		<!-- 작성자 및 정보 -->
 		       		<div class="board_info">
 		       			<c:if test="${!empty tboard.mem_photo }">
-        				<img class="profile_pic" height="25" width="25" src="${pageContext.request.contextPath}/upload/${tboard.photo}" alt="프로필 이미지">
+        				<img class="profile_pic" height="25" width="25" src="${pageContext.request.contextPath}/upload/${tboard.mem_photo}" alt="프로필 이미지">
         				</c:if>
         				<c:if test="${empty tboard.mem_photo }">
         				<img class="profile_pic" height="25" width="25" src="${pageContext.request.contextPath}/images/face.png" alt="기본 이미지">
