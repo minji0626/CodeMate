@@ -1,0 +1,113 @@
+/* 공통 스타일 */
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.align-center {
+    text-align: center;
+}
+
+/* 로고 스타일 */
+#login_logo {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#logo_pic_login {
+    position: relative;
+    top: 20px;
+}
+
+h2{
+	text-align:center;
+	transform:translateY(-155%);
+}
+ #btn{
+ 	text-align:center;
+	transform:translateY(-700%);
+} 
+button#Id{
+	background:none;
+	border:none;
+	width:80px;
+	height:50px;
+}
+
+button#Pw{
+	background:none;
+	border:none;
+	width:90px;
+	height:50px;
+}
+#btnHr{
+	transform:translateX(115%);
+	width:30%;
+}
+/* 슬라이더 */
+.slider-container {
+			transform:translateY(15%);
+        	margin-top: 10px;
+            width: 30%; /* 컨테이너 너비 */
+            height: 350px; /* 컨테이너 높이 */
+           overflow: hidden; 
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slide {
+        margin-top: 10px;
+            width: 100%; /* 슬라이드 너비 */
+            flex-shrink: 0;
+        }
+
+        input{
+        width: 90%;
+    	height: 40px;
+    	padding: 10px;
+    	border: 1px solid #ccc;
+    	border-radius: 5px;
+    	display: flex;
+    	gap:10px;
+        }
+ button[type="submit"]{
+    background-color:black;
+    color:white;
+	margin-top: 30px;
+  margin-left : 10px;
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+    }
+  a.canc{
+  	position:relative;
+  	top:30px;
+ 	border-radius:5px;
+ 	margin-top: 30px;
+  	margin-left : 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: solid 1px;
+ }
+        
+        
