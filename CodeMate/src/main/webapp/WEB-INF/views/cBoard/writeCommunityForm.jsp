@@ -48,11 +48,11 @@ window.onload = function(){
 				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			</div>	
 	        <div class="container_write">
-		        <form action="" id="write_form" method="post" enctype="multipart/form-data">
+		        <form action="${pageContext.request.contextPath}/cboard/cboardWrite.do" id="write_form" method="post" enctype="multipart/form-data">
 		        	<div class="form-group">
-						<input type="radio" name="cb_type" value="1" id="cb_type1">
+						<input type="radio" name="cb_type" value="0" id="cb_type0">
 						<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
-						<input type="radio" name="cb_type" value="2" id="cb_type2"> 
+						<input type="radio" name="cb_type" value="1" id="cb_type1"> 
 						<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
 					</div>
 		            <div class="form-group">
@@ -69,7 +69,7 @@ window.onload = function(){
 		            </div>
 		            <div class="form-actions">	
 		            	<!-- 등록 하기~ -->
-		                <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='.do'">
+		                <input type="submit" value="등록" class="btn btn-primary">
 		                <input type="button" value="목록" class="btn btn-secondary" onclick="location.href='community.do'">
 		            </div>
 		        </form>

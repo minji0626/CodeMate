@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 				<div class="button-container">
 			    	<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
 				</div>
-				<!-- 게시판 선택 메뉴 --> <!-- 이것도 굳이 게시판 두 개 jsp 안 만들고 하나로 표시할 수도 있을 듯 싶음 아님 망고 -->
+				
 				<div>	
 					<ul class="menu">
 						<li>
@@ -43,86 +44,49 @@
 						</li>
 					</ul>
 				</div>
-				<table class="list">
-			 	<tr>
-			 		<th>번호</th>
-			 		<th>제목</th>
-			 		<th>작성자</th>
-			 		<th>조회수</th>
-			 		<th>작성일</th>
-			 	</tr>
-			 	<tr class="content">
-			 		<td>1</td>
-			 		<td><a href="communityDetail.do" class="atag">자유 게시판</a></td>
-			 		<td>홍길동</td>
-			 		<td>4</td>
-			 		<td>2024-05-17</td>
-			 	</tr>
-			    <tr>
-			 		<td>2</td>
-			 		<td>내일은 비가 올 예정입니다.</td>
-			 		<td>이길동</td>
-			 		<td>6</td>
-			 		<td>2024-05-18</td>
-			 	</tr>
-			    <tr>
-			 		<td>3</td>
-			 		<td>오늘은 컴퓨터 관련 이야기를 나눠볼까요?</td>
-			 		<td>분모재</td>
-			 		<td>12</td>
-			 		<td>2024-05-19</td>
-			 	</tr>
-			    <tr>
-			 		<td>4</td>
-			 		<td>저번 주말에 친구들과 함께 해커톤을 개최했어요!</td>
-			 		<td>박길동</td>
-			 		<td>8</td>
-			 		<td>2024-05-20</td>
-			 	</tr>
-			    <tr>
-			 		<td>5</td>
-			 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-			 		<td>홍길동</td>
-			 		<td>10</td>
-			 		<td>2024-05-21</td>
-			 	</tr>
-			    <tr>
-			 		<td>6</td>
-			 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-			 		<td>홍길동</td>
-			 		<td>10</td>
-			 		<td>2024-05-21</td>
-			 	</tr>
-			    <tr>
-			 		<td>7</td>
-			 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-			 		<td>홍길동</td>
-			 		<td>10</td>
-			 		<td>2024-05-21</td>
-			 	</tr>
-			 	<tr>
-			 		<td>8</td>
-			 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-			 		<td>홍길동</td>
-			 		<td>10</td>
-			 		<td>2024-05-21</td>
-			 	</tr>
-			 	<tr>
-			 		<td>9</td>
-			 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-			 		<td>홍길동</td>
-			 		<td>10</td>
-			 		<td>2024-05-21</td>
-			 	</tr>
-			 	<tr>
-			 		<td>10</td>
-			 		<td>팀원들 모두 수고하셨습니다. 오늘 회식 어떠세요?</td>
-			 		<td>홍길동</td>
-			 		<td>10</td>
-			 		<td>2024-05-21</td>
-			 	</tr>
-			 </table>
-		</div>
-	</div> 	
+				
+				<!-- 검색 폼 -->
+		        <form id="search_form" action="commuBoardList.do" method="get">
+		            <div class="search-container">
+		                <select name="keyfield" class="search-select">
+		                    <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
+		                    <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>
+		                    <option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
+		                </select>
+		                <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input">
+		                <input type="submit" value="검색" class="search-submit">
+		            </div>
+		        </form>
+		        
+		        <!-- 테이블 -->
+		        <c:if test="${count == 0 }">
+        			<p>표시할 글 정보가 없습니다.</p>
+        		</c:if>
+        		
+        		<c:if test="${count > 0 }">
+	        		 <table>
+		                <thead>
+		                    <tr>
+		                        <th>번호</th>
+		                        <th>제목</th>
+		                        <th>작성자</th>
+		                        <th>작성일</th>
+		                    </tr>
+		                </thead>
+	                	<tbody>
+							<c:forEach var="cboard" items="${list}">
+		                        <tr>
+		                            <td>${cboard.cb_num}</td>
+		                            <td><a href="${pageContext.request.contextPath}/team/cBoardDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
+		                            <td>${cboard.mem_nickname}</td>
+		                            <td>${cboard.cb_reg_date}</td>
+		                        </tr>
+		                    </c:forEach>
+		                </tbody>
+		            </table>
+			  		<div class="align-center">${page}</div>
+            	</c:if>
+			</div>
+		</div> 	
 </body>
 </html>

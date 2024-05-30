@@ -140,3 +140,42 @@ ul.menu li {
 	margin-bottom:200px;
 }
 
+
+
+/* 서치 박스 컨테이너 */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    max-width: 100%;
+}
+
+.search-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+    font-size: 14px;
+    width: 30%; 
+}
+
+.search-submit {
+    padding: 8px 16px;
+    background-color:  #4D9964;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
