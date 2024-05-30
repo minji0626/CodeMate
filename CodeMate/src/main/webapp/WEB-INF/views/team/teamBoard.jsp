@@ -31,8 +31,8 @@
 
         <!-- 검색 폼 -->
         <form id="search_form" action="teamBoardList.do" method="get">
-        <input >
             <div class="search-container">
+            <input type="hidden" name="team_num" value="${param.team_num }">
                 <select name="keyfield" class="search-select">
                     <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
                     <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>

@@ -90,7 +90,7 @@
                             <div class="dropdown_menu">
                                 <a class="review-link">리뷰 쓰기</a>
                                 <c:if test="${tm_auth == 4 }">
-                                <a href="#" id="mem_delete_btn">팀원 삭제</a>
+                                <a id="mem_delete_btn">팀원 삭제</a>
                                 <a href="#" id="mem_auth_btn">팀장 위임</a>
                                 </c:if>
                             </div>
