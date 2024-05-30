@@ -37,6 +37,7 @@
 		<div class="team-left">
 		<div class="skill_font_T"></div>
 		<div class="projectName_font">${myteam.rb_pj_title}</div>
+		${myteam.tm_auth}
 		</div>
 		<div class="team-right">
 		<div class="delete-green-box">
