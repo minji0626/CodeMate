@@ -50,6 +50,7 @@
             </div>
             <!-- 포지션 DIV -->
             <form id="mpModifyForm" action="mateProfileModify.do" method="post">
+            	<input type="hidden" name="mem_num" value="${mem.mem_num}">
             	메이트 프로필
                 <input type="radio" id="mp_state_0" name="mp_state" value="비공개" <c:if test="${member.mp_state == 0}">checked</c:if>>
 				<label for="mp_state_0">비공개</label>

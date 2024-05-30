@@ -50,8 +50,7 @@
                         <!-- 아이디 옆 이미지 추가하기 -->
                         <img>
                     </div>
-                    <button class="mp_view_modify" onclick="location.href='mateProfileForm.do'"><span>수정하기</span> </button>
-                          
+                    <button class="mp_view_modify" onclick="location.href='mateProfileForm.do?mem_num=${mem.mem_num}'"><span>수정하기</span> </button>     
                 </div>
                 <!-- 포지션 DIV -->
                 <!-- 
