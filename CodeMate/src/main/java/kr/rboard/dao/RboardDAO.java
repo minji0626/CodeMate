@@ -113,12 +113,94 @@ public class RboardDAO {
 	}
 
 	// rboard 수정
+	public void modifyRboard(RboardVO rboardVO) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;		//글
+		PreparedStatement pstmt2 = null;	//모집스킬
+		PreparedStatement pstmt3 = null;	//모집필드
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE r_board SET rb_category=?,rb_teamsize=?,rb_meet=?,rb_start=?,rb_period=?,"
+					+ "rb_endRecruit=?,rb_title=?,rb_content=?,rb_pj_title=? WHERE rb_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+//			sql = "UPDATE r_skill SET "
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
 	// rboard 삭제
-	public void deleteRboard() throws Exception {
+	public void deleteRboard(int rb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;		//북마크
 		PreparedStatement pstmt2 = null;	//댓글
-		PreparedStatement pstmt3 = null; 	//글
+		PreparedStatement pstmt3 = null;	//모집스킬 
+		PreparedStatement pstmt4 = null; 	//모집필드
+		PreparedStatement pstmt5 = null;	//팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
+		PreparedStatement pstmt6 = null;	//모집글 (apply레코드는 지우지 않고 rb_num만 null되게)
+
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			//북마크 삭제
+			sql = "DELETE FROM r_bookmark WHERE rb_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+			pstmt.executeUpdate();
+			
+			//댓글 삭제
+			sql = "DELETE FROM r_comment WHERE rb_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, rb_num);
+			pstmt2.executeUpdate();
+			
+			//모집스킬 삭제
+			sql = "DELETE FROM r_skill WHERE rb_num=?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1, rb_num);
+			pstmt3.executeUpdate();
+			
+			//모집필드 삭제
+			sql = "DELETE FROM r_field WHERE rb_num=?";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1, rb_num);
+			pstmt4.executeUpdate();
+			
+			//모집이 마감되지 않은 글은 team테이블에서도 삭제
+			sql = "DELETE FROM team WHERE team_num=? AND team_status=0";
+			pstmt5 = conn.prepareStatement(sql);
+			pstmt5.setInt(1, rb_num);
+			pstmt5.executeUpdate();
+			
+			//모집글 삭제
+			sql = "DELETE FROM r_board WHERE rb_num=?";
+			pstmt6 = conn.prepareStatement(sql);
+			pstmt6.setInt(1, rb_num);
+			pstmt6.executeUpdate();
+			
+			conn.commit();
+			
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt6, null);
+			DBUtil.executeClose(null, pstmt5, null);
+			DBUtil.executeClose(null, pstmt4, null);
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 	
 	
@@ -320,6 +402,44 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
+	public List<RboardVO> getAppliedBoardListByMemNum(int mem_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<RboardVO> list = new ArrayList<>();
+	    String sql = null;
+
+	    try {
+	        conn = DBUtil.getConnection();
+	        sql = "SELECT * FROM r_apply ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, mem_num);
+
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            RboardVO rboard = new RboardVO();
+	            // 코메신청 정보 설정
+	            rboard.setRb_category(rs.getInt("rb_category"));
+	            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+	            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+	            rboard.setRb_start(rs.getString("rb_start"));
+	            rboard.setRb_period(rs.getInt("rb_period"));
+	            // 리스트에 추가
+	            list.add(rboard);
+	        }
+
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return list;
+	}
+
+	
 
 	// 이미 신청한 글인지 확인
 	public boolean alreadyApplied(int rb_num, int mem_num) throws Exception {
