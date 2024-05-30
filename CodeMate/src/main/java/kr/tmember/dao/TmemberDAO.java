@@ -99,25 +99,7 @@ public class TmemberDAO {
 		 return list;
 	}
 	
-	//팀 멤버 불러오기
-	public void getMembers(int team_num) throws Exception{
-		Connection conn = null;
-		String sql = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM team_member WHERE team_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, team_num);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
-	}
-
+	
 	
 	// 팀 멤버 삭제하기
 	public void deleteTeamMember(int team_num, int mem_num) throws Exception{
@@ -157,6 +139,7 @@ public class TmemberDAO {
 			conn.commit();
 			
 		} catch (Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(null, pstmt3, null);

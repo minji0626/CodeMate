@@ -49,15 +49,18 @@
                         <li>
                            <span class="team_mem_status">팀장</span>
                         </li>
-                        <li><span class="team_mem_nickname" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span></li>
+                        <li>
+                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
+                        </li>
                         <c:if test="${mem_num != tmember.mem_num }">
                         <li>
                             <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                             <div class="dropdown_menu">
-                                <a class="review-link">리뷰 쓰기</a>
+                                <a class="review-link" style="cursor: pointer">리뷰 쓰기</a>
                                 <c:if test="${tm_auth == 4 }">
-                                <a href="#" id="mem_delete_btn">팀원 삭제</a>
-                                <a href="#" id="mem_auth_btn">팀장 위임</a>
+                                <!-- 팀장인 경우 데이터 속성 추가 -->
+								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+                                <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
                                 </c:if>
                             </div>
                         </li>
@@ -83,15 +86,18 @@
                         <li>
                            <span class="team_mem_status">팀원</span>
                         </li>
-                        <li><span class="team_mem_nickname" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span></li>
+                        <li>
+                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
+                        </li>
                         <c:if test="${mem_num != tmember.mem_num }">
                         <li>
                             <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                             <div class="dropdown_menu">
-                                <a class="review-link">리뷰 쓰기</a>
+                                <a class="review-link" style="cursor: pointer">리뷰 쓰기</a>
                                 <c:if test="${tm_auth == 4 }">
-                                <a id="mem_delete_btn">팀원 삭제</a>
-                                <a href="#" id="mem_auth_btn">팀장 위임</a>
+                                <!-- 팀장인 경우 데이터 속성 추가 -->
+								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+                                <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
                                 </c:if>
                             </div>
                         </li>

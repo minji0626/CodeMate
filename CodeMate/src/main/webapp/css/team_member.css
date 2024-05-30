@@ -127,11 +127,11 @@ body {
 }
 
 /* 팀원 삭제 글꼴 스타일 */
-#mem_delete_btn {
+a.mem_delete_btn {
     color: #FF4934;
 }
 /* 팀장 위임 글꼴 스타일 */
-#mem_auth_btn {
+a.mem_auth_btn {
     color: #326BFF;
 }
 /* 리뷰 쓰기 글꼴 스타일 */
