@@ -4,14 +4,14 @@ var slides = document.querySelector('.wrapper'),
   nextBtn = document.querySelector('.n'),
   currentIdx = 0,
   slideCount = slide.length,//기존 슬라이드 개수(4)
-  slideWidth = 250,//슬라이드 이미지 넓이
-  slideMargin = 40,//좌,우 마진있어서 * 2함
+  slideWidth = 20,//슬라이드 이미지 넓이 %
+  slideMargin = 1,//좌,우 마진있어서 * 2함 %
   position = 0,
 
   move = 0,
   AllSlideCount = slideCount * 3, //전체 슬라이드 개수
 
-  newWidth = (slideWidth+slideMargin+12) * AllSlideCount  + 'px';//wrapper 너비
+  newWidth = (slideWidth+slideMargin+12) * AllSlideCount  + '%';//wrapper 너비
 /*------------------------------------------------------------------*/
 
 	makeClone();
@@ -36,9 +36,9 @@ function makeClone(){
    
    //전체 슬라이드의 길이를 구해 wrapper의 길이로 넣어야 가로로 정렬이 됨
    slides.style.width = newWidth;
-   position = -((slideWidth+slideMargin) * slideCount);//290 * 4 = 1160
+   position = -((slideWidth+slideMargin) * slideCount);//21 * 4 = 84
   //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
-  slides.style.transform = 'translateX('+ position +'px)';//x축 -1160px
+  slides.style.transform = 'translateX(-30%)';//x축
    
   
 }
@@ -61,14 +61,14 @@ function moveSlide(num){
 	  /* 좌,우 이동방향 */	
 	  /* 다음은 -, 이전은 + 로 이동 */
 	  move = position + (-(slideWidth +slideMargin) * currentIdx) ;
-	  slides.style.transform = 'translateX(' + move + 'px)';
+	  slides.style.transform = 'translateX(' + move + '%)';
 	  /* transform='translate'는 명시된 거리만큼 이동함
 	  	여기서는 이미 postion만큼 이동한 상태여서 그런지 position의 위치에서 플러스로 더 이동하지 않고
 	  	0에서부터 이동하는 것처럼 동작되어서 position을 더한 값을 거리로 잡음 */
 	  
       /* 다시 돌아옴 */
       if(currentIdx == slideCount || currentIdx == -slideCount){//4이거나 -4인 경우
-         slides.style.transform = 'translateX('+ position +'px)';
+         slides.style.transform = 'translateX('+ position +'%)';
             currentIdx = 0;
       }
 }

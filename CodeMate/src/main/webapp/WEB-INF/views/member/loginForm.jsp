@@ -51,7 +51,7 @@ $(function(){
 				<input id="login_btn" type="submit" value="로그인">
 			</div>
 			<div id="find">
-				<a href=#>아이디 / 비밀번호</a> 찾기
+				<a href=${pageContext.request.contextPath}/member/find.do>아이디 / 비밀번호</a> 찾기
 			</div>
 			<div id="sign_up">
 				코드메이트가 처음이세요? <a href=${pageContext.request.contextPath}/member/registerUserForm.do><b>회원가입</b></a>

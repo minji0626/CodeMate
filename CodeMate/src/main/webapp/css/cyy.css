@@ -14,19 +14,19 @@
 .mini-container {/* 보여지는 창 */
    position:relative;
    top:30px;
-   overflow:hidden; 
-   height:320px;
-   width:1180px;
+   overflow:hidden;
+   height:300px;
+   width:100%;
 }  
  .wrapper {/* 움직이는 부분 */
-   height:320px;
+   height:300px;
 }   
 
 .content{/* 이미지 */
-   height:300px;
+   height:290px;
    float:left;
-   width:250px;
-   margin:0 20px;
+   width:7%;
+   margin:0 0.5%;
    border:2px solid #d4d4d4;
    border-radius:10px;
    background-color:#f0f0f0;
@@ -43,7 +43,6 @@
 .n{
 	position:relative;
 	bottom:150px; left:1150px; 
-	
 }
 
 /* 더보기 */
