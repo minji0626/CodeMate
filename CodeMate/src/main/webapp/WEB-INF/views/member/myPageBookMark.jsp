@@ -32,20 +32,20 @@
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
 	<h3 class="mYPage-TitleText">북마크</h3>
 </div>
-<%-- <c:forEach var="변수명" items="${액션에서 반환한 리스트 변수}"> --%>
+<c:forEach var="rboard" items="${rboardList}">
 <div class="myPage-line-box">
 <div class="team-left">
-<div class="skill_font_T">백엔드</div>
-<div class="projectName_font">쇼핑몰 웹페이지 프로젝트 같이 하실분 구해요</div>
+<div class="skill_font_T">${rboard.rb_pj_title}</div>
+<div class="projectName_font">${rboard.rb_title}</div>
 </div>
 
 <div class="team-right">
 <div class="delete-green">북마크 취소</div>
-<div class="team-count">신청인원:3명</div>
-<div>모집마감일 2024.05.23~2024.06.10</div>
+<div class="team-count">신청인원:${rboard.rb_teamsize}명</div>
+<div>모집마감일 ${rboard.rb_endRecruit}</div>
 </div>
 </div>
-<%-- </c:forEach> --%>
+</c:forEach>
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->

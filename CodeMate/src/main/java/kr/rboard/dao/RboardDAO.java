@@ -682,6 +682,45 @@ public class RboardDAO {
 		}
 
 	}
+	
+	//회원별 북마크 리스트 - 마이페이지 북마크-민재 작성
+		public List<RboardVO> getBookMarkBoardListByMemNum(int mem_num) throws Exception {
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+		    List<RboardVO> list = new ArrayList<>();
+		    String sql = null;
+
+		    try {
+		        conn = DBUtil.getConnection();
+		        sql = "SELECT * FROM r_bookmark ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setInt(1, mem_num);
+
+		        rs = pstmt.executeQuery();
+		        while (rs.next()) {
+		            RboardVO rboard = new RboardVO();
+		            // 코메신청 정보 설정
+		            rboard.setRb_category(rs.getInt("rb_category"));
+		            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+		            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+		            rboard.setRb_start(rs.getString("rb_start"));
+		            rboard.setRb_period(rs.getInt("rb_period"));
+		            rboard.setRb_title(rs.getString("rb_title"));
+		            //period 진행기간이 숫자로 되어있어서 일단 모집 마감일 추가했어요
+		            rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
+		            // 리스트에 추가
+		            list.add(rboard);
+		        }
+
+		    } catch (Exception e) {
+		        throw new Exception(e);
+		    } finally {
+		        DBUtil.executeClose(rs, pstmt, conn);
+		    }
+
+		    return list;
+		}
 
 	// 북마크 하나 가져오기
 	public RbookmarkVO getRbookmark(RbookmarkVO rbookmark) throws Exception {

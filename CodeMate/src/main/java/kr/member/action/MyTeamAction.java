@@ -29,6 +29,7 @@ public class MyTeamAction implements Action{
         
         request.setAttribute("team", team);
         
+        
 		return "/WEB-INF/views/member/myTeam.jsp";
 	}
 	

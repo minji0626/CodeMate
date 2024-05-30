@@ -10,7 +10,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".no").click(function() {
+        $(this).closest(".myPage-line-box-moshin").remove();
+    });
+});
+</script>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -23,7 +29,7 @@
 <!-- 메인 정보 수정 -->
 <div class="float-C">
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
-	<h3 class="mYPage-TitleText">나의 코메 신청</h3>
+	<h3 class="mYPage-TitleText">나의 코메 모집 신청자</h3>
 </div>
 
 <div class="myPage-line-box-moshin">

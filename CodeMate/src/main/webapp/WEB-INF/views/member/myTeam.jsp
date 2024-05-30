@@ -46,7 +46,7 @@
         <div class="team-right">
         <div class="delete-green-box">
         </div>
-        <div>프로젝트 마감일:</div>
+        <div>프로젝트 진행기간:${myteam.rb_period}</div>
         </div>
         </div>
     </c:forEach>

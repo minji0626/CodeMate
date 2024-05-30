@@ -88,3 +88,11 @@ myPageMoshin.jsp
 .content{
 	width:700px;
 }
+/*나의 모집신청 y/n클릭,호버*/
+.yes:hover, .no:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+.yes.clicked, .no.clicked {
+    font-weight: bold;
+}
