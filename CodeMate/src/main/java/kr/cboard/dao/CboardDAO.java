@@ -8,7 +8,10 @@ import java.util.List;
 
 
 import kr.cboard.vo.CboardVO;
+import kr.cboard.vo.CcommentVO;
+import kr.rboard.vo.RcommentVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class CboardDAO {
@@ -229,45 +232,109 @@ public class CboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
+
 	//글 수정
-		public void updateBoard(CboardVO board)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String sql = null;
-			String sub_sql = "";
-			int cnt = 0;
-			try {
-				//커넥션풀로부터 커넥션 할당
-				conn = DBUtil.getConnection();
-				
-				if(board.getCb_file()!=null 
-						&& !"".equals(board.getCb_file())) {
-					sub_sql += ",cb_file=?";
-				}
-				//SQL문 작성
-				sql = "UPDATE c_board SET cb_title=?,cb_content=?,"
+	public void updateBoard(CboardVO board)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+
+			if(board.getCb_file()!=null 
+					&& !"".equals(board.getCb_file())) {
+				sub_sql += ",cb_file=?";
+			}
+			//SQL문 작성
+			sql = "UPDATE c_board SET cb_title=?,cb_content=?,"
 					+ "cb_modify_date=SYSDATE,cb_ip=?,cb_type=?" + sub_sql 
 					+ " WHERE cb_num=?";
-				//PreparedStatement 객체 생성
-				pstmt = conn.prepareStatement(sql);
-				//?에 데이터 바인딩
-				pstmt.setString(++cnt, board.getCb_title());
-				pstmt.setString(++cnt, board.getCb_content());
-				pstmt.setString(++cnt, board.getCb_ip());
-				pstmt.setInt(++cnt, board.getCb_type());
-				if(board.getCb_file()!=null 
-						    && !"".equals(board.getCb_file())) {
-					pstmt.setString(++cnt, board.getCb_file());
-				}
-				pstmt.setInt(++cnt, board.getCb_num());
-				//SQL문 실행
-				pstmt.executeUpdate();
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(++cnt, board.getCb_title());
+			pstmt.setString(++cnt, board.getCb_content());
+			pstmt.setString(++cnt, board.getCb_ip());
+			pstmt.setInt(++cnt, board.getCb_type());
+			if(board.getCb_file()!=null 
+					&& !"".equals(board.getCb_file())) {
+				pstmt.setString(++cnt, board.getCb_file());
 			}
+			pstmt.setInt(++cnt, board.getCb_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	
+	// 댓글 등록
+	public void writeCcomment(CcommentVO ccomment) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO c_comment(cc_num,mem_num,cb_num,cc_content) VALUES(c_comment_seq.nextval,?,?,?)";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ccomment.getMem_num());
+			pstmt.setInt(2, ccomment.getCb_num());
+			pstmt.setString(3, StringUtil.useBrNoHTML(ccomment.getCc_content()));
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	// 댓글 목록
+		public List<CcommentVO> getCcommentList(int cb_num) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<CcommentVO> list = null;
+			String sql = null;
+
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT c.*, m.mem_nickname, m.mem_photo FROM c_comment c LEFT OUTER JOIN"
+						+ " member_detail m ON(c.mem_num = m.mem_num) WHERE cb_num=? ORDER BY cc_num DESC";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cb_num);
+
+				rs = pstmt.executeQuery();
+
+				list = new ArrayList<CcommentVO>();
+				while (rs.next()) {
+					CcommentVO ccomment = new CcommentVO();
+					ccomment.setCc_num(rs.getInt("cc_num"));
+					ccomment.setCb_num(rs.getInt("cb_num"));
+					ccomment.setMem_num(rs.getInt("mem_num"));
+					ccomment.setCc_content(rs.getString("cc_content"));
+					ccomment.setMem_photo(rs.getString("mem_photo"));
+					ccomment.setMem_nickname(rs.getString("mem_nickname"));
+
+					list.add(ccomment);
+				}
+			} catch (Exception e) {
+				throw new Exception();
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return list;
+		}
+
 
 }

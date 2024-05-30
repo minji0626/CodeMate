@@ -17,9 +17,13 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     
-    <title>글상세</title>  
+    <title>글상세</title>
+    
 </head>
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/cboardComment.js"></script>  
 <body>
+
 		<div class="page-container">
 			<div class="page-main">
 				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -41,10 +45,10 @@
 		       		<h2>${board.cb_title}</h2>
 		       		<!-- 작성자 및 정보 -->
 		       		<div class="board_info">
-						<c:if test="${!empty mem_photo}">
-							<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40">
+						<c:if test="${!empty board.mem_photo}">
+							<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${board.mem_photo}" height="40" width="40">
 						</c:if>
-						<c:if test="${empty mem_photo}">
+						<c:if test="${empty board.mem_photo}">
 							<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">
 						</c:if>
 		       			<span> ${board.mem_nickname}</span>
@@ -83,49 +87,34 @@
 				    
 				</div>
 		   		 
-		   		 <!-- 댓글 목록 -->
-		   		 <div class="container_reList">
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>전 갈비찜 먹을라고요</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
-		   		 	</div>
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>김치찜이 최곤디</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
-			   		 </div>
-		   		 </div>
 		   		 
 		        <!-- 댓글 시작 -->
-		        <div class="container_re">
-			        <div id="reply_div">
-			        	<form id="re_form">
-			        		<input type="hidden" name="cb_num" value="${cboard.cb_num}" id="cb_num">
-			        		<div class="form-group">
-				                <textarea rows="3" cols="100" name="cb_content" id="cb_content" class="form-control"></textarea>
-				                <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='.do'">
-				            </div>
-			        		
-			        	</form>
-			        </div>
-		        </div>
-		   		 </div>
-		   	</div>
+		        <%-- 댓글 목록 --%>
+				<div class="container_reList">
+				
+				</div>
+				
+		        <%-- 댓글 섹션 --%>
+			<div class="container_re">
+				<h4>
+					댓글 <span id="comments-cnt">0</span>
+				</h4>
+				<%-- 새 댓글창 --%>
+				<div id="container_re">
+					<form id="comment_form">
+						<input type="hidden" id="cb_num" name="cb_num" value="${board.cb_num}" >
+						<div class="form-group">
+							<textarea name="cc_content" id="cc_content" placeholder="댓글을 입력하세요." rows="3" cols="78" class="form-control"></textarea>
+							<input type="submit" value="등록" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				
+			</div>
+			
+	</div>
+</div>
+			
 	      
 </body>
 </html>
