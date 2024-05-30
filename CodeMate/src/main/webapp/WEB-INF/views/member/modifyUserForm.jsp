@@ -81,7 +81,6 @@ $(function(){
 	            } else if (param.result == 'success') {
 	                alert('프로필 사진이 기본으로 변경되었습니다.');
 	                // 수정된 이미지 정보 저장
-	                $('.my-photo').attr('src', '${pageContext.request.contextPath}/images/face.png'); // 기본 이미지로 변경
 	                $('#mem_photo').val('');
 	                $('#mem_photo_choice').hide();
 	                $('#mem_photo_btn').show();
