@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.tboard.vo.TboardCommentVO;
 import kr.tboard.vo.TboardVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -260,9 +261,30 @@ public class TboardDAO {
 	}
 	
 	// 댓글 등록
+	public void insetCommentTboard(TboardCommentVO tboardComment) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql="INSERT INTO team_comment(tc_num, mem_num, tb_num, tc_content)"
+					+ "VALUES(tc_num_seq.nextval,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tboardComment.getMem_num());
+			pstmt.setInt(2, tboardComment.getTb_num());
+			pstmt.setString(3, tboardComment.getTc_content());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	// 댓글 개수
 	
 	// 댓글 목록
-	// 댓글 개수
 	
 	// 댓글 상세
 	

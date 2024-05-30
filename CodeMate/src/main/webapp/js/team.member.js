@@ -92,7 +92,6 @@ $(function(){
                         } else if (param.result == 'wrongAccess') {
                             alert('잘못된 접근 정보입니다.')
                         } else if (param.result == 'success') {
-							alert(team_num+ ', '+mem_num);
                             alert('팀원이 삭제되었습니다');
                             location.href = 'teamSetting.do?team_num=' + team_num;
                         } else {
