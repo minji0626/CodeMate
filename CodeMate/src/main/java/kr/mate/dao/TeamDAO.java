@@ -59,6 +59,7 @@ public class TeamDAO {
                     team.setRb_start(rs2.getString("rb_start"));
                     team.setRb_pj_title(rs2.getString("rb_pj_title"));
                     team.setTeam_num(team_num);
+                    team.setTm_auth(tm_auth);
                     list.add(team);
                 }
                 DBUtil.executeClose(rs2, pstmt2, null);
