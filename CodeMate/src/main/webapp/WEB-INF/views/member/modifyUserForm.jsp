@@ -101,44 +101,61 @@ $(function(){
         };
     }); // end of Change
     
-    // 이미지 전송하기
+	//이미지 전송하기
     $('#mem_photo_submit').click(function(){
-    	if($('#mem_photo').val()==''){
-    		alert('파일을 선택하세요');
-    		$('#mem_photo').focus();
-    		return;
-    	}
-    	//파일 전송
-    	const form_data = new FormData();
-    	form_data.append('mem_photo',$('#mem_photo')[0].files[0])
-    	//dao에서 p를 소문자로 씀
-    	$.ajax({
-    		url:'updateMyPhoto.do', 
-    		type:'post',
-    		data:form_data,
-    		dataType:'json',
-    		contentType:false, //데이터 객체를 문자열로 바꿀지 설정.true이면 일반 문자 false면 파일이 섞여있음
-    		processData:false, //해당 타입을 true로 하면 일반 text로 구분	//위에 두개를 false로 설정해 파일이 섞여있다는걸 나타냄
-    		success:function(param){
-    			if(param.result == 'logout'){
-    				alert('로그인 후 사용하세요');
-    			}else if(param.result == 'success'){
-    				alert('프로필 사진이 수정되었습니다.');
-    				//수정된 이미지 정보 저장
-    				photo_path = $('.my-photo').attr('src');
-    				//변경 전으로 초기화
-    				$('#mem_photo').val('');
-    				$('#mem_photo_choice').hide();
-    				$('#mem_photo_btn').show();//수정 버튼 표시
-    				$('#profile_pic').attr('src', contextPath + "/upload/" + mem_photo);
-    			}else{
-    				alert('파일 전송 오류 발생');	
-    			}
-    		},
-    		error:function(){
-    			alert('네트워크 오류 발생');
-    		}
-    	})
+        // 파일이 선택되었는지 확인
+        if ($('#mem_photo').val() == '') {
+            // 파일을 선택하지 않은 경우 기존 이미지로 변경하고 저장
+            $('.my-photo').attr('src', '${pageContext.request.contextPath}/images/face.png');
+            photo_path = '${pageContext.request.contextPath}/images/face.png'; // photo_path 변수도 기본 이미지로 변경
+            
+            // 기존 이미지로 저장되었다고 alert 메시지 표시
+            alert('프로필 사진이 기존 이미지로 변경되었습니다.');
+            $('#mem_photo_choice').hide();
+            $('#mem_photo_btn').show(); // 수정 버튼 표시
+            
+            //$.ajax({
+            	
+            //});
+            
+            
+            
+            
+            
+            return;
+        }
+        
+        // 파일이 선택된 경우 서버에 전송
+        const form_data = new FormData();
+        form_data.append('mem_photo', $('#mem_photo')[0].files[0]);
+
+        $.ajax({
+            url: 'updateMyPhoto.do',
+            type: 'post',
+            data: form_data,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function(param) {
+                if (param.result == 'logout') {
+                    alert('로그인 후 사용하세요');
+                } else if (param.result == 'success') {
+                    alert('프로필 사진이 수정되었습니다.');
+                    // 수정된 이미지 정보 저장
+                    photo_path = $('.my-photo').attr('src');
+                    // 변경 전으로 초기화
+                    $('#mem_photo').val('');
+                    $('#mem_photo_choice').hide();
+                    $('#mem_photo_btn').show(); // 수정 버튼 표시
+                    $('#profile_pic').attr('src', contextPath + "/upload/" + mem_photo);
+                } else {
+                    alert('파일 전송 오류 발생');
+                }
+            },
+            error: function() {
+                alert('네트워크 오류 발생');
+            }
+        });
     }); // end of click
 
     // 이미지 미리보기 취소

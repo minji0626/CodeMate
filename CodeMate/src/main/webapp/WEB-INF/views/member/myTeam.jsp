@@ -28,23 +28,28 @@
 </div>
 
 <c:if test="${empty team}">
-	참가 중인 팀 없음
+    참가 중인 팀 없음
 </c:if>
 <c:if test="${!empty team}">
-	<c:forEach var="myteam" items="${team}">
-		<div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer;">
-		<div class="team-left">
-		<div class="skill_font_T"></div>
-		<div class="projectName_font">${myteam.rb_pj_title}</div>
-		${myteam.tm_auth}
-		</div>
-		<div class="team-right">
-		<div class="delete-green-box">
-		</div>
-		<div>모집마감:</div>
-		</div>
-		</div>
-	</c:forEach>
+    <c:forEach var="myteam" items="${team}">
+        <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer;">
+        <div class="team-left">
+        <div class="skill_font_T"></div>
+        <div class="projectName_font">${myteam.rb_pj_title}</div>
+        <c:if test="${myteam.tm_auth == '4'}">
+            팀장
+        </c:if>
+        <c:if test="${myteam.tm_auth == '3'}">
+            팀원
+        </c:if>
+        </div>
+        <div class="team-right">
+        <div class="delete-green-box">
+        </div>
+        <div>프로젝트 마감일:</div>
+        </div>
+        </div>
+    </c:forEach>
 </c:if>
 
 

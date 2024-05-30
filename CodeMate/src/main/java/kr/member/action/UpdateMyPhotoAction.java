@@ -48,7 +48,7 @@ public class UpdateMyPhotoAction implements Action{
                 session.setAttribute("contextPath", contextPath);
                 mapAjax.put("result", "success");
 		}
-		
+        //JSON 데이터 생성
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		
