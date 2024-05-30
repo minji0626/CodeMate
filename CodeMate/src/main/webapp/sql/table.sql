@@ -290,3 +290,9 @@ ALTER TABLE team
 ADD CONSTRAINT fk_team_rb_num
 FOREIGN KEY (team_num)
 REFERENCES r_board(rb_num);
+
+ALTER TABLE r_apply
+ADD CONSTRAINT fk_rb_num
+FOREIGN KEY (rb_num)
+REFERENCES r_board(rb_num)
+ON DELETE SET NULL;
