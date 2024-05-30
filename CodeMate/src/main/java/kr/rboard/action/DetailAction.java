@@ -19,8 +19,12 @@ public class DetailAction implements Action {
 		
 		RboardDAO rdao = RboardDAO.getInstance();
 		
+		//rboard 가져오기
 		RboardVO rboard = rdao.getrboard(rb_num);
+		//조회수 증가
+		rdao.updateReadCount(rb_num);
 		
+		rboard.setRb_title(StringUtil.useNoHTML(rboard.getRb_title()));
 		rboard.setRb_content(StringUtil.useBrNoHTML(rboard.getRb_content()));
 
 		request.setAttribute("rboard", rboard);

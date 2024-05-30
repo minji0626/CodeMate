@@ -19,8 +19,9 @@ public class RboardVO {
 	private String rb_content;	//모집글 내용
 	private String rb_endRecruit; //모집 마감일
 	private String rb_pj_title;	//프로젝트명
+	private int rb_hit;
 	
-    private String[] r_skills;	//요구기술 list
+	private String[] r_skills;	//요구기술 list
     private String[] r_fields;	//모집필드 list
 	
     //요구기술, 모집필드 이름 및 사진 변수 배열
@@ -146,7 +147,12 @@ public class RboardVO {
 		this.mem_photo = mem_photo;
 	}
 	
-	
+    public int getRb_hit() {
+		return rb_hit;
+	}
+	public void setRb_hit(int rb_hit) {
+		this.rb_hit = rb_hit;
+	}
 	
 	
 }

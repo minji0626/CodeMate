@@ -54,6 +54,7 @@
 						<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn">
 						<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
 						</c:if>
+						<span>조회수 <span id="rb_hit">${rboard.rb_hit}</span></span>
 					</div>
 				</div>
 				<div class="content">

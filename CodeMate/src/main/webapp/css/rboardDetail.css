@@ -89,7 +89,7 @@
 	flex-direction: column;
 }
 
-.comment-item-header .rc_reg_date {
+.comment-item-header .rc_reg_date, .comment-item-header .rc_modify_date {
 	font-size: 10pt;
 }
 

@@ -264,6 +264,7 @@ public class RboardDAO {
 				rboard.setRb_content(rs.getString("rb_content"));
 				rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+				rboard.setRb_hit(rs.getInt("rb_hit"));
 
 				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
@@ -435,6 +436,25 @@ public class RboardDAO {
 	}
 
 	// 댓글 수정
+	public void modifyRcomment(RcommentVO rcomment) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE r_comment SET rc_content=?,rc_modify_date=SYSDATE WHERE rc_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, StringUtil.useBrNoHTML(rcomment.getRc_content()));
+			pstmt.setInt(2, rcomment.getRc_num());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 
 	// 댓글 삭제
 	public void deleteRcomment(int rc_num) throws Exception {
@@ -455,5 +475,42 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//조회수 증가
+	public void updateReadCount(int rb_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE r_board SET rb_hit=rb_hit+1 WHERE rb_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
