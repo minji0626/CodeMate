@@ -25,7 +25,7 @@ public class TeamPageTestAction implements Action{
         }
         
         TeamDAO dao = TeamDAO.getInstance();
-        List<TeamVO> team = dao.getTeamList(mem_num);
+        List<TeamVO> team = dao.getTeamList(mem_num, session);
         
         request.setAttribute("team", team);
         

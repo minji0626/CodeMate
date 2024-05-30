@@ -47,6 +47,7 @@ window.onload = function(){
     <div class="container_write">
         <form action="tboardUpdate.do" id="update_form" method="post" enctype="multipart/form-data">
         <input type="hidden" name="tb_num" value="${tboard.tb_num}">
+        <input type="hidden" name="team_num" value="${tboard.team_num}">
         	<div class="form-group">
 				<input type="radio" name="tb_auth" value="1" id="tb_auth1">
 				공지사항
@@ -81,7 +82,7 @@ window.onload = function(){
         							$.ajax({
         								url:'deleteFile.do',
         								type:'post',
-        								data:{tb_num:${tboard.tb_num}},
+        								data:{tb_num:${tboard.tb_num},team_num:${tboard.team_num}},
         								dataType:'json',
         								success:function(param){
         									if(param.result == 'logout'){

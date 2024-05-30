@@ -32,8 +32,11 @@
         </c:if>
         <c:if test="${count > 0}">
         <!-- 팀원 목록 출력! -->
-            <c:forEach  var="tmember" items="${list}">
-                <div class="mem_personal">
+        <!-- 팀장 우선 출력하기-->
+        <c:forEach  var="tmember" items="${list}">
+        	<c:if test="${tmember.tm_auth == 4 }">
+        	
+                <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num }">style="box-shadow: 0 0 10px rgb(204, 247, 217);"</c:if>>
                     <ul>
                         <li>
                         	<c:if test="${!empty tmember.mem_photo }">
@@ -44,26 +47,58 @@
                         	</c:if>
                         </li>
                         <li>
-                            <c:choose>
-                                <c:when test="${tmember.tm_auth == 3}">
-                                    <span class="team_mem_status">팀원</span>
-                                </c:when>
-                                <c:when test="${tmember.tm_auth == 4}">
-                                    <span class="team_mem_status">팀장</span>
-                                </c:when>
-                            </c:choose>
+                           <span class="team_mem_status">팀장</span>
                         </li>
                         <li><span class="team_mem_nickname" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span></li>
+                        <c:if test="${mem_num != tmember.mem_num }">
                         <li>
                             <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                             <div class="dropdown_menu">
                                 <a class="review-link">리뷰 쓰기</a>
+                                <c:if test="${tm_auth == 4 }">
                                 <a href="#" id="mem_delete_btn">팀원 삭제</a>
                                 <a href="#" id="mem_auth_btn">팀장 위임</a>
+                                </c:if>
                             </div>
                         </li>
+                        </c:if>
                     </ul>
                 </div>
+                </c:if>
+            </c:forEach>
+        
+        	<!-- 팀원 출력하기! -->
+            <c:forEach  var="tmember" items="${list}">
+            <c:if test="${tmember.tm_auth == 3 }">
+                <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num }">style="box-shadow: 0 0 10px rgb(204, 247, 217);"</c:if>>
+                    <ul>
+                        <li>
+                        	<c:if test="${!empty tmember.mem_photo }">
+                        	<img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img">
+                        	</c:if>
+                        	<c:if test="${empty tmember.mem_photo }">
+                        	<img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img">
+                        	</c:if>
+                        </li>
+                        <li>
+                           <span class="team_mem_status">팀원</span>
+                        </li>
+                        <li><span class="team_mem_nickname" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span></li>
+                        <c:if test="${mem_num != tmember.mem_num }">
+                        <li>
+                            <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
+                            <div class="dropdown_menu">
+                                <a class="review-link">리뷰 쓰기</a>
+                                <c:if test="${tm_auth == 4 }">
+                                <a href="#" id="mem_delete_btn">팀원 삭제</a>
+                                <a href="#" id="mem_auth_btn">팀장 위임</a>
+                                </c:if>
+                            </div>
+                        </li>
+                        </c:if>
+                    </ul>
+                </div>
+                </c:if>
             </c:forEach>
         </c:if>
     </div>

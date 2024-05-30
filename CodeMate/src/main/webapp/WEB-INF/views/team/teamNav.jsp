@@ -124,7 +124,12 @@ a{
 			<img src="${pageContext.request.contextPath}/images/face.png" id="profile-img" width="55" height="55">
 		</c:if>
         <div class="team_status">
+        	<c:if test="${tm_auth == 3 }">
         	<p>팀원</p>
+        	</c:if>
+        	<c:if test="${tm_auth == 4 }">
+        	<p>팀장</p>
+        	</c:if>
         </div>
         <span class="team_nickname">${mem_id}</span>
         <a href="${pageContext.request.contextPath}/member/myWrite.do">

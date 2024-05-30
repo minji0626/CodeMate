@@ -26,9 +26,10 @@ public class TboardUpdateAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		// 전송되 데이터 반환
 		int tb_num = Integer.parseInt(request.getParameter("tb_num"));
+		int team_num = Integer.parseInt(request.getParameter("team_num"));
 		TboardDAO dao = TboardDAO.getInstance();
 		// 수정 전 데이터
-		TboardVO db_board = dao.detailTboard(tb_num);
+		TboardVO db_board = dao.detailTboard(tb_num,team_num);
 		// 로그인한 회원 번호와 작성자 회원 번호 일치 여부 체크하기
 		if(mem_num != db_board.getMem_num()) {
 			//  로그인한 회원 번호와 작성자 회원 번호 불일치
@@ -42,7 +43,7 @@ public class TboardUpdateAction implements Action{
 			tboard.setTb_title(request.getParameter("tb_title"));
 			tboard.setTb_content(request.getParameter("tb_content"));
 			tboard.setTb_file(FileUtil.createFile(request, "tb_file"));
-			
+			tboard.setTeam_num(team_num);
 			dao.updateTboard(tboard);
 			
 			if(tboard.getTb_file()!=null && !"".equals(tboard.getTb_file())) {
@@ -52,7 +53,7 @@ public class TboardUpdateAction implements Action{
 			}
 			
 			request.setAttribute("notice_msg", "글 수정 완료되었습니다.");
-			request.setAttribute("notice_url", request.getContextPath()+"/team/TBoardDetail.do?tb_num="+tb_num);
+			request.setAttribute("notice_url", request.getContextPath()+"/team/TBoardDetail.do?tb_num="+tb_num+"&team_num="+team_num);
 			
 		return "/WEB-INF/views/common/alert_view.jsp";
 		// redirect:/board/detail.do?board_num="+board_num

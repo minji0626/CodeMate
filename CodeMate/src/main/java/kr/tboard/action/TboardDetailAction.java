@@ -18,10 +18,11 @@ public class TboardDetailAction implements Action{
 		int tb_num = Integer.parseInt(request.getParameter("tb_num"));
 		int team_num = Integer.parseInt(request.getParameter("team_num"));
 		
-		TboardVO tboard = new TboardVO();
-		TboardDAO dao = TboardDAO.getInstance();
 		
-		tboard = dao.detailTboard(tb_num);
+		TboardDAO dao = TboardDAO.getInstance();
+		TboardVO tboard = new TboardVO();
+		
+		tboard = dao.detailTboard(tb_num,team_num);
 		
 		request.setAttribute("tboard", tboard);
 		request.setAttribute("team_num", team_num);

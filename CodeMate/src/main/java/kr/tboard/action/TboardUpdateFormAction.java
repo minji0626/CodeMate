@@ -22,8 +22,9 @@ public class TboardUpdateFormAction implements Action{
 		}
 		
 		int tb_num = Integer.parseInt(request.getParameter("tb_num"));
+		int team_num = Integer.parseInt(request.getParameter("team_num"));
 		TboardDAO dao = TboardDAO.getInstance();
-		TboardVO tboard = dao.detailTboard(tb_num);
+		TboardVO tboard = dao.detailTboard(tb_num,team_num);
 		if(mem_num!=tboard.getMem_num()) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
@@ -34,7 +35,7 @@ public class TboardUpdateFormAction implements Action{
 		
 		// 로그인이 되어있고 로그인한 회원 번호와 작성자 회원 번호가 일치할 때
 		 request.setAttribute("tboard", tboard);
-		 
+		 request.setAttribute("team_num", team_num);
 		return "/WEB-INF/views/team/teamUpdateForm.jsp";
 	}
 }

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import kr.mate.vo.TeamVO;
 import kr.util.DBUtil;
 
@@ -19,8 +21,8 @@ public class TeamDAO {
     private TeamDAO() {
     }
 
-    // 팀 목록
-    public List<TeamVO> getTeamList(int mem_num) throws Exception {
+ // 팀 목록
+    public List<TeamVO> getTeamList(int mem_num, HttpSession session) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         PreparedStatement pstmt2 = null;
@@ -32,7 +34,7 @@ public class TeamDAO {
             conn = DBUtil.getConnection();
             conn.setAutoCommit(false);
 
-            sql = "SELECT team_num FROM team_member WHERE mem_num=?";
+            sql = "SELECT team_num, tm_auth FROM team_member WHERE mem_num=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, mem_num);
 
@@ -41,6 +43,10 @@ public class TeamDAO {
             
             while (rs.next()) {
                 int team_num = rs.getInt("team_num");
+                int tm_auth = rs.getInt("tm_auth");
+
+                // 세션에 tm_auth 값을 저장
+                session.setAttribute("tm_auth", tm_auth);
 
                 sql = "SELECT rb_period, rb_start, rb_pj_title FROM r_board WHERE rb_num=?";
                 pstmt2 = conn.prepareStatement(sql);
@@ -68,4 +74,5 @@ public class TeamDAO {
         }
         return list;
     }
+
 }

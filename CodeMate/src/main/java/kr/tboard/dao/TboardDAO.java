@@ -154,7 +154,7 @@ public class TboardDAO {
 
 
 	// 글 세부
-	public TboardVO detailTboard(int tb_num) throws Exception {
+	public TboardVO detailTboard(int tb_num,int team_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -162,23 +162,24 @@ public class TboardDAO {
 		TboardVO tboard = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql="SELECT * FROM team_board JOIN member USING(mem_num) JOIN member_detail USING(mem_num) WHERE tb_num = ?";
+			sql="SELECT * FROM team_board JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE tb_num=? and team_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, tb_num);
+			pstmt.setInt(2, team_num);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				tboard = new TboardVO();
-				tboard.setTb_num(rs.getInt("team_num"));
-				tboard.setMem_nickname(rs.getString("mem_nickname"));
 				tboard.setMem_id(rs.getString("mem_id"));
+				tboard.setMem_nickname(rs.getString("mem_nickname"));
+				tboard.setMem_num(rs.getInt("mem_num"));
+				tboard.setMem_photo(rs.getString("mem_photo"));
+				tboard.setTeam_num(rs.getInt("team_num"));
 				tboard.setTb_num(rs.getInt("tb_num"));
 				tboard.setTb_title(rs.getString("tb_title"));
 				tboard.setTb_content(rs.getString("tb_content"));
 				tboard.setTb_reg_date(rs.getDate("tb_reg_date"));
 				tboard.setTb_modify_date(rs.getDate("tb_modify_date"));
-				tboard.setMem_num(rs.getInt("mem_num"));
 				tboard.setTb_file(rs.getString("tb_file"));
-				tboard.setMem_photo(rs.getString("mem_photo"));
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -190,16 +191,17 @@ public class TboardDAO {
 	}
 	
 	// 파일 삭제
-	public void deleteFile(int tb_num) throws Exception {
+	public void deleteFile(int tb_num,int team_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "UPDATE team_board SET tb_file='' WHERE tb_num=?";
+			sql = "UPDATE team_board SET tb_file='' WHERE tb_num=? AND team_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, tb_num);
+			pstmt.setInt(2, team_num);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -222,7 +224,7 @@ public class TboardDAO {
 			if(tboard.getTb_file()!=null && !"".equals(tboard.getTb_file())) {
 				sub_sql += ", tb_file=?";
 			}
-			sql = "UPDATE team_board SET tb_title=?,tb_content=?,tb_modify_date=SYSDATE, tb_auth=?"+sub_sql+" WHERE tb_num=?";
+			sql = "UPDATE team_board SET tb_title=?,tb_content=?,tb_modify_date=SYSDATE, tb_auth=?"+sub_sql+" WHERE tb_num=? AND team_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(++cnt, tboard.getTb_title());
 			pstmt.setString(++cnt, tboard.getTb_content());
@@ -231,6 +233,7 @@ public class TboardDAO {
 				pstmt.setString(++cnt, tboard.getTb_file());
 			}
 			pstmt.setInt(++cnt, tboard.getTb_num());
+			pstmt.setInt(++cnt, tboard.getTeam_num());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);

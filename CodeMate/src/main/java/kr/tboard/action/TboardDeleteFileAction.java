@@ -30,15 +30,16 @@ public class TboardDeleteFileAction implements Action{
 			request.setCharacterEncoding("utf-8");
 			// 전송된 데이터 반환
 			int tb_num = Integer.parseInt(request.getParameter("tb_num"));
+			int team_num = Integer.parseInt(request.getParameter("team_num"));
 			
 			TboardDAO dao = TboardDAO.getInstance();
-			TboardVO db_board = dao.detailTboard(tb_num);
+			TboardVO db_board = dao.detailTboard(tb_num,team_num);
 			
 			// 로그인한 회원 번호와 작성자 회원 번호 일치 여부 체크
 			if(mem_num != db_board.getMem_num()) {
 				mapAjax.put("result", "wrongAccess");
 			}else {
-				dao.deleteFile(tb_num);
+				dao.deleteFile(tb_num,team_num);
 				// 파일 삭제
 				FileUtil.removeFile(request, db_board.getTb_file());
 				
