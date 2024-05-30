@@ -132,13 +132,13 @@ a{
         	</c:if>
         </div>
         <span class="team_nickname">${mem_nickname}</span>
-        <div class="written_post">
         <a href="${pageContext.request.contextPath}/member/myWrite.do">
+        <div class="written_post">
             <img src="${pageContext.request.contextPath}/images/cmj/written_post.png" alt="내가 쓴 글" id="post_icon">
             <span class="my_post">내가 쓴 글</span>
             <span class="my_post_cnt">20개</span>
-            </a>
         </div>
+        </a>
     </div>
     <!-- 외부 왼쪽 컨테이너 시작 -->
     <div class="menu-bar">
