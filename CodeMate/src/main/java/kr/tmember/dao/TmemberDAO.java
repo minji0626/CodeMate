@@ -102,7 +102,7 @@ public class TmemberDAO {
 	
 	
 	// 팀 멤버 삭제하기
-	public void deleteTeamMember(int team_num, int mem_num) throws Exception{
+	public void deleteTeamMember(int mem_num, int team_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt3= null;
 		PreparedStatement pstmt2= null;

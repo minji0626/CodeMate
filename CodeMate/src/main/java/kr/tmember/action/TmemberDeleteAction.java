@@ -31,13 +31,18 @@ public class TmemberDeleteAction implements Action {
 		TmemberDAO dao = TmemberDAO.getInstance();
 
 		Integer user_num = (Integer)session.getAttribute("mem_num");
+		Integer user_auth = (Integer)session.getAttribute("tm_auth");
 		if(user_num == null) { // 로그인 되지 않은 경우
 			mapAjax.put("result", "logout");
 		} else { // 로그인 된 경우
 			// 전송된 데이터 인코딩 타입 지정
-
-			dao.deleteTeamMember(mem_num, team_num);
-			mapAjax.put("result", "success");
+			if(user_auth==4) {
+				dao.deleteTeamMember(mem_num, team_num);
+				mapAjax.put("result", "success");
+			} else {
+				mapAjax.put("result", "wrongAccess");
+			}
+			
 
 		}
 		// JSON 데이터 생성
