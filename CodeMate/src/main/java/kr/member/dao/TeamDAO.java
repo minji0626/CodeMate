@@ -1,4 +1,4 @@
-package kr.mate.dao;
+package kr.member.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import kr.mate.vo.TeamVO;
+import kr.member.vo.TeamVO;
 import kr.util.DBUtil;
 
 public class TeamDAO {

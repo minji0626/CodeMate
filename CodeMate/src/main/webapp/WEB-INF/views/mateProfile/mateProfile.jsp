@@ -163,9 +163,7 @@
                 <div class="mp_content_div">
                     <h4>메이트 후기</h4>
                     <div class="mp_mate_review">
-                        <p>
-                            <button onclick="location.href='teamPageTest.do'">내 팀 (테스트)</button>
-                        </p>
+                        
                     </div>
                 </div>
                 <!-- 닫기 버튼 -->

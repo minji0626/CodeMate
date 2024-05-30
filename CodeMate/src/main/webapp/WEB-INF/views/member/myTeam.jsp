@@ -28,20 +28,25 @@
 </div>
 
 <!-- <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;"> -->
-
-<%-- <c:forEach var="rboard" items="${rboardList}"> --%>
-<div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;">
-<div class="team-left">
-<div class="skill_font_T">${member.mem_nickname}</div>
-<div class="projectName_font">${member.mem_nickname}</div>
-</div>
-<div class="team-right">
-<div class="delete-green-box">
-</div>
-<div>모집마감:${member.mem_nickname}</div>
-</div>
-</div>
-<%-- </c:forEach> --%>
+<c:if test="${empty team}">
+	참가 중인 팀 없음
+</c:if>
+<c:if test="${!empty team}">
+	<c:forEach var="myteam" items="${team}">
+		<div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer;">
+		<div class="team-left">
+		<div class="skill_font_T"></div>
+		<div class="projectName_font">${myteam.rb_pj_title}</div>
+		${myteam.tm_auth}
+		</div>
+		<div class="team-right">
+		<div class="delete-green-box">
+		</div>
+		<div>모집마감:</div>
+		</div>
+		</div>
+	</c:forEach>
+</c:if>
 
 
 </div>
