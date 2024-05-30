@@ -28,86 +28,115 @@ body {
     position: relative;
     top: 20px;
 }
+#find_main{
+	text-align:center;
+}
 
 h2{
-	text-align:center;
-	transform:translateY(-155%);
+	position:relative;
+	top:100px; left:10px;
 }
- #btn{
- 	text-align:center;
-	transform:translateY(-700%);
+#btn{
+ 	margin:0 auto;
+	position:relative;
+	bottom:480px; 
+	width:400px;
 } 
 button#Id{
+	position:relative;
+	right:10px;
+	font-size:16px;
 	background:none;
 	border:none;
 	width:80px;
 	height:50px;
 }
-
+button#Id:hover{
+	color:#ccc;
+}
 button#Pw{
+	width:150px;
+	position:relative;
+	left:80px;
+	font-size:16px;
 	background:none;
 	border:none;
-	width:90px;
 	height:50px;
 }
-#btnHr{
-	transform:translateX(115%);
-	width:30%;
+button#Pw:hover{
+	color:#ccc;
+}
+#w{
+	width:400px;
+}
+.btnHr{
+	position:relative;
+	left:20px;
+	width:100%;
+	z-index:1;
+}
+#btnHr_click{
+	position:relative;
+	left:20px;
+	width:50%;
 }
 /* 슬라이더 */
 .slider-container {
-			transform:translateY(15%);
-        	margin-top: 10px;
-            width: 30%; /* 컨테이너 너비 */
-            height: 350px; /* 컨테이너 높이 */
-           overflow: hidden; 
-            margin: 0 auto; /* 가운데 정렬 */
-        }
+	position:relative;
+	top:175px; left:15px;
+	margin-top: 10px;
+	width: 400px; /* 컨테이너 너비 */
+	height: 600px; /* 컨테이너 높이 */
+	overflow: hidden; 
+	margin: 0 auto; /* 가운데 정렬 */
+}
+.slider-wrapper {
+	display: flex;
+	height: 100%;
+	width: 400px;
+}
 
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
+.slide {
+	margin-top: 10px;
+	width: 100%; /* 슬라이드 너비 */
+	flex-shrink: 0;
+	height:400px;
+}
 
-        .slide {
-        margin-top: 10px;
-            width: 100%; /* 슬라이드 너비 */
-            flex-shrink: 0;
-        }
-
-        input{
-        width: 90%;
-    	height: 40px;
-    	padding: 10px;
-    	border: 1px solid #ccc;
-    	border-radius: 5px;
-    	display: flex;
-    	gap:10px;
-        }
- button[type="submit"]{
-    background-color:black;
-    color:white;
+input{
+	width: 90%;
+	height: 40px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin:10px auto !important;
+}
+button[type="submit"]{ 	
+	position:relative;
+	right:8px; top:30px;
+	background-color:black;
+	color:white;
 	margin-top: 30px;
-  margin-left : 10px;
-    width: 90%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-   
-    }
-  a.canc{
+	margin-left : 10px;
+	width: 90%;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+  .canc{
   	position:relative;
-  	top:30px;
+  	top:30px; left:5px;
  	border-radius:5px;
  	margin-top: 30px;
   	margin-left : 10px;
-    width: 100%;
+    width: 85%;
     padding: 10px;
     font-size: 16px;
     border: solid 1px;
+    background:none;
  }
-        
+
+
         

@@ -21,6 +21,8 @@
 					width="80"> CODEMATE
 				</a>
 			</div>
+			
+			<div id="find_main">
 			<h2>계정 찾기</h2>
 			<!-- 찾기 창 슬라이드 -->
 			<div class="slider-container">
@@ -32,7 +34,11 @@
 							<input type="text" id="phoneInput" placeholder="전화번호" required>
 							<input type="email" id="emailInput" placeholder="이메일 주소" required>
 							<button type="submit">아이디 찾기</button>
-							<a class="canc" href="${pageContext.request.contextPath}/member/loginForm.do">취소하기</a>
+							<div class="canc" >
+								<a href="${pageContext.request.contextPath}/member/loginForm.do">
+									취소하기
+								</a>
+							</div>						
 						</form>
 						<div class="result"></div>
 					</div>
@@ -44,7 +50,11 @@
 							<input type="text" id="phoneInput" placeholder="전화번호" required>
 							<input type="email" id="emailInput" placeholder="이메일 주소" required>
 							<button type="submit">비밀번호 찾기</button>
-							<a class="canc">취소하기</a>
+							<div class="canc" >
+								<a href="${pageContext.request.contextPath}/member/loginForm.do">
+									취소하기
+								</a>
+							</div>
 						</form>
 						<div class="result"></div>
 					</div>
@@ -58,20 +68,28 @@
 				<button id="Pw">
 				비밀번호 찾기
 				</button>
-				<hr id="btnHr" size="2px">
+				<hr class="btnHr" size="2px">
+					<div id="w">
+						<hr class="btnHr"  id="btnHr_click" size="2px">
+					</div>
+				
 			</div>
+			
+			</div>
+			
 	</div><!-- end of pagemain -->
 	</div>
 	<script>
     document.addEventListener("DOMContentLoaded", function () {
         var sliderWrapper = document.getElementById("sliderWrapper");
+        var HrWrapper = document.getElementById("w");
         var IdButton = document.getElementById("Id");
         var PwButton = document.getElementById("Pw");
         var slides = document.querySelectorAll(".slide");
         var slideIndex = 0;
         var totalSlides = slides.length;
      
-        PwButton.addEventListener("click", prevSlide);
+        PwButton.addEventListener("click", PwSlide);
         IdButton.addEventListener("click", IdSlide);
             
             function showSlide(index) {
@@ -81,10 +99,12 @@
 
             function IdSlide() {//우측으로 이동
             	sliderWrapper.style.transform = 'translateX(0%)';
+            	HrWrapper.style.transform = 'translateX(0%)';
             }
 
-            function prevSlide() {//좌측으로 이동
+            function PwSlide() {//좌측으로 이동
             	sliderWrapper.style.transform = 'translateX(-100%)';
+            	HrWrapper.style.transform = 'translateX(50%)';
             }
     });
 </script>
