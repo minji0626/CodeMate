@@ -16,7 +16,7 @@
    top:30px;
    overflow:hidden;
    height:300px;
-   width:100%;
+   width:1180px;
 }  
  .wrapper {/* 움직이는 부분 */
    height:300px;
@@ -48,10 +48,12 @@
 /* 더보기 */
  a#more{
    position:relative;
-   top:20px; left:950px; 
+   top:20px; left:1150px; 
 } 
 
 #back_btn{
+	position:relative;
+	
    width:50px;
    color:white;
    border-radius:20px;
