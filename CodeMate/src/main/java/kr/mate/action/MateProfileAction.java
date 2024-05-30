@@ -17,30 +17,24 @@ public class MateProfileAction implements Action {
 	// 하
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 세션에 로그인된 상태로 있어야 됨
+
         HttpSession session = request.getSession();
-        
-        // 로그인 체크
-        Integer mem_num = (Integer)session.getAttribute("mem_num");
-        if(mem_num == null) { // 로그인이 되지 않은 경우
-            return "redirect:/member/loginForm.do";
-        }
-        
+        int user_num = Integer.parseInt(request.getParameter("mem_num"));
         
         MemberDAO dao = MemberDAO.getInstance();
-        MemberVO member = dao.detailMP(mem_num);
+        MemberVO member = dao.detailMP(user_num);
         
-        MemberVO mem = dao.getMember(mem_num);
+        MemberVO mem = dao.getMember(user_num);
         
         MateDAO mateDAO = MateDAO.getInstance();
         List<MateVO> hardSkillList = null;
-        hardSkillList = mateDAO.getListMatHardSkill(mem_num);
+        hardSkillList = mateDAO.getListMatHardSkill(user_num);
         
         List<MateVO> softSkillList = null;
-        softSkillList = mateDAO.getListMatSoftSkill(mem_num);
+        softSkillList = mateDAO.getListMatSoftSkill(user_num);
         
         List<MateVO> mateExpList = null;
-        mateExpList = mateDAO.getMateExp(mem_num);
+        mateExpList = mateDAO.getMateExp(user_num );
         
         request.setAttribute("mateExpList", mateExpList);
         request.setAttribute("softSkillList", softSkillList);

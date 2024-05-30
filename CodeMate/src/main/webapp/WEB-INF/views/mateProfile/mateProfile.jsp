@@ -46,7 +46,7 @@
                         <!-- 레벨 이미지 추가하기 -->
                         <img>
                         <br>
-                        <span class="user_id">${mem_id}</span>
+                        <span class="user_id">${mem.mem_id}</span>
                         <!-- 아이디 옆 이미지 추가하기 -->
                         <img>
                     </div>
