@@ -80,10 +80,8 @@ $(function(){
 	                alert('로그인 후 사용 가능');
 	            } else if (param.result == 'success') {
 	                alert('프로필 사진이 기본으로 변경되었습니다.');
-	                // 수정된 이미지 정보 저장
-	                $('#mem_photo').val('');
-	                $('#mem_photo_choice').hide();
-	                $('#mem_photo_btn').show();
+	             // 페이지를 다시 로드
+	                location.reload();
 	            } else {
 	                alert('파일 전송 오류 발생');
 	            }
