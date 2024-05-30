@@ -98,6 +98,7 @@
                                 <!-- 팀장인 경우 데이터 속성 추가 -->
 								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
                                 <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
+                                <input type="hidden" name="mem_num" value="${tmember.team_num}">
                                 </c:if>
                             </div>
                         </li>

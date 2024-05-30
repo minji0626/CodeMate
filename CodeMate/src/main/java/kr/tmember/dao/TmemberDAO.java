@@ -121,19 +121,19 @@ public class TmemberDAO {
 			pstmt.setInt(2, team_num);
 			pstmt.executeUpdate();
 			
-			// 해당 멤버가 작성한 댓글 삭제
-			sql="DELETE FROM team_comment WHERE mem_num=? AND team_num=?";
+			/*
+			 * // 해당 멤버가 작성한 댓글 삭제
+			 * sql="DELETE FROM team_comment WHERE mem_num=? AND team_num=?"; pstmt2 =
+			 * conn.prepareStatement(sql); pstmt2.setInt(1, mem_num); pstmt2.setInt(2,
+			 * team_num); pstmt2.executeUpdate();
+			 */
+			
+			// team_member에서 해당 멤버 삭제하기
+			sql="DELETE FROM team_member WHERE mem_num=? AND team_num=?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, mem_num);
 			pstmt2.setInt(2, team_num);
 			pstmt2.executeUpdate();
-			
-			// team_member에서 해당 멤버 삭제하기
-			sql="DELETE FROM team_member WHERE mem_num=? AND team_num=?";
-			pstmt3 = conn.prepareStatement(sql);
-			pstmt3.setInt(1, mem_num);
-			pstmt3.setInt(2, team_num);
-			pstmt3.executeUpdate();
 			
 			// 모든 sql문이 성공한다면 커밋을 시킨다
 			conn.commit();
@@ -142,7 +142,6 @@ public class TmemberDAO {
 			conn.rollback();
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}

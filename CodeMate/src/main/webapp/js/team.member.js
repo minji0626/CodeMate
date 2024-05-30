@@ -74,13 +74,17 @@ $(document).ready(function() {
 
 $(function(){
     $('.mem_delete_btn').click(function(){
+            let team_num = $(this).attr('data-team-num');
+            let mem_num = $(this).attr('data-mem-num');
+            
             let choice = confirm('해당 멤버를 삭제하시겠습니까?');
+            
             if(choice){
                 // 서버 통신
                 $.ajax({
                     url:'deleteTmember.do',
                     type:'post',
-                    data:{team_num: $(this).data('team-num'), mem_num:$(this).data('mem-num')},
+                    data:{team_num:team_num, mem_num: mem_num},
                     dataType:'json',
                     success: function(param) {
                         if (param.result == 'logout') {
@@ -88,8 +92,9 @@ $(function(){
                         } else if (param.result == 'wrongAccess') {
                             alert('잘못된 접근 정보입니다.')
                         } else if (param.result == 'success') {
+							alert(team_num+ ', '+mem_num);
                             alert('팀원이 삭제되었습니다');
-                            location.href = '../team/teamSetting.do';
+                            location.href = 'teamSetting.do?team_num=' + team_num;
                         } else {
                             alert('팀원 삭제 처리 중 오류가 발생하였습니다.');
                         }
