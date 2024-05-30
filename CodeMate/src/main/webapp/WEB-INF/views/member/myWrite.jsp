@@ -43,6 +43,12 @@ $(document).ready(function() {
     <div class="myPage-line-box">
     <div class="team-left">
         <div class="board_name">자유게시판</div>
+        <c:if test="">
+        자유게시판 0
+        </c:if>
+        <c:if test="">
+        개발게시판 1
+        </c:if>
         <div class="projectName_font">내가 쓴 글 제목</div>
         <div class="fav-reply">
             <div class="myWrite-fav">좋아요</div>
@@ -51,7 +57,7 @@ $(document).ready(function() {
     </div>
         <div class="btn_box_write">
         <input type="button" value="수정" class="myUpdate_btn" onclick="">
-        <input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
+        <input type="submit" value="삭제" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
     </div>
     </div>
 <%-- </c:forEach>   --%> 

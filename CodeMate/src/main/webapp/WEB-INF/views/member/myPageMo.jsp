@@ -12,13 +12,25 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/rboardWriteDelete.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     // '모집글 삭제' 버튼 클릭 이벤트
     $('.delete-green').click(function(event) {
-        event.stopPropagation(); // 부모 요소로의 이벤트 전파를 막음
-        $(this).closest('.myPage-line-box').remove(); // 부모 요소인 .myPage-line-box 삭제
+        event.stopPropagation();
+        $(this).closest('.myPage-line-box').remove();
     });
+    
+	//'활성화' 버튼 클릭 이벤트
+    $('.close-green').click(function(event) {
+        event.stopPropagation();
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active').addClass('inactive').css('background-color', 'red').text('비활성화');
+        } else {
+            $(this).removeClass('inactive').addClass('active').css('background-color', '').text('활성화');
+        }
+    });
+    
 });
 </script>
 </head>
@@ -50,6 +62,7 @@ $(document).ready(function() {
 <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
 <div>모집마감:${rboard.rb_endRecruit}</div>
 </div>
+<div class="close-green">활성화</div>
 </div>
 </div>
 </c:forEach>

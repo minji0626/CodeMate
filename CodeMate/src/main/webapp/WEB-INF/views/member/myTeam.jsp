@@ -46,6 +46,7 @@
         <div class="team-right">
         <div class="delete-green-box">
         </div>
+        <div class="team-count">프로젝트 시작일:${myteam.rb_start}</div>
         <div>프로젝트 진행기간:${myteam.rb_period}</div>
         </div>
         </div>

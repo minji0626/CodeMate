@@ -38,7 +38,7 @@ $(document).ready(function() {
 </div>
 <div class="btn_box">
     <input type="submit" value="수정" class="myUpdate_btn" onclick="location.href=''">
-    <input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
+    <input type="submit" value="삭제" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
 </div>
 </div>
 </div>

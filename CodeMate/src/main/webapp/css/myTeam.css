@@ -38,6 +38,15 @@
 	background-color: #5aca7c;
 	border-radius: 30px;
 }
+.close-green{
+	color:#fff;
+	margin-bottom: 5px;
+	width:70px;
+	height:20px;
+	float:right;
+	background-color: #5aca7c;
+	border-radius: 30px;
+}
 /*
 myPageMoshin.jsp
 내 프로젝트 모집 참가 지원서 페이지*/
@@ -96,3 +105,4 @@ myPageMoshin.jsp
 .yes.clicked, .no.clicked {
     font-weight: bold;
 }
+/* 나의 모집 페이지 활성화 버튼*/
