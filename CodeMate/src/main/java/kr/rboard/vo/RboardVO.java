@@ -19,7 +19,8 @@ public class RboardVO {
 	private String rb_content;	//모집글 내용
 	private String rb_endRecruit; //모집 마감일
 	private String rb_pj_title;	//프로젝트명
-	private int rb_hit;
+	private int rb_hit;			//조회수
+	private int rb_apply_count; //신청자수
 	
 	private String[] r_skills;	//요구기술 list
     private String[] r_fields;	//모집필드 list
@@ -153,6 +154,11 @@ public class RboardVO {
 	public void setRb_hit(int rb_hit) {
 		this.rb_hit = rb_hit;
 	}
-	
+	public int getRb_apply_count() {
+		return rb_apply_count;
+	}
+	public void setRb_apply_count(int rb_apply_count) {
+		this.rb_apply_count = rb_apply_count;
+	}
 	
 }
