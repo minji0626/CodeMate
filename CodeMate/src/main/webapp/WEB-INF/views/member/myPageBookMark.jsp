@@ -42,7 +42,7 @@
 <div class="team-right">
 <div class="delete-green">북마크 취소</div>
 <div class="team-count">신청인원:3명</div>
-<div>남은 기간 2024.05.23~2024.06.10</div>
+<div>모집마감일 2024.05.23~2024.06.10</div>
 </div>
 </div>
 <%-- </c:forEach> --%>

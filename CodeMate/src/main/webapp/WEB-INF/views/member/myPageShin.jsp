@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,18 +33,26 @@
 	<h3 class="mYPage-TitleText">나의 코메 신청</h3>
 </div>
 
+<c:forEach var="aprboard" items="${aprboardList}">
 <div class="myPage-line-box">
 <div class="team-left">
-<div class="skill_font_T">백엔드</div>
-<div class="projectName_font">쇼핑몰 웹페이지 프로젝트</div>
+<c:if test="${aprboard.rb_category == '0'}">
+	스터디
+</c:if>
+<c:if test="${aprboard.rb_category == '1'}">
+	프로젝트
+</c:if>
+<div class="projectName_font">${aprboard.rb_pj_title}</div>
 </div>
 
 <div class="team-right">
 <div class="delete-green">신청 취소</div>
-<div class="team-count">모집인원:6명</div>
-<div>남은 기간 2024.05.23~2024.06.10</div>
+<div class="team-count">모집인원:${aprboard.rb_teamsize}명</div>
+<div class="team-count">시작일 ${aprboard.rb_start}</div><!-- 글자 간격 마진 주려고 클래스 복붙 -->
+<div >진행 기간 ${aprboard.rb_period}</div>
 </div>
 </div>
+</c:forEach>
 
 </div>
 <!-- 메인 정보 수정 끝 -->

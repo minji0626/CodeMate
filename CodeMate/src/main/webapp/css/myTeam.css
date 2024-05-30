@@ -30,10 +30,13 @@
 }
 /* 신청 취소 */
 .delete-green{
-	color:#5aca7c;
+	color:#fff;
 	margin-bottom: 5px;
 	width:70px;
-	margin-left: 70%;
+	height:20px;
+	float:right;
+	background-color: #5aca7c;
+	border-radius: 30px;
 }
 /*
 myPageMoshin.jsp

@@ -426,6 +426,8 @@ public class RboardDAO {
 	            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 	            rboard.setRb_start(rs.getString("rb_start"));
 	            rboard.setRb_period(rs.getInt("rb_period"));
+	            //period 진행기간이 숫자로 되어있어서 일단 모집 마감일 추가했어요
+	            rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 	            // 리스트에 추가
 	            list.add(rboard);
 	        }
