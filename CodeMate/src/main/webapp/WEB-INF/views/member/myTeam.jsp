@@ -27,7 +27,6 @@
 	<h3 class="mYPage-TitleText">참여중인 팀</h3>
 </div>
 
-<!-- <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamTo_Do.do'" style="cursor: pointer;"> -->
 <c:if test="${empty team}">
 	참가 중인 팀 없음
 </c:if>
