@@ -79,7 +79,7 @@
 							<c:forEach var="cboard" items="${list}">
 		                        <tr>
 		                            <td>${cboard.cb_num}</td>
-		                            <td><a href="${pageContext.request.contextPath}/team/cBoardDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
+		                            <td><a href="${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
 		                            <td>${cboard.mem_nickname}</td>
 		                            <td>${cboard.cb_reg_date}</td>
 		                        </tr>

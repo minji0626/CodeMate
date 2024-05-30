@@ -35,11 +35,16 @@
 		       		<h2>자유 게시판</h2>
 		       		<!-- 작성자 및 정보 -->
 		       		<div class="board_info">
-		       			<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-		       			<span> 닉네임</span>
-		       			<span>2024.5.14</span>
+						<c:if test="${!empty mem_photo}">
+							<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40">
+						</c:if>
+						<c:if test="${!empty mem_num && empty mem_photo}">
+							<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">
+						</c:if>
+		       			<span> ${board.mem_nickname}</span>
+		       			<span>${board.cb_reg_date}</span>
 		       			<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png" width="15">
-		       			<span> 223</span>
+		       			<span>${board.cb_hit}</span>
 		       		</div>
 		       		
 		       		<hr style="color:#d4d4d4">
@@ -47,22 +52,26 @@
 		       		<!-- 게시글 본문 -->
 		       		<div class="board_content">
 		       			<!-- 이미지 --> 
-		       			<div class="board_file">
-		       				<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
-		       			</div>
+		       			<c:if test="${!empty board.cb_file}">
+    						<div class="board_file">
+        						<img src="${pageContext.request.contextPath}/upload/${board.cb_file}" width="400">
+        					</div>
+        				</c:if>
 		       			<!-- 내용 -->
 		       			<p>
-		       				오늘 저녁 뭐 먹을까요 추천 좀요!
+		       				${board.cb_content}
 		       			</p>
 		       		</div>
 		       		<!-- 좋아요 -->
 		       		<div class="board_like">
 		       			<img src="${pageContext.request.contextPath}/images/cje/boardLikeIcon.png" height="25" width="25">
-		       			<span>25</span>
+		       			<span>${board.cb_like}</span>
 		       		</div>
 		   		</div>
 		   		<div class="list-actions">    
-		   			<span>마지막 수정일 : 2024.05.26</span>
+		   			<c:if test="${!empty board.cb_modify_date }">
+        					최근 수정일 : ${board.cb_modify_date}
+        			</c:if>
 				    <button class="btn btn-primary list-action" onclick="location.href='.do'">수정</button>
 				    <button class="btn btn-secondary list-action" onclick="location.href='community.do'">목록</button>
 				    

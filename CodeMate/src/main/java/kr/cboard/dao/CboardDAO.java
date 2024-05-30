@@ -56,42 +56,37 @@ public class CboardDAO {
 	    try {
 	        conn = DBUtil.getConnection();
 
-	        if (keyword != null && !"".equals(keyword)) {
-	            // 검색 처리
-	            if (keyfield.equals("1")) {
-	                sub_sql += " WHERE cb_title LIKE '%' || ? || '%'";
-	            } else if (keyfield.equals("2")) {
-	                sub_sql += " WHERE mem_nickname LIKE '%' || ? || '%'";
-	            } else if (keyfield.equals("3")) {
-	                sub_sql += " WHERE cb_content LIKE '%' || ? || '%'";
-	            }
-	        }
+	        if(keyword!=null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) {
+					sub_sql += "WHERE cb_title LIKE '%' || ? || '%'"; 
+				} else if(keyfield.equals("2")) {
+					sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
+				} else if(keyfield.equals("3")) sub_sql += "WHERE cb_content LIKE '%' || ? || '%'";
+			}
+			
+			sql = "SELECT COUNT(*) FROM c_board JOIN member_detail USING(mem_num) " + sub_sql;
 
-	        sql = "SELECT COUNT(*) FROM C_BOARD JOIN MEMBER USING(mem_num) "
-	        		+ "JOIN MEMBER_DETAIL USING(mem_num) " + sub_sql;
-
-	        pstmt = conn.prepareStatement(sql);
-
-	        if (keyword != null && !"".equals(keyword)) {
-	            pstmt.setString(1, keyword);
-	        }
-
-	        rs = pstmt.executeQuery();
-	        if (rs.next()) {
-	            count = rs.getInt(1);
-	        }
-	    } catch (Exception e) {
-	        throw new Exception(e);
-	    } finally {
-	        DBUtil.executeClose(rs, pstmt, conn);
-	    }
-
-	    return count;
+			pstmt = conn.prepareStatement(sql);
+			if(keyword!=null && !"".equals(keyword)) {
+				pstmt.setString(1, keyword);
+			}
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				// 컬럼 인덱스
+				count = rs.getInt(1);
+				// count(*)처럼 기호가 있으면 안에 쓰지 않고 알리아스를 명시해주는 것도 번거롭기 때문에 인덱스 사용
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
 	}
 
 
 	
-	// 팀 게시판 목록 가져오기
 	// 팀 게시판 목록 가져오기
 	public List<CboardVO> getListBoard(int start, int end, String keyfield, String keyword) throws Exception {
 	    Connection conn = null;
@@ -105,20 +100,16 @@ public class CboardDAO {
 	    try {
 	        conn = DBUtil.getConnection();
 	        
-	        // 검색어가 있을 경우에만 WHERE 절을 추가하도록 수정
-	        if (keyword != null && !"".equals(keyword)) {
-	            // 검색 처리
-	            if (keyfield.equals("1")) {
-	                sub_sql = " AND cb_title LIKE ?";
-	            } else if (keyfield.equals("2")) {
-	                sub_sql = " AND mem_nickname LIKE ?";
-	            } else if (keyfield.equals("3")) {
-	                sub_sql = " AND cb_content LIKE ?";
-	            }
-	        }
+
+	        if(keyword!=null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) {
+					sub_sql += "WHERE cb_title LIKE '%' || ? || '%'"; 
+				} else if(keyfield.equals("2")) {
+					sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
+				} else if(keyfield.equals("3")) sub_sql += "WHERE cb_content LIKE '%' || ? || '%'";
+			}
 	        
-	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM c_board JOIN member "
-	        		+ "USING(mem_num) JOIN member_detail USING(mem_num) " + sub_sql + " ORDER BY cb_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+	        sql =  "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM c_board LEFT OUTER JOIN member_detail USING(mem_num) " + sub_sql +" ORDER BY cb_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
 	        
 	        pstmt = conn.prepareStatement(sql);
 	        
@@ -134,12 +125,11 @@ public class CboardDAO {
 	        list = new ArrayList<CboardVO>();
 	        while (rs.next()) {
 	            CboardVO cboard = new CboardVO();
-	            cboard.setMem_id(rs.getString("mem_id"));
+	            cboard.setCb_num(rs.getInt("cb_num"));
 	            cboard.setCb_title(StringUtil.useNoHTML(rs.getString("cb_title")));
+	            cboard.setMem_nickname(rs.getString("mem_nickname"));
 	            cboard.setCb_reg_date(rs.getDate("cb_reg_date"));
 	            cboard.setCb_type(rs.getInt("cb_type"));
-	            cboard.setCb_num(rs.getInt("cb_num"));
-	            cboard.setMem_nickname(rs.getString("mem_nickname"));
 	            list.add(cboard);
 	        }
 	    } catch (Exception e) {
@@ -154,7 +144,7 @@ public class CboardDAO {
 
 
 	// 글 세부
-	public CboardVO detailTboard(int cb_num) throws Exception {
+	public CboardVO detailCboard(int cb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;

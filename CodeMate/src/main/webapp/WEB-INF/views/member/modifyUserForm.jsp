@@ -69,6 +69,32 @@ $(function(){
   
     });
     
+ // 이미지 기본
+	$('#photo_base').click(function() {
+	    $.ajax({
+	        url : 'deletePhoto.do',
+	        type : 'post',
+	        dataType : 'json',
+	        success : function(param) {
+	            if (param.result == 'logout') {
+	                alert('로그인 후 사용 가능');
+	            } else if (param.result == 'success') {
+	                alert('프로필 사진이 기본으로 변경되었습니다.');
+	                // 수정된 이미지 정보 저장
+	                $('.my-photo').attr('src', '${pageContext.request.contextPath}/images/face.png'); // 기본 이미지로 변경
+	                $('#mem_photo').val('');
+	                $('#mem_photo_choice').hide();
+	                $('#mem_photo_btn').show();
+	            } else {
+	                alert('파일 전송 오류 발생');
+	            }
+	        },
+	        error : function() {
+	            alert('네트워크 오류 발생');
+	        }
+	    });
+	});
+    
     /* 프로필 사진 추가 */
     $('#mem_photo_btn').click(function(){
         $('#mem_photo_choice').show();
@@ -201,6 +227,7 @@ $(function(){
             </div>
             <div id="mem_photo_choice" style="display: none;">
                 <input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg">
+                <input type="button" value="기본" id="photo_base">
                 <input type="button" value="전송" id="mem_photo_submit">
                 <input type="button" value="취소" id="mem_photo_reset">
             </div>
