@@ -5,6 +5,7 @@
 table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 /* 테이블 헤더 스타일 */
@@ -179,3 +180,9 @@ ul.menu li {
     font-size: 14px;
 }
 
+
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

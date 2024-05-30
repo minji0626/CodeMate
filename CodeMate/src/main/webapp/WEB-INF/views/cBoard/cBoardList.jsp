@@ -5,48 +5,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	
+	
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cje.board.css" type="text/css">
     
+	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-
-<title>개발 게시판</title>
+	
+<title>자유 게시판</title>
 
 <style type="text/css">
 	.page-container {
     width: 70%;
     min-width: 900px;
     margin: 0 auto;
-}	
+}
 </style>
 
 </head>
 <body>
+
 	<div class="page-container">
 		<div class="page-main">
-			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		</div>
+			<jsp:include page="/WEB-INF/views/common/header.jsp"/>			
+		</div>	
 			<div class="table-container">
 				<div class="button-container">
-			    	<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
+		    		<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
 				</div>
-				
-				<div>	
-					<ul class="menu">
-						<li>
-							<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon"> <span><a href="community.do" class="atag">자유 게시판</a></span>
-						</li>
-						<li>
-							<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="30px" class="board-icon"> <span><a href="community2.do" class="atag"><b>개발 게시판</b></a> </span>
-						</li>
-					</ul>
+				<!-- 게시판 선택 메뉴 -->
+				<div>		 
+				<ul class="menu">
+					<li>
+						<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="30px" class="board-icon">
+						<span><a href="${pageContext.request.contextPath}/cboard/community.do?cb_type=0">
+						<c:if test="${cb_type==0}"><b>자유 게시판</b></c:if> 
+						<c:if test="${cb_type==1}">자유 게시판</c:if> 
+						</a></span>
+					</li>
+					<li>
+						<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="30px" class="board-icon"> 
+						<span><a href="${pageContext.request.contextPath}/cboard/community.do?cb_type=1"> 
+						<c:if test="${cb_type==0}">개발 게시판</c:if> 
+						<c:if test="${cb_type==1}"><b>개발 게시판</b></c:if>
+						</a></span>
+					</li>
+				</ul>
 				</div>
-				
-				<!-- 검색 폼 -->
-		        <form id="search_form" action="commuBoardList.do" method="get">
+			 <!-- 검색 폼 -->
+		        <form id="search_form" action="community.do" method="get">
 		            <div class="search-container">
 		                <select name="keyfield" class="search-select">
 		                    <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
@@ -71,15 +81,17 @@
 		                        <th>제목</th>
 		                        <th>작성자</th>
 		                        <th>작성일</th>
+		                        <th>조회수</th>
 		                    </tr>
 		                </thead>
 	                	<tbody>
 							<c:forEach var="cboard" items="${list}">
 		                        <tr>
 		                            <td>${cboard.cb_num}</td>
-		                            <td><a href="${pageContext.request.contextPath}/team/cBoardDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
+		                            <td><a href="${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
 		                            <td>${cboard.mem_nickname}</td>
 		                            <td>${cboard.cb_reg_date}</td>
+		                            <td>${cboard.cb_hit}</td>
 		                        </tr>
 		                    </c:forEach>
 		                </tbody>

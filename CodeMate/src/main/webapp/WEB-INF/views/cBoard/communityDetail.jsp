@@ -29,16 +29,22 @@
 		        <div class="container_board">
 		        	<!-- 게시판 분류 -->
 		       		<div class="board_category">
-		       			<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
+		       			<c:if test="${board.cb_type==0}">	
+		       				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
+						</c:if>
+						<c:if test="${board.cb_type==1}">	
+		       				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
+						</c:if>	
+
 		       		</div>
 		       		<!-- 제목 -->	
-		       		<h2>자유 게시판</h2>
+		       		<h2>${board.cb_title}</h2>
 		       		<!-- 작성자 및 정보 -->
 		       		<div class="board_info">
 						<c:if test="${!empty mem_photo}">
 							<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40">
 						</c:if>
-						<c:if test="${!empty mem_num && empty mem_photo}">
+						<c:if test="${empty mem_photo}">
 							<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">
 						</c:if>
 		       			<span> ${board.mem_nickname}</span>
@@ -69,11 +75,11 @@
 		       		</div>
 		   		</div>
 		   		<div class="list-actions">    
-		   			<c:if test="${!empty board.cb_modify_date }">
+		   			<c:if test="${!empty board.cb_modify_date}">
         					최근 수정일 : ${board.cb_modify_date}
         			</c:if>
-				    <button class="btn btn-primary list-action" onclick="location.href='.do'">수정</button>
-				    <button class="btn btn-secondary list-action" onclick="location.href='community.do'">목록</button>
+				    <button class="btn btn-primary list-action" onclick="location.href='modifyCommunityForm.do?cb_num=${board.cb_num}'">수정</button>
+				    <button class="btn btn-secondary list-action" onclick="location.href='community.do?cb_type=${board.cb_type}'">목록</button>
 				    
 				</div>
 		   		 

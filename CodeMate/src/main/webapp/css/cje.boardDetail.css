@@ -160,11 +160,13 @@
     justify-content: flex-end; 
     align-items: center;
     margin-bottom:20px;
+    margin-right:15%;
 }
 
+
 .list-action {
-    margin-left: 10px;
-}
+    margin-left: 10px; 
+} 
 
 .list-actions span{
 	font-size:9pt;
