@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.board.vo.BoardReplyVO;
 import kr.tboard.vo.TboardCommentVO;
 import kr.tboard.vo.TboardVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class TboardDAO {
@@ -261,30 +263,95 @@ public class TboardDAO {
 	}
 	
 	// 댓글 등록
-	public void insetCommentTboard(TboardCommentVO tboardComment) throws Exception{
+	public void insertCommentTboard(TboardCommentVO tboardComment) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    String sql = null;
+	    try {
+	        conn = DBUtil.getConnection();
+	        sql = "INSERT INTO team_comment(tc_num, mem_num, tb_num, tc_content) "
+	                + "VALUES(team_comment_seq.nextval,?,?,?)";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, tboardComment.getMem_num());
+	        pstmt.setInt(2, tboardComment.getTb_num());
+	        pstmt.setString(3, tboardComment.getTc_content());
+	        pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(null, pstmt, conn);
+	    }
+	}
+
+
+	
+	// 댓글 개수
+	public int getCommentTboardCount (int tb_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql = null;
+		int count = 0;
 		try {
-			conn = DBUtil.getConnection();
-			sql="INSERT INTO team_comment(tc_num, mem_num, tb_num, tc_content)"
-					+ "VALUES(tc_num_seq.nextval,?,?,?)";
+			conn=DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM team_comment WHERE tb_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, tboardComment.getMem_num());
-			pstmt.setInt(2, tboardComment.getTb_num());
-			pstmt.setString(3, tboardComment.getTc_content());
-			
-			pstmt.executeUpdate();
+			pstmt.setInt(1, tb_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
+		
+		return count;
 	}
 	
-	// 댓글 개수
-	
 	// 댓글 목록
+	public List<TboardCommentVO> getListCommentTboard(int start, int end, int tb_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null; 
+		List<TboardCommentVO> list = null;
+		try {
+			conn=DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM team_comment JOIN member_detail USING(mem_num) "
+					+ "WHERE tb_num=? ORDER BY tc_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tb_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs=pstmt.executeQuery();
+			list = new ArrayList<TboardCommentVO>();
+			while(rs.next()) {
+				TboardCommentVO comment= new TboardCommentVO();
+				comment.setTc_num(rs.getInt("tc_num"));
+				// 날짜 -> 1분전, 1시간전 , 1일전 형식의 문자열로 변환
+				comment.setTc_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("tc_reg_date")));
+				comment.setTc_content(StringUtil.useBrNoHTML(rs.getString("tc_content")));
+				if(rs.getString("tc_modify_date") != null) {
+					comment.setTc_modify_date(DurationFromNow.getTimeDiffLabel(rs.getString("tc_modify_date")));
+				} 
+				comment.setTb_num(rs.getInt("tb_num"));
+				comment.setMem_nickname(rs.getString("mem_nickname"));		// 작성자 닉네임
+				comment.setMem_num(rs.getInt("mem_num"));		// 작성자 회원 번호
+				
+				list.add(comment);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;	
+	}
+	
 	
 	// 댓글 상세
 	

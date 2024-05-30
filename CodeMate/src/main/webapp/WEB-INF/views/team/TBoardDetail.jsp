@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/tboardComment.js"></script>
 </head>
 <body> 
 	<div class="page-container">
@@ -75,46 +76,34 @@
 		   		 
 		   		 <!-- 댓글 목록 -->
 		   		 <div class="container_reList">
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>전 갈비찜 먹을라고요</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
+		   		 	<div id="reList">
+			   		 	
 		   		 	</div>
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>김치찜이 최곤디</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
-			   		 </div>
 		   		 </div>
-		   		 
 		        <!-- 댓글 시작 -->
-		        <div class="container_re">
-			        <div id="reply_div">
-			        	<form id="re_form">
-			        		<input type="hidden" name="cb_num" value="${tboard.tb_num}" id="cb_num">
-			        		<div class="form-group">
-				                <textarea rows="3" cols="100" name="cb_content" id="cb_content" class="form-control"></textarea>
-				                <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='.do'">
-				            </div>
-			        		
-			        	</form>
-			        </div>
-		        </div>
-		   		 </div>
-		   	</div>
+			<div class="container_re">
+				<h4>
+					댓글 <span id="comments-cnt">0</span>
+				</h4>
+				<div id="reply_div">
+					<form id="tc_form">
+						<input type="hidden" name="tb_num" value="${tboard.tb_num}"
+							id="tb_num">
+						<div class="form-group">
+							<textarea rows="5" cols="120" name="tc_content"
+								<c:if test="${empty mem_num}">disabled="disabled"</c:if>
+								id="tc_content" class="tc-content"><c:if
+									test="${empty mem_num}">로그인 후 작성 가능합니다.</c:if></textarea>
+							<c:if test="${!empty mem_num}">
+								<input type="submit" value="등록" class="btn btn-primary">
+							</c:if>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+		</div>
+		</div>
 </body>
 </html>

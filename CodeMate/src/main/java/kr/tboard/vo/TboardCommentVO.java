@@ -1,15 +1,30 @@
 package kr.tboard.vo;
 
-import java.sql.Date;
 
 public class TboardCommentVO {
 	private int tc_num;			// 팀 게시글 댓글 번호
 	private int tb_num;			// 팀 게시글 번호
 	private int mem_num;		// 회원 번호
 	private String tc_content;	// 팀 게시글 댓글 내용
-	private Date tc_reg_date;	// 팀 게시글 댓글 등록일
-	private Date tc_modify_date; // 팀 게시글  댓글 수정일
+	private String tc_reg_date;	// 팀 게시글 댓글 등록일
+	private String tc_modify_date; // 팀 게시글  댓글 수정일
 	
+	private String mem_nickname;
+	private int team_num;
+	
+	
+	public int getTeam_num() {
+		return team_num;
+	}
+	public void setTeam_num(int team_num) {
+		this.team_num = team_num;
+	}
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	public int getTc_num() {
 		return tc_num;
 	}
@@ -34,18 +49,19 @@ public class TboardCommentVO {
 	public void setTc_content(String tc_content) {
 		this.tc_content = tc_content;
 	}
-	public Date getTc_reg_date() {
+	public String getTc_reg_date() {
 		return tc_reg_date;
 	}
-	public void setTc_reg_date(Date tc_reg_date) {
+	public void setTc_reg_date(String tc_reg_date) {
 		this.tc_reg_date = tc_reg_date;
 	}
-	public Date getTc_modify_date() {
+	public String getTc_modify_date() {
 		return tc_modify_date;
 	}
-	public void setTc_modify_date(Date tc_modify_date) {
+	public void setTc_modify_date(String tc_modify_date) {
 		this.tc_modify_date = tc_modify_date;
 	}
+	
 	
 	
 	
