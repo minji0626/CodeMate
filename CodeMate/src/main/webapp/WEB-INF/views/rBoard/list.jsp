@@ -116,15 +116,31 @@
     				<img src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}" title="${rboard.hs_name_arr[i]}" class="skill-logo">
 					</c:forEach>
                     </div>
+                    <span>진행방식 | </span>
+                    <span>
+					<c:if test="${rboard.rb_meet == 0}">
+					온라인
+					</c:if>
+					<c:if test="${rboard.rb_meet == 1}">
+					오프라인
+					</c:if>
+					<c:if test="${rboard.rb_meet == 2}">
+					온라인/오프라인
+					</c:if>
+					</span>
                     <div>
                     <span>모집필드 | </span>
                     <c:forEach var="field" items="${rboard.f_name_arr}">
 	    				<span>${field}</span>
 					</c:forEach>
                     </div>
-                    <div class="r-item-number">
+                    <div>
                         <span>신청인원 | </span>
-                        <span>30/${rboard.rb_teamsize}</span>
+                        <span>${rboard.rb_apply_count}/${rboard.rb_teamsize}</span>
+                    </div>
+                    <div>
+                        <span>조회수 </span>
+                        <span>${rboard.rb_hit}</span>
                     </div>
                 </li>
             </c:forEach>

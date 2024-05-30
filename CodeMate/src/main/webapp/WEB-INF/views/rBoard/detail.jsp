@@ -37,7 +37,14 @@
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
 				<div class="content-header">
-					<h2>${rboard.rb_title}</h2>
+					<h2>${rboard.rb_title} 
+					<span id="d_day">
+						<c:if test="${daysLeft > 0}">D-${daysLeft}</c:if>
+						<c:if test="${daysLeft == 0}">오늘 마감</c:if>
+						<c:if test="${daysLeft < 0}">모집 종료</c:if>
+					</span>
+					</h2>
+					
 					<div>
 						<c:if test="${rboard.mem_photo != null}">
 						<img src="${pageContext.request.contextPath}/upload/${rboard.mem_photo}" class="profile-photo">						
@@ -55,6 +62,7 @@
 						<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
 						</c:if>
 						<span>조회수 <span id="rb_hit">${rboard.rb_hit}</span></span>
+						<img id="bookmark_img" data-rbnum="${rboard.rb_num}" src="" width="36px">
 					</div>
 				</div>
 				<div class="content">

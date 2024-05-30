@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.rboard.vo.RapplyVO;
 import kr.rboard.vo.RboardVO;
+import kr.rboard.vo.RbookmarkVO;
 import kr.rboard.vo.RcommentVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
@@ -113,6 +114,16 @@ public class RboardDAO {
 
 	// rboard 수정
 	// rboard 삭제
+	public void deleteRboard() throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;		//북마크
+		PreparedStatement pstmt2 = null;	//댓글
+		PreparedStatement pstmt3 = null; 	//글
+	}
+	
+	
+	
+	
 	// rboard 글 개수, 검색 개수
 	public int getRboardCount() throws Exception {
 		Connection conn = null;
@@ -150,13 +161,19 @@ public class RboardDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM r_board JOIN"
-					+ " (SELECT rb_num, LISTAGG(hs_name,',') within group ( order by hs_name) hs_name ,"
-					+ " LISTAGG(hs_photo,',') within group ( order by hs_name)  hs_photo"
-					+ " FROM r_skill JOIN hard_skill USING(hs_code) group by rb_num) USING(rb_num) JOIN"
-					+ " (SELECT rb_num, LISTAGG(f_name,',') within group ( order by f_name) f_name"
-					+ " FROM r_field JOIN field_db USING(f_code) group by rb_num) USING(rb_num) ORDER BY rb_num DESC)a)"
-					+ " WHERE rnum >= ? AND rnum <= ?";
+			sql = "SELECT * FROM ( " + "  SELECT a.*, rownum rnum FROM ( "
+					+ "    SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
+					+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + "    FROM r_board "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, "
+					+ "                            LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo "
+					+ "                     FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY rb_num) hs_agg "
+					+ "    ON r_board.rb_num = hs_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') WITHIN GROUP (ORDER BY f_name) f_name "
+					+ "                     FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) f_agg "
+					+ "    ON r_board.rb_num = f_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
+					+ "    ON r_board.rb_num = apply_agg.rb_num " + "    ORDER BY r_board.rb_num DESC " + "  ) a "
+					+ ") WHERE rnum >= ? AND rnum <= ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -176,6 +193,8 @@ public class RboardDAO {
 				rboard.setRb_start(rs.getString("rb_start"));
 				rboard.setRb_title(rs.getString("rb_title"));
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
+				rboard.setRb_hit(rs.getInt("rb_hit"));
+				rboard.setRb_apply_count(rs.getInt("apply_count"));
 
 				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
@@ -409,29 +428,29 @@ public class RboardDAO {
 		ResultSet rs = null;
 		RcommentVO rcomment = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM r_comment WHERE rc_num=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rc_num);
-			
+
 			rs = pstmt.executeQuery();
-			
+
 			rcomment = new RcommentVO();
 			if (rs.next()) {
 				rcomment.setRc_num(rs.getInt("rc_num"));
 				rcomment.setRc_content(rs.getString("rc_content"));
 				rcomment.setMem_num(rs.getInt("mem_num"));
 			}
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
+
 		return rcomment;
 	}
 
@@ -440,11 +459,11 @@ public class RboardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "UPDATE r_comment SET rc_content=?,rc_modify_date=SYSDATE WHERE rc_num=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, StringUtil.useBrNoHTML(rcomment.getRc_content()));
 			pstmt.setInt(2, rcomment.getRc_num());
@@ -475,20 +494,20 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	//조회수 증가
+
+	// 조회수 증가
 	public void updateReadCount(int rb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "UPDATE r_board SET rb_hit=rb_hit+1 WHERE rb_num=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
-			
+
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -496,21 +515,109 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+
+	// 북마크 추가
+	public void insertRbookmark(RbookmarkVO rbookmark) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO r_bookmark(rb_num, mem_num) VALUES(?,?)";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rbookmark.getRb_num());
+			pstmt.setInt(2, rbookmark.getMem_num());
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
+	// 북마크 삭제
+	public void deleteRbookmark(RbookmarkVO rbookmark) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM r_bookmark WHERE rb_num=? AND mem_num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rbookmark.getRb_num());
+			pstmt.setInt(2, rbookmark.getMem_num());
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+
+	}
+
+	// 북마크 하나 가져오기
+	public RbookmarkVO getRbookmark(RbookmarkVO rbookmark) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM r_bookmark WHERE rb_num=? AND mem_num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rbookmark.getRb_num());
+			pstmt.setInt(2, rbookmark.getMem_num());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return rbookmark;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 북마크 개수 가져오기
+	public int getRbookmarkCount(int rb_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM r_bookmark WHERE rb_num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		return cnt;
+	}
 
 }
