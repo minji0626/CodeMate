@@ -113,92 +113,144 @@ public class RboardDAO {
 	}
 
 	// rboard 수정
-	public void modifyRboard(RboardVO rboardVO) throws Exception {
+	public void modifyRboard(RboardVO rboard) throws Exception {
 		Connection conn = null;
-		PreparedStatement pstmt = null;		//글
-		PreparedStatement pstmt2 = null;	//모집스킬
-		PreparedStatement pstmt3 = null;	//모집필드
+		PreparedStatement pstmt = null; // 글
+		PreparedStatement pstmt2 = null; // 모집스킬 삭제
+		PreparedStatement pstmt3 = null; // 모집스킬 재등록
+		PreparedStatement pstmt4 = null; // 모집필드 삭제
+		PreparedStatement pstmt5 = null; // 모집필드 재등록
 		String sql = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			sql = "UPDATE r_board SET rb_category=?,rb_teamsize=?,rb_meet=?,rb_start=?,rb_period=?,"
-					+ "rb_endRecruit=?,rb_title=?,rb_content=?,rb_pj_title=? WHERE rb_num=?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.executeUpdate();
-			
-//			sql = "UPDATE r_skill SET "
-		} catch (Exception e) {
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
-	}
-	
-	// rboard 삭제
-	public void deleteRboard(int rb_num) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;		//북마크
-		PreparedStatement pstmt2 = null;	//댓글
-		PreparedStatement pstmt3 = null;	//모집스킬 
-		PreparedStatement pstmt4 = null; 	//모집필드
-		PreparedStatement pstmt5 = null;	//팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
-		PreparedStatement pstmt6 = null;	//apply레코드는 지우지 않고 rb_num만 null되게
-		PreparedStatement pstmt7 = null;	//모집글
 
-		String sql = null;
-		
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
 			
-			//북마크 삭제
+			// r_board 수정
+			sql = "UPDATE r_board SET rb_category=?,rb_teamsize=?,rb_meet=?,rb_start=?,rb_period=?,"
+					+ "rb_endRecruit=?,rb_title=?,rb_content=?,rb_pj_title=?,rb_modify_date=SYSDATE WHERE rb_num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rboard.getRb_category());
+			pstmt.setInt(2, rboard.getRb_teamsize());
+			pstmt.setInt(3, rboard.getRb_meet());
+			pstmt.setString(4, rboard.getRb_start());
+			pstmt.setInt(5, rboard.getRb_period());
+			pstmt.setString(6, rboard.getRb_endRecruit());
+			pstmt.setString(7, rboard.getRb_title());
+			pstmt.setString(8, rboard.getRb_content());
+			pstmt.setString(9, rboard.getRb_pj_title());
+			pstmt.setInt(10, rboard.getRb_num());
+			pstmt.executeUpdate();
+			
+			//r_skill에 저장된 기존 데이터 삭제
+			sql = "DELETE FROM r_skill WHERE rb_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, rboard.getRb_num());
+			pstmt2.executeUpdate();
+			
+			//r_skill에 데이터 추가
+			sql = "INSERT INTO r_skill (rs_num,rb_num,hs_code) VALUES(r_skill_seq.nextval,?,?)";
+
+			for (String skill : rboard.getR_skills()) {
+				int intSkill = Integer.parseInt(skill);
+				pstmt3 = conn.prepareStatement(sql);
+				pstmt3.setInt(1, rboard.getRb_num());
+				pstmt3.setInt(2, intSkill);
+				pstmt3.executeUpdate();
+			}
+			
+			//r_field에 저장된 기존 데이터 삭제
+			sql = "DELETE FROM r_field WHERE rb_num=?";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1, rboard.getRb_num());
+			pstmt4.executeUpdate();
+			
+			//r_field에 데이터 추가
+			sql = "INSERT INTO r_field (rf_num,rb_num,f_code) VALUES(r_field_seq.nextval,?,?)";
+
+			for (String field : rboard.getR_fields()) {
+				int intField = Integer.parseInt(field);
+				pstmt5 = conn.prepareStatement(sql);
+				pstmt5.setInt(1, rboard.getRb_num());
+				pstmt5.setInt(2, intField);
+				pstmt5.executeUpdate();
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt5, null);
+			DBUtil.executeClose(null, pstmt4, null);
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
+	// rboard 삭제
+	public void deleteRboard(int rb_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null; // 북마크
+		PreparedStatement pstmt2 = null; // 댓글
+		PreparedStatement pstmt3 = null; // 모집스킬
+		PreparedStatement pstmt4 = null; // 모집필드
+		PreparedStatement pstmt5 = null; // 팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
+		PreparedStatement pstmt6 = null; // apply레코드는 지우지 않고 rb_num만 null되게
+		PreparedStatement pstmt7 = null; // 모집글
+
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+
+			// 북마크 삭제
 			sql = "DELETE FROM r_bookmark WHERE rb_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
 			pstmt.executeUpdate();
-			
-			//댓글 삭제
+
+			// 댓글 삭제
 			sql = "DELETE FROM r_comment WHERE rb_num=?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, rb_num);
 			pstmt2.executeUpdate();
-			
-			//모집스킬 삭제
+
+			// 모집스킬 삭제
 			sql = "DELETE FROM r_skill WHERE rb_num=?";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, rb_num);
 			pstmt3.executeUpdate();
-			
-			//모집필드 삭제
+
+			// 모집필드 삭제
 			sql = "DELETE FROM r_field WHERE rb_num=?";
 			pstmt4 = conn.prepareStatement(sql);
 			pstmt4.setInt(1, rb_num);
 			pstmt4.executeUpdate();
-			
-			//모집이 마감되지 않은 글은 team테이블에서도 삭제
+
+			// 모집이 마감되지 않은 글은 team테이블에서도 삭제
 			sql = "DELETE FROM team WHERE team_num=? AND team_status=0";
 			pstmt5 = conn.prepareStatement(sql);
 			pstmt5.setInt(1, rb_num);
 			pstmt5.executeUpdate();
-			
-			//모집이 마감된 글은 team
-			
-			//apply레코드는 지우지 않고 rb_num만 null되게
+
+			// 모집이 마감된 글은 team
+
+			// apply레코드는 지우지 않고 rb_num만 null되게
 			sql = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
 			pstmt6 = conn.prepareStatement(sql);
 			pstmt6.setInt(1, rb_num);
 			pstmt6.executeUpdate();
-			
-			//모집글 삭제
+
+			// 모집글 삭제
 			sql = "DELETE FROM r_board WHERE rb_num=?";
 			pstmt7 = conn.prepareStatement(sql);
 			pstmt7.setInt(1, rb_num);
 			pstmt7.executeUpdate();
-			
+
 			conn.commit();
-			
+
 		} catch (Exception e) {
 			conn.rollback();
 			throw new Exception(e);
@@ -212,10 +264,7 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	
-	
-	
+
 	// rboard 글 개수, 검색 개수
 	public int getRboardCount() throws Exception {
 		Connection conn = null;
@@ -302,6 +351,19 @@ public class RboardDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 
+		return list;
+	}
+
+	// rboard 검색 목록 구하기
+	public List<RboardVO> searchRboards(String[] r_skills, String r_fields, 
+			String rb_meet, String search_key, boolean bookmark_filter, boolean recruiting_filter) 
+					throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RboardVO> list = null;
+		String sql = null;
+		
 		return list;
 	}
 
@@ -412,70 +474,67 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	//rboard 지원취소 - 민재
-	public void deleteApply(int ra_num)throws Exception{
+
+	// rboard 지원취소 - 민재
+	public void deleteApply(int ra_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		try {
-			//커넥션풀에 커넥션 할당
+			// 커넥션풀에 커넥션 할당
 			conn = DBUtil.getConnection();
-			//SQL문 작성
+			// SQL문 작성
 			sql = "DELETE FROM r_apply WHERE ra_num=?";
-			//PreparedStatement 객체 생성
+			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
+			// ?에 데이터 바인딩
 			pstmt.setInt(1, ra_num);
-			//SQL문 실행
+			// SQL문 실행
 			pstmt.executeUpdate();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new Exception(e);
-		}finally {
+		} finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	
-	//회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
+
+	// 회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
 	public List<RboardVO> getAppliedBoardListByMemNum(int mem_num) throws Exception {
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    List<RboardVO> list = new ArrayList<>();
-	    String sql = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RboardVO> list = new ArrayList<>();
+		String sql = null;
 
-	    try {
-	        conn = DBUtil.getConnection();
-	        sql = "SELECT * FROM r_apply ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, mem_num);
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM r_apply ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
 
-	        rs = pstmt.executeQuery();
-	        while (rs.next()) {
-	            RboardVO rboard = new RboardVO();
-	            // 코메신청 정보 설정
-	            rboard.setRa_num(rs.getInt("ra_num"));
-	            rboard.setRb_category(rs.getInt("rb_category"));
-	            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
-	            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
-	            rboard.setRb_start(rs.getString("rb_start"));
-	            rboard.setRb_period(rs.getInt("rb_period"));
-	            rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
-	            // 리스트에 추가
-	            list.add(rboard);
-	        }
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RboardVO rboard = new RboardVO();
+				// 코메신청 정보 설정
+				rboard.setRa_num(rs.getInt("ra_num"));
+				rboard.setRb_category(rs.getInt("rb_category"));
+				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+				rboard.setRb_start(rs.getString("rb_start"));
+				rboard.setRb_period(rs.getInt("rb_period"));
+				rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
+				// 리스트에 추가
+				list.add(rboard);
+			}
 
-	    } catch (Exception e) {
-	        throw new Exception(e);
-	    } finally {
-	        DBUtil.executeClose(rs, pstmt, conn);
-	    }
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 
-	    return list;
+		return list;
 	}
-
-	
 
 	// 이미 신청한 글인지 확인
 	public boolean alreadyApplied(int rb_num, int mem_num) throws Exception {
@@ -716,45 +775,45 @@ public class RboardDAO {
 		}
 
 	}
-	
-	//회원별 북마크 리스트 - 마이페이지 북마크-민재 작성
-		public List<RboardVO> getBookMarkBoardListByMemNum(int mem_num) throws Exception {
-		    Connection conn = null;
-		    PreparedStatement pstmt = null;
-		    ResultSet rs = null;
-		    List<RboardVO> list = new ArrayList<>();
-		    String sql = null;
 
-		    try {
-		        conn = DBUtil.getConnection();
-		        sql = "SELECT * FROM r_bookmark ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
-		        pstmt = conn.prepareStatement(sql);
-		        pstmt.setInt(1, mem_num);
+	// 회원별 북마크 리스트 - 마이페이지 북마크-민재 작성
+	public List<RboardVO> getBookMarkBoardListByMemNum(int mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RboardVO> list = new ArrayList<>();
+		String sql = null;
 
-		        rs = pstmt.executeQuery();
-		        while (rs.next()) {
-		            RboardVO rboard = new RboardVO();
-		            // 코메신청 정보 설정
-		            rboard.setRb_num(rs.getInt("rb_num"));
-		            rboard.setRb_category(rs.getInt("rb_category"));
-		            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
-		            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
-		            rboard.setRb_start(rs.getString("rb_start"));
-		            rboard.setRb_period(rs.getInt("rb_period"));
-		            rboard.setRb_title(rs.getString("rb_title"));
-		            rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
-		            // 리스트에 추가
-		            list.add(rboard);
-		        }
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM r_bookmark ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
 
-		    } catch (Exception e) {
-		        throw new Exception(e);
-		    } finally {
-		        DBUtil.executeClose(rs, pstmt, conn);
-		    }
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RboardVO rboard = new RboardVO();
+				// 코메신청 정보 설정
+				rboard.setRb_num(rs.getInt("rb_num"));
+				rboard.setRb_category(rs.getInt("rb_category"));
+				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+				rboard.setRb_start(rs.getString("rb_start"));
+				rboard.setRb_period(rs.getInt("rb_period"));
+				rboard.setRb_title(rs.getString("rb_title"));
+				rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
+				// 리스트에 추가
+				list.add(rboard);
+			}
 
-		    return list;
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
+
+		return list;
+	}
 
 	// 북마크 하나 가져오기
 	public RbookmarkVO getRbookmark(RbookmarkVO rbookmark) throws Exception {
@@ -785,7 +844,7 @@ public class RboardDAO {
 		}
 
 	}
-	
+
 	// 북마크 개수 가져오기
 	public int getRbookmarkCount(int rb_num) throws Exception {
 		Connection conn = null;
@@ -811,7 +870,7 @@ public class RboardDAO {
 		} finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-		
+
 		return cnt;
 	}
 
