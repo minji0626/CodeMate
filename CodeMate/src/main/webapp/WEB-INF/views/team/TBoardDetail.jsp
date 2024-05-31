@@ -76,7 +76,6 @@
 		   		 
 		   		<!-- 댓글 시작 -->
 		        <%-- 댓글 목록 --%>
-		        
 				<div class="container_reList">
 				
 				</div>

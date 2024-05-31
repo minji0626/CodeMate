@@ -235,3 +235,54 @@
 .delete-btn {
 	color: #FF2910;
 }
+
+/* .btn-div 스타일링 */
+#btn-div {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    gap: 10px; /* 버튼 간의 간격 */
+}
+
+/* 수정 버튼 스타일링 */
+.tc-modify {
+    background-color: #35B572;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px; /* 버튼 패딩 */
+    border-radius: 4px; /* 둥근 모서리 */
+    font-size: 14px; /* 폰트 크기 */
+}
+
+/* 수정 버튼 호버 효과 */
+.tc-modify:hover {
+    background-color: #2b9b60;
+}
+
+/* 취소 버튼 스타일링 */
+.tc-reset {
+    background-color: #FF2910;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px; /* 버튼 패딩 */
+    border-radius: 4px; /* 둥근 모서리 */
+    font-size: 14px; /* 폰트 크기 */
+}
+
+/* 취소 버튼 호버 효과 */
+.tc-reset:hover {
+    background-color: #d0260d;
+}
+
+
+.tc-content {
+	width: 90%;
+	margin-left : 20px;
+	padding: 12px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	font-size: 15px;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
