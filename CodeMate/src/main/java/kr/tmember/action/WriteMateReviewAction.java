@@ -17,16 +17,16 @@ public class WriteMateReviewAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer) session.getAttribute("mem_num");
 
+		Map<String, String> mapAjax = new HashMap<String, String>();
 
 		if (mem_num == null) { // 로그인하지 않은 경우
-			return "redirect:/member/loginForm.do";
-		} 
-
-		// 로그인 한 경우
+			mapAjax.put("result", "logout");
+		} else {
+			// 로그인 한 경우
 			request.setCharacterEncoding("utf-8");
 
 			MateReviewVO mr = new MateReviewVO();
@@ -37,14 +37,23 @@ public class WriteMateReviewAction implements Action {
 			mr.setMr_writer(mem_num);
 			mr.setMr_receiver(mr_receiver);
 			mr.setMr_content(request.getParameter("mr_content"));
-			
+
 			TmemberDAO dao = TmemberDAO.getInstance();
 			dao.insertMateReview(mr);
 
-			request.setAttribute("notice_msg", "메이트 리뷰를 작성했습니다.");
-			request.setAttribute("notice_url", request.getContextPath() + "/team/teamSetting.do?team_num="+team_num);
+			mapAjax.put("result", "success");
+		}
 
-			return "/WEB-INF/views/common/alert_view.jsp";
+		ObjectMapper mapper = new ObjectMapper();
+		String ajaxData = mapper.writeValueAsString(mapAjax);
+
+		request.setAttribute("ajaxData", ajaxData);
+
+
+		return "/WEB-INF/views/common/ajax_view.jsp";
+
+
+		// return "request.getContextPath() + \"/team/teamSetting.do?team_num="+team_num;
 	}
 
 }

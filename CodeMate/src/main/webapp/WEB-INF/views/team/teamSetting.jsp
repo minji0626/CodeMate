@@ -13,21 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
- <script type="text/javascript">
-window.onload = function(){
-    const myForm = document.getElementById('mr_form');
-    myForm.onsubmit = function(){
-        const content = document.getElementById('mr_content');
-        if(content.value.trim()==''){
-            alert('내용을 입력하세요.');
-            content.value='';
-            content.focus();
-            return false;
-        };
-
-    };
-};
-</script>
     
 <body>
 <div class="page-container">
@@ -154,8 +139,8 @@ window.onload = function(){
                 </div>
             </div>
             <div class="mr_content_div">
-                <h4>내용</h4>
-                <form id="mr_form" action="writeMateReview.do" method="post">
+               <h4>내용</h4>
+                <form id="mr_form">
                 	<input type="hidden" name="mr_receiver" value="" id="mr_receiver">
                 	<input type="hidden" name="team_num" value="" id="team_num">
                     <textarea id="mr_content" name="mr_content"></textarea>
@@ -169,5 +154,6 @@ window.onload = function(){
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/team.member.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/mate.review.js"></script>
 </body>
 </html>
