@@ -5,6 +5,18 @@
 	text-align: center;
 }
 
+#r_btn_div.flex-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#r_btn_div .btn {
+	margin-right: 20px;
+	height: 42px;
+	border-radius: 20px;
+}
+
 /* rboardList */
 .category .category-item {
 	display: inline;

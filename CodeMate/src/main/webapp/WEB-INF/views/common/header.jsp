@@ -6,7 +6,7 @@
 			<!-- 로그인 여부무관 -->
 			<div id="header_left">
 			<a href="${pageContext.request.contextPath}/cboard/community.do">커뮤니티</a> / 
-			<a href="${pageContext.request.contextPath}/rboard/teammateRecruitForm.do"> 팀원 구하기</a>
+			<a href="${pageContext.request.contextPath}/rboard/list.do"> 팀원 구하기</a>
 			</div>
 			
 			<div id="main_logo">
