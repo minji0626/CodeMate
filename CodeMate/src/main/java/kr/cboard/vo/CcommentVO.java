@@ -1,19 +1,30 @@
 package kr.cboard.vo;
 
-import java.sql.Date;
 
 public class CcommentVO {
 	private int cc_num;
 	private int mem_num;
 	private int cb_num;
 	private String cc_content;
-	private Date cc_reg_date;
-	private Date cc_modify_date;
+	private String cc_reg_date;
+	private String cc_modify_date;
 	
 	private String mem_photo;
 	private String mem_nickname;
 	
 	
+	public String getCc_reg_date() {
+		return cc_reg_date;
+	}
+	public void setCc_reg_date(String cc_reg_date) {
+		this.cc_reg_date = cc_reg_date;
+	}
+	public String getCc_modify_date() {
+		return cc_modify_date;
+	}
+	public void setCc_modify_date(String cc_modify_date) {
+		this.cc_modify_date = cc_modify_date;
+	}
 	public String getMem_photo() {
 		return mem_photo;
 	}
@@ -50,18 +61,7 @@ public class CcommentVO {
 	public void setCc_content(String cc_content) {
 		this.cc_content = cc_content;
 	}
-	public Date getCc_reg_date() {
-		return cc_reg_date;
-	}
-	public void setCc_reg_date(Date cc_reg_date) {
-		this.cc_reg_date = cc_reg_date;
-	}
-	public Date getCc_modify_date() {
-		return cc_modify_date;
-	}
-	public void setCc_modify_date(Date cc_modify_date) {
-		this.cc_modify_date = cc_modify_date;
-	}
+	
 	
 	
 }

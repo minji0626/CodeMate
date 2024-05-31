@@ -11,8 +11,16 @@ public class TboardCommentVO {
 	
 	private String mem_nickname;
 	private int team_num;
+	private String mem_photo;
 	
 	
+	
+	public String getMem_photo() {
+		return mem_photo;
+	}
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
+	}
 	public int getTeam_num() {
 		return team_num;
 	}

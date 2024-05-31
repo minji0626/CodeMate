@@ -324,7 +324,10 @@ public class CboardDAO {
 					ccomment.setCc_content(rs.getString("cc_content"));
 					ccomment.setMem_photo(rs.getString("mem_photo"));
 					ccomment.setMem_nickname(rs.getString("mem_nickname"));
-
+					ccomment.setCc_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("cc_reg_date")));
+					if(rs.getString("cc_modify_date") != null) {
+						ccomment.setCc_modify_date(DurationFromNow.getTimeDiffLabel(rs.getString("cc_modify_date")));
+						}
 					list.add(ccomment);
 				}
 			} catch (Exception e) {

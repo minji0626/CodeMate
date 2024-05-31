@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import kr.cboard.dao.CboardDAO;
+import kr.cboard.vo.CcommentVO;
 import kr.controller.Action;
 import kr.tboard.dao.TboardDAO;
 import kr.tboard.vo.TboardCommentVO;
@@ -17,32 +19,32 @@ public class TboardCommentWriteAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Map<String, String> mapAjax = new HashMap<String, String>();
+		HttpSession session = request.getSession();
+		Integer mem_num = (Integer) session.getAttribute("mem_num");
 
-        HttpSession session = request.getSession();
-        Integer mem_num = (Integer) session.getAttribute("mem_num");
+		Map<String, String> mapAjax = new HashMap<String, String>();
 
-        if (mem_num == null) {
-            // 로그인 X
-            mapAjax.put("result", "logout");
-        } else {
-            // 로그인 O
-            request.setCharacterEncoding("utf-8");
-            TboardCommentVO comment = new TboardCommentVO();
-            comment.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
-            comment.setTb_num(Integer.parseInt(request.getParameter("tb_num")));
-            comment.setTc_content(request.getParameter("tc_content"));
+		if (mem_num == null) { // 로그인하지 않은 경우
+			mapAjax.put("result", "logout");
+		} else { // 로그인 한 경우
+			request.setCharacterEncoding("utf-8");
 
-            TboardDAO dao = TboardDAO.getInstance();
-            dao.insertCommentTboard(comment);
-            mapAjax.put("result", "success");
-        }
+			TboardCommentVO tbcomment = new TboardCommentVO();
+			tbcomment.setTb_num(Integer.parseInt(request.getParameter("tb_num")));
+			tbcomment.setMem_num(mem_num);
+			tbcomment.setTc_content(request.getParameter("tc_content"));
 
-        // JSON 데이터로 변환
-        ObjectMapper mapper = new ObjectMapper();
-        String ajaxData = mapper.writeValueAsString(mapAjax);
-        request.setAttribute("ajaxData", ajaxData);
-        
-        return "/WEB-INF/views/common/ajax_view.jsp";
-    }
+			TboardDAO tdao = TboardDAO.getInstance();
+			tdao.insertCommentTboard(tbcomment);
+
+			mapAjax.put("result", "success");
+		}
+
+		ObjectMapper mapper = new ObjectMapper();
+		String ajaxData = mapper.writeValueAsString(mapAjax);
+
+		request.setAttribute("ajaxData", ajaxData);
+
+		return "/WEB-INF/views/common/ajax_view.jsp";
+	}
 }

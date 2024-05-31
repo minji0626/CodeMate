@@ -74,32 +74,28 @@
 				</div>
 				
 		   		 
-		   		 <!-- 댓글 목록 -->
-		   		 <div class="container_reList">
-		   		 	<div id="reList">
-			   		 	
-		   		 	</div>
-		   		 </div>
-		        <!-- 댓글 시작 -->
-			<div class="container_re">
+		   		<!-- 댓글 시작 -->
+		        <%-- 댓글 목록 --%>
+				<div class="container_reList">
+				
+				</div>
+				
+		        <%-- 댓글 섹션 --%>
+				<div class="container_re">
 				<h4>
 					댓글 <span id="comments-cnt">0</span>
 				</h4>
-				<div id="reply_div">
-					<form id="tc_form">
-						<input type="hidden" name="tb_num" value="${tboard.tb_num}"
-							id="tb_num">
+				<%-- 새 댓글창 --%>
+				<div id="container_re">
+					<form id="comment_form">
+						<input type="hidden" id="tb_num" name="tb_num" value="${tboard.tb_num}" >
 						<div class="form-group">
-							<textarea rows="5" cols="120" name="tc_content"
-								<c:if test="${empty mem_num}">disabled="disabled"</c:if>
-								id="tc_content" class="tc-content"><c:if
-									test="${empty mem_num}">로그인 후 작성 가능합니다.</c:if></textarea>
-							<c:if test="${!empty mem_num}">
-								<input type="submit" value="등록" class="btn btn-primary">
-							</c:if>
+							<textarea name="tc_content" id="tc_content" placeholder="댓글을 입력하세요." rows="3" cols="78" class="form-control"></textarea>
+							<input type="submit" value="등록" class="btn btn-primary">
 						</div>
 					</form>
 				</div>
+				
 			</div>
 
 

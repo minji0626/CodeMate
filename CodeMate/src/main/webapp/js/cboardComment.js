@@ -63,6 +63,13 @@ $(function() {
 					output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
 					console.log(item.mem_photo);
 					output += '<span>' + item.mem_nickname + '</span>';
+					
+					if(item.cc_modify_date){
+						output += '<span class="modify-date">수정 : ' + item.cc_modify_date + '</span>';
+					}else{
+						output += '<span class="reg-date">' + item.cc_reg_date + '</span>';
+					}
+					
 					output += '</div>';
 					output += '<div class="re_content">';
 					output += '<p>' + item.cc_content + '</p>';
