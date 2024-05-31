@@ -20,31 +20,7 @@
 	href="${pageContext.request.contextPath}/css/rboardList.css"
 	type="text/css">
 </head>
-<script>
-	// 드롭다운 메뉴에서 옵션을 선택할 때마다 검색 함수 실행
-	function addEventListeners() {
-		document.querySelectorAll('.search-menu').forEach(function(element) {
-			element.addEventListener('change', function() {
-				search();
-			});
-		});
-	}
 
-	// 검색 기능을 처리하는 함수
-	function search() {
-		// 선택된 옵션 가져오기
-		var selectedOptions = [];
-		document.querySelectorAll('.search-menu').forEach(function(element) {
-			selectedOptions.push(element.value);
-		});
-
-		// 여기에 검색 기능 실행하는 코드 추가
-		console.log('선택된 옵션:', selectedOptions);
-		// 검색 결과를 화면에 표시하거나 검색 요청을 서버에 전송하는 등의 로직을 추가할 수 있습니다.
-	}
-
-	document.addEventListener('DOMContentLoaded', addEventListeners);
-</script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/rboardList.js"></script>
 
@@ -61,26 +37,32 @@
 				</ul>
 				<!--검색-->
 				<div class="search-container">
-
-					<select class="search-menu">
-						<option value="" disabled selected>기술 스택</option>
-						<option value="option1">옵션 1</option>
-						<option value="option2">옵션 2</option>
-						<option value="option3">옵션 3</option>
-						<!-- 필요한 만큼 옵션 추가 -->
-					</select> <select name="r_fields" class="search-menu">
-						<option value="" disabled selected>모집 필드</option>
-						<c:forEach var="field" items="${fieldList}">
-							<option value="${field.f_code}">${field.f_name}</option>
-						</c:forEach>
-					</select> <select name="rb_meet" class="search-menu">
-						<option value="" disabled selected>진행 방식</option>
-						<option value="0">온라인</option>
-						<option value="1">오프라인</option>
-						<option value="2">온라인/오프라인</option>
-						<!-- 필요한 만큼 옵션 추가 -->
-					</select> <span class="search-menu"> 내 북마크 보기 </span> <span
-						class="search-menu"> 모집중 보기 </span>
+					<div id="search_container_sub">
+						<div id="scrollable_trigger" class="search-menu">기술 스택</div>
+						<ul class="scrollable">
+							<c:forEach var="hskill" items="${hskillList}">
+								<li class="block">
+									<input type="checkbox" name="r_skills" id="r_skill_${hskill.hs_code}" value="${hskill.hs_code}">
+									<label for="r_skill_${hskill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">${hskill.hs_name}</label>
+								</li>
+							</c:forEach>
+						</ul>
+						<select name="r_fields" class="search-menu">
+							<option value="" selected>모집 필드</option>
+							<c:forEach var="field" items="${fieldList}">
+								<option value="${field.f_code}">${field.f_name}</option>
+							</c:forEach>
+						</select>
+						<select name="rb_meet" class="search-menu">
+							<option value="" selected>진행 방식</option>
+							<option value="0">온라인</option>
+							<option value="1">오프라인</option>
+							<option value="2">온라인/오프라인</option>
+							<!-- 필요한 만큼 옵션 추가 -->
+						</select>
+						<span class="search-menu"> 내 북마크 보기 </span>
+						<span class="search-menu"> 모집중 보기 </span>
+					</div>
 					<div id="r_btn_div" class="flex-container">
 						<div id="search_key_div" class="search-menu">
 							<input type="search" name="search_key" id="search_key"

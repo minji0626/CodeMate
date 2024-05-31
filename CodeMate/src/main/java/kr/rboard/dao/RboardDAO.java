@@ -144,7 +144,8 @@ public class RboardDAO {
 		PreparedStatement pstmt3 = null;	//모집스킬 
 		PreparedStatement pstmt4 = null; 	//모집필드
 		PreparedStatement pstmt5 = null;	//팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
-		PreparedStatement pstmt6 = null;	//모집글 (apply레코드는 지우지 않고 rb_num만 null되게)
+		PreparedStatement pstmt6 = null;	//apply레코드는 지우지 않고 rb_num만 null되게
+		PreparedStatement pstmt7 = null;	//모집글
 
 		String sql = null;
 		
@@ -182,11 +183,19 @@ public class RboardDAO {
 			pstmt5.setInt(1, rb_num);
 			pstmt5.executeUpdate();
 			
-			//모집글 삭제
-			sql = "DELETE FROM r_board WHERE rb_num=?";
+			//모집이 마감된 글은 team
+			
+			//apply레코드는 지우지 않고 rb_num만 null되게
+			sql = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
 			pstmt6 = conn.prepareStatement(sql);
 			pstmt6.setInt(1, rb_num);
 			pstmt6.executeUpdate();
+			
+			//모집글 삭제
+			sql = "DELETE FROM r_board WHERE rb_num=?";
+			pstmt7 = conn.prepareStatement(sql);
+			pstmt7.setInt(1, rb_num);
+			pstmt7.executeUpdate();
 			
 			conn.commit();
 			
@@ -194,6 +203,7 @@ public class RboardDAO {
 			conn.rollback();
 			throw new Exception(e);
 		} finally {
+			DBUtil.executeClose(null, pstmt7, null);
 			DBUtil.executeClose(null, pstmt6, null);
 			DBUtil.executeClose(null, pstmt5, null);
 			DBUtil.executeClose(null, pstmt4, null);

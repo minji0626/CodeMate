@@ -1,26 +1,36 @@
 $(document).ready(function() {
+
+	/*=============================
+	뒤로가기 화살표
+	=============================*/
+	
 	$('.feather-arrow-left').click(function() {
 		location.href = 'list.do';
 	});
 
+	/*=============================
+	북마크
+	=============================*/
+
+
 	let rb_num = $('#bookmark_img').attr('data-rbnum');
 
 	// 서버와 통신
-function getBookmark() {
-    $.ajax({
-        url: 'getBookmark.do',
-        type: 'post',
-        data: { rb_num: rb_num },
-        dataType: 'json',
-        success: function(param) {
-            showBookmark(param);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('네트워크 오류 발생: ' + textStatus + ', ' + errorThrown);
-            console.error('Error details:', jqXHR.responseText);
-        }
-    });
-}
+	function getBookmark() {
+		$.ajax({
+			url: 'getBookmark.do',
+			type: 'post',
+			data: { rb_num: rb_num },
+			dataType: 'json',
+			success: function(param) {
+				showBookmark(param);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('네트워크 오류 발생: ' + textStatus + ', ' + errorThrown);
+				console.error('Error details:', jqXHR.responseText);
+			}
+		});
+	}
 
 
 	// 북마크 토글

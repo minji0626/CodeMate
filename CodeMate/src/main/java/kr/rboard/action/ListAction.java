@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.db.dao.DBDAO;
 import kr.db.vo.FieldVO;
+import kr.db.vo.HardSkillVO;
 import kr.rboard.dao.RboardDAO;
 import kr.rboard.vo.RboardVO;
 import kr.util.PagingUtil;
@@ -24,6 +25,7 @@ public class ListAction implements Action {
 		
 		DBDAO dbdao = DBDAO.getInstance();
 		List<FieldVO> fieldList = dbdao.getFieldList();
+		List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 		
 		RboardDAO rdao = RboardDAO.getInstance();
 		int count = rdao.getRboardCount();
@@ -37,6 +39,7 @@ public class ListAction implements Action {
 		}
 		
 		request.setAttribute("fieldList", fieldList);
+		request.setAttribute("hskillList", hskillList);
 		request.setAttribute("rboardList", rboardList);
 		request.setAttribute("count", count);
 		request.setAttribute("page", page.getPage());
