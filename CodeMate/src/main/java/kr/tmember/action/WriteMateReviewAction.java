@@ -42,7 +42,7 @@ public class WriteMateReviewAction implements Action {
 			dao.insertMateReview(mr);
 
 			request.setAttribute("notice_msg", "메이트 리뷰를 작성했습니다.");
-			request.setAttribute("notice_url", request.getRequestURI());
+			request.setAttribute("notice_url", request.getContextPath() + "/team/teamSetting.do?team_num="+team_num);
 
 			return "/WEB-INF/views/common/alert_view.jsp";
 	}
