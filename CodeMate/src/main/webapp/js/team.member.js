@@ -39,6 +39,7 @@ $(document).ready(function() {
     $(".review-link").click(function(e) {
         e.preventDefault();
         
+        
         // 개인의 닉네임 가져와서 innerText 시키기
         const nickname = $(this).closest('.mem_personal').find('.team_mem_nickname').data('nickname');
         $('.mate_review_profile .user_nickname').text(nickname);
@@ -53,6 +54,10 @@ $(document).ready(function() {
         const imageUrl = profileImage.attr('src');
         $('.mate_review_profile .profile_image').attr('src', imageUrl);
         
+        const mr_receiver = $(this).data('mem-num');
+        $('#mr_receiver').val(mr_receiver);
+        const team_num = $(this).data('team-num');
+        $('#team_num').val(team_num);
         modalOn();
     });
 	

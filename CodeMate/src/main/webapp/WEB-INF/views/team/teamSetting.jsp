@@ -56,7 +56,7 @@
                         <li>
                             <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                             <div class="dropdown_menu">
-                                <a class="review-link" style="cursor: pointer">리뷰 쓰기</a>
+                                <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
                                 <c:if test="${tm_auth == 4 }">
                                 <!-- 팀장인 경우 데이터 속성 추가 -->
 								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
@@ -94,7 +94,7 @@
                         <li>
                             <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                             <div class="dropdown_menu">
-                                <a class="review-link" style="cursor: pointer">리뷰 쓰기</a>
+                                <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
                                 <c:if test="${tm_auth == 4 }">
                                 <!-- 팀장인 경우 데이터 속성 추가 -->
 								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
@@ -138,8 +138,10 @@
             </div>
             <div class="mr_content_div">
                 <h4>내용</h4>
-                <form id="mr_form" action="">
-                    <textarea id="mr_content"></textarea>
+                <form id="mr_form" action="writeMateReview.do" method="post">
+                	<input type="hidden" name="mr_receiver" value="" id="mr_receiver">
+                	<input type="hidden" name="team_num" value="" id="team_num">
+                    <textarea id="mr_content" name="mr_content"></textarea>
                     <div class="btn-div">
                         <input type="submit" id="submit-btn" value="제출">
                         <input type="button" class="mate_review_close" id="close-btn" value="취소">
