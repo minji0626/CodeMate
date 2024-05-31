@@ -39,6 +39,7 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-bottom: 30px; /* 테이블 간 간격 */
 }
@@ -70,29 +71,22 @@ tr.notice {
     font-weight: bold;
 }
 
-/* 칼럼 너비 설정 */
 td:nth-child(1) {
-    width: 100px;
-}
-
-td:nth-child(2) {
-    width: 590px;
+    width: 60%; /* 제목 칼럼의 너비를 적절히 크게 설정 */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
+td:nth-child(2) {
+    width: 20%; /* 작성자 칼럼의 너비를 작성일과 비슷하게 설정 */
+}
+
 td:nth-child(3) {
-    width: 158px;
+    width: 20%; /* 작성일 칼럼의 너비를 작성자와 비슷하게 설정 */
 }
 
-td:nth-child(4) {
-    width: 100px;
-}
 
-td:nth-child(5) {
-    width: 140px;
-}
 
 /* 서치 박스 컨테이너 */
 .search-container {

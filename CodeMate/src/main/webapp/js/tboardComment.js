@@ -55,6 +55,8 @@ $(function() {
 			dataType: 'json',
 			success: function(param) {
 				$('.container_reList').empty();
+				let commentsCount = param.commentsList.length; // 댓글 수
+   				 $('.container_reList').append('<h4> 댓글 <span id="comments-cnt">' + commentsCount + '</span> </h4>');
 				$(param.commentsList).each(function(index, item) {
 					let output = '<div class="reList">';
 					output += '<div class="re_writer">';

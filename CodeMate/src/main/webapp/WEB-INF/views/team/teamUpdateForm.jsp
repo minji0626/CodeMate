@@ -64,13 +64,12 @@ window.onload = function(){
             </div>
             <div class="form-group">
                 <label for="tb_file">이미지</label>
-                <input type="file" name="tb_file" id="tb_file" accept="image/gif,image/png,image/jpeg" class="form-control">
-
-				<c:if test="${!empty tboard.tb_file}">
+                
+                <c:if test="${!empty tboard.tb_file}">
     					<div id="file_detail">
-        					<img src="${pageContext.request.contextPath}/upload/${tboard.tb_file}" width="100">
+        					<img src="${pageContext.request.contextPath}/upload/${tboard.tb_file}" width="150" style="margin-left: 3%;">
         					<br>
-        					<input type="button" value="파일 삭제" id="file_del">
+        					<input type="button" value="파일 삭제" id="file_del" class="btn">
         				</div>
         				<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
         				<script type="text/javascript">
@@ -104,6 +103,10 @@ window.onload = function(){
         				});
         				</script>
         		</c:if>
+                
+                <input type="file" name="tb_file" id="tb_file" accept="image/gif,image/png,image/jpeg" class="form-control btn">
+
+				
             </div>
             <div class="form-actions">
                 <input type="submit" value="수정" class="btn btn-primary">
