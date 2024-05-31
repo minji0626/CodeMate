@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board_write.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<title>팀 게시판 작성 Test</title>
+<title>CODEMATE Team Project</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <script type="text/javascript">
 window.onload = function(){
     const myForm = document.getElementById('write_form');

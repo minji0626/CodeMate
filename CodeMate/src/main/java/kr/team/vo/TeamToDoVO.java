@@ -10,6 +10,8 @@ public class TeamToDoVO {
 	private int tt_start; 			// 팀 투두 시작 시간
 	private int tt_end; 			// 팀 투두 끝나는 시간
 	private int tt_state; 			// 팀 투두 상태
+	
+	
 	public int getTt_num() {
 		return tt_num;
 	}
