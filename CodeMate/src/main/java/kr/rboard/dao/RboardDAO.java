@@ -403,6 +403,30 @@ public class RboardDAO {
 		}
 	}
 	
+	//rboard 지원취소 - 민재
+	public void deleteApply(int ra_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀에 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM r_apply WHERE ra_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, ra_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	
 	//회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
 	public List<RboardVO> getAppliedBoardListByMemNum(int mem_num) throws Exception {
 	    Connection conn = null;
@@ -421,12 +445,12 @@ public class RboardDAO {
 	        while (rs.next()) {
 	            RboardVO rboard = new RboardVO();
 	            // 코메신청 정보 설정
+	            rboard.setRa_num(rs.getInt("ra_num"));
 	            rboard.setRb_category(rs.getInt("rb_category"));
 	            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 	            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 	            rboard.setRb_start(rs.getString("rb_start"));
 	            rboard.setRb_period(rs.getInt("rb_period"));
-	            //period 진행기간이 숫자로 되어있어서 일단 모집 마감일 추가했어요
 	            rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 	            // 리스트에 추가
 	            list.add(rboard);
@@ -701,13 +725,13 @@ public class RboardDAO {
 		        while (rs.next()) {
 		            RboardVO rboard = new RboardVO();
 		            // 코메신청 정보 설정
+		            rboard.setRb_num(rs.getInt("rb_num"));
 		            rboard.setRb_category(rs.getInt("rb_category"));
 		            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 		            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 		            rboard.setRb_start(rs.getString("rb_start"));
 		            rboard.setRb_period(rs.getInt("rb_period"));
 		            rboard.setRb_title(rs.getString("rb_title"));
-		            //period 진행기간이 숫자로 되어있어서 일단 모집 마감일 추가했어요
 		            rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 		            // 리스트에 추가
 		            list.add(rboard);

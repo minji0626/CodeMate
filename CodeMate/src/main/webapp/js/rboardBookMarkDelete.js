@@ -6,7 +6,7 @@ $(function(){
         // 서버와 통신
         $.ajax({
             url: 'deleteMyPageBookMark.do', 
-            type: 'post', 
+            type: 'post',
             data: { rb_num: $(this).data('rbnum') }, // 삭제할 북마크 번호를 데이터로 전달
             dataType: 'json', 
             success: function(param) {

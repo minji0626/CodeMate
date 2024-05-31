@@ -11,13 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".delete-green").click(function() {
-            $(this).closest(".myPage-line-box").remove();
-        });
-    });
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/rapplyDelete.js"></script>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -46,7 +40,7 @@
 </div>
 
 <div class="team-right">
-<div class="delete-green">신청 취소</div>
+<div class="delete-green" data-ranum="${aprboard.ra_num}">신청 취소</div>
 <div class="team-count">모집인원:${aprboard.rb_teamsize}명</div>
 <!-- 시작일인데 진행기간 넣어봄 -->
 <div class="team-count">프로젝트 진행기간 ${aprboard.rb_period}개월</div><!-- 글자 간격 마진 주려고 클래스 복붙 -->
