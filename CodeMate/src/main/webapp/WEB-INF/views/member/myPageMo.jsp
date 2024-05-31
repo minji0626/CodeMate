@@ -15,12 +15,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/rboardWriteDelete.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    // '모집글 삭제' 버튼 클릭 이벤트
-    $('.delete-green').click(function(event) {
-        event.stopPropagation();
-        $(this).closest('.myPage-line-box').remove();
-    });
     
+
 	//'활성화' 버튼 클릭 이벤트
     $('.close-green').click(function(event) {
         event.stopPropagation();
@@ -57,7 +53,7 @@ $(document).ready(function() {
 </div>
 <div class="team-right">
 
-<div class="delete-green">모집글 삭제</div>
+<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>
 <div>
 <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
 <div>모집마감:${rboard.rb_endRecruit}</div>
