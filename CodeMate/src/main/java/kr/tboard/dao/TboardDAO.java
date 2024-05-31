@@ -385,7 +385,8 @@ public class TboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	// 댓글 삭제
+	
+//	댓글 삭제
 	public void deleteTcomment(int tc_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -404,4 +405,5 @@ public class TboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+
 }	

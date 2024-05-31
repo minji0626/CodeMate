@@ -27,7 +27,7 @@ $(function() {
 					location.href = '../member/loginForm.do';
 				} else if (param.result == 'success') {
 					initForm();
-					selectList(1);
+					selectList();
 				} else {
 					alert('댓글 작성 오류');
 				}
@@ -89,7 +89,7 @@ $(function() {
 
 				// 수정 버튼 클릭 이벤트 처리
 				$('.modify-btn').click(function() {
-					
+
 					let tc_num = $(this).data('tcnum');
 					let content = $(this).closest('.reList').find('.re_content p').text();
 					var reList = $(this).closest('.reList');
@@ -111,7 +111,7 @@ $(function() {
 
 					// 수정폼을 수정하고자 하는 데이터가 있는 div에 노출
 					$(this).parents('.reList').append(modifyUI);
-					
+
 				});
 
 				setCommentsCount(param.commentsList.length);
@@ -169,9 +169,8 @@ $(function() {
 				} else if (param.result == 'success') {
 					$('#mtc_form').parent().find('.re_content p').text($('#mtc_content').val());
 					$('#mre_form').parent().find('.modify-date').text('5초 미만 전 수정됨');
-
-					// 수정폼 삭제 및 초기화
 					initModifyForm();
+					selectList();
 				} else if (param.result == 'wrongAccess') {
 					alert('타인의 글을 수정할 수 없습니다.');
 				} else {
@@ -184,27 +183,61 @@ $(function() {
 		});
 	});
 	
+	
+	$(document).on('click', '.delete-btn', function() {
+	let tc_num = $(this).attr('data-tcnum');
+
+	if (!confirm('해당 댓글을 삭제하시겠습니까?')) {
+		return false;
+	}
+
+	$.ajax({
+		url: 'tboardCommentDelete.do', // URL 확인
+		type: 'post',
+		data: { tc_num: tc_num },
+		dataType: 'json',
+		success: function(param) {
+			if (param.result == 'logout') {
+				alert('로그인해야 삭제할 수 있습니다.');
+			} else if (param.result == 'success') {
+				alert('댓글을 삭제했습니다.');
+				selectList(); // 성공 시 리스트 갱신
+			} else if (param.result == 'wrongAccess') {
+				alert('타인의 글을 삭제할 수 없습니다.');
+			} else {
+				alert('댓글 삭제 오류 발생');
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert('네트워크 오류 발생: ' + textStatus + ' - ' + errorThrown);
+			console.error('Error details:', jqXHR);
+		}
+	});
+});
+
+
 });
 
 // Dropdown 메뉴 토글
-    $(document).on('click', '.comment_img', function(event) {
-        const dropdownMenu = $(this).next('.dropdown_menu');
-        dropdownMenu.toggle();
-        
-        // 다른 드롭다운 메뉴 숨기기
-        $('.dropdown_menu').not(dropdownMenu).hide();
-        
-        event.stopPropagation();
-    });
+$(document).on('click', '.comment_img', function(event) {
+	const dropdownMenu = $(this).next('.dropdown_menu');
+	dropdownMenu.toggle();
 
-    // 페이지 클릭 시 모든 드롭다운 메뉴 숨기기
-    $(document).click(function() {
-        $('.dropdown_menu').hide();
-    });
+	// 다른 드롭다운 메뉴 숨기기
+	$('.dropdown_menu').not(dropdownMenu).hide();
 
-    // 드롭다운 메뉴 클릭 시 이벤트 전파 막기
-    $('.dropdown_menu').click(function(event) {
-        event.stopPropagation();
+	event.stopPropagation();
 });
+
+// 페이지 클릭 시 모든 드롭다운 메뉴 숨기기
+$(document).click(function() {
+	$('.dropdown_menu').hide();
+});
+
+// 드롭다운 메뉴 클릭 시 이벤트 전파 막기
+$('.dropdown_menu').click(function(event) {
+	event.stopPropagation();
+});
+
 
 
