@@ -13,6 +13,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
+ <script type="text/javascript">
+window.onload = function(){
+    const myForm = document.getElementById('mr_form');
+    myForm.onsubmit = function(){
+        const content = document.getElementById('mr_content');
+        if(content.value.trim()==''){
+            alert('내용을 입력하세요.');
+            content.value='';
+            content.focus();
+            return false;
+        };
+
+    };
+};
+</script>
+    
 <body>
 <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
