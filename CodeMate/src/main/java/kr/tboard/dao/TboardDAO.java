@@ -263,18 +263,19 @@ public class TboardDAO {
 	}
 	
 	// 댓글 등록
-	public void insertCommentTboard(TboardCommentVO tboardComment) throws Exception {
+	public void insertCommentTboard(TboardCommentVO tcomment) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    String sql = null;
+	    
 	    try {
 	        conn = DBUtil.getConnection();
 	        sql = "INSERT INTO team_comment(tc_num, mem_num, tb_num, tc_content) "
 	                + "VALUES(team_comment_seq.nextval,?,?,?)";
 	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, tboardComment.getMem_num());
-	        pstmt.setInt(2, tboardComment.getTb_num());
-	        pstmt.setString(3, tboardComment.getTc_content());
+	        pstmt.setInt(1, tcomment.getMem_num());
+	        pstmt.setInt(2, tcomment.getTb_num());
+	        pstmt.setString(3, StringUtil.useBrNoHTML(tcomment.getTc_content()));
 	        pstmt.executeUpdate();
 	    } catch (Exception e) {
 	        throw new Exception(e);

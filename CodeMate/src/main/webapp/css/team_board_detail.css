@@ -1,181 +1,237 @@
 @charset "UTF-8";
 
-
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
 }
 
 .page-container {
-    width: 70%;
-    min-width: 900px;
-    margin: 0 auto;
-    margin-right: 30px; /* 이 부분을 추가해주세요 */
+	width: 70%;
+	min-width: 900px;
+	margin: 0 auto;
+	margin-right: 30px; /* 이 부분을 추가해주세요 */
 }
 
-.board_container{
-	margin-top:50px;
-	width:100%;
+.board_container {
+	margin-top: 50px;
+	width: 100%;
 	box-sizing: border-box;
+}
+
+/* 기타 스타일 */
+.reList {
+	margin-bottom: 20px; /* 댓글 리스트 간 간격 */
+}
+
+.re_writer {
+	display: flex; /* 플렉스 박스 레이아웃 */
+	align-items: center; /* 수직 정렬 */
+	margin-bottom: 5px; /* 마진 */
+}
+
+.re_writer img {
+	border-radius: 50%; /* 이미지 둥글게 */
+	margin-right: 10px; /* 이미지와 닉네임 간격 */
+}
+
+.reg-date, .modify-date {
+	margin-left: 10px; /* 등록일과 수정일 간격 */
+	color: #777; /* 날짜 색상 */
+	font-size: 12px; /* 날짜 폰트 크기 */
 }
 
 /* 각각의 form을 하나로 묶어 주고 있는 container div */
 .container_write, .container_re, .container_board, .container_reList {
-    
-    width: 70%;
-    margin-top:30px;
-	margin-bottom:200px;
-    margin: 3% auto; 
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-sizing: border-box;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+	width: 70%;
+	margin-top: 30px;
+	margin-bottom: 200px;
+	margin: 3% auto;
+	background-color: #f4f4f4;
+	border-radius: 8px;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
 }
 
 /* 각각의 form간의 간격 */
 .form-group {
-    margin-bottom: 40px;
+	margin-bottom: 40px;
 }
 /* 어떤 form인지 나타내주는 label */
 .form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+	display: block;
 }
 /* 입력 창(제목, 내용) */
 .form-control {
-    width: calc(100% - 24px);
-    padding: 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 15px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	width: calc(100% - 24px);
+	padding: 12px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	font-size: 15px;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 /* 입력창을 클릭하면 */
 .form-control:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+	border-color: #80bdff;
+	outline: 0;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* 버튼 스타일들 */
 .btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: opacity 0.3s ease-in-out;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 13px;
+	cursor: pointer;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .btn-primary {
-    background-color: #326BFF;
-    opacity: 0.8;
-    color: #fff;
+	background-color: #326BFF;
+	opacity: 0.8;
+	color: #fff;
 }
 
 .btn-primary:hover {
 	opacity: 1.0;
-	}
+}
 
 .btn-secondary {
-    background-color: #636363;
-    opacity: 0.8;
-    color: #fff;
+	background-color: #636363;
+	opacity: 0.8;
+	color: #fff;
 }
 
 .btn-secondary:hover {
-    opacity: 1.0;
+	opacity: 1.0;
 }
-
-
 
 /*상세 글*/
 /*카테고리 란*/
-.board_category{
+.board_category {
 	margin: 15px 0 15px 10px;
 }
 
 .board_info, .re_writer {
 	margin: 15px 0 10px 10px;
 	display: flex;
-    align-items: center;
-    padding-right:10px
+	align-items: center;
+	padding-right: 10px
 }
 
-.board_info span, .re_writer span{
-	padding-left:5px;
+.board_info span, .re_writer span {
+	padding-left: 5px;
 	padding-right: 30px;
 	font-size: 9pt;
 }
 
-.board_content{
-	padding-top:20px;
-}
-
-.re_content{
-	margin-left:14px;
-}
-
-.reList {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-bottom:20px;
-}
-
-.re_writer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+.board_content {
+	padding-top: 20px;
 }
 
 .re_content {
-    margin-bottom: 10px;
+	margin-left: 14px;
+}
+
+.reList {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.re_writer {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.re_content {
+	margin-bottom: 10px;
 }
 
 .delete_button {
-    position: absolute;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
+	position: absolute;
+	right: 24px;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .list-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-right : 14%;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-right: 20px;
-    height: 100%; /* 부모 요소의 높이를 100%로 설정 */
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 14%;
+	align-items: center;
+	margin-bottom: 20px;
+	padding-right: 20px;
+	height: 100%; /* 부모 요소의 높이를 100%로 설정 */
 }
 
 .list-action {
-    margin-left: 10px;
-    padding: 5px 10px;
-    align-self: flex-end; /* 수직으로 정렬 */
+	margin-left: 10px;
+	padding: 5px 10px;
+	align-self: flex-end; /* 수직으로 정렬 */
 }
 
-.list-actions span{
-    font-size: 9pt;
-    color: #A7A3A3;
-    margin-right: 20px;
+.list-actions span {
+	font-size: 9pt;
+	color: #A7A3A3;
+	margin-right: 20px;
 }
 
 .board_file {
-    text-align: center; /* 이미지를 가운데로 정렬합니다. */
+	text-align: center; /* 이미지를 가운데로 정렬합니다. */
 }
 
 .board_file img {
-    max-width: 350px; /* 이미지의 최대 너비를 100px로 지정합니다. */
-    height: auto; /* 너비에 맞게 비율을 유지합니다. */
-    margin-bottom: 5%;
+	max-width: 350px; /* 이미지의 최대 너비를 100px로 지정합니다. */
+	height: auto; /* 너비에 맞게 비율을 유지합니다. */
+	margin-bottom: 5%;
 }
 
+#cb_content {
+	margin-bottom: 15px;
+}
 
-#cb_content{
-	margin-bottom:15px;
+.dropdown_menu {
+	display: none;
+	position: absolute;
+	left: 100%;
+	margin-left: 10px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	width: 100px;
+	z-index: 1;
+}
+
+.dropdown_menu input {
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	border: none;
+	background: none;
+	text-align: left;
+}
+
+.dropdown_menu input:hover {
+	background-color: #f1f1f1;
+}
+
+.comment_img {
+	background: none;
+	border: none;
+	cursor: pointer;
+	margin-left: auto; /* 오른쪽 정렬 */
+}
+
+.modify-btn {
+	color: #35B572;
+}
+.delete-btn {
+	color: #FF2910;
 }

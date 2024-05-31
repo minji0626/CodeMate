@@ -29,13 +29,13 @@ public class TboardCommentWriteAction implements Action {
 		} else { // 로그인 한 경우
 			request.setCharacterEncoding("utf-8");
 
-			TboardCommentVO tbcomment = new TboardCommentVO();
-			tbcomment.setTb_num(Integer.parseInt(request.getParameter("tb_num")));
-			tbcomment.setMem_num(mem_num);
-			tbcomment.setTc_content(request.getParameter("tc_content"));
+			TboardCommentVO tcomment = new TboardCommentVO();
+			tcomment.setTb_num(Integer.parseInt(request.getParameter("tb_num")));
+			tcomment.setMem_num(mem_num);
+			tcomment.setTc_content(request.getParameter("tc_content"));
 
 			TboardDAO tdao = TboardDAO.getInstance();
-			tdao.insertCommentTboard(tbcomment);
+			tdao.insertCommentTboard(tcomment);
 
 			mapAjax.put("result", "success");
 		}

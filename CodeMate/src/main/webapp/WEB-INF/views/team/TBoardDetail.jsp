@@ -76,15 +76,13 @@
 		   		 
 		   		<!-- 댓글 시작 -->
 		        <%-- 댓글 목록 --%>
+		        
 				<div class="container_reList">
 				
 				</div>
 				
 		        <%-- 댓글 섹션 --%>
 				<div class="container_re">
-				<h4>
-					댓글 <span id="comments-cnt">0</span>
-				</h4>
 				<%-- 새 댓글창 --%>
 				<div id="container_re">
 					<form id="comment_form">

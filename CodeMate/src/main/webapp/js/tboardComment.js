@@ -57,10 +57,15 @@ $(function() {
 			dataType: 'json',
 			success: function(param) {
 				let output = '';
+				output += '<h4>댓글 <span id="comments-cnt">0</span></h4>';
 				$(param.commentsList).each(function(index, item) {
 					output += '<div class="reList">'
 					output += '<div class="re_writer">';
-					output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
+					if(item.mem_photo == null){
+						output += '<img src="../images/face.png" id="profile_pic" height="25" width="25">';
+					} else{
+						output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
+					}
 					output += '<span>' + item.mem_nickname + '</span>';
 					
 					if(item.tc_modify_date){
@@ -68,22 +73,44 @@ $(function() {
 					}else{
 						output += '<span class="reg-date">' + item.tc_reg_date + '</span>';
 					}
-					
+					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
+					if (param.mem_num == item.mem_num) {
+						output += '<button class="comment_img"><img src="../images/dotmenu.png" id="comment_img" height="15" width="15"></button>';
+						output += '<div class="dropdown_menu">';
+						output += ' <input type="button" data-tcnum="' + item.tc_num + '" value="수정" class="modify-btn btn-default">';
+						output += ' <input type="button" data-tcnum="' + item.tc_num + '" value="삭제" class="delete-btn btn-default">';
+						output += '</div>';
+					}
 					output += '</div>';
 					output += '<div class="re_content">';
 					output += '<p>' + item.tc_content + '</p>';
 					output += '</div>';
-
-					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
-					if (param.mem_num == item.mem_num) {
-						output += '<div class="action_buttons">';
-						output += ' <input type="button" data-tcnum="' + item.tc_num + '" value="수정" class="modify-btn btn btn-default">';
-						output += ' <input type="button" data-tcnum="' + item.tc_num + '" value="삭제" class="delete-btn btn btn-default">';
-						output += '</div>'
-					}
 					output += '</div>'
 				});
 				$('.container_reList').empty().append(output);
+				
+				// 이벤트 핸들러를 새로 추가된 요소에 대해 다시 설정합니다.
+                $('.comment_img').click(function(event) {
+                    const dropdownMenu = $(this).next('.dropdown_menu');
+                    dropdownMenu.toggle();
+                    
+                    // 다른 드롭다운 메뉴 숨기기
+                    $('.dropdown_menu').not(dropdownMenu).hide();
+                    
+                    event.stopPropagation();
+                });
+
+                // 페이지를 클릭하면 모든 드롭다운 메뉴 숨기기
+                $(document).click(function() {
+                    $('.dropdown_menu').hide();
+                });
+
+                // 드롭다운 메뉴 클릭 시 이벤트 전파 막기
+                $('.dropdown_menu').click(function(event) {
+                    event.stopPropagation();
+                });
+				
+				
 				setCommentsCount(param.commentsList.length);
 			},
 			error: function() {
@@ -97,4 +124,7 @@ $(function() {
 		$('#comments-cnt').text(commentsCount);
 	}
 
+
 });
+
+
