@@ -60,8 +60,8 @@ span.search-menu {
 	cursor: pointer;
 }
 
-span.search-menu, select.search-menu, div.search-menu {
-	height: 36px;
+span.search-menu, select.search-menu {
+	height: 38px;
 	color: #636363;
 }
 
@@ -117,8 +117,10 @@ option {
 
 #scrollable_trigger {
 	display: inline-flex;
-	vertical-align: middle;
+	vertical-align: top;
 	align-items: center;
+	color: #636363;
+	height: 36px;
 }
 
 #scrollable_trigger .skill-tag {
