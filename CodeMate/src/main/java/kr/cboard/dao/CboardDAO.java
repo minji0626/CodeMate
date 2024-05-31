@@ -336,5 +336,80 @@ public class CboardDAO {
 			return list;
 		}
 
+		// 개별 댓글vo 구하기
+		public CcommentVO getCcomment(int cc_num) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			CcommentVO ccomment = null;
+			String sql = null;
+
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM c_comment WHERE cc_num=?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cc_num);
+
+				rs = pstmt.executeQuery();
+
+				ccomment = new CcommentVO();
+				if (rs.next()) {
+					ccomment.setCc_num(rs.getInt("cc_num"));
+					ccomment.setCc_content(rs.getString("cc_content"));
+					ccomment.setMem_num(rs.getInt("mem_num"));
+				}
+
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return ccomment;
+		}
+		
+
+		// 댓글 수정
+		public void modifyCcomment(CcommentVO ccomment) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+
+			try {
+				conn = DBUtil.getConnection();
+				sql = "UPDATE c_comment SET cc_content=?,cc_modify_date=SYSDATE WHERE cc_num=?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, StringUtil.useBrNoHTML(ccomment.getCc_content()));
+				pstmt.setInt(2, ccomment.getCc_num());
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+
+		// 댓글 삭제
+		public void deleteCcomment(int cc_num) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+
+			try {
+				conn = DBUtil.getConnection();
+				sql = "DELETE FROM c_comment WHERE cc_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cc_num);
+
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+
 
 }
