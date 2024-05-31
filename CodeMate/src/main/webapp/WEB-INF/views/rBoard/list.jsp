@@ -39,7 +39,7 @@
 				<div class="search-container">
 					<div id="search_container_sub">
 						<div id="scrollable_trigger" class="search-menu">기술 스택</div>
-						<ul class="scrollable">
+						<ul class="scrollable" style="display:none">
 							<c:forEach var="hskill" items="${hskillList}">
 								<li class="block">
 									<input type="checkbox" name="r_skills" id="r_skill_${hskill.hs_code}" value="${hskill.hs_code}">
@@ -117,7 +117,11 @@
 									</c:forEach>
 								</div>
 								<div>
-									<span>신청인원 | </span> <span>${rboard.rb_apply_count}/${rboard.rb_teamsize}</span>
+									<span>신청인원 | </span>
+									<span>${rboard.rb_apply_count}/<c:if test="${rboard.rb_teamsize==0}"
+									>인원 미정</c:if><c:if test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}"
+									>${rboard.rb_teamsize}</c:if><c:if test="${rboard.rb_teamsize==10}">10명이상</c:if>
+									</span>
 								</div>
 								<div>
 									<span>조회수 </span> <span>${rboard.rb_hit}</span>
