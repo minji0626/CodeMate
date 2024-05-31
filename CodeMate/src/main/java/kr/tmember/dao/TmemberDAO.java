@@ -20,25 +20,18 @@ public class TmemberDAO {
 	private TmemberDAO() { }
 
 	/*
-	 * // 팀 멤버 불러오기 public TmemberVO getMember(int mem_num) throws Exception {
-	 * TmemberVO tmember = null;
+	 * //team_status -> 1 => r_apply에서 합격한 사람 (팀원) public void
+	 * insertApprovedMembers() throws Exception {
 	 * 
-	 * return tmember; }
+	 * }
 	 * 
-	 * // 팀 목록 가져오기
+	 * // team_status ->1 => r_board 작성자 (팀장) public void insertTeamLeader() throws
+	 * Exception {
 	 * 
-	 * 
-	 * public TmemberVO getTmember(int mem_num)throws Exception{ Connection conn =
-	 * null; PreparedStatement pstmt = null; ResultSet rs = null; TmemberVO tmember
-	 * = null; String sql = null; try { conn = DBUtil.getConnection(); sql =
-	 * "SELECT team_num FROM team_member WHERE mem_num=?"; pstmt =
-	 * conn.prepareStatement(sql); pstmt.setInt(1, mem_num); rs =
-	 * pstmt.executeQuery(); if(rs.next()) { tmember = new TmemberVO();
-	 * tmember.setTeam_num(rs.getInt("team_num")); } }catch(Exception e) { throw new
-	 * Exception(e); }finally { DBUtil.executeClose(rs, pstmt, conn); } return
-	 * tmember; }
+	 * }
 	 */
-
+	
+	
 	// team_setting에서 사용되는 팀멤버 count 하기
 	public int getTmemberCount (int team_num) throws Exception{
 		Connection conn = null;
