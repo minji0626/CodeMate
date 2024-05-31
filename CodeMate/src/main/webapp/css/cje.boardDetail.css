@@ -3,177 +3,208 @@
 @charset "utf-8";
 
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
 }
-
 
 .page-container {
-    width: 70%; /* 너비 설정 */
-    min-width: 900px; /* 최소 너비 설정 */
-    margin: 0 auto; /* 가운데 정렬 */
+	width: 70%; /* 너비 설정 */
+	min-width: 900px; /* 최소 너비 설정 */
+	margin: 0 auto; /* 가운데 정렬 */
 }
-.board_container{
-	margin-top:50px;
-	width:100%;
+
+.board_container {
+	margin-top: 50px;
+	width: 100%;
 	box-sizing: border-box;
 }
 
 /* 각각의 form을 하나로 묶어 주고 있는 container div */
-.container_write, .container_re, .container_board, .container_reList {
-    
-    width: 70%;
-    margin-top:30px;
-	margin-bottom:200px;
-    margin: 3% auto; 
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-sizing: border-box;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+.container_write, .container_re, .container_board {
+	width: 70%;
+	margin-top: 0;
+	margin-bottom: 200px;
+	margin: 3% auto;
+	background-color: #f4f4f4;
+	border-radius: 8px;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+}
+
+.cnt-container {
+	width: 70%;
+	margin-top: 30px;
+	margin: 3% auto;
+	margin-bottom: 0;
+	padding: 20px;
+}
+
+.container_reList {
+	padding-top: 0;
+	width: 70%; margin-top : 0; margin-bottom : 200px; margin : 3% auto;
+	background-color: white;
+	margin-top: 0;
+	margin-bottom: 200px;
+	margin: 3% auto;
+}
+
+.cnt-container {
+	padding-bottom: 0;
 }
 
 /* 각각의 form간의 간격 */
 .form-group {
-    margin-bottom: 40px;
+	margin-bottom: 40px;
 }
 /* 어떤 form인지 나타내주는 label */
 .form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+	display: block;
 }
 /* 입력 창(제목, 내용) */
 .form-control {
-    width: calc(100% - 24px);
-    padding: 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 15px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	width: calc(100% - 24px);
+	padding: 12px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	font-size: 15px;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 /* 입력창을 클릭하면 */
 .form-control:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+	border-color: #80bdff;
+	outline: 0;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 /* 버튼 스타일들 */
 .btn {
-    padding: 10px 40px;
-    border: none;
-    border-radius: 5px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: opacity 0.3s ease-in-out;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 13px;
+	cursor: pointer;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .btn-primary {
-    background-color: #326BFF;
-    opacity: 0.8;
-    color: #fff;
+	background-color: #326BFF;
+	opacity: 0.8;
+	color: #fff;
 }
 
 .btn-primary:hover {
 	opacity: 1.0;
-	}
+}
 
 .btn-secondary {
-    background-color: #636363;
-   opacity: 0.8;
-    color: #fff;
+	background-color: #636363;
+	opacity: 0.8;
+	color: #fff;
 }
 
 .btn-secondary:hover {
-    opacity: 1.0;
+	opacity: 1.0;
 }
-
-
 
 /*상세 글*/
 /*카테고리 란*/
-.board_category{
+.board_category {
 	margin: 15px 0 15px 10px;
 }
 
 .board_info, .re_writer {
 	margin: 15px 0 10px 10px;
 	display: flex;
-    align-items: center;
-    padding-right:10px
+	align-items: center;
+	padding-right: 10px
 }
 
-.board_info span, .re_writer span{
-	padding-left:5px;
+.board_info span, .re_writer span {
+	padding-left: 5px;
 	padding-right: 30px;
 	font-size: 9pt;
 }
 
-.board_content{
-	padding-top:20px;
+.board_content {
+	padding-top: 20px;
 }
 
-.board_like{
-	margin:75px 0 15px 10px;
+.board_like {
+	margin: 75px 0 15px 10px;
 	display: flex;
-    align-items: center;
+	align-items: center;
 }
 
-.board_like span{
-	margin-left:10px;
+.board_like span {
+	margin-left: 10px;
 	font-weight: bold;
 	font-size: 10pt;
 }
 
-.re_content{
-	margin-left:14px;
+.re_content {
+	margin-left: 14px;
 }
 
 .reList {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-bottom:20px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-bottom: 20px;
 }
 
 .re_writer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
 }
 
 .re_content {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .delete_button {
-    position: absolute;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
+	position: absolute;
+	right: 24px;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .list-actions {
-    display: flex;
-    justify-content: flex-end; 
-    align-items: center;
-    margin-bottom:20px;
-    margin-right:15%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-bottom: 20px;
+	margin-right: 15%;
 }
-
 
 .list-action {
-    margin-left: 10px; 
-} 
-
-.list-actions span{
-	font-size:9pt;
-	color: #A7A3A3;
-	margin-right:20px;
+	margin-left: 10px;
 }
 
-#cb_content{
-	margin-bottom:15px;
+.list-actions span {
+	font-size: 9pt;
+	color: #A7A3A3;
+	margin-right: 20px;
+}
+
+#cb_content {
+	margin-bottom: 15px;
+}
+
+.centered-hr {
+	width: 70%;
+	height: 1px;
+	background-color: #ced4da;
+	border: none;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+.action_buttons {
+	display: flex;
+            justify-content: flex-end;
 }

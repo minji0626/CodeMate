@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-
+ 
 import kr.cboard.vo.CboardVO;
 import kr.cboard.vo.CcommentVO;
+import kr.cboard.vo.ClikeVO;
 import kr.rboard.vo.RcommentVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
@@ -413,6 +413,159 @@ public class CboardDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
+		// 좋아요
+		public void insertLike(ClikeVO clikeVO)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "INSERT INTO c_like (cb_num, mem_num) VALUES (?,?)";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, clikeVO.getCb_num());
+				pstmt.setInt(2, clikeVO.getMem_num());
+				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
+		//좋아요 개수
+		public int selectLikeCount(int cb_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM c_like WHERE cb_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, cb_num);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return count;
+		}
+		//회원번호와 게시물 번호를 이용한 좋아요 정보
+		//(회원이 게시물을 호출했을 때 좋아요 선택 여부 표시)
+		public ClikeVO selectLike(ClikeVO clikeVO)
+		                                   throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			ClikeVO like = null;
+			String sql = null;
+			try {
+				//컨넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM c_like WHERE cb_num=? AND mem_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, clikeVO.getCb_num());
+				pstmt.setInt(2, clikeVO.getMem_num());
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					like = new ClikeVO();
+					like.setCb_num(rs.getInt("cb_num"));
+					like.setMem_num(rs.getInt("mem_num"));
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return like;
+		}
+		//좋아요 삭제
+		public void deleteLike(ClikeVO clikeVO)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "DELETE FROM c_like WHERE cb_num=? AND mem_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, clikeVO.getCb_num());
+				pstmt.setInt(2, clikeVO.getMem_num());
+				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
 
+		//글 삭제
+		public void deleteCboard(int cb_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			PreparedStatement pstmt3 = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//오토커밋 해제
+				conn.setAutoCommit(false);
+				
+				//좋아요 삭제
+				sql = "DELETE FROM c_like WHERE cb_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cb_num);
+				pstmt.executeUpdate();
+				
+				//댓글 삭제
+				sql = "DELETE FROM c_comment WHERE cb_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, cb_num);
+				pstmt2.executeUpdate();
+				
+				//부모글 삭제
+				sql = "DELETE FROM c_board WHERE cb_num=?";
+				pstmt3 = conn.prepareStatement(sql);
+				pstmt3.setInt(1, cb_num);
+				pstmt3.executeUpdate();
+				
+				//예외 발생 없이 정상적으로 SQL문 실행
+				conn.commit();
+			}catch(Exception e) {
+				//예외 발생
+				conn.rollback();
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt3, null);
+				DBUtil.executeClose(null, pstmt2, null);
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 
 }

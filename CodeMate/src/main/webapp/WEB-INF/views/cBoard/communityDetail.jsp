@@ -21,7 +21,8 @@
     
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/cboardComment.js"></script>  
+<script src="${pageContext.request.contextPath}/js/cboardComment.js"></script>
+<script src="${pageContext.request.contextPath}/js/cboard.js"></script>    
 <body>
 
 		<div class="page-container">
@@ -74,8 +75,10 @@
 		       		</div>
 		       		<!-- 좋아요 -->
 		       		<div class="board_like">
-		       			<img src="${pageContext.request.contextPath}/images/cje/boardLikeIcon.png" height="25" width="25">
-		       			<span>${board.cb_like}</span>
+		       			<img src="${pageContext.request.contextPath}/images/cje/noLike.png" height="25" width="25" id="like" data-num="${board.cb_num}">
+
+		       			
+		       			<span id="output_fcount"></span>
 		       		</div>
 		   		</div>
 		   		<div class="list-actions">    
@@ -83,15 +86,26 @@
         					최근 수정일 : ${board.cb_modify_date}
         			</c:if>
 				    <button class="btn btn-primary list-action" onclick="location.href='modifyCommunityForm.do?cb_num=${board.cb_num}'">수정</button>
+				    <button id="delete_btn" class="btn btn-primary list-action">삭제</button>
+						<script type="text/javascript">
+							const delete_btn = document.getElementById('delete_btn');
+							delete_btn.onclick = function(){
+								let choice = confirm('해당 글을 삭제하시겠습니까?');
+								if(choice){
+									location.replace('delete.do?cb_num=${board.cb_num}');
+								}
+							}
+						</script>
 				    <button class="btn btn-secondary list-action" onclick="location.href='community.do?cb_type=${board.cb_type}'">목록</button>
 				    
 				</div>
 		   		 
-		   		 
+		   		<div class="cnt-container">댓글 <span id="comments-cnt">0</span></div> 
+		   		 <hr class="centered-hr">
+		   		
 		        <!-- 댓글 시작 -->
-		        <%-- 댓글 목록 --%>
+		        
 				<div class="container_reList">
-				
 				</div>
 				
 		        <%-- 댓글 섹션 --%>

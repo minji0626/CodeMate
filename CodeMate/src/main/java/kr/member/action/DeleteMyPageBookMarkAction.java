@@ -11,13 +11,12 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
 import kr.rboard.dao.RboardDAO;
+import kr.rboard.vo.RbookmarkVO;
 
-public class DeleteMyPageMoAction implements Action{
-
+public class DeleteMyPageBookMarkAction implements Action{
+	Map<String,String> mapAjax = new HashMap<String,String>();
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Map<String,String> mapAjax = new HashMap<String,String>();
-		
 		HttpSession session = request.getSession();
 		//로그인 체크
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
@@ -25,12 +24,18 @@ public class DeleteMyPageMoAction implements Action{
 			mapAjax.put("result", "logout");	
 		}else {
 			request.setCharacterEncoding("utf-8");
-			
-			RboardDAO rdao = RboardDAO.getInstance();	
-			rdao.deleteRboard(Integer.parseInt(request.getParameter("rb_num")));
-			mapAjax.put("result", "success");	
+
+            int rb_num = Integer.parseInt(request.getParameter("rb_num"));
+
+            RbookmarkVO rbookmark = new RbookmarkVO();
+            rbookmark.setRb_num(rb_num);
+            rbookmark.setMem_num(mem_num);
+
+            RboardDAO rdao = RboardDAO.getInstance();
+            rdao.deleteRbookmark(rbookmark);
+            mapAjax.put("result", "success");	
 		}
-	
+		
 		//JSON 데이터로 변환
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
@@ -38,6 +43,6 @@ public class DeleteMyPageMoAction implements Action{
 		request.setAttribute("ajaxData", ajaxData);
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
-	}
+}
 
 }

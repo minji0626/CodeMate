@@ -11,13 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".delete-green").click(function() {
-            $(this).closest(".myPage-line-box").remove();
-        });
-    });
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/rboardBookMarkDelete.js"></script>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -33,14 +27,14 @@
 	<h3 class="mYPage-TitleText">북마크</h3>
 </div>
 <c:forEach var="rboard" items="${rboardList}">
-<div class="myPage-line-box">
+<div class="myPage-line-box" <%-- onclick="window.location.href='${pageContext.request.contextPath}/member/myPage.do해당 모집글 이동으로 변경하기'" --%>>
 <div class="team-left">
 <div class="skill_font_T">${rboard.rb_pj_title}</div>
 <div class="projectName_font">${rboard.rb_title}</div>
 </div>
 
 <div class="team-right">
-<div class="delete-green">북마크 취소</div>
+<div class="delete-green" data-rbnum="${rboard.rb_num}">북마크 취소</div>
 <div class="team-count">신청인원:${rboard.rb_teamsize}명</div>
 <div>모집마감일 ${rboard.rb_endRecruit}</div>
 </div>
