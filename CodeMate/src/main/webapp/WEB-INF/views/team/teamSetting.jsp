@@ -60,6 +60,7 @@
                                 <c:if test="${tm_auth == 4 }">
                                 <!-- 팀장인 경우 데이터 속성 추가 -->
 								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+
                                 <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
                                 </c:if>
                             </div>
@@ -87,7 +88,7 @@
                            <span class="team_mem_status">팀원</span>
                         </li>
                         <li>
-                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
+                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-mem-num="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
                         </li>
                         <c:if test="${mem_num != tmember.mem_num }">
                         <li>
@@ -97,6 +98,7 @@
                                 <c:if test="${tm_auth == 4 }">
                                 <!-- 팀장인 경우 데이터 속성 추가 -->
 								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+
                                 <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
                                 <input type="hidden" name="mem_num" value="${tmember.team_num}">
                                 </c:if>

@@ -19,13 +19,10 @@ public class TmemberDeleteAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		request.setCharacterEncoding("utf-8");
+		
 
 		HttpSession session = request.getSession();
-		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
-		int team_num = Integer.parseInt(request.getParameter("team_num"));
 		
-		System.out.println(team_num + ", "+mem_num);
 		Map<String, String> mapAjax = new HashMap<String, String>();
 
 		TmemberDAO dao = TmemberDAO.getInstance();
@@ -36,6 +33,12 @@ public class TmemberDeleteAction implements Action {
 			mapAjax.put("result", "logout");
 		} else { // 로그인 된 경우
 			// 전송된 데이터 인코딩 타입 지정
+			request.setCharacterEncoding("utf-8");
+			
+			int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+			int team_num = Integer.parseInt(request.getParameter("team_num"));
+			
+			System.out.println(team_num + ", "+mem_num);
 			if(user_auth==4) {
 				dao.deleteTeamMember(mem_num, team_num);
 				mapAjax.put("result", "success");

@@ -104,36 +104,60 @@ public class TmemberDAO {
 	// 팀 멤버 삭제하기
 	public void deleteTeamMember(int mem_num, int team_num) throws Exception{
 		Connection conn = null;
+		PreparedStatement pstmt5= null;
+		PreparedStatement pstmt4= null;
 		PreparedStatement pstmt3= null;
 		PreparedStatement pstmt2= null;
 		PreparedStatement pstmt= null;
+		ResultSet rs = null;
 		String sql = null;
+		int tb_num = 0;
 		try {
 			// 커넥션 풀로부터 커넥션 할당시키기
 			conn = DBUtil.getConnection();
 			// 오토 커밋 해제
 			conn.setAutoCommit(false);
 			
-			// 해당 멤버가 작성한 글 삭제
-			sql="DELETE FROM team_board WHERE mem_num=? AND team_num=?";
+			sql = "SELECT tb_num FROM team_board WHERE mem_num=? AND team_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			pstmt.setInt(2, team_num);
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
 			
-			/*
-			 * // 해당 멤버가 작성한 댓글 삭제
-			 * sql="DELETE FROM team_comment WHERE mem_num=? AND team_num=?"; pstmt2 =
-			 * conn.prepareStatement(sql); pstmt2.setInt(1, mem_num); pstmt2.setInt(2,
-			 * team_num); pstmt2.executeUpdate();
-			 */
+			while(rs.next()) {
+				tb_num = rs.getInt(1);
+				sql = "DELETE FROM team_comment WHERE tb_num IN (SELECT tb_num FROM team_board WHERE tb_num = ?)";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, tb_num);
+				pstmt2.executeUpdate();
+			}
+			
+			
+			// 해당 멤버가 작성한 댓글 삭제
+			  sql="DELETE FROM team_comment WHERE mem_num=?"; 
+			  pstmt3 = conn.prepareStatement(sql); 
+			  pstmt3.setInt(1, mem_num); 
+			  pstmt3.executeUpdate();
+			  
+			
+			
+			// 해당 멤버가 작성한 글 삭제
+			sql="DELETE FROM team_board WHERE mem_num=? AND team_num=?";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1, mem_num);
+			pstmt4.setInt(2, team_num);
+			pstmt4.executeUpdate();
+			
+			
+			  
+			 
 			
 			// team_member에서 해당 멤버 삭제하기
 			sql="DELETE FROM team_member WHERE mem_num=? AND team_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, mem_num);
-			pstmt2.setInt(2, team_num);
-			pstmt2.executeUpdate();
+			pstmt5 = conn.prepareStatement(sql);
+			pstmt5.setInt(1, mem_num);
+			pstmt5.setInt(2, team_num);
+			pstmt5.executeUpdate();
 			
 			// 모든 sql문이 성공한다면 커밋을 시킨다
 			conn.commit();
@@ -142,8 +166,13 @@ public class TmemberDAO {
 			conn.rollback();
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(null, pstmt5, null);
+			DBUtil.executeClose(null, pstmt4, null);
+			DBUtil.executeClose(null, pstmt3, null);
+			if(tb_num!=0) {
+				DBUtil.executeClose(null, pstmt2, null);
+			}
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
 	}
