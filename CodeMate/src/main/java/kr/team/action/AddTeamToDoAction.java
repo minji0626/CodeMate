@@ -28,8 +28,8 @@ public class AddTeamToDoAction implements Action {
 	        Integer team_num = Integer.parseInt(request.getParameter("team_num")); // 추가된 부분
 	        String tt_content = request.getParameter("tt_content");
 	        String tt_date = request.getParameter("tt_date");
-	        int tt_start = Integer.parseInt(request.getParameter("tt_start"));
-	        int tt_end = Integer.parseInt(request.getParameter("tt_end"));
+	        String tt_start = request.getParameter("tt_start");
+	        String tt_end = request.getParameter("tt_end");
 
 	        // TeamToDoVO 객체에 데이터 설정
 	        TeamToDoVO todo = new TeamToDoVO();
