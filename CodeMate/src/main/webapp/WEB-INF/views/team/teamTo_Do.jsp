@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cmj.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
     <title>CODEMATE Team Project</title>
     <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
   </head>
@@ -52,24 +53,24 @@
         <div class="events"></div>
         <div class="add-event-wrapper">
           <div class="add-event-header">
-            <div class="title">이벤트 추가</div>
+            <div class="title">To-Do 추가</div>
             <i class="fas fa-times close"></i>
           </div>
           <div class="add-event-body">
             <div class="add-event-input">
-              <input type="text" placeholder="이벤트 이름" class="event-name" />
+              <input type="text" placeholder="To-Do 내용" class="event-name" />
             </div>
             <div class="add-event-input">
               <input
                 type="text"
-                placeholder="이벤트 시작 시간"
+                placeholder="To-Do 시작 시간"
                 class="event-time-from"
               />
             </div>
             <div class="add-event-input">
               <input
                 type="text"
-                placeholder="이벤트 종료 시간"
+                placeholder="To-do 종료 시간"
                 class="event-time-to"
               />
             </div>
@@ -84,6 +85,6 @@
       </button>
     </div>
 </div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main2.js"></script>
   </body>
 </html>

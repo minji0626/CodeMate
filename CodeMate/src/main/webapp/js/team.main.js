@@ -238,7 +238,6 @@ function updateEvents(date) {
 		event.events.forEach((event) => {
 			events += `<div class="event">
         <div class="title">
-          <i class="fas fa-circle"></i>
           <h3 class="event-title">${event.title}</h3>
         </div>
         <div class="event-time">
@@ -260,20 +259,6 @@ function updateEvents(date) {
   saveEvents();
 }
 
-//function to add event
-addEventBtn.addEventListener("click", () => {
-  addEventWrapper.classList.toggle("active");
-});
-
-addEventCloseBtn.addEventListener("click", () => {
-  addEventWrapper.classList.remove("active");
-});
-
-document.addEventListener("click", (e) => {
-  if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
-    addEventWrapper.classList.remove("active");
-  }
-});
 
 //allow 50 chars in eventtitle
 addEventTitle.addEventListener("input", (e) => {
