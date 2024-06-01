@@ -46,7 +46,7 @@
 <br>
 <div class="mypage_clob">
 <div class="shin-text">신청동기</div>
-<div class="content">왜안돼</div>
+<div class="content">${raL.ra_content}</div>
 </div>
 </div>
 </div>

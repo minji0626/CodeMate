@@ -569,22 +569,21 @@ public class RboardDAO {
 	}
 	
 	//나의 모집글에 지원한 신청자 리스트 - 민재
-	public List<RapplyVO> myRboardApplyList(int mem_num) throws Exception {
+	public List<RapplyVO> myRboardApplyList(int rb_num) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    List<RapplyVO> list = new ArrayList<>();
 	    //SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.mem_num=
-	    String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.mem_num=?";
-	    
+	    String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
 	    try {
 	        conn = DBUtil.getConnection();
 	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, mem_num);
+	        pstmt.setInt(1, rb_num);
 	        
 	        rs = pstmt.executeQuery();
 	        while (rs.next()) {
-	            RapplyVO rapply = new RapplyVO();
+	           RapplyVO rapply = new RapplyVO();
 	            rapply.setRa_num(rs.getInt("ra_num"));
 	            rapply.setRb_num(rs.getInt("rb_num"));
 	            rapply.setRa_content(rs.getString("ra_content"));
@@ -592,6 +591,7 @@ public class RboardDAO {
 	            rapply.setRa_pass(rs.getInt("ra_pass"));
 	            
 	            list.add(rapply);
+	           
 	        }
 	    } catch (Exception e) {
 	        throw new Exception(e);
