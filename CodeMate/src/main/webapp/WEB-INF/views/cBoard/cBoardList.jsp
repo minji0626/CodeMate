@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 	
 <title>자유 게시판</title>
-
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <style type="text/css">
 	.page-container {
     width: 70%;

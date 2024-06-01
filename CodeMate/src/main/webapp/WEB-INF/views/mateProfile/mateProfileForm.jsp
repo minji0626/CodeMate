@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>메이트 프로필 수정</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
