@@ -176,8 +176,11 @@ public class RboardDAO {
 				pstmt5.setInt(2, intField);
 				pstmt5.executeUpdate();
 			}
+			
+			conn.commit();
 
 		} catch (Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(null, pstmt5, null);

@@ -35,14 +35,6 @@ public class ModifyRboardFormAction implements Action {
 			return "/WEB-INF/views/common/alert_view.jsp";
 		}
 		
-		for (String skill : db_rboard.getHs_name_arr()) {
-			System.out.println(skill);
-		}
-		
-		for (String field : db_rboard.getF_name_arr()) {
-			System.out.println(field);
-		}
-		
 		
 		// 로그인한 회원번호와 작성한 회원번호 일치
 		DBDAO dbdao = DBDAO.getInstance();
