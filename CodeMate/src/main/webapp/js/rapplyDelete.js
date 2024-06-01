@@ -13,10 +13,10 @@ $(function() {
                 if (param.result === 'logout') {
                     alert('로그인 후 사용하세요!');
                 } else if (param.result === 'success') {
-                    alert('코메 신청 삭제');
+                    alert('코메 신청 취소');
                     location.reload();
                 } else {
-                    alert('코메 신청 삭제에 실패했습니다.');
+                    alert('코메 신청 취소에 실패했습니다.');
                 }
             },
             error: function() {

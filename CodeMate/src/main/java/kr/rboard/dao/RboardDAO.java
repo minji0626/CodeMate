@@ -567,7 +567,40 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-
+	
+	//나의 모집글에 지원한 신청자 리스트 - 민재
+	  public List<RapplyVO> myRboardApplyList(int ra_num, int rb_num)throws Exception{
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<RapplyVO> list = new ArrayList<>();
+	    String sql = null;
+	    try {
+	       conn = DBUtil.getConnection();
+	       //맞는지 확인해보기 SELECT * FROM r_apply ra JOIN member_detail md USING(mem_num) WHERE ra.rb_num=1
+	       sql = "SELECT * FROM r_apply ra JOIN member_detail md USING(mem_num) WHERE ra.rb_num=?";
+	       pstmt = conn.prepareStatement(sql);
+	       pstmt.setInt(1, rb_num);
+	         
+	       rs = pstmt.executeQuery();
+	       while(rs.next()) {
+	          RapplyVO rapply = new RapplyVO();
+	            
+	       }
+	         
+	         
+	    }catch(Exception e) {
+	       throw new Exception(e);
+	    }finally {
+	       DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	      
+	    return list;
+	  }
+	  
+	  //나의 모집글에 지원한 신청자 삭제
+	  
+	  
 	// 회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
 	public List<RboardVO> getAppliedBoardListByMemNum(int mem_num) throws Exception {
 		Connection conn = null;
