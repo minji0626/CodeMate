@@ -236,108 +236,107 @@ $(document).ready(function() {
 	});
 
 	// Add event submit button click event
-	// 세션에서 team_num 가져오기 (로그인 시에 설정한다고 가정)
-const team_num = sessionStorage.getItem("team_num"); 
+	const team_num = sessionStorage.getItem("team_num");
 
-$(".add-event-btn").on("click", function() {
-    const eventTitle = $(".event-name").val();
-    const eventTimeFrom = $(".event-time-from").val().trim(); 
-    const eventTimeTo = $(".event-time-to").val().trim();
+	$(".add-event-btn").on("click", function() {
+		const eventTitle = $(".event-name").val();
+		const eventTimeFrom = $(".event-time-from").val().trim();
+		const eventTimeTo = $(".event-time-to").val().trim();
 
-    if (eventTitle === "") {
-        alert("To-Do 내용을 작성하세요");
-        return;
-    }
+		if (eventTitle === "") {
+			alert("To-Do 내용을 작성하세요");
+			return;
+		}
 
-    const timeFrom = eventTimeFrom || " ";
-    const timeTo = eventTimeTo || " ";
+		const timeFrom = eventTimeFrom || " ";
+		const timeTo = eventTimeTo || " ";
 
-    if (eventTimeFrom !== "" && eventTimeTo !== "") {
-        const timeFromArr = eventTimeFrom.split(":");
-        const timeToArr = eventTimeTo.split(":");
-        if (
-            timeFromArr.length !== 2 ||
-            timeToArr.length !== 2 ||
-            parseInt(timeFromArr[0]) < 0 ||
-            parseInt(timeFromArr[0]) > 23 ||
-            parseInt(timeFromArr[1]) < 0 ||
-            parseInt(timeFromArr[1]) > 59 ||
-            parseInt(timeToArr[0]) < 0 ||
-            parseInt(timeToArr[0]) > 23 ||
-            parseInt(timeToArr[1]) < 0 ||
-            parseInt(timeToArr[1]) > 59
-        ) {
-            alert("잘못된 시간 형식입니다.");
-            return;
-        }
-    }
-
-    // AJAX 요청을 통해 서버로 데이터 전송
-    $.ajax({
-        type: "post",
-        url: "AddTeam_Todo.do",
-        data: {
-            team_num: team_num,  // 추가된 부분
-            tt_content: eventTitle,
-            tt_date: `${year}-${month + 1}-${activeDay}`,
-            tt_start: timeFrom.replace(':', ''), 
-            tt_end: timeTo.replace(':', '')
-        },
-        success: function(param) {
-            if (param.result == "success") {
-                alert("이벤트가 추가되었습니다.");
-            } else if (param.result == "logout") {
-                alert("로그인이 필요합니다.");
-            } else {
-                alert("오류가 발생하였습니다.");
-            }
-        },
-        error: function() {
-            alert("네트워크 오류가 발생하였습니다.");
-        }
-    });
-});
-
-
-
-	function updateEvents(date) {
-		let events = "";
-		eventsArr.forEach((event) => {
+		if (eventTimeFrom !== "" && eventTimeTo !== "") {
+			const timeFromArr = eventTimeFrom.split(":");
+			const timeToArr = eventTimeTo.split(":");
 			if (
-				date === event.day &&
-				month + 1 === event.month &&
-				year === event.year
+				timeFromArr.length !== 2 ||
+				timeToArr.length !== 2 ||
+				parseInt(timeFromArr[0]) < 0 ||
+				parseInt(timeFromArr[0]) > 23 ||
+				parseInt(timeFromArr[1]) < 0 ||
+				parseInt(timeFromArr[1]) > 59 ||
+				parseInt(timeToArr[0]) < 0 ||
+				parseInt(timeToArr[0]) > 23 ||
+				parseInt(timeToArr[1]) < 0 ||
+				parseInt(timeToArr[1]) > 59
 			) {
-				event.events.forEach((event) => {
-					events += `<div class="event">
-            <div class="title">
-              <h3 class="event-title">${event.title}</h3>
-            </div>
-            <div class="event-time">
-              <span class="event-time">${event.time}</span>
-            </div>
-            <div class="event-buttons">
-              <button class="del-btn">삭제</button>
-            </div>
-          </div>`;
-				});
+				alert("잘못된 시간 형식입니다.");
+				return;
+			}
+		}
+
+		$.ajax({
+			type: "post",
+			url: "AddTeam_Todo.do",
+			data: {
+				team_num: team_num,
+				tt_content: eventTitle,
+				tt_date: `${year}-${month + 1}-${activeDay}`,
+				tt_start: timeFrom.replace(':', ''),
+				tt_end: timeTo.replace(':', '')
+			},
+			success: function(param) {
+				if (param.result == "success") {
+					alert("이벤트가 추가되었습니다.");
+				} else if (param.result == "logout") {
+					alert("로그인 후 사용해주세요.")
+				} else {
+					alert("오류가 발생하였습니다.");
+				}
+			},
+			error: function() {
+				alert("네트워크 오류가 발생하였습니다.");
 			}
 		});
-		if (events === "") {
-			events = `<div class="no-event">
-              <h3>예정된 이벤트 없음</h3>
-          </div>`;
-		}
-		eventsContainer.html(events);
-		saveEvents();
-	}
+	});
+
+
+
+function updateEvents(date) {
+  let events = "";
+  eventsArr.forEach((event) => {
+    if (
+      date === event.day &&
+      month + 1 === event.month &&
+      year === event.year
+    ) {
+		event.events.forEach((event) => {
+			events += `<div class="event">
+        <div class="title">
+          <h3 class="event-title">${event.title}</h3>
+        </div>
+        <div class="event-time">
+          <span class="event-time">${event.time}</span>
+        </div>
+        <div class="event-buttons">
+          <button class="del-btn">삭제</button>
+        </div>
+    </div>`;
+		});
+    }
+  });
+  if (events === "") {
+    events = `<div class="no-event">
+            <h3>예정된 이벤트 없음</h3>
+        </div>`;
+  }
+  eventsContainer.innerHTML = events;
+  saveEvents();
+}
+		
 
 	function saveEvents() {
-		// 이벤트를 저장하는 기능 구현
 	}
 
 	function getEvents() {
-		// 이벤트를 불러오는 기능 구현
+
 	}
+
 
 });
