@@ -7,13 +7,13 @@ $(function() {
         $.ajax({
             url: 'deleteMyPageShin.do',
             type: 'post',
-            data: { rb_num: $(this).data('ranum') }, // 삭제할 코메 모집글의 번호를 데이터로 전달
+            data: { ra_num: $(this).data('ranum') }, // 삭제할 코메 모집글의 번호를 데이터로 전달
             dataType: 'json',
             success: function(param) {
                 if (param.result === 'logout') {
                     alert('로그인 후 사용하세요!');
                 } else if (param.result === 'success') {
-                    alert('코메 신청 삭제.');
+                    alert('코메 신청 삭제');
                     location.reload();
                 } else {
                     alert('코메 신청 삭제에 실패했습니다.');
