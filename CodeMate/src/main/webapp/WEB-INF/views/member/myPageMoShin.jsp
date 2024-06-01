@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,8 @@
 	<h3 class="mYPage-TitleText">나의 코메 모집 신청자</h3>
 </div>
 
+
+<c:forEach var="raL" items="rapplyList">
 <div class="myPage-line-box-moshin">
 <div class="profile_mypage">
 
@@ -40,14 +43,15 @@
 <span class="bar">/</span>
 <div class="no">NO</div>
 </div>
-
 <br>
 <div class="mypage_clob">
 <div class="shin-text">신청동기</div>
-<div class="content">${member.mem_nickname}</div><!-- dao에서 메서드 만들고 action에서 cboard,rboard 신청지원서 글 가져오기 -->
+<div class="content">왜안돼</div>
 </div>
 </div>
 </div>
+</c:forEach>
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
