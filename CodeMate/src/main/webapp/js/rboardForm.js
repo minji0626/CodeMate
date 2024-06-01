@@ -7,6 +7,10 @@ $(document).ready(function() {
 
 	// 모든 date 타입 input 태그에 min 속성 설정
 	$('input[type="date"]').attr('min', today);
+	
+	//로딩시 모집 종료일의 max 속성 지정
+	var startDate = $('#rb_start').val();
+	$('#rb_endRecruit').attr('max', startDate);
 
 	// 시작 예정일 변경 시 모집 종료일의 max 속성 업데이트
 	$('#rb_start').change(function() {
@@ -18,7 +22,7 @@ $(document).ready(function() {
 	/*=============================
 	유효성 체크
 	=============================*/
-	$('#teammate_recruit_form').submit(function(event) {
+	$('#rboard_form').submit(function(event) {
 		//셀렉트
 		$('select.input-check').each(function() {
 			let selectedValue = $(this).find('option:selected').val();
@@ -70,21 +74,33 @@ $(document).ready(function() {
 	=============================*/
 	$('.scrollable').hide();
 
-	$('#scrollable_trigger').click(function() {
-		$(this).siblings('.scrollable').show();
-	});
+    $('#scrollable_trigger').click(function() {
+        $(this).siblings('.scrollable').toggle();
+    });
 
-	$('.scrollable input[type="checkbox"]').change(function() {
-		updateSkillTags(); // 체크박스 상태 변경 시 함수 호출
-	});
+    // 바탕을 클릭했을 때 scrollable 창이 닫히도록 설정
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.scrollable').length && !$(event.target).is('#scrollable_trigger')) {
+            $('.scrollable').hide();
+        }
+    });
+    // 스크롤러 내부의 클릭 이벤트를 전파되지 않도록 설정
+    $('.scrollable').on('click', function(event) {
+        event.stopPropagation();
+    });
 
 	// 동적으로 생성된 .remove-btn에 이벤트 핸들러 추가
-	$('#scrollable_trigger').on('click', '.skill-tag', function() {
+	$('#scrollable_trigger').on('click', '.skill-tag', function(event) {
+		event.stopPropagation();
 		removeSkillTag(this);
 	});
 
 	// 페이지 로딩 시 초기 호출
 	updateSkillTags();
+	
+	$('.scrollable input[type="checkbox"]').on('change', function() {
+		updateSkillTags();
+	});
 });
 
 //하드스킬 태그 업데이트

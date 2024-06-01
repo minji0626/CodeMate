@@ -16,18 +16,18 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/kbr.css" type="text/css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/teammateRecruitForm.css"
+	href="${pageContext.request.contextPath}/css/rboardForm.css"
 	type="text/css">
 </head>
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/teammateRecruitForm.js"></script>
+<script src="${pageContext.request.contextPath}/js/rboardForm.js"></script>	
 
 <body>
 	<div class="page-container">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<form id="teammate_recruit_form" action="teammateRecruit.do" method="post">
+			<form id="rboard_form" action="teammateRecruit.do" method="post">
 				<!--프로젝트 정보-->
 				<div class="content">
 					<h3>1.프로젝트 기본 정보를 입력해주세요.</h3>
@@ -75,7 +75,7 @@
 						</select></li>
 						<li><label for="rb_endRecruit">모집 종료일</label> <input class="input-check" type="date"
 							name="rb_endRecruit" id="rb_endRecruit"></li>
-						<li>
+						<li id="scroll_container_sub">
 						<label>요구 기술</label>
 							<div id="scrollable_trigger" class="input-style">요구하는 기술 스택을 선택하세요.</div>
 							<ul class="scrollable">

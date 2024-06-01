@@ -125,7 +125,7 @@ public class RboardDAO {
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
-			
+
 			// r_board 수정
 			sql = "UPDATE r_board SET rb_category=?,rb_teamsize=?,rb_meet=?,rb_start=?,rb_period=?,"
 					+ "rb_endRecruit=?,rb_title=?,rb_content=?,rb_pj_title=?,rb_modify_date=SYSDATE WHERE rb_num=?";
@@ -142,14 +142,14 @@ public class RboardDAO {
 			pstmt.setString(9, rboard.getRb_pj_title());
 			pstmt.setInt(10, rboard.getRb_num());
 			pstmt.executeUpdate();
-			
-			//r_skill에 저장된 기존 데이터 삭제
+
+			// r_skill에 저장된 기존 데이터 삭제
 			sql = "DELETE FROM r_skill WHERE rb_num=?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, rboard.getRb_num());
 			pstmt2.executeUpdate();
-			
-			//r_skill에 데이터 추가
+
+			// r_skill에 데이터 추가
 			sql = "INSERT INTO r_skill (rs_num,rb_num,hs_code) VALUES(r_skill_seq.nextval,?,?)";
 
 			for (String skill : rboard.getR_skills()) {
@@ -159,14 +159,14 @@ public class RboardDAO {
 				pstmt3.setInt(2, intSkill);
 				pstmt3.executeUpdate();
 			}
-			
-			//r_field에 저장된 기존 데이터 삭제
+
+			// r_field에 저장된 기존 데이터 삭제
 			sql = "DELETE FROM r_field WHERE rb_num=?";
 			pstmt4 = conn.prepareStatement(sql);
 			pstmt4.setInt(1, rboard.getRb_num());
 			pstmt4.executeUpdate();
-			
-			//r_field에 데이터 추가
+
+			// r_field에 데이터 추가
 			sql = "INSERT INTO r_field (rf_num,rb_num,f_code) VALUES(r_field_seq.nextval,?,?)";
 
 			for (String field : rboard.getR_fields()) {
@@ -176,7 +176,7 @@ public class RboardDAO {
 				pstmt5.setInt(2, intField);
 				pstmt5.executeUpdate();
 			}
-			
+
 			conn.commit();
 
 		} catch (Exception e) {
@@ -358,15 +358,82 @@ public class RboardDAO {
 	}
 
 	// rboard 검색 목록 구하기
-	public List<RboardVO> searchRboards(String[] r_skills, String r_fields, 
-			String rb_meet, String search_key, boolean bookmark_filter, boolean recruiting_filter) 
-					throws Exception {
+	public List<RboardVO> searchRboards(int start, int end, String[] r_skills, String r_fields, String rb_meet,
+			String search_key, boolean bookmark_filter, boolean recruiting_filter) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<RboardVO> list = null;
 		String sql = null;
-		
+		String sub_sql = "";
+		List<String> conditions = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			
+			// 조건을 배열이나 리스트로 관리하여 반복문으로 처리
+			conditions = new ArrayList<>();
+
+			if (bookmark_filter) {
+			    conditions.add("bm_agg.mem_num=?");
+			}
+
+			if (recruiting_filter) {
+				conditions.add("rb_endRecruit < SYSDATE");
+			}
+
+			// 조건이 있을 경우에만 WHERE 추가
+			if (!conditions.isEmpty()) {
+			    sub_sql += "WHERE " + String.join(" AND ", conditions);
+			}
+			
+			sql = "SELECT * FROM ( SELECT a.*, rownum rnum FROM ( SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
+				+ "f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count FROM r_board LEFT OUTER JOIN (SELECT "
+				+ "rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) AS hs_name, LISTAGG(hs_photo, ',') "
+				+ "WITHIN GROUP (ORDER BY hs_name) AS hs_photo FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY "
+				+ "rb_num) hs_agg ON r_board.rb_num = hs_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') "
+				+ "WITHIN GROUP (ORDER BY f_name) AS f_name FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) "
+				+ "f_agg ON r_board.rb_num = f_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count "
+				+ "FROM r_apply GROUP BY rb_num) apply_agg ON r_board.rb_num = apply_agg.rb_num JOIN (SELECT * "
+				+ "FROM r_bookmark) bm_agg ON r_board.rb_num = bm_agg.rb_num " +sub_sql
+				+ " ORDER BY r_board.rb_num DESC ) a ) "
+				+ "WHERE rnum >= 1 AND rnum <= 10";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+
+			rs = pstmt.executeQuery();
+
+			list = new ArrayList<RboardVO>();
+			while (rs.next()) {
+				RboardVO rboard = new RboardVO();
+				rboard.setRb_num(rs.getInt("rb_num"));
+				rboard.setRb_reg_date(rs.getDate("rb_reg_date"));
+				rboard.setRb_category(rs.getInt("rb_category"));
+				rboard.setRb_meet(rs.getInt("rb_meet"));
+				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+				rboard.setRb_period(rs.getInt("rb_period"));
+				rboard.setRb_start(rs.getString("rb_start"));
+				rboard.setRb_title(rs.getString("rb_title"));
+				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
+				rboard.setRb_hit(rs.getInt("rb_hit"));
+				rboard.setRb_apply_count(rs.getInt("apply_count"));
+
+				// 요구기술, 모집필드 배열로 저장
+				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
+				rboard.setHs_photo_arr(rs.getString("hs_photo").split(","));
+				rboard.setF_name_arr(rs.getString("f_name").split(","));
+
+				list.add(rboard);
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
 		return list;
 	}
 
