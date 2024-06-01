@@ -31,6 +31,7 @@ public class MyPageMoAction implements Action{
 		//모집 게시물 정보
 		RboardDAO rboardDAO = RboardDAO.getInstance(); 
 		//List 반환
+		//리스트 안에 모집글 rb_num이 있어야됨
 		List<RboardVO> rboardList = rboardDAO.getRboardListByMemNum(mem_num);
 		
 		request.setAttribute("member", member);
