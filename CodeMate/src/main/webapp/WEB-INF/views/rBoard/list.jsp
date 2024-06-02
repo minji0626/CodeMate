@@ -45,17 +45,17 @@
 								</li>
 							</c:forEach>
 						</ul>
-						<select name="rb_category" class="search-menu">
-							<option value="2" selected>모집구분</option>
-							<option value="0">스터디</option>
-							<option value="1">프로젝트</option>
-							<option value="2">전체</option>
-						</select>
 						<select name="r_fields" class="search-menu">
 							<option value="" selected>모집 필드</option>
 							<c:forEach var="field" items="${fieldList}">
 								<option value="${field.f_name}">${field.f_name}</option>
 							</c:forEach>
+						</select>
+						<select name="rb_category" class="search-menu">
+							<option value="2" selected>모집구분</option>
+							<option value="0">스터디</option>
+							<option value="1">프로젝트</option>
+							<option value="2">전체</option>
 						</select>
 						<select name="rb_meet" class="search-menu">
 							<option value="" selected>진행 방식</option>
