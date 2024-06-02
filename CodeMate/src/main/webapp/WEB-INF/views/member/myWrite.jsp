@@ -11,14 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    // '취소' 버튼 클릭 이벤트
-    $('.myDelete_btn').click(function(event) {
-        event.preventDefault();
-    });
-});
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/myPageWriteCboardDelete.js"></script>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -36,12 +29,12 @@ $(document).ready(function() {
 
 <select class="styled-select">
     <option value="option1">전체</option>
-    <option value="option2">모집</option>
+    <option value="option2">개발</option>
     <option value="option3">자유</option>
 </select>
 
 <c:forEach var="cboardList" items="${cboardList}">
-    <div class="myPage-line-box">
+    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboardList.cb_num}'">
     <div class="team-left-myWrite">
     	<div class="cboard_name">
         <c:if test="${cboardList.cb_type == '0'}">
@@ -60,7 +53,7 @@ $(document).ready(function() {
     </div>
         <div class="btn_box_write">
         <input type="button" value="수정" class="myUpdate_btn" onclick="">
-        <input type="submit" value="삭제" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
+        <input type="submit" value="삭제" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn" data-cbnum="${cboardList.cb_num}">
     </div>
     </div>
 </c:forEach>
