@@ -43,7 +43,7 @@
 						<ul class="scrollable" style="display:none">
 							<c:forEach var="hskill" items="${hskillList}">
 								<li class="block">
-									<input type="checkbox" name="r_skills" id="r_skill_${hskill.hs_code}" value="${hskill.hs_code}">
+									<input type="checkbox" name="r_skills" id="r_skill_${hskill.hs_code}" value="${hskill.hs_name}">
 									<label for="r_skill_${hskill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">${hskill.hs_name}</label>
 								</li>
 							</c:forEach>
@@ -51,7 +51,7 @@
 						<select name="r_fields" class="search-menu">
 							<option value="" selected>모집 필드</option>
 							<c:forEach var="field" items="${fieldList}">
-								<option value="${field.f_code}">${field.f_name}</option>
+								<option value="${field.f_name}">${field.f_name}</option>
 							</c:forEach>
 						</select>
 						<select name="rb_meet" class="search-menu">
@@ -61,8 +61,7 @@
 							<option value="2">온라인/오프라인</option>
 							<!-- 필요한 만큼 옵션 추가 -->
 						</select>
-						<span class="search-menu"> 내 북마크 보기 </span>
-						<span class="search-menu"> 모집중 보기 </span>
+						<span class="search-menu" id="recruiting_filter"> 모집중 보기 </span>
 					</div>
 					<div id="r_btn_div" class="flex-container">
 						<div id="search_key_div" class="search-menu">

@@ -65,7 +65,7 @@ span.search-menu, select.search-menu {
 	color: #636363;
 }
 
-span.search-menu.selected, select.search-menu.selected, div.search-menu.selected
+span.search-menu.selected, select.search-menu.selected, div.search-menu.selected, #search_key_div.selected
 	{
 	color: #57d47d;
 	border: 1px solid #57d47d;

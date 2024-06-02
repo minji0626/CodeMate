@@ -359,7 +359,7 @@ public class RboardDAO {
 
 	// rboard 검색 목록 구하기
 	public List<RboardVO> searchRboards(int start, int end, String[] r_skills, String r_fields, String rb_meet,
-			String search_key, boolean bookmark_filter, boolean recruiting_filter) throws Exception {
+			String search_key, boolean recruiting_filter) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -370,34 +370,52 @@ public class RboardDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			
+
 			// 조건을 배열이나 리스트로 관리하여 반복문으로 처리
 			conditions = new ArrayList<>();
 
-			if (bookmark_filter) {
-			    conditions.add("bm_agg.mem_num=?");
+			if (r_skills != null && r_skills.length != 0) {
+				String r_skills_string = "";
+				for (int i=0; i<r_skills.length; i++) {
+					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + r_skills[i] + "($|,)')";
+					if (i != r_skills.length - 1) {
+						r_skills_string += " AND ";
+					}
+				}
+				r_skills_string += " OR hs_name = '"+ String.join("", r_skills) +"'";
+				conditions.add(r_skills_string);
+			}
+
+			if (r_fields != "") {
+				conditions.add("f_name LIKE '%'||'" + r_fields + "'||'%'");
+			}
+
+			if (rb_meet != "") {
+				conditions.add("rb_meet = " + rb_meet);
+			}
+
+			if (search_key != "") {
+				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
 			}
 
 			if (recruiting_filter) {
-				conditions.add("rb_endRecruit < SYSDATE");
+				conditions.add("rb_endRecruit > SYSDATE");
 			}
 
 			// 조건이 있을 경우에만 WHERE 추가
 			if (!conditions.isEmpty()) {
-			    sub_sql += "WHERE " + String.join(" AND ", conditions);
+				sub_sql += "WHERE " + String.join(" AND ", conditions);
 			}
-			
+
 			sql = "SELECT * FROM ( SELECT a.*, rownum rnum FROM ( SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
-				+ "f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count FROM r_board LEFT OUTER JOIN (SELECT "
-				+ "rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) AS hs_name, LISTAGG(hs_photo, ',') "
-				+ "WITHIN GROUP (ORDER BY hs_name) AS hs_photo FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY "
-				+ "rb_num) hs_agg ON r_board.rb_num = hs_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') "
-				+ "WITHIN GROUP (ORDER BY f_name) AS f_name FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) "
-				+ "f_agg ON r_board.rb_num = f_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count "
-				+ "FROM r_apply GROUP BY rb_num) apply_agg ON r_board.rb_num = apply_agg.rb_num JOIN (SELECT * "
-				+ "FROM r_bookmark) bm_agg ON r_board.rb_num = bm_agg.rb_num " +sub_sql
-				+ " ORDER BY r_board.rb_num DESC ) a ) "
-				+ "WHERE rnum >= 1 AND rnum <= 10";
+					+ "f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count FROM r_board LEFT OUTER JOIN (SELECT "
+					+ "rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) AS hs_name, LISTAGG(hs_photo, ',') "
+					+ "WITHIN GROUP (ORDER BY hs_name) AS hs_photo FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY "
+					+ "rb_num) hs_agg ON r_board.rb_num = hs_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') "
+					+ "WITHIN GROUP (ORDER BY f_name) AS f_name FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) "
+					+ "f_agg ON r_board.rb_num = f_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count "
+					+ "FROM r_apply GROUP BY rb_num) apply_agg ON r_board.rb_num = apply_agg.rb_num " + sub_sql
+					+ " ORDER BY r_board.rb_num DESC ) a ) " + "WHERE rnum >= ? AND rnum <= ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);

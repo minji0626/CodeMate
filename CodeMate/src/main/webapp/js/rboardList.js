@@ -1,9 +1,17 @@
 $(document).ready(function() {
+
+	updateSkillTags();
+
+	//context path 가져오기
+	function getContextPath() {
+		return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+	}
+
 	$('.feather-arrow-left').click(function() {
 		history.go(-1);
 	});
 
-	$('.search-menu, select').on('change', function() {
+	$('.search-menu').on('change', function() {
 		if ($(this).val()) {
 			$(this).addClass('selected');
 		} else {
@@ -12,30 +20,118 @@ $(document).ready(function() {
 		fetchResults();
 	});
 
+	$('span.search-menu').on('click', function() {
+		$(this).toggleClass('selected');
+		fetchResults();
+	});
+
+
+	//키워드 검색에서 엔터키 쳤을 때 이벤트 추가
+	$('#search_key').keypress(function(event) {
+		// 눌러진 키의 keyCode 값이 13이면(엔터키)
+		if (event.keyCode === 13) {
+			$('#search_key_div').addClass('selected');
+			fetchResults();
+		}
+	});
+
 	// 검색 기능을 처리하는 함수
 	function fetchResults() {
 		var searchData = {
-/*			r_skills: [],
-			r_fields: $('#r_fields').val(),
-			rb_meet: $('#rb_meet').val(),
-			search_key: $('#search_key').val(),*/
-			bookmark_filter: $('#bookmark_filter').hasClass('selected'),
+			r_skills: [],
+			r_fields: $('select[name="r_fields"]').val(),
+			rb_meet: $('select[name="rb_meet"]').val(),
+			search_key: $('#search_key').val(),
 			recruiting_filter: $('#recruiting_filter').hasClass('selected')
 		};
 
-/*		$('input[name="r_skills"]:checked').each(function() {
+		console.log(searchData);
+
+		$('input[name="r_skills"]:checked').each(function() {
 			searchData.r_skills.push($(this).val());
-		});*/
+		});
 
 		$.ajax({
 			type: 'GET',
 			url: 'searchResults.do', // 서버 측 검색 결과를 처리하는 URL
 			data: searchData,
-			success: function(response) {
-				$('#r_board').html(response); // 검색 결과를 r_board에 반영
+			traditional: true,
+			dataType: 'json',
+			success: function(param) {
+				let output = '';
+				let contextPath = getContextPath();
+				$(param.rboardList).each(function(index, item) {
+					output += '<li class="r-item"';
+					output += 'onclick="location.href=\'' + contextPath + '/rboard/detail.do?rb_num=' + item.rb_num + '\'">';
+					output += '<div class="r-item-header">';
+					output += '<span>마감일 | </span> <span>' + item.rb_endRecruit + '</span>';
+					output += '</div>';
+					output += '<div class="r-item-main">';
+					if (item.rb_category == 0) {
+						output += '<span>[스터디]</span>';
+					} else {
+						output += '<span>[프로젝트]</span>';
+					}
+					output += '<p>' + item.rb_title + '</p>';
+					output += '</div>';
+					output += '<div>';
+					for (var i = 0; i < item.hs_photo_arr.length; i++) {
+						output += '<img src="' + contextPath + '/images/hard_skill_logo/' + item.hs_photo_arr[i] + '"';
+						output += 'title="' + item.hs_name_arr[i] + '" class="skill-logo"> ';
+					}
+					output += '</div>';
+					output += '<span>진행방식 | </span> <span>';
+					if (item.rb_meet == 0) {
+						output += '온라인';
+					} else if (item.rb_meet == 1) {
+						output += '오프라인';
+					} else {
+						output += '온라인/오프라인';
+					}
+					output += '</span>';
+					output += '<div>';
+					output += '<span>모집필드 | </span>';
+					$(item.f_name_arr).each(function(index, field) {
+						output += '<span>' + field + '</span> ';
+					});
+					output += '</div>';
+					output += '<div>';
+					output += '<span>신청인원 | </span>';
+					output += '<span>' + item.rb_apply_count + '/';
+					if (item.rb_teamsize == 0) {
+						output += '인원 미정';
+					} else if (item.rb_teamsize == 10) {
+						output += '10명 이상';
+					} else {
+						output += item.rb_teamsize;
+					}
+					output += '</span>';
+					output += '</div>';
+					output += '<div>';
+					output += '<span>조회수 </span> <span>' + item.rb_hit + '</span>';
+					output += '</div>';
+					output += '</li>';
+				});
+
+				$('#r_board').empty().append(output);
 			},
-			error: function() {
-				alert('네트워크 오류 발생');
+			error: function(jqXHR, textStatus, errorThrown) {
+				var errorMessage = "네트워크 오류 발생~~";
+
+				if (jqXHR.status === 0) {
+					errorMessage += "\n네트워크가 연결되지 않았습니다.";
+				} else if (jqXHR.status == 404) {
+					errorMessage += "\n요청한 페이지를 찾을 수 없습니다. [404]";
+				} else if (jqXHR.status == 500) {
+					errorMessage += "\n서버 내부 오류가 발생했습니다. [500]";
+				} else {
+					errorMessage += "\n오류 코드: " + jqXHR.status;
+				}
+
+				errorMessage += "\n상태: " + textStatus;
+				errorMessage += "\n오류 내용: " + errorThrown;
+
+				alert(errorMessage);
 			}
 		});
 	}
@@ -55,6 +151,7 @@ $(document).ready(function() {
 			$('.scrollable').hide();
 		}
 	});
+
 	// 스크롤러 내부의 클릭 이벤트를 전파되지 않도록 설정
 	$('.scrollable').on('click', function(event) {
 		event.stopPropagation();
@@ -68,12 +165,13 @@ $(document).ready(function() {
 
 	$('.scrollable input[type="checkbox"]').change(function() {
 		updateSkillTags(); // 체크박스 상태 변경 시 함수 호출
+		fetchResults();
 	});
 
 	// 페이지 로딩 시 초기 호출
 	updateSkillTags();
 
-	// 하드스킬 태그 업데이트
+	//하드스킬 태그 업데이트
 	function updateSkillTags() {
 		var $scrollableTrigger = $('#scrollable_trigger');
 		var $checked = $('.scrollable input[type="checkbox"]:checked');
@@ -83,25 +181,27 @@ $(document).ready(function() {
 
 		// 선택된 태그가 없을 때 기본 문구 표시
 		if ($checked.length === 0) {
-			$scrollableTrigger.removeClass('selected');
 			$scrollableTrigger.text('기술 스택');
 		} else {
-			$scrollableTrigger.addClass('selected');
 			// 선택된 태그 추가
 			$checked.each(function() {
 				var labelText = $(this).siblings('label').text(); // 체크된 체크박스의 label 텍스트 가져오기
 				$scrollableTrigger.append('<span class="skill-tag">' + labelText + ' <span class="remove-btn">x</span></span>'); // 체크된 체크박스의 label을 span 태그로 추가
 			});
 		}
+		fetchResults();
 	}
 
-	// 하드스킬 태그 제거
+	//하드스킬 태그 제거
 	function removeSkillTag(element) {
 		var skillTag = $(element).closest('.skill-tag');
 		var labelText = skillTag.text().trim().replace(' x', '');
 
 		// 해당 라벨에 맞는 체크박스를 체크 해제
-		$('.scrollable label:contains(' + labelText + ')').siblings('input[type="checkbox"]').prop('checked', false);
+		$('.scrollable label').filter(function() {
+			return $(this).text().trim() === labelText;
+		}).siblings('input[type="checkbox"]').prop('checked', false);
+
 
 		// 태그 제거
 		skillTag.remove();
@@ -109,8 +209,9 @@ $(document).ready(function() {
 		// 태그가 없을 때 기본 문구 표시
 		var $scrollableTrigger = $('#scrollable_trigger');
 		if ($scrollableTrigger.find('.skill-tag').length === 0) {
-			$scrollableTrigger.removeClass('selected');
 			$scrollableTrigger.text('기술 스택');
 		}
+		fetchResults();
 	}
+
 });
