@@ -295,34 +295,20 @@ $(document).ready(function() {
         const eventTitle = addEventTitle.val().trim();
         const eventTimeFrom = addEventFrom.val().trim();
         const eventTimeTo = addEventTo.val().trim();
-        const teamNum = sessionStorage.getItem("team_num");
 
-        if (!teamNum) {
-            alert("팀 번호가 설정되지 않았습니다. 다시 로그인해 주세요.");
-            return;
-        }
 
         if (eventTitle === "") {
             alert("To-Do 내용을 작성하세요");
             return;
         }
 
-        // 시간 검증 (옵션)
-        if (eventTimeFrom !== "" && !/^([01]\d|2[0-3]):([0-5]\d)$/.test(eventTimeFrom)) {
-            alert("시작 시간이 올바르지 않습니다. 형식: HH:MM");
-            return;
-        }
-        if (eventTimeTo !== "" && !/^([01]\d|2[0-3]):([0-5]\d)$/.test(eventTimeTo)) {
-            alert("종료 시간이 올바르지 않습니다. 형식: HH:MM");
-            return;
-        }
 
         // 새로운 이벤트를 서버로 전송합니다.
         $.ajax({
             type: 'post',
             url: 'AddTeam_Todo.do',
             data: {
-                team_num: teamNum,
+                team_num: sessionStorage.getItem("team_num"),
                 tt_content: eventTitle,
                 tt_date: `${year}-${month + 1}-${activeDay}`,
                 tt_start: eventTimeFrom,
@@ -340,9 +326,7 @@ $(document).ready(function() {
                     alert("오류가 발생하였습니다.");
                 }
             },
-            error: function(xhr, status, error) {
-                console.error("AJAX Error: ", status, error);
-                console.error(xhr.responseText);
+            error: function() {
                 alert("네트워크 오류가 발생하였습니다.");
             }
         });
