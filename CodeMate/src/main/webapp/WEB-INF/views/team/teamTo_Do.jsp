@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,6 +19,13 @@
   <div class="page-container">
   	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
+    
+    <c:if test="${team_num != param.team_num}">
+    <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
+    잘못된 접근입니다.
+    </div>
+    </c:if>
+    
     <div class="container">
       <div class="left">
         <div class="calendar">
@@ -85,6 +93,6 @@
       </button>
     </div>
 </div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main3.js"></script>
   </body>
 </html>
