@@ -12,7 +12,16 @@ public class CcommentVO {
 	private String mem_photo;
 	private String mem_nickname;
 	
-	
+
+	private int cb_type;
+	private String cb_title;
+
+	public String getCb_title() {
+		return cb_title;
+	}
+	public void setCb_title(String cb_title) {
+		this.cb_title = cb_title;
+	}
 	public String getCc_reg_date() {
 		return cc_reg_date;
 	}
@@ -62,6 +71,11 @@ public class CcommentVO {
 		this.cc_content = cc_content;
 	}
 	
-	
+	public int getCb_type() {
+		return cb_type;
+	}
+	public void setCb_type(int cb_type) {
+		this.cb_type = cb_type;
+	}
 	
 }

@@ -39,7 +39,8 @@ $(document).ready(function() {
 	];
 
 	const eventsArr = [];
-
+	
+	// 달력 생성하는 함수
 	function initCalendar() {
 		const firstDay = new Date(year, month, 1);
 		const lastDay = new Date(year, month + 1, 0);
@@ -61,17 +62,17 @@ $(document).ready(function() {
 			let event = false;
 			eventsArr.forEach((eventObj) => {
 				if (
-					eventObj.day === i &&
-					eventObj.month === month + 1 &&
-					eventObj.year === year
+					eventObj.day == i &&
+					eventObj.month == month + 1 &&
+					eventObj.year == year
 				) {
 					event = true;
 				}
 			});
 			if (
-				i === new Date().getDate() &&
-				year === new Date().getFullYear() &&
-				month === new Date().getMonth()
+				i == new Date().getDate() &&
+				year == new Date().getFullYear() &&
+				month == new Date().getMonth()
 			) {
 				activeDay = i;
 				getActiveDay(i);
@@ -96,7 +97,8 @@ $(document).ready(function() {
 		daysContainer.html(days);
 		addListner();
 	}
-
+	
+	// 이전 달로 이동하는 함수
 	function prevMonth() {
 		month--;
 		if (month < 0) {
@@ -105,7 +107,8 @@ $(document).ready(function() {
 		}
 		initCalendar();
 	}
-
+	
+	// 다음 달로 이동하는 함수
 	function nextMonth() {
 		month++;
 		if (month > 11) {
@@ -117,9 +120,13 @@ $(document).ready(function() {
 
 	prev.on("click", prevMonth);
 	next.on("click", nextMonth);
-
+	
+	// 캘린더 호출
 	initCalendar();
-
+	
+	
+	
+	// 각각의 날짜를 클릭할 때 날짜가 활성화되면서 이벤트 보여줌
 	function addListner() {
 		const days = $(".day");
 		days.each(function() {
@@ -162,22 +169,23 @@ $(document).ready(function() {
 
 	dateInput.on("input", (e) => {
 		dateInput.val(dateInput.val().replace(/[^0-9/]/g, ""));
-		if (dateInput.val().length === 2) {
+		if (dateInput.val().length == 2) {
 			dateInput.val(dateInput.val() + "/");
 		}
 		if (dateInput.val().length > 7) {
 			dateInput.val(dateInput.val().slice(0, 7));
 		}
-		if (e.inputType === "deleteContentBackward" && dateInput.val().length === 3) {
+		if (e.inputType == "deleteContentBackward" && dateInput.val().length === 3) {
 			dateInput.val(dateInput.val().slice(0, 2));
 		}
 	});
 
 	gotoBtn.on("click", gotoDate);
 
+	// 해당하는 달로 이동하는 함수
 	function gotoDate() {
 		const dateArr = dateInput.val().split("/");
-		if (dateArr.length === 2 && dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
+		if (dateArr.length == 2 && dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length == 4) {
 			month = dateArr[0] - 1;
 			year = dateArr[1];
 			initCalendar();
@@ -185,14 +193,17 @@ $(document).ready(function() {
 			alert("유효하지 않은 날짜 형식입니다.");
 		}
 	}
-
+	
+	// 선택된 날짜의 세부 정보를 표시함 (이벤트 출력 되는 곳 윗 부분)
 	function getActiveDay(date) {
 		const day = new Date(year, month, date);
 		const dayName = getKoreanDay(day.getDay());
 		eventDay.html(dayName);
-		eventDate.html(year + " " + months[month] + " " + date + "일");
+		eventDate.html(year + "년 " + months[month] + " " + date + "일");
 	}
-
+	
+	
+	// 한국어로 요일 표시하기
 	function getKoreanDay(day) {
 		switch (day) {
 			case 0:
@@ -211,57 +222,63 @@ $(document).ready(function() {
 				return "토요일";
 		}
 	}
-
+	
+	
+	// 이벤트(To-Do) 리스트 가져오는 함수 (활성화 된 날짜만 가져오도록 조건 설정)
 	function updateEvents(date) {
-		$.ajax({
-			type: 'post',
-			url: 'getTeamTodoList.do',
-			data: {
-				team_num: sessionStorage.getItem("team_num"),
-				tt_date: `${year}-${month + 1}-${date}`
-			},
-			dataType: 'json',
-			success: function(param) {
-				console.log(param);  // 서버 응답 데이터 출력
-				let events = "";
-				const eventsArr = param.teamtodo; // 서버에서 받은 이벤트 배열
+    $.ajax({
+        type: 'post',
+        url: 'getTeamTodoList.do',
+        data: {
+            team_num: sessionStorage.getItem("team_num"),
+            tt_date: `${year}-${month + 1}-${date}`
+        },
+        dataType: 'json',
+        success: function(param) {
+            console.log(param);  // 서버 응답 데이터 출력
+            let events = "";
+            const eventsArr = param.teamtodo; // 서버에서 받은 이벤트 배열
 
-				// 해당 날짜의 이벤트만 필터링
-				const filteredEvents = eventsArr.filter(event => {
-					const eventDate = new Date(event.tt_date);
-					return eventDate.getDate() === date && 
-						eventDate.getMonth() === month && 
-						eventDate.getFullYear() === year;
-				});
+            // 해당 날짜의 이벤트만 필터링
+            const filteredEvents = eventsArr.filter(event => {
+                const eventDate = new Date(event.tt_date);
+                return eventDate.getDate() == date && 
+                    eventDate.getMonth() == month && 
+                    eventDate.getFullYear() == year;
+            });
 
-				filteredEvents.forEach((event) => {
-					console.log(event);  // 필터링된 이벤트 출력
-					events += `<div class="event">
-						<div class="title">
-							<h3 class="event-title">${event.tt_content}</h3>
-						</div>
-						<div class="event-time">
-							<span class="event-time">${event.tt_start ? event.tt_start : ''} - ${event.tt_end ? event.tt_end : ''}</span>
-						</div>
-						<div class="event-buttons">
-							<button class="del-btn" data-event-id="${event.tt_num}">삭제</button>
-						</div>
-					</div>`;
-				});
+            filteredEvents.forEach((event) => {
+                console.log(event); 
 
-				if (events === "") {
-					events = `<div class="no-event">
-						<h3>예정된 이벤트 없음</h3>
-					</div>`;
-				}
+                const startTime = event.tt_start ? event.tt_start.replace(/(..)/, '$1:') : '';
+				const endTime = event.tt_end ? event.tt_end.replace(/(..)/, '$1:') : '';
 
-				eventsContainer.html(events); // 이벤트 컨테이너 업데이트
-			},
-			error: function() {
-				alert("이벤트를 불러오는 데 실패했습니다.");
-			}
-		});
-	}
+                events += `<div class="event">
+                    <div class="title">
+                        <h3 class="event-title">${event.tt_content}</h3>
+                    </div>
+                    <div class="event-time">
+                        <span class="event-time">${startTime} - ${endTime}</span>
+                    </div>
+                    <div class="event-buttons">
+                        <button class="del-btn" data-event-id="${event.tt_num}">삭제</button>
+                    </div>
+                </div>`;
+            });
+
+            if (events === "") {
+                events = `<div class="no-event">
+                    <h3>예정된 이벤트 없음</h3>
+                </div>`;
+            }
+
+            eventsContainer.html(events); // 이벤트 컨테이너 업데이트
+        },
+        error: function() {
+            alert("이벤트를 불러오는 데 실패했습니다.");
+        }
+    });
+}
 
 	$(document).on("click", ".del-btn", function() {
 		const eventId = $(this).data("event-id");
@@ -269,36 +286,37 @@ $(document).ready(function() {
 		// $.ajax({...});
 		console.log(`이벤트 ID: ${eventId} 삭제 요청`);
 	});
-
-	$(document).on("click", ".add-event-btn", function() {
+	
+	// add-event-btn 클릭시 addNewEvent 함수 실행
+	$(document).on("click", ".add-event-btn", addNewEvent);
+	
+	// 이벤트(To-Do) 추가하는 함수 실행
+	function addNewEvent() {
     const eventTitle = addEventTitle.val();
     const eventTimeFrom = addEventFrom.val();
     const eventTimeTo = addEventTo.val();
 
-    if (eventTitle === "") {
+    if (eventTitle == "") {
         alert("To-Do 내용을 작성하세요");
         return;
     }
-    
-	const team_num = sessionStorage.getItem("team_num");
-	
+
     // 새로운 이벤트를 서버로 전송합니다.
     $.ajax({
         type: "post",
         url: "AddTeam_Todo.do",
         data: {
-            team_num: team_num,
+            team_num: sessionStorage.getItem("team_num"),
             tt_content: eventTitle,
             tt_date: `${year}-${month + 1}-${activeDay}`,
             tt_start: eventTimeFrom,
             tt_end: eventTimeTo
         },
         success: function(param) {
-            if (param.result === "success") {
+            if (param.result == "success") {
                 alert("이벤트가 추가되었습니다.");
-                // 이벤트가 성공적으로 추가되면 새로고침합니다.
                 initCalendar();
-            } else if (param.result === "logout") {
+            } else if (param.result == "logout") {
                 alert("로그인 후 사용해주세요.");
             } else {
                 alert("오류가 발생하였습니다.");
@@ -316,7 +334,8 @@ $(document).ready(function() {
     addEventFrom.val("");
     addEventTo.val("");
     addEventWrapper.removeClass("active");
-});
+}
+
 
 	addEventBtn.on("click", () => {
 		addEventWrapper.addClass("active");

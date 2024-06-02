@@ -58,7 +58,13 @@ $(function() {
                 $(param.commentsList).each(function(index, item) {
                     output += '<div class="reList">'
                     output += '<div class="re_writer">';
-                    output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
+                    
+                    if (item.mem_photo == null) {
+						output += '<img src="../images/face.png" id="profile_pic" height="25" width="25">';
+					} else {
+						output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
+					}
+                    
                     output += '<span>' + item.mem_nickname + '</span>';
                     
                     if(item.cc_modify_date){

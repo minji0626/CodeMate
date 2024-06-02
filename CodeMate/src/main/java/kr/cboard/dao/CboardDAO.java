@@ -187,6 +187,75 @@ public class CboardDAO {
 		return cboard;
 	}
 
+	
+	//내가 쓴 글 목록 - 민재
+	public List<CboardVO> getCboardListByMemNum(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CboardVO> list = null;
+		String sql = null;
+		
+		conn = DBUtil.getConnection();
+		sql = "SELECT * FROM c_board WHERE mem_num=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		rs = pstmt.executeQuery();
+		
+		list = new ArrayList<CboardVO>();
+		while(rs.next()) {
+			CboardVO cboard = new CboardVO();
+			cboard.setCb_num(rs.getInt("cb_num"));//게시글 번호
+			cboard.setCb_title(rs.getString("cb_title"));
+			cboard.setCb_like(rs.getInt("cb_like"));
+			cboard.setCb_hit(rs.getInt("cb_hit"));
+			cboard.setCb_type(rs.getInt("cb_type"));
+			list.add(cboard);
+		}
+		try {
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.getConnection();
+		}
+		
+		return list;
+	}
+	//댓글 목록 - 민재
+	public List<CcommentVO> myPageApplyListByMemNum(int mem_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<CcommentVO> list = new ArrayList<>();
+	    String sql = "SELECT cc.*, cb.cb_title, cb.cb_type FROM c_comment cc JOIN c_board cb "
+	    		+ "ON cc.cb_num = cb.cb_num WHERE cc.mem_num =?";
+
+	    try {
+	        conn = DBUtil.getConnection();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, mem_num);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            CcommentVO comment = new CcommentVO();
+	            comment.setCb_num(rs.getInt("cb_num"));
+	            comment.setCc_num(rs.getInt("cc_num"));
+	            comment.setCc_content(rs.getString("cc_content"));
+	            comment.setCb_type(rs.getInt("cb_type"));
+	            comment.setCb_title(rs.getString("cb_title"));
+	            list.add(comment);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return list;
+	}
+	
+	
+	
 	//조회수 증가
 	public void updateReadcount(int cb_num) throws Exception{
 		Connection conn = null;

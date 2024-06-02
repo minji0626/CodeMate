@@ -29,7 +29,7 @@
 </div>
 
 
-<c:forEach var="raL" items="rapplyList">
+<c:forEach var="ra" items="rapplyList">
 <div class="myPage-line-box-moshin">
 <div class="profile_mypage">
 
@@ -46,7 +46,7 @@
 <br>
 <div class="mypage_clob">
 <div class="shin-text">신청동기</div>
-<div class="content">${raL.ra_content}</div>
+<div class="content">${ra.ra_content}</div>
 </div>
 </div>
 </div>
