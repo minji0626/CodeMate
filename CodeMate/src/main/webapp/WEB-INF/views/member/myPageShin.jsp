@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/rapplyDelete.js"></script>
+
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -29,7 +30,7 @@
 </div>
 
 <c:forEach var="aprboard" items="${aprboardList}">
-<div class="myPage-line-box">
+<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${aprboard.rb_num}'" style="cursor: pointer;">
 <div class="team-left">
 <c:if test="${aprboard.rb_category == '0'}">
 	스터디

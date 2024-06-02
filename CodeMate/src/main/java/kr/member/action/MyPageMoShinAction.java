@@ -30,7 +30,7 @@ public class MyPageMoShinAction implements Action {
 
         // 모집글에 대한 신청자 리스트 가져오기
         RboardDAO rboardDAO = RboardDAO.getInstance();
-        List<RapplyVO> rapplyList = rboardDAO.myRboardApplyList(mem_num);
+        List<RapplyVO> rapplyList = rboardDAO.myRboardApplyListByRbNum(mem_num);//rb_num이 들어가야되는거 아닌가
 
         // 데이터를 request에 설정
         request.setAttribute("member", member);

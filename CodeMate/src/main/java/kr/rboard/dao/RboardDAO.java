@@ -569,7 +569,7 @@ public class RboardDAO {
 	}
 	
 	//나의 모집글에 지원한 신청자 리스트 - 민재
-	public List<RapplyVO> myRboardApplyList(int rb_num) throws Exception {
+	public List<RapplyVO> myRboardApplyListByRbNum(int rb_num) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -586,6 +586,7 @@ public class RboardDAO {
 	           RapplyVO rapply = new RapplyVO();
 	            rapply.setRa_num(rs.getInt("ra_num"));
 	            rapply.setRb_num(rs.getInt("rb_num"));
+	            rapply.setMem_num(rs.getInt("mem_num"));
 	            rapply.setRa_content(rs.getString("ra_content"));
 	            rapply.setRa_date(rs.getDate("ra_date"));
 	            rapply.setRa_pass(rs.getInt("ra_pass"));
@@ -602,7 +603,25 @@ public class RboardDAO {
 	    return list;
 	}
 	  
-	  //나의 모집글에 지원한 신청자 삭제
+	  //나의 모집글에 지원한 신청자 삭제-민재
+	public void deleteMyRboardApply(int rb_num,int ra_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM r_apply WHERE rb_num = ? AND ra_num = ?;";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+			pstmt.setInt(2, ra_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+	}
 	  
 	  
 	// 회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
@@ -624,6 +643,7 @@ public class RboardDAO {
 				RboardVO rboard = new RboardVO();
 				// 코메신청 정보 설정
 				rboard.setRa_num(rs.getInt("ra_num"));
+				rboard.setRb_num(rs.getInt("rb_num"));
 				rboard.setRb_category(rs.getInt("rb_category"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
