@@ -103,8 +103,16 @@ public class WriteMateProfileAction implements Action{
 		List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 		List<SoftSkillVO> sskillList = dbdao.getSoftSkillList();
 		
+		
+
+		// 메이트 리뷰 불러오기
+		List<MateVO> mateReview = mateDao.getMateReview(user_num);
+		
+		
 		//----------------------------------------------------------
 	
+		request.setAttribute("user_num", user_num);
+		request.setAttribute("mateReview", mateReview);
 		request.setAttribute("sskillList", sskillList);
 		request.setAttribute("hskillList", hskillList);
 		request.setAttribute("mem", mem);

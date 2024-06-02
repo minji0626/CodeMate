@@ -39,6 +39,7 @@ public class MateProfileAction implements Action {
         request.setAttribute("mateExpList", mateExpList);
         request.setAttribute("softSkillList", softSkillList);
         
+        request.setAttribute("user_num", user_num);
         request.setAttribute("mem", mem);
         request.setAttribute("member", member);
         request.setAttribute("hardSkillList", hardSkillList);

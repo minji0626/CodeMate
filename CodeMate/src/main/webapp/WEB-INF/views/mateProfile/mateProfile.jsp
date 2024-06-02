@@ -147,14 +147,14 @@
 			                        <p class="pj_content">프로젝트 설명 : ${exp.me_content} </p> 
 			                        <form action="deleteEXP.do" method="post">
 	            						<input type="hidden" name="me_num" value="${exp.me_num}">
+	            						<input type="hidden" name="mem_num" value="${user_num}">
 	            						<button type="submit" class="delete-btn">삭제</button>
 	        						</form>
 			                    </div>
 		                 	</c:forEach>
 	                 	</c:if>
 	                 	<c:if test="${empty mateExpList}">
-	                 		<div class="mp_project">
-			                    </div>
+  							<div class="mp_content"><p>비공개 정보입니다.</p></div>
 	                 	</c:if>
 	                 </c:if>
                 </div>   

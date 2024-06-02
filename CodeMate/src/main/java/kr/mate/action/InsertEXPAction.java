@@ -12,6 +12,9 @@ public class InsertEXPAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		request.setCharacterEncoding("utf-8");
+		
 		// 세션에 로그인된 상태로 있어야 됨
 		HttpSession session = request.getSession();
 
@@ -21,14 +24,21 @@ public class InsertEXPAction implements Action {
 			return "redirect:/member/loginForm.do";
 		}
 
-		request.setCharacterEncoding("utf-8");
-		
+		int user_num = Integer.parseInt(request.getParameter("mem_num"));
+
+		if(mem_num!=user_num) {
+			request.setAttribute("notice_msg","본인만 작성할 수 있습니다!");
+			request.setAttribute("notice_url", request.getContextPath()+"/mateProfile/mateProfile.do?mem_num="+user_num);
+			return "/WEB-INF/views/common/alert_view.jsp";
+		}
+
+
 		MateDAO mateDao = MateDAO.getInstance();
 
 		// MateVO 객체 생성 및 초기화
 		MateVO mate = new MateVO();
-		mate.setMem_num(mem_num);
-		
+		mate.setMem_num(user_num);
+
 		// 프로젝트 경험
 		String me_category = request.getParameter("me_category");
 		if (me_category != null) {
@@ -47,9 +57,9 @@ public class InsertEXPAction implements Action {
 
 
 		request.setAttribute("mate", mate);
-
+		request.setAttribute("user_num", user_num);
 		request.setAttribute("notice_msg", "프로젝트 경험이 추가되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfileForm.do");
+		request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfileForm.do?mem_num="+user_num);
 
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}

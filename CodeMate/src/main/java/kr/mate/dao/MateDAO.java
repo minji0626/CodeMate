@@ -321,35 +321,41 @@ public class MateDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	// 메이트 프로젝트 불러오기
+		public List<MateVO> getMateReview(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<MateVO> list = null; 
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
 
-	// 메이트 리뷰 보여주기
-	private List<MateVO> getMateReview(int mem_num) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<MateVO> list = null; 
-		String sql = null;
-		try {
-			conn = DBUtil.getConnection();
+				sql = "SELECT * FROM mate_review WHERE mr_receiver=?";
+				pstmt = conn.prepareStatement(sql);
 
-			sql = "SELECT * FROM mate_exp WHERE mem_num=?";
-			pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
 
-			pstmt.setInt(1, mem_num);
+				rs = pstmt.executeQuery();
+				list = new ArrayList<MateVO>();
+				while(rs.next()) {
+					MateVO mate = new MateVO();
+					mate.setMem_num(mem_num);
+					mate.setMr_writer(rs.getInt("mr_writer"));
+					mate.setMr_receiver(rs.getInt("mr_receiver"));
+					mate.setMr_regDate(rs.getDate("mr_reg_date"));
+					mate.setMr_content(rs.getString("mr_content"));
+					list.add(mate);
+				}
 
-			rs = pstmt.executeQuery();
-			list = new ArrayList<MateVO>();
-			while(rs.next()) {
-				
+			} catch(Exception e) {
+				throw new Exception(e);
+			} finally {
+				// 자원 정리
+				DBUtil.executeClose(rs, pstmt, conn);
 			}
-
-		} catch(Exception e) {
-			throw new Exception(e);
-		} finally {
-			// 자원 정리
-			DBUtil.executeClose(rs, pstmt, conn);
+			return list;
 		}
-		return list;
-	}
 
 }

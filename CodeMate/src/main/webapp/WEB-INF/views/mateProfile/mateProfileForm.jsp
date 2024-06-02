@@ -116,36 +116,38 @@
                 <!-- 버튼 -->
                 <div class="btn-div">
                     <input type="submit" id="modify-btn" value="수정">
-                    <input type="button" id="close-btn" value="취소" onclick="location.href='mateProfile.do'">
+                    <input type="button" id="close-btn" value="취소" onclick="location.href='mateProfile.do?mem_num=${user_num}'">
                     
                 </div>
             </form>
             <form id="meInsertForm" action="insertEXP.do" method="post">
-            <div class="mp_content_div">
-                    <h4>프로젝트 경험</h4>
-                    <div class="mp_project">
-	                        <span class="pjct">프로젝트 분류</span>  
-	                        <input type="radio" id="me_category_0" name="me_category" value="개인">
-	                        <label for="me_category_0">개인</label>
-                        <input type="radio" id="me_category_1" name="me_category" value="기업">
-                        <label for="me_category_1">기업</label>
+				<input type="hidden" name="mem_num" value="${user_num}">            
+		            <div class="mp_content_div">
+	                    <h4>프로젝트 경험</h4>
+	                    <div class="mp_project">
+		                        <span class="pjct">프로젝트 분류</span>  
+		                        <input type="radio" id="me_category_0" name="me_category" value="개인">
+		                        <label for="me_category_0">개인</label>
+	                        <input type="radio" id="me_category_1" name="me_category" value="기업">
+	                        <label for="me_category_1">기업</label>
+	
+	                        <br><br>
+	                        <div class="inputinput">
+		                        <span class="pjtt">프로젝트 제목</span>
+		                        <input type="text" id="me_title" name="me_title" class="mt_input" style="width:80%; height:40px;">
+	                        </div>
+	                        <br><br>
+	                        <div class="inputinput">
+		                        <span class="pjct">프로젝트 설명</span>
+		                       <input type="text" id="me_content" name="me_content" class="mt_input" style=" width:80%; height: 200px;">
 
-                        <br><br>
-                        <div class="inputinput">
-	                        <span class="pjtt">프로젝트 제목</span>
-	                        <input type="text" id="me_title" name="me_title" class="mt_input">
-                        </div>
-                        <br><br>
-                        <div class="inputinput">
-	                        <span class="pjct">프로젝트 설명</span>
-	                        <input type="text" id="me_content" name="me_content" class="mt_input">
-                        </div>
-                        <br><br>
-                        <div class="btn-div">
-                    		<input type="submit" id="insert-btn" value="추가">
-                		</div>
-                    </div>
-                </div> 
+	                        </div>
+	                        <br><br>
+	                        <div class="btn-div">
+	                    		<input type="submit" id="insert-btn" value="추가">
+	                		</div>
+	                    </div>
+	                </div> 
             </form>
         </div>
         </div>
