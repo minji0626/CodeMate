@@ -38,7 +38,7 @@
 </select>
 
 <c:forEach var="comment" items="${commentList}">
-    <div class="myPage-line-box" data-type="<c:out value="${comment.cb_type}"/>">
+    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${comment.cb_num}'" data-type="<c:out value="${comment.cb_type}"/>">
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${comment.cb_type == 0}">
