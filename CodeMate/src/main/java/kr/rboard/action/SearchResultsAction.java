@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -14,10 +15,11 @@ import kr.rboard.dao.RboardDAO;
 import kr.rboard.vo.RboardVO;
 
 public class SearchResultsAction implements Action {
-
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 검색 조건을 받음
+		System.out.println("check1");
+		System.out.println(request);
 		request.setCharacterEncoding("utf-8");
         String[] r_skills = request.getParameterValues("r_skills");
         String r_fields = request.getParameter("r_fields");
@@ -37,7 +39,11 @@ public class SearchResultsAction implements Action {
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		
 		request.setAttribute("ajaxData", ajaxData);
-		
+		System.out.println("r_fields"+r_fields);
+		System.out.println("rb_meet"+rb_meet);
+		System.out.println("r_skills"+r_skills);
+		System.out.println("search_key"+search_key);
+		System.out.println("recruiting_filter"+recruiting_filter);
 		return "/WEB-INF/views/common/ajax_view.jsp";
     }
 	

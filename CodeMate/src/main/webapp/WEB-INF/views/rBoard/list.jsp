@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <title>코메 구하기</title>
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link
@@ -23,7 +26,7 @@
 </head>
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/rboardList.js"></script>
+
 
 <body>
 	<div class="page-container">
@@ -137,5 +140,5 @@
 		</div>
 	</div>
 </body>
-
+<script src="${pageContext.request.contextPath}/js/rboardList.js"></script>
 </html>
