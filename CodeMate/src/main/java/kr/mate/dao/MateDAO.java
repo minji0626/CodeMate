@@ -273,7 +273,7 @@ public class MateDAO {
 		try {
 			conn = DBUtil.getConnection();
 
-			sql = "SELECT * FROM mate_exp WHERE mem_num=?";
+			sql = "SELECT * FROM mate_exp WHERE mem_num=? ORDER BY me_num  DESC";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, mem_num);
@@ -322,40 +322,51 @@ public class MateDAO {
 		}
 	}
 	
-	// 메이트 프로젝트 불러오기
-		public List<MateVO> getMateReview(int mem_num) throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			List<MateVO> list = null; 
-			String sql = null;
-			try {
-				conn = DBUtil.getConnection();
+	public List<MateVO> getMateReview(int mem_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    PreparedStatement pstmt2 = null;
+	    ResultSet rs = null;
+	    ResultSet rs2 = null;
+	    List<MateVO> list = null;
+	    String sql = null;
+	    int mr_num = 0;
+	    try {
+	        conn = DBUtil.getConnection();
 
-				sql = "SELECT * FROM mate_review WHERE mr_receiver=?";
-				pstmt = conn.prepareStatement(sql);
+	        sql = "SELECT MAX(mr_num) FROM mate_review WHERE mr_receiver=? GROUP BY mr_writer";
+	        pstmt = conn.prepareStatement(sql);
 
-				pstmt.setInt(1, mem_num);
+	        pstmt.setInt(1, mem_num);
 
-				rs = pstmt.executeQuery();
-				list = new ArrayList<MateVO>();
-				while(rs.next()) {
-					MateVO mate = new MateVO();
-					mate.setMem_num(mem_num);
-					mate.setMr_writer(rs.getInt("mr_writer"));
-					mate.setMr_receiver(rs.getInt("mr_receiver"));
-					mate.setMr_regDate(rs.getDate("mr_reg_date"));
-					mate.setMr_content(rs.getString("mr_content"));
-					list.add(mate);
-				}
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<MateVO>();
+	        while(rs.next()) {
+	        	mr_num = rs.getInt(1);
+	        	sql = "SELECT * FROM mate_review WHERE mr_num=?";
+	        	pstmt2 = conn.prepareStatement(sql);
+	        	pstmt2.setInt(1, mr_num);
+	        	rs2 = pstmt2.executeQuery();
+	        	while(rs2.next()) {
+	        		MateVO mate = new MateVO();
+		            mate.setMem_num(mem_num);
+		            mate.setMr_reg_date(rs2.getDate("mr_reg_date"));
+		            mate.setMr_content(rs2.getString("mr_content"));
+		            list.add(mate);
+	        	}
+	            
+	        }
 
-			} catch(Exception e) {
-				throw new Exception(e);
-			} finally {
-				// 자원 정리
-				DBUtil.executeClose(rs, pstmt, conn);
-			}
-			return list;
-		}
+	    } catch(Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        // 자원 정리
+	    	if(mr_num!=0) {
+	    		DBUtil.executeClose(rs2, pstmt2, null);
+	    	}
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return list;
+	}
 
 }

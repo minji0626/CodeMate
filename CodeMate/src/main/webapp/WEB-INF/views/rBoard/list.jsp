@@ -33,12 +33,6 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="page-main">
 			<div>
-				<!--모집 구분-->
-				<ul class="category">
-					<li class="category-item" data-category="2">전체</li>
-					<li class="category-item" data-category="1">프로젝트</li>
-					<li class="category-item" data-category="0">스터디</li>
-				</ul>
 				<!--검색-->
 				<div class="search-container">
 					<div id="search_container_sub">
@@ -57,12 +51,17 @@
 								<option value="${field.f_name}">${field.f_name}</option>
 							</c:forEach>
 						</select>
+						<select name="rb_category" class="search-menu">
+							<option value="2" selected>모집구분</option>
+							<option value="0">스터디</option>
+							<option value="1">프로젝트</option>
+							<option value="2">전체</option>
+						</select>
 						<select name="rb_meet" class="search-menu">
 							<option value="" selected>진행 방식</option>
 							<option value="0">온라인</option>
 							<option value="1">오프라인</option>
 							<option value="2">온라인/오프라인</option>
-							<!-- 필요한 만큼 옵션 추가 -->
 						</select>
 						<span class="search-menu" id="recruiting_filter"> 모집중 보기 </span>
 					</div>

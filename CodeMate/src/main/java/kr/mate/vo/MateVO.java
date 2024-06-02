@@ -17,7 +17,7 @@ public class MateVO {
 	private int mr_num;				// 리뷰 번호
 	private int mr_writer;			// 리뷰 작성자
 	private int mr_receiver;		// 리뷰 받는 사람
-	private Date mr_regDate;		// 리뷰 작성일
+	private Date mr_reg_date;		// 리뷰 작성일
 	private String mr_content;		// 리뷰 내용
 	
 	// 하드스킬
@@ -139,11 +139,14 @@ public class MateVO {
 	public void setMr_receiver(int mr_receiver) {
 		this.mr_receiver = mr_receiver;
 	}
-	public Date getMr_regDate() {
-		return mr_regDate;
+
+	
+	
+	public Date getMr_reg_date() {
+		return mr_reg_date;
 	}
-	public void setMr_regDate(Date mr_regDate) {
-		this.mr_regDate = mr_regDate;
+	public void setMr_reg_date(Date mr_reg_date) {
+		this.mr_reg_date = mr_reg_date;
 	}
 	public String getMr_content() {
 		return mr_content;

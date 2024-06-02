@@ -36,6 +36,11 @@ public class MateProfileAction implements Action {
         List<MateVO> mateExpList = null;
         mateExpList = mateDAO.getMateExp(user_num);
         
+        List<MateVO> mateReviewList = null;
+        mateReviewList = mateDAO.getMateReview(user_num);
+        
+        request.setAttribute("mateReviewList", mateReviewList);
+        
         request.setAttribute("mateExpList", mateExpList);
         request.setAttribute("softSkillList", softSkillList);
         
