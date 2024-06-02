@@ -358,7 +358,7 @@ public class RboardDAO {
 	}
 
 	// rboard 검색 목록 구하기
-	public List<RboardVO> searchRboards(int start, int end, String[] r_skills, String r_fields, String rb_meet,
+	public List<RboardVO> searchRboards(int start, int end, String[] r_skills, String rb_category, String r_fields, String rb_meet,
 			String search_key, boolean recruiting_filter) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -385,7 +385,11 @@ public class RboardDAO {
 				r_skills_string += " OR hs_name = '"+ String.join("", r_skills) +"'";
 				conditions.add(r_skills_string);
 			}
-
+			
+			if (rb_category != "" && !rb_category.equals("2")) {
+				conditions.add("rb_category = " + rb_category);
+			}
+			
 			if (r_fields != "") {
 				conditions.add("f_name LIKE '%'||'" + r_fields + "'||'%'");
 			}

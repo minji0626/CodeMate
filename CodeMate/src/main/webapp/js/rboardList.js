@@ -16,6 +16,7 @@ async function fetchResults() {
 	debugger;
 	var searchData = {
 		r_skills: [],
+		rb_category: $('select[name="rb_category"]').val(),
 		r_fields: $('select[name="r_fields"]').val(),
 		rb_meet: $('select[name="rb_meet"]').val(),
 		search_key: $('#search_key').val(),
