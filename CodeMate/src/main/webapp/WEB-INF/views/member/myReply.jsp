@@ -42,7 +42,7 @@
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${comment.cb_type == 0}">
-                    자유게시판
+                    자유게시판이다
                 </c:if>
                 <c:if test="${comment.cb_type == 1}">
                     개발게시판

@@ -42,7 +42,7 @@
 </div>
 
 <div class="team-right">
-<div class="delete-green" data-ranum="${aprboard.ra_num}">신청 취소</div>
+<div class="delete-green" data-ranum="${aprboard.ra_num}">&nbsp&nbsp&nbsp신청 취소</div>
 <div class="team-count">모집인원:${aprboard.rb_teamsize}명</div>
 <!-- 시작일인데 진행기간 넣어봄 -->
 <div class="team-count">프로젝트 진행기간 ${aprboard.rb_period}개월</div><!-- 글자 간격 마진 주려고 클래스 복붙 -->
