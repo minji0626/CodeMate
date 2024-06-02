@@ -273,7 +273,7 @@ public class MateDAO {
 		try {
 			conn = DBUtil.getConnection();
 
-			sql = "SELECT * FROM mate_exp WHERE mem_num=? ORDER BY me_num DESC";
+			sql = "SELECT * FROM mate_exp WHERE mem_num=? ORDER BY me_num  DESC";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, mem_num);
