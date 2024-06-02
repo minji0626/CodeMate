@@ -22,6 +22,9 @@ public class GetTeamToDoListAction implements Action{
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		Integer team_num = (Integer) session.getAttribute("team_num");
 		
+		if (mem_num == null) {// 로그인 미실시
+            return "redirect:/member/loginForm.do";
+        }
 		
 		TeamToDoDAO tododao = TeamToDoDAO.getInstance();
 		List<TeamToDoVO> teamtodo = tododao.getTeamToDo(team_num);

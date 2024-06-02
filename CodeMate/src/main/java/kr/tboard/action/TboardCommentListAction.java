@@ -21,6 +21,10 @@ public class TboardCommentListAction implements Action{
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
+		if (mem_num == null) {// 로그인 미실시
+            return "redirect:/member/loginForm.do";
+        }
+		
 		int tb_num = Integer.parseInt(request.getParameter("tb_num"));
 		
 		TboardDAO tdao = TboardDAO.getInstance();

@@ -190,80 +190,27 @@ $(document).ready(function() {
 		const day = new Date(year, month, date);
 		const dayName = getKoreanDay(day.getDay());
 		eventDay.html(dayName);
-		eventDate.html(`${year}년 ${months[month]} ${date}일`);
+		eventDate.html(year + " " + months[month] + " " + date + "일");
 	}
 
 	function getKoreanDay(day) {
-		const daysOfWeek = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
-		return daysOfWeek[day];
+		switch (day) {
+			case 0:
+				return "일요일";
+			case 1:
+				return "월요일";
+			case 2:
+				return "화요일";
+			case 3:
+				return "수요일";
+			case 4:
+				return "목요일";
+			case 5:
+				return "금요일";
+			case 6:
+				return "토요일";
+		}
 	}
-
-	$(".add-event").on("click", function() {
-		$(".add-event-wrapper").toggleClass("active");
-	});
-
-	$(".close").on("click", function() {
-		$(".add-event-wrapper").removeClass("active");
-	});
-
-	$(document).on("click", function(e) {
-		if (e.target !== $(".add-event")[0] && !$.contains($(".add-event-wrapper")[0], e.target)) {
-			$(".add-event-wrapper").removeClass("active");
-		}
-	});
-
-	const team_num = sessionStorage.getItem("team_num");
-
-	$(".add-event-btn").on("click", function() {
-		const eventTitle = $(".event-name").val();
-		const eventTimeFrom = $(".event-time-from").val().trim();
-		const eventTimeTo = $(".event-time-to").val().trim();
-
-		if (eventTitle === "") {
-			alert("To-Do 내용을 작성하세요");
-			return;
-		}
-
-		const timeFrom = eventTimeFrom || " ";
-		const timeTo = eventTimeTo || " ";
-
-		if (eventTimeFrom !== "" && eventTimeTo !== "") {
-			const timeFromArr = eventTimeFrom.split(":");
-			const timeToArr = eventTimeTo.split(":");
-			if (timeFromArr.length !== 2 || timeToArr.length !== 2 ||
-				parseInt(timeFromArr[0]) < 0 || parseInt(timeFromArr[0]) > 23 ||
-				parseInt(timeFromArr[1]) < 0 || parseInt(timeFromArr[1]) > 59 ||
-				parseInt(timeToArr[0]) < 0 || parseInt(timeToArr[0]) > 23 ||
-				parseInt(timeToArr[1]) < 0 || parseInt(timeToArr[1]) > 59) {
-				alert("잘못된 시간 형식입니다.");
-				return;
-			}
-		}
-
-		$.ajax({
-			type: "post",
-			url: "AddTeam_Todo.do",
-			data: {
-				team_num: team_num,
-				tt_content: eventTitle,
-				tt_date: `${year}-${month + 1}-${activeDay}`,
-				tt_start: timeFrom,
-				tt_end: timeTo
-			},
-			success: function(param) {
-				if (param.result === "success") {
-					alert("이벤트가 추가되었습니다.");
-				} else if (param.result === "logout") {
-					alert("로그인 후 사용해주세요.");
-				} else {
-					alert("오류가 발생하였습니다.");
-				}
-			},
-			error: function() {
-				alert("네트워크 오류가 발생하였습니다.");
-			}
-		});
-	});
 
 	function updateEvents(date) {
 		$.ajax({
@@ -275,19 +222,29 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(param) {
+				console.log(param);  // 서버 응답 데이터 출력
 				let events = "";
 				const eventsArr = param.teamtodo; // 서버에서 받은 이벤트 배열
 
-				eventsArr.forEach((event) => {
+				// 해당 날짜의 이벤트만 필터링
+				const filteredEvents = eventsArr.filter(event => {
+					const eventDate = new Date(event.tt_date);
+					return eventDate.getDate() === date && 
+						eventDate.getMonth() === month && 
+						eventDate.getFullYear() === year;
+				});
+
+				filteredEvents.forEach((event) => {
+					console.log(event);  // 필터링된 이벤트 출력
 					events += `<div class="event">
 						<div class="title">
-							<h3 class="event-title">${event.title}</h3>
+							<h3 class="event-title">${event.tt_content}</h3>
 						</div>
 						<div class="event-time">
-							<span class="event-time">${event.time}</span>
+							<span class="event-time">${event.tt_start ? event.tt_start : ''} - ${event.tt_end ? event.tt_end : ''}</span>
 						</div>
 						<div class="event-buttons">
-							<button class="del-btn" data-event-id="${event.id}">삭제</button>
+							<button class="del-btn" data-event-id="${event.tt_num}">삭제</button>
 						</div>
 					</div>`;
 				});
@@ -306,6 +263,67 @@ $(document).ready(function() {
 		});
 	}
 
+	$(document).on("click", ".del-btn", function() {
+		const eventId = $(this).data("event-id");
+		// 여기에서 삭제 요청을 서버로 보낼 수 있습니다.
+		// $.ajax({...});
+		console.log(`이벤트 ID: ${eventId} 삭제 요청`);
+	});
+
+	$(document).on("click", ".add-event-btn", function() {
+    const eventTitle = addEventTitle.val();
+    const eventTimeFrom = addEventFrom.val();
+    const eventTimeTo = addEventTo.val();
+
+    if (eventTitle === "") {
+        alert("To-Do 내용을 작성하세요");
+        return;
+    }
+    
+	const team_num = sessionStorage.getItem("team_num");
+	
+    // 새로운 이벤트를 서버로 전송합니다.
+    $.ajax({
+        type: "post",
+        url: "AddTeam_Todo.do",
+        data: {
+            team_num: team_num,
+            tt_content: eventTitle,
+            tt_date: `${year}-${month + 1}-${activeDay}`,
+            tt_start: eventTimeFrom,
+            tt_end: eventTimeTo
+        },
+        success: function(param) {
+            if (param.result === "success") {
+                alert("이벤트가 추가되었습니다.");
+                // 이벤트가 성공적으로 추가되면 새로고침합니다.
+                initCalendar();
+            } else if (param.result === "logout") {
+                alert("로그인 후 사용해주세요.");
+            } else {
+                alert("오류가 발생하였습니다.");
+            }
+        },
+        error: function() {
+            alert("네트워크 오류가 발생하였습니다.");
+        }
+    });
+
+    console.log(`새로운 이벤트 추가: ${eventTitle} | ${eventTimeFrom} - ${eventTimeTo}`);
+
+    // 폼 초기화
+    addEventTitle.val("");
+    addEventFrom.val("");
+    addEventTo.val("");
+    addEventWrapper.removeClass("active");
 });
 
+	addEventBtn.on("click", () => {
+		addEventWrapper.addClass("active");
+	});
 
+	addEventCloseBtn.on("click", () => {
+		addEventWrapper.removeClass("active");
+	});
+
+});

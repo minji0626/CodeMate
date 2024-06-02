@@ -19,13 +19,13 @@ public class AddTeamToDoAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    HttpSession session = request.getSession();
 	    Integer mem_num = (Integer) session.getAttribute("mem_num");
+	    Integer team_num = (Integer) session.getAttribute("team_num");
 		Map<String, String> mapAjax = new HashMap<String, String>();
 
 		if (mem_num == null) { // 로그인하지 않은 경우
 			mapAjax.put("result", "logout");
 		} else { // 로그인 한 경우
 	        // 요청 파라미터에서 팀 투두 내용, 날짜, 시작 시간, 종료 시간, 팀 번호 가져오기
-	        Integer team_num = Integer.parseInt(request.getParameter("team_num")); // 추가된 부분
 	        String tt_content = request.getParameter("tt_content");
 	        String tt_date = request.getParameter("tt_date");
 	        String tt_start = request.getParameter("tt_start");
