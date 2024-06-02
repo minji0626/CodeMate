@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -27,40 +28,63 @@
     <h3 class="mYPage-TitleText">내가 쓴 글</h3>
 </div>
 
-<select class="styled-select">
-    <option value="option1">전체</option>
-    <option value="option2">개발</option>
-    <option value="option3">자유</option>
+<select id="filter" class="styled-select" onchange="filterList()">
+    <option value="all">전체</option>
+    <option value="dev">개발</option>
+    <option value="free">자유</option>
 </select>
-
 <c:forEach var="cboardList" items="${cboardList}">
-    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboardList.cb_num}'">
-    <div class="team-left-myWrite">
-    	<div class="cboard_name">
-        <c:if test="${cboardList.cb_type == '0'}">
-        자유게시판
-        </c:if>
-        <c:if test="${cboardList.cb_type == '1'}">
-        개발게시판
-        </c:if>
+    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboardList.cb_num}'" data-type="<c:out value="${cboardList.cb_type}"/>">
+        <div class="team-left-myWrite">
+            <div class="cboard_name">
+                <c:if test="${cboardList.cb_type == '0'}">
+                    자유게시판
+                </c:if>
+                <c:if test="${cboardList.cb_type == '1'}">
+                    개발게시판
+                </c:if>
+            </div>
+            <div class="projectName_font">${cboardList.cb_title}</div>
+            <div class="fav-reply">
+                <div class="myWrite-fav">조회수:${cboardList.cb_hit}</div>
+                <!-- 좋아요를 못 불러온다 왜지 -->
+                <div class="myWrite-reply">좋아요:${cboardList.cb_like}</div>
+            </div>
         </div>
-        <div class="projectName_font">${cboardList.cb_title}</div>
-        <div class="fav-reply">
-            <div class="myWrite-fav">조회수:${cboardList.cb_hit}</div>
-            <!-- 좋아요를 못 불러온다 왜지 -->
-            <div class="myWrite-reply">좋아요:${cboardList.cb_like}</div>
-        </div>
-    </div>
         <div class="btn_box_write">
-        <input type="button" value="수정" class="myUpdate_btn" onclick="">
-        <input type="submit" value="삭제" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn" data-cbnum="${cboardList.cb_num}">
-    </div>
+            <input type="button" value="수정" class="myUpdate_btn" onclick="">
+            <input type="submit" value="삭제" class="myDelete_btn" data-cbnum="${cboardList.cb_num}">
+        </div>
     </div>
 </c:forEach>
+
 
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
 </div><!-- page-container끝 -->
+
+<script>
+function filterList() {
+    var selectedOption = document.getElementById("filter").value;
+    var items = document.getElementsByClassName("myPage-line-box");
+
+    for (var i = 0; i < items.length; i++) {
+        var itemType = items[i].getAttribute("data-type");
+        if (selectedOption === "all" || selectedOption === "dev" && itemType === "1" || selectedOption === "free" && itemType === "0") {
+            items[i].classList.remove("hidden");
+        } else {
+            items[i].classList.add("hidden");
+        }
+    }
+}
+</script>
+
+<style>
+.hidden {
+    display: none !important;
+}
+</style>
+
 </body>
 </html>

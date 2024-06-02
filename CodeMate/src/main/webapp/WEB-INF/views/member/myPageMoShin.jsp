@@ -35,7 +35,6 @@
 
 <!-- 이미지 수정 -->
 <img src="${pageContext.request.contextPath}/upload/${member.mem_photo}" class="profile_pic_mypage" height="40" width="40"><%-- class="profile_image"다 이 명칭 사용,근데 여기는 사진이 네모여서 class명 바꿈 --%>
-<%-- <img class="profile_pic_mypage" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">  --%>
 <div class="nickname_mypage">${member.mem_nickname}</div>
 
 <div class="mo_check">
@@ -46,7 +45,7 @@
 <br>
 <div class="mypage_clob">
 <div class="shin-text">신청동기</div>
-<div class="content">${ra.ra_content}</div>
+<div class="content"></div>
 </div>
 </div>
 </div>
