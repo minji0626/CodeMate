@@ -35,12 +35,10 @@ $(document).ready(function() {
 		"9월",
 		"10월",
 		"11월",
-		"12월",
+		"12월"
 	];
 
 	const eventsArr = [];
-	getEvents();
-	console.log(eventsArr);
 
 	function initCalendar() {
 		const firstDay = new Date(year, month, 1);
@@ -133,12 +131,8 @@ $(document).ready(function() {
 				if ($(this).hasClass("prev-date")) {
 					prevMonth();
 					setTimeout(() => {
-						const days = $(".day");
-						days.each(function() {
-							if (
-								!$(this).hasClass("prev-date") &&
-								$(this).text() === e.target.innerHTML
-							) {
+						$(".day").each(function() {
+							if (!$(this).hasClass("prev-date") && $(this).text() === e.target.innerHTML) {
 								$(this).addClass("active");
 							}
 						});
@@ -146,12 +140,8 @@ $(document).ready(function() {
 				} else if ($(this).hasClass("next-date")) {
 					nextMonth();
 					setTimeout(() => {
-						const days = $(".day");
-						days.each(function() {
-							if (
-								!$(this).hasClass("next-date") &&
-								$(this).text() === e.target.innerHTML
-							) {
+						$(".day").each(function() {
+							if (!$(this).hasClass("next-date") && $(this).text() === e.target.innerHTML) {
 								$(this).addClass("active");
 							}
 						});
@@ -178,34 +168,29 @@ $(document).ready(function() {
 		if (dateInput.val().length > 7) {
 			dateInput.val(dateInput.val().slice(0, 7));
 		}
-		if (e.inputType === "deleteContentBackward") {
-			if (dateInput.val().length === 3) {
-				dateInput.val(dateInput.val().slice(0, 2));
-			}
+		if (e.inputType === "deleteContentBackward" && dateInput.val().length === 3) {
+			dateInput.val(dateInput.val().slice(0, 2));
 		}
 	});
 
 	gotoBtn.on("click", gotoDate);
 
 	function gotoDate() {
-		console.log("here");
 		const dateArr = dateInput.val().split("/");
-		if (dateArr.length === 2) {
-			if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
-				month = dateArr[0] - 1;
-				year = dateArr[1];
-				initCalendar();
-				return;
-			}
+		if (dateArr.length === 2 && dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
+			month = dateArr[0] - 1;
+			year = dateArr[1];
+			initCalendar();
+		} else {
+			alert("유효하지 않은 날짜 형식입니다.");
 		}
-		alert("유효하지 않은 날짜 형식입니다.");
 	}
 
 	function getActiveDay(date) {
 		const day = new Date(year, month, date);
 		const dayName = getKoreanDay(day.getDay());
 		eventDay.html(dayName);
-		eventDate.html(year + "년 " + months[month] + " " + date + "일");
+		eventDate.html(`${year}년 ${months[month]} ${date}일`);
 	}
 
 	function getKoreanDay(day) {
@@ -213,29 +198,20 @@ $(document).ready(function() {
 		return daysOfWeek[day];
 	}
 
-	$(document).ready(function() {
-		// Add event button click event
-		$(".add-event").on("click", function() {
-			$(".add-event-wrapper").toggleClass("active");
-		});
-
-		// Add event close button click event
-		$(".close").on("click", function() {
-			$(".add-event-wrapper").removeClass("active");
-		});
-
-		// Document click event to close add event wrapper
-		$(document).on("click", function(e) {
-			if (
-				e.target !== $(".add-event")[0] &&
-				!$.contains($(".add-event-wrapper")[0], e.target)
-			) {
-				$(".add-event-wrapper").removeClass("active");
-			}
-		});
+	$(".add-event").on("click", function() {
+		$(".add-event-wrapper").toggleClass("active");
 	});
 
-	// Add event submit button click event
+	$(".close").on("click", function() {
+		$(".add-event-wrapper").removeClass("active");
+	});
+
+	$(document).on("click", function(e) {
+		if (e.target !== $(".add-event")[0] && !$.contains($(".add-event-wrapper")[0], e.target)) {
+			$(".add-event-wrapper").removeClass("active");
+		}
+	});
+
 	const team_num = sessionStorage.getItem("team_num");
 
 	$(".add-event-btn").on("click", function() {
@@ -254,18 +230,11 @@ $(document).ready(function() {
 		if (eventTimeFrom !== "" && eventTimeTo !== "") {
 			const timeFromArr = eventTimeFrom.split(":");
 			const timeToArr = eventTimeTo.split(":");
-			if (
-				timeFromArr.length !== 2 ||
-				timeToArr.length !== 2 ||
-				parseInt(timeFromArr[0]) < 0 ||
-				parseInt(timeFromArr[0]) > 23 ||
-				parseInt(timeFromArr[1]) < 0 ||
-				parseInt(timeFromArr[1]) > 59 ||
-				parseInt(timeToArr[0]) < 0 ||
-				parseInt(timeToArr[0]) > 23 ||
-				parseInt(timeToArr[1]) < 0 ||
-				parseInt(timeToArr[1]) > 59
-			) {
+			if (timeFromArr.length !== 2 || timeToArr.length !== 2 ||
+				parseInt(timeFromArr[0]) < 0 || parseInt(timeFromArr[0]) > 23 ||
+				parseInt(timeFromArr[1]) < 0 || parseInt(timeFromArr[1]) > 59 ||
+				parseInt(timeToArr[0]) < 0 || parseInt(timeToArr[0]) > 23 ||
+				parseInt(timeToArr[1]) < 0 || parseInt(timeToArr[1]) > 59) {
 				alert("잘못된 시간 형식입니다.");
 				return;
 			}
@@ -278,14 +247,14 @@ $(document).ready(function() {
 				team_num: team_num,
 				tt_content: eventTitle,
 				tt_date: `${year}-${month + 1}-${activeDay}`,
-				tt_start: timeFrom.replace(':', ''),
-				tt_end: timeTo.replace(':', '')
+				tt_start: timeFrom,
+				tt_end: timeTo
 			},
 			success: function(param) {
-				if (param.result == "success") {
+				if (param.result === "success") {
 					alert("이벤트가 추가되었습니다.");
-				} else if (param.result == "logout") {
-					alert("로그인 후 사용해주세요.")
+				} else if (param.result === "logout") {
+					alert("로그인 후 사용해주세요.");
 				} else {
 					alert("오류가 발생하였습니다.");
 				}
@@ -296,47 +265,47 @@ $(document).ready(function() {
 		});
 	});
 
+	function updateEvents(date) {
+		$.ajax({
+			type: 'post',
+			url: 'getTeamTodoList.do',
+			data: {
+				team_num: sessionStorage.getItem("team_num"),
+				tt_date: `${year}-${month + 1}-${date}`
+			},
+			dataType: 'json',
+			success: function(param) {
+				let events = "";
+				const eventsArr = param.teamtodo; // 서버에서 받은 이벤트 배열
 
+				eventsArr.forEach((event) => {
+					events += `<div class="event">
+						<div class="title">
+							<h3 class="event-title">${event.title}</h3>
+						</div>
+						<div class="event-time">
+							<span class="event-time">${event.time}</span>
+						</div>
+						<div class="event-buttons">
+							<button class="del-btn" data-event-id="${event.id}">삭제</button>
+						</div>
+					</div>`;
+				});
 
-function updateEvents(date) {
-  let events = "";
-  eventsArr.forEach((event) => {
-    if (
-      date === event.day &&
-      month + 1 === event.month &&
-      year === event.year
-    ) {
-		event.events.forEach((event) => {
-			events += `<div class="event">
-        <div class="title">
-          <h3 class="event-title">${event.title}</h3>
-        </div>
-        <div class="event-time">
-          <span class="event-time">${event.time}</span>
-        </div>
-        <div class="event-buttons">
-          <button class="del-btn">삭제</button>
-        </div>
-    </div>`;
+				if (events === "") {
+					events = `<div class="no-event">
+						<h3>예정된 이벤트 없음</h3>
+					</div>`;
+				}
+
+				eventsContainer.html(events); // 이벤트 컨테이너 업데이트
+			},
+			error: function() {
+				alert("이벤트를 불러오는 데 실패했습니다.");
+			}
 		});
-    }
-  });
-  if (events === "") {
-    events = `<div class="no-event">
-            <h3>예정된 이벤트 없음</h3>
-        </div>`;
-  }
-  eventsContainer.innerHTML = events;
-  saveEvents();
-}
-		
-
-	function saveEvents() {
 	}
-
-	function getEvents() {
-
-	}
-
 
 });
+
+

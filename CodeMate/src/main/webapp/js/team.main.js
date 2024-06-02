@@ -38,8 +38,6 @@ const months = [
 ];
 
 const eventsArr = [];
-getEvents();
-console.log(eventsArr);
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
@@ -210,6 +208,14 @@ function gotoDate() {
   }
   alert("Invalid Date");
 }
+$(".add-event").on("click", function() {
+			$(".add-event-wrapper").toggleClass("active");
+		});
+
+		// Add event close button click event
+		$(".close").on("click", function() {
+			$(".add-event-wrapper").removeClass("active");
+		});
 
 //function get active day day name and date and update eventday eventdate
 function getActiveDay(date) {
@@ -256,7 +262,6 @@ function updateEvents(date) {
         </div>`;
   }
   eventsContainer.innerHTML = events;
-  saveEvents();
 }
 
 
@@ -402,7 +407,6 @@ eventsContainer.addEventListener("click", (e) => {
 			eventTime.style.textDecoration = "none";
 		}
 
-		saveEvents(); // 변경된 이벤트 저장
 	}
 	// 이벤트 삭제 기능 추가
 	const delBtn = e.target.closest(".del-btn"); // 삭제 버튼을 클릭했는지 확인
@@ -434,24 +438,10 @@ eventsContainer.addEventListener("click", (e) => {
 
 			// 변경된 이벤트를 UI에 반영하고 저장
 			updateEvents(activeDay);
-			saveEvents();
 		}
 	}
 });
 
-//function to save events in local storage
-function saveEvents() {
-  localStorage.setItem("events", JSON.stringify(eventsArr));
-}
-
-//function to get events from local storage
-function getEvents() {
-  //check if events are already saved in local storage then return event else nothing
-  if (localStorage.getItem("events") === null) {
-    return;
-  }
-  eventsArr.push(...JSON.parse(localStorage.getItem("events")));
-}
 
 function convertTime(time) {
   //convert time to 24 hour format
