@@ -160,21 +160,34 @@ button {
     opacity: 0.8;
 }
 
-/* Pagination styling */
-.pagination {
-    margin-top: 20px;
-    text-align: center;
+
+/* 처리하기, 처리 취소 버튼 스타일 */
+#confirm_cs {
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px; 
+    margin-top: 10px; 
+    transition: transform 0.3s;
 }
 
-.pagination a {
-    color: #007bff;
-    text-decoration: none;
-    padding: 8px 16px;
-    border: 1px solid #ddd;
-    margin: 0 2px;
-    border-radius: 4px;
+#unconfirm_cs {
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    background-color: #FF4500;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px; 
+    margin-top: 10px;
+    transition: transform 0.3s; 
 }
 
-.pagination a:hover {
-    background-color: #ddd;
-}
+/* 처리하기, 처리 취소 버튼에 호버 효과 */
+#confirm_cs:hover, #unconfirm_cs:hover {
+	opacity: 0.8;
+	}
+

@@ -33,7 +33,7 @@
 			<div class="float-B">
 				<div class="align-center">
 					<form id="manage_members_form" name="manage_members_form">
-						<h3 class="admin-TitleText">1:1문의</h3>
+						<h3 class="admin-TitleText">1:1 문의</h3>
 						<ul class="search">
 							<li><select name="keyfield">
 									<option value="1"
