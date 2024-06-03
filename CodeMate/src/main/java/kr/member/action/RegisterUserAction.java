@@ -20,7 +20,7 @@ public class RegisterUserAction implements Action{
 		 member.setMem_passwd(request.getParameter("passwd"));
 		 member.setMem_phone(request.getParameter("phone"));
 		 member.setMem_email(request.getParameter("email"));
-		 member.setMem_nickname(request.getParameter("nickname"));
+		 member.setMem_nickname(request.getParameter("mem_nickname"));
 		
 		 
 		 MemberDAO dao = MemberDAO.getInstance();

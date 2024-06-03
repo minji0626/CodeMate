@@ -53,12 +53,9 @@ body {
 .input-check {
     width: 100%;
     height: 30px; 
-    padding: 5px; 
     border: 1px solid #ccc;
     border-radius: 5px;
-    display: block;
-    margin-top: 5px;
-}
+	}
 
 .info label {
     display: block;
@@ -97,4 +94,10 @@ body {
 
 #reg_btn:hover, #cancel_btn:hover {
     opacity: 1.0;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }
