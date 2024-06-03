@@ -132,7 +132,7 @@ public class MemberDAO {
 				conn =DBUtil.getConnection(); 
 				//SQL문 작성
 				sql = "SELECT * FROM member LEFT OUTER JOIN " +
-						"member_detail USING(mem_num) WHERE mem_email = ?"; 
+						"member_detail USING(mem_num) WHERE mem_email=?"; 
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
@@ -171,7 +171,7 @@ public class MemberDAO {
 				conn =DBUtil.getConnection(); 
 				//SQL문 작성
 				sql = "SELECT * FROM member LEFT OUTER JOIN " +
-						"member_detail USING(mem_num) WHERE mem_phone = ?"; 
+						"member_detail USING(mem_num) WHERE mem_phone=?"; 
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
@@ -197,7 +197,7 @@ public class MemberDAO {
 			return member; 
 
 		}
-		//아이디 찾기
+		//아이디 찾기 - 아이디 여부 확인
 		public MemberVO findId(String phone,String email)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -208,7 +208,7 @@ public class MemberDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "SELECT * FROM member JOIN member_detail USING(mem_num) WHERE mem_email=? AND mem_phone=?";
+				sql = "SELECT * FROM member LEFT OUTER JOIN member_detail USING(mem_num) WHERE mem_email=? AND mem_phone=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩

@@ -24,6 +24,7 @@
 			</div>
 				<div>
 					회원님의 아이디는 <b>[<%request.getAttribute("id"); %>]</b> 입니다.
+					
 				</div>
 </div>
 </div>
