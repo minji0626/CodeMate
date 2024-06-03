@@ -1,29 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 
-    <!-- «¡∑Œ¡ß∆Æ Ω≈√ª«œ±‚ -->
+    <!-- ÌîÑÎ°úÏ†ùÌä∏ Ïã†Ï≤≠ÌïòÍ∏∞ -->
     <div id="r_apply">
         <div class="r_apply_window">
-            <!-- «¡∑Œ«  ¡¶∏Ò -->
+            <!-- ÌîÑÎ°úÌïÑ Ï†úÎ™© -->
             <div class="r_apply_title">
-                <h2>Ω≈√ª«œ±‚</h2>
-                <!-- √¢ ¥›±‚ -->
+                <h2>Ïã†Ï≤≠ÌïòÍ∏∞</h2>
+                <!-- Ï∞Ω Îã´Í∏∞ -->
                 <div class="r_apply_close">X</div>
             </div>
-            <!-- ∫ªπÆ -->
+            <!-- Î≥∏Î¨∏ -->
             <div class="content">
-                <!-- Ω≈√ª«œ±‚ DIV -->
+                <!-- Ïã†Ï≤≠ÌïòÍ∏∞ DIV -->
                 <div class="ra_content_div">
-                    <h4>«¡∑Œ¡ß∆Æ Ω≈√ª«œ±‚</h4>
+                    <h4>ÌîÑÎ°úÏ†ùÌä∏ Ïã†Ï≤≠ÌïòÍ∏∞</h4>
                     <form id="ra_form" action="apply.do" method="post">
                     	<input type="hidden" name="rb_num" value="${rboard.rb_num}">
                     	<input type="hidden" name="rb_title" value="${rboard.rb_title}">
                         <textarea id="ra_content" name="ra_content"></textarea>
-                        <!-- πˆ∆∞ -->
+                        <!-- Î≤ÑÌäº -->
 		                <div class="btn-div">
-		                    <input type="submit" id="apply_btn" value="Ω≈√ª" class="btn" >
+		                    <input type="submit" id="apply_btn" value="Ïã†Ï≤≠" class="btn" >
 		                    <div class="r_apply_close btn" id="close_btn">
-		                        <span>√Îº“</span>
+		                        <span>Ï∑®ÏÜå</span>
 		                    </div>
 		                </div>
                     </form>
@@ -59,12 +59,12 @@
             modalOn();
         });
 
-        // √π π¯¬∞ ¥›±‚ πˆ∆∞
+        // Ï≤´ Î≤àÏß∏ Îã´Í∏∞ Î≤ÑÌäº
         document.querySelector(".r_apply_close").addEventListener("click", e => {
             modalOff();
         });
 
-        // ∏∂¡ˆ∏∑ ¥›±‚ πˆ∆∞ø° ¥Î«— ¿Ã∫•∆Æ ∏ÆΩ∫≥  √ﬂ∞°
+        // ÎßàÏßÄÎßâ Îã´Í∏∞ Î≤ÑÌäºÏóê ÎåÄÌïú Ïù¥Î≤§Ìä∏ Î¶¨Ïä§ÎÑà Ï∂îÍ∞Ä
         document.getElementById("close_btn").addEventListener("click", e => {
             modalOff();
         });
