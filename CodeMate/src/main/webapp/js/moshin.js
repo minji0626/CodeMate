@@ -16,11 +16,14 @@ $(function() {
                     alert('이미 합격한 사용자입니다.');
                 } else if(param.result=='last') {
 					const msg = confirm("마지막 합격자입니다. 합격 시 팀이 생성됩니다. 합격시키겠습니까?");
+					
 					if(msg){
 						location.href='lastPassCodeMate.do?' + form_data;
 					} else {
 						location.href='myPageMoShin.do?rb_num='+rb_num;
 					}
+				} else if(param.result=='max'){
+					alert('최대 초과입니다');
 				} else if (param.result == 'success') {
                     alert('합격시켰습니다');
                     location.reload();
@@ -52,7 +55,9 @@ $(function() {
                     alert('로그인 후 사용하세요!');
                 } else  if(param.result=='already'){
                     alert('이미 불합격한 사용자입니다.');
-                } else if (param.result === 'success') {
+                } else if(param.result=='no'){
+					alert('이미 활성화된 프로젝트입니다.');
+				} else if (param.result === 'success') {
                     alert('불합격시켰습니다');
                     location.reload();
                 } else {
