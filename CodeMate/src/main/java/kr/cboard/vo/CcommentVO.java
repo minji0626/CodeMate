@@ -12,7 +12,7 @@ public class CcommentVO {
 	private String mem_photo;
 	private String mem_nickname;
 	
-
+	
 	private int cb_type;
 	private String cb_title;
 
