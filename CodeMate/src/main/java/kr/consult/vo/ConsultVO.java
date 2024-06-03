@@ -5,13 +5,21 @@ import java.sql.Date;
 public class ConsultVO {
 	private int cs_num;
 	private int mem_num;
+	private String mem_id;
 	private String cs_title;
 	private String cs_content;
 	private Date cs_reg_date;
 	private Date cs_confirmed_date;
 	private int cs_confirmed;
 	private int cs_category;
+
 	
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
 	public int getCs_num() {
 		return cs_num;
 	}

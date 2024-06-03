@@ -1,10 +1,10 @@
 $(window).on('pageshow', function(event) {
-	if (event.originalEvent.persisted) {
-		// 페이지가 캐시에서 불러와졌을 때 실행할 코드
-		updateSkillTags();
-		fetchResults();
-		console.log($('#search_key').val());
-	}
+	
+	//초기화
+    $('.scrollable input[type="checkbox"]').trigger('change');
+    $('.search-menu').trigger('change');
+    $('span.search-menu').trigger('click');
+	
 });
 
 function getContextPath() {

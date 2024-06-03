@@ -26,6 +26,7 @@ $(document).ready(function() {
 		});
 	});
 
+	//관리자/일반회원 변경 버튼 이벤트 연결
 	$('.changeAuthBtn').each(function() {
 		$(this).on('click', function() {
 			var mem_num = $(this).data('memnum'); // 버튼에 저장된 회원 ID 가져오기
