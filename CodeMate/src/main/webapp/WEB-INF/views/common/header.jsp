@@ -43,7 +43,7 @@
 				<!-- end of div menu-header -->
 			</c:if>
 			
-			<c:if test="${!empty mem_num && empty mem_photo}">
+			<c:if test="${!empty mem_num && empty mem_photo && mem_auth != 9}">
 					<div class="login_profile">
 					<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40"> <span>${mem_id}</span>
 					<button id="header_more">
