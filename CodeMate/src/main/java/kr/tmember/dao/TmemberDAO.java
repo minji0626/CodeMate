@@ -92,6 +92,28 @@ public class TmemberDAO {
 		}
 		return list;
 	}
+	
+	// 팀장 위임하기
+	public void modifyTeamLeader (int team_num, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE team_member SET tm_auth = 4 WHERE team_num = ? AND mem_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, team_num);
+			pstmt.setInt(2, mem_num);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+
+	}
 
 
 
