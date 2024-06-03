@@ -49,8 +49,15 @@ public class PassCodeMateAction implements Action{
 				if(checking) {
 					 mapAjax.put("result", "last");
 				} else {
-					dao.passMember(ra_num);
-					mapAjax.put("result", "success");
+					checking = dao.passAndSize(rb_num, (passCount));
+					if(checking) {
+						mapAjax.put("result", "max");
+					} else {
+						dao.passMember(ra_num);
+						mapAjax.put("result", "success");
+					}
+					
+					
 				}
 			}
 		}

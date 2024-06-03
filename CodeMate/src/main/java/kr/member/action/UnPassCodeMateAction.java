@@ -43,8 +43,17 @@ public class UnPassCodeMateAction implements Action{
 			if(check==0) {
 				mapAjax.put("result", "already");
 			} else {
-				dao.unPassMember(ra_num);
-				mapAjax.put("result", "success");
+				// 현재 합격자 수
+				int passCount = dao.howManyPass(rb_num);
+				System.out.println(passCount);
+				boolean checking = dao.passAndSize(rb_num, passCount);
+				if(checking) {
+					mapAjax.put("result", "no");
+				} else {
+					dao.unPassMember(ra_num);
+					mapAjax.put("result", "success");
+				}
+				
 			}
 		}
 		

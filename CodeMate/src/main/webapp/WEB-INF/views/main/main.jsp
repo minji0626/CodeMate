@@ -13,7 +13,7 @@
 	href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
 	
 </head>
-<body>
+<body id="modal_background">
 	<div class="page-container">
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -21,5 +21,6 @@
 			<jsp:include page="/WEB-INF/views/main/Hot.jsp" />
 		</div>
 	</div>
+<jsp:include page="/WEB-INF/views/common/consult.jsp" />
 </body>
 </html>

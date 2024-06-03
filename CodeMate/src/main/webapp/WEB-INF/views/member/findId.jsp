@@ -12,8 +12,21 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-<div>
-회원님의 아이디는 ${id} 입니다.
+<div class="page-container">
+<div class="page-main">
+			<!-- 헤더 -->
+			<div id="login_logo">
+				<a href="${pageContext.request.contextPath}/main/main.do"
+					class="logo"> <img id="logo_pic_login"
+					src="${pageContext.request.contextPath}/images/로고1.png" height="80"
+					width="80"> CODEMATE
+				</a>
+			</div>
+				<div>
+					회원님의 아이디는 <b>[<%request.getAttribute("id"); %>]</b> 입니다.
+					
+				</div>
+</div>
 </div>
 </body>
 </html>

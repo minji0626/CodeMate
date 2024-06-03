@@ -56,7 +56,7 @@ let phoneChecked = 0;
 		$.ajax({
 			url:'checkDuplicatedEmail.do',
 			type:'post',
-			data:{id:$('#email').val()},
+			data:{email:$('#email').val()},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'emailNotFound'){
@@ -89,7 +89,7 @@ let phoneChecked = 0;
 		$.ajax({
 			url:'checkDuplicatedPhone.do',
 			type:'post',
-			data:{id:$('#phone').val()},
+			data:{phone:$('#phone').val()},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'phoneNotFound'){
