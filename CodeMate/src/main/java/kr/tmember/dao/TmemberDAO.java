@@ -93,27 +93,40 @@ public class TmemberDAO {
 		return list;
 	}
 	
-	// 팀장 위임하기
-	public void modifyTeamLeader (int team_num, int mem_num) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			sql = "UPDATE team_member SET tm_auth = 4 WHERE team_num = ? AND mem_num = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, team_num);
-			pstmt.setInt(2, mem_num);
-			
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
-
+	// 팀장 위임 및 팀원으로 변경하기
+	public void modifyTeamLeaderAndChangeMember(int team_num, int current_leader_num, int new_leader_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    String sql = null;
+	    
+	    try {
+	        conn = DBUtil.getConnection();
+	        conn.setAutoCommit(false); // 트랜잭션 시작
+	        
+	        // 팀원으로 변경 쿼리
+	        sql = "UPDATE team_member SET tm_auth = 3 WHERE team_num = ? AND mem_num = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, team_num);
+	        pstmt.setInt(2, current_leader_num); // 기존 팀장 회원 번호
+	        pstmt.executeUpdate();
+	        pstmt.close();
+	        
+	        // 팀장 위임 쿼리
+	        sql = "UPDATE team_member SET tm_auth = 4 WHERE team_num = ? AND mem_num = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, team_num);
+	        pstmt.setInt(2, new_leader_num); // 새로운 팀장 회원 번호
+	        pstmt.executeUpdate();
+	        
+	        conn.commit(); // 트랜잭션 커밋
+	    } catch (Exception e) {
+	        conn.rollback(); // 에러 발생 시 롤백
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(null, pstmt, conn);
+	    }
 	}
+
 
 
 
