@@ -3,10 +3,7 @@
 <style>
 /* 사이드 시작============*/
 .float-A{
- 	/* margin:8px; */
- 	margin-top:40px;
-	width:30%;
-	height:600px;
+	width:15%;
 }
 .myCount a {
     display: block; /* 줄바꿈 효과를 위해 블록 요소로 설정 */
@@ -26,10 +23,6 @@
 }
 /*사이드 끝================*/
 
-.float-A {
-    width: 250px;
-    margin-right: 20px;
-}
 .myCount {
     background-color: #fff;
     border-radius: 5px;

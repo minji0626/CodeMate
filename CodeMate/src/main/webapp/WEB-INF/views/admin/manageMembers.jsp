@@ -6,20 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 관리</title>
-<link href="${pageContext.request.contextPath}/images/로고1.png"
-	rel="shortcut icon" type="image/x-icon">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/manageMembers.css"
-	type="text/css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/manageMembers.js"></script>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageMembers.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/manageMembers.js"></script>
 </head>
 <body>
 	<!-- 헤더 링크-->
@@ -43,7 +35,7 @@
 									<option value="3"
 										<c:if test="${param.keyfield == 3}">selected</c:if>>회원번호</option>
 							</select></li>
-							<li><input type="search" size="16" name="keyword"
+							<li><input type="search" size="30" name="keyword"
 								id="keyword" value="${param.keyword}"></li>
 							<li><input type="submit" value="검색"></li>
 						</ul>
@@ -90,13 +82,13 @@
 										<td><c:if test="${member.mem_auth != 9 && member.mem_auth != 0}"><button class="deleteMemberBtn" data-memnum="${member.mem_num}">탈퇴</button></c:if></td>
 										<td>
 											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
-											<select name="changeAuthToAdmin">
+											<select name="changeAuthToAdmin"  class="auth-select">
 												<option value="2" <c:if test="${member.mem_auth != 9}">selected</c:if>>일반</option>
 												<option value="9" <c:if test="${member.mem_auth == 9}">selected</c:if>>관리자</option>
 											</select>
 											</c:if>
 											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
-											<button class="changeAuthBtn" data-memnum="${member.mem_num}" data-memauth="${member.mem_auth}">등급변경</button>
+											<button class="changeAuthBtn" data-memnum="${member.mem_num}" data-memauth="${member.mem_auth}">등급 변경</button>
 											</c:if>
 										</td>
 									</tr>
