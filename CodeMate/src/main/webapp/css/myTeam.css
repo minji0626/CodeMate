@@ -70,9 +70,10 @@ myPageMoshin.jsp
     border-radius: 15px;
     border: 1px solid #8f8f8f;
     margin-bottom: 10px;
-    width: 900px;
-    
+    width: 800px;
+    margin: 0 auto;
     box-sizing: border-box;
+    margin-bottom: 20px;
 }
 .content {
 	width:850px;
@@ -81,7 +82,10 @@ myPageMoshin.jsp
     white-space: pre-wrap; /* 공백을 유지하고 줄 바꿈 허용 */
     overflow-wrap: break-word; /* 긴 단어를 다음 줄로 이동 */
     margin-bottom: 20px;
-	
+}
+.mypage_clob{
+	margin-top: 40px;
+	margin-right: 20px;
 }
 /* .content{
 	width:700px;
@@ -102,10 +106,7 @@ myPageMoshin.jsp
 	margin-top: 8px;
 	font-weight: bold;
 }
-.mypage_clob{
-	margin-top: 40px;
-	
-}
+
 .shin-text{
 	font-size: 15px;
 	font-weight: bold;
