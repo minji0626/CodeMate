@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>참여중인 팀</title>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
@@ -28,7 +29,7 @@
 </div>
 
 <c:if test="${empty team}">
-    참가 중인 팀 없음
+<div class="MT">참가 중인 팀이 없습니다</div>
 </c:if>
 <c:if test="${!empty team}">
     <c:forEach var="myteam" items="${team}">
@@ -46,7 +47,8 @@
         <div class="team-right">
         <div class="delete-green-box">
         </div>
-        <div>프로젝트 마감일:</div>
+        <div class="team-count">프로젝트 시작일:${myteam.rb_start}</div>
+        <div>프로젝트 진행기간:${myteam.rb_period}개월</div>
         </div>
         </div>
     </c:forEach>

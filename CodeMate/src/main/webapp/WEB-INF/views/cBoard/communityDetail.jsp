@@ -17,9 +17,14 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     
-    <title>글상세</title>  
+    <title>글상세</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 </head>
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/cboardComment.js"></script>
+<script src="${pageContext.request.contextPath}/js/cboard.js"></script>    
 <body>
+
 		<div class="page-container">
 			<div class="page-main">
 				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -29,16 +34,22 @@
 		        <div class="container_board">
 		        	<!-- 게시판 분류 -->
 		       		<div class="board_category">
-		       			<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
+		       			<c:if test="${board.cb_type==0}">	
+		       				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
+						</c:if>
+						<c:if test="${board.cb_type==1}">	
+		       				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
+						</c:if>	
+
 		       		</div>
 		       		<!-- 제목 -->	
-		       		<h2>자유 게시판</h2>
+		       		<h2>${board.cb_title}</h2>
 		       		<!-- 작성자 및 정보 -->
 		       		<div class="board_info">
-						<c:if test="${!empty mem_photo}">
-							<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40">
+						<c:if test="${!empty board.mem_photo}">
+							<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${board.mem_photo}" height="40" width="40">
 						</c:if>
-						<c:if test="${!empty mem_num && empty mem_photo}">
+						<c:if test="${empty board.mem_photo}">
 							<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">
 						</c:if>
 		       			<span> ${board.mem_nickname}</span>
@@ -64,62 +75,60 @@
 		       		</div>
 		       		<!-- 좋아요 -->
 		       		<div class="board_like">
-		       			<img src="${pageContext.request.contextPath}/images/cje/boardLikeIcon.png" height="25" width="25">
-		       			<span>${board.cb_like}</span>
+		       			<img src="${pageContext.request.contextPath}/images/cje/noLike.png" height="25" width="25" id="like" data-num="${board.cb_num}">
+
+		       			
+		       			<span id="output_fcount"></span>
 		       		</div>
 		   		</div>
 		   		<div class="list-actions">    
-		   			<c:if test="${!empty board.cb_modify_date }">
+		   			<c:if test="${!empty board.cb_modify_date}">
         					최근 수정일 : ${board.cb_modify_date}
         			</c:if>
-				    <button class="btn btn-primary list-action" onclick="location.href='.do'">수정</button>
-				    <button class="btn btn-secondary list-action" onclick="location.href='community.do'">목록</button>
+				    <button class="btn btn-primary list-action" onclick="location.href='modifyCommunityForm.do?cb_num=${board.cb_num}'">수정</button>
+				    <button id="delete_btn" class="btn btn-primary list-action">삭제</button>
+						<script type="text/javascript">
+							const delete_btn = document.getElementById('delete_btn');
+							delete_btn.onclick = function(){
+								let choice = confirm('해당 글을 삭제하시겠습니까?');
+								if(choice){
+									location.replace('delete.do?cb_num=${board.cb_num}');
+								}
+							}
+						</script>
+				    <button class="btn btn-secondary list-action" onclick="location.href='community.do?cb_type=${board.cb_type}'">목록</button>
 				    
 				</div>
 		   		 
-		   		 <!-- 댓글 목록 -->
-		   		 <div class="container_reList">
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>전 갈비찜 먹을라고요</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
-		   		 	</div>
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>김치찜이 최곤디</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
-			   		 </div>
-		   		 </div>
-		   		 
+		   		<div class="cnt-container">댓글 <span id="comments-cnt">0</span></div> 
+		   		 <hr class="centered-hr">
+		   		
 		        <!-- 댓글 시작 -->
-		        <div class="container_re">
-			        <div id="reply_div">
-			        	<form id="re_form">
-			        		<input type="hidden" name="cb_num" value="${cboard.cb_num}" id="cb_num">
-			        		<div class="form-group">
-				                <textarea rows="3" cols="100" name="cb_content" id="cb_content" class="form-control"></textarea>
-				                <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='.do'">
-				            </div>
-			        		
-			        	</form>
-			        </div>
-		        </div>
-		   		 </div>
-		   	</div>
+		        
+				<div class="container_reList">
+				</div>
+				
+		        <%-- 댓글 섹션 --%>
+			<div class="container_re">
+				<h4>
+					댓글 <span id="comments-cnt">0</span>
+				</h4>
+				<%-- 새 댓글창 --%>
+				<div id="container_re">
+					<form id="comment_form">
+						<input type="hidden" id="cb_num" name="cb_num" value="${board.cb_num}" >
+						<div class="form-group">
+							<textarea name="cc_content" id="cc_content" placeholder="댓글을 입력하세요." rows="3" cols="78" class="form-control"></textarea>
+							<input type="submit" value="등록" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				
+			</div>
+			
+	</div>
+</div>
+			
 	      
 </body>
 </html>

@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#flex_container {
+    display: flex;
+}
+
+#flex_container .float-B {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수평 중앙 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    width: 80%;
+    margin-top: 35px;
+}
+
+.align-center {
+    width: 100%; /* 중앙 정렬을 위한 전체 너비 설정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-TitleText {
+    text-align: center; /* 제목 중앙 정렬 */
+}
+
+.search {
+    display: flex;
+    justify-content: center; /* 검색창 중앙 정렬 */
+    margin-bottom: 20px; /* 검색창 하단 여백 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* 테이블 하단 여백 */
+}
+
+th, td {
+    padding: 8px;
+    text-align: left; /* 기본 왼쪽 정렬 */
+}
+

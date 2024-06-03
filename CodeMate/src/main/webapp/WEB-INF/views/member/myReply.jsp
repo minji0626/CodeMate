@@ -1,23 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>내가 쓴 댓글</title>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    // '삭제' 버튼 클릭 이벤트
-    $('#myDelete_btn').click(function(event) {
-        event.preventDefault(); // 기본 동작 방지 (예: 폼 제출)
-        $(this).closest('.box_reply').remove(); // 부모 요소인 .box_reply 삭제
-    });
-});
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/myPageApplyCboardDelete.js"></script>
+
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -32,18 +30,69 @@ $(document).ready(function() {
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
     <h3 class="mYPage-TitleText">내가 쓴 댓글</h3>
 </div>
-<div class="box_reply">
-<div class="write_reply">
-내가 쓴 글 내가 쓴 글 내가 쓴 내가 쓴 글 내가 쓴 내가 쓴 글 내가 쓴
-</div>
-<div class="btn_box">
-    <input type="submit" value="수정" class="myUpdate_btn" onclick="location.href=''">
-    <input type="submit" value="취소" id="myDelete_btn" name="myDelete_btn" class="myDelete_btn">
-</div>
-</div>
+
+<select id="filter" class="styled-select" onchange="filterList()">
+    <option value="all">전체</option>
+    <option value="dev">개발</option>
+    <option value="free">자유</option>
+</select>
+
+
+<c:if test="${empty commentList}">
+<div class="MR">나의 작성 댓글이 없습니다</div>
+</c:if>
+<c:if test="${!empty commentList}">
+<c:forEach var="comment" items="${commentList}">
+    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${comment.cb_num}'" data-type="<c:out value="${comment.cb_type}"/>">
+        <div class="team-left-myWrite">
+            <div class="cboard_name">
+                <c:if test="${comment.cb_type == 0}">
+                    자유게시판이다
+                </c:if>
+                <c:if test="${comment.cb_type == 1}">
+                    개발게시판
+                </c:if>
+            </div>
+            <div class="projectName_font">${comment.cc_content}</div>
+            <div class="fav-reply">
+                <div class="myApply-write">게시글:${comment.cb_title}</div>
+            </div>
+        </div>
+        <div class="btn_box_write">
+            <input type="button" value="수정" class="myUpdate_btn" onclick="">
+            <input type="submit" value="삭제" class="myDelete_btn" data-ccnum="${comment.cc_num}">
+        </div>
+    </div>
+</c:forEach>
+</c:if>
+
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
 </div><!-- page-container끝 -->
+
+<script>
+function filterList() {
+    var selectedOption = document.getElementById("filter").value;
+    var items = document.getElementsByClassName("myPage-line-box");
+
+    for (var i = 0; i < items.length; i++) {
+        var itemType = items[i].getAttribute("data-type");
+        if (selectedOption === "all" || (selectedOption === "dev" && itemType === "1") || (selectedOption === "free" && itemType === "0")) {
+            items[i].classList.remove("hidden");
+        } else {
+            items[i].classList.add("hidden");
+        }
+    }
+}
+</script>
+
+<style>
+.hidden {
+    display: none !important;
+}
+</style>
+
 </body>
 </html>

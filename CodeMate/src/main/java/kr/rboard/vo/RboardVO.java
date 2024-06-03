@@ -30,8 +30,13 @@ public class RboardVO {
 	private String[] hs_photo_arr;
 	private String[] f_name_arr;
 	
+	//댓글에서 띄울 프로필
 	private String mem_nickname;
 	private String mem_photo;
+	
+	//신청내역에서 띄울 ra_num
+	private int ra_num;
+	
 	
 	public int getRb_num() {
 		return rb_num;
@@ -159,6 +164,13 @@ public class RboardVO {
 	}
 	public void setRb_apply_count(int rb_apply_count) {
 		this.rb_apply_count = rb_apply_count;
+	}
+	
+	public int getRa_num() {
+		return ra_num;
+	}
+	public void setRa_num(int ra_num) {
+		this.ra_num = ra_num;
 	}
 	
 }

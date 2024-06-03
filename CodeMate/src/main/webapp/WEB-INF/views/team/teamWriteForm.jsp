@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board_write.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<title>팀 게시판 작성 Test</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<title>CODEMATE Team Project</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <script type="text/javascript">
 window.onload = function(){
     const myForm = document.getElementById('write_form');
@@ -44,6 +47,12 @@ window.onload = function(){
   <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
+    	 <c:if test="${team_num != param.team_num}">
+    		  <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
+    			잘못된 접근입니다.
+    			</div>
+    			</c:if>
+    
     <div class="container_write">
         <form action="tboardWrite.do" id="write_form" method="post" enctype="multipart/form-data">
         	<div class="form-group">

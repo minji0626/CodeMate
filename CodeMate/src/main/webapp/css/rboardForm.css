@@ -32,7 +32,12 @@
 	cursor: pointer;
 }
 
+#scroll_container_sub {
+	position: relative;
+}
+
 .scrollable {
+	position: absolute;
 	max-height: 300px; /* 원하는 높이로 설정 */
 	width: 500px;
 	overflow-y: auto; /* 세로 스크롤 활성화 */
@@ -41,6 +46,7 @@
 	margin-top: 4px;
 	border-radius: 10px;
 	box-sizing: border-box; /* 패딩과 보더를 포함하도록 설정 */
+	background: white;
 }
 
 .scrollable li {
@@ -104,7 +110,7 @@
 }
 
 /*input 필드*/
-#teammate_recruit_form #project_info input, #teammate_recruit_form #project_info select
+#rboard_form #project_info input, #rboard_form #project_info select
 	{
 	height: 28px;
 	border: 1px solid var(--gray-4);
@@ -112,7 +118,7 @@
 	padding: 2px 4px;
 }
 
-#teammate_recruit_form #project_detail input, #teammate_recruit_form #project_detail textarea
+#rboard_form #project_detail input, #rboard_form #project_detail textarea
 	{
 	width: 100%;
 	margin: 10px 0;
@@ -121,11 +127,11 @@
 	border-radius: 6px;
 }
 
-#teammate_recruit_form #project_detail input {
+#rboard_form #project_detail input {
 	height: 30px;
 }
 
-#teammate_recruit_form #project_detail textarea {
+#rboard_form #project_detail textarea {
 	height: 800px;
 	resize: none;
 	padding: 10px;

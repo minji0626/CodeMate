@@ -5,17 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글상세</title>  
+<title>CODEMATE Team Project</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board_detail.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/tboardComment.js"></script>
 </head>
 <body> 
 	<div class="page-container">
    			 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
    			 <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
+   			 
+   			  <c:if test="${team_num != param.team_num}">
+    		  <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
+    			잘못된 접근입니다.
+    			</div>
+    			</c:if>
+    
    			 
 				<div class="board_container">
 		        <!-- 게시글 상세 부분 -->
@@ -73,48 +82,29 @@
 				</div>
 				
 		   		 
-		   		 <!-- 댓글 목록 -->
-		   		 <div class="container_reList">
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>전 갈비찜 먹을라고요</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
-		   		 	</div>
-		   		 	<div class="reList">
-			   		 	<div class="re_writer">
-			   		 		<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png"height="25" width="25"> 
-			       			<span> 닉네임</span>
-			   		 	</div>
-			   		 	<div class="re_content">
-			   		 		<p>김치찜이 최곤디</p>
-			   		 	</div>
-			   		 	<div class="delete_button">
-			   		 		<button class="btn btn-default" onclick="location.href='.do'">삭제</button>
-			   		 	</div>
-			   		 </div>
-		   		 </div>
-		   		 
-		        <!-- 댓글 시작 -->
-		        <div class="container_re">
-			        <div id="reply_div">
-			        	<form id="re_form">
-			        		<input type="hidden" name="cb_num" value="${tboard.tb_num}" id="cb_num">
-			        		<div class="form-group">
-				                <textarea rows="3" cols="100" name="cb_content" id="cb_content" class="form-control"></textarea>
-				                <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='.do'">
-				            </div>
-			        		
-			        	</form>
-			        </div>
-		        </div>
-		   		 </div>
-		   	</div>
+		   		<!-- 댓글 시작 -->
+		        <%-- 댓글 목록 --%>
+				<div class="container_reList">
+				
+				</div>
+				
+		        <%-- 댓글 섹션 --%>
+				<div class="container_re">
+				<%-- 새 댓글창 --%>
+				<div id="container_re">
+					<form id="comment_form">
+						<input type="hidden" id="tb_num" name="tb_num" value="${tboard.tb_num}" >
+						<div class="form-group">
+							<textarea name="tc_content" id="tc_content" placeholder="댓글을 입력하세요." rows="3" cols="78" class="form-control"></textarea>
+							<input type="submit" value="등록" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				
+			</div>
+
+
+		</div>
+		</div>
 </body>
 </html>

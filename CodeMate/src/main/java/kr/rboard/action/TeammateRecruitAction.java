@@ -47,7 +47,7 @@ public class TeammateRecruitAction implements Action {
 		rdao.insertRboard(rboard);
 		
 		request.setAttribute("notice_msg", "모집글이 등록되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath() + "/main/main.do");
+		request.setAttribute("notice_url", request.getContextPath() + "/rboard/list.do");
 
 		
 		return "/WEB-INF/views/common/alert_view.jsp";

@@ -27,12 +27,18 @@ public class WriteMateProfileAction implements Action{
 		if(mem_num == null) { // 로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
-
 		request.setCharacterEncoding("utf-8");
+		int user_num = Integer.parseInt(request.getParameter("mem_num"));
+        
+        if(mem_num!=user_num) {
+        	request.setAttribute("notice_msg","본인만 수정할 수 있습니다!");
+			request.setAttribute("notice_url", request.getContextPath()+"/mateProfile/mateProfile.do?mem_num="+user_num);
+			return "/WEB-INF/views/common/alert_view.jsp";
+        }
 
 		// 자기소개 
 		MemberVO member = new MemberVO();
-		member.setMem_num(mem_num);
+		member.setMem_num(user_num);
 		member.setMp_introduce(request.getParameter("mp_introduce"));
 
 		// 라디오 버튼 값 받기
@@ -50,7 +56,7 @@ public class WriteMateProfileAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.insertMP(member);
 
-		MemberVO mem = dao.getMember(mem_num);
+		MemberVO mem = dao.getMember(user_num);
 
 		// ----------------------------------------------------------
 		// 스킬 
@@ -59,7 +65,7 @@ public class WriteMateProfileAction implements Action{
 
 		// MateVO 객체 생성 및 초기화
 		MateVO mate = new MateVO();
-		mate.setMem_num(mem_num);
+		mate.setMem_num(user_num);
 
 		// 하드 스킬 초기화
 		mateDao.deleteMateHardSkill(mate);
@@ -95,13 +101,21 @@ public class WriteMateProfileAction implements Action{
 		List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 		List<SoftSkillVO> sskillList = dbdao.getSoftSkillList();
 		
+		
+
+		// 메이트 리뷰 불러오기
+		List<MateVO> mateReview = mateDao.getMateReview(user_num);
+		
+		
 		//----------------------------------------------------------
 	
+		request.setAttribute("user_num", user_num);
+		request.setAttribute("mateReview", mateReview);
 		request.setAttribute("sskillList", sskillList);
 		request.setAttribute("hskillList", hskillList);
 		request.setAttribute("mem", mem);
 		request.setAttribute("notice_msg", "메이트 프로필이 수정되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfile.do");
+		request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfile.do?mem_num="+user_num);
 
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}

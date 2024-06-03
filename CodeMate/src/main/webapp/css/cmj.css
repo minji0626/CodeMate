@@ -547,3 +547,9 @@
 	font-weight: bold;
 	color: black;
 }
+
+
+.completed .event-title,
+.completed .event-time {
+    text-decoration: line-through;
+}

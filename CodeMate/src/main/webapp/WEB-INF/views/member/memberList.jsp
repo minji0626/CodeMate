@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">

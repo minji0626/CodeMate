@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board_write.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<title>글 수정</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<title>CODEMATE Team Project</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <script type="text/javascript">
 window.onload = function(){
     const myForm = document.getElementById('update_form');
@@ -44,6 +46,12 @@ window.onload = function(){
   <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
+    <c:if test="${team_num != param.team_num}">
+    		  <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
+    			잘못된 접근입니다.
+    			</div>
+    			</c:if>
+    
     <div class="container_write">
         <form action="tboardUpdate.do" id="update_form" method="post" enctype="multipart/form-data">
         <input type="hidden" name="tb_num" value="${tboard.tb_num}">
@@ -64,13 +72,12 @@ window.onload = function(){
             </div>
             <div class="form-group">
                 <label for="tb_file">이미지</label>
-                <input type="file" name="tb_file" id="tb_file" accept="image/gif,image/png,image/jpeg" class="form-control">
-
-				<c:if test="${!empty tboard.tb_file}">
+                
+                <c:if test="${!empty tboard.tb_file}">
     					<div id="file_detail">
-        					<img src="${pageContext.request.contextPath}/upload/${tboard.tb_file}" width="100">
+        					<img src="${pageContext.request.contextPath}/upload/${tboard.tb_file}" width="150" style="margin-left: 3%;">
         					<br>
-        					<input type="button" value="파일 삭제" id="file_del">
+        					<input type="button" value="파일 삭제" id="file_del" class="btn">
         				</div>
         				<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
         				<script type="text/javascript">
@@ -104,6 +111,10 @@ window.onload = function(){
         				});
         				</script>
         		</c:if>
+                
+                <input type="file" name="tb_file" id="tb_file" accept="image/gif,image/png,image/jpeg" class="form-control btn">
+
+				
             </div>
             <div class="form-actions">
                 <input type="submit" value="수정" class="btn btn-primary">

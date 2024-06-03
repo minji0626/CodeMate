@@ -39,6 +39,7 @@ $(document).ready(function() {
     $(".review-link").click(function(e) {
         e.preventDefault();
         
+        
         // 개인의 닉네임 가져와서 innerText 시키기
         const nickname = $(this).closest('.mem_personal').find('.team_mem_nickname').data('nickname');
         $('.mate_review_profile .user_nickname').text(nickname);
@@ -53,6 +54,10 @@ $(document).ready(function() {
         const imageUrl = profileImage.attr('src');
         $('.mate_review_profile .profile_image').attr('src', imageUrl);
         
+        const mr_receiver = $(this).data('mem-num');
+        $('#mr_receiver').val(mr_receiver);
+        const team_num = $(this).data('team-num');
+        $('#team_num').val(team_num);
         modalOn();
     });
 	
@@ -71,40 +76,40 @@ $(document).ready(function() {
 });
 
 // team.member.js
-
-$(function(){
-    $('.mem_delete_btn').click(function(){
-            let team_num = $(this).attr('data-team-num');
-            let mem_num = $(this).attr('data-mem-num');
-            
-            let choice = confirm('해당 멤버를 삭제하시겠습니까?');
-            
-            if(choice){
-                // 서버 통신
-                $.ajax({
-                    url:'deleteTmember.do',
-                    type:'post',
-                    data:{team_num:team_num, mem_num: mem_num},
-                    dataType:'json',
-                    success: function(param) {
-                        if (param.result == 'logout') {
-                            alert('로그인 후 사용해주세요')
-                        } else if (param.result == 'wrongAccess') {
-                            alert('잘못된 접근 정보입니다.')
-                        } else if (param.result == 'success') {
-                            alert('팀원이 삭제되었습니다');
-                            location.href = 'teamSetting.do?team_num=' + team_num;
-                        } else {
-                            alert('팀원 삭제 처리 중 오류가 발생하였습니다.');
-                        }
-                    },
-                    error: function() {
-                        alert('네트워크 오류가 발생하였습니다.');
+$(function() {
+    $('.mem_delete_btn').click(function() {
+        let team_num = $(this).data('team-num');
+        let mem_num = $(this).data('mem-num');
+        
+        let choice = confirm('해당 멤버를 삭제하시겠습니까?');
+        
+        if (choice) {
+            // 서버 통신
+            $.ajax({
+                url: 'deleteTmember.do',
+                type: 'post',
+                data: { team_num: team_num, mem_num: mem_num },
+                dataType: 'json',
+                success: function(param) {
+                    if (param.result == 'logout') {
+                        alert('로그인 후 사용해주세요');
+                    } else if (param.result == 'wrongAccess') {
+                        alert('잘못된 접근 정보입니다.');
+                    } else if (param.result == 'success') {
+                        alert('팀원이 삭제되었습니다');
+                        location.href = 'teamSetting.do?team_num=' + team_num;
+                    } else {
+                        alert('팀원 삭제 처리 중 오류가 발생하였습니다.');
                     }
-                })
-            }
-    })
+                },
+                error: function() {
+                    alert('네트워크 오류가 발생하였습니다.');
+                }
+            });
+        }
+    });
 });
+
 
 
 

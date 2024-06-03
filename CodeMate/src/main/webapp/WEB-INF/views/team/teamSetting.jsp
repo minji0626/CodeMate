@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 설정</title>
+    <title>CODEMATE Team Project</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_member.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
+    
 <body>
 <div class="page-container">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -56,7 +58,7 @@
                         <li>
                             <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                             <div class="dropdown_menu">
-                                <a class="review-link" style="cursor: pointer">리뷰 쓰기</a>
+                                <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
                                 <c:if test="${tm_auth == 4 }">
                                 <!-- 팀장인 경우 데이터 속성 추가 -->
 								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
@@ -87,16 +89,17 @@
                            <span class="team_mem_status">팀원</span>
                         </li>
                         <li>
-                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
+                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-mem-num="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
                         </li>
                         <c:if test="${mem_num != tmember.mem_num }">
                         <li>
                             <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                             <div class="dropdown_menu">
-                                <a class="review-link" style="cursor: pointer">리뷰 쓰기</a>
+                                <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
                                 <c:if test="${tm_auth == 4 }">
                                 <!-- 팀장인 경우 데이터 속성 추가 -->
 								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+
                                 <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
                                 <input type="hidden" name="mem_num" value="${tmember.team_num}">
                                 </c:if>
@@ -135,9 +138,11 @@
                 </div>
             </div>
             <div class="mr_content_div">
-                <h4>내용</h4>
-                <form id="mr_form" action="">
-                    <textarea id="mr_content"></textarea>
+               <h4>내용</h4>
+                <form id="mr_form">
+                	<input type="hidden" name="mr_receiver" value="" id="mr_receiver">
+                	<input type="hidden" name="team_num" value="" id="team_num">
+                    <textarea id="mr_content" name="mr_content"></textarea>
                     <div class="btn-div">
                         <input type="submit" id="submit-btn" value="제출">
                         <input type="button" class="mate_review_close" id="close-btn" value="취소">
@@ -148,5 +153,6 @@
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/team.member.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/mate.review.js"></script>
 </body>
 </html>

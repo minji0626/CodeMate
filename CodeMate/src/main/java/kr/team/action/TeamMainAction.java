@@ -20,7 +20,13 @@ public class TeamMainAction implements Action{
 
         if (mem_num == null) {// 로그인 미실시
             return "redirect:/member/loginForm.do";
-        } else {
+        }
+		/*
+		 * if(team_status == 0) {
+		 *  팀이 비활성화 상태라면 접근 불가하다고 alert 띄워주기
+		 * }
+		 */
+        else {
             // TeamDAO를 사용하여 사용자의 권한 정보를 가져옵니다.
             TeamDAO dao = TeamDAO.getInstance();
             TeamVO team = dao.getUserTeam(mem_num,team_num);

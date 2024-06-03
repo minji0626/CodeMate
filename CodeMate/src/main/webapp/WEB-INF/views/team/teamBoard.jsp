@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 게시판</title>
+<title>CODEMATE Team Project</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team_board.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
@@ -52,7 +53,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
@@ -63,7 +63,6 @@
                     <c:forEach var="tboard" items="${list}">
                         <c:if test="${tboard.tb_auth == 1}">
                             <tr class="notice">
-                                <td>${tboard.tb_num}</td>
                                 <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}&team_num=${team_num}">${tboard.tb_title}</a></td>
                                 <td>${tboard.mem_nickname}</td>
                                 <td>${tboard.tb_reg_date}</td>
@@ -74,7 +73,6 @@
                     <c:forEach var="tboard" items="${list}">
                     <c:if test="${tboard.tb_auth == 2}">
                         <tr>
-                            <td>${tboard.tb_num}</td>
                             <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}&team_num=${team_num}">${tboard.tb_title}</a></td>
                             <td>${tboard.mem_nickname}</td>
                             <td>${tboard.tb_reg_date}</td>

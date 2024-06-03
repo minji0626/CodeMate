@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>메이트 프로필</title>
+    <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
@@ -46,12 +47,11 @@
                         <!-- 레벨 이미지 추가하기 -->
                         <img>
                         <br>
-                        <span class="user_id">${mem_id}</span>
+                        <span class="user_id">${mem.mem_id}</span>
                         <!-- 아이디 옆 이미지 추가하기 -->
                         <img>
                     </div>
-                    <button class="mp_view_modify" onclick="location.href='mateProfileForm.do'"><span>수정하기</span> </button>
-                          
+                    <button class="mp_view_modify" onclick="location.href='mateProfileForm.do?mem_num=${mem.mem_num}'"><span>수정하기</span> </button>     
                 </div>
                 <!-- 포지션 DIV -->
                 <!-- 
@@ -133,28 +133,30 @@
 	                 </c:if>
 	                 <c:if test="${member.mp_state==1}">
 	                 	<c:if test="${!empty mateExpList}"> 	
-		                 	<c:forEach var="exp" items="${mateExpList}">
-		                 		 <div class="mp_project">
-			                        <span class="pj_category"> 프로젝트 분류 : 
-			                        	<c:if test="${exp.me_category==0}">
-			                        		개인
-			                        	</c:if>
-			                        	<c:if test="${exp.me_category==1}">
-			                        		기업
-			                        	</c:if>
-			                        </span> 
-			                        <h4 class="pj_name">프로젝트 이름 : ${exp.me_title}</h4> 
-			                        <p class="pj_content">프로젝트 설명 : ${exp.me_content} </p> 
-			                        <form action="deleteEXP.do" method="post">
-	            						<input type="hidden" name="me_num" value="${exp.me_num}">
-	            						<button type="submit" class="delete-btn">삭제</button>
-	        						</form>
-			                    </div>
-		                 	</c:forEach>
+		                 	<c:forEach var="exp" items="${mateExpList}" varStatus="loop">
+							    <c:if test="${loop.index < 5}">
+							        <div class="mp_project">
+							            <span class="pj_category">프로젝트 분류 :
+							                <c:if test="${exp.me_category==0}">
+							                    개인
+							                </c:if>
+							                <c:if test="${exp.me_category==1}">
+							                    기업
+							                </c:if>
+							            </span>
+							            <h4 class="pj_name">프로젝트 이름 : ${exp.me_title}</h4>
+							            <p class="pj_content">프로젝트 설명 : ${exp.me_content} </p>
+							            <form action="deleteEXP.do" method="post">
+							                <input type="hidden" name="me_num" value="${exp.me_num}">
+							                <input type="hidden" name="mem_num" value="${user_num}">
+							                <button type="submit" class="delete-btn">삭제</button>
+							            </form>
+							        </div>
+							    </c:if>
+							</c:forEach>
 	                 	</c:if>
 	                 	<c:if test="${empty mateExpList}">
-	                 		<div class="mp_project">
-			                    </div>
+  							<div class="mp_content"><p>등록된 프로젝트 경험이 없습니다.</p></div>
 	                 	</c:if>
 	                 </c:if>
                 </div>   
@@ -162,9 +164,24 @@
                 
                 <div class="mp_content_div">
                     <h4>메이트 후기</h4>
-                    <div class="mp_mate_review">
-                        
-                    </div>
+                      <c:if test="${member.mp_state==0}">
+	                       <div class="mp_content"><p>비공개 정보입니다.</p></div>
+	                 </c:if>
+	                 <c:if test="${member.mp_state==1}">
+	                 	<c:if test="${!empty mateExpList}"> 	
+		                 	<c:forEach var="mr" items="${mateReviewList}" varStatus="loop">
+							    <c:if test="${loop.index < 5}">
+							        <div class="mp_project">
+							            <h4 class="pj_name">리뷰 등록일 : ${mr.mr_reg_date }</h4> 
+							            <p class="pj_content">내용 : ${mr.mr_content}</p>
+							        </div>
+							    </c:if>
+							</c:forEach>
+	                 	</c:if>
+	                 	<c:if test="${empty mateReviewList}">
+  							<div class="mp_content"><p>등록된 리뷰가 없습니다.</p></div>
+	                 	</c:if>
+	                 </c:if>
                 </div>
                 <!-- 닫기 버튼 -->
                 <button class="mp_view_close" id="close-btn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"> <span>닫기</span> </button>

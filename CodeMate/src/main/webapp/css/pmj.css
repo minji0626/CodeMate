@@ -109,8 +109,8 @@
     font-weight: bold;
 }
 .fav-reply{
-	margin-top: 5px;
-	font-size: 13px;
+	margin-top: 3px;
+	font-size: 12px;
 }
 .myWrite-fav{
 	width:80px;
@@ -212,8 +212,6 @@
     font-size: 22px;
     font-weight: bold;
     width:500px;
-}.delete-green{
-	color:#5aca7c;
 }
 .board_name{
 	font-size: 13px;

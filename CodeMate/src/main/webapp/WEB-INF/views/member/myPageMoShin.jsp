@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>나의 코메 모집 신청자</title>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
@@ -23,33 +25,56 @@
 <!-- 메인 정보 수정 -->
 <div class="float-C">
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
-	<h3 class="mYPage-TitleText">나의 코메 신청</h3>
+	<h3 class="mYPage-TitleText">나의 코메 모집 신청자</h3>
 </div>
 
-<div class="myPage-line-box-moshin">
-<div class="profile_mypage">
 
-<!-- 이미지 수정 -->
-<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}" class="profile_pic_mypage" height="40" width="40"><%-- class="profile_image"다 이 명칭 사용,근데 여기는 사진이 네모여서 class명 바꿈 --%>
-<%-- <img class="profile_pic_mypage" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">  --%>
-<div class="nickname_mypage">${member.mem_nickname}</div>
+					<c:forEach var="ra" items="${rapplyList}">
+		<div class="myPage-line-box-moshin">
+			<div class="profile_mypage">
 
-<div class="mo_check">
-<div class="yes">YES</div>
-<span class="bar">/</span>
-<div class="no">NO</div>
-</div>
+				<!-- 이미지 수정 -->
+				<c:if test="${empty ra.mem_photo}">
+					<img src="${pageContext.request.contextPath}/images/face.png"
+						class="profile_pic_mypage" height="40" width="40">
+				</c:if>
+				<c:if test="${!empty ra.mem_photo}">
+					<img
+					src="${pageContext.request.contextPath}/upload/${ra.mem_photo}"
+					class="profile_pic_mypage" height="40" width="40">
+				</c:if>
+				
+				<%-- class="profile_image"다 이 명칭 사용,근데 여기는 사진이 네모여서 class명 바꿈 --%>
+				<div class="nickname_mypage">${ra.mem_nickname}</div>
 
-<br>
-<div class="mypage_clob">
-<div class="shin-text">신청동기</div>
-<div class="content">${member.mem_nickname}</div><!-- dao에서 메서드 만들고 action에서 cboard,rboard 신청지원서 글 가져오기 -->
-</div>
-</div>
-</div>
-</div>
+				<div class="mo_check">
+					<form  id="pass">
+						<input type="hidden" name="ra_num" value="${ra.ra_num}">
+						<input type="hidden" name="rb_num" value="${ra.rb_num}">
+						<input type="hidden" name="mem_num" value="${ra.mem_num}">
+						<input type="submit" class="yes" value="합격">
+					</form>
+						<form action="unPassCodeMate.do" method="post" id="unPass">
+						<input type="hidden" name="ra_num" value="${ra.ra_num}">
+						<input type="hidden" name="rb_num" value="${ra.rb_num}">
+						<input type="hidden" name="mem_num" value="${ra.mem_num}">
+						<input type="submit" class="no" value="불합격">
+					</form>
+				</div>
+				<br>
+				<div class="mypage_clob">
+					<div class="shin-text">신청동기</div>
+					
+					<div class="content">${ra.ra_content}</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+
+			</div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
 </div><!-- page-container끝 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/moshin.js"></script>
 </body>
 </html>

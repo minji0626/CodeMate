@@ -1,22 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>나의 코메 신청</title>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".delete-green").click(function() {
-            $(this).closest(".myPage-line-box").remove();
-        });
-    });
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/rapplyDelete.js"></script>
+
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -32,18 +29,33 @@
 	<h3 class="mYPage-TitleText">나의 코메 신청</h3>
 </div>
 
-<div class="myPage-line-box">
+
+<c:if test="${empty aprboardList}">
+<div class="MS">나의 신청내역이 없습니다</div>
+</c:if>
+<c:if test="${!empty aprboardList}">
+<c:forEach var="aprboard" items="${aprboardList}">
+<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${aprboard.rb_num}'" style="cursor: pointer;">
 <div class="team-left">
-<div class="skill_font_T">백엔드</div>
-<div class="projectName_font">쇼핑몰 웹페이지 프로젝트</div>
+<c:if test="${aprboard.rb_category == '0'}">
+	스터디
+</c:if>
+<c:if test="${aprboard.rb_category == '1'}">
+	프로젝트
+</c:if>
+<div class="projectName_font">${aprboard.rb_pj_title}</div>
 </div>
 
 <div class="team-right">
-<div class="delete-green">신청 취소</div>
-<div class="team-count">모집인원:6명</div>
-<div>남은 기간 2024.05.23~2024.06.10</div>
+<div class="delete-green" data-ranum="${aprboard.ra_num}">&nbsp&nbsp&nbsp신청 취소</div>
+<div class="team-count">모집인원:${aprboard.rb_teamsize}명</div>
+<!-- 시작일인데 진행기간 넣어봄 -->
+<div class="team-count">프로젝트 진행기간 ${aprboard.rb_period}개월</div><!-- 글자 간격 마진 주려고 클래스 복붙 -->
+<div >모집 마감일 ${aprboard.rb_endRecruit}</div>
 </div>
 </div>
+</c:forEach>
+</c:if>
 
 </div>
 <!-- 메인 정보 수정 끝 -->

@@ -44,7 +44,7 @@ public class CboardWriteAction implements Action{
 		dao.insertCboard(cboard);
 		
 		request.setAttribute("notice_msg", "글 작성이 완료되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath()+"/cboard/community.do");
+		request.setAttribute("notice_url", request.getContextPath()+"/cboard/community.do?cb_type="+cboard.getCb_type());
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}
 
