@@ -155,7 +155,10 @@ public class ApplyDAO {
 
 			pstmt.setInt(1, rb_num);
 
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {

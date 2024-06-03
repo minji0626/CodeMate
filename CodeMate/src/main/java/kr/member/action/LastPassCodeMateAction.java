@@ -13,7 +13,7 @@ import kr.controller.Action;
 import kr.rboard.dao.ApplyDAO;
 import kr.rboard.vo.RapplyVO;
 
-public class PassCodeMateAction implements Action{
+public class LastPassCodeMateAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

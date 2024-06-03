@@ -29,47 +29,48 @@
 </div>
 
 
-					<c:forEach var="ra" items="${rapplyList}">
-		<div class="myPage-line-box-moshin">
-			<div class="profile_mypage">
+				<c:forEach var="ra" items="${rapplyList}">
+					<div class="myPage-line-box-moshin" data-pass="${ra.ra_pass}">
+						<div class="profile_mypage">
 
-				<!-- 이미지 수정 -->
-				<c:if test="${empty ra.mem_photo}">
-					<img src="${pageContext.request.contextPath}/images/face.png"
-						class="profile_pic_mypage" height="40" width="40">
-				</c:if>
-				<c:if test="${!empty ra.mem_photo}">
-					<img
-					src="${pageContext.request.contextPath}/upload/${ra.mem_photo}"
-					class="profile_pic_mypage" height="40" width="40">
-				</c:if>
-				
-				<%-- class="profile_image"다 이 명칭 사용,근데 여기는 사진이 네모여서 class명 바꿈 --%>
-				<div class="nickname_mypage">${ra.mem_nickname}</div>
+							<!-- 이미지 수정 -->
+							<c:if test="${empty ra.mem_photo}">
+								<img src="${pageContext.request.contextPath}/images/face.png"
+									class="profile_pic_mypage" height="40" width="40">
+							</c:if>
+							<c:if test="${!empty ra.mem_photo}">
+								<img
+									src="${pageContext.request.contextPath}/upload/${ra.mem_photo}"
+									class="profile_pic_mypage" height="40" width="40">
+							</c:if>
 
-				<div class="mo_check">
-					<form  id="pass">
-						<input type="hidden" name="ra_num" value="${ra.ra_num}">
-						<input type="hidden" name="rb_num" value="${ra.rb_num}">
-						<input type="hidden" name="mem_num" value="${ra.mem_num}">
-						<input type="submit" class="yes" value="합격">
-					</form>
-						<form action="unPassCodeMate.do" method="post" id="unPass">
-						<input type="hidden" name="ra_num" value="${ra.ra_num}">
-						<input type="hidden" name="rb_num" value="${ra.rb_num}">
-						<input type="hidden" name="mem_num" value="${ra.mem_num}">
-						<input type="submit" class="no" value="불합격">
-					</form>
-				</div>
-				<br>
-				<div class="mypage_clob">
-					<div class="shin-text">신청동기</div>
-					
-					<div class="content">${ra.ra_content}</div>
-				</div>
-			</div>
-		</div>
-	</c:forEach>
+							<%-- class="profile_image"다 이 명칭 사용,근데 여기는 사진이 네모여서 class명 바꿈 --%>
+							<div class="nickname_mypage">${ra.mem_nickname}</div>
+
+							<div class="mo_check">
+								<form class="passForm">
+									<input type="hidden" name="ra_num" value="${ra.ra_num}">
+									<input type="hidden" name="rb_num" value="${ra.rb_num}">
+									<input type="hidden" name="mem_num" value="${ra.mem_num}">
+									<input type="submit" class="yes" value="합격">
+								</form>
+								<form class="unPassForm">
+									<input type="hidden" name="ra_num" value="${ra.ra_num}">
+									<input type="hidden" name="rb_num" value="${ra.rb_num}">
+									<input type="hidden" name="mem_num" value="${ra.mem_num}">
+									<input type="submit" class="no" value="불합격">
+								</form>
+							</div>
+
+							<br>
+							<div class="mypage_clob">
+								<div class="shin-text">신청동기</div>
+
+								<div class="content">${ra.ra_content}</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 
 			</div>
 <!-- 메인 정보 수정 끝 -->

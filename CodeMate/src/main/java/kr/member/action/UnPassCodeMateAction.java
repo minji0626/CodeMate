@@ -13,7 +13,7 @@ import kr.controller.Action;
 import kr.rboard.dao.ApplyDAO;
 import kr.rboard.vo.RapplyVO;
 
-public class PassCodeMateAction implements Action{
+public class UnPassCodeMateAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -39,19 +39,12 @@ public class PassCodeMateAction implements Action{
 			
 			RapplyVO info = dao.applyInfo(ra_num);
 			int check = info.getRa_pass();
-			if(check==1) {
+			
+			if(check==0) {
 				mapAjax.put("result", "already");
 			} else {
-				// 현재 합격자 수
-				int passCount = dao.howManyPass(rb_num);
-				System.out.println(passCount);
-				boolean checking = dao.passAndSize(rb_num, (passCount+1));
-				if(checking) {
-					 mapAjax.put("result", "last");
-				} else {
-					dao.passMember(ra_num);
-					mapAjax.put("result", "success");
-				}
+				dao.unPassMember(ra_num);
+				mapAjax.put("result", "success");
 			}
 		}
 		
