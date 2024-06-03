@@ -218,3 +218,13 @@
 	margin-top: 6px;
 	
 }
+/*글자가 길어지면 ...처리*/
+.projectName_font {
+    font-size: 22px;
+    font-weight: bold;
+    width:500px;
+    white-space: nowrap; /* 줄 바꿈 방지 */
+    overflow: hidden; /* 내용이 넘치는 경우 가려짐 */
+    text-overflow: ellipsis; /* 넘치는 내용을 "..."으로 표시 */
+    max-width: 700px; /* 최대 너비 지정 */
+}

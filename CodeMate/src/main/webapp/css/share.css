@@ -184,3 +184,47 @@ a {
 .dropdown_header_menu a:hover {
     background-color: #ddd;
 }
+
+
+/* 미디어 쿼리 추가 */
+@media screen and (max-width: 768px) {
+  .page-container {
+    width: 90%;
+    min-width: auto; /* 화면이 작을 때 최소 너비를 해제하여 좁은 화면에 맞게 조정 */
+  }
+
+  #main_header {
+    height: 60px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  #main_header div#main_logo {
+    font-size: 1.5em; /* 작은 화면에서 로고 크기 조정 */
+  }
+
+  #main_header .logo-a {
+    display: block;
+    text-align: center; /* 로고를 중앙 정렬 */
+  }
+
+  #main_header #header_left,
+  #main_header #header_right {
+    flex: 1; /* 작은 화면에서 헤더 좌우 여백 없애기 */
+    text-align: center; /* 작은 화면에서 텍스트 중앙 정렬 */
+  }
+
+  #main_header .login_profile {
+    justify-content: center; /* 작은 화면에서 로그인 프로필 가운데 정렬 */
+  }
+
+  #main_header #profile_pic {
+    display: none; /* 작은 화면에서 프로필 사진 숨기기 */
+  }
+
+  .dropdown_header_menu {
+    right: auto; /* 드롭다운 메뉴 오른쪽 정렬 해제 */
+    left: 0; /* 작은 화면에서 드롭다운 메뉴를 왼쪽으로 이동 */
+  }
+}
+

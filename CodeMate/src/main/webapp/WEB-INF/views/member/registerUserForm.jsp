@@ -185,7 +185,7 @@ let phoneChecked = 0;
 						<input type="button" value="ID중복체크" id="id_check"> <span
 						id="message_id"></span>
 						<li><div class="form-notice">*영문 또는 숫자(4자~12자)</div></li>
-					</li>		
+		
 					<li class="info">
 						<label for="name">이름</label> 
 						<input type="text" name="name" id="name" maxlength="10" class="input-check">

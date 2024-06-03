@@ -28,10 +28,10 @@
    
 </div><!-- end of mini-container -->
 <button class="p">
-    <img src="${pageContext.request.contextPath}/images/left_arrow.png" alt="이전" width="20">
+    <img src="${pageContext.request.contextPath}/images/left_arrow_1.png" alt="이전" width="20">
 </button>
 <button class="n">
-    <img src="${pageContext.request.contextPath}/images/right_arrow.png" alt="다음" width="20">
+    <img src="${pageContext.request.contextPath}/images/right_arrow_1.png" alt="다음" width="20">
 </button>
 
 </div><!-- end of mini-card -->

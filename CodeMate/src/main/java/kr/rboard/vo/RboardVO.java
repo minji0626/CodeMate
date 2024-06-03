@@ -37,7 +37,17 @@ public class RboardVO {
 	//신청내역에서 띄울 ra_num
 	private int ra_num;
 	
+	private int ra_pass;
 	
+	
+	
+	
+	public int getRa_pass() {
+		return ra_pass;
+	}
+	public void setRa_pass(int ra_pass) {
+		this.ra_pass = ra_pass;
+	}
 	public int getRb_num() {
 		return rb_num;
 	}

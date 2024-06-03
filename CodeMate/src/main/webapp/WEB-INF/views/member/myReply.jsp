@@ -35,6 +35,8 @@
     <option value="all">전체</option>
     <option value="dev">개발</option>
     <option value="free">자유</option>
+    <option value="teamM">팀원구하기</option>
+    
 </select>
 
 
@@ -47,7 +49,7 @@
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${comment.cb_type == 0}">
-                    자유게시판이다
+                    자유게시판
                 </c:if>
                 <c:if test="${comment.cb_type == 1}">
                     개발게시판

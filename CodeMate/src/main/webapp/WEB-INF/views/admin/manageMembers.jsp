@@ -16,10 +16,10 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/manageMembers.css"
 	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/manageMembers.js"></script>
 </head>
 <body>
 	<!-- 헤더 링크-->
@@ -59,15 +59,46 @@
 									<th>회원등급</th>
 									<th>이메일</th>
 									<th>가입일</th>
+									<th>정지</th>
+									<th>탈퇴</th>
+									<th>등급 변경</th>
 								</tr>
 								<c:forEach var="member" items="${membersList}">
 									<tr>
 										<td>${member.mem_num}</td>
 										<td>${member.mem_id}</td>
 										<td>${member.mem_nickname}</td>
-										<td>${member.mem_auth}</td>
+										<td>
+											<c:if test="${member.mem_auth == 0}">탈퇴</c:if>
+											<c:if test="${member.mem_auth == 1}">정지</c:if>
+											<c:if test="${member.mem_auth == 2}">일반</c:if>
+											<c:if test="${member.mem_auth == 9}">관리자</c:if>
+										
+										</td>
 										<td>${member.mem_email}</td>
 										<td>${member.mem_reg_date}</td>
+										<td>
+											<c:if test="${member.mem_auth ==0}"
+											></c:if>
+											<c:if test="${member.mem_auth != 9 && member.mem_auth != 1}"
+											><button class="lockMemberBtn" data-memnum="${member.mem_num}" data-locked="0"
+											>정지</button></c:if>
+											<c:if test="${member.mem_auth != 9 && member.mem_auth == 1}"
+											><button class="lockMemberBtn" data-memnum="${member.mem_num}" data-locked="1"
+											>정지 취소</button></c:if>
+										</td>
+										<td><c:if test="${member.mem_auth != 9 && member.mem_auth != 0}"><button class="deleteMemberBtn" data-memnum="${member.mem_num}">탈퇴</button></c:if></td>
+										<td>
+											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
+											<select name="changeAuthToAdmin">
+												<option value="2" <c:if test="${member.mem_auth != 9}">selected</c:if>>일반</option>
+												<option value="9" <c:if test="${member.mem_auth == 9}">selected</c:if>>관리자</option>
+											</select>
+											</c:if>
+											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
+											<button class="changeAuthBtn" data-memnum="${member.mem_num}" data-memauth="${member.mem_auth}">등급변경</button>
+											</c:if>
+										</td>
 									</tr>
 								</c:forEach>
 							</table>

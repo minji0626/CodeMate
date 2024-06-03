@@ -31,7 +31,8 @@
 <select id="filter" class="styled-select" onchange="filterList()">
     <option value="all">전체</option>
     <option value="dev">개발</option>
-    <option value="free">자유</option>
+    <option value="dev">자유</option>
+    
 </select>
 
 <c:if test="${empty cboardList}">

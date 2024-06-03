@@ -1,49 +1,48 @@
 @charset "UTF-8";
 
 body {
-    font-family: 'Noto Sans KR', sans-serif;
-    margin: 0;
-    padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
 #flex_container {
-    display: flex;
+	display: flex;
+	align-items: center; /* 수직 정렬 */
+	height: 100vh; /* 전체 높이 */
 }
-
+	
 #flex_container .float-B {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 수평 중앙 정렬 */
-    justify-content: center; /* 수직 중앙 정렬 */
-    width: 80%;
-    margin-top: 35px;
+	width: 100%;
+	margin: 0 auto; /* 수평 중앙 정렬 */
+	margin-top: 35px; /* 기존 상단 여백 */
 }
 
 .align-center {
-    width: 100%; /* 중앙 정렬을 위한 전체 너비 설정 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	text-align: center;
 }
 
-.admin-TitleText {
-    text-align: center; /* 제목 중앙 정렬 */
-}
-
+/*검색 부분*/
 .search {
-    display: flex;
-    justify-content: center; /* 검색창 중앙 정렬 */
-    margin-bottom: 20px; /* 검색창 하단 여백 */
+	display: flex;
+	justify-content: center; /* 검색창 중앙 정렬 */
+	margin-bottom: 50px; /* 검색창 하단 여백 */
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px; /* 테이블 하단 여백 */
+.search li {
+	display: inline-block;
 }
 
-th, td {
-    padding: 8px;
-    text-align: left; /* 기본 왼쪽 정렬 */
+table#search_result {
+	align-content: center;
+	margin: 30px auto;
 }
 
+/*결과 표시*/
+#manage_members_form {
+	margin: 20px auto;
+}
+
+td, th {
+	padding: 0 6px;
+}

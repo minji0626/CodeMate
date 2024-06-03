@@ -155,7 +155,10 @@ public class ApplyDAO {
 
 			pstmt.setInt(1, rb_num);
 
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -197,71 +200,67 @@ public class ApplyDAO {
 		}
 		return check;
 	}
-
 	// 팀 활성화 (모집 마감, 팀 활성화, 팀 멤버 추가)
-	public void teamActivation(int rb_num) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
-		PreparedStatement pstmt3 = null;
-		PreparedStatement pstmt4 = null;
-		PreparedStatement pstmt5 = null;
-		ResultSet rs = null;
-		ResultSet rs2 = null;
-		String sql = null;
-		int leader_mem_num = 0;
-		int mem_num = 0;
-		try {
-			conn = DBUtil.getConnection();
+	public void teamActivation(int rb_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    PreparedStatement pstmt2 = null;
+	    PreparedStatement pstmt3 = null;
+	    PreparedStatement pstmt4 = null;
+	    PreparedStatement pstmt5 = null;
+	    ResultSet rs = null;
+	    ResultSet rs2 = null;
+	    String sql = null;
+	    int leader_mem_num = 0;
+	    int mem_num = 0;
+	    try {
+	        conn = DBUtil.getConnection();
 
-			// 팀 활성화
-			sql = "UPDATE team SET team_status=1 WHERE team_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rb_num);
-			pstmt.executeUpdate();
+	        // 팀 활성화
+	        sql = "UPDATE team SET team_status=1 WHERE team_num=?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, rb_num);
+	        pstmt.executeUpdate();
 
-			// 팀장의 mem_num 받기
-			sql = "SELECT mem_num FROM r_board WHERE rb_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, rb_num);
-			rs = pstmt2.executeQuery();
-			if(rs.next()) {
-				leader_mem_num = rs.getInt(1);
-			}
+	        // 팀장의 mem_num 받기
+	        sql = "SELECT mem_num FROM r_board WHERE rb_num=?";
+	        pstmt2 = conn.prepareStatement(sql);
+	        pstmt2.setInt(1, rb_num);
+	        rs = pstmt2.executeQuery();
+	        if (rs.next()) {
+	            leader_mem_num = rs.getInt(1);
+	        }
 
-			// 팀 멤버 - 팀장 추가
-			sql = "INSERT INTO team_member (mem_num, team_num, tm_auth) "
-					+ "VALUES (?, ?, 4)";
-			pstmt3 = conn.prepareStatement(sql);
-			pstmt3.setInt(1, leader_mem_num);
-			pstmt3.setInt(2, rb_num);
-			pstmt3.executeUpdate();
+	        // 팀 멤버 - 팀장 추가
+	        sql = "INSERT INTO team_member (mem_num, team_num, tm_auth) VALUES (?, ?, 4)";
+	        pstmt3 = conn.prepareStatement(sql);
+	        pstmt3.setInt(1, leader_mem_num);
+	        pstmt3.setInt(2, rb_num);
+	        pstmt3.executeUpdate();
 
-			// 팀원의 mem_num 받기
-			sql = "SELECT mem_num FROM r_apply WHERE rb_num=? AND ra_pass=1";
-			pstmt4 = conn.prepareStatement(sql);
-			pstmt4.setInt(1, rb_num);
-			rs2 = pstmt.executeQuery();
-			while(rs2.next()) {
-				mem_num = rs2.getInt(1);
-				// 팀 멤버 - 팀원 추가
-				sql = "INSERT INTO team_member (mem_num, team_num, tm_auth) "
-						+ "VALUES(?, ?, 3)";
-				pstmt5 = conn.prepareStatement(sql);
-				pstmt5.setInt(1, mem_num);
-				pstmt5.setInt(2, rb_num);
-				pstmt5.executeUpdate();
-			}
+	        // 팀원의 mem_num 받기
+	        sql = "SELECT mem_num FROM r_apply WHERE rb_num=? AND ra_pass=1";
+	        pstmt4 = conn.prepareStatement(sql);
+	        pstmt4.setInt(1, rb_num);
+	        rs2 = pstmt4.executeQuery();
+	        while (rs2.next()) {
+	            mem_num = rs2.getInt(1);
+	            // 팀 멤버 - 팀원 추가
+	            sql = "INSERT INTO team_member (mem_num, team_num, tm_auth) VALUES(?, ?, 3)";
+	            pstmt5 = conn.prepareStatement(sql);
+	            pstmt5.setInt(1, mem_num);
+	            pstmt5.setInt(2, rb_num);
+	            pstmt5.executeUpdate();
+	        }
 
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(null, pstmt5, null);
-			DBUtil.executeClose(null, pstmt4, null);
-			DBUtil.executeClose(null, pstmt3, null);
-			DBUtil.executeClose(rs2, pstmt2, null);
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(null, pstmt5, null);
+	        DBUtil.executeClose(null, pstmt4, null);
+	        DBUtil.executeClose(null, pstmt3, null);
+	        DBUtil.executeClose(rs2, pstmt2, null);
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
 	}
-
 }
