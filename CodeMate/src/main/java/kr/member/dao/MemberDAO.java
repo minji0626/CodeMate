@@ -119,6 +119,46 @@ public class MemberDAO {
 		}
 		return member; 
 	}
+	
+	//닉네임
+		public MemberVO checkNickname(String mem_nickname)throws Exception{
+			Connection conn = null; 
+			PreparedStatement pstmt = null; 
+			ResultSet rs = null;
+			MemberVO member = null; 
+			String sql = null; 
+			
+			try{ 
+				//커넥션풀로부터 커넥션 할당 
+				conn =DBUtil.getConnection(); 
+				//SQL문 작성
+				sql = "SELECT * FROM member LEFT OUTER JOIN " +
+						"member_detail USING(mem_num) WHERE mem_nickname = ?"; 
+				//preparedStatment 객체 생성 
+				pstmt =conn.prepareStatement(sql); 
+				//?에 데이터 바인딩 
+				pstmt.setString(1, mem_nickname); 
+				//SQL문 실행 
+				rs = pstmt.executeQuery(); 
+				if(rs.next()) { 
+					member = new MemberVO();
+					member.setMem_num(rs.getInt("mem_num"));
+					member.setMem_id(rs.getString("mem_id")); 
+					member.setMem_auth(rs.getInt("mem_auth"));
+					member.setMem_passwd(rs.getString("mem_passwd"));
+					member.setMem_photo(rs.getString("mem_photo"));
+					member.setMem_email(rs.getString("mem_email"));//회원 탈퇴 시 필요 
+					member.setMem_nickname(rs.getString("mem_nickname"));
+					member.setMem_level(rs.getInt("mem_level"));
+				}
+			}catch(Exception e){ 
+				throw new Exception (e); 
+			}finally{ 
+				DBUtil.executeClose(rs, pstmt, conn); 
+			}
+			return member; 
+		}
+	
 	//ID
 		public MemberVO checkEmail(String email)throws Exception{
 			Connection conn = null; 
@@ -132,7 +172,7 @@ public class MemberDAO {
 				conn =DBUtil.getConnection(); 
 				//SQL문 작성
 				sql = "SELECT * FROM member LEFT OUTER JOIN " +
-						"member_detail USING(mem_num) WHERE mem_email = ?"; 
+						"member_detail USING(mem_num) WHERE mem_email=?"; 
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
@@ -171,7 +211,7 @@ public class MemberDAO {
 				conn =DBUtil.getConnection(); 
 				//SQL문 작성
 				sql = "SELECT * FROM member LEFT OUTER JOIN " +
-						"member_detail USING(mem_num) WHERE mem_phone = ?"; 
+						"member_detail USING(mem_num) WHERE mem_phone=?"; 
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
@@ -197,7 +237,7 @@ public class MemberDAO {
 			return member; 
 
 		}
-		//아이디 찾기
+		//아이디 찾기 - 아이디 여부 확인
 		public MemberVO findId(String phone,String email)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -208,7 +248,7 @@ public class MemberDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "SELECT * FROM member JOIN member_detail USING(mem_num) WHERE mem_email=? AND mem_phone=?";
+				sql = "SELECT * FROM member LEFT OUTER JOIN member_detail USING(mem_num) WHERE mem_email=? AND mem_phone=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩

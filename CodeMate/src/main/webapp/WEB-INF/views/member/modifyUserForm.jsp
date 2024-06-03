@@ -76,12 +76,9 @@
                     <label for="mem_nickname" class="form_label">닉네임</label><br>
                     <input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
                		<!-- 닉네임 중복체크 -->
-					<input type="button" value="닉네임중복체크" id="nickname_check"> 
                     <span id="message_nickname"></span>
-                    
-               
-               
                 </li>
+                
                 <li>
                     <label for="mem_phone" class="form_label">전화번호</label><br>
                     <input type="text" id="mem_phone" name="mem_phone" maxlength="20" class="input-check" value="${member.mem_phone}">

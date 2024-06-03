@@ -23,7 +23,6 @@ public class GetId implements Action{
       
       MemberDAO dao = MemberDAO.getInstance();
       MemberVO member = dao.findId(phone, email);
-      
       Map<String,String> mapAjax = new HashMap<String,String>();
       if(member == null) {
          mapAjax.put("result", "idNotFound");
