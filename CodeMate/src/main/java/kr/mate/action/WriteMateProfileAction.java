@@ -36,8 +36,6 @@ public class WriteMateProfileAction implements Action{
 			return "/WEB-INF/views/common/alert_view.jsp";
         }
 
-		
-
 		// 자기소개 
 		MemberVO member = new MemberVO();
 		member.setMem_num(user_num);

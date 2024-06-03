@@ -48,12 +48,21 @@
 							<div class="nickname_mypage">${ra.mem_nickname}</div>
 
 							<div class="mo_check">
-								<form>
+								<form  id="pass">
+									<input type="hidden" name="ra_num" value="${ra.ra_num}">
 									<input type="hidden" name="rb_num" value="${ra.rb_num}">
 									<input type="hidden" name="mem_num" value="${ra.mem_num}">
-									<input type="button" class="yes" value="합격" onclick="location.href='passCodeMate.do'">
-									<input type="button" class="no" value="불합격" onclick="location.href='unPassCodeMate.do'">
+									<input type="submit" class="yes" value="합격">
 								</form>
+								<form action="unPassCodeMate.do" method="post" id="unPass">
+									<input type="hidden" name="ra_num" value="${ra.ra_num}">
+									<input type="hidden" name="rb_num" value="${ra.rb_num}">
+									<input type="hidden" name="mem_num" value="${ra.mem_num}">
+									<input type="submit" class="no" value="불합격">
+								</form>
+								
+								
+									
 							</div>
 							<br>
 							<div class="mypage_clob">

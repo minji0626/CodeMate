@@ -17,6 +17,41 @@ public class ApplyDAO {
 	}
 	private ApplyDAO() {}
 
+	// 신청글 정보
+	public RapplyVO applyInfo(int ra_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RapplyVO rapply = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+
+			sql = "SELECT * FROM r_apply WHERE ra_num = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ra_num);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				// 신청글 정보를 가져와서 RapplyVO 객체에 설정
+				rapply = new RapplyVO();
+				rapply.setRa_num(rs.getInt("ra_num"));
+				rapply.setRb_num(rs.getInt("rb_num"));
+				rapply.setMem_num(rs.getInt("mem_num"));
+				rapply.setRa_content(rs.getString("ra_content"));
+				rapply.setRa_date(rs.getDate("ra_date"));
+				rapply.setRa_pass(rs.getInt("ra_pass"));
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return rapply; 
+	}
+
 	//나의 모집글에 지원한 신청자 리스트 - 민재 + 주은 수정
 	public List<RapplyVO> myRboardApplyListByRbNum(int rb_num) throws Exception {
 		Connection conn = null;
@@ -26,14 +61,14 @@ public class ApplyDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			
-			sql = "SELECT ra.*, rb.*, md.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num JOIN member_detail md ON ra.mem_num = md.mem_num WHERE ra.rb_num = ?";
-			
+
+			sql = "SELECT ra.*, md.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num JOIN member_detail md ON ra.mem_num = md.mem_num WHERE ra.rb_num = ?";
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
 
 			rs = pstmt.executeQuery();
-			
+
 			list = new ArrayList<RapplyVO>();
 			while (rs.next()) {
 				RapplyVO rapply = new RapplyVO();
@@ -44,8 +79,8 @@ public class ApplyDAO {
 				rapply.setRa_date(rs.getDate("ra_date"));
 				rapply.setRa_pass(rs.getInt("ra_pass"));
 				rapply.setMem_nickname(rs.getString("mem_nickname"));
-	            rapply.setMem_photo(rs.getString("mem_photo"));
-	            
+				rapply.setMem_photo(rs.getString("mem_photo"));
+
 				list.add(rapply);
 
 			}

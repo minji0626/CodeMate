@@ -27,7 +27,6 @@ public class MyPageMoShinAction implements Action {
 
         // HTTP 요청 파라미터에서 rb_num 가져오기
         int rb_num = Integer.parseInt(request.getParameter("rb_num"));
-        System.out.println(rb_num);
         // 로그인이 된 경우
         MemberDAO memberDAO = MemberDAO.getInstance();
         MemberVO member = memberDAO.getMember(mem_num); // 한건의 데이터 읽어옴
