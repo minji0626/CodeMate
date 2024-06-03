@@ -29,6 +29,7 @@ $(document).ready(function() {
 			if (selectedValue == '') {
 				let labelText = $(this).parent().find('label').text();
 				alert(labelText + '을 선택해주세요');
+				event.preventDefault();
 				return false;
 			}
 		});
@@ -38,6 +39,8 @@ $(document).ready(function() {
 			if ($(this).val() == '') {
 				let labelText = $(this).parent().find('label').text();
 				alert(labelText + '을 입력해주세요');
+				$(this).val('').focus();
+				event.preventDefault();
 				return false;
 			}
 		});
@@ -47,6 +50,7 @@ $(document).ready(function() {
 		var endRecruit = $('#rb_endRecruit').val();
 		if (startProject && endRecruit && new Date(startProject) < new Date(endRecruit)) {
 			alert('모집 종료일은 시작 예정일보다 늦을 수 없습니다.');
+			event.preventDefault();
 			return false;
 		}
 
@@ -54,12 +58,14 @@ $(document).ready(function() {
 		// 요구 기술 스택 체크박스 유효성 검사
 		if ($('input[name="r_skills"]:checked').length === 0) {
 			alert('적어도 하나의 요구 기술을 선택해주세요');
+			event.preventDefault();
 			return false;
 		}
 
 		// 모집 필드 체크박스 유효성 검사
 		if ($('input[name="r_fields"]:checked').length === 0) {
 			alert('적어도 하나의 모집 필드를 선택해주세요');
+			event.preventDefault();
 			return false;
 		}
 
