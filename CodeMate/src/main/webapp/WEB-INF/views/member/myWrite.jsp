@@ -32,7 +32,6 @@
     <option value="all">전체</option>
     <option value="dev">개발</option>
     <option value="dev">자유</option>
-    <option value="team">팀게시판</option>
     
 </select>
 

@@ -35,7 +35,6 @@
     <option value="all">전체</option>
     <option value="dev">개발</option>
     <option value="free">자유</option>
-    <option value="team">팀</option>
     <option value="teamM">팀원구하기</option>
     
 </select>
