@@ -46,6 +46,8 @@
 							<li><input type="search" size="16" name="keyword"
 								id="keyword" value="${param.keyword}"></li>
 							<li><input type="submit" value="검색"></li>
+							<li><input type="button" id="getUnconfirmed"
+								value="미처리 문의만 보기" data-keyfield="4" data-keyword="0"></li>
 						</ul>
 						<c:if test="${count == 0}">
 							<div>표시할 문의가 없습니다.</div>
@@ -63,27 +65,23 @@
 								</tr>
 								<c:forEach var="consult" items="${consultsList}">
 									<tr>
-										<td>
-											<input type="checkbox" class="consultCheck" name="consultCheck" data-csnum="${consult.cs_num}" value="${consult.cs_num}">
-										</td>
+										<td><input type="checkbox" class="consultCheck"
+											name="consultCheck" data-csnum="${consult.cs_num}"
+											value="${consult.cs_num}"></td>
 										<td>${consult.cs_num}</td>
-										<td>
-											<c:if test="${consult.cs_category == 0}">일반문의</c:if>
-											<c:if test="${consult.cs_category == 1}">신고</c:if>
-										</td>
+										<td><c:if test="${consult.cs_category == 0}">일반문의</c:if>
+											<c:if test="${consult.cs_category == 1}">신고</c:if></td>
 										<td>${consult.mem_id}</td>
 										<td><a href="consultDetail.do?${consult.cs_num}">${consult.cs_title}</a></td>
 										<td>${consult.cs_reg_date}</td>
-										<td>
-											<c:if test="${consult.cs_confirmed == 0}">처리 안 됨</c:if>
-											<c:if test="${consult.cs_confirmed == 1}">처리됨</c:if>
-										</td>
+										<td><c:if test="${consult.cs_confirmed == 0}">처리 안 됨</c:if>
+											<c:if test="${consult.cs_confirmed == 1}">처리됨</c:if></td>
 									</tr>
 								</c:forEach>
 							</table>
-							<button id="confirm_cs">처리하기</button>
-							<button id="unconfirm_cs">처리 취소</button>
-							
+							<button id="confirm_cs" data-confirm="1">처리하기</button>
+							<button id="unconfirm_cs" data-confirm="0">처리 취소</button>
+
 							<div>${page}</div>
 						</c:if>
 					</form>
