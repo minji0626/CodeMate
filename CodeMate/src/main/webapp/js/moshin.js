@@ -17,7 +17,7 @@ $(function() {
                 } else if(param.result=='last') {
 					const msg = confirm("마지막 합격자입니다. 합격 시 팀이 생성됩니다. 합격시키겠습니까?");
 					if(msg){
-						location.href='lastPassCodeMate.do';
+						location.href='lastPassCodeMate.do?' + form_data;
 					} else {
 						location.href='myPageMoShin.do?rb_num='+rb_num;
 					}
