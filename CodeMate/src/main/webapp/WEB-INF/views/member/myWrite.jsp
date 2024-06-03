@@ -33,6 +33,11 @@
     <option value="dev">개발</option>
     <option value="free">자유</option>
 </select>
+
+<c:if test="${empty cboardList}">
+<div class="MW">나의 작성 글이 없습니다</div>
+</c:if>
+<c:if test="${!empty cboardList}">
 <c:forEach var="cboardList" items="${cboardList}">
     <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboardList.cb_num}'" data-type="<c:out value="${cboardList.cb_type}"/>">
         <div class="team-left-myWrite">
@@ -55,7 +60,7 @@
         </div>
     </div>
 </c:forEach>
-
+</c:if>
 
 </div>
 <!-- 메인 정보 수정 끝 -->

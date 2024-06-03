@@ -37,6 +37,11 @@
     <option value="free">자유</option>
 </select>
 
+
+<c:if test="${empty commentList}">
+<div class="MR">나의 작성 댓글이 없습니다</div>
+</c:if>
+<c:if test="${!empty commentList}">
 <c:forEach var="comment" items="${commentList}">
     <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${comment.cb_num}'" data-type="<c:out value="${comment.cb_type}"/>">
         <div class="team-left-myWrite">
@@ -59,6 +64,8 @@
         </div>
     </div>
 </c:forEach>
+</c:if>
+
 
 </div>
 <!-- 메인 정보 수정 끝 -->

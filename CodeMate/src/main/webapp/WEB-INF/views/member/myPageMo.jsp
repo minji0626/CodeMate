@@ -31,7 +31,7 @@
 </div>
 
 <c:if test="${empty rboardList}">
-	나의 모집글이 없습니다
+<div class="MM">나의 모집글이 없습니다</div>
 </c:if>
 
 <c:if test="${!empty rboardList}">
