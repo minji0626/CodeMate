@@ -36,9 +36,9 @@
 					<li class="info">
 					<label for="passwd">비밀번호</label> 
 						<input type="password" name="passwd" id="passwd" maxlength="12" class="input-check">
-					</li>
+					</li> 
 					 <li class="info">
-                   	 	<label for="mem_nickname" class="form_label">닉네임</label><br>
+                   	 	<label for="mem_nickname" class="form_label">닉네임</label>
                     	<input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check">
                     	<div id="message_nickname" class="error-message"></div>
                     	<!-- 닉네임 중복체크 -->
