@@ -56,11 +56,6 @@
     <div class="formBox">
         <div class="text-align-left">
             <ul class="item-align-center">
-            
-            	<li>
-            	
-            	</li>
-            
                 <li>
                     <label for="mem_name" class="form_label">이름</label><br>
                     <input type="text" id="mem_name" name="mem_name" maxlength="10" class="input-check" value="${member.mem_name}">
@@ -75,6 +70,8 @@
                     <input type="email" id="mem_email" name="mem_email" maxlength="50" class="input-check" value="${member.mem_email}">
                     
                 </li>
+                
+                
                 <li>
                     <label for="mem_nickname" class="form_label">닉네임</label><br>
                     <input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
