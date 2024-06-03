@@ -63,29 +63,30 @@ myPageMoshin.jsp
 	margin-left: 90px;
 	margin-bottom: 30px;
 } */
+
 .myPage-line-box-moshin {
     display: flex;
     flex-direction: column;
     padding: 10px;
     border-radius: 15px;
     border: 1px solid #8f8f8f;
-    margin-bottom: 10px;
+    margin: 0 auto 20px;
     width: 800px;
-    margin: 0 auto;
     box-sizing: border-box;
-    margin-bottom: 20px;
 }
+
 .content {
-	width:850px;
-	max-width: 100%; /* 부모 요소의 크기를 초과하지 않도록 설정 */
+    width: 100%; /* 부모 요소의 크기를 초과하지 않도록 설정 */
     word-wrap: break-word; /* 긴 단어나 URL을 줄 바꿈 */
     white-space: pre-wrap; /* 공백을 유지하고 줄 바꿈 허용 */
     overflow-wrap: break-word; /* 긴 단어를 다음 줄로 이동 */
     margin-bottom: 20px;
 }
-.mypage_clob{
-	margin-top: 40px;
-	margin-right: 20px;
+
+.mypage_clob {
+    margin-top: 40px;
+    margin-right: 20px;
+    width: 100%;
 }
 /* .content{
 	width:700px;
