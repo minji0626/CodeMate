@@ -19,7 +19,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/manageMembers.js"></script>
+	src="${pageContext.request.contextPath}/js/consultsList.js"></script>
 </head>
 <body>
 	<!-- 헤더 링크-->
@@ -53,51 +53,37 @@
 						<c:if test="${count > 0}">
 							<table id="search-result">
 								<tr>
+									<th></th>
 									<th>문의번호</th>
+									<th>종류</th>
 									<th>회원ID</th>
 									<th>문의 제목</th>
 									<th>문의등록일</th>
-									<th>종류</th>
+									<th>처리유무</th>
 								</tr>
-								<c:forEach var="member" items="${membersList}">
+								<c:forEach var="consult" items="${consultsList}">
 									<tr>
-										<td>${member.mem_num}</td>
-										<td>${member.mem_id}</td>
-										<td>${member.mem_nickname}</td>
 										<td>
-											<c:if test="${member.mem_auth == 0}">탈퇴</c:if>
-											<c:if test="${member.mem_auth == 1}">정지</c:if>
-											<c:if test="${member.mem_auth == 2}">일반</c:if>
-											<c:if test="${member.mem_auth == 9}">관리자</c:if>
-										
+											<input type="checkbox" class="consultCheck" name="consultCheck" data-csnum="${consult.cs_num}" value="${consult.cs_num}">
 										</td>
-										<td>${member.mem_email}</td>
-										<td>${member.mem_reg_date}</td>
+										<td>${consult.cs_num}</td>
 										<td>
-											<c:if test="${member.mem_auth ==0}"
-											></c:if>
-											<c:if test="${member.mem_auth != 9 && member.mem_auth != 1}"
-											><button class="lockMemberBtn" data-memnum="${member.mem_num}" data-locked="0"
-											>정지</button></c:if>
-											<c:if test="${member.mem_auth != 9 && member.mem_auth == 1}"
-											><button class="lockMemberBtn" data-memnum="${member.mem_num}" data-locked="1"
-											>정지 취소</button></c:if>
+											<c:if test="${consult.cs_category == 0}">일반문의</c:if>
+											<c:if test="${consult.cs_category == 1}">신고</c:if>
 										</td>
-										<td><c:if test="${member.mem_auth != 9 && member.mem_auth != 0}"><button class="deleteMemberBtn" data-memnum="${member.mem_num}">탈퇴</button></c:if></td>
+										<td>${consult.mem_id}</td>
+										<td><a href="consultDetail.do?${consult.cs_num}">${consult.cs_title}</a></td>
+										<td>${consult.cs_reg_date}</td>
 										<td>
-											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
-											<select name="changeAuthToAdmin">
-												<option value="2" <c:if test="${member.mem_auth != 9}">selected</c:if>>일반</option>
-												<option value="9" <c:if test="${member.mem_auth == 9}">selected</c:if>>관리자</option>
-											</select>
-											</c:if>
-											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
-											<button class="changeAuthBtn" data-memnum="${member.mem_num}" data-memauth="${member.mem_auth}">등급변경</button>
-											</c:if>
+											<c:if test="${consult.cs_confirmed == 0}">처리 안 됨</c:if>
+											<c:if test="${consult.cs_confirmed == 1}">처리됨</c:if>
 										</td>
 									</tr>
 								</c:forEach>
 							</table>
+							<button id="confirm_cs">처리하기</button>
+							<button id="unconfirm_cs">처리 취소</button>
+							
 							<div>${page}</div>
 						</c:if>
 					</form>
