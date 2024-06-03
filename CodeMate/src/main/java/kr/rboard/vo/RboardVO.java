@@ -34,14 +34,31 @@ public class RboardVO {
 	private String mem_nickname;
 	private String mem_photo;
 	
+	
+	
 	//신청내역에서 띄울 ra_num
 	private int ra_num;
 	
 	private int ra_pass;
 	
+	private int team_num;
+	private int team_status;
 	
 	
 	
+	
+	public int getTeam_num() {
+		return team_num;
+	}
+	public void setTeam_num(int team_num) {
+		this.team_num = team_num;
+	}
+	public int getTeam_status() {
+		return team_status;
+	}
+	public void setTeam_status(int team_status) {
+		this.team_status = team_status;
+	}
 	public int getRa_pass() {
 		return ra_pass;
 	}
