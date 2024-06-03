@@ -27,6 +27,11 @@
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
 	<h3 class="mYPage-TitleText">북마크</h3>
 </div>
+
+<c:if test="${empty rboardList}">
+나의 북마크가 존재하지 않습니다
+</c:if>
+<c:if test="${!empty rboardList}">
 <c:forEach var="rboard" items="${rboardList}">
 <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'" style="cursor: pointer;">
 <div class="team-left">
@@ -41,6 +46,8 @@
 </div>
 </div>
 </c:forEach>
+</c:if>
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->

@@ -1,19 +1,17 @@
 $(window).on('pageshow', function(event) {
-    if (event.originalEvent.persisted) {
-        // 페이지가 캐시에서 불러와졌을 때 실행할 코드
-        debugger;
-        updateSkillTags();
-        fetchResults();
-        console.log($('#search_key').val());
-    }
+	if (event.originalEvent.persisted) {
+		// 페이지가 캐시에서 불러와졌을 때 실행할 코드
+		updateSkillTags();
+		fetchResults();
+		console.log($('#search_key').val());
+	}
 });
 
 function getContextPath() {
 	return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
 }
 
-async function fetchResults() {
-	debugger;
+function fetchResults() {
 	var searchData = {
 		r_skills: [],
 		rb_category: $('select[name="rb_category"]').val(),
@@ -29,92 +27,77 @@ async function fetchResults() {
 		searchData.r_skills.push($(this).val());
 	});
 
-	try {
-		let response = await $.ajax({
-			type: 'GET',
-			url: 'searchResults.do', // 서버 측 검색 결과를 처리하는 URL
-			data: searchData,
-			traditional: true,
-			dataType: 'json'
-		});
-
-		let output = '';
-		let contextPath = getContextPath();
-		$(response.rboardList).each(function(index, item) {
-			output += '<li class="r-item"';
-			output += 'onclick="location.href=\'' + contextPath + '/rboard/detail.do?rb_num=' + item.rb_num + '\'">';
-			output += '<div class="r-item-header">';
-			output += '<span>마감일 | </span> <span>' + item.rb_endRecruit + '</span>';
-			output += '</div>';
-			output += '<div class="r-item-main">';
-			if (item.rb_category == 0) {
-				output += '<span>[스터디]</span>';
-			} else {
-				output += '<span>[프로젝트]</span>';
-			}
-			output += '<p>' + item.rb_title + '</p>';
-			output += '</div>';
-			output += '<div>';
-			for (var i = 0; i < item.hs_photo_arr.length; i++) {
-				output += '<img src="' + contextPath + '/images/hard_skill_logo/' + item.hs_photo_arr[i] + '"';
-				output += 'title="' + item.hs_name_arr[i] + '" class="skill-logo"> ';
-			}
-			output += '</div>';
-			output += '<span>진행방식 | </span> <span>';
-			if (item.rb_meet == 0) {
-				output += '온라인';
-			} else if (item.rb_meet == 1) {
-				output += '오프라인';
-			} else {
-				output += '온라인/오프라인';
-			}
-			output += '</span>';
-			output += '<div>';
-			output += '<span>모집필드 | </span>';
-			$(item.f_name_arr).each(function(index, field) {
-				output += '<span>' + field + '</span> ';
+	$.ajax({
+		type: 'GET',
+		url: 'searchResults.do', // 서버 측 검색 결과를 처리하는 URL
+		data: searchData,
+		traditional: true,
+		dataType: 'json',
+		success: function(response) {
+			let output = '';
+			let contextPath = getContextPath();
+			$(response.rboardList).each(function(index, item) {
+				output += '<li class="r-item"';
+				output += 'onclick="location.href=\'' + contextPath + '/rboard/detail.do?rb_num=' + item.rb_num + '\'">';
+				output += '<div class="r-item-header">';
+				output += '<span>마감일 | </span> <span>' + item.rb_endRecruit + '</span>';
+				output += '</div>';
+				output += '<div class="r-item-main">';
+				if (item.rb_category == 0) {
+					output += '<span>[스터디]</span>';
+				} else {
+					output += '<span>[프로젝트]</span>';
+				}
+				output += '<p>' + item.rb_title + '</p>';
+				output += '</div>';
+				output += '<div>';
+				for (var i = 0; i < item.hs_photo_arr.length; i++) {
+					output += '<img src="' + contextPath + '/images/hard_skill_logo/' + item.hs_photo_arr[i] + '"';
+					output += 'title="' + item.hs_name_arr[i] + '" class="skill-logo"> ';
+				}
+				output += '</div>';
+				output += '<span>진행방식 | </span> <span>';
+				if (item.rb_meet == 0) {
+					output += '온라인';
+				} else if (item.rb_meet == 1) {
+					output += '오프라인';
+				} else {
+					output += '온라인/오프라인';
+				}
+				output += '</span>';
+				output += '<div>';
+				output += '<span>모집필드 | </span>';
+				$(item.f_name_arr).each(function(index, field) {
+					output += '<span>' + field + '</span> ';
+				});
+				output += '</div>';
+				output += '<div>';
+				output += '<span>신청인원 | </span>';
+				output += '<span>' + item.rb_apply_count + '/';
+				if (item.rb_teamsize == 0) {
+					output += '인원 미정';
+				} else if (item.rb_teamsize == 10) {
+					output += '10명 이상';
+				} else {
+					output += item.rb_teamsize;
+				}
+				output += '</span>';
+				output += '</div>';
+				output += '<div>';
+				output += '<span>조회수 </span> <span>' + item.rb_hit + '</span>';
+				output += '</div>';
+				output += '</li>';
 			});
-			output += '</div>';
-			output += '<div>';
-			output += '<span>신청인원 | </span>';
-			output += '<span>' + item.rb_apply_count + '/';
-			if (item.rb_teamsize == 0) {
-				output += '인원 미정';
-			} else if (item.rb_teamsize == 10) {
-				output += '10명 이상';
-			} else {
-				output += item.rb_teamsize;
-			}
-			output += '</span>';
-			output += '</div>';
-			output += '<div>';
-			output += '<span>조회수 </span> <span>' + item.rb_hit + '</span>';
-			output += '</div>';
-			output += '</li>';
-		});
 
-		$('#r_board').empty().append(output);
-	} catch (jqXHR) {
-		var errorMessage = "네트워크 오류 발생~~";
-
-		if (jqXHR.status === 0) {
-			errorMessage += "\n네트워크가 연결되지 않았습니다.";
-		} else if (jqXHR.status == 404) {
-			errorMessage += "\n요청한 페이지를 찾을 수 없습니다. [404]";
-		} else if (jqXHR.status == 500) {
-			errorMessage += "\n서버 내부 오류가 발생했습니다. [500]";
-		} else {
-			errorMessage += "\n오류 코드: " + jqXHR.status;
+			$('#r_board').empty().append(output);
+		},
+		error: function() {
+			alert('네트워크 오류 발생');
 		}
-
-		errorMessage += "\n상태: " + textStatus;
-		errorMessage += "\n오류 내용: " + errorThrown;
-
-		alert(errorMessage);
-	}
+	});
 }
 
-async function updateSkillTags() {
+function updateSkillTags() {
 	var $scrollableTrigger = $('#scrollable_trigger');
 	var $checked = $('.scrollable input[type="checkbox"]:checked');
 
@@ -131,10 +114,10 @@ async function updateSkillTags() {
 			$scrollableTrigger.append('<span class="skill-tag">' + labelText + ' <span class="remove-btn">x</span></span>'); // 체크된 체크박스의 label을 span 태그로 추가
 		});
 	}
-	await fetchResults();
+	fetchResults();
 }
 
-async function removeSkillTag(element) {
+function removeSkillTag(element) {
 	var skillTag = $(element).closest('.skill-tag');
 	var labelText = skillTag.text().trim().replace(' x', '');
 
@@ -151,7 +134,7 @@ async function removeSkillTag(element) {
 	if ($scrollableTrigger.find('.skill-tag').length === 0) {
 		$scrollableTrigger.text('기술 스택');
 	}
-	await fetchResults();
+	fetchResults();
 }
 
 $(document).ready(function() {
@@ -161,24 +144,24 @@ $(document).ready(function() {
 		history.go(-1);
 	});
 
-	$('.search-menu').on('change', async function() {
+	$('.search-menu').on('change', function() {
 		if ($(this).val()) {
 			$(this).addClass('selected');
 		} else {
 			$(this).removeClass('selected');
 		}
-		await fetchResults();
+		fetchResults();
 	});
 
-	$('span.search-menu').on('click', async function() {
+	$('span.search-menu').on('click', function() {
 		$(this).toggleClass('selected');
-		await fetchResults();
+		fetchResults();
 	});
 
-	$('#search_key').keypress(async function(event) {
+	$('#search_key').keypress(function(event) {
 		if (event.keyCode === 13) {
 			$('#search_key_div').addClass('selected');
-			await fetchResults();
+			fetchResults();
 		}
 	});
 
@@ -198,15 +181,12 @@ $(document).ready(function() {
 		event.stopPropagation();
 	});
 
-	$('#scrollable_trigger').on('click', '.skill-tag', async function(event) {
+	$('#scrollable_trigger').on('click', '.skill-tag', function(event) {
 		event.stopPropagation();
-		await removeSkillTag(this);
+		removeSkillTag(this);
 	});
 
-	$('.scrollable input[type="checkbox"]').change(async function() {
-		await updateSkillTags(); // 체크박스 상태 변경 시 함수 호출
+	$('.scrollable input[type="checkbox"]').change(function() {
+		updateSkillTags(); // 체크박스 상태 변경 시 함수 호출
 	});
 });
-
-// 전역에서 접근 가능한 데이터 출력 (테스트용)
-console.log("r_fields =", $('select[name="r_fields"]').val());

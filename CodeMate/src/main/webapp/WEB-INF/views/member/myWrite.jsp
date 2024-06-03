@@ -47,8 +47,6 @@
             <div class="projectName_font">${cboardList.cb_title}</div>
             <div class="fav-reply">
                 <div class="myWrite-fav">조회수:${cboardList.cb_hit}</div>
-                <!-- 좋아요를 못 불러온다 왜지 -->
-                <div class="myWrite-reply">좋아요:${cboardList.cb_like}</div>
             </div>
         </div>
         <div class="btn_box_write">

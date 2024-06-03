@@ -29,6 +29,11 @@
 	<h3 class="mYPage-TitleText">나의 코메 신청</h3>
 </div>
 
+
+<c:if test="${empty aprboardList}">
+나의 신청내역이 없습니다
+</c:if>
+<c:if test="${!empty aprboardList}">
 <c:forEach var="aprboard" items="${aprboardList}">
 <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${aprboard.rb_num}'" style="cursor: pointer;">
 <div class="team-left">
@@ -50,6 +55,7 @@
 </div>
 </div>
 </c:forEach>
+</c:if>
 
 </div>
 <!-- 메인 정보 수정 끝 -->

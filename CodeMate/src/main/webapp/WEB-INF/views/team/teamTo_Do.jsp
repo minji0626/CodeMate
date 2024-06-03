@@ -49,7 +49,6 @@
               <input type="text" placeholder="mm/yyyy" class="date-input" />
               <button class="goto-btn">이동</button>
             </div>
-            <button class="today-btn">오늘</button>
           </div>
         </div>
       </div>
