@@ -28,7 +28,7 @@
 			</c:if>
 			
 			<!-- 로그인 O -->
-			<c:if test="${!empty mem_num && !empty mem_photo}">
+			<c:if test="${!empty mem_num && !empty mem_photo && mem_auth != 9}">
 					<div class="login_profile">
 					<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40"> <span>${mem_id}</span>
 					<button id="header_more">
@@ -81,8 +81,8 @@
 					<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
 						</button>
 						<div class="dropdown_header_menu">
+							<a href="${pageContext.request.contextPath}/admin/manageMembers.do" class="header_mate_profile">관리</a>
 							<a href="${pageContext.request.contextPath}/member/modifyUserForm.do" id="header_my_page">마이페이지</a> 
-							<a href="${pageContext.request.contextPath}/#" class="header_mate_profile">관리</a>
 							<a href="${pageContext.request.contextPath}/member/logout.do" id="header_logout">로그아웃</a>
 						</div>
 					</div>
