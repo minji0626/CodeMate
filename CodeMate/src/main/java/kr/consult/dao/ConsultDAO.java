@@ -59,8 +59,10 @@ public class ConsultDAO {
 				if (keyfield.equals("1")) {
 					sub_sql += "WHERE mem_id LIKE '%' || ? || '%'";
 				} else if (keyfield.equals("2")) {
-					sub_sql += "WHERE cs_category = ?";
+					sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
 				} else if (keyfield.equals("3")) {
+					sub_sql += "WHERE mem_num = ?";
+				} else if (keyfield.equals("4")) {
 					sub_sql += "WHERE cs_confirmed = ?";
 				}
 			}
@@ -99,20 +101,26 @@ public class ConsultDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			
+
 			if (keyword != null && !keyword.equals("")) {
 				if (keyfield.equals("1")) {
 					sub_sql += "WHERE mem_id LIKE '%' || ? || '%'";
 				} else if (keyfield.equals("2")) {
-					sub_sql += "WHERE cs_category = ?";
+					sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
 				} else if (keyfield.equals("3")) {
+					sub_sql += "WHERE mem_num = ?";
+				} else if (keyfield.equals("4")) {
 					sub_sql += "WHERE cs_confirmed = ?";
 				}
 			}
-			
-			sql = "SELECT * FROM consult LEFT OUTER JOIN member USING(mem_num)" + sub_sql + "ORDER BY cs_reg_date DESC";
 
+			sql = "SELECT * FROM consult LEFT OUTER JOIN member USING(mem_num)" + sub_sql + "ORDER BY cs_reg_date DESC";
 			pstmt = conn.prepareStatement(sql);
+			
+			if (keyword != null && !keyword.equals("")) {
+				pstmt.setString(1, keyword);
+
+			}
 
 			rs = pstmt.executeQuery();
 
@@ -135,6 +143,74 @@ public class ConsultDAO {
 		}
 
 		return list;
+	}
+
+	// 문의 처리하기
+	public void confirmConsults(String[] consults) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+
+			// 처리 여부에 따라 쿼리를 선택하고 바인딩할 값 설정
+			sql = "UPDATE consult SET cs_confirmed = 1, cs_confirmed_date = CASE WHEN cs_confirmed_date IS NULL THEN SYSDATE ELSE cs_confirmed_date END WHERE cs_num = ?";
+
+			// 모든 문의 번호에 대해 쿼리 실행
+			pstmt = conn.prepareStatement(sql);
+			for (int i=0; i<consults.length; i++) {
+				int csNum = Integer.parseInt(consults[i]);
+				pstmt.setInt(1, csNum);
+				pstmt.addBatch();
+				
+				if(i % 1000 == 0) {
+					pstmt.executeBatch();
+				}
+			}
+			pstmt.executeBatch();
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	// 문의 처리취소하기
+	public void unconfirmConsults(String[] consults) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+
+			// 처리 여부에 따라 쿼리를 선택하고 바인딩할 값 설정
+			sql = "UPDATE consult SET cs_confirmed = 0, cs_confirmed_date = NULL WHERE cs_num = ?";
+
+			// 모든 문의 번호에 대해 쿼리 실행
+			pstmt = conn.prepareStatement(sql);
+			for (int i=0; i<consults.length; i++) {
+				int csNum = Integer.parseInt(consults[i]);
+				pstmt.setInt(1, csNum);
+				pstmt.addBatch();
+				
+				if(i % 1000 == 0) {
+					pstmt.executeBatch();
+				}
+			}
+			pstmt.executeBatch();
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 
 	// 문의글 목록 불러오기(마이페이지)

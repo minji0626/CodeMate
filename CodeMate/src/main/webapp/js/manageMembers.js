@@ -39,9 +39,6 @@ $(document).ready(function() {
 				alert('변경사항이 없습니다.');
 				return;
 			}
-			
-			console.log("mem_auth: " + mem_auth);
-			console.log("selectedValue: " + selectedValue);
 
 			$.ajax({
 				type: 'POST',
