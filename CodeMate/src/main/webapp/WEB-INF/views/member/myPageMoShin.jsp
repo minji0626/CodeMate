@@ -78,5 +78,6 @@
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
 </div><!-- page-container끝 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/moshin.js"></script>
 </body>
 </html>
