@@ -15,7 +15,7 @@ public class FindIdAction implements Action{
 	      request.setCharacterEncoding("utf-8");
 	      //전송된 데이터 반환
 	     String phone = request.getParameter("phone");
-	      String email = request.getParameter("email");
+	      String email = request.getParameter("email");  
 	      MemberDAO dao = MemberDAO.getInstance();
 	      MemberVO member = dao.findId(phone, email);
 	      request.setAttribute("id",member.getMem_id());
