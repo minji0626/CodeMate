@@ -29,7 +29,7 @@
 </div>
 
 <c:if test="${empty rboardList}">
-나의 북마크가 존재하지 않습니다
+<div class="MB">나의 북마크가 존재하지 않습니다</div>
 </c:if>
 <c:if test="${!empty rboardList}">
 <c:forEach var="rboard" items="${rboardList}">
