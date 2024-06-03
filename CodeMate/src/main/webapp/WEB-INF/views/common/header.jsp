@@ -66,8 +66,8 @@
 						<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
 					</button>
 						<div class="dropdown_header_menu">
+							<a href="${pageContext.request.contextPath}/admin/manageMembers.do" class="header_mate_profile">관리</a>
 							<a href="${pageContext.request.contextPath}/member/modifyUserForm.do" id="header_my_page">마이페이지</a> 
-							<a href="${pageContext.request.contextPath}/#" class="header_mate_profile">관리</a>
 							<a href="${pageContext.request.contextPath}/member/logout.do" id="header_logout">로그아웃</a>
 						</div>
 					</div>
