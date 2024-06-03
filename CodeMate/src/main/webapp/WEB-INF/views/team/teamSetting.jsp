@@ -19,99 +19,99 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     
-    <c:if test="${param.team_num != team_num }">
-    <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
-    	잘못된 접근입니다.
-    </div>
+    <c:set var="currentLeaderMemNum" value="${mem_num}" />
+    <c:set var="currentLeaderTmAuth" value="${tm_auth}" />
+
+    <c:if test="${param.team_num != team_num}">
+        <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
+            잘못된 접근입니다.
+        </div>
     </c:if>
     
-    <c:if test="${param.team_num == team_num }">
-    <div id="mem_container">
-        <input type="hidden" name="team_num" value="${param.team_num}">
-        
-        <c:if test="${count == 0}">
-            저장된 정보가 없습니다.
-        </c:if>
-        <c:if test="${count > 0}">
-        <!-- 팀원 목록 출력! -->
-        <!-- 팀장 우선 출력하기-->
-        <c:forEach  var="tmember" items="${list}">
-        	<c:if test="${tmember.tm_auth == 4 }">
-        	
-                <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num }">style="box-shadow: 0 0 10px rgb(204, 247, 217);"</c:if>>
-                    <ul>
-                        <li>
-                        	<c:if test="${!empty tmember.mem_photo }">
-                        	<img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img">
-                        	</c:if>
-                        	<c:if test="${empty tmember.mem_photo }">
-                        	<img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img">
-                        	</c:if>
-                        </li>
-                        <li>
-                           <span class="team_mem_status">팀장</span>
-                        </li>
-                        <li>
-                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
-                        </li>
-                        <c:if test="${mem_num != tmember.mem_num }">
-                        <li>
-                            <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                            <div class="dropdown_menu">
-                                <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
-                                <c:if test="${tm_auth == 4 }">
-                                <!-- 팀장인 경우 데이터 속성 추가 -->
-								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
-                                <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
+    <c:if test="${param.team_num == team_num}">
+        <div id="mem_container">
+            <input type="hidden" name="team_num" value="${param.team_num}">
+            
+            <c:if test="${count == 0}">
+                저장된 정보가 없습니다.
+            </c:if>
+            <c:if test="${count > 0}">
+                <!-- 팀원 목록 출력! -->
+                <!-- 팀장 우선 출력하기 -->
+                <c:forEach var="tmember" items="${list}">
+                    <c:if test="${tmember.tm_auth == 4}">
+                        <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num}">style="box-shadow: 0 0 10px rgb(204, 247, 217);" </c:if>>
+                            <ul>
+                                <li>
+                                    <c:if test="${!empty tmember.mem_photo}">
+                                        <img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img">
+                                    </c:if>
+                                    <c:if test="${empty tmember.mem_photo}">
+                                        <img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img">
+                                    </c:if>
+                                </li>
+                                <li>
+                                    <span class="team_mem_status">팀장</span>
+                                </li>
+                                <li>
+                                    <span class="team_mem_nickname" data-tmnum="${tmember.team_num}" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
+                                </li>
+                                <c:if test="${mem_num != tmember.mem_num}">
+                                    <li>
+                                        <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
+                                        <div class="dropdown_menu">
+                                            <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
+                                            <c:if test="${tm_auth == 4}">
+                                                <!-- 팀장인 경우 데이터 속성 추가 -->
+                                                <a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+                                                <a class="mem_auth_btn" style="cursor: pointer" data-current-leader="${currentLeaderMemNum}" data-new-leader="${tmember.mem_num}">팀장 위임</a>
+                                            </c:if>
+                                        </div>
+                                    </li>
                                 </c:if>
-                            </div>
-                        </li>
-                        </c:if>
-                    </ul>
-                </div>
-                </c:if>
-            </c:forEach>
-        
-        	<!-- 팀원 출력하기! -->
-            <c:forEach  var="tmember" items="${list}">
-            <c:if test="${tmember.tm_auth == 3 }">
-                <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num }">style="box-shadow: 0 0 10px rgb(204, 247, 217);"</c:if>>
-                    <ul>
-                        <li>
-                        	<c:if test="${!empty tmember.mem_photo }">
-                        	<img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img">
-                        	</c:if>
-                        	<c:if test="${empty tmember.mem_photo }">
-                        	<img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img">
-                        	</c:if>
-                        </li>
-                        <li>
-                           <span class="team_mem_status">팀원</span>
-                        </li>
-                        <li>
-                        <span class="team_mem_nickname" data-tmnum="${tmember.team_num }" data-mem-num="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
-                        </li>
-                        <c:if test="${mem_num != tmember.mem_num }">
-                        <li>
-                            <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
-                            <div class="dropdown_menu">
-                                <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
-                                <c:if test="${tm_auth == 4 }">
-                                <!-- 팀장인 경우 데이터 속성 추가 -->
-								<a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+                            </ul>
+                        </div>
+                    </c:if>
+                </c:forEach>
 
-                                <a class="mem_auth_btn" style="cursor: pointer">팀장 위임</a>
-                                <input type="hidden" name="mem_num" value="${tmember.team_num}">
+                <!-- 팀원 출력하기 -->
+                <c:forEach var="tmember" items="${list}">
+                    <c:if test="${tmember.tm_auth == 3}">
+                        <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num}">style="box-shadow: 0 0 10px rgb(204, 247, 217);" </c:if>>
+                            <ul>
+                                <li>
+                                    <c:if test="${!empty tmember.mem_photo}">
+                                        <img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img">
+                                    </c:if>
+                                    <c:if test="${empty tmember.mem_photo}">
+                                        <img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img">
+                                    </c:if>
+                                </li>
+                                <li>
+                                    <span class="team_mem_status">팀원</span>
+                                </li>
+                                <li>
+                                    <span class="team_mem_nickname" data-tmnum="${tmember.team_num}" data-memnum="${tmember.mem_num}" data-nickname="${tmember.mem_nickname}" data-id="${tmember.mem_id}" data-level="${tmember.mem_level}">${tmember.mem_nickname}</span>
+                                </li>
+                                <c:if test="${mem_num != tmember.mem_num}">
+                                    <li>
+                                        <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
+                                        <div class="dropdown_menu">
+                                            <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
+                                            <c:if test="${tm_auth == 4}">
+                                                <!-- 팀장인 경우 데이터 속성 추가 -->
+                                                <a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
+                                                <a class="mem_auth_btn" style="cursor: pointer" data-current-leader="${currentLeaderMemNum}" data-new-leader="${tmember.mem_num}">팀장 위임</a>
+                                            </c:if>
+                                        </div>
+                                    </li>
                                 </c:if>
-                            </div>
-                        </li>
-                        </c:if>
-                    </ul>
-                </div>
-                </c:if>
-            </c:forEach>
-        </c:if>
-    </div>
+                            </ul>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </c:if>
+        </div>
     </c:if>
 </div>
 
@@ -152,6 +152,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/team.member.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/mate.review.js"></script>
 </body>
