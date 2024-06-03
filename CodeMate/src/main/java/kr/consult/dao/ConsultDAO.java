@@ -59,11 +59,9 @@ public class ConsultDAO {
 				if (keyfield.equals("1")) {
 					sub_sql += "WHERE mem_id LIKE '%' || ? || '%'";
 				} else if (keyfield.equals("2")) {
-					sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
+					sub_sql += "WHERE TO_CHAR(mem_num) = ?";
 				} else if (keyfield.equals("3")) {
-					sub_sql += "WHERE mem_num = ?";
-				} else if (keyfield.equals("4")) {
-					sub_sql += "WHERE cs_confirmed = ?";
+					sub_sql += "WHERE TO_CHAR(cs_confirmed) = ?";
 				}
 			}
 
@@ -103,14 +101,14 @@ public class ConsultDAO {
 			conn = DBUtil.getConnection();
 
 			if (keyword != null && !keyword.equals("")) {
-				if (keyfield.equals("1")) {
-					sub_sql += "WHERE mem_id LIKE '%' || ? || '%'";
-				} else if (keyfield.equals("2")) {
-					sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
-				} else if (keyfield.equals("3")) {
-					sub_sql += "WHERE mem_num = ?";
-				} else if (keyfield.equals("4")) {
-					sub_sql += "WHERE cs_confirmed = ?";
+				if (keyword != null && !keyword.equals("")) {
+					if (keyfield.equals("1")) {
+						sub_sql += "WHERE mem_id LIKE '%' || ? || '%'";
+					} else if (keyfield.equals("2")) {
+						sub_sql += "WHERE TO_CHAR(mem_num) = ?";
+					} else if (keyfield.equals("3")) {
+						sub_sql += "WHERE TO_CHAR(cs_confirmed) = ?";
+					}
 				}
 			}
 

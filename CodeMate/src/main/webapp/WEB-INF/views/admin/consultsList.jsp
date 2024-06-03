@@ -37,17 +37,17 @@
 						<ul class="search">
 							<li><select name="keyfield">
 									<option value="1"
-										<c:if test="${param.keyfield == 1}">selected</c:if>>ID</option>
+										<c:if test="${param.keyfield == 1}">selected</c:if>>회원ID</option>
 									<option value="2"
-										<c:if test="${param.keyfield == 2}">selected</c:if>>닉네임</option>
-									<option value="3"
-										<c:if test="${param.keyfield == 3}">selected</c:if>>회원번호</option>
+										<c:if test="${param.keyfield == 2}">selected</c:if>>회원번호</option>
 							</select></li>
 							<li><input type="search" size="16" name="keyword"
-								id="keyword" value="${param.keyword}"></li>
+								id="keyword" <c:if test="${param.keyfield != 3}">value="${param.keyword}"</c:if>></li>
 							<li><input type="submit" value="검색"></li>
 							<li><input type="button" id="getUnconfirmed"
-								value="미처리 문의만 보기" data-keyfield="4" data-keyword="0"></li>
+								value="미처리 문의만 보기" data-keyfield="3" data-keyword="0"></li>
+							<li><input type="button" id="getAll"
+								value="전체"></li>
 						</ul>
 						<c:if test="${count == 0}">
 							<div>표시할 문의가 없습니다.</div>
