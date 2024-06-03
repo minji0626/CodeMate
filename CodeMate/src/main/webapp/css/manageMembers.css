@@ -1,48 +1,193 @@
-@charset "UTF-8";
-
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-	margin: 0;
-	padding: 0;
-}
 
 #flex_container {
-	display: flex;
-	align-items: center; /* 수직 정렬 */
-	height: 100vh; /* 전체 높이 */
+    display: flex;
 }
-	
-#flex_container .float-B {
-	width: 100%;
-	margin: 0 auto; /* 수평 중앙 정렬 */
-	margin-top: 35px; /* 기존 상단 여백 */
+.float-B {
+    flex: 1;
 }
 
 .align-center {
-	text-align: center;
+    text-align: center;
 }
 
-/*검색 부분*/
+#manage_members_form {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* 옵션 선택하는 CSS */
+/* 검색할 때 지정하는 옵션 */
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    appearance: none;
+    cursor: pointer;
+}
+/* 등급 변경할 때 지정하는 옵션 */
+.auth-select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 12px;
+    color: #333;
+    appearance: none;
+    cursor: pointer;
+}
+/* 그 외 부분들은 통일 */
+select:hover {
+    border-color: #007bff;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
+}
+
+select option {
+    padding: 10px;
+    background-color: white;
+    color: #333;
+}
+
+/* 검색하는 창 */
 .search {
-	display: flex;
-	justify-content: center; /* 검색창 중앙 정렬 */
-	margin-bottom: 50px; /* 검색창 하단 여백 */
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top : 10px;
+    margin-bottom: 20px;
 }
 
 .search li {
-	display: inline-block;
+    margin-right: 10px;
 }
 
-table#search_result {
-	align-content: center;
-	margin: 30px auto;
+.search input[type="search"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/*결과 표시*/
-#manage_members_form {
-	margin: 20px auto;
+.search input[type="submit"] {
+    padding: 8px 16px;
+    background: #4169E1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
 }
 
-td, th {
-	padding: 0 6px;
+.search input[type="submit"]:hover {
+    opacity: 0.85;
 }
+
+/* 테이블 css 설정 */
+#search-result {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+#search-result th, #search-result td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+#search-result th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+#search-result tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#search-result tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* 버튼들 스타일 */
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.lockMemberBtn {
+	transition: transform 0.3s;
+    background-color: #FFC107;
+    color: white;
+    
+}
+
+.lockMemberBtn:hover {
+	transform: scale(1.05);
+    opacity: 0.8;
+}
+
+.deleteMemberBtn {
+	transition: transform 0.3s;
+    background-color: #FF4500;
+    color: white;
+}
+
+.deleteMemberBtn:hover {
+	transform: scale(1.05);
+    opacity: 0.8;
+}
+
+.changeAuthBtn {
+	transition: transform 0.3s;
+    background-color: #ADD8E6;
+    color: white;
+}
+
+.changeAuthBtn:hover {
+	transform: scale(1.05);
+    opacity: 0.8;
+}
+
+
+/* 처리하기, 처리 취소 버튼 스타일 */
+#confirm_cs {
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px; 
+    margin-top: 10px; 
+    transition: transform 0.3s;
+}
+
+#unconfirm_cs {
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    background-color: #FF4500;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px; 
+    margin-top: 10px;
+    transition: transform 0.3s; 
+}
+
+/* 처리하기, 처리 취소 버튼에 호버 효과 */
+#confirm_cs:hover, #unconfirm_cs:hover {
+	opacity: 0.8;
+	}
+

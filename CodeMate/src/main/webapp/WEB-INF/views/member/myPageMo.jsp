@@ -36,20 +36,22 @@
 
 <c:if test="${!empty rboardList}">
 <c:forEach var="rboard" items="${rboardList}">
-    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do?rb_num=${rboard.rb_num}'" style="cursor: pointer;">
-        <div class="team-left">
-            <div class="skill_font_T">${rboard.rb_pj_title}</div>
-            <div class="projectName_font">${rboard.rb_title}</div>
-        </div>
-        <div class="team-right">
-            <div class="delete-green" data-rbnum="${rboard.rb_num}">&nbsp모집글 삭제</div>
-            <div>
-                <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
-                <div>모집마감:${rboard.rb_endRecruit}</div>
-            </div>
-            <div class="close-green" onclick="toggleActivation(this)">&nbsp&nbsp&nbsp&nbsp&nbsp활성화</div>
-        </div>
-    </div>
+	<c:if test="${rboard.team_status==0}">
+	    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do?rb_num=${rboard.rb_num}'" style="cursor: pointer;">
+	        <div class="team-left">
+	            <div class="skill_font_T">${rboard.rb_pj_title}</div>
+	            <div class="projectName_font">${rboard.rb_title}</div>
+	        </div>
+	        <div class="team-right">
+	            <div class="delete-green" data-rbnum="${rboard.rb_num}">&nbsp모집글 삭제</div>
+	            <div>
+	                <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
+	                <div>모집마감:${rboard.rb_endRecruit}</div>
+	            </div>
+	            <div class="close-green" onclick="toggleActivation(this)">&nbsp&nbsp&nbsp&nbsp&nbsp활성화</div>
+	        </div>
+	    </div>
+    </c:if>
 </c:forEach>
 </c:if>
 </div>

@@ -33,13 +33,8 @@ public class CheckDuplicatedNicknameAction implements Action {
 			mapAjax.put("result", "nicknameDuplicated");
 		}
 
-//	JSON 형식으로 변환하기를 원하는 문자열을  HashMap에 key와 value의 쌍으로 지정한 후
-//	ObjectMapper의 writeValueAsString에 Map 객체를 전달해서 일반 문자열 데이터를 
-//	JSON 형식의 문자열 데이터로 변환후 반환한다
-
 		ObjectMapper mapper = new ObjectMapper();
 
-//	JSON 문자열 반환
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 
 		request.setAttribute("ajaxData", ajaxData);

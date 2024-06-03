@@ -463,7 +463,9 @@ public class RboardDAO {
 	public List<RboardVO> getRboardListByMemNum(int mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		List<RboardVO> list = null;
 		String sql = null;
 
@@ -484,11 +486,21 @@ public class RboardDAO {
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
+				
+				sql = "SELECT team_status FROM team WHERE team_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, rboard.getRb_num());
+				rs2 = pstmt2.executeQuery();
+				if(rs2.next()) {
+					rboard.setTeam_status(rs2.getInt("team_status"));
+				}
+
 				list.add(rboard);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
+			DBUtil.executeClose(rs2, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return list;
