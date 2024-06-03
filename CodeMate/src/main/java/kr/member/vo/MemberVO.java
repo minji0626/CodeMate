@@ -144,10 +144,14 @@ public class MemberVO {
 	public void setMem_photo(String mem_photo) {
 		this.mem_photo = mem_photo;
 	}
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_report="
+				+ mem_report + ", mem_name=" + mem_name + ", mem_nickname=" + mem_nickname + ", mem_passwd="
+				+ mem_passwd + ", mem_phone=" + mem_phone + ", mem_email=" + mem_email + ", mem_level=" + mem_level
+				+ ", mem_reg_date=" + mem_reg_date + ", mem_modify_date=" + mem_modify_date + ", mem_photo=" + mem_photo
+				+ ", mp_position=" + mp_position + ", mp_introduce=" + mp_introduce + ", mp_modify_date="
+				+ mp_modify_date + ", mp_state=" + mp_state + "]";
+	}
 }

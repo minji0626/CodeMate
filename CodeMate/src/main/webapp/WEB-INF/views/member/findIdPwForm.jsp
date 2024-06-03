@@ -46,7 +46,7 @@
                
                <!-- 비밀번호 찾기 -->
                <div class="slide">
-               <form class="pwForm">
+               <form class="pwForm" action="">
                      <input type="text" id="idInput" placeholder="아이디" required>
                      <input type="text" id="phoneInput" placeholder="전화번호" required>
                      <input type="email" id="emailInput" placeholder="이메일 주소" required>
@@ -108,40 +108,6 @@
                HrWrapper.style.transform = 'translateX(50%)';
             }
     });
-    
-    
-    var phone = $('#phoneInput').val();
-    var email = $('#emailInput').val();
-
-    	//id찾기
-        $('.idForm').submit(function(){
-            event.preventDefault(); // 폼 기본 동작 방지    
-            var data = {
-                  phone: $('#phoneInput').val(),
-                  email: $('#emailInput').val()
-              }; 
-            
-            $.ajax({
-                type: 'post', 
-                url: 'getId.do', 
-                data: data,
-                dataType:'json',
-                success:function(param){
-                if(param.result == 'idFound'){
-                	alert('아이디가 존재합니다!');
-                	
-                	return location.href='${pageContext.request.contextPath}/member/findId.do'; 
-                	
-                   }else{
-                      alert('정확한 이메일과 전화번호를 입력하세요');
-                      $('#phoneInput').val('').focus();
-                      $('#emailInput').val('').focus();
-                   }
-                },
-                error:function(){
-                	 alert('네트워크 오류 발생');
-             }
-            });
             
         });
 </script>
