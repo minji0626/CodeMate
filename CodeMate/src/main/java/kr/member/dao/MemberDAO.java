@@ -81,7 +81,7 @@ public class MemberDAO {
 	}
 
 
-	//ID
+	//아이디 중복 체크
 	public MemberVO checkMember(String id)throws Exception{
 		Connection conn = null; 
 		PreparedStatement pstmt = null; 
@@ -120,7 +120,7 @@ public class MemberDAO {
 		return member; 
 	}
 	
-	//닉네임
+	//닉네임 중복 체크
 		public MemberVO checkNickname(String mem_nickname)throws Exception{
 			Connection conn = null; 
 			PreparedStatement pstmt = null; 
@@ -159,7 +159,7 @@ public class MemberDAO {
 			return member; 
 		}
 	
-	//ID
+	// 이메일 중복 체크
 		public MemberVO checkEmail(String email)throws Exception{
 			Connection conn = null; 
 			PreparedStatement pstmt = null; 
@@ -186,7 +186,7 @@ public class MemberDAO {
 					member.setMem_auth(rs.getInt("mem_auth"));
 					member.setMem_passwd(rs.getString("mem_passwd"));
 					member.setMem_photo(rs.getString("mem_photo"));
-					member.setMem_email(rs.getString("mem_email"));
+					member.setMem_email(rs.getString("mem_email"));//회원 탈퇴 시 필요 
 					member.setMem_nickname(rs.getString("mem_nickname"));
 					member.setMem_level(rs.getInt("mem_level"));
 				}
@@ -198,7 +198,8 @@ public class MemberDAO {
 			return member; 
 
 		}
-		//ID
+		
+		// 핸드폰 중복 체크
 		public MemberVO checkPhone(String phone)throws Exception{
 			Connection conn = null; 
 			PreparedStatement pstmt = null; 
@@ -237,6 +238,7 @@ public class MemberDAO {
 			return member; 
 
 		}
+		
 		//아이디 찾기 - 아이디 여부 확인
 		public MemberVO findId(String phone,String email)throws Exception{
 			Connection conn = null;

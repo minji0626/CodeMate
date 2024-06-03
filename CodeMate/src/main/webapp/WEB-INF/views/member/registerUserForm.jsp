@@ -15,11 +15,12 @@ $(function(){
 let emailChecked = 0;
 let idChecked = 0;     //0:중복,아이디 중복 체크 미실시,1:미중복
 let phoneChecked = 0;
+let nicknameChecked = 0;
 
+	$('#id').on('blur', function() {
 	//아이디 중복 체크
-	$('#id_check').click(function(){
 		if(!/^[A-Za-z0-9]{4,12}$/.test($('#id').val())){
-			alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
+			$('#message_id').text('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
 			$('#id').val('').focus();
 			return;
 		}	
@@ -39,7 +40,7 @@ let phoneChecked = 0;
 					$('#id').val('').focus();
 				}else{
 					idChecked = 0;
-					alert('아이디 중복 체크 오류 발생');
+					$('#message_id').text('아이디 중복 체크 오류 발생');
 				}
 			},
 			error:function(){
@@ -48,10 +49,12 @@ let phoneChecked = 0;
 			}
 		});
 		
-	});//end of click
+	});//end of id_check
+	
+	
+	
 	//이메일 중복 체크
-	$('#email_check').click(function(){
-		
+	$('#email').on('blur', function() {
 		//서버와 통신
 		$.ajax({
 			url:'checkDuplicatedEmail.do',
@@ -77,9 +80,39 @@ let phoneChecked = 0;
 			}
 		});
 		
-	});//end of click
+	});//end of email check
+	
+	/* 닉네임 중복 체크 */
+	$('#mem_nickname').on('blur', function() {
+		var nickname = $(this).val();
+		// 서버에 닉네임 중복 확인 요청을 보냄
+		$.ajax({
+			url: 'checkDuplicatedNickname.do',
+			method: 'post',
+			data: { mem_nickname: nickname },
+			dataType: 'json',
+			success: function(param) {
+				if (param.result == 'nicknameDuplicated') {
+					nicknameChecked = 0;
+					$('#message_nickname').text('이미 사용 중인 닉네임입니다.');
+				} else if (param.result == 'nicknameNotFound') {
+					nicknameChecked = 1;
+					$('#message_nickname').text('사용 가능한 닉네임입니다.');
+				} else {
+					nicknameChecked = 0;
+					$('#message_nickname').text('닉네임 중복 체크 중 오류 발생');
+				}
+			},
+			error: function() {
+				nicknameChecked = 0;
+				$('#message_nickname').text('서버 오류가 발생했습니다.');
+			}
+		});
+	});
+	
+	
 	//전화번호 중복 체크
-	$('#phone_check').click(function(){
+	$('#phone').on('blur', function() {
 	 if(!/^[0-9]{11,12}$/.test($('#phone').val())){
 			alert('숫자만 입력하세요!');
 			$('#phone').val('').focus();
@@ -133,6 +166,12 @@ let phoneChecked = 0;
 		$('#message_phone').text('');
 	});//end of keydown
 	
+	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복값 초기화
+	$('#register_form #mem_nickname').keydown(function(){
+		phoneChecked = 0;
+		$('#message_nickname').text('');
+	});//end of keydown
+	
 	
 	//회원 정보 등록 유효성 체크
 	$('#register_form').submit(function(){
@@ -180,10 +219,8 @@ let phoneChecked = 0;
 				<ul id="insert_register">
 					<li class="info">
 						<label for="id">아이디</label> 
-						<input type="text" name="id"
-						id="id" maxlength="12" autocomplete="off" class="input-check">
-						<input type="button" value="ID중복체크" id="id_check"> <span
-						id="message_id"></span>
+						<input type="text" name="id" id="id" maxlength="12" autocomplete="off" class="input-check">
+						<span id="message_id"></span>
 						<li><div class="form-notice">*영문 또는 숫자(4자~12자)</div></li>
 		
 					<li class="info">
@@ -195,24 +232,24 @@ let phoneChecked = 0;
 						<input type="password" name="passwd" id="passwd" maxlength="12" class="input-check">
 					</li>
 					<li class="info">
-						<label for="nickname">닉네임</label> 
-						<input type="text" name="nickname" id="nickname" maxlength="10" class="input-check">
+						<label for="mem_nickname" class="form_label">닉네임</label><br>
+                    	<input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
+               			<!-- 닉네임 중복체크 -->
+                    	<span id="message_nickname"></span>
 					</li>
 					<li class="info">
 					<label for="email">이메일</label> 
 						<input type="email" name="email" id="email" maxlength="50" class="input-check">
-						<input type="button" value="EMAIL중복체크" id="email_check"> <span
-						id="message_email"></span>
+						<span id="message_email"></span>
 					</li>
 					
 					<li class="info">
 					<label for="phone">전화번호</label> 
 						<input type="text" name="phone" id="phone" maxlength="30" class="input-check">
-						<input type="button" value="PHONE중복체크" id="phone_check"> <span
-						id="message_phone"></span>
+						<span id="message_phone"></span>
 					</li>
-					
 				</ul>
+				
 				<div id="btns" class="align-center">
 					<input id="reg_btn" type="submit" value="회원 가입"> 
 					<input id="cancel_btn" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/main/main.do'">
