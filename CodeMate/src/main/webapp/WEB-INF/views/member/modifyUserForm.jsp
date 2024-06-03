@@ -13,7 +13,40 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modifyUserForm.js"></script>
+<script type="text/javascript">
+$(function(){
+let emailChecked = 0;
 
+	$('#email_check').click(function(){
+		
+		//서버와 통신
+		$.ajax({
+			url:'myPagecheckDuplicatedEmail.do',
+			type:'post',
+			data:{id:$('#mem_email').val()},
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'emailNotFound'){
+					emailChecked = 1;
+					$('#message_email').css('color','black').text('등록 가능 Email');
+				}else if(param.result == 'emailDuplicated'){
+					emailChecked = 0;
+					$('#message_email').css('color','red').text('중복된 Email');
+					$('#email').val('').focus();
+				}else{
+					emailChecked = 0;
+					alert('이메일 중복 체크 오류 발생');
+				}
+			},
+			error:function(){
+				emailChecked = 0;
+				alert('네트워크 오류 발생');
+			}
+		});
+		
+	});//end of click
+});
+</script>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -75,8 +108,8 @@
                     <input type="email" id="mem_email" name="mem_email" maxlength="50" class="input-check" value="${member.mem_email}">
                    
                     <!-- 이메일 중복체크 -->
-                    <!-- <input type="button" value="이메일중복체크" id="email_check"> 
-                    <span id="message_email"></span> -->
+                    <input type="button" value="이메일중복체크" id="email_check"> 
+                    <span id="message_email"></span>
                     
                 </li>
                 <li>
