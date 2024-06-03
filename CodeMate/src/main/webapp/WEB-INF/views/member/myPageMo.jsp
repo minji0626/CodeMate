@@ -30,6 +30,11 @@
     <h3 class="mYPage-TitleText">나의 코메 모집</h3>
 </div>
 
+<c:if test="${empty rboardList}">
+	나의 모집글이 없습니다
+</c:if>
+
+<c:if test="${!empty rboardList}">
 <c:forEach var="rboard" items="${rboardList}">
     <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do?rb_num=${rboard.rb_num}'" style="cursor: pointer;">
         <div class="team-left">
@@ -46,7 +51,7 @@
         </div>
     </div>
 </c:forEach>
-
+</c:if>
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
