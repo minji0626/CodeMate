@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modifyUserForm.js"></script>
+
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -72,10 +73,21 @@
                 <li>
                     <label for="mem_email" class="form_label">이메일</label><br>
                     <input type="email" id="mem_email" name="mem_email" maxlength="50" class="input-check" value="${member.mem_email}">
+                   
+                    <!-- 이메일 중복체크 -->
+                    <!-- <input type="button" value="이메일중복체크" id="email_check"> 
+                    <span id="message_email"></span> -->
+                    
                 </li>
                 <li>
                     <label for="mem_nickname" class="form_label">닉네임</label><br>
                     <input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
+               		<!-- 닉네임 중복체크 -->
+                    <!-- <input type="button" value="닉네임중복체크" id="nickname_check"> 
+                    <span id="message_nickname"></span> -->
+                    
+               
+               
                 </li>
                 <li>
                     <label for="mem_phone" class="form_label">전화번호</label><br>
