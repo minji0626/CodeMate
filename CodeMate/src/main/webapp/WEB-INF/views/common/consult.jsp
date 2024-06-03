@@ -20,8 +20,7 @@
 			<!-- 문의하기 DIV -->
 			<div class="consult_content_div">
 				<h4>1:1 문의하기</h4>
-				<form id="consult_form" action="sendConsult.do" method="post">
-				<input type="hidden" name="mem_num" value="${mem_num}">
+				<form id="consult_form" action="${pageContext.request.contextPath}/main/sendConsult.do" method="post">
 				<ul>
 					<li>
 						<select name="cs_category" class="input-check">
