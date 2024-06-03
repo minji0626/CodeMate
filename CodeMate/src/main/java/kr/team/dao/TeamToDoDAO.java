@@ -79,10 +79,66 @@ public class TeamToDoDAO {
         return teamtodo;
     }
 	
+    
+ // 팀 투두 status 변경하기
+    public void toggleToDoState(int tt_num) throws Exception {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String selectSql = null;
+        String updateSql = null;
+
+        try {
+            conn = DBUtil.getConnection();
+            
+            // 현재 상태 확인
+            selectSql = "SELECT tt_state FROM team_todo WHERE tt_num=?";
+            pstmt = conn.prepareStatement(selectSql);
+            pstmt.setInt(1, tt_num);
+            rs = pstmt.executeQuery();
+
+            int currentState = 0;
+            if (rs.next()) {
+                currentState = rs.getInt("tt_state");
+            }
+
+            // 상태를 반전시킴 (0 -> 1, 1 -> 0)
+            int newState = (currentState == 0) ? 1 : 0;
+
+            // 상태 업데이트
+            updateSql = "UPDATE team_todo SET tt_state=? WHERE tt_num=?";
+            pstmt = conn.prepareStatement(updateSql);
+            pstmt.setInt(1, newState);
+            pstmt.setInt(2, tt_num);
+
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            DBUtil.executeClose(rs, pstmt, conn);
+        }
+    }
+
 	
 	// 팀 투두 삭제하기
-	
-	
-	
+    public void deleteToDo(int tt_num) throws Exception {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = null;
+        
+        try {
+			conn = DBUtil.getConnection();
+			sql="DELETE FROM team_todo WHERE tt_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tt_num);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+        
+    }
 	
 }
