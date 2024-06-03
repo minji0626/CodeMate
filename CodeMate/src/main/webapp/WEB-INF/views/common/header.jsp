@@ -59,7 +59,7 @@
 			</c:if>
 			
 			<!-- 관리자의 경우 -->
-			<c:if test="${!empty mem_num && !empty mem_photo && mem_auth == 9}">
+			<c:if test="${!empty mem_num && !empty mem_photo && mem_auth == 9}">  
 					<div class="login_profile">
 					<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40"> <span>${mem_id}</span>
 					<button id="header_more">
