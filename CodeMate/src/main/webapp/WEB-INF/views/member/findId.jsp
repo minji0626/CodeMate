@@ -23,19 +23,23 @@
 					width="80"> CODEMATE
 				</a>
 			</div>
+			
+			<hr size="1px" class="line">
 			<c:if test="${ckId ==1}">
-				<div>
-					회원님의 아이디는 <b>[${id}]</b> 입니다.
-				</div>
+				<span class="check"><b>아이디 확인</b></span>
+					<span id="yourID">회원님의 아이디는 <b>[${id}]</b> 입니다.</span>
+				
 				<div class="align-center">
-				<input id="login_btn" type="button" value="로그인" 
+				<input id="login_btn" class="tryAgain_btn" type="button" value="로그인" 
 						onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
 			</div>
 			</c:if>
 			<c:if test="${ckId ==0}">
-				해당 계정을 찾을 수 없습니다.
+			<span class="check"><b>해당 계정을 찾을 수 없습니다</b></span>
+			<span id="IDnotFound">
 				정확한 전화번호와 이메일을 입력하세요!
-				<input id="tryAgain_btn" type="button" value="계정 찾기" 
+			</span>
+				<input class="tryAgain_btn" type="button" value="계정 찾기" 
 						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">
 			</c:if>
 </div>

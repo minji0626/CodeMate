@@ -138,5 +138,66 @@ button[type="submit"]{
     background:none;
  }
 
+/* 계정찾기 공통 */
+.line{
+	position: absolute;
+    left: 50%; top:30%;	
+    transform: translateX(-50%);
+	width:25%;
+}
+.check{
+	position: absolute;
+    left: 50%; top:25%;	
+    transform: translateX(-50%);
+    font-size:20px;
+}
+.tryAgain_btn{
+	position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+ 	border-radius:5px;
+ 	margin-top:30px;
+   	width:408px;
+    padding: 10px;
+    font-size: 16px;
+    border: solid 1px;
+    background:none;
+}
+/* 아이디 찾기 */
+#yourID{
+	position: absolute;
+    left: 50%; top:40%;	
+    transform: translateX(-50%);
+}
+#IDnotFound{
+	position: absolute;
+    left: 50%; top:40%;	
+    transform: translateX(-50%);
+}
+
+/* 비밀번호 찾기 */
+#PwNotFound{
+	position: absolute;
+    left: 50%; top:40%;	
+    transform: translateX(-50%);
+}
+.input-check{
+	display:flex;
+	width:25%;
+	position:relative;
+	bottom:10px;
+
+}
+#pwCancel{
+	transform:translate3d(-50%,250%,0);
+}
+#pw_btn{
+	width:408px;
+	position:relative;
+	left: 33.5%;  
+}
+
+
+
 
         

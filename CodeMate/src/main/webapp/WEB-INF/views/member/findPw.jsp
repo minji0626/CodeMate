@@ -14,7 +14,6 @@
 </head>
 <body>
 <div class="page-container">
-<div class="page-main">
 			<!-- 헤더 -->
 			<div id="login_logo">
 				<a href="${pageContext.request.contextPath}/main/main.do"
@@ -23,22 +22,26 @@
 					width="80"> CODEMATE
 				</a>
 			</div>
+			<hr size="1px" class="line">
 			<c:if test="${ckPw ==1}">
 				<div>
+				<span class="check"><b>비밀번호 재설정</b></span>
 					<form id="password_form" action="completePw.do" method="post">
 						<input type="text" id="passwd" class="input-check" name="NewPw" placeholder="새 비밀번호" required>
 						<input type="text" id="cpasswd" class="input-check" placeholder="새 비밀번호 확인" required>
-						 <button type="submit" name="NewPwUpd" value="비밀번호 재설정">비밀번호 재설정</button>
+						 <button type="submit" id="pw_btn" name="NewPwUpd" value="비밀번호 재설정">비밀번호 재설정</button>
+						 <input class="tryAgain_btn" type="button" value="취소하기" 
+						 id="pwCancel"
+						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">
 					</form>
 				</div>
 			</c:if>
 			<c:if test="${ckPw ==0}">
-				해당 계정을 찾을 수 없습니다.<br>
-				정확한 아이디, 전화번호와 이메일을 입력하세요!
-				<input id="tryAgain_btn" type="button" value="계정 찾기" 
+			<span class="check"><b>해당 계정을 찾을 수 없습니다</b></span>
+			<span id="PwNotFound">정확한 아이디, 전화번호와 이메일을 입력하세요!</span>
+			<input class="tryAgain_btn" type="button" value="계정 찾기" 
 						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">
 			</c:if>
-</div>
 </div>
 <script type="text/javascript">
 $(function(){
