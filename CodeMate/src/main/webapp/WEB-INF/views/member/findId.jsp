@@ -26,7 +26,8 @@
 					회원님의 아이디는 <b>[${id}]</b> 입니다.
 				</div>
 				<div class="align-center">
-				<input id="login_btn" type="submit" value="로그인">
+				<input id="login_btn" type="button" value="로그인" 
+						onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
 			</div>
 </div>
 </div>
