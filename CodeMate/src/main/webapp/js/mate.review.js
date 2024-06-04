@@ -20,8 +20,26 @@ $(function() {
                 if (param.result === 'logout') {
                     alert('로그인 후 사용하세요!');
                 } else if (param.result === 'success') {
-                    alert('리뷰를 작성했습니다');
-                    location.reload();
+                    $.ajax({
+                        url: 'howManyReview.do',
+                        type: 'post',
+                        data: form_data,
+                        dataType: 'json',
+                        success: function(param) {
+                            if(param.result=='logout'){
+								alert('로그인 후 사용하세요!')
+							} else if(param.result=='finish'){
+								alert('모든 팀원의 리뷰를 작성하였으므로 프로젝트가 완료되었습니다.');
+								location.reload();
+							} else if(param.result=='ing'){
+								alert('리뷰 작성이 완료되었습니다.')
+								location.reload();
+							}
+                        },
+                        error: function() {
+                            alert('리뷰 데이터 가져오기 실패');
+                        }
+                    });
                 } else {
                     alert('리뷰 작성 실패했습니다.');
                 }

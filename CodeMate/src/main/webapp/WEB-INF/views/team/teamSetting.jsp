@@ -139,6 +139,7 @@
             </div>
             <div class="mr_content_div">
                <h4>내용</h4>
+               <span style="color:#dedede;">(최신 리뷰만 저장됩니다.)</span>
                 <form id="mr_form">
                 	<input type="hidden" name="mr_receiver" value="" id="mr_receiver">
                 	<input type="hidden" name="team_num" value="" id="team_num">
@@ -153,7 +154,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.member.js"></script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/mate.review.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.member.js"></script>
 </body>
 </html>
