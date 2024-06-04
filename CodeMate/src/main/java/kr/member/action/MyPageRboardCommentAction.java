@@ -12,7 +12,7 @@ import kr.member.vo.MemberVO;
 import kr.rboard.dao.RboardDAO;
 import kr.rboard.vo.RcommentVO;
 
-public class MyPageRboardApplyAction implements Action{
+public class MyPageRboardCommentAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -36,8 +36,10 @@ public class MyPageRboardApplyAction implements Action{
 		request.setAttribute("member", member);
 		request.setAttribute("rcommentList", rcommentList);
 		
+		
+		
 		//JSP경로 반환
-		return "/WEB-INF/views/member/myPageRboardApply.jsp";
+		return "/WEB-INF/views/member/myPageRboardComment.jsp";
 	}
 
 }

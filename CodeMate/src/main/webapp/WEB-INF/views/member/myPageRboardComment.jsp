@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀원구하기 댓글</title>
+<title>팀원구하기 댓글글</title>
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
@@ -29,7 +29,7 @@
     <h3 class="mYPage-TitleText">팀원구하기 댓글</h3>
 </div>
 <c:if test="${empty rcommentList}">
-<div>팀원구하기의 댓글이 없습니다</div>
+<div>팀원구하기의 댓글이 없습니다다</div>
 </c:if>
 <c:if test="${!empty rcommentList}">
 

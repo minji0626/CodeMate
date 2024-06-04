@@ -687,6 +687,7 @@ public class RboardDAO {
 		return list;
 	}
 	
+	
 	// 회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
 	public List<RboardVO> getAppliedBoardListByMemNum(int mem_num) throws Exception {
 		Connection conn = null;

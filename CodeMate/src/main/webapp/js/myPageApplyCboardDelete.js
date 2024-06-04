@@ -1,7 +1,5 @@
 $(function() {
-    /* 나의 모집글 삭제 */
     $('.myDelete_btn').on('click', function(event) {
-		// '모집글 삭제' 버튼 클릭 이벤트
 		event.stopPropagation();
         // 서버와 통신
         $.ajax({
