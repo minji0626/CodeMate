@@ -17,7 +17,7 @@ div#mini-card1 {/* 1 */
    top:30px;
    overflow:hidden;
    height:300px;
-   width:1180px;
+   width:1178px;
 }  
  .wrapper1 {/* 움직이는 부분 */
    height:300px;
@@ -60,9 +60,9 @@ div#mini-card1 {/* 1 */
 	transform:translate3d(5%,180%,0);
 }
 #back_btn{
-   transform:translate3d(300%,120%,0);
+   transform:translate3d(200%,120%,0);
    font-size:13px;
-   width:40px;
+   width:70px;
    color:white;
    border-radius:20px;
    background-color:#5aca7c;
@@ -85,7 +85,7 @@ div#mini-card2 {/* 1 */
    top:30px;
    overflow:hidden;
    height:300px;
-   width:1180px;
+   width:1178px;
 }  
  .wrapper2 {/* 움직이는 부분 */
    height:300px;
@@ -119,9 +119,9 @@ div#mini-card2 {/* 1 */
 }
 /* 더보기 */
 #front_btn{
-   transform:translate3d(230%,120%,0);
+   transform:translate3d(200%,120%,0);
    font-size:13px;
-   width:60px;
+   width:70px;
    color:white;
    border-radius:20px;
    background-color:#5aca7c;

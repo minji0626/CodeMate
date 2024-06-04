@@ -11,7 +11,7 @@ var slides1 = document.querySelector('.wrapper1'),
   move1 = 0,
   AllSlideCount1 = slideCount1 * 3, //전체 슬라이드 개수
 
-  newWidth1 = (slideWidth1+slideMargin1+8.2222225) * AllSlideCount1  + 'px';//wrapper 너비
+  newWidth1 = (slideWidth1+slideMargin1+8) * AllSlideCount1  + 'px';//wrapper 너비
 /*------------------------------------------------------------------*/
 
 	makeClone1();
@@ -86,7 +86,7 @@ var slides = document.querySelector('.wrapper2'),
   move = 0,
   AllSlideCount = slideCount * 3, //전체 슬라이드 개수
 
-  newWidth = (slideWidth+slideMargin+8.22222225) * AllSlideCount  + 'px';//wrapper 너비
+  newWidth = (slideWidth+slideMargin+8) * AllSlideCount  + 'px';//wrapper 너비
 /*------------------------------------------------------------------*/
 
 	makeClone();

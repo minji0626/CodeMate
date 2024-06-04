@@ -9,7 +9,7 @@
 		<div class="explain">
 			<b>이번주 코메 인기글</b>
 		</div>
-		<div id="back_btn">백엔드</div>
+		<div id="back_btn">개발 게시판</div>
 		<a class="more" href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
 	</div>
 
@@ -46,7 +46,7 @@
 		<div class="explain">
 			<b>이번주 코메 인기글</b>
 		</div>
-		<div id="front_btn">프론트엔드</div>
+		<div id="front_btn">자유 게시판</div>
 		<a class="more" href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
 	</div>
 
