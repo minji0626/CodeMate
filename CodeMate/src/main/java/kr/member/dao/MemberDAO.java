@@ -277,6 +277,42 @@ public class MemberDAO {
 			}		
 			return member;
 		}
+		//비밀번호 찾기 - 해당 계정 확인
+		public MemberVO SelectPw(String id,String phone,String email)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO member = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT mem_passwd FROM member_detail WHERE mem_id=? AND mem_email=? AND mem_phone=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setString(2, email);
+				pstmt.setString(3, phone);
+				//SQL문 실행
+				rs = pstmt.executeQuery(); 
+				if(rs.next()) { 
+					member = new MemberVO();
+					member.setMem_num(rs.getInt("mem_num"));
+					member.setMem_id(rs.getString("mem_id")); 
+					member.setMem_auth(rs.getInt("mem_auth"));
+					member.setMem_passwd(rs.getString("mem_passwd"));
+					member.setMem_photo(rs.getString("mem_photo"));
+					member.setMem_email(rs.getString("mem_email"));
+					member.setMem_nickname(rs.getString("mem_nickname"));
+					member.setMem_level(rs.getInt("mem_level"));
+					member.setMem_phone(rs.getString("mem_phone"));
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return member;
+			}
 		
 		//비밀번호 찾기 - 재설정
 		public void ReUpdatePw(MemberVO member)throws Exception{
@@ -285,12 +321,10 @@ public class MemberDAO {
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "UPDATE member_detail SET mem_passwd=? WHERE mem_id=? AND mem_phone=? AND mem_email";
+				sql = "UPDATE member_detail SET mem_passwd=?";
 						pstmt = conn.prepareStatement(sql);
 						//?에 데이터 바인딩
-						pstmt.setString(1, member.getMem_id());
-						pstmt.setString(2, member.getMem_phone());
-						pstmt.setString(3, member.getMem_email());
+						pstmt.setString(1, member.getMem_passwd());
 						pstmt.executeUpdate();
 			}catch(Exception e) {
 				throw new Exception(e);

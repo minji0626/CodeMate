@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 					width="80"> CODEMATE
 				</a>
 			</div>
+			<c:if test="${ckId ==1}">
 				<div>
 					회원님의 아이디는 <b>[${id}]</b> 입니다.
 				</div>
@@ -29,6 +31,13 @@
 				<input id="login_btn" type="button" value="로그인" 
 						onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
 			</div>
+			</c:if>
+			<c:if test="${ckId ==0}">
+				해당 계정을 찾을 수 없습니다.
+				정확한 전화번호와 이메일을 입력하세요!
+				<input id="tryAgain_btn" type="button" value="계정 찾기" 
+						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">
+			</c:if>
 </div>
 </div>
 </body>

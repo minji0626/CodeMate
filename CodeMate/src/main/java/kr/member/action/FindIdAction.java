@@ -20,7 +20,17 @@ public class FindIdAction implements Action{
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.findId(phone, email);
-		request.setAttribute("id",member.getMem_id());
+		
+		
+		
+		if(member == null) {
+			request.setAttribute("ckId", 0);
+			return "/WEB-INF/views/member/findId.jsp";
+		}else {
+			request.setAttribute("ckId", 1);
+			request.setAttribute("id",member.getMem_id());
+		}
+		
 	      
 		return "/WEB-INF/views/member/findId.jsp";
 	}

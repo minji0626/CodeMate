@@ -35,7 +35,7 @@
                      <input type="text" id="phoneInput" name="phone" placeholder="전화번호" required>
                      <input type="email" id="emailInput" name="email" placeholder="이메일 주소" required>
                      <button type="submit" id="id" name="id" value="아이디찾기">아이디 찾기</button>
-                     <div class="canc" >
+                     <div class="canc">
                         <a href="${pageContext.request.contextPath}/member/loginForm.do">
                            취소하기
                         </a>
@@ -46,12 +46,12 @@
                
                <!-- 비밀번호 찾기 -->
                <div class="slide">
-               <form class="pwForm" action="">
-                     <input type="text" id="idInput" placeholder="아이디" required>
-                     <input type="text" id="phoneInput2" placeholder="전화번호" required>
-                     <input type="email" id="emailInput2" placeholder="이메일 주소" required>
-                     <button type="submit" name="pw"value="비밀번호찾기">비밀번호 찾기</button>
-                     <div class="canc" >
+               <form class="pwForm" action="findPw.do" method="post">
+                     <input type="text" id="idInput" name="id" placeholder="아이디" required>
+                     <input type="text" id="phoneInput" name="phone" placeholder="전화번호" required>
+                     <input type="email" id="emailInput" name="email" placeholder="이메일 주소" required>
+                     <button type="submit" name="pw" value="비밀번호찾기">비밀번호 찾기</button>
+                     <div class="canc">
                         <a href="${pageContext.request.contextPath}/member/loginForm.do">
                            취소하기
                         </a>
