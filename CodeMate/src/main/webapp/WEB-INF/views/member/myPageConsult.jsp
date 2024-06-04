@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/myPageApplyCboardDelete.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/myPageConsultDelete.js"></script>
 
 </head>
 <body>
@@ -60,7 +60,7 @@
         </div>
         <div class="btn_box_write">
             <input type="button" value="수정" class="myUpdate_btn" onclick="">
-            <input type="submit" value="삭제" class="myDelete_btn" data-ccnum="${comment.cc_num}">
+            <input type="submit" value="삭제" class="myDelete_btn" data-csnum="${consult.cs_num}">
         </div>
     </div>
 </c:forEach>

@@ -283,4 +283,23 @@ public class ConsultDAO {
 		}
 		return list;
 	}
+	//문의 삭제
+	public void deleteConsult(int rs_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM consult WHERE rs_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rs_num);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
