@@ -278,6 +278,27 @@ public class MemberDAO {
 			return member;
 		}
 		
+		//비밀번호 찾기 - 수정
+		public void ReUpdatePw(MemberVO member)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "UPDATE member_detail SET mem_passwd=? WHERE mem_id=? AND mem_phone=? AND mem_email";
+						pstmt = conn.prepareStatement(sql);
+						//?에 데이터 바인딩
+						pstmt.setString(1, member.getMem_id());
+						pstmt.setString(2, member.getMem_phone());
+						pstmt.setString(3, member.getMem_email());
+						pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
 		
 	//회원상세 정보
 	public MemberVO getMember(int mem_num)throws Exception{

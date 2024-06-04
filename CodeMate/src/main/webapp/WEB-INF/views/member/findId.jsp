@@ -23,9 +23,11 @@
 				</a>
 			</div>
 				<div>
-					회원님의 아이디는 <b>[<%request.getAttribute("id"); %>]</b> 입니다.
-					
+					회원님의 아이디는 <b>[${id}]</b> 입니다.
 				</div>
+				<div class="align-center">
+				<input id="login_btn" type="submit" value="로그인">
+			</div>
 </div>
 </div>
 </body>

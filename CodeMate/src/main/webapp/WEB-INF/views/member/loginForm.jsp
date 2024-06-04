@@ -41,7 +41,7 @@ $(function(){
 					<input type="text" class="form-input" placeholder="아이디" 
 					name="id" id="id" maxlength="12" autocomplete="off">
 					<label for="id"></label>
-				</li>
+				</li> 
 				<li class="floating-label">
 					<input type="password" class="form-input" placeholder="비밀번호" 
 					name="passwd" id="passwd" maxlength="12">
