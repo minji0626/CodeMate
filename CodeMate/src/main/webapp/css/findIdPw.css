@@ -192,9 +192,16 @@ button[type="submit"]{
 	transform:translate3d(-50%,250%,0);
 }
 #pw_btn{
-	width:408px;
 	position:relative;
-	left: 33.5%;  
+	left: 34.5%; top:30px;
+	border-radius:5px;
+ 	margin-top:30px;
+   	width:408px;
+    padding: 10px;
+    font-size: 16px;
+    border: solid 1px;
+    background:black;
+    color:white;	  
 }
 
 
