@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 쓴 댓글</title>
+<title>나의 1:1 문의</title>
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
@@ -28,18 +28,18 @@
 <!-- 메인 정보 수정 -->
 <div class="float-C">
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
-    <h3 class="mYPage-TitleText">내가 쓴 댓글</h3>
+    <h3 class="mYPage-TitleText">나의 1:1 문의</h3>
 </div>
 
 <select id="filter" class="styled-select" onchange="filterList()">
     <option value="all">전체</option>
-    <option value="dev">개발</option>
-    <option value="free">자유</option>
+    <option value="dev">문의</option>
+    <option value="free">신고</option>
 </select>
 
 
 <c:if test="${empty commentList}">
-<div class="MR">나의 작성 댓글이 없습니다</div>
+<div class="MR">나의 문의신고 이력이 없습니다</div>
 </c:if>
 <c:if test="${!empty commentList}">
 <c:forEach var="comment" items="${commentList}">

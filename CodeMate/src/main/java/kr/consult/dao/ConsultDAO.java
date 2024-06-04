@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.consult.vo.ConsultVO;
 import kr.db.vo.FieldVO;
+import kr.rboard.vo.RcommentVO;
 import kr.util.DBUtil;
 
 public class ConsultDAO {
@@ -253,4 +254,32 @@ public class ConsultDAO {
 	}
 
 	// 문의글 목록 불러오기(마이페이지)
+	public List<ConsultVO> getConsultListByMemNum(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ConsultVO> list = new ArrayList<>();
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM consult WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ConsultVO consult = new ConsultVO();
+				consult.setCs_num(rs.getInt("cs_num"));
+				consult.setCs_title(rs.getString("cs_title"));
+				consult.setCs_category(rs.getInt("cs_category"));
+				consult.setCs_reg_date(rs.getDate("reg_date"));
+				list.add(consult);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 }
