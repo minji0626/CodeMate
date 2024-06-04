@@ -31,7 +31,7 @@
                
                <!-- 아이디 찾기 -->
                <div class="slide">
-                  <form class="idForm" action="findId.do" method="post" >
+                  <form class="idForm" action="findId.do" method="post">
                      <input type="text" id="phoneInput" name="phone" placeholder="전화번호" required>
                      <input type="email" id="emailInput" name="email" placeholder="이메일 주소" required>
                      <button type="submit" id="id" name="id" value="아이디찾기">아이디 찾기</button>
@@ -109,7 +109,7 @@
             }
     });
             
-        });
+       
 </script>
 </body>
 </html>

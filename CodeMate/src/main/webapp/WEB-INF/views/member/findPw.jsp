@@ -26,18 +26,14 @@
 			<c:if test="${ckPw ==1}">
 				<div>
 					<form id="password_form" action="completePw.do" method="post">
-						<input type="text" id="passwd" class="input-check" placeholder="새 비밀번호" required>
+						<input type="text" id="passwd" class="input-check" name="NewPw" placeholder="새 비밀번호" required>
 						<input type="text" id="cpasswd" class="input-check" placeholder="새 비밀번호 확인" required>
 						 <button type="submit" name="NewPwUpd" value="비밀번호 재설정">비밀번호 재설정</button>
 					</form>
 				</div>
-				<div class="align-center">
-				<input id="login_btn" type="button" value="로그인" 
-						onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
-			</div>
 			</c:if>
 			<c:if test="${ckPw ==0}">
-				해당 계정을 찾을 수 없습니다.
+				해당 계정을 찾을 수 없습니다.<br>
 				정확한 아이디, 전화번호와 이메일을 입력하세요!
 				<input id="tryAgain_btn" type="button" value="계정 찾기" 
 						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">

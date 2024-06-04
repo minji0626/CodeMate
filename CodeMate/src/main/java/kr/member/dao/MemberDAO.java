@@ -287,11 +287,14 @@ public class MemberDAO {
 			
 			try {
 				conn = DBUtil.getConnection();
-				sql = "SELECT mem_passwd FROM member_detail WHERE mem_id=? AND mem_email=? AND mem_phone=?";
+				sql = "SELECT * FROM member_detail JOIN member USING (mem_num) "
+						+ "WHERE mem_id = ? AND mem_phone = ? AND mem_email = ?";
+				
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				pstmt.setString(2, email);
-				pstmt.setString(3, phone);
+				pstmt.setString(1, id);	
+				pstmt.setString(2, phone);
+				pstmt.setString(3, email);
+				
 				//SQL문 실행
 				rs = pstmt.executeQuery(); 
 				if(rs.next()) { 
@@ -307,7 +310,7 @@ public class MemberDAO {
 					member.setMem_phone(rs.getString("mem_phone"));
 				}
 			}catch(Exception e) {
-				throw new Exception(e);
+				throw new Exception(e);	
 			}finally {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}		

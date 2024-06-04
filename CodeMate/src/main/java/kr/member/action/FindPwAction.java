@@ -27,7 +27,6 @@ public class FindPwAction implements Action{
 					request.setAttribute("ckPw", 1);
 				}
 				
-			      
 				return "/WEB-INF/views/member/findPw.jsp";
 	}
 
