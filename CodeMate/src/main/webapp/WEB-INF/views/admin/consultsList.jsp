@@ -72,7 +72,7 @@
 										<td><c:if test="${consult.cs_category == 0}">일반문의</c:if>
 											<c:if test="${consult.cs_category == 1}">신고</c:if></td>
 										<td>${consult.mem_id}</td>
-										<td><a href="consultDetail.do?${consult.cs_num}">${consult.cs_title}</a></td>
+										<td><a href="consultDetail.do?cs_num=${consult.cs_num}">${consult.cs_title}</a></td>
 										<td>${consult.cs_reg_date}</td>
 										<td><c:if test="${consult.cs_confirmed == 0}">처리 안 됨</c:if>
 											<c:if test="${consult.cs_confirmed == 1}">처리됨</c:if></td>

@@ -28,13 +28,14 @@ public class ConsultDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO consult(cs_num, mem_num, cs_title, cs_content, cs_category) VALUES(consult_seq.nextval,?,?,?,?)";
+			sql = "INSERT INTO consult(cs_num, mem_num, cs_title, cs_content, cs_category, cs_reply_email) VALUES(consult_seq.nextval,?,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, consult.getMem_num());
 			pstmt.setString(2, consult.getCs_title());
 			pstmt.setString(3, consult.getCs_content());
 			pstmt.setInt(4, consult.getCs_category());
+			pstmt.setString(5, consult.getCs_reply_email());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -114,7 +115,7 @@ public class ConsultDAO {
 
 			sql = "SELECT * FROM consult LEFT OUTER JOIN member USING(mem_num)" + sub_sql + "ORDER BY cs_reg_date DESC";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			if (keyword != null && !keyword.equals("")) {
 				pstmt.setString(1, keyword);
 
@@ -143,6 +144,46 @@ public class ConsultDAO {
 		return list;
 	}
 
+	// 문의글 상세 불러오기
+	public ConsultVO getConsult(int cs_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ConsultVO consult = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+
+			sql = "SELECT * FROM consult LEFT OUTER JOIN member USING(mem_num) WHERE cs_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cs_num);
+
+			rs = pstmt.executeQuery();
+
+			
+			if (rs.next()) {
+				consult = new ConsultVO();
+				consult.setCs_num(rs.getInt("cs_num"));
+				consult.setMem_num(rs.getInt("mem_num"));
+				consult.setMem_id(rs.getString("mem_id"));
+				consult.setCs_title(rs.getString("cs_title"));
+				consult.setCs_content(rs.getString("cs_content"));
+				consult.setCs_confirmed(rs.getInt("cs_confirmed"));
+				consult.setCs_category(rs.getInt("cs_category"));
+				consult.setCs_reg_date(rs.getDate("cs_reg_date"));
+				consult.setCs_confirmed_date(rs.getDate("cs_confirmed_date"));
+				consult.setCs_reply_email(rs.getString("cs_reply_email"));
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return consult;
+	}
+
 	// 문의 처리하기
 	public void confirmConsults(String[] consults) throws Exception {
 		Connection conn = null;
@@ -158,12 +199,12 @@ public class ConsultDAO {
 
 			// 모든 문의 번호에 대해 쿼리 실행
 			pstmt = conn.prepareStatement(sql);
-			for (int i=0; i<consults.length; i++) {
+			for (int i = 0; i < consults.length; i++) {
 				int csNum = Integer.parseInt(consults[i]);
 				pstmt.setInt(1, csNum);
 				pstmt.addBatch();
-				
-				if(i % 1000 == 0) {
+
+				if (i % 1000 == 0) {
 					pstmt.executeBatch();
 				}
 			}
@@ -176,7 +217,7 @@ public class ConsultDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
+
 	// 문의 처리취소하기
 	public void unconfirmConsults(String[] consults) throws Exception {
 		Connection conn = null;
@@ -192,12 +233,12 @@ public class ConsultDAO {
 
 			// 모든 문의 번호에 대해 쿼리 실행
 			pstmt = conn.prepareStatement(sql);
-			for (int i=0; i<consults.length; i++) {
+			for (int i = 0; i < consults.length; i++) {
 				int csNum = Integer.parseInt(consults[i]);
 				pstmt.setInt(1, csNum);
 				pstmt.addBatch();
-				
-				if(i % 1000 == 0) {
+
+				if (i % 1000 == 0) {
 					pstmt.executeBatch();
 				}
 			}

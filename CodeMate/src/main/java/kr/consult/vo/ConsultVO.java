@@ -12,8 +12,17 @@ public class ConsultVO {
 	private Date cs_confirmed_date;
 	private int cs_confirmed;
 	private int cs_category;
+	private String cs_reply_email;
+
 
 	
+	
+	public String getCs_reply_email() {
+		return cs_reply_email;
+	}
+	public void setCs_reply_email(String cs_reply_email) {
+		this.cs_reply_email = cs_reply_email;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}

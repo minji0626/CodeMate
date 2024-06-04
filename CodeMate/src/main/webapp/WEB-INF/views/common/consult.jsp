@@ -132,7 +132,7 @@
 						</select></li>
 						<li><label for="cs_title">제목</label> <input type="text"
 							name="cs_title" id="cs_title" placeholder="문의 제목을 입력하세요"
-							class="input-check"></li>
+							class="input-check" maxlength="70"></li>
 						<li><textarea id="consult_content" name="cs_content"
 								placeholder="문의 내용을 입력하세요" class="input-check"></textarea></li>
 						<li><label for="email">이메일</label> <input type="email"
