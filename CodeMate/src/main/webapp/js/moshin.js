@@ -86,5 +86,30 @@ $(function() {
 	        }
 	    });
 	});
+	/*
+	$(function(){
+		$('close-green').click(function(){
+			let rb_num = $(this).data('rbnum');
+			$.ajax({
+				url: 'activation.do',
+				type: 'post',
+	            data: rb_num, 
+	            dataType: 'json',
+	            success: function(param) {
+	                if (param.result === 'logout') {
+	                    alert('로그인 후 사용하세요!');
+	                } else if (param.result === 'success') {
+	                    alert('활성화시켰습니다');
+	                    location.reload();
+	                } else {
+	                    alert('실패했습니다.');
+	                }
+	            },
+	            error: function() {
+	                alert('네트워크 오류 발생');
+	            }
+			});
+		})
+	});*/
 
 });

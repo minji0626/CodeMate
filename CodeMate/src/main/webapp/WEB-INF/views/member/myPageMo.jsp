@@ -48,9 +48,9 @@
 	                <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
 	                <div>모집마감:${rboard.rb_endRecruit}</div>
 	            </div>
-	            <div class="close-green" onclick="toggleActivation(this)">&nbsp&nbsp&nbsp&nbsp&nbsp활성화</div>
+	            <div class="close-green" onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/member/activation.do?rb_num=${rboard.rb_num}';" data-rbnum="${rboard.rb_num}">&nbsp&nbsp&nbsp&nbsp&nbsp활성화</div>
 	        </div>
-	    </div>
+	    </div>	
     </c:if>
 </c:forEach>
 </c:if>
