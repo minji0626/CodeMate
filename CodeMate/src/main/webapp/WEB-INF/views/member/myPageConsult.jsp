@@ -47,10 +47,10 @@
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${consult.cs_category == 0}">
-                    문의 내역
+                    문의
                 </c:if>
                 <c:if test="${consult.cs_category == 1}">
-                    신고 내역
+                    신고
                 </c:if>
             </div>
             <div class="projectName_font">${consult.cs_content}</div>

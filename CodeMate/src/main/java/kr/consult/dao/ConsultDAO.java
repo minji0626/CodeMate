@@ -284,16 +284,16 @@ public class ConsultDAO {
 		return list;
 	}
 	//문의 삭제
-	public void deleteConsult(int rs_num) throws Exception {
+	public void deleteConsult(int cs_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "DELETE FROM consult WHERE rs_num=?";
+			sql = "DELETE FROM consult WHERE cs_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rs_num);
+			pstmt.setInt(1, cs_num);
 
 			pstmt.executeUpdate();
 		} catch (Exception e) {

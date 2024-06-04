@@ -5,7 +5,7 @@ $(function() {
         $.ajax({
             url: 'deleteMyPageConsult.do',
             type: 'post',
-            data: { rs_num: $(this).data('rsnum') },
+            data: { cs_num: $(this).data('csnum') },
             dataType: 'json',
             success: function(param) {
                 if (param.result === 'logout') {

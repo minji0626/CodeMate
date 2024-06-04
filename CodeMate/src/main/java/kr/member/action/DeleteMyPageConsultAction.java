@@ -11,7 +11,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.consult.dao.ConsultDAO;
 import kr.controller.Action;
-import kr.rboard.dao.RboardDAO;
 
 public class DeleteMyPageConsultAction implements Action{
 
@@ -26,13 +25,9 @@ Map<String,String> mapAjax = new HashMap<String,String>();
 			mapAjax.put("result", "logout");	
 		}else {
 			request.setCharacterEncoding("utf-8");
-			
-		//RboardDAO rdao = RboardDAO.getInstance();
-		//삭제 메서드 만들어야됨
-		//rdao.deleteRcomment(Integer.parseInt(request.getParameter("rs_num")));
 		
 		ConsultDAO cdao = ConsultDAO.getInstance();
-		cdao.deleteConsult(Integer.parseInt(request.getParameter("rs_num")));
+		cdao.deleteConsult(Integer.parseInt(request.getParameter("cs_num")));
 		mapAjax.put("result", "success");
 			
 		}
