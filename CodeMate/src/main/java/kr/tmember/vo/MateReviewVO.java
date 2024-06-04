@@ -8,6 +8,15 @@ public class MateReviewVO {
 	private int mr_receiver;
 	private Date mr_reg_date;
 	private String mr_content;
+	private int team_num;
+	
+	
+	public int getTeam_num() {
+		return team_num;
+	}
+	public void setTeam_num(int team_num) {
+		this.team_num = team_num;
+	}
 	public int getMr_num() {
 		return mr_num;
 	}

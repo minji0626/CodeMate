@@ -296,3 +296,10 @@ ADD CONSTRAINT fk_rb_num
 FOREIGN KEY (rb_num)
 REFERENCES r_board(rb_num)
 ON DELETE SET NULL;
+
+ALTER TABLE mate_review
+ADD CONSTRAINT fk_team_TO_mate_review
+FOREIGN KEY (team_num)
+REFERENCES team(team_num);
+
+ALTER TABLE mate_review ADD team_num number;
