@@ -45,8 +45,7 @@
 							</c:if>
 
 							<%-- class="profile_image"다 이 명칭 사용,근데 여기는 사진이 네모여서 class명 바꿈 --%>
-							<div class="nickname_mypage">${ra.mem_nickname}</div>
-
+							<div class="nickname_mypage"><a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${ra.mem_num}" class="header_mate_profile">${ra.mem_nickname}</a></div>
 							<div class="mo_check">
 								<form class="passForm">
 									<input type="hidden" name="ra_num" value="${ra.ra_num}">

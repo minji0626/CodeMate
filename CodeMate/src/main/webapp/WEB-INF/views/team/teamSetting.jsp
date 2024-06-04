@@ -40,14 +40,16 @@
                 <!-- 팀장 우선 출력하기 -->
                 <c:forEach var="tmember" items="${list}">
                     <c:if test="${tmember.tm_auth == 4}">
-                        <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num}">style="box-shadow: 0 0 10px rgb(204, 247, 217);" </c:if>>
+                    
+                        <div class="mem_personal" <c:if test="${mem_num == tmember.mem_num}">style="box-shadow: 0 0 10px rgb(204, 247, 217);" </c:if> >
+                        	
                             <ul>
                                 <li>
                                     <c:if test="${!empty tmember.mem_photo}">
-                                        <img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img">
+                                        <a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${tmember.mem_num}" class="header_mate_profile"><img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img"></a>
                                     </c:if>
                                     <c:if test="${empty tmember.mem_photo}">
-                                        <img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img">
+                                        <a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${tmember.mem_num}" class="header_mate_profile"><img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img"></a>
                                     </c:if>
                                 </li>
                                 <li>
@@ -81,10 +83,10 @@
                             <ul>
                                 <li>
                                     <c:if test="${!empty tmember.mem_photo}">
-                                        <img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img">
+                                        <a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${tmember.mem_num}" class="header_mate_profile"><img src="${pageContext.request.contextPath}/upload/${tmember.mem_photo}" class="team_mem_profile_img"></a>
                                     </c:if>
                                     <c:if test="${empty tmember.mem_photo}">
-                                        <img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img">
+                                        <a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${tmember.mem_num}" class="header_mate_profile"><img src="${pageContext.request.contextPath}/images/face.png" class="team_mem_profile_img"></a>
                                     </c:if>
                                 </li>
                                 <li>
