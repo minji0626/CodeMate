@@ -92,6 +92,6 @@
       </button>
     </div>
 </div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main.js"></script>
   </body>
 </html>

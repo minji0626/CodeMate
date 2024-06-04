@@ -168,18 +168,12 @@ public class TmemberDAO {
 			pstmt3.setInt(1, mem_num); 
 			pstmt3.executeUpdate();
 
-
-
 			// 해당 멤버가 작성한 글 삭제
 			sql="DELETE FROM team_board WHERE mem_num=? AND team_num=?";
 			pstmt4 = conn.prepareStatement(sql);
 			pstmt4.setInt(1, mem_num);
 			pstmt4.setInt(2, team_num);
 			pstmt4.executeUpdate();
-
-
-
-
 
 			// team_member에서 해당 멤버 삭제하기
 			sql="DELETE FROM team_member WHERE mem_num=? AND team_num=?";
