@@ -242,3 +242,29 @@
     text-overflow: ellipsis; /* 넘치는 내용을 "..."으로 표시 */
     max-width: 700px; /* 최대 너비 지정 */
 }
+/*마이페이지 나의 정보 사진 버튼*/
+.photo_btn_style{
+	width: 35px;
+    height: 26px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 13px;
+    border: none; 
+    
+}
+.photo_btn_style:hover {
+    background-color: #5aca7c;
+}
+input[type=file]::file-selector-button{
+	width: 35px;
+    height: 26px;
+    background-color: #000;
+    color: white;
+    border-radius: 5px;
+    font-size: 13px;
+    border: none;
+}
+input[type=file]::file-selector-button:hover{
+	background-color: #5aca7c;
+}

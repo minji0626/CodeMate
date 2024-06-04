@@ -41,13 +41,15 @@
         </li>
         <li>
             <div class="align-center">
-                <input type="button" value="수정" id="mem_photo_btn">
+                <input type="button" value="수정" id="mem_photo_btn" class="photo_btn_style">
             </div>
             <div id="mem_photo_choice" style="display: none;">
+            <label for="file_custom">
                 <input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg">
-                <input type="button" value="기본" id="photo_base">
-                <input type="button" value="전송" id="mem_photo_submit">
-                <input type="button" value="취소" id="mem_photo_reset">
+            </label>  
+                <input type="button" value="기본" id="photo_base" class="photo_btn_style">
+                <input type="button" value="전송" id="mem_photo_submit" class="photo_btn_style">
+                <input type="button" value="취소" id="mem_photo_reset" class="photo_btn_style">
             </div>
         </li>
     </ul>

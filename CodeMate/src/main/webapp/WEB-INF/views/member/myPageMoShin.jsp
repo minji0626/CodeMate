@@ -28,7 +28,9 @@
 	<h3 class="mYPage-TitleText">나의 코메 모집 신청자</h3>
 </div>
 
-<c:if test="${empty rapplyList}">나의 코메 모집 신청자가 존재하지 않습니다</c:if>
+<c:if test="${empty rapplyList}">
+<div class="MMS">나의 코메 모집 신청자가 존재하지 않습니다</div>
+</c:if>
 <c:if test="${!empty rapplyList}">
 	<c:forEach var="ra" items="${rapplyList}">
 		<div class="myPage-line-box-moshin" data-pass="${ra.ra_pass}">

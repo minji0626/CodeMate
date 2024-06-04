@@ -114,19 +114,11 @@ $(function() {
 
 	//이미지 전송하기
 	$('#mem_photo_submit').click(function() {
-		// 파일이 선택되었는지 확인
 		if ($('#mem_photo').val() == '') {
-			// 파일을 선택하지 않은 경우 기존 이미지로 변경하고 저장
-			$('.my-photo').attr('src', '${pageContext.request.contextPath}/images/face.png');
-			photo_path = '${pageContext.request.contextPath}/images/face.png'; // photo_path 변수도 기본 이미지로 변경
-
-			// 기존 이미지로 저장되었다고 alert 메시지 표시
-			alert('프로필 사진이 기존 이미지로 변경되었습니다.');
-			$('#mem_photo_choice').hide();
-			$('#mem_photo_btn').show(); // 수정 버튼 표시
-
+			alert('파일을 선택하세요.');
+			$('#mem_photo').focus();
 			return;
-		}
+			}
 
 		// 파일이 선택된 경우 서버에 전송
 		const form_data = new FormData();
