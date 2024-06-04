@@ -36,6 +36,7 @@ public class WriteMateReviewAction implements Action {
 
 			mr.setMr_writer(mem_num);
 			mr.setMr_receiver(mr_receiver);
+			mr.setTeam_num(team_num);
 			mr.setMr_content(request.getParameter("mr_content"));
 
 			TmemberDAO dao = TmemberDAO.getInstance();

@@ -212,12 +212,13 @@ public class TmemberDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO mate_review (mr_num, mr_writer, mr_receiver, mr_content) VALUES(mate_review_seq.nextval, ?, ?, ?)";
+			sql = "INSERT INTO mate_review (mr_num, mr_writer, mr_receiver, mr_content, team_num) VALUES(mate_review_seq.nextval, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mr.getMr_writer());
 			pstmt.setInt(2, mr.getMr_receiver());
 			pstmt.setString(3, mr.getMr_content());
+			pstmt.setInt(4, mr.getTeam_num());
 			
 			pstmt.executeUpdate();
 			
