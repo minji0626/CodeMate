@@ -37,7 +37,7 @@ public class ActivationAction  implements Action{
 
 		dao.teamActivation(rb_num);
 		request.setAttribute("notice_msg","프로젝트가 활성화되었습니다!");
-		request.setAttribute("notice_url", request.getContextPath()+"/member/myPageMoShin.do?rb_num="+rb_num);
+		request.setAttribute("notice_url", request.getContextPath()+"/member/myPageMo.do");
 		return "/WEB-INF/views/common/alert_view.jsp";
 
 
