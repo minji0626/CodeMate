@@ -9,6 +9,11 @@
 	width:500px;
 	margin-top: 8px;
 }
+.team-left-myRcomment{
+	margin-right:10px;
+	width:500px;
+	margin-top: 30px;
+}
 .team-right{
 	float:right;
 	width:200px;
@@ -189,3 +194,4 @@ myPageMoshin.jsp
 	margin-top:170px;
 	width:220px;
 }
+/*마이페이지 팀원구하기 댓글*/

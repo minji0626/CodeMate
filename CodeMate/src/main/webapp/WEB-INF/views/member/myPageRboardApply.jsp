@@ -9,10 +9,10 @@
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/modifyUser.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/team.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/modifyUserForm.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/rcommentDelete.js"></script>
 
 </head>
 <body>
@@ -28,31 +28,29 @@
 <div class="align-center">
     <h3 class="mYPage-TitleText">팀원구하기 댓글</h3>
 </div>
-<c:if test="">
+<c:if test="${empty rcommentList}">
 <div>팀원구하기의 댓글이 없습니다</div>
 </c:if>
-<c:if test="">
-<%-- <c:forEach var="" items="${}"> --%>
+<c:if test="${!empty rcommentList}">
+
+<c:forEach var="rcomment" items="${rcommentList}">
 	<!-- 팀원구하기 모집글 링크 달기 -->
-	<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do?rb_num=${rboard.rb_num}'" style="cursor: pointer;">
-        <div class="team-left">
-            <div class="skill_font_T">모집글 제목</div>
-            <div class="projectName_font">${rboard.rb_title}</div>
+	<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rcomment.rb_num}'" style="cursor: pointer;">
+       
+        <div class="team-left-myRcomment">
+            <!-- <div class="cboard_name">팀원구하기 댓글</div> -->
+                <div class="rcomment">게시글:${rcomment.rb_title}</div>
+            <div class="projectName_font">${rcomment.rc_content}</div>
         </div>
-        <div class="team-right">
-            <div class="delete-green" data-rbnum="${rboard.rb_num}">&nbsp모집글 삭제</div>
-            <div>
-                <div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
-                <div>모집마감:${rboard.rb_endRecruit}</div>
-            </div>
-            <div class="close-green" onclick="toggleActivation(this)">&nbsp&nbsp&nbsp&nbsp&nbsp활성화</div>
+        <div class="btn_box_write">
+            <input type="button" value="수정" class="myUpdate_btn" onclick="">
+            <input type="submit" value="삭제" class="myDelete_btn" data-rcnum="${rcomment.rc_num}">
         </div>
     </div>
-
-
-
-<%-- </c:forEach> --%>
+</c:forEach>
 </c:if>
+
+
 </div>
 <!-- 메인 정보 수정 끝 -->
 </div>

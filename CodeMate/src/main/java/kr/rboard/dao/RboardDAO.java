@@ -608,7 +608,6 @@ public class RboardDAO {
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    List<RapplyVO> list = new ArrayList<>();
-	    //SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.mem_num=
 	    String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
 	    try {
 	        conn = DBUtil.getConnection();
@@ -657,7 +656,37 @@ public class RboardDAO {
 		
 	}
 	  
-	  
+	//회원별 코메구하기 모집글 댓글 리스트 - 마이페이지
+	public List<RcommentVO> getRcommentListByMemNum(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RcommentVO> list = new ArrayList<>();
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "select b.rb_title, c.* from r_board b JOIN r_comment c ON b.rb_num = c.rb_num WHERE c.mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				RcommentVO rcomment = new RcommentVO();
+				rcomment.setRb_num(rs.getInt("rb_num"));
+				rcomment.setRc_num(rs.getInt("rc_num"));
+				rcomment.setRc_content(rs.getString("rc_content"));
+				rcomment.setRb_title(rs.getString("rb_title"));
+				//리스트 추가
+				list.add(rcomment);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
 	// 회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
 	public List<RboardVO> getAppliedBoardListByMemNum(int mem_num) throws Exception {
 		Connection conn = null;

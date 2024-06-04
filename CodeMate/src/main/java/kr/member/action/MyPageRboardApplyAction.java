@@ -30,11 +30,11 @@ public class MyPageRboardApplyAction implements Action{
 		//모집 게시물 정보
 		RboardDAO rboardDAO = RboardDAO.getInstance(); 
 		//List 반환
-		//List<RcommentVO> rcommentList = rboardDAO.getRcommentList(mem_num);이거 말고 새로 메서드 만들어야됨
+		List<RcommentVO> rcommentList = rboardDAO.getRcommentListByMemNum(mem_num);
 		//지금 적어놓은거는 detail에서 보는거고 내가 필요한거는 다시 만들어야됨
 		
 		request.setAttribute("member", member);
-		//request.setAttribute("rcommentList", rcommentList);
+		request.setAttribute("rcommentList", rcommentList);
 		
 		//JSP경로 반환
 		return "/WEB-INF/views/member/myPageRboardApply.jsp";

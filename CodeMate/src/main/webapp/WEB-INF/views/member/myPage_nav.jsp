@@ -36,5 +36,7 @@
         <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a>
         <a href="${pageContext.request.contextPath}/member/myReply.do">내가 쓴 댓글</a>
         <a href="${pageContext.request.contextPath}/member/myPageRboardApply.do">팀원구하기 댓글</a>
+        
+        <a href="${pageContext.request.contextPath}/member/myPageRboardApply.do">나의 1:1 문의</a>
     </div>   
 </div>

@@ -16,7 +16,15 @@ public class RcommentVO {
 	private String reg_date_string;
 	private String modify_date_string;
 	
+	private String rb_title;//rcomment join
 	
+	
+	public String getRb_title() {
+		return rb_title;
+	}
+	public void setRb_title(String rb_title) {
+		this.rb_title = rb_title;
+	}
 	public String getReg_date_string() {
 		return reg_date_string;
 	}
