@@ -278,7 +278,7 @@ public class MemberDAO {
 			return member;
 		}
 		
-		//비밀번호 찾기 - 수정
+		//비밀번호 찾기 - 재설정
 		public void ReUpdatePw(MemberVO member)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;

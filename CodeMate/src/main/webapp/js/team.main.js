@@ -363,10 +363,20 @@ $(document).ready(function() {
 		const eventTimeFrom = addEventFrom.val().trim();
 		const eventTimeTo = addEventTo.val().trim();
 
-
 		if (eventTitle === "") {
 			alert("To-Do 내용을 작성하세요");
+			addEventTitle.val('').focus();
 			return;
+		}
+
+		// 시간 값이 비어있는 경우에는 시간 형식 검증을 수행하지 않음
+		if (eventTimeFrom !== "" && eventTimeTo !== "") {
+			if (/\D/.test(eventTimeFrom) || /\D/.test(eventTimeTo)) {
+				alert("시간에는 숫자만 입력하세요.");
+				addEventFrom.val('');
+				addEventTo.val('');
+				return;
+			}
 		}
 
 		// 새로운 이벤트를 서버로 전송합니다.
@@ -405,6 +415,7 @@ $(document).ready(function() {
 	}
 
 
+
 	// add-event-btn 클릭시 addNewEvent 함수 실행
 	$(document).on("click", ".add-event-btn", addNewEvent);
 
@@ -415,5 +426,17 @@ $(document).ready(function() {
 	addEventCloseBtn.on("click", () => {
 		addEventWrapper.removeClass("active");
 	});
+
+	// 시간 변환 함수
+	function convertTime(time) {
+		//convert time to 24 hour format
+		let timeArr = time.split(":");
+		let timeHour = timeArr[0];
+		let timeMin = timeArr[1];
+		let timeFormat = timeHour >= 12 ? "PM" : "AM";
+		timeHour = timeHour % 12 || 12;
+		time = timeHour + ":" + timeMin + " " + timeFormat;
+		return time;
+	}
 
 });

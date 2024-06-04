@@ -57,30 +57,30 @@
         <div class="text-align-left">
             <ul class="item-align-center">
                 <li>
-                    <label for="mem_name" class="form_label">이름</label><br>
+                    <label for="mem_name" class="form_label">이름</label>
                     <input type="text" id="mem_name" name="mem_name" maxlength="10" class="input-check" value="${member.mem_name}">
                 </li>
                 <li>
-                    <label for="mem_id" class="form_label">아이디</label><br>
+                    <label for="mem_id" class="form_label">아이디</label>
                     <input type="text" id="mem_id" name="mem_id" maxlength="20" class="input-check" value="${member.mem_id}">
                		<input type="hidden" id="original_mem_id" value="${member.mem_id}">
                 </li>
                 <li>
-                    <label for="mem_email" class="form_label">이메일</label><br>
+                    <label for="mem_email" class="form_label">이메일</label>
                     <input type="email" id="mem_email" name="mem_email" maxlength="50" class="input-check" value="${member.mem_email}">
                     
                 </li>
                 
                 
                 <li>
-                    <label for="mem_nickname" class="form_label">닉네임</label><br>
+                    <label for="mem_nickname" class="form_label">닉네임</label>
                     <input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
                		<!-- 닉네임 중복체크 -->
-                    <span id="message_nickname"></span>
+                    <div id="message_nickname" class="error-message"></div>
                 </li>
                 
                 <li>
-                    <label for="mem_phone" class="form_label">전화번호</label><br>
+                    <label for="mem_phone" class="form_label">전화번호</label>
                     <input type="text" id="mem_phone" name="mem_phone" maxlength="20" class="input-check" value="${member.mem_phone}">
                 </li>
             </ul>

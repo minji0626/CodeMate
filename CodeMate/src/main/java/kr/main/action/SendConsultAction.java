@@ -26,6 +26,7 @@ public class SendConsultAction implements Action {
 		consult.setCs_title(request.getParameter("cs_title"));
 		consult.setCs_content(request.getParameter("cs_content"));
 		consult.setCs_category(Integer.parseInt(request.getParameter("cs_category")));
+		consult.setCs_reply_email(request.getParameter("email"));
 		
 		ConsultDAO cdao = ConsultDAO.getInstance();
 		cdao.sendConsult(consult);
