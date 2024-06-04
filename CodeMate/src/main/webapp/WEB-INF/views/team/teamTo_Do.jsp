@@ -70,14 +70,14 @@
             <div class="add-event-input">
               <input
                 type="text"
-                placeholder="To-Do 시작 시간"
+                placeholder="To-Do 시작 시간 (24시간 형식)"
                 class="event-time-from"
               />
             </div>
             <div class="add-event-input">
               <input
                 type="text"
-                placeholder="To-do 종료 시간"
+                placeholder="To-do 종료 시간 (24시간 형식)"
                 class="event-time-to"
               />
             </div>
