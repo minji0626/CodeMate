@@ -31,11 +31,19 @@ body {
 
 .input-check {
     width: 220px;
-    height: 25px;
-    margin-bottom: 5px;
-    padding: 5px;
+    height: 20px;
+    margin-top: 3px;
+    margin-bottom: 8px;
+    padding: 3px;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+
+.error-message {
+	
+    color: red;
+    font-size: 12px;
+    margin-bottom: 8px;
 }
 
 /* label 정렬 */
@@ -74,3 +82,5 @@ body {
 .my-photo{
 	border-radius: 80px;
 }
+
+

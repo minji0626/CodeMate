@@ -1,4 +1,6 @@
 $(function() {
+	let nicknameChecked = 0;
+	
 	// 회원 정보 수정 유효성 체크
 	$('#modify_form').submit(function() {
 
@@ -168,33 +170,45 @@ $(function() {
 		$('#mem_photo_btn').show(); // 수정 버튼 표시
 	});
 
+	
 
 	$('#mem_nickname').on('blur', function() {
 		var nickname = $(this).val();
-		let nicknameChecked = 0;
 		// 서버에 닉네임 중복 확인 요청을 보냄
 		$.ajax({
 			url: 'checkDuplicatedNickname.do',
-			method: 'post',
+			type: 'post',
 			data: { mem_nickname: nickname },
 			dataType: 'json',
 			success: function(param) {
 				if (param.result == 'nicknameDuplicated') {
 					nicknameChecked = 0;
-					$('#message_nickname').text('이미 사용 중인 닉네임입니다.');
+					$('#message_nickname').css('color', 'red').text('이미 사용 중인 닉네임입니다.');
+					$('#mem_nickname').val('').focus();
+					$('#mem_nickname').css('margin-bottom', '0');
 				} else if (param.result == 'nicknameNotFound') {
 					nicknameChecked = 1;
-					$('#message_nickname').text('사용 가능한 닉네임입니다.');
+					$('#mem_nickname').css('margin-bottom', '0');
+					$('#message_nickname').css('color', 'black').text('사용 가능한 닉네임입니다.');
 				} else {
 					nicknameChecked = 0;
-					$('#message_nickname').text('닉네임 중복 체크 중 오류 발생');
+					$('#mem_nickname').css('margin-bottom', '0');
+					$('#message_nickname').css('color', 'red').text('닉네임 중복 체크 중 오류 발생');
 				}
 			},
 			error: function() {
 				nicknameChecked = 0;
-				$('#message_nickname').text('서버 오류가 발생했습니다.');
+				$('#mem_nickname').css('margin-bottom', '0');
+				$('#message_nickname').css('color', 'red').text('서버 오류가 발생했습니다.');
 			}
 		});
 	});
+
+	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복값 초기화
+	$('#modify_form #mem_nickname').keydown(function() {
+		nicknameChecked = 0;
+		$('#message_nickname').text('');
+	});//end of keydown
+
 
 });
