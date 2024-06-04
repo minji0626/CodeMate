@@ -40,10 +40,14 @@ div#mini-card1 {/* 1 */
 .p1{
 	position:relative;
 	bottom:150px; right:20px;	
+	background:none;
+	border:none;
 }
 .n1{
 	position:relative;
 	bottom:150px; left:1140px; 
+	background:none;
+	border:none;
 }
 /* 더보기 */
  a.more{
@@ -103,17 +107,21 @@ div#mini-card2 {/* 1 */
 
 .p2{
 	position:relative;
-	bottom:150px; right:20px;	
+	bottom:150px; right:20px;
+	background:none;
+	border:none;	
 }
 .n2{
 	position:relative;
 	bottom:150px; left:1140px; 
+	background:none;
+	border:none;
 }
 /* 더보기 */
 #front_btn{
-   transform:translate3d(185%,120%,0);
+   transform:translate3d(230%,120%,0);
    font-size:13px;
-   width:80px;
+   width:60px;
    color:white;
    border-radius:20px;
    background-color:#5aca7c;
