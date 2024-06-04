@@ -97,10 +97,10 @@
 										
 									</div>
 									<span class="rb_endRecruit">
-										<c:if test="${rboard.daysLeft < 0}">
+										<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">
 											모집 종료됨
 										</c:if>
-										<c:if test="${rboard.daysLeft >= 0}">
+										<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
 											${rboard.rb_endRecruit} 마감
 										</c:if>
 									</span>

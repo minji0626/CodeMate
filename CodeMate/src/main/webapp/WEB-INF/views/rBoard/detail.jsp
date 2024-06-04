@@ -40,9 +40,9 @@
 				<div class="content-header">
 					<h2>${rboard.rb_title} 
 					<span id="d_day">
-						<c:if test="${rboard.daysLeft > 0}">D-${rboard.daysLeft}</c:if>
-						<c:if test="${rboard.daysLeft == 0}">오늘 마감</c:if>
-						<c:if test="${rboard.daysLeft < 0}">모집 종료</c:if>
+						<c:if test="${rboard.daysLeft > 0 && rboard.team_status != 1}">D-${rboard.daysLeft}</c:if>
+						<c:if test="${rboard.daysLeft == 0 && rboard.team_status != 1}">오늘 마감</c:if>
+						<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">모집 종료</c:if>
 					</span>
 					</h2>
 					

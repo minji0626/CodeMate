@@ -48,7 +48,7 @@ function fetchResults() {
 				}
 				output += '</div>';
 				output += '<span class="rb_endRecruit">';
-				if (item.daysLeft < 0) {
+				if (item.daysLeft < 0 || item.team_status == 1) {
 					output += '모집 종료됨';
 				} else {
 					output += item.rb_endRecruit + ' 마감';

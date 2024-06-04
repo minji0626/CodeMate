@@ -306,7 +306,7 @@ public class RboardDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM ( " + "  SELECT a.*, rownum rnum FROM ( "
-					+ "    SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
+					+ "    SELECT r_board.*, team.*, hs_agg.hs_name, hs_agg.hs_photo, "
 					+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + "    FROM r_board "
 					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, "
 					+ "                            LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo "
@@ -316,7 +316,9 @@ public class RboardDAO {
 					+ "                     FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) f_agg "
 					+ "    ON r_board.rb_num = f_agg.rb_num "
 					+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
-					+ "    ON r_board.rb_num = apply_agg.rb_num " + "    ORDER BY r_board.rb_num DESC " + "  ) a "
+					+ "    ON r_board.rb_num = apply_agg.rb_num " 
+					+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num"
+					+ "    ORDER BY r_board.rb_num DESC " + "  ) a "
 					+ ") WHERE rnum >= ? AND rnum <= ?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -339,7 +341,8 @@ public class RboardDAO {
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
 				rboard.setRb_hit(rs.getInt("rb_hit"));
 				rboard.setRb_apply_count(rs.getInt("apply_count"));
-				rboard.setDaysLeft(rboard.getDaysLeft());
+				rboard.setTeam_status(rs.getInt("team_status"));
+
 
 				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
@@ -412,16 +415,21 @@ public class RboardDAO {
 				sub_sql += "WHERE " + String.join(" AND ", conditions);
 			}
 
-			sql = "SELECT COUNT(*) FROM ( SELECT a.*, rownum rnum FROM ( SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
-					+ "f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count FROM r_board LEFT OUTER JOIN (SELECT "
-					+ "rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) AS hs_name, LISTAGG(hs_photo, ',') "
-					+ "WITHIN GROUP (ORDER BY hs_name) AS hs_photo FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY "
-					+ "rb_num) hs_agg ON r_board.rb_num = hs_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') "
-					+ "WITHIN GROUP (ORDER BY f_name) AS f_name FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) "
-					+ "f_agg ON r_board.rb_num = f_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count "
-					+ "FROM r_apply GROUP BY rb_num) apply_agg ON r_board.rb_num = apply_agg.rb_num " + sub_sql
-					+ " ORDER BY r_board.rb_num DESC ) a ) ";
-
+			sql =	 "SELECT COUNT(*) FROM ( " + "  SELECT a.*, rownum rnum FROM ( "
+					+ "    SELECT r_board.*, team.*, hs_agg.hs_name, hs_agg.hs_photo, "
+					+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + "    FROM r_board "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, "
+					+ "                            LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo "
+					+ "                     FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY rb_num) hs_agg "
+					+ "    ON r_board.rb_num = hs_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') WITHIN GROUP (ORDER BY f_name) f_name "
+					+ "                     FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) f_agg "
+					+ "    ON r_board.rb_num = f_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
+					+ "    ON r_board.rb_num = apply_agg.rb_num " 
+					+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num"
+					+ "    ORDER BY r_board.rb_num DESC) a) " + sub_sql;
+			
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -493,15 +501,21 @@ public class RboardDAO {
 				sub_sql += "WHERE " + String.join(" AND ", conditions);
 			}
 
-			sql = "SELECT * FROM ( SELECT a.*, rownum rnum FROM ( SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
-					+ "f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count FROM r_board LEFT OUTER JOIN (SELECT "
-					+ "rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) AS hs_name, LISTAGG(hs_photo, ',') "
-					+ "WITHIN GROUP (ORDER BY hs_name) AS hs_photo FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY "
-					+ "rb_num) hs_agg ON r_board.rb_num = hs_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') "
-					+ "WITHIN GROUP (ORDER BY f_name) AS f_name FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) "
-					+ "f_agg ON r_board.rb_num = f_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count "
-					+ "FROM r_apply GROUP BY rb_num) apply_agg ON r_board.rb_num = apply_agg.rb_num " + sub_sql
-					+ " ORDER BY r_board.rb_num DESC ) a ) " + "WHERE rnum >= ? AND rnum <= ?";
+			sql = "SELECT * FROM ( " + "  SELECT a.*, rownum rnum FROM ( "
+					+ "    SELECT r_board.*, team.*, hs_agg.hs_name, hs_agg.hs_photo, "
+					+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + "    FROM r_board "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, "
+					+ "                            LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo "
+					+ "                     FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY rb_num) hs_agg "
+					+ "    ON r_board.rb_num = hs_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') WITHIN GROUP (ORDER BY f_name) f_name "
+					+ "                     FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) f_agg "
+					+ "    ON r_board.rb_num = f_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
+					+ "    ON r_board.rb_num = apply_agg.rb_num " 
+					+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num"
+					+ "    ORDER BY r_board.rb_num DESC) a " + sub_sql
+					+ "		) WHERE rnum >= ? AND rnum <= ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -523,6 +537,7 @@ public class RboardDAO {
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
 				rboard.setRb_hit(rs.getInt("rb_hit"));
 				rboard.setRb_apply_count(rs.getInt("apply_count"));
+				rboard.setTeam_status(rs.getInt("team_status"));
 
 				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
@@ -597,12 +612,14 @@ public class RboardDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM member JOIN member_detail USING(mem_num) JOIN r_board USING(mem_num) JOIN"
+			sql = "SELECT * FROM member JOIN member_detail USING(mem_num) JOIN r_board USING(mem_num)"
+					+ " JOIN TEAM ON r_board.rb_num = team.team_num JOIN"
 					+ " (SELECT rb_num, LISTAGG(hs_name,',') within group ( order by hs_name) hs_name ,"
 					+ " LISTAGG(hs_photo,',') within group ( order by hs_name)  hs_photo"
 					+ " FROM r_skill JOIN hard_skill USING(hs_code) group by rb_num) USING(rb_num) JOIN"
 					+ " (SELECT rb_num, LISTAGG(f_name,',') within group ( order by f_name) f_name"
-					+ " FROM r_field JOIN field_db USING(f_code) group by rb_num) USING(rb_num)" + " WHERE rb_num=?";
+					+ " FROM r_field JOIN field_db USING(f_code) group by rb_num) USING(rb_num)" 
+					+ " WHERE rb_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
 			rs = pstmt.executeQuery();
@@ -624,7 +641,7 @@ public class RboardDAO {
 				rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_hit(rs.getInt("rb_hit"));
-				rboard.setDaysLeft(rboard.getDaysLeft());
+				rboard.setTeam_status(rs.getInt("team_status"));
 
 				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
