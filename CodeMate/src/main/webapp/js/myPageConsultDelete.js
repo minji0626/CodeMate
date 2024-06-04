@@ -11,7 +11,7 @@ $(function() {
                 if (param.result === 'logout') {
                     alert('로그인 후 사용하세요!');
                 } else if (param.result === 'success') {
-                    alert('문의를  삭제했습니다.');
+                    alert('문의를 삭제했습니다.');
                     location.reload();
                 } else {
                     alert('문의 삭제에 실패했습니다.');
