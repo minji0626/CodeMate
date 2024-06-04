@@ -299,5 +299,50 @@ public class TmemberDAO {
 		}
 		return count;
 	}
+	
+	// 레벨 바꾸기
+	public void updateLevel(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			sql = "SELECT COUNT(*) FROM team_member WHERE mem_num=? AND tm_review_status=1";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mem_num);
+			
+			int finish = 0;
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				finish = rs.getInt(1);
+			}
+			
+			int level = 1;
+			if(finish>=3) {
+				level = 1 + (finish/3);
+			}
+			sql = "UPDATE member_detail SET mem_level=? WHERE mem_num=?";
+			
+			pstmt2 = conn.prepareStatement(sql);
+			
+			pstmt2.setInt(1, level);
+			pstmt2.setInt(2, mem_num);
+			
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, null);
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+	}
 
 }

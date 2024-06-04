@@ -38,9 +38,8 @@ public class HowManyReviewAction implements Action {
 			int reviewCount = dao.HowManyReview(mem_num, team_num);
 			int check = dao.currentTeamSize(team_num);
 			if(check==(reviewCount+1)) {
-				dao.finishProject(team_num, team_num);
-				
-				
+				dao.finishProject(team_num, mem_num);
+				dao.updateLevel(mem_num);
 				mapAjax.put("result","finish");
 			} else {
 				mapAjax.put("result", "ing");
