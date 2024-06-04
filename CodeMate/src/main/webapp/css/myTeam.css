@@ -159,9 +159,12 @@ myPageMoshin.jsp
 	font-size: 14px;
 }
 
-.myApply-write{
-	width:500px;
-	float:left;
+.myApply-write {
+    width: 500px;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 글이 한 줄로 유지되도록 설정 */
 }
 /* 마이페이지 나의 내역이 존재하지 않을때 뜨는 메세지 */
 .MR{
@@ -193,5 +196,13 @@ myPageMoshin.jsp
 	margin-left:382px;
 	margin-top:170px;
 	width:220px;
+}
+.MC{
+	margin-left:360px;
+	margin-top:170px;
+	width:220px;
+}
+.MRC{
+	font-size: 30px;
 }
 /*마이페이지 팀원구하기 댓글*/

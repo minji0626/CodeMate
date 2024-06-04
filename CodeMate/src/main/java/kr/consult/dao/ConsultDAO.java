@@ -272,7 +272,8 @@ public class ConsultDAO {
 				consult.setCs_num(rs.getInt("cs_num"));
 				consult.setCs_title(rs.getString("cs_title"));
 				consult.setCs_category(rs.getInt("cs_category"));
-				consult.setCs_reg_date(rs.getDate("reg_date"));
+				consult.setCs_content(rs.getString("cs_content"));
+				consult.setCs_reg_date(rs.getDate("cs_reg_date"));
 				list.add(consult);
 			}
 		}catch(Exception e) {

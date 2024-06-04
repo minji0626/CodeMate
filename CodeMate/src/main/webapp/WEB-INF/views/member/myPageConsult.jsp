@@ -38,24 +38,24 @@
 </select>
 
 
-<c:if test="${empty commentList}">
-<div class="MR">나의 문의신고 이력이 없습니다</div>
+<c:if test="${empty consultList}">
+<div class="MC">나의 문의신고 이력이 없습니다</div>
 </c:if>
-<c:if test="${!empty commentList}">
-<c:forEach var="comment" items="${commentList}">
-    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${comment.cb_num}'" data-type="<c:out value="${comment.cb_type}"/>">
+<c:if test="${!empty consultList}">
+<c:forEach var="consult" items="${consultList}">
+    <div class="myPage-line-box" data-type="<c:out value="${consult.cs_category}"/>">
         <div class="team-left-myWrite">
             <div class="cboard_name">
-                <c:if test="${comment.cb_type == 0}">
-                    자유게시판
+                <c:if test="${consult.cs_category == 0}">
+                    문의 내역
                 </c:if>
-                <c:if test="${comment.cb_type == 1}">
-                    개발게시판
+                <c:if test="${consult.cs_category == 1}">
+                    신고 내역
                 </c:if>
             </div>
-            <div class="projectName_font">${comment.cc_content}</div>
+            <div class="projectName_font">${consult.cs_content}</div>
             <div class="fav-reply">
-                <div class="myApply-write">게시글:${comment.cb_title}</div>
+                <div class="myApply-write">제목:${consult.cs_title}</div>
             </div>
         </div>
         <div class="btn_box_write">
@@ -65,7 +65,6 @@
     </div>
 </c:forEach>
 </c:if>
-
 
 </div>
 <!-- 메인 정보 수정 끝 -->
@@ -79,7 +78,7 @@ function filterList() {
 
     for (var i = 0; i < items.length; i++) {
         var itemType = items[i].getAttribute("data-type");
-        if (selectedOption === "all" || (selectedOption === "dev" && itemType === "1") || (selectedOption === "free" && itemType === "0")) {
+        if (selectedOption === "all" || (selectedOption === "free" && itemType === "1") || (selectedOption === "dev" && itemType === "0")) {
             items[i].classList.remove("hidden");
         } else {
             items[i].classList.add("hidden");

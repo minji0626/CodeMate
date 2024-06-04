@@ -34,7 +34,7 @@ public class MyPageConsultAction implements Action{
 		request.setAttribute("member", member);
 		request.setAttribute("consultList", consultList);
 		
-		return "/WEB-INF/views/member/myPageConsult";
+		return "/WEB-INF/views/member/myPageConsult.jsp";
 	}
 
 }
