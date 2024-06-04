@@ -12,6 +12,7 @@ public class TboardWriteFormAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		Integer team_num = (Integer) session.getAttribute("team_num");
 		
 		if(mem_num == null) {// 로그인 미실시
 			return "redirect:/member/loginForm.do";

@@ -27,7 +27,7 @@
     <c:if test="${param.team_num == sessionScope.team_num }">
     <div class="content-container">
         <div class="button-container">
-            <button class="write-button" onclick="location.href='${pageContext.request.contextPath}/team/teamWriteForm.do'">글쓰기</button>
+            <button class="write-button" onclick="location.href='${pageContext.request.contextPath}/team/teamWriteForm.do?team_num=${param.team_num}'">글쓰기</button>
         </div>
 
         <!-- 검색 폼 -->
