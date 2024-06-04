@@ -493,7 +493,7 @@ public class RboardDAO {
 			}
 
 			if (recruiting_filter) {
-				conditions.add("rb_endRecruit > SYSDATE");
+				conditions.add("rb_endRecruit > SYSDATE AND team_status = 0");
 			}
 
 			// 조건이 있을 경우에만 WHERE 추가

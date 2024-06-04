@@ -37,7 +37,7 @@ public class SearchResultsAction implements Action {
 		int count = rdao.searchRboardsCount(r_skills, rb_category, r_fields, rb_meet, search_key, recruiting_filter);
 
 		// 페이지 처리
-		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 12, 10,
+		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10,
 				"searchResults.do");
 
 		List<RboardVO> rboardList = null;
