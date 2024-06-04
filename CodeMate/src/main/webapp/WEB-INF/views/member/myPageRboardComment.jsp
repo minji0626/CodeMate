@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/team.css" type="text/css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/rcommentDelete.js"></script>
 
@@ -29,10 +29,10 @@
     <h3 class="mYPage-TitleText">팀원구하기 댓글</h3>
 </div>
 <c:if test="${empty rcommentList}">
-<div class="MRC">팀원구하기의 댓글이 없습니다</div>
+<div class="MRC">코메구하기에 작성한 댓글이 없습니다</div>
 </c:if>
-<c:if test="${!empty rcommentList}">
 
+<c:if test="${!empty rcommentList}">
 <c:forEach var="rcomment" items="${rcommentList}">
 	<!-- 팀원구하기 모집글 링크 달기 -->
 	<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rcomment.rb_num}'" style="cursor: pointer;">
