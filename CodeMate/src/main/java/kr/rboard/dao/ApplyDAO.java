@@ -6,9 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.cboard.vo.CboardVO;
 import kr.mate.vo.MateVO;
 import kr.rboard.vo.RapplyVO;
+import kr.rboard.vo.RboardVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class ApplyDAO {
 	private static ApplyDAO instance = new ApplyDAO();
@@ -263,4 +266,98 @@ public class ApplyDAO {
 	        DBUtil.executeClose(rs, pstmt, conn);
 	    }
 	}
+	
+	// rboard 목록 구하기
+		public List<RboardVO> getRboardList(int start, int end) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<RboardVO> list = null;
+			String sql = null;
+
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM ( " + "  SELECT a.*, rownum rnum FROM ( "
+						+ "    SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
+						+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + "    FROM r_board "
+						+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, "
+						+ "                            LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo "
+						+ "                     FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY rb_num) hs_agg "
+						+ "    ON r_board.rb_num = hs_agg.rb_num "
+						+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') WITHIN GROUP (ORDER BY f_name) f_name "
+						+ "                     FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) f_agg "
+						+ "    ON r_board.rb_num = f_agg.rb_num "
+						+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
+						+ "    ON r_board.rb_num = apply_agg.rb_num " + "    ORDER BY r_board.rb_num DESC " + "  ) a "
+						+ ") WHERE rnum >= ? AND rnum <= ?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+
+				rs = pstmt.executeQuery();
+
+				list = new ArrayList<RboardVO>();
+				while (rs.next()) {
+					RboardVO rboard = new RboardVO();
+					rboard.setRb_num(rs.getInt("rb_num"));
+					rboard.setRb_reg_date(rs.getDate("rb_reg_date"));
+					rboard.setRb_category(rs.getInt("rb_category"));
+					rboard.setRb_meet(rs.getInt("rb_meet"));
+					rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+					rboard.setRb_period(rs.getInt("rb_period"));
+					rboard.setRb_start(rs.getString("rb_start"));
+					rboard.setRb_title(rs.getString("rb_title"));
+					rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
+					rboard.setRb_hit(rs.getInt("rb_hit"));
+					rboard.setRb_apply_count(rs.getInt("apply_count"));
+					rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+
+					// 요구기술, 모집필드 배열로 저장
+					rboard.setHs_name_arr(rs.getString("hs_name").split(","));
+					rboard.setHs_photo_arr(rs.getString("hs_photo").split(","));
+					rboard.setF_name_arr(rs.getString("f_name").split(","));
+
+					list.add(rboard);
+				}
+
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return list;
+		}
+		
+		public boolean checkActivation(int rb_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			ResultSet rs = null;
+			String sql = null;
+			boolean check = false;
+
+			try {
+				conn = DBUtil.getConnection();
+
+				// 게시글 번호로 신청자 중 합격한 사람 세기 
+				sql = "SELECT team_num FROM team WHERE team_status=1 AND team_num=?"; 
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, rb_num);
+				
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					check = true;
+				}
+
+
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return check;
+		}
 }

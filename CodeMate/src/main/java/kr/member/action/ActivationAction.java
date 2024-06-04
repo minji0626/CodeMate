@@ -27,7 +27,7 @@ public class ActivationAction  implements Action{
 			request.setAttribute("notice_msg","로그인 하세요!");
 			request.setAttribute("notice_url", "redirect:/member/loginForm.do");
 			return "/WEB-INF/views/common/alert_view.jsp";
-		} 
+		}  
 
 		request.setCharacterEncoding("utf-8");
 
