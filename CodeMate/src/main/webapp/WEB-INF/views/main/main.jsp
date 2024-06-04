@@ -20,7 +20,10 @@
 			<jsp:include page="/WEB-INF/views/main/ad.jsp" />
 			<jsp:include page="/WEB-INF/views/main/Hot.jsp" />
 		</div>
+		
 	</div>
 <jsp:include page="/WEB-INF/views/common/consult.jsp" />
+<br><br><br><br><br><br><br><br><br><br>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
