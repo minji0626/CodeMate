@@ -65,9 +65,15 @@ span.search-menu, select.search-menu {
 	color: #636363;
 }
 
-span.search-menu.selected, select.search-menu.selected, div.search-menu.selected
-	{
+#recruiting_filter_span.selected  {
 	color: #57d47d;
+	border: 1px solid #57d47d;
+	font-weight: 700;
+}
+
+span.search-menu.selected, select.search-menu.selected, div.search-menu.selected,
+	#search_key_div.selected, span#recruiting_filter_span.search-menu.selected {
+	color: #57d47d !important;
 	border: 1px solid #57d47d;
 	font-weight: 700;
 }
@@ -129,7 +135,8 @@ option {
 	align-items: center; /* 자식 요소 수직 정렬 */
 	padding: 1px 4px;
 	margin: 1px 3px;
-	height: 28px; background-color : #474747;
+	height: 28px;
+	background-color: #474747;
 	border-radius: 8px;
 	color: #fff;
 	line-height: 1.5;
@@ -190,6 +197,7 @@ option {
 	width: 340px;
 	height: 36px;
 	background: none;
+	color: inherit;
 }
 
 #search_key:focus {

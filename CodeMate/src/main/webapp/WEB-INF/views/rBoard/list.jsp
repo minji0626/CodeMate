@@ -52,7 +52,7 @@
 							</c:forEach>
 						</select>
 						<select name="rb_category" class="search-menu">
-							<option value="2" selected>모집구분</option>
+							<option value="" selected>모집구분</option>
 							<option value="0">스터디</option>
 							<option value="1">프로젝트</option>
 							<option value="2">전체</option>
@@ -63,7 +63,7 @@
 							<option value="1">오프라인</option>
 							<option value="2">온라인/오프라인</option>
 						</select>
-						<span class="search-menu" id="recruiting_filter"> 모집중 보기 </span>
+						<span class="search-menu" id="recruiting_filter_span"><input type="checkbox" id="recruiting_filter" name="recruiting_filter" value="1"><label for="recruiting_filter">모집중 보기</label></span>
 					</div>
 					<div id="r_btn_div" class="flex-container">
 						<div id="search_key_div" class="search-menu">
