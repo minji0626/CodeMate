@@ -36,11 +36,11 @@ public class HowManyReviewAction implements Action {
 
 			TmemberDAO dao = TmemberDAO.getInstance();
 			int reviewCount = dao.HowManyReview(mem_num, team_num);
-			
-			ApplyDAO app = ApplyDAO.getInstance();
-			boolean check = app.passAndSize(team_num, (reviewCount+1));
-			if(check) {
+			int check = dao.currentTeamSize(team_num);
+			if(check==(reviewCount+1)) {
 				dao.finishProject(team_num, team_num);
+				
+				
 				mapAjax.put("result","finish");
 			} else {
 				mapAjax.put("result", "ing");

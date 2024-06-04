@@ -274,5 +274,30 @@ public class TmemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	public int currentTeamSize(int team_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		int count=0;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(mem_num) FROM team_member WHERE team_num=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, team_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 
 }
