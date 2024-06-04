@@ -27,6 +27,18 @@
 			<div class="mini1">
 				<div class="content1">slide4</div>
 			</div>
+			<div class="mini1">
+				<div class="content1">slide5</div>
+			</div>
+			<div class="mini1">
+				<div class="content1">slide6</div>
+			</div>
+			<div class="mini1">
+				<div class="content1">slide7</div>
+			</div>
+			<div class="mini1">
+				<div class="content1">slide8</div>
+			</div>
 		</div>
 
 	</div>

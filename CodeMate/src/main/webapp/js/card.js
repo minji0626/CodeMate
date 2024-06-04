@@ -3,7 +3,7 @@ var slides1 = document.querySelector('.wrapper1'),
   prevBtn1 = document.querySelector('.p1'),
   nextBtn1 = document.querySelector('.n1'),
   currentIdx1 = 0,
-  slideCount1 = slide1.length,//기존 슬라이드 개수(4)
+  slideCount1 = slide1.length,//기존 슬라이드 개수(8)
   slideWidth1 = 250,//슬라이드 이미지 넓이
   slideMargin1 = 40,//좌,우 마진있어서 * 2함
   position1 = 0,
@@ -36,7 +36,7 @@ function makeClone1(){
    
    //전체 슬라이드의 길이를 구해 wrapper의 길이로 넣어야 가로로 정렬이 됨
    slides1.style.width = newWidth1;
-   position1 = -((slideWidth1+slideMargin1) * slideCount1);//290 * 4 = 1160
+   position1 = -((slideWidth1+slideMargin1+8) * slideCount1);//290 * 4 = 1160
   //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
   slides1.style.transform = 'translateX('+ position1 +'px)';//x축 -1160px
    
