@@ -28,9 +28,31 @@
 	height: 30px;
 	object-fit: cover;
 	border-radius: 50px;
+	padding: 2px;
+	border: 1px solid #b8b8b8;
 }
 
 /* 검색옵션 */
+#recruiting_filter_span.selected {
+	color: #57d47d;
+	border: 1px solid #57d47d;
+	font-weight: 700;
+}
+
+span.search-menu.selected, select.search-menu.selected, div.search-menu.selected,
+	#search_key_div.selected, span#recruiting_filter_span.search-menu.selected
+	{
+	color: #57d47d;
+	border: 1px solid #57d47d;
+	font-weight: 700;
+}
+
+select.search-menu.selected:focus {
+	color: #57d47d;
+	border: 1px solid #57d47d;
+	outline: none;
+}
+
 .search-container {
 	margin: 20px 0;
 }
@@ -51,6 +73,19 @@
 	position: relative;
 }
 
+#search_key {
+	border: none;
+	font-size: 16px;
+	width: 340px;
+	height: 36px;
+	background: none;
+	color: inherit;
+}
+
+#search_key:focus {
+	outline: none;
+}
+
 #search_key_div {
 	margin: 10px 0;
 	width: 340px;
@@ -63,25 +98,6 @@ span.search-menu {
 span.search-menu, select.search-menu {
 	height: 38px;
 	color: #636363;
-}
-
-#recruiting_filter_span.selected  {
-	color: #57d47d;
-	border: 1px solid #57d47d;
-	font-weight: 700;
-}
-
-span.search-menu.selected, select.search-menu.selected, div.search-menu.selected,
-	#search_key_div.selected, span#recruiting_filter_span.search-menu.selected {
-	color: #57d47d !important;
-	border: 1px solid #57d47d;
-	font-weight: 700;
-}
-
-select.search-menu.selected:focus {
-	color: #57d47d;
-	border: 1px solid #57d47d;
-	outline: none;
 }
 
 option {
@@ -177,31 +193,71 @@ option {
 	display: flex;
 	flex-wrap: wrap;
 	/* 요소들이 넘치면 다음 줄로 내려갈 수 있도록 설정 */
-	justify-content: space-between;
+	justify-content: flex-start;
 	/* 요소들을 왼쪽과 오른쪽으로 정렬하여 간격을 두어 배치 */
 }
 
 .r-item {
-	width: calc(25% - 30px); /* 각 요소의 너비를 설정하여 한 줄에 4개씩 표시되도록 함 */
-	height: 340px;
-	margin-bottom: 20px; /* 요소 사이의 간격을 조절 */
-	padding: 10px; /* padding 추가 */
+	width: calc(25% - 58px); /* 각 요소의 너비를 설정하여 한 줄에 4개씩 표시되도록 함 */
+	height: 380px;
+	margin: 0 10px 20px 0; /* 좌우 간격은 10px, 아래 간격은 20px, 오른쪽 여백은 없음 */
+	padding: 20px;
 	border: 2px solid var(--gray-4);
-	border-radius: 6px;
+	border-radius: 12px;
 	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: #f7f7f7;
 }
 
-#search_key {
-	border: none;
-	font-size: 16px;
-	width: 340px;
-	height: 36px;
-	background: none;
-	color: inherit;
+.r-item .r-item-header {
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--gray-4);
 }
 
-#search_key:focus {
-	outline: none;
+.r-item .rb_category_div {
+	margin-bottom: 8px;
+}
+
+.r-item .rb_category {
+	display: inline-block;
+	color: white;
+	padding: 2px 8px;
+	border-radius: 20px;
+	font-size: 11pt;
+}
+
+.project {
+	background: #b1db63;
+}
+
+.study {
+	background: #f5c33b;
+}
+
+.r-item .rb_endRecruit {
+	font-size: 10pt;
+}
+
+.r-item p.rb-title {
+	font-size: 15pt;
+	font-weight: 600;
+	margin-bottom: 60px;
+}
+
+.r-item .r-item-info {
+	font-size: 11pt;
+}
+
+.r-item .skill-logo-div {
+	margin-bottom: 10px;
+}
+
+.r-item .hit-div {
+	text-align: right;
+	padding-top: 10px;
+	border-top: 1px solid var(--gray-4);
 }
 
 /* 댓글 */

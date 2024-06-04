@@ -13,13 +13,16 @@ import org.codehaus.jackson.map.ObjectMapper;
 import kr.controller.Action;
 import kr.rboard.dao.RboardDAO;
 import kr.rboard.vo.RboardVO;
+import kr.util.PagingUtil;
 
 public class SearchResultsAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String pageNum = request.getParameter("pageNum");
+		if (pageNum == null)
+			pageNum = "1";
+
         // 검색 조건을 받음
-		System.out.println("check1");
-		System.out.println(request);
 		request.setCharacterEncoding("utf-8");
         String[] r_skills = request.getParameterValues("r_skills");
         String rb_category = request.getParameter("rb_category");
@@ -30,8 +33,19 @@ public class SearchResultsAction implements Action {
 
         // 검색 조건을 이용해 데이터베이스에서 결과를 조회
         RboardDAO rdao = RboardDAO.getInstance();
-        List<RboardVO> rboardList = rdao.searchRboards(0, 10, r_skills, rb_category, r_fields, rb_meet, search_key, recruiting_filter);
 
+		int count = rdao.searchRboardsCount(r_skills, rb_category, r_fields, rb_meet, search_key, recruiting_filter);
+
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 12, 10,
+				"searchResults.do");
+
+		List<RboardVO> rboardList = null;
+		if (count > 0) {
+			rboardList = rdao.searchRboards(page.getStartRow(), page.getEndRow(), r_skills, rb_category, r_fields, rb_meet, search_key, recruiting_filter);
+		}
+        
+        
 		//Map 생성
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
 		mapAjax.put("rboardList", rboardList);
@@ -40,12 +54,6 @@ public class SearchResultsAction implements Action {
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		
 		request.setAttribute("ajaxData", ajaxData);
-		System.out.println("r_fields"+r_fields);
-		System.out.println("rb_category"+rb_category);
-		System.out.println("rb_meet"+rb_meet);
-		System.out.println("r_skills"+r_skills);
-		System.out.println("search_key"+search_key);
-		System.out.println("recruiting_filter"+recruiting_filter);
 		return "/WEB-INF/views/common/ajax_view.jsp";
     }
 	

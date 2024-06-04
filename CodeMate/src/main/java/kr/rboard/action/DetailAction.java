@@ -27,21 +27,22 @@ public class DetailAction implements Action {
 		//조회수 증가
 		rdao.updateReadCount(rb_num);
 		
-		//D-n 연산
-		LocalDate today = LocalDate.now();
-		
-        // endRecruit 날짜 파싱
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate endRecruit = LocalDate.parse(rboard.getRb_endRecruit(), formatter);
-
-        // D-n 연산 (일수 차이 계산)
-        long daysLeft = ChronoUnit.DAYS.between(today, endRecruit);
+//		//D-n 연산
+//		LocalDate today = LocalDate.now();
+//		
+//        // endRecruit 날짜 파싱
+//		System.out.println(rboard.getRb_endRecruit());
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate endRecruit = LocalDate.parse(rboard.getRb_endRecruit(), formatter);
+//
+//        // D-n 연산 (일수 차이 계산)
+//        long daysLeft = ChronoUnit.DAYS.between(today, endRecruit);
 		
 		rboard.setRb_title(StringUtil.useNoHTML(rboard.getRb_title()));
 		rboard.setRb_content(StringUtil.useBrNoHTML(rboard.getRb_content()));
 
 		request.setAttribute("rboard", rboard);
-		request.setAttribute("daysLeft", daysLeft);
+//		request.setAttribute("daysLeft", daysLeft);
 		
 		return "/WEB-INF/views/rBoard/detail.jsp";
 	}

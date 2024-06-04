@@ -339,6 +339,7 @@ public class RboardDAO {
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
 				rboard.setRb_hit(rs.getInt("rb_hit"));
 				rboard.setRb_apply_count(rs.getInt("apply_count"));
+				rboard.setDaysLeft(rboard.getDaysLeft());
 
 				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
@@ -357,9 +358,90 @@ public class RboardDAO {
 		return list;
 	}
 
-	// rboard 검색 목록 구하기
-	public List<RboardVO> searchRboards(int start, int end, String[] r_skills, String rb_category, String r_fields, String rb_meet,
+	// rboard 검색 개수 구하기
+	public int searchRboardsCount(String[] r_skills, String rb_category, String r_fields, String rb_meet,
 			String search_key, boolean recruiting_filter) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		String sql = null;
+		String sub_sql = "";
+		List<String> conditions = null;
+
+		try {
+			conn = DBUtil.getConnection();
+
+			// 조건을 배열이나 리스트로 관리하여 반복문으로 처리
+			conditions = new ArrayList<>();
+
+			if (r_skills != null && r_skills.length != 0) {
+				String r_skills_string = "";
+				for (int i = 0; i < r_skills.length; i++) {
+					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + r_skills[i] + "($|,)')";
+					if (i != r_skills.length - 1) {
+						r_skills_string += " AND ";
+					}
+				}
+				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "'";
+				conditions.add(r_skills_string);
+			}
+
+			if (rb_category != null && rb_category != "" && !rb_category.equals("2")) {
+				conditions.add("rb_category = " + rb_category);
+			}
+
+			if (r_fields != null && r_fields != "") {
+				conditions.add("f_name LIKE '%'||'" + r_fields + "'||'%'");
+			}
+
+			if (rb_meet != null && rb_meet != "") {
+				conditions.add("rb_meet = " + rb_meet);
+			}
+
+			if (search_key != null && search_key != "") {
+				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
+			}
+
+			if (recruiting_filter) {
+				conditions.add("rb_endRecruit > SYSDATE");
+			}
+
+			// 조건이 있을 경우에만 WHERE 추가
+			if (!conditions.isEmpty()) {
+				sub_sql += "WHERE " + String.join(" AND ", conditions);
+			}
+
+			sql = "SELECT COUNT(*) FROM ( SELECT a.*, rownum rnum FROM ( SELECT r_board.*, hs_agg.hs_name, hs_agg.hs_photo, "
+					+ "f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count FROM r_board LEFT OUTER JOIN (SELECT "
+					+ "rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) AS hs_name, LISTAGG(hs_photo, ',') "
+					+ "WITHIN GROUP (ORDER BY hs_name) AS hs_photo FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY "
+					+ "rb_num) hs_agg ON r_board.rb_num = hs_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') "
+					+ "WITHIN GROUP (ORDER BY f_name) AS f_name FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) "
+					+ "f_agg ON r_board.rb_num = f_agg.rb_num LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count "
+					+ "FROM r_apply GROUP BY rb_num) apply_agg ON r_board.rb_num = apply_agg.rb_num " + sub_sql
+					+ " ORDER BY r_board.rb_num DESC ) a ) ";
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return count;
+	}
+
+	// rboard 검색 목록 구하기
+	public List<RboardVO> searchRboards(int start, int end, String[] r_skills, String rb_category, String r_fields,
+			String rb_meet, String search_key, boolean recruiting_filter) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -376,29 +458,29 @@ public class RboardDAO {
 
 			if (r_skills != null && r_skills.length != 0) {
 				String r_skills_string = "";
-				for (int i=0; i<r_skills.length; i++) {
+				for (int i = 0; i < r_skills.length; i++) {
 					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + r_skills[i] + "($|,)')";
 					if (i != r_skills.length - 1) {
 						r_skills_string += " AND ";
 					}
 				}
-				r_skills_string += " OR hs_name = '"+ String.join("", r_skills) +"'";
+				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "'";
 				conditions.add(r_skills_string);
 			}
-			
-			if (rb_category != "" && !rb_category.equals("2")) {
+
+			if (rb_category != null && rb_category != "" && !rb_category.equals("2")) {
 				conditions.add("rb_category = " + rb_category);
 			}
-			
-			if (r_fields != "") {
+
+			if (r_fields != null && r_fields != "") {
 				conditions.add("f_name LIKE '%'||'" + r_fields + "'||'%'");
 			}
 
-			if (rb_meet != "") {
+			if (rb_meet != null && rb_meet != "") {
 				conditions.add("rb_meet = " + rb_meet);
 			}
 
-			if (search_key != "") {
+			if (search_key != null && search_key != "") {
 				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
 			}
 
@@ -486,12 +568,12 @@ public class RboardDAO {
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
-				
+
 				sql = "SELECT team_status FROM team WHERE team_num=?";
 				pstmt2 = conn.prepareStatement(sql);
 				pstmt2.setInt(1, rboard.getRb_num());
 				rs2 = pstmt2.executeQuery();
-				if(rs2.next()) {
+				if (rs2.next()) {
 					rboard.setTeam_status(rs2.getInt("team_status"));
 				}
 
@@ -542,6 +624,7 @@ public class RboardDAO {
 				rboard.setRb_endRecruit(rs.getString("rb_endrecruit"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_hit(rs.getInt("rb_hit"));
+				rboard.setDaysLeft(rboard.getDaysLeft());
 
 				// 요구기술, 모집필드 배열로 저장
 				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
@@ -601,43 +684,43 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	//나의 모집글에 지원한 신청자 리스트 - 민재
+
+	// 나의 모집글에 지원한 신청자 리스트 - 민재
 	public List<RapplyVO> myRboardApplyListByRbNum(int rb_num) throws Exception {
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    List<RapplyVO> list = new ArrayList<>();
-	    String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
-	    try {
-	        conn = DBUtil.getConnection();
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, rb_num);
-	        
-	        rs = pstmt.executeQuery();
-	        while (rs.next()) {
-	           RapplyVO rapply = new RapplyVO();
-	            rapply.setRa_num(rs.getInt("ra_num"));
-	            rapply.setRb_num(rs.getInt("rb_num"));
-	            rapply.setMem_num(rs.getInt("mem_num"));
-	            rapply.setRa_content(rs.getString("ra_content"));
-	            rapply.setRa_date(rs.getDate("ra_date"));
-	            rapply.setRa_pass(rs.getInt("ra_pass"));
-	            
-	            list.add(rapply);
-	           
-	        }
-	    } catch (Exception e) {
-	        throw new Exception(e);
-	    } finally {
-	        DBUtil.executeClose(rs, pstmt, conn);
-	    }
-	    
-	    return list;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RapplyVO> list = new ArrayList<>();
+		String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RapplyVO rapply = new RapplyVO();
+				rapply.setRa_num(rs.getInt("ra_num"));
+				rapply.setRb_num(rs.getInt("rb_num"));
+				rapply.setMem_num(rs.getInt("mem_num"));
+				rapply.setRa_content(rs.getString("ra_content"));
+				rapply.setRa_date(rs.getDate("ra_date"));
+				rapply.setRa_pass(rs.getInt("ra_pass"));
+
+				list.add(rapply);
+
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return list;
 	}
-	  
-	  //나의 모집글에 지원한 신청자 삭제-민재
-	public void deleteMyRboardApply(int rb_num,int ra_num)throws Exception{
+
+	// 나의 모집글에 지원한 신청자 삭제-민재
+	public void deleteMyRboardApply(int rb_num, int ra_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -648,16 +731,16 @@ public class RboardDAO {
 			pstmt.setInt(1, rb_num);
 			pstmt.setInt(2, ra_num);
 			pstmt.executeUpdate();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new Exception(e);
-		}finally {
+		} finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-		
+
 	}
-	  
-	//회원별 코메구하기 모집글 댓글 리스트 - 마이페이지
-	public List<RcommentVO> getRcommentListByMemNum(int mem_num) throws Exception{
+
+	// 회원별 코메구하기 모집글 댓글 리스트 - 마이페이지
+	public List<RcommentVO> getRcommentListByMemNum(int mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -668,26 +751,25 @@ public class RboardDAO {
 			sql = "select b.rb_title, c.* from r_board b JOIN r_comment c ON b.rb_num = c.rb_num WHERE c.mem_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
-			
+
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				RcommentVO rcomment = new RcommentVO();
 				rcomment.setRb_num(rs.getInt("rb_num"));
 				rcomment.setRc_num(rs.getInt("rc_num"));
 				rcomment.setRc_content(rs.getString("rc_content"));
 				rcomment.setRb_title(rs.getString("rb_title"));
-				//리스트 추가
+				// 리스트 추가
 				list.add(rcomment);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new Exception(e);
-		}finally {
+		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return list;
 	}
-	
-	
+
 	// 회원별 코메신청 리스트 - 마이페이지의 '나의코메신청'에서 불러옴.
 	public List<RboardVO> getAppliedBoardListByMemNum(int mem_num) throws Exception {
 		Connection conn = null;

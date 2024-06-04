@@ -40,9 +40,9 @@
 				<div class="content-header">
 					<h2>${rboard.rb_title} 
 					<span id="d_day">
-						<c:if test="${daysLeft > 0}">D-${daysLeft}</c:if>
-						<c:if test="${daysLeft == 0}">오늘 마감</c:if>
-						<c:if test="${daysLeft < 0}">모집 종료</c:if>
+						<c:if test="${rboard.daysLeft > 0}">D-${rboard.daysLeft}</c:if>
+						<c:if test="${rboard.daysLeft == 0}">오늘 마감</c:if>
+						<c:if test="${rboard.daysLeft < 0}">모집 종료</c:if>
 					</span>
 					</h2>
 					
@@ -56,12 +56,16 @@
 						<span>${rboard.mem_nickname}</span>
 						<span>${rboard.rb_reg_date}(작성일자)</span> 
 						<c:if test="${mem_num == rboard.mem_num}">
+						<c:if test="${rboard.daysLeft >= 0}">
 						<input type="button" value="수정하기" id="modify_btn" class="btn-basic btn" onclick='location.href="modifyForm.do?rb_num=${rboard.rb_num}"'>
+						</c:if>
 						<input type="button" value="삭제하기" id="delete_btn" class="btn-basic btn" onclick='location.href="deleteRboard.do?rb_num=${rboard.rb_num}"'>
 						</c:if>
 						<c:if test="${mem_num != rboard.mem_num}">
+						<c:if test="${rboard.daysLeft >= 0}">
 						<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn">
 						<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
+						</c:if>
 						</c:if>
 						<span>조회수 <span id="rb_hit">${rboard.rb_hit}</span></span>
 						<img id="bookmark_img" data-rbnum="${rboard.rb_num}" src="" width="36px">

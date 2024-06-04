@@ -12,7 +12,8 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <title>코메 구하기</title>
-<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
+<link href="${pageContext.request.contextPath}/images/로고1.png"
+	rel="shortcut icon" type="image/x-icon">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
 	rel="stylesheet">
@@ -37,11 +38,13 @@
 				<div class="search-container">
 					<div id="search_container_sub">
 						<div id="scrollable_trigger" class="search-menu">기술 스택</div>
-						<ul class="scrollable" style="display:none">
+						<ul class="scrollable" style="display: none">
 							<c:forEach var="hskill" items="${hskillList}">
-								<li class="block">
-									<input type="checkbox" name="r_skills" id="r_skill_${hskill.hs_code}" value="${hskill.hs_name}">
-									<label for="r_skill_${hskill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">${hskill.hs_name}</label>
+								<li class="block"><input type="checkbox" name="r_skills"
+									id="r_skill_${hskill.hs_code}" value="${hskill.hs_name}">
+									<label for="r_skill_${hskill.hs_code}"><img
+										class="hskill-photo"
+										src="${pageContext.request.contextPath}/images/hard_skill_logo/${hskill.hs_photo}">${hskill.hs_name}</label>
 								</li>
 							</c:forEach>
 						</ul>
@@ -50,20 +53,19 @@
 							<c:forEach var="field" items="${fieldList}">
 								<option value="${field.f_name}">${field.f_name}</option>
 							</c:forEach>
-						</select>
-						<select name="rb_category" class="search-menu">
+						</select> <select name="rb_category" class="search-menu">
 							<option value="" selected>모집구분</option>
 							<option value="0">스터디</option>
 							<option value="1">프로젝트</option>
 							<option value="2">전체</option>
-						</select>
-						<select name="rb_meet" class="search-menu">
+						</select> <select name="rb_meet" class="search-menu">
 							<option value="" selected>진행 방식</option>
 							<option value="0">온라인</option>
 							<option value="1">오프라인</option>
 							<option value="2">온라인/오프라인</option>
-						</select>
-						<span class="search-menu" id="recruiting_filter_span"><input type="checkbox" id="recruiting_filter" name="recruiting_filter" value="1"><label for="recruiting_filter">모집중 보기</label></span>
+						</select> <span class="search-menu" id="recruiting_filter_span"><input
+							type="checkbox" id="recruiting_filter" name="recruiting_filter"
+							value="1"><label for="recruiting_filter">모집중 보기</label></span>
 					</div>
 					<div id="r_btn_div" class="flex-container">
 						<div id="search_key_div" class="search-menu">
@@ -85,47 +87,60 @@
 							<li class="r-item"
 								onclick="location.href= '${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
 								<div class="r-item-header">
-									<span>마감일 | </span> <span>${rboard.rb_endRecruit}</span>
+									<div class="rb_category_div">
+										<c:if test="${rboard.rb_category == 0}"><span class="rb_category study"> 
+										스터디</span>
+										</c:if>
+										<c:if test="${rboard.rb_category == 1}"><span class="rb_category project"> 
+										프로젝트</span>
+										</c:if>
+										
+									</div>
+									<span class="rb_endRecruit">
+										<c:if test="${rboard.daysLeft < 0}">
+											모집 종료됨
+										</c:if>
+										<c:if test="${rboard.daysLeft >= 0}">
+											${rboard.rb_endRecruit} 마감
+										</c:if>
+									</span>
 								</div>
 								<div class="r-item-main">
-									<span> <c:if test="${rboard.rb_category == 0}">
-						[스터디]
-						</c:if> <c:if test="${rboard.rb_category == 1}">
-						[프로젝트]
-						</c:if>
-									</span>
-									<p>${rboard.rb_title}</p>
-								</div>
-								<div>
-									<c:forEach var="i" begin="0"
-										end="${fn:length(rboard.hs_photo_arr) - 1}">
-										<img
-											src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}"
-											title="${rboard.hs_name_arr[i]}" class="skill-logo">
-									</c:forEach>
-								</div> <span>진행방식 | </span> <span> <c:if
-										test="${rboard.rb_meet == 0}">
+									<p class="rb-title">${rboard.rb_title}</p>
+									<div class="skill-logo-div">
+										<c:forEach var="i" begin="0"
+											end="${fn:length(rboard.hs_photo_arr) - 1}">
+											<img
+												src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}"
+												title="${rboard.hs_name_arr[i]}" class="skill-logo">
+										</c:forEach>
+									</div>
+									<div class="r-item-info">
+										<span>진행방식 | </span> <span> <c:if
+												test="${rboard.rb_meet == 0}">
 					온라인
 					</c:if> <c:if test="${rboard.rb_meet == 1}">
 					오프라인
 					</c:if> <c:if test="${rboard.rb_meet == 2}">
 					온라인/오프라인
 					</c:if>
-							</span>
-								<div>
-									<span>모집필드 | </span>
-									<c:forEach var="field" items="${rboard.f_name_arr}">
-										<span>${field}</span>
-									</c:forEach>
+										</span>
+										<div>
+											<span>모집필드 | </span>
+											<c:forEach var="field" items="${rboard.f_name_arr}">
+												<span>${field}</span>
+											</c:forEach>
+										</div>
+										<div>
+											<span>신청인원 | </span> <span>${rboard.rb_apply_count}/<c:if
+													test="${rboard.rb_teamsize==0}">인원 미정</c:if><c:if
+													test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">${rboard.rb_teamsize}</c:if>
+												<c:if test="${rboard.rb_teamsize==10}">10명이상</c:if>
+											</span>
+										</div>
+									</div>
 								</div>
-								<div>
-									<span>신청인원 | </span>
-									<span>${rboard.rb_apply_count}/<c:if test="${rboard.rb_teamsize==0}"
-									>인원 미정</c:if><c:if test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}"
-									>${rboard.rb_teamsize}</c:if><c:if test="${rboard.rb_teamsize==10}">10명이상</c:if>
-									</span>
-								</div>
-								<div>
+								<div class="hit-div">
 									<span>조회수 </span> <span>${rboard.rb_hit}</span>
 								</div>
 							</li>

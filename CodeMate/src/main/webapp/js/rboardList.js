@@ -1,11 +1,10 @@
-$(window).on('pageshow', function(event) {
+/*$(window).on('pageshow', function(event) {
 
 	//페이지 보여질때 초기화
 	$('.scrollable input[type="checkbox"]').trigger('change');
 	$('.search-menu').trigger('change');
-
 });
-
+*/
 //콘텍스트경로 구하기
 function getContextPath() {
 	return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
@@ -41,23 +40,30 @@ function fetchResults() {
 				output += '<li class="r-item"';
 				output += 'onclick="location.href=\'' + contextPath + '/rboard/detail.do?rb_num=' + item.rb_num + '\'">';
 				output += '<div class="r-item-header">';
-				output += '<span>마감일 | </span> <span>' + item.rb_endRecruit + '</span>';
+				output += '<div class="rb_category_div">';
+				if (item.rb_category == 0) {
+					output += '<span class="rb_category study">스터디</span>';
+				} else {
+					output += '<span class="rb_category project">프로젝트</span>';
+				}
+				output += '</div>';
+				output += '<span class="rb_endRecruit">';
+				if (item.daysLeft < 0) {
+					output += '모집 종료됨';
+				} else {
+					output += item.rb_endRecruit + ' 마감';
+				}
+				output += '</span>';
 				output += '</div>';
 				output += '<div class="r-item-main">';
-				if (item.rb_category == 0) {
-					output += '<span>[스터디]</span>';
-				} else {
-					output += '<span>[프로젝트]</span>';
-				}
-				output += '<p>' + item.rb_title + '</p>';
-				output += '</div>';
-				output += '<div>';
+				output += '<p class="rb-title">' + item.rb_title + '</p>';
+				output += '<div class="skill-logo-div">';
 				for (var i = 0; i < item.hs_photo_arr.length; i++) {
 					output += '<img src="' + contextPath + '/images/hard_skill_logo/' + item.hs_photo_arr[i] + '"';
 					output += 'title="' + item.hs_name_arr[i] + '" class="skill-logo"> ';
 				}
 				output += '</div>';
-				output += '<span>진행방식 | </span> <span>';
+				output += '<div class="r-item-info"><span>진행방식 | </span> <span>';
 				if (item.rb_meet == 0) {
 					output += '온라인';
 				} else if (item.rb_meet == 1) {
@@ -83,8 +89,9 @@ function fetchResults() {
 					output += item.rb_teamsize;
 				}
 				output += '</span>';
+				output += '</div></div>';
 				output += '</div>';
-				output += '<div>';
+				output += '<div class="hit-div">';
 				output += '<span>조회수 </span> <span>' + item.rb_hit + '</span>';
 				output += '</div>';
 				output += '</li>';
@@ -144,6 +151,9 @@ function removeSkillTag(element) {
 }
 
 $(document).ready(function() {
+	//페이지 보여질때 초기화
+	$('.scrollable input[type="checkbox"]').trigger('change');
+	$('.search-menu').trigger('change');
 
 	//뒤로가기 화살표
 	$('.feather-arrow-left').click(function() {
