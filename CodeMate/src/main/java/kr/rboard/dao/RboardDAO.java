@@ -481,7 +481,8 @@ public class RboardDAO {
 							+ "    ON r_board.rb_num = f_agg.rb_num "
 							+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
 							+ "    ON r_board.rb_num = apply_agg.rb_num " 
-							+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num WHERE team.team_status= 1 AND rb_endrecruit > SYSDATE"
+							+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num WHERE team.team_status= 1 AND "
+							+ "	    TO_DATE(rb_endrecruit, 'yyyy-mm-dd') - sysdate > 0"
 							+ "    ORDER BY r_board.rb_hit DESC " + "  ) a "
 							+ ") WHERE ROWNUM <= 8";
 

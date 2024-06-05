@@ -249,3 +249,43 @@ div#mini-card2 {/* 1 */
 form{
    border:none !important;
 }
+
+/* 슬라이드 글 목록 */
+.project {
+	font-size:14px;
+	background: #b1db63;
+	border-radius:10px;
+	padding:4px;
+	color:white;
+}
+.study {
+	font-size:14px;
+	background: #f5c33b;
+	border-radius:10px;
+	padding:4px;
+	color:white;
+}
+
+.hit-div{
+	margin-bottom:5px;
+	transform:translateY(300%);
+	
+}
+.way{
+	transform:translateY(30%);
+	width:230px;
+}
+.link{
+	margin:5px;
+	cursor: pointer;
+}
+.rb-title{
+	margin-top:10px;
+}
+/* .cont{
+	overflow: hidden; 
+    text-overflow: ellipsis; 넘칠 경우 "..."으로 표시
+} */
+
+
+
