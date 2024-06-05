@@ -33,7 +33,10 @@ public class CheckTeamMemberAction implements Action {
 			if(count > 0) {
 				list = dao.getTeamMembers(team_num);
 			}
+			
+			int leader_mem_num = dao.whoIsLeader(team_num);
 
+			request.setAttribute("leader_mem_num", leader_mem_num);
 			request.setAttribute("count", count);
 			request.setAttribute("team_num", team_num);
 			request.setAttribute("list", list);

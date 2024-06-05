@@ -344,5 +344,30 @@ public class TmemberDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
+	
+	public int whoIsLeader(int team_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		int mem_num=0;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT mem_num FROM team_member WHERE team_num=? AND tm_auth=4";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, team_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mem_num = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return mem_num;
+	}
 
 }

@@ -25,7 +25,7 @@
 			<div class="float-B">
 				<div class="align-center">
 					<form id="manage_members_form" name="manage_members_form">
-						<h3 class="admin-TitleText">팀 관리</h3>
+						<h3 class="admin-TitleText">팀원 관리</h3>
 						
 						<c:if test="${count == 0}">
 							<div>표시할 회원이 없습니다.</div>
@@ -49,8 +49,9 @@
 										<c:if test="${tmember.tm_auth==3}">
 											<td>팀원</td>
 										</c:if>
-										<td><a class="mem_auth_btn button changeLeader" style="cursor: pointer" data-current-leader="${currentLeaderMemNum}" data-new-leader="${tmember.mem_num}">팀장 위임</a>
-										<td><a class="mem_delete_btn button deleteTeamMember" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a></td>
+										
+										<td><a class="mem_auth_btn button changeLeader" style="cursor: pointer" data-current-leader="${leader_mem_num}" data-team-num="${team_num}" data-mem-num="${tmember.mem_num}">팀장 위임</a>
+										<td><a class="mem_delete_btn button deleteTeamMember" style="cursor: pointer" data-current-leader="${leader_mem_num}" data-team-num="${team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a></td>
 										
 									</tr>
 								</c:forEach>
@@ -63,5 +64,6 @@
 			<!-- 메인 끝 -->
 		</div>
 	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/manageTeamMember.js"></script>
 </body>
 </html>

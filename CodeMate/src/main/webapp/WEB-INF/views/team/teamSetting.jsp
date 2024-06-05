@@ -25,6 +25,7 @@
         </div>
     </c:if>
     
+    
     <c:if test="${team_num == sessionScope.team_num}">
         <div id="mem_container">
             <input type="hidden" name="team_num" value="${param.team_num}">
@@ -101,6 +102,7 @@
                                                 <!-- 팀장인 경우 데이터 속성 추가 -->
                                                 <a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
                                                 <a class="mem_auth_btn" style="cursor: pointer" data-current-leader="${currentLeaderMemNum}" data-new-leader="${tmember.mem_num}">팀장 위임</a>
+                                                
                                             </c:if>
                                         </div>
                                     </li>
