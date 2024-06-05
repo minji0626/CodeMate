@@ -18,29 +18,31 @@ public class MainAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		//팀원 구하기 슬라이드
 		DBDAO dbdao = DBDAO.getInstance();
 		List<FieldVO> fieldList = dbdao.getFieldList();
 		List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 
 		RboardDAO rdao = RboardDAO.getInstance(); 
-		int count = rdao.getRboardCount(null,null,null,null,null,false);//rboard의 글 갯수
-
-		
+		int count1 = rdao.getRboardCount(null,null,null,null,null,false);//rboard의 글 갯수
 
 		List<RboardVO> SlideList = null;
-		if (count > 0) {
+		if (count1 > 0) {
 			SlideList = rdao.getSlideList();
 		}
 
 		request.setAttribute("fieldList", fieldList);
 		request.setAttribute("hskillList", hskillList);
 		request.setAttribute("SlideList", SlideList);
-		request.setAttribute("count", count);
 		
+		//커뮤니티 슬라이드
 		CboardDAO cdao = CboardDAO.getInstance();
 		List<CboardVO> SlideList2 = null;
-		SlideList2 = cdao.getSlideListBoard();
+		int count2 = cdao.getCboardCount(null, null, 0); 
+		int count3 = cdao.getCboardCount(null, null, 1);
+		if(count2 > 0 || count3 > 0) {
+			SlideList2 = cdao.getSlideListBoard();
+		}
 		request.setAttribute("SlideList2",SlideList2);
 		
 		//JSP 경로 반환

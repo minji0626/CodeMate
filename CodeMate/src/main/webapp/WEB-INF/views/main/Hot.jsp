@@ -19,7 +19,7 @@
 			<div class="wrapper1">
 				<c:forEach var="rboard" items="${SlideList}">
 					<div class="mini1">
-						<div class="content1">
+						<div class="content1" onclick="location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
 							<div class="rb_category_div">
 								<!-- 카테고리 -->
 								<c:if test="${rboard.rb_category == 0}">
@@ -88,9 +88,9 @@
 
 		<div class="mini-container2">
 			<div class="wrapper2">
+			<c:forEach var="cboard" items="${SlideList2}">
 				<div class="mini2">
-				<c:forEach var="cboard" items="${SlideList2}">
-					<div class="content2">
+					<div class="content2" onclick="location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}'">
 					<c:if test="${cboard.cb_type == 1}">개발게시판</c:if>
 					<c:if test="${cboard.cb_type == 0}">자유게시판</c:if>
 					<hr size="2px">
@@ -100,8 +100,9 @@
 					<br>
 		            <span>조회수</span><span>${cboard.cb_hit}</span>
 					</div>
+					</div>
 				</c:forEach>
-				</div>
+				
 				
 			</div>
 
