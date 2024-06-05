@@ -110,36 +110,34 @@ $(function() {
         }
     });
     
-    // 팀장 위임 하는 function
     $(".mem_auth_btn").click(function() {
-        var teamNum = $("input[name='team_num']").val();
-        var currentLeaderMemNum = $(this).data("current-leader");
-        var newLeaderMemNum = $(this).data("new-leader");
+    var teamNum = $("input[name='team_num']").val();
+    var newLeaderMemNum = $(this).data("new-leader");
 
-        $.ajax({
-            type: 'post',
-            url: 'updateTeamLeader.do',
-            data: {
-                team_num: teamNum,
-                current_leader_mem_num: currentLeaderMemNum,
-                new_leader_mem_num: newLeaderMemNum
-            },
-            dataType: 'json',
-            success: function(param) {
-                if(param.result == 'success'){
-                	alert('팀장 위임이 완료되었습니다');
-                	location.reload();
-                } else if (param.result == 'noAuth'){
-                	alert('권한이 없습니다. 다시 로그인 후 시도해주세요.')
-                } else {
-                	alert('팀장 위임 중 오류가 발생하였습니다.');
-                }
-            },
-            error: function() {
-                alert('네트워크 오류가 발생하였습니다');
+    $.ajax({
+        type: 'post',
+        url: 'updateTeamLeader.do',
+        data: {
+            team_num: teamNum,
+            new_leader_mem_num: newLeaderMemNum
+        },
+        dataType: 'json',
+        success: function(param) {
+            if (param.result == 'success') {
+                alert('팀장 위임이 완료되었습니다');
+                location.reload();
+            } else if (param.result == 'noAuth') {
+                alert('권한이 없습니다. 다시 로그인 후 시도해주세요.')
+            } else {
+                alert('팀장 위임 중 오류가 발생하였습니다.');
             }
-        });
+        },
+        error: function() {
+            alert('네트워크 오류가 발생하였습니다');
+        }
     });
+});
+
     
     
 });

@@ -49,7 +49,7 @@
         <a href="${pageContext.request.contextPath}/admin/manageMembers.do">회원 정지,탈퇴,등급 변경</a>
         <a class="sideB_font">게시판 관리</a>
         <a href="${pageContext.request.contextPath}/admin/manageRboard.do">코메모집</a>
-        <a href="${pageContext.request.contextPath}/admin/manageCboard.do">커뮤니티</a>
+        <a href="${pageContext.request.contextPath}/admin/manageCommunity.do">커뮤니티</a>
         <a href="${pageContext.request.contextPath}/admin/manageTeam.do">팀</a>
         <a class="sideB_font">1:1 문의</a>
         <a href="${pageContext.request.contextPath}/admin/consultsList.do">1:1 문의 보기</a>
