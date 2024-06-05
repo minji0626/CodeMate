@@ -50,7 +50,8 @@
         <a class="sideB_font">게시판 관리</a>
         <a href="${pageContext.request.contextPath}/admin/manageRboard.do">코메모집</a>
         <a href="${pageContext.request.contextPath}/admin/manageCommunity.do">커뮤니티</a>
-        <a href="${pageContext.request.contextPath}/admin/manageTeam.do">팀</a>
+        <a href="${pageContext.request.contextPath}/admin/manageTeam.do">활성화 팀</a>
+        <a href="${pageContext.request.contextPath}/admin/manageStopTeam.do">비활성화 팀</a>
         <a class="sideB_font">1:1 문의</a>
         <a href="${pageContext.request.contextPath}/admin/consultsList.do">1:1 문의 보기</a>
     </div>   

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>활성화 팀 관리</title>
+<title>비활성화 팀 관리</title>
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
@@ -25,7 +25,7 @@
 			<div class="float-B">
 				<div class="align-center">
 					<form id="manage_members_form" name="manage_members_form">
-						<h3 class="admin-TitleText">활성화 팀 관리</h3>
+						<h3 class="admin-TitleText">비활성화 팀 관리</h3>
 						
 						<c:if test="${count == 0}">
 							<div>표시할 팀이 없습니다.</div>
@@ -37,8 +37,7 @@
 									<th>프로젝트 이름</th>
 									<th>프로젝트 시작일</th>
 									<th>프로젝트 기간</th>
-									<th>팀원</th>
-									<th>정지</th>
+									<th>활성화</th>
 								</tr>
 								<c:forEach var="member" items="${rboardList}">
 									<tr>
@@ -46,8 +45,7 @@
 										<td>${member.rb_pj_title}</td>
 										<td>${member.rb_start}</td>
 										<td>${member.rb_period}개월</td>
-										<td><a href="checkTeamMember.do?team_num=${member.rb_num}" class="button checkTeamMember">팀원 확인</a>
-										<td><a href="stopTeam.do?team_num=${member.rb_num}" class="button deleteTeam"> 강제 정지 </a></td>
+										<td><a href="startTeam.do?team_num=${member.rb_num}" class="button startTeam">활성화</a></td>
 										
 									</tr>
 								</c:forEach>

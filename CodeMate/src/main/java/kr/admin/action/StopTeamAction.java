@@ -23,7 +23,7 @@ public class StopTeamAction implements Action{
 			TeamDAO dao = TeamDAO.getInstance();
 			dao.stopTeam(team_num);
 			request.setAttribute("notice_msg", "팀을 정지시켰습니다.");
-			request.setAttribute("notice_url", request.getContextPath() + "/manageTeam.do");
+			request.setAttribute("notice_url", request.getContextPath() + "/admin/manageTeam.do");
 			return "/WEB-INF/views/common/alert_view.jsp";
 		} else {
 			request.setAttribute("notice_msg", "페이지 접근 권한이 없습니다.");
