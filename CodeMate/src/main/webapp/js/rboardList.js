@@ -117,8 +117,11 @@ $(document).ready(function() {
 				let output = '';
 				let contextPath = getContextPath();
 				$(response.rboardList).each(function(index, item) {
-					output += '<li class="r-item"';
-					output += 'onclick="location.href=\'' + contextPath + '/rboard/detail.do?rb_num=' + item.rb_num + '\'">';
+					output += '<li class="r-item ';
+					if (item.daysLeft < 0 || item.team_status == 1) {
+						output += 'not-recruiting';	
+					}
+					output += '" onclick="location.href=\'' + contextPath + '/rboard/detail.do?rb_num=' + item.rb_num + '\'">';
 					output += '<div class="r-item-header">';
 					output += '<div class="rb_category_div">';
 					if (item.rb_category == 0) {
