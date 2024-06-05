@@ -17,6 +17,7 @@ public class CompletePwAction implements Action{
 				//자바빈 생성해서 전송된 데이터 담고 전달
 				MemberVO member = new MemberVO();
 				member.setMem_passwd(request.getParameter("NewPw"));
+				member.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
 				
 				//데이터 전달
 				MemberDAO dao = MemberDAO.getInstance();

@@ -18,13 +18,16 @@ public class FindPwAction implements Action{
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
 				
+				
 				MemberDAO dao = MemberDAO.getInstance();
 				MemberVO member = dao.SelectPw(id,phone, email);
+				
 		
 				if(member == null) {
 					request.setAttribute("ckPw", 0);
 				}else {
 					request.setAttribute("ckPw", 1);
+					request.setAttribute("mem_num", member.getMem_num());
 				}
 				
 				return "/WEB-INF/views/member/findPw.jsp";

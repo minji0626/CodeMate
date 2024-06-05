@@ -324,10 +324,11 @@ public class MemberDAO {
 			String sql = null;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "UPDATE member_detail SET mem_passwd=?";
+				sql = "UPDATE member_detail SET mem_passwd=? WHERE mem_num=?";
 						pstmt = conn.prepareStatement(sql);
 						//?에 데이터 바인딩
 						pstmt.setString(1, member.getMem_passwd());
+						pstmt.setInt(2, member.getMem_num());
 						pstmt.executeUpdate();
 			}catch(Exception e) {
 				throw new Exception(e);
