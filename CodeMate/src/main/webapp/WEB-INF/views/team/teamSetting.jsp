@@ -19,16 +19,13 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     
-    <c:set var="currentLeaderMemNum" value="${mem_num}" />
-    <c:set var="currentLeaderTmAuth" value="${tm_auth}" />
-
-    <c:if test="${param.team_num != team_num}">
+    <c:if test="${team_num != sessionScope.team_num }">
         <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
             잘못된 접근입니다.
         </div>
     </c:if>
     
-    <c:if test="${param.team_num == team_num}">
+    <c:if test="${team_num == sessionScope.team_num}">
         <div id="mem_container">
             <input type="hidden" name="team_num" value="${param.team_num}">
             

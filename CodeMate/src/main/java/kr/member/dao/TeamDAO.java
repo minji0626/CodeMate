@@ -105,24 +105,52 @@ public class TeamDAO {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
     	ResultSet rs = null;
-    	TeamVO userTeam = null;
+    	TeamVO teammember = null;
     	try {
     		conn = DBUtil.getConnection();
-    		String sql = "SELECT * FROM team_member WHERE mem_num=? AND team_num=?";
+    		String sql = "SELECT * FROM team_member LEFT OUTER JOIN team USING(team_num) WHERE mem_num=? AND team_num=?";
     		pstmt = conn.prepareStatement(sql);
     		pstmt.setInt(1, mem_num);
     		pstmt.setInt(2, team_num);
     		rs = pstmt.executeQuery();
     		if (rs.next()) {
-    			userTeam = new TeamVO();
-    			userTeam.setTm_auth(rs.getInt("tm_auth"));
+    			teammember = new TeamVO();
+    			teammember.setMem_num(rs.getInt("mem_num"));
+    			teammember.setTeam_num(rs.getInt("team_num"));
+    			teammember.setTeam_status(rs.getInt("team_status"));
+    			teammember.setTm_auth(rs.getInt("tm_auth"));
+    			teammember.setTm_review_status(rs.getInt("tm_review_status"));
     		}
     	} catch (Exception e) {
     		throw new Exception(e);
     	} finally {
     		DBUtil.executeClose(rs, pstmt, conn);
     	}
-    	return userTeam;
+    	return teammember;
+    }
+    
+    public TeamVO getTeam(int team_num) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	TeamVO teams = null;
+    	try {
+    		conn = DBUtil.getConnection();
+    		String sql = "SELECT * FROM team WHERE team_num = ?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, team_num);
+    		rs = pstmt.executeQuery();
+    		if (rs.next()) {
+    			teams = new TeamVO();
+    			teams.setTeam_num(rs.getInt("team_num"));
+    			teams.setTeam_status(rs.getInt("team_status"));
+    		}
+    	} catch (Exception e) {
+    		throw new Exception(e);
+    	} finally {
+    		DBUtil.executeClose(rs, pstmt, conn);
+    	}
+    	return teams;
     }
 
 }

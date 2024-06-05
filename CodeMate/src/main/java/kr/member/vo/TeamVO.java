@@ -21,8 +21,16 @@ public class TeamVO {
 		private String rb_endrecruit;
 		private String rb_pj_title;
 		
+		private int tm_review_status;
 		
 		
+		
+		public int getTm_review_status() {
+			return tm_review_status;
+		}
+		public void setTm_review_status(int tm_review_status) {
+			this.tm_review_status = tm_review_status;
+		}
 		public int getMem_num() {
 			return mem_num;
 		}
