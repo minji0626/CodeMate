@@ -15,11 +15,11 @@ public class FindIdAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
 
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
+		String mem_phone = request.getParameter("mem_phone");
+		String mem_email = request.getParameter("mem_email");
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.findId(phone, email);
+		MemberVO member = dao.findId(mem_phone, mem_email);
 		
 		
 		
@@ -28,7 +28,7 @@ public class FindIdAction implements Action{
 			return "/WEB-INF/views/member/findId.jsp";
 		}else {
 			request.setAttribute("ckId", 1);
-			request.setAttribute("id",member.getMem_id());
+			request.setAttribute("mem_id",member.getMem_id());
 		}
 		
 	      

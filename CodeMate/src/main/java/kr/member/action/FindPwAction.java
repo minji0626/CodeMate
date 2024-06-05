@@ -14,13 +14,13 @@ public class FindPwAction implements Action{
 		//전송된 데이터 인코딩 타입 지정
 				request.setCharacterEncoding("utf-8");
 				//전송된 데이터 반환
-				String id = request.getParameter("id");
-				String phone = request.getParameter("phone");
-				String email = request.getParameter("email");
+				String mem_id = request.getParameter("mem_id");
+				String mem_phone = request.getParameter("mem_phone");
+				String mem_email = request.getParameter("mem_email");
 				
 				
 				MemberDAO dao = MemberDAO.getInstance();
-				MemberVO member = dao.SelectPw(id,phone, email);
+				MemberVO member = dao.SelectPw(mem_id,mem_phone, mem_email);
 				
 		
 				if(member == null) {

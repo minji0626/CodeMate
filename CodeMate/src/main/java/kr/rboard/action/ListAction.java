@@ -30,7 +30,7 @@ public class ListAction implements Action {
 		List<FieldVO> fieldList = dbdao.getFieldList();
 		List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 
-		RboardDAO rdao = RboardDAO.getInstance();
+		RboardDAO rdao = RboardDAO.getInstance(); 
 		int count = rdao.getRboardCount();
 
 		// 페이지 처리
