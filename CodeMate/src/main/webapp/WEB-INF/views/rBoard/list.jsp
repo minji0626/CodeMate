@@ -66,8 +66,8 @@
 							<option value="2">온라인/오프라인</option>
 						</select> 
 						<span class="search-menu" id="recruiting_filter_span">
-							<input type="checkbox" id="recruiting_filter" name="recruiting_filter" value="1">
-							<label for="recruiting_filter">모집중 보기</label>
+							<input type="checkbox" id="recruiting_filter" name="recruiting_filter" value="1" style="display:none">
+							<label for="recruiting_filter" id="recruiting_filter_label">모집중 보기</label>
 						</span>
 					</div>
 					<div id="r_btn_div" class="flex-container">

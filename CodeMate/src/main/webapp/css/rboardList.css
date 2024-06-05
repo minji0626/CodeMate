@@ -96,10 +96,11 @@ span.search-menu, select.search-menu {
 option {
 	color: black;
 }
-/* 체크 되었을 때 체크 박스 사라짐 */
-input[id="recruiting_filter"]:checked {
-	display: none;
+
+#recruiting_filter_label:hover {
+	cursor: pointer;
 }
+
 /* 체크 되었을 때 label 변경 */
 input[id="recruiting_filter"]:checked+label {
 	color: #57d47d;
