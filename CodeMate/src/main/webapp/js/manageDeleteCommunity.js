@@ -1,11 +1,12 @@
 $(function() {
     /* 나의 모집글 삭제 */
     $('#delete_community').on('click', function() {
+		let cb_num = $(this).data('cbnum');
         // 서버와 통신
         $.ajax({
-            url: 'deleteManageCommunityAction.do',
+            url: 'deleteManageCommunity.do',
             type: 'post',
-            data: { cb_num: $(this).data('cbnum') }, // 삭제할 게시글 번호를 데이터로 전달
+            data: { cb_num: cb_num }, // 삭제할 게시글 번호를 데이터로 전달
             dataType: 'json',
             success: function(param) {
                 if (param.result === 'logout') {

@@ -55,7 +55,7 @@
 								<c:forEach var="community" items="${communityList}">
 									<tr>
 										<td>${community.cb_num}</td>
-										<td>${community.cb_title}</td>
+										<td><a href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${community.cb_num}'>${community.cb_title}</a></td>
 										<td>${community.mem_nickname}</td>
 										<td>
 											<c:if test="${community.cb_type == 0}">자유 게시판</c:if>
