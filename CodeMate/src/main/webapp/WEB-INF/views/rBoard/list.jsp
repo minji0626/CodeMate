@@ -117,7 +117,7 @@
 									</div>
 									<div class="r-item-info">
 										<span>진행방식 | </span> <span> <c:if
-												test="${rboard.rb_meet == 0}">
+												test="$	{rboard.rb_meet == 0}">
 					온라인
 					</c:if> <c:if test="${rboard.rb_meet == 1}">
 					오프라인

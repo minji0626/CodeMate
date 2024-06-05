@@ -362,7 +362,7 @@ public class RboardDAO {
 	}
 	
 	//인기글 슬라이드 rboard 목록 띄우기 - 예영 작성
-		public List<RboardVO> getSlideList(int start, int end) throws Exception {
+		public List<RboardVO> getSlideList() throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -371,9 +371,9 @@ public class RboardDAO {
 
 			try {
 				conn = DBUtil.getConnection();
-				sql = "SELECT * FROM ( " + "  SELECT a.* FROM ( "
+				sql = "SELECT * FROM (SELECT a.* FROM ( "
 						+ "    SELECT r_board.*, team.*, hs_agg.hs_name, hs_agg.hs_photo, "
-						+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + "    FROM r_board "
+						+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + " FROM r_board "
 						+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, "
 						+ "                            LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo "
 						+ "                     FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY rb_num) hs_agg "
@@ -383,13 +383,12 @@ public class RboardDAO {
 						+ "    ON r_board.rb_num = f_agg.rb_num "
 						+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
 						+ "    ON r_board.rb_num = apply_agg.rb_num " 
-						+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num"
-						+ "    ORDER BY r_board.rb_hit ASC " + "  ) a WHERE ROWNUM <= 8"
-						+ ") WHERE team.team_status= 1";//daysleft	 AND daysleft < 0
+						+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num WHERE team.team_status= 1"
+						+ "    ORDER BY r_board.rb_hit ASC " + "  ) a "
+						+ ") WHERE ROWNUM <= 8";//daysleft	 AND daysleft < 0
 
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, start);
-				pstmt.setInt(2, end);
+				
 
 				rs = pstmt.executeQuery();
 
