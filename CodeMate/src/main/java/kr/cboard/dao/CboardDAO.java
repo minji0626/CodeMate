@@ -178,6 +178,8 @@ public class CboardDAO {
 					cboard.setCb_type(rs.getInt("cb_type"));
 					cboard.setCb_hit(rs.getInt("cb_hit"));
 					cboard.setMem_num(rs.getInt("mem_num"));
+					cboard.setCb_content(rs.getString("cb_content"));
+					cboard.setMem_nickname(rs.getString("mem_nickname"));
 					list.add(cboard);
 				}
 			} catch (Exception e) {
