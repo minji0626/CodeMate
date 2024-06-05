@@ -51,7 +51,7 @@ public class PagingUtil {
 			startRow = (currentPage - 1) * rowCount + 1;
 			endRow = currentPage * rowCount;
 			
-			// 이전 block 페이지
+			// 이전 block 페이지 
 			page = new StringBuffer();
 			if(pageCount > 0) {
 				// 시작 페이지와 마지막 페이지 값 구하기.
