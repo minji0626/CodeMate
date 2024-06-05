@@ -67,7 +67,7 @@
 											<td>${community.mem_nickname}</td>
 										
 										<td>
-											<a href="deleteComment.do" class="button delete"> 삭제</a>
+											<a href="deleteComment.do?cc_num=${community.cc_num}" class="button delete"> 삭제</a>
 										</td>
 									</tr>
 								</c:forEach>
