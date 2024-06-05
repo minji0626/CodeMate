@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageMembers.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/manageDeleteCommunity.js"></script>
 </head>
 <body>
 	<!-- 헤더 링크-->
@@ -61,13 +62,13 @@
 											<c:if test="${community.cb_type == 1}">개발 게시판</c:if>
 										</td>
 										<c:if test="${empty community.cb_modify_date}">
-											<td>${community.mem_reg_date}</td>
+											<td>${community.cb_reg_date}</td>
 										</c:if>
 										<c:if test="${!empty community.cb_modify_date}">
 											<td>${community.cb_modify_date}</td>
 										</c:if>
 										<td>
-											<button id="delete_community" class="deleteMemberBtn">삭제</button>
+											<button id="delete_community" class="deleteMemberBtn" data-cbnum="${community.cb_num}">삭제</button>
 										</td>
 									</tr>
 								</c:forEach>
