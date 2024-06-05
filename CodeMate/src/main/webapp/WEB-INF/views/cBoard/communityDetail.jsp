@@ -35,10 +35,10 @@
 		        	<!-- 게시판 분류 -->
 		       		<div class="board_category">
 		       			<c:if test="${board.cb_type==0}">	
-		       				<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
+		       				<a href="${pageContext.request.contextPath}/cboard/community.do"><img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판</a>
 						</c:if>
 						<c:if test="${board.cb_type==1}">	
-		       				<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
+		       				<a href="${pageContext.request.contextPath}/cboard/community.do?cb_type=1"><img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판</a>
 						</c:if>	
 
 		       		</div>
