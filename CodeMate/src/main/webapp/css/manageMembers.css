@@ -126,14 +126,22 @@ button {
     font-size: 12px;
 }
 
-.lockMemberBtn {
+.checkTeamMember {
+	padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.lockMemberBtn, .checkTeamMember {
 	transition: transform 0.3s;
     background-color: #FFC107;
     color: white;
     
 }
 
-.lockMemberBtn:hover {
+.lockMemberBtn:hover, .checkTeamMember:hover {
 	transform: scale(1.05);
     opacity: 0.8;
 }

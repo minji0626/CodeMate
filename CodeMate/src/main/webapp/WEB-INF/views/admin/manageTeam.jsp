@@ -46,7 +46,7 @@
 										<td>${member.rb_pj_title}</td>
 										<td>${member.rb_start}</td>
 										<td>${member.rb_period}개월</td>
-										<td><button class="lockMemberBtn" data-memnum="${member.rb_num}">팀원 확인</button>
+										<td><a href="checkTeamMember.do?team_num=${member.rb_num}" class="button checkTeamMember">팀원 확인</a>
 										<td><button class="deleteMemberBtn" data-memnum="${member.rb_num}">강제 정지</button>
 										
 									</tr>
