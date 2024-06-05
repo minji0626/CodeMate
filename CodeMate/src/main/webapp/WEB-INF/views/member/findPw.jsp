@@ -27,8 +27,8 @@
 				<div>
 				<span class="check"><b>비밀번호 재설정</b></span>
 					<form id="password_form" action="completePw.do" method="post">
-						<input type="text" id="passwd" class="input-check" name="NewPw" placeholder="새 비밀번호" required>
-						<input type="text" id="cpasswd" class="input-check" placeholder="새 비밀번호 확인" required>
+						<input type="password" id="passwd" class="input-check" name="NewPw" placeholder="새 비밀번호" required>
+						<input type="password" id="cpasswd" class="input-check" placeholder="새 비밀번호 확인" required>
 						 <input type="submit" id="pw_btn" name="NewPwUpd" value="비밀번호 재설정">
 						 <input class="tryAgain_btn" type="button" value="취소하기" 
 						 id="pwCancel"

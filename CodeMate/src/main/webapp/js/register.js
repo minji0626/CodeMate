@@ -101,7 +101,7 @@ $(function() {
 	//전화번호 중복 체크
 	$('#phone').on('blur', function() {
 		if (!/^[0-9]{11,12}$/.test($('#phone').val())) {
-			$('#message_phone').css('color', 'red').text('숫자만 입력하세요!');
+			$('#message_phone').css('color', 'red').text('11자리 이상의 숫자만 입력하세요!');
 			$('#phone').val('').focus();
 			return false;
 		}

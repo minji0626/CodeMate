@@ -16,18 +16,18 @@ div#mini-card1 {/* 1 */
    position:relative;
    top:30px;
    overflow:hidden;
-   height:300px;
+   height:330px;
    width:1178px;
 }  
  .wrapper1 {/* 움직이는 부분 */
-   height:300px;
+   height:330px;
 }   
 
 .content1{/* 이미지 */
    height:290px;
    float:left;
-   width:7%;
-   margin:0 0.5%;
+   width:250px;
+   margin:20px;
    border:2px solid #d4d4d4;
    border-radius:10px;
    background-color:#f0f0f0;
@@ -84,18 +84,18 @@ div#mini-card2 {/* 1 */
    position:relative;
    top:30px;
    overflow:hidden;
-   height:300px;
+   height:330px;
    width:1178px;
 }  
  .wrapper2 {/* 움직이는 부분 */
-   height:300px;
+   height:330px;
 }   
 
 .content2{/* 이미지 */
    height:290px;
    float:left;
-   width:7%;
-   margin:0 0.5%;
+   width:250px;
+   margin:20px;
    border:2px solid #d4d4d4;
    border-radius:10px;
    background-color:#f0f0f0;
