@@ -100,5 +100,29 @@ public class TeamDAO {
         }
         return userTeam;
     }
+    
+    public TeamVO getTeamMember(int mem_num,int team_num) throws Exception {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	TeamVO userTeam = null;
+    	try {
+    		conn = DBUtil.getConnection();
+    		String sql = "SELECT * FROM team_member WHERE mem_num=? AND team_num=?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, mem_num);
+    		pstmt.setInt(2, team_num);
+    		rs = pstmt.executeQuery();
+    		if (rs.next()) {
+    			userTeam = new TeamVO();
+    			userTeam.setTm_auth(rs.getInt("tm_auth"));
+    		}
+    	} catch (Exception e) {
+    		throw new Exception(e);
+    	} finally {
+    		DBUtil.executeClose(rs, pstmt, conn);
+    	}
+    	return userTeam;
+    }
 
 }
