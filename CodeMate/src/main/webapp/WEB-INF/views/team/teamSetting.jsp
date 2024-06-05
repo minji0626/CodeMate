@@ -25,6 +25,7 @@
         </div>
     </c:if>
     
+    
     <c:if test="${team_num == sessionScope.team_num}">
         <div id="mem_container">
             <input type="hidden" name="team_num" value="${param.team_num}">
