@@ -536,6 +536,7 @@ public class CboardDAO {
 			}		
 			return count;
 		}
+		
 		//회원번호와 게시물 번호를 이용한 좋아요 정보
 		//(회원이 게시물을 호출했을 때 좋아요 선택 여부 표시)
 		public ClikeVO selectLike(ClikeVO clikeVO)
@@ -569,6 +570,37 @@ public class CboardDAO {
 			}		
 			return like;
 		}
+		
+		// 좋아요 확인
+		public boolean memberLike(int cb_num, int mem_num) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			boolean check = false;
+			try {
+				//컨넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM c_like WHERE cb_num=? AND mem_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, cb_num);
+				pstmt.setInt(2, mem_num);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					check = true;
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return check;
+		}
+		
 		//좋아요 삭제
 		public void deleteLike(ClikeVO clikeVO)throws Exception{
 			Connection conn = null;
