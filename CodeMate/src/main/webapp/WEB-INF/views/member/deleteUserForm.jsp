@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원탈퇴 폼</title>
+<title>회원 탈퇴</title>
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css" type="text/css">

@@ -28,6 +28,7 @@ $(function(){
 </script>
 </head>
 <body>
+<div class="page-container">
 		<div id="login_logo">
 			<a href="${pageContext.request.contextPath}/main/main.do" class="logo"> 
 			<img id="logo_pic_login" src="${pageContext.request.contextPath}/images/로고1.png" height="80" width="80"> CODEMATE
@@ -59,6 +60,6 @@ $(function(){
 			</div>
 		</form>	
 	</div>
-	
+</div>
 </body>
 </html>

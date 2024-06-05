@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 정보</title>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 	<link rel="stylesheet"
@@ -14,6 +17,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
+<div class="page-container">
 
 	<div id="login_logo">
 				<a href="${pageContext.request.contextPath}/main/main.do"
@@ -38,6 +42,8 @@
 		history.go(-1);
 	</script>
 	</c:if>
+</div>
+
 </div>
 </body>
 </html>

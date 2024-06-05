@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ID 찾기</title>
+<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet"
