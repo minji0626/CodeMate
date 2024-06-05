@@ -41,7 +41,7 @@
 
 
 				<c:if test="${empty aprboardList}">
-					<div class="MS">나의 신청내역이 없습니다</div>
+					<div class="none_messgae">나의 신청내역이 없습니다</div>
 				</c:if>
 				<c:if test="${!empty aprboardList}">
 					<c:forEach var="aprboard" items="${aprboardList}">

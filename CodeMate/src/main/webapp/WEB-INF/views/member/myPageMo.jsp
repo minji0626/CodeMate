@@ -41,7 +41,7 @@
 				</div>
 
 				<c:if test="${empty rboardList}">
-					<div class="MM">나의 모집글이 없습니다</div>
+					<div class="none_messgae">나의 모집글이 없습니다</div>
 				</c:if>
 
 				<c:if test="${!empty rboardList}">
@@ -55,7 +55,7 @@
 									<div class="projectName_font">${rboard.rb_title}</div>
 								</div>
 								<div class="team-right">
-									<div class="delete-green" data-rbnum="${rboard.rb_num}">&nbsp모집글
+									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글
 										삭제</div>
 									<div>
 										<div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
@@ -63,7 +63,7 @@
 									</div>
 									<div class="close-green"
 										onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/member/activation.do?rb_num=${rboard.rb_num}';"
-										data-rbnum="${rboard.rb_num}">&nbsp&nbsp&nbsp&nbsp&nbsp활성화</div>
+										data-rbnum="${rboard.rb_num}">활성화</div>
 								</div>
 							</div>
 						</c:if>

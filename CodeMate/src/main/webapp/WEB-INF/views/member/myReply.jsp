@@ -39,7 +39,7 @@
 
 
 <c:if test="${empty commentList}">
-<div class="MR">나의 작성 댓글이 없습니다</div>
+<div class="none_messgae">나의 작성 댓글이 없습니다</div>
 </c:if>
 <c:if test="${!empty commentList}">
 <c:forEach var="comment" items="${commentList}">

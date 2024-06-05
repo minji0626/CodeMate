@@ -29,7 +29,7 @@
 </div>
 
 <c:if test="${empty rboardList}">
-<div class="MB">나의 북마크가 존재하지 않습니다</div>
+<div class="none_messgae">나의 북마크가 존재하지 않습니다</div>
 </c:if>
 <c:if test="${!empty rboardList}">
 <c:forEach var="rboard" items="${rboardList}">
@@ -40,7 +40,7 @@
 </div>
 
 <div class="team-right">
-<div class="delete-green" data-rbnum="${rboard.rb_num}">&nbsp북마크 취소</div>
+<div class="delete-green" data-rbnum="${rboard.rb_num}">북마크 취소</div>
 <div class="team-count">신청인원:${rboard.rb_teamsize}명</div>
 <div>모집마감일 ${rboard.rb_endRecruit}</div>
 </div>

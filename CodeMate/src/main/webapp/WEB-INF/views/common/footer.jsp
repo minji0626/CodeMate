@@ -123,7 +123,8 @@
 					<li><a href="${pageContext.request.contextPath}/member/myPageBookMark.do">북마크</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/myReply.do">내가 쓴 댓글</a></li>
-					<li><a href="${pageContext.request.contextPath}/member/myPageRboardApply.do">팀원 구하기 댓글</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/myPageRboardComment.do">팀원 구하기 댓글</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/myPageConsult.do">나의 1:1 문의</a></li>
 				</ul>
 			</div>
 

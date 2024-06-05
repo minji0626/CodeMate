@@ -39,7 +39,7 @@
 
 
 <c:if test="${empty consultList}">
-<div class="MC">나의 문의신고 이력이 없습니다</div>
+<div class="none_messgae">나의 문의신고 이력이 없습니다</div>
 </c:if>
 <c:if test="${!empty consultList}">
 <c:forEach var="consult" items="${consultList}">

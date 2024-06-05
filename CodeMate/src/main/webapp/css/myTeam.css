@@ -12,7 +12,7 @@
 .team-left-myRcomment{
 	margin-right:10px;
 	width:500px;
-	margin-top: 30px;
+	/* margin-top: 30px; */
 }
 .team-right{
 	float:right;
@@ -46,6 +46,7 @@
 	height:20px;
 	float:right;
 	background-color: #5aca7c;
+	text-align: center;
 	border-radius: 30px;
 }
 .close-green{
@@ -55,6 +56,7 @@
 	height:20px;
 	float:right;
 	background-color: #5aca7c;
+	text-align: center;
 	border-radius: 30px;
 }
 /*
@@ -167,49 +169,8 @@ myPageMoshin.jsp
     white-space: nowrap; /* 글이 한 줄로 유지되도록 설정 */
 }
 /* 마이페이지 나의 내역이 존재하지 않을때 뜨는 메세지 */
-.MR{
-	margin-top:130px;
-	margin-left:373px;
-	width:180px;
-}
-.MW{
-	margin-left:382px;
-	margin-top:130px;
-	width:180px;
-}
-.MB{
-	margin-left:355px;
-	margin-top:170px;
-	width:220px;
-}
-.MM{
-	margin-left:385px;
-	margin-top:170px;
-	width:220px;
-}
-.MS{
-	margin-left:378px;
-	margin-top:170px;
-	width:220px;
-}
-.MT{
-	margin-left:382px;
-	margin-top:170px;
-	width:220px;
-}
-.MC{
-	margin-left:360px;
-	margin-top:130px;
-	width:220px;
-}
-.MRC{
-	margin-left:337px;
-	margin-top:170px;
-	width:250px;
-}
-.MMS{
-	margin-left:313px;
-	margin-top:170px;
-	width:290px;
+.none_messgae{
+	text-align: center;
+	margin-top: 10%;
 }
 /*마이페이지 팀원구하기 댓글*/

@@ -36,7 +36,7 @@
 </select>
 
 <c:if test="${empty cboardList}">
-<div class="MW">나의 작성 글이 없습니다</div>
+<div class="none_messgae">나의 작성 글이 없습니다</div>
 </c:if>
 <c:if test="${!empty cboardList}">
 <c:forEach var="cboardList" items="${cboardList}">

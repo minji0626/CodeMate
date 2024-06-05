@@ -29,7 +29,7 @@
 </div>
 
 <c:if test="${empty team}">
-<div class="MT">참가 중인 팀이 없습니다</div>
+<div class="none_message">참가 중인 팀이 없습니다</div>
 </c:if>
 <c:if test="${!empty team}">
     <c:forEach var="myteam" items="${team}">
