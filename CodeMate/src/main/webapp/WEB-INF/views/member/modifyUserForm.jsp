@@ -69,7 +69,7 @@
                 </li>
                 <li>
                     <label for="email" class="form_label">이메일</label>
-                    <input type="email" id="mem_email" name="email" maxlength="50" class="input-check" value="${member.mem_email}">
+                    <input type="email" id="mem_email" name="mem_email" maxlength="50" class="input-check" value="${member.mem_email}">
                     <div id="message_email" class="error-message"></div>
                 </li>
                 
