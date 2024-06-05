@@ -23,21 +23,27 @@ window.onload = function(){
     myForm.onsubmit = function(){
         const title = document.getElementById('cb_title');
         const content = document.getElementById('cb_content');
+        const type0 = document.getElementById('cb_type0');
+        const type1 = document.getElementById('cb_type1');
 
-        if(title.value.trim()==''){
+        if (!type0.checked && !type1.checked) {
+            alert('게시판 유형을 선택하세요.');
+            return false;
+        }
+
+        if(title.value.trim() == ''){
                 alert('제목을 입력하세요.');
-                title.value='';
+                title.value = '';
                 title.focus();
                 return false;
         };
         
-        if(content.value.trim()==''){
+        if(content.value.trim() == ''){
             alert('내용을 입력하세요.');
-            content.value='';
+            content.value = '';
             content.focus();
             return false;
         };
-
     };
 };
 </script>
