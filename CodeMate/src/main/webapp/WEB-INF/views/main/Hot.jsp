@@ -30,9 +30,10 @@
 								<c:if test="${rboard.rb_category == 1}">
 									<span class="rb_category project"> 프로젝트</span>
 								</c:if>
-								<br> <span>${rboard.rb_endRecruit} 마감</span>
+								<br> <span id="endDate">${rboard.rb_endRecruit} 마감</span>
 							</div>
-							<hr size="2px">
+							<hr size="2px" id="line1">
+							
 							<p class="rb-title">${rboard.rb_title}</p>
 							<!-- 제목 -->
 							<div class="way">
@@ -47,10 +48,14 @@
 									</c:if> <br>
 								</span> 
 								
+								
+								<div id="field">
 								<span>모집필드 | </span>
-								<c:forEach var="field" items="${rboard.f_name_arr}" >
-									${field}
-								</c:forEach>
+									<c:forEach var="field" items="${rboard.f_name_arr}" >
+										${field}
+									</c:forEach>
+								</div>
+								
 								
 								<div>
 									<span>신청인원 | </span> <span>${rboard.rb_apply_count}/<c:if
@@ -63,7 +68,7 @@
 								
 								<div class="hit-div">
 								<hr size="2px" id="line2">
-									<span>조회수 </span> <span>${rboard.rb_hit}</span>
+									<span class="b hit">조회수 ${rboard.rb_hit}</span>
 								</div>
 							
 						</div>
@@ -108,15 +113,20 @@
 							<c:if test="${cboard.cb_type == 1}">개발게시판</c:if>
 							<c:if test="${cboard.cb_type == 0}">자유게시판</c:if>
 							<hr size="2px">
-							<span>${cboard.cb_title}</span>
-							<div class="cont"><span>${cboard.cb_content}</span></div>
+							<div id="middle">
+								<span>${cboard.cb_title}</span>
+								<br>
+								<br>
+								<div class="cont"><span>${cboard.cb_content}</span></div>
+								
+							</div>
 							
 							<div id="below">
-								<span>등록일</span><span>${cboard.cb_reg_date}</span> 
+								<span class="b date">등록일 ${cboard.cb_reg_date}</span> 
 								<br> 
-								<span>작성자</span><span>${cboard.mem_nickname}</span> 
+								<span class="b nick">작성자 ${cboard.mem_nickname}</span> 
 								<hr size="2px">
-								<span>조회수</span><span>${cboard.cb_hit}</span>
+								<span class="b hit">조회수 ${cboard.cb_hit}</span>
 							</div>
 						</div>
 						</div>

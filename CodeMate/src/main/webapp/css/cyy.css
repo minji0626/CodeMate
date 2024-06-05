@@ -251,6 +251,7 @@ form{
 }
 
 /* 슬라이드 글 목록 */
+/* 팀원 구하기 */
 .project {
 	font-size:14px;
 	background: #b1db63;
@@ -265,27 +266,50 @@ form{
 	padding:4px;
 	color:white;
 }
+#endDate{
+	transform:translateY(330%);
+}
+#line1{
+	transform:translateY(390%);
+}
 
 .hit-div{
 	margin-bottom:5px;
 	transform:translateY(300%);
-	
 }
 .way{
-	transform:translateY(30%);
+	transform:translateY(80%);
 	width:230px;
 }
+
 .link{
 	margin:5px;
 	cursor: pointer;
 }
 .rb-title{
 	margin-top:10px;
+	transform:translateY(40%);
 }
-/* .cont{
-	overflow: hidden; 
-    text-overflow: ellipsis; 넘칠 경우 "..."으로 표시
-} */
-
-
-
+#field{
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+/* 커뮤니티 */
+#middle{
+margin-bottom:5px;
+	transform:translateY(10%);
+	margin:10px 5px 5px 10px;
+}
+#below{
+	margin-bottom:5px;
+	transform:translateY(80%);
+}
+.b{
+	margin:10px 5px 5px 10px;
+}
+.hit{
+	position:relative;
+	top:10px; left:160px;	
+}
