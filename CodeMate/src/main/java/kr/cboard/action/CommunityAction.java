@@ -34,7 +34,7 @@ public class CommunityAction implements Action{
         
         int count = dao.getCboardCount(keyfield, keyword, cb_type);
 
-        PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "community.do");
+        PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "community.do", "&cb_type="+cb_type);
 
         List<CboardVO> list = null;
         
