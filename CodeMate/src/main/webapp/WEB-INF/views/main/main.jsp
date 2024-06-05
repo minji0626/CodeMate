@@ -23,7 +23,7 @@
 		
 	</div>
 <jsp:include page="/WEB-INF/views/common/consult.jsp" />
-<br><br><br><br><br><br><br><br><br><br>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
