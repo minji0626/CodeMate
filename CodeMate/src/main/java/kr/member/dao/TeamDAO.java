@@ -26,8 +26,10 @@ public class TeamDAO {
         Connection conn = null;
         PreparedStatement pstmt = null;
         PreparedStatement pstmt2 = null;
+        PreparedStatement pstmt3 = null;
         ResultSet rs = null;
         ResultSet rs2 = null;
+        ResultSet rs3 = null;
         List<TeamVO> list = null; 
         String sql = null;
         try {
@@ -60,9 +62,18 @@ public class TeamDAO {
                     team.setRb_pj_title(rs2.getString("rb_pj_title"));
                     team.setTeam_num(team_num);
                     team.setTm_auth(tm_auth);
+                    
+                    sql = "SELECT team_status FROM team WHERE team_num=?";
+                    pstmt3 = conn.prepareStatement(sql);
+                    pstmt3.setInt(1, team_num);
+                    rs3 = pstmt3.executeQuery();
+                    if(rs3.next()) {
+                    	team.setTeam_status(rs3.getInt(1));
+                    }
+                    
                     list.add(team);
                 }
-                DBUtil.executeClose(rs2, pstmt2, null);
+                
             }
 
             conn.commit();
@@ -71,6 +82,8 @@ public class TeamDAO {
             throw new Exception(e);
         } finally {
             // 자원 정리
+        	DBUtil.executeClose(rs3, pstmt3, null);
+        	DBUtil.executeClose(rs2, pstmt2, null);
             DBUtil.executeClose(rs, pstmt, conn);
         }
         return list;

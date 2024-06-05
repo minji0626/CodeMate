@@ -33,24 +33,48 @@
 </c:if>
 <c:if test="${!empty team}">
     <c:forEach var="myteam" items="${team}">
-        <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer;">
-        <div class="team-left">
-        <div class="skill_font_T"></div>
-        <div class="projectName_font">${myteam.rb_pj_title}</div>
-        <c:if test="${myteam.tm_auth == '4'}">
-            팀장
+    	<c:if test="${myteam.team_status==1}">
+	        <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer;">
+	        <div class="team-left">
+	        	<div class="skill_font_T"></div>
+	        	<div class="projectName_font">${myteam.rb_pj_title}</div>
+		        <c:if test="${myteam.tm_auth == '4'}">
+		            팀장
+		        </c:if>
+		        <c:if test="${myteam.tm_auth == '3'}">
+		            팀원
+		        </c:if>
+	       		 </div>
+	        <div class="team-right">
+	        <div class="delete-green-box">
+	        </div>
+	        <div class="team-count">프로젝트 시작일:${myteam.rb_start}</div>
+	        <div>프로젝트 진행기간:${myteam.rb_period}개월</div>
+	        </div>
+	        </div>
         </c:if>
-        <c:if test="${myteam.tm_auth == '3'}">
-            팀원
+    </c:forEach>
+    <c:forEach var="myteam" items="${team}">
+    	<c:if test="${myteam.team_status==0}">
+	        <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer; background-color: #e6e6e6;">
+	        <div class="team-left">
+	        	<div class="skill_font_T"></div>
+	        	<div class="projectName_font">${myteam.rb_pj_title}</div>
+		        <c:if test="${myteam.tm_auth == '4'}">
+		            팀장
+		        </c:if>
+		        <c:if test="${myteam.tm_auth == '3'}">
+		            팀원
+		        </c:if>
+	       		 </div>
+	        <div class="team-right">
+	        <div class="delete-green-box">
+	        </div>
+	        <div class="team-count">프로젝트 시작일:${myteam.rb_start}</div>
+	        <div>프로젝트 진행기간:${myteam.rb_period}개월</div>
+	        </div>
+	        </div>
         </c:if>
-        </div>
-        <div class="team-right">
-        <div class="delete-green-box">
-        </div>
-        <div class="team-count">프로젝트 시작일:${myteam.rb_start}</div>
-        <div>프로젝트 진행기간:${myteam.rb_period}개월</div>
-        </div>
-        </div>
     </c:forEach>
 </c:if>
 
