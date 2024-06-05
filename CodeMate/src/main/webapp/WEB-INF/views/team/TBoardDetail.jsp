@@ -73,7 +73,7 @@
 							delete_btn.onclick = function(){
 								let choice = confirm('해당 글을 삭제하시겠습니까?');
 								if(choice){
-									location.replace('delete.do?tb_num=${tboard.tb_num}');
+									location.replace('tboardDelete.do?tb_num=${tboard.tb_num}&team_num=${tboard.team_num}');
 								}
 							}
 						</script>
