@@ -76,6 +76,18 @@
 			<div class="mini2">
 				<div class="content2">slide4</div>
 			</div>
+			<div class="mini2">
+				<div class="content2">slide5</div>
+			</div>
+			<div class="mini2">
+				<div class="content2">slide6</div>
+			</div>
+			<div class="mini2">
+				<div class="content2">slide7</div>
+			</div>
+			<div class="mini2">
+				<div class="content2">slide8</div>
+			</div>
 		</div>
 
 	</div>

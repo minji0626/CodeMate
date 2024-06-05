@@ -11,7 +11,7 @@ var slides1 = document.querySelector('.wrapper1'),
   move1 = 0,
   AllSlideCount1 = slideCount1 * 3, //전체 슬라이드 개수
 
-  newWidth1 = (slideWidth1+slideMargin1+8) * AllSlideCount1  + 'px';//wrapper 너비
+  newWidth1 = (slideWidth1+slideMargin1) * AllSlideCount1  + 'px';//wrapper 너비
 /*------------------------------------------------------------------*/
 
 	makeClone1();
@@ -36,9 +36,9 @@ function makeClone1(){
    
    //전체 슬라이드의 길이를 구해 wrapper의 길이로 넣어야 가로로 정렬이 됨
    slides1.style.width = newWidth1;
-   position1 = -((slideWidth1+slideMargin1+8) * slideCount1);//290 * 4 = 1160
+   position1 = -((slideWidth1+slideMargin1+5) * slideCount1);//290 * 8 = 2320
   //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
-  slides1.style.transform = 'translateX('+ position1 +'px)';//x축 -1160px
+  slides1.style.transform = 'translateX('+ position1 +'px)';//x축 -2320px
    
   
 }
@@ -60,7 +60,7 @@ function moveSlide1(num1){
 	  
 	  /* 좌,우 이동방향 */	
 	  /* 다음은 -, 이전은 + 로 이동 */
-	  move1 = position1 + (-(slideWidth1 +slideMargin1) * currentIdx1) ;
+	  move1 = position1 + (-(slideWidth1 +slideMargin1+4) * currentIdx1) ;
 	  slides1.style.transform = 'translateX(' + move1 + 'px)';
 	  /* transform='translate'는 명시된 거리만큼 이동함
 	  	여기서는 이미 postion만큼 이동한 상태여서 그런지 position의 위치에서 플러스로 더 이동하지 않고
@@ -68,7 +68,7 @@ function moveSlide1(num1){
 	  
       /* 다시 돌아옴 */
       if(currentIdx1 == slideCount1 || currentIdx1 == -slideCount1){//4이거나 -4인 경우
-         slides1.style.transform = 'translateX('+ position +'px)';
+         slides1.style.transform = 'translateX('+ position1 +'px)';
             currentIdx1 = 0;
       }
 }
@@ -86,7 +86,7 @@ var slides = document.querySelector('.wrapper2'),
   move = 0,
   AllSlideCount = slideCount * 3, //전체 슬라이드 개수
 
-  newWidth = (slideWidth+slideMargin+8) * AllSlideCount  + 'px';//wrapper 너비
+  newWidth = (slideWidth+slideMargin) * AllSlideCount  + 'px';//wrapper 너비
 /*------------------------------------------------------------------*/
 
 	makeClone();
@@ -111,7 +111,7 @@ function makeClone(){
    
    //전체 슬라이드의 길이를 구해 wrapper의 길이로 넣어야 가로로 정렬이 됨
    slides.style.width = newWidth;
-   position = -((slideWidth+slideMargin) * slideCount);//290 * 4 = 1160
+   position = -((slideWidth+slideMargin+5) * slideCount);//290 * 4 = 1160
   //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
   slides.style.transform = 'translateX('+ position +'px)';//x축 -1160px
    
@@ -135,7 +135,7 @@ function moveSlide(num){
 	  
 	  /* 좌,우 이동방향 */	
 	  /* 다음은 -, 이전은 + 로 이동 */
-	  move = position + (-(slideWidth +slideMargin) * currentIdx) ;
+	  move = position + (-(slideWidth +slideMargin+4) * currentIdx) ;
 	  slides.style.transform = 'translateX(' + move + 'px)';
 	  /* transform='translate'는 명시된 거리만큼 이동함
 	  	여기서는 이미 postion만큼 이동한 상태여서 그런지 position의 위치에서 플러스로 더 이동하지 않고
