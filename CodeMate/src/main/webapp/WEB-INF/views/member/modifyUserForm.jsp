@@ -78,6 +78,7 @@
                     <label for="mem_nickname" class="form_label">닉네임</label>
                     <input type="text" id="mem_nickname" name="mem_nickname" maxlength="20" class="input-check" value="${member.mem_nickname}">
                		<!-- 닉네임 중복체크 -->
+               		<input type="hidden" id="original_nickname" value="${member.mem_nickname}">
                     <div id="message_nickname" class="error-message"></div>
                 </li>
                 

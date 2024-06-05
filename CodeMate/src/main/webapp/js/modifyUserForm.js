@@ -166,6 +166,19 @@ $(function() {
 	});
 
 	
+	    
+    
+    /*const idField2 = document.getElementById('mem_id');
+		const originalId = document.getElementById('original_mem_id').value;
+		if (idField2.value.trim() == '' || idField2.value != originalId) {
+			alert('아이디는 변경할 수 없습니다.');
+			idField2.focus();
+			idField2.value = originalId;*/
+			
+			
+			
+			
+	
 	//닉네임 중복 시작
 	$('#mem_nickname').on('blur', function() {
 		var nickname = $(this).val();
@@ -175,7 +188,9 @@ $(function() {
         $('#message_nickname').text('');
         return;
     	}
-    
+    	
+    	
+        
 		// 서버에 닉네임 중복 확인 요청을 보냄
 		$.ajax({
 			url: 'checkDuplicatedNickname.do',
@@ -215,19 +230,21 @@ $(function() {
 
 	
 	
+	
+	
 	/*emailChecked
 	  phoneChecked*/
 	//이메일 중복 시작
 	$('#mem_email').on('blur', function() {
-		var nickname = $(this).val();
+		var email = $(this).val();
 		
-		//닉네임이 비어 있을 때 중복 메세지X
-		if (nickname.trim() == '') {
+		//이메일이 비어 있을 때 중복 메세지X
+		if (email.trim() == '') {
         $('#message_email').text('');
         return;
     	}
     
-		// 서버에 닉네임 중복 확인 요청을 보냄
+		// 서버에 이메일 중복 확인 요청을 보냄
 		$.ajax({
 			url: 'checkDuplicatedEmail.do',
 			type: 'post',
@@ -236,17 +253,17 @@ $(function() {
 			success: function(param) {
 				if (param.result == 'emailDuplicated') {
 					emailChecked = 0;
-					$('#message_email').css('color', 'red').text('이미 사용 중인 닉네임입니다.');
+					$('#message_email').css('color', 'red').text('이미 사용 중인 이메일입니다.');
 					$('#mem_email').val('').focus();
 					$('#mem_email').css('margin-bottom', '0');
 				} else if (param.result == 'emailNotFound') {
 					emailChecked = 1;
 					$('#mem_email').css('margin-bottom', '0');
-					$('#message_email').css('color', 'black').text('사용 가능한 닉네임입니다.');
+					$('#message_email').css('color', 'black').text('사용 가능한 이메일입니다.');
 				} else {
 					emailChecked = 0;
 					$('#mem_email').css('margin-bottom', '0');
-					$('#message_email').css('color', 'red').text('닉네임 중복 체크 중 오류 발생');
+					$('#message_email').css('color', 'red').text('이메일 중복 체크 중 오류 발생');
 				}
 			},
 			error: function() {
@@ -258,7 +275,7 @@ $(function() {
 	});
 
 	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복값 초기화
-	$('#modify_form #mem_nickname').keydown(function() {
+	$('#modify_form #mem_email').keydown(function() {
 		emailChecked = 0;
 		$('#message_email').text('');
 	});//end of keydown
