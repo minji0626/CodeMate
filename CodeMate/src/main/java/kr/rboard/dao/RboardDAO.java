@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.member.vo.TeamVO;
 import kr.rboard.vo.RapplyVO;
 import kr.rboard.vo.RboardVO;
 import kr.rboard.vo.RbookmarkVO;
@@ -673,7 +674,9 @@ public class RboardDAO {
 	public List<RapplyVO> myRboardApplyListByRbNum(int rb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		List<RapplyVO> list = new ArrayList<>();
 		String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
 		try {
@@ -690,7 +693,7 @@ public class RboardDAO {
 				rapply.setRa_content(rs.getString("ra_content"));
 				rapply.setRa_date(rs.getDate("ra_date"));
 				rapply.setRa_pass(rs.getInt("ra_pass"));
-
+				
 				list.add(rapply);
 
 			}
@@ -702,6 +705,7 @@ public class RboardDAO {
 
 		return list;
 	}
+	
 
 	// 나의 모집글에 지원한 신청자 삭제-민재
 	public void deleteMyRboardApply(int rb_num, int ra_num) throws Exception {

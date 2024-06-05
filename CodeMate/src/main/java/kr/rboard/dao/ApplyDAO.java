@@ -203,6 +203,35 @@ public class ApplyDAO {
 		}
 		return check;
 	}
+	
+	public boolean minimumTeamMember(int rb_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		String sql = null;
+		int size = 0;
+		boolean check = false;
+
+		try {
+			conn = DBUtil.getConnection();
+
+			// 게시글 번호로 신청자 중 합격한 사람 세기 
+			sql = "SELECT * FROM r_apply WHERE rb_num=? AND ra_pass=1"; 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return check;
+	}
+	
 	// 팀 활성화 (모집 마감, 팀 활성화, 팀 멤버 추가)
 	public void teamActivation(int rb_num) throws Exception {
 	    Connection conn = null;
@@ -359,5 +388,28 @@ public class ApplyDAO {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return check;
+		}
+		
+
+		public boolean isTeamActive(int rb_num) throws Exception{
+			 Connection conn = null;
+		        PreparedStatement pstmt = null;
+		        ResultSet rs = null;
+		        boolean check = false;
+		        try {
+		            conn = DBUtil.getConnection();
+		            String sql = "SELECT * FROM team WHERE team_num=? AND team_status=1";
+		            pstmt = conn.prepareStatement(sql);
+		            pstmt.setInt(1, rb_num);
+		            rs = pstmt.executeQuery();
+		            if (rs.next()) {
+		                check = true;
+		            }
+		        } catch (Exception e) {
+		            throw new Exception(e);
+		        } finally {
+		            DBUtil.executeClose(rs, pstmt, conn);
+		        }
+		        return check;
 		}
 }

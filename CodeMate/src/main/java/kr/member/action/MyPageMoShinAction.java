@@ -34,8 +34,11 @@ public class MyPageMoShinAction implements Action {
         // 모집글에 대한 신청자 리스트 가져오기
         ApplyDAO dao = ApplyDAO.getInstance();
         List<RapplyVO> rapplyList = dao.myRboardApplyListByRbNum(rb_num);
+        boolean check = dao.isTeamActive(rb_num);
+        
 
         // 데이터를 request에 설정
+        request.setAttribute("check", check);
         request.setAttribute("member", member);
         request.setAttribute("rapplyList", rapplyList);
 

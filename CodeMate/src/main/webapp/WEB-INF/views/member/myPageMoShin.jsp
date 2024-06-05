@@ -26,6 +26,7 @@
 <div class="float-C">
 <div class="align-center"><!-- myPage-TItleText만 가운데 정렬됨 -->
 	<h3 class="mYPage-TitleText">나의 코메 모집 신청자</h3>
+	
 </div>
 
 <c:if test="${empty rapplyList}">
@@ -54,13 +55,17 @@
 						<input type="hidden" name="ra_num" value="${ra.ra_num}">
 						<input type="hidden" name="rb_num" value="${ra.rb_num}">
 						<input type="hidden" name="mem_num" value="${ra.mem_num}">
-						<input type="submit" class="yes" value="합격">
+						<c:if test="${!check}">
+							<input type="submit" class="yes" value="합격">
+						</c:if>
 					</form>
 					<form class="unPassForm">
 						<input type="hidden" name="ra_num" value="${ra.ra_num}">
 						<input type="hidden" name="rb_num" value="${ra.rb_num}">
 						<input type="hidden" name="mem_num" value="${ra.mem_num}">
-						<input type="submit" class="no" value="불합격">
+						<c:if test="${!check}">
+							<input type="submit" class="no" value="불합격">
+						</c:if>
 					</form>
 				</div>
 
