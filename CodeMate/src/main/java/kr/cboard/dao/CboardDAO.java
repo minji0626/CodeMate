@@ -149,7 +149,50 @@ public class CboardDAO {
 		return list;
 	}
 
+	// 슬라이드 인기글 게시판 목록 가져오기 - 예영작성
+		public List<CboardVO> getSlideListBoard() throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<CboardVO> list = null;
+			String sql = null;
+			String sub_sql = ""; // 이 부분은 필요 없을 것 같습니다.
+			int cnt = 0;
 
+			try {
+				conn = DBUtil.getConnection();
+
+
+				
+
+				sql =  "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+						+ "(SELECT * FROM c_board LEFT OUTER JOIN member_detail USING(mem_num) WHERE cb_type=? " 
+						+ sub_sql +" ORDER BY cb_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+
+				pstmt = conn.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+
+				list = new ArrayList<CboardVO>();
+				while (rs.next()) {
+					CboardVO cboard = new CboardVO();
+					cboard.setCb_num(rs.getInt("cb_num"));
+					cboard.setCb_title(StringUtil.useNoHTML(rs.getString("cb_title")));
+					cboard.setMem_nickname(rs.getString("mem_nickname"));
+					cboard.setCb_reg_date(rs.getDate("cb_reg_date"));
+					cboard.setCb_type(rs.getInt("cb_type"));
+					cboard.setCb_hit(rs.getInt("cb_hit"));
+					cboard.setMem_num(rs.getInt("mem_num"));
+					list.add(cboard);
+				}
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return list;
+		}
 
 	// 글 세부
 	public CboardVO detailCboard(int cb_num) throws Exception {

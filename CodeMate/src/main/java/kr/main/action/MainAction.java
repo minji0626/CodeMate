@@ -22,7 +22,7 @@ public class MainAction implements Action{
 		List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 
 		RboardDAO rdao = RboardDAO.getInstance(); 
-		int count = rdao.getRboardCount();//rboard의 글 갯수
+		int count = rdao.getRboardCount(null,null,null,null,null,false);//rboard의 글 갯수
 
 		
 

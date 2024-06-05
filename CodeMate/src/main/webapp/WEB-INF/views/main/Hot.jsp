@@ -20,7 +20,8 @@
 				<c:forEach var="rboard" items="${SlideList}">
 					<div class="mini1">
 						<div class="content1">
-							<div class="rb_category_div"><!-- 카테고리 -->
+							<div class="rb_category_div">
+								<!-- 카테고리 -->
 								<c:if test="${rboard.rb_category == 0}">
 									<span class="rb_category study"> 스터디</span>
 								</c:if>
@@ -28,8 +29,34 @@
 									<span class="rb_category project"> 프로젝트</span>
 								</c:if>
 							</div>
-							<p class="rb-title">${rboard.rb_title}</p><!-- 제목 -->
-						</div><!-- end of content -->
+							<hr size="2px">
+							<p class="rb-title">${rboard.rb_title}</p>
+							<!-- 제목 -->
+							<span>진행방식 | </span> <span> <c:if
+									test="$	{rboard.rb_meet == 0}">
+					온라인
+					</c:if> <c:if test="${rboard.rb_meet == 1}">
+					오프라인
+					</c:if> <c:if test="${rboard.rb_meet == 2}">
+					온라인/오프라인
+					</c:if>
+							</span> <span>모집필드 | </span>
+							<c:forEach var="field" items="${rboard.f_name_arr}">
+								<span>${field}</span>
+							</c:forEach>
+							<div>
+								<span>신청인원 | </span> <span>${rboard.rb_apply_count}/<c:if
+										test="${rboard.rb_teamsize==0}">인원 미정</c:if>
+									<c:if test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">${rboard.rb_teamsize}</c:if>
+									<c:if test="${rboard.rb_teamsize==10}">10명이상</c:if>
+								</span>
+								<hr size="2px">
+								<div class="hit-div">
+									<span>조회수 </span> <span>${rboard.rb_hit}</span>
+								</div>
+							</div>
+						</div>
+						<!-- end of content -->
 					</div>
 				</c:forEach>
 
