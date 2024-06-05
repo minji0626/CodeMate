@@ -1,5 +1,8 @@
 $(function() {
 	let nicknameChecked = 0;
+	let emailChecked = 0;
+	let phoneChecked = 0;
+
 	
 	// 회원 정보 수정 유효성 체크
 	$('#modify_form').submit(function() {
@@ -163,9 +166,16 @@ $(function() {
 	});
 
 	
-
+	//닉네임 중복 시작
 	$('#mem_nickname').on('blur', function() {
 		var nickname = $(this).val();
+		
+		//닉네임이 비어 있을 때 중복 메세지X
+		if (nickname.trim() == '') {
+        $('#message_nickname').text('');
+        return;
+    	}
+    
 		// 서버에 닉네임 중복 확인 요청을 보냄
 		$.ajax({
 			url: 'checkDuplicatedNickname.do',
@@ -201,6 +211,59 @@ $(function() {
 		nicknameChecked = 0;
 		$('#message_nickname').text('');
 	});//end of keydown
+	//닉네임 중복 끝
+
+	
+	
+	/*emailChecked
+	  phoneChecked*/
+	//이메일 중복 시작
+	$('#mem_email').on('blur', function() {
+		var nickname = $(this).val();
+		
+		//닉네임이 비어 있을 때 중복 메세지X
+		if (nickname.trim() == '') {
+        $('#message_email').text('');
+        return;
+    	}
+    
+		// 서버에 닉네임 중복 확인 요청을 보냄
+		$.ajax({
+			url: 'checkDuplicatedEmail.do',
+			type: 'post',
+			data: { mem_email: email },
+			dataType: 'json',
+			success: function(param) {
+				if (param.result == 'emailDuplicated') {
+					emailChecked = 0;
+					$('#message_email').css('color', 'red').text('이미 사용 중인 닉네임입니다.');
+					$('#mem_email').val('').focus();
+					$('#mem_email').css('margin-bottom', '0');
+				} else if (param.result == 'emailNotFound') {
+					emailChecked = 1;
+					$('#mem_email').css('margin-bottom', '0');
+					$('#message_email').css('color', 'black').text('사용 가능한 닉네임입니다.');
+				} else {
+					emailChecked = 0;
+					$('#mem_email').css('margin-bottom', '0');
+					$('#message_email').css('color', 'red').text('닉네임 중복 체크 중 오류 발생');
+				}
+			},
+			error: function() {
+				emailChecked = 0;
+				$('#mem_email').css('margin-bottom', '0');
+				$('#message_email').css('color', 'red').text('서버 오류가 발생했습니다.');
+			}
+		});
+	});
+
+	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복값 초기화
+	$('#modify_form #mem_nickname').keydown(function() {
+		emailChecked = 0;
+		$('#message_email').text('');
+	});//end of keydown
+	//이메일 중복 끝
+
 
 
 });

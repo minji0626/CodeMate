@@ -160,7 +160,7 @@ public class MemberDAO {
 		}
 	
 	// 이메일 중복 체크
-		public MemberVO checkEmail(String email)throws Exception{
+		public MemberVO checkEmail(String mem_email)throws Exception{
 			Connection conn = null; 
 			PreparedStatement pstmt = null; 
 			ResultSet rs = null;
@@ -176,7 +176,7 @@ public class MemberDAO {
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
-				pstmt.setString(1, email); 
+				pstmt.setString(1, mem_email); 
 				//SQL문 실행 
 				rs = pstmt.executeQuery(); 
 				if(rs.next()) { 

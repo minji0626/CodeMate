@@ -19,10 +19,10 @@ public class CheckDuplicatedEmailAction implements Action{
 		// 전송된 데이터 인코딩 타입 지정
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
-		String email = request.getParameter("email");
+		String mem_email = request.getParameter("mem_email");
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.checkEmail(email);
+		MemberVO member = dao.checkEmail(mem_email);
 		
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();

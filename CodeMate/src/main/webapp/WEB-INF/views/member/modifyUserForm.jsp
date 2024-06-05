@@ -70,7 +70,7 @@
                 <li>
                     <label for="mem_email" class="form_label">이메일</label>
                     <input type="email" id="mem_email" name="mem_email" maxlength="50" class="input-check" value="${member.mem_email}">
-                    
+                    <div id="message_email" class="error-email"></div>
                 </li>
                 
                 
@@ -84,6 +84,7 @@
                 <li>
                     <label for="mem_phone" class="form_label">전화번호</label>
                     <input type="text" id="mem_phone" name="mem_phone" maxlength="20" class="input-check" value="${member.mem_phone}">
+                	<div id="message_phone" class="error-phone"></div>
                 </li>
             </ul>
         </div>
