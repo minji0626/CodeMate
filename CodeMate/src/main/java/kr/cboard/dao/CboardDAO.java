@@ -162,9 +162,6 @@ public class CboardDAO {
 			try {
 				conn = DBUtil.getConnection();
 
-
-				
-
 				sql =  "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 						+ "(SELECT * FROM c_board LEFT OUTER JOIN member_detail USING(mem_num) WHERE cb_type=? " 
 						+ sub_sql +" ORDER BY cb_num DESC) a) WHERE rnum >= ? AND rnum <= ?";

@@ -31,9 +31,7 @@ public class MainAction implements Action{
 			SlideList = rdao.getSlideList();
 		}
 		
-		for (RboardVO rboard : SlideList) {
-			System.out.println(rboard.getRb_title());
-		}
+		
 
 		request.setAttribute("fieldList", fieldList);
 		request.setAttribute("hskillList", hskillList);

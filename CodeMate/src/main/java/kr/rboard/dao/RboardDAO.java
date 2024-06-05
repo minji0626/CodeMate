@@ -485,9 +485,9 @@ public class RboardDAO {
 							+ "    ON r_board.rb_num = f_agg.rb_num "
 							+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
 							+ "    ON r_board.rb_num = apply_agg.rb_num " 
-							+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num WHERE team.team_status= 1"
-							+ "    ORDER BY r_board.rb_hit ASC " + "  ) a "
-							+ ") WHERE ROWNUM <= 8";//daysleft	 AND daysleft < 0
+							+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num WHERE team.team_status= 1 AND rb_endrecruit > SYSDATE"
+							+ "    ORDER BY r_board.rb_hit DESC " + "  ) a "
+							+ ") WHERE ROWNUM <= 8";
 
 					pstmt = conn.prepareStatement(sql);
 					
