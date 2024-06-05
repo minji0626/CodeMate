@@ -152,5 +152,41 @@ public class TeamDAO {
     	}
     	return teams;
     }
+    
+    public void stopTeam(int team_num) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	String sql = null;
+    	try {
+    		conn = DBUtil.getConnection();
+    		sql = "UPDATE team SET team_status=0 WHERE team_num=?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, team_num);
+    		pstmt.executeUpdate();
+    		
+    	} catch (Exception e) {
+    		throw new Exception(e);
+    	} finally {
+    		DBUtil.executeClose(null, pstmt, conn);
+    	}
+    }
+
+    public void startTeam(int team_num) throws Exception{
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	String sql = null;
+    	try {
+    		conn = DBUtil.getConnection();
+    		sql = "UPDATE team SET team_status=1 WHERE team_num=?";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, team_num);
+    		pstmt.executeUpdate();
+    		
+    	} catch (Exception e) {
+    		throw new Exception(e);
+    	} finally {
+    		DBUtil.executeClose(null, pstmt, conn);
+    	}
+    }
 
 }

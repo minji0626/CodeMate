@@ -39,6 +39,7 @@
 									<th>프로젝트 기간</th>
 									<th>팀원</th>
 									<th>정지</th>
+									<th>활성화</th>
 								</tr>
 								<c:forEach var="member" items="${rboardList}">
 									<tr>
@@ -47,7 +48,8 @@
 										<td>${member.rb_start}</td>
 										<td>${member.rb_period}개월</td>
 										<td><a href="checkTeamMember.do?team_num=${member.rb_num}" class="button checkTeamMember">팀원 확인</a>
-										<td><button class="deleteMemberBtn" data-memnum="${member.rb_num}">강제 정지</button>
+										<td><a href="stopTeam.do?team_num=${member.rb_num}" class="button deleteTeam"> 강제 정지 </a></td>
+										<td><a href="startTeam.do?team_num=${member.rb_num}" class="button startTeam">활성화</a></td>
 										
 									</tr>
 								</c:forEach>
