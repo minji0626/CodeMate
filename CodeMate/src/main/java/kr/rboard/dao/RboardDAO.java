@@ -295,27 +295,22 @@ public class RboardDAO {
 				}
 				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "'";
 				conditions.add(r_skills_string);
-				System.out.println("rskills exist");
+
 			}
 			if (rb_category != null && rb_category != "" && !rb_category.equals("2")) {
 				conditions.add("rb_category = " + rb_category);
-				System.out.println("rb_category exist");
 			}
 			if (r_fields != null && r_fields != "") {
 				conditions.add("f_name LIKE '%'||'" + r_fields + "'||'%'");
-				System.out.println("r_fields exist");
 			}
 			if (rb_meet != null && rb_meet != "") {
 				conditions.add("rb_meet = " + rb_meet);
-				System.out.println("rb_meet exist");
 			}
 			if (search_key != null && search_key != "") {
 				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
-				System.out.println("rb_title exist");
 			}
 			if (recruiting_filter) {
 				conditions.add("rb_endRecruit > SYSDATE AND team_status = 0");
-				System.out.println("rb_endRecruit exist");
 			}
 
 			// 조건이 있을 경우에만 WHERE 추가

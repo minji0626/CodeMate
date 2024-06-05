@@ -215,6 +215,7 @@ $(document).ready(function() {
 		console.log($(this).is(':checked'));
 		if ($(this).is(':checked')) {
 			$('span#recruiting_filter_span.search-menu').addClass('selected');
+			console.log($('span#recruiting_filter_span.search-menu').hasClass('selected'));
 		} else {
 			$('span#recruiting_filter_span.search-menu').removeClass('selected');
 		}

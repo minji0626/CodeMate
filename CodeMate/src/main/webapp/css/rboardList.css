@@ -33,15 +33,8 @@
 }
 
 /* 검색옵션 */
-#recruiting_filter_span.selected {
-	color: #57d47d;
-	border: 1px solid #57d47d;
-	font-weight: 700;
-}
-
 span.search-menu.selected, select.search-menu.selected, div.search-menu.selected,
-	#search_key_div.selected, span#recruiting_filter_span.search-menu.selected
-	{
+	#search_key_div.selected {
 	color: #57d47d;
 	border: 1px solid #57d47d;
 	font-weight: 700;
@@ -51,6 +44,12 @@ select.search-menu.selected:focus {
 	color: #57d47d;
 	border: 1px solid #57d47d;
 	outline: none;
+}
+
+#recruiting_filter_span.selected {
+	color: #57d47d;
+	border: 1px solid #57d47d;
+	font-weight: 700;
 }
 
 .search-container {
