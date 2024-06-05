@@ -32,10 +32,13 @@ public class GetLikeAction implements Action {
 				(Integer)session.getAttribute("mem_num");
 		CboardDAO dao = CboardDAO.getInstance();
 		if(mem_num==null) {//로그인이 되지 않은 경우
-			mapAjax.put("status", "noLike");
+			mapAjax.put("status", "logout");
 		}else {//로그인 된 경우
 			ClikeVO cLike = dao.selectLike(new ClikeVO());
-			if(cLike!=null) {
+			boolean check = dao.memberLike(cb_num, mem_num);
+			
+			request.setAttribute("check", check);
+			if(check) {
 				//로그인한 회원이 좋아요를 클릭함
 				mapAjax.put("status", "yesLike");
 			}else {

@@ -76,7 +76,8 @@
 		       		<!-- 좋아요 -->
 		       		<div class="board_like">
 					           <img src="${pageContext.request.contextPath}/images/cje/yesLike.png" height="25" width="25" data-num="${board.cb_num}" id="like">
-					    
+					       
+		       			
 		       			<span id="output_lcount"></span>
 		       		</div>
 		   		</div>
