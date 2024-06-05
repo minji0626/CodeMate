@@ -710,5 +710,106 @@ public class CboardDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
+
+		// 팀 게시판 총 글의 개수, 검색 개수
+		public int getCCommentCount(String keyfield, String keyword) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			String sub_sql = "";
+			int count = 0;
+
+			try {
+				conn = DBUtil.getConnection();
+
+				if(keyword!=null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) {
+						sub_sql += "WHERE cc_content LIKE '%' || ? || '%'"; 
+					} else if(keyfield.equals("2")) {
+						sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
+					} else if(keyfield.equals("3")) sub_sql += "WHERE cb_type LIKE '%' || ? || '%'";
+				}
+
+				sql = "SELECT COUNT(*) FROM c_comment JOIN member_detail USING(mem_num) LEFT OUTER JOIN c_board USING(cb_num) " + sub_sql;
+
+				pstmt = conn.prepareStatement(sql);
+				if(keyword!=null && !"".equals(keyword)) {
+					pstmt.setString(1, keyword);
+				}
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					// 컬럼 인덱스
+					count = rs.getInt(1);
+					// count(*)처럼 기호가 있으면 안에 쓰지 않고 알리아스를 명시해주는 것도 번거롭기 때문에 인덱스 사용
+				}
+			} catch(Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return count;
+		}
+		
+
+		// 게시판 목록 가져오기
+		public List<CcommentVO> getListComment(int start, int end, String keyfield, String keyword) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<CcommentVO> list = null;
+			String sql = null;
+			String sub_sql = ""; 
+			int cnt = 0;
+
+			try {
+				conn = DBUtil.getConnection();
+
+
+				if(keyword!=null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) {
+						sub_sql += " WHERE cc_content LIKE '%' || ? || '%'"; 
+					} else if(keyfield.equals("2")) {
+						sub_sql += " WHERE mem_nickname LIKE '%' || ? || '%'";
+					} else if(keyfield.equals("3")) sub_sql += " WHERE cb_type LIKE '%' || ? || '%'";
+				}
+
+				sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM c_comment LEFT OUTER JOIN member_detail USING(mem_num) LEFT OUTER JOIN c_board USING(cb_num) " + sub_sql +" ORDER BY cb_num DESC) a) WHERE rnum>=? AND rnum<=?";
+
+				pstmt = conn.prepareStatement(sql);
+
+				// 검색어가 있을 경우에만 바인딩
+				if (keyword != null && !"".equals(keyword)) {
+					pstmt.setString(++cnt,  keyword);
+				}
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+
+				rs = pstmt.executeQuery();
+
+				list = new ArrayList<CcommentVO>();
+				while (rs.next()) {
+					CcommentVO comment = new CcommentVO();
+					comment.setCb_num(rs.getInt("cb_num"));
+					comment.setCc_num(rs.getInt("cc_num"));
+					comment.setCb_title(rs.getString("cb_title"));
+					comment.setCb_type(rs.getInt("cb_type"));
+					comment.setMem_nickname(rs.getString("mem_nickname"));
+					comment.setCc_content(rs.getString("cc_content"));
+					comment.setCc_reg_date(rs.getString("cc_reg_date"));
+					comment.setMem_num(rs.getInt("mem_num"));
+					list.add(comment);
+				}
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return list;
+		}
+
 
 }
