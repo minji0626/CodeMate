@@ -32,10 +32,8 @@ public class DeleteRboardAction implements Action {
 
 		// 로그인한 회원번호와 작성한 회원번호 일치
 		rdao.deleteRboard(rb_num);
-		
-		request.setAttribute("notice_msg", "정말 삭제할까요?");
-		request.setAttribute("notice_url", "list.do");
-		return "/WEB-INF/views/common/confirm_view.jsp";
+
+		return "redirect:/rboard/list.do";
 	}
 
 }

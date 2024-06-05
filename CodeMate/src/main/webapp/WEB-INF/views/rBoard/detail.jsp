@@ -56,14 +56,26 @@
 						<span>${rboard.mem_nickname}</span>
 						<span>${rboard.rb_reg_date}(작성일자)</span> 
 						<c:if test="${mem_num == rboard.mem_num}">
-						<c:if test="${rboard.daysLeft >= 0}">
+						<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
 						<input type="button" value="수정하기" id="modify_btn" class="btn-basic btn" onclick='location.href="modifyForm.do?rb_num=${rboard.rb_num}"'>
 						</c:if>
-						<input type="button" value="삭제하기" id="delete_btn" class="btn-basic btn" onclick='location.href="deleteRboard.do?rb_num=${rboard.rb_num}"'>
+						<input type="button" value="삭제하기" id="delete_btn" class="btn-basic btn" onclick='deleteRboard(${rboard.rb_num})'>
+						<script>
+						//글삭제
+						function deleteRboard(rb_num) {
+							var check = confirm("정말 삭제하시겠습니까?", "list.do");
+							
+							if (check) {
+								location.href="deleteRboard.do?rb_num=" + rb_num;
+							} else {
+							}
+						}
+						</script>
 						</c:if>
 						<c:if test="${mem_num != rboard.mem_num}">
-						<c:if test="${rboard.daysLeft >= 0}">
-						<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn">
+						<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
+						<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn" 
+						data-memnum="${mem_num}" data-rbmemnum="${rboard.mem_num}" <c:if test="${alreadyApplied}">data-alreadyapplied="1"</c:if>>
 						<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
 						</c:if>
 						</c:if>

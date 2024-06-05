@@ -34,8 +34,22 @@
     </div>
 
 
-    <script>
+    <script>    
+    
+		//유효성 체크
+		const applyForm = document.getElementById("ra_form");
+		applyForm.onsubmit = function() {
+			const ra_content = document.getElementById("ra_content");
+			if (ra_content.value.trim() == '') {
+				alert('신청글 내용을 입력해주세요');
+				ra_content.focus();
+				ra_content.value = '';
+				return false;
+			}
+		}
+    
         const r_apply = document.getElementById("r_apply");
+
 
         function modalOn() {
         	const background = document.getElementById("modal_background");
