@@ -21,32 +21,26 @@ public class DeleteManageCommunityAction implements Action {
 
 		Map<String, String> mapAjax = new HashMap<String, String>();
 
-		CboardDAO cdao = CboardDAO.getInstance();
+		
 
 		// 로그인 체크
 		Integer user_num = (Integer) session.getAttribute("mem_num");
 		Integer user_auth = (Integer) session.getAttribute("mem_auth");
 		if (user_num == null) {// 로그인이 되지 않은 경우
-			return "redirect:/member/loginForm.do";
+			mapAjax.put("result", "logout");
 
-		} else if (user_auth == 9) { //관리자로 로그인 된 경우 
+		} else if(user_auth == 9) { //관리자로 로그인 된 경우 
 
 			// 전송된 데이터 인코딩 타입 지정
 			request.setCharacterEncoding("utf-8");
 
-			int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 			int cb_num = Integer.parseInt(request.getParameter("cb_num"));
-			int leader = Integer.parseInt(request.getParameter("leader"));
 
-			if(mem_num==leader) {
-				mapAjax.put("result", "isLeader");
-			} else {
-				cdao.deleteCboard(cb_num);
-				mapAjax.put("result", "success");
-			}
-			
-
-		} else {
+		CboardDAO cdao = CboardDAO.getInstance();
+		cdao.deleteCboard(cb_num);	
+		mapAjax.put("result", "success");
+		
+		}else {
 			mapAjax.put("result", "wrongAccess");
 		}
 		// JSON 데이터 생성

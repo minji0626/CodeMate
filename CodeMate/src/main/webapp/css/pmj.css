@@ -196,6 +196,17 @@
 	margin-left:5px;
     background-color: #FF2910;
 }
+.myConsultDelete_btn{
+	width: 60px;
+    height: 35px;
+    background-color: #FF2910;
+    color: white;
+    border-radius: 20px;
+    border:none;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 70px;
+}
 /* 참여중인 팀 */
 .myPage-line-box{
 	display: flex;

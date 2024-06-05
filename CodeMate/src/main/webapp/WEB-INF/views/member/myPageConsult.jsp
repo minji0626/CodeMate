@@ -59,8 +59,8 @@
             </div>
         </div>
         <div class="btn_box_write">
-            <input type="button" value="수정" class="myUpdate_btn" onclick="">
-            <input type="submit" value="삭제" class="myDelete_btn" data-csnum="${consult.cs_num}">
+            
+            <input type="submit" value="삭제" class="myConsultDelete_btn" data-csnum="${consult.cs_num}">
         </div>
     </div>
 </c:forEach>
