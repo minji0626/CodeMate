@@ -118,8 +118,8 @@
 					</ul>
 				</div>
 				<!--버튼-->
-				<div class="align-right">
-					<input type="button" value="취소"> <input type="submit"
+				<div class="btn-div align-center">
+					<input type="button" value="취소" class="btn btn-cancel"> <input type="submit" class="btn btn-basic"
 						value="글 수정">
 				</div>
 

@@ -12,18 +12,20 @@
 	border-radius: 50px;
 }
 
-
 /*하드스킬 로고*/
 .skill-logo {
 	width: 30px;
 	height: 30px;
 	object-fit: cover;
 	border-radius: 50px;
+	padding: 2px;
+	border: 1px solid #b8b8b8;
 }
 
 /*북마크*/
 #bookmark_img {
 	cursor: pointer;
+	margin-left: 10px;
 }
 
 #d_day {
@@ -34,13 +36,45 @@
 	width: 100px;
 	font-size: 15pt;
 	color: #fff;
+	margin-left: 10px;
 }
+
+.flex-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 50px 0 30px 0;
+}
+
+#profile_div {
+	display: flex;
+	vertical-align: middle;
+}
+
+#profile_div span {
+	margin-left: 10px;
+	display: flex;
+	align-items: center;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
 
 /********************************
 /* 글 */
+
+.content-header {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #b8b8b8;
+}
+
 .content-header h2 {
-	margin: 30px 0 40px 0;
+	display: flex;
+	align-items: center;
+	vertical-align: middle;
+	margin: 30px 0 10px 0;
 	font-size: 26pt;
+	align-items: center;
 }
 
 .content {
@@ -52,10 +86,46 @@
 	margin-bottom: 10px;
 }
 
+#content_info {
+	background: #f0f0f0;
+	padding: 40px 50px;	
+	border-radius: 12px;
+	color: #2b2b2b;
+	font-size: 13pt;
+}
+
+#content_info li {
+	margin-bottom: 8px;	
+	display: flex;
+}
+
+#hskill_li {
+	display: flex;
+	align-items: center;
+}
+
+#hskill_li .info-title {
+	margin-right: 20px;
+}
+
+#content_info span {
+	margin-right: 4px;
+}
+
+#content_info .info-title {
+	margin-right: 20px;
+	font-weight: bold;
+	color: #474747;
+}
+
 /********************************
 /* 댓글 */
 #comments_container {
-	margin-top: 40px;
+	margin-top: 80px;
+}
+
+#comments_container h4 {
+	font-size: 16pt;
 }
 
 /* 댓글 작성폼 */
@@ -88,13 +158,14 @@
 .comment-item {
 	margin-top: 40px;
 	padding-bottom: 20px;
-	border-bottom: 2px solid #b8b8b8;
+	border-bottom: 1px solid #b8b8b8;
 }
 
 .comment-item-header {
 	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
+	height: 80px;
 }
 
 .comment-item-header .profile-photo {
@@ -106,7 +177,8 @@
 	flex-direction: column;
 }
 
-.comment-item-header .rc_reg_date, .comment-item-header .rc_modify_date {
+.comment-item-header .rc_reg_date, .comment-item-header .rc_modify_date
+	{
 	font-size: 10pt;
 }
 
@@ -206,7 +278,6 @@
 	margin: 0 auto;
 	resize: none;
 }
-
 
 .ra_content p {
 	padding: 15px;

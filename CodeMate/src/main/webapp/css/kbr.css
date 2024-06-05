@@ -14,13 +14,14 @@
 ---------------------*/
 .btn {
 	cursor: pointer;
-}
-
-.btn-basic {
 	padding: 8px 15px;
 	margin: 0 4px;
 	border-radius: 16px;
 	border: none;
+	width: 100px;
+}
+
+.btn-basic {
 	box-shadow: 1px 1px 3px #b8b8b8;
 	background-color: #5aca7c;
 	color: white;
@@ -31,10 +32,21 @@
 	background-color: #54ba73;
 }
 
+.btn-cancel {
+	box-shadow: 1px 1px 3px #b8b8b8;
+	background-color: #c0c0c0;
+	color: white;
+}
+
+.btn-cancel:hover {
+	cursor: pointer;
+	background-color: #a5a5a5;
+}
+
 /* result_view_two_btn 페이지
 ---------------------*/
 .content-main-div {
-	margin-top:200px;
+	margin-top: 200px;
 }
 
 .content-main-div .content-main-msg {

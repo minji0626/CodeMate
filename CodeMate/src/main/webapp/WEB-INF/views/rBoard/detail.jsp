@@ -44,49 +44,54 @@
 						<c:if test="${rboard.daysLeft == 0 && rboard.team_status != 1}">오늘 마감</c:if>
 						<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">모집 종료</c:if>
 					</span>
+					<img id="bookmark_img" data-rbnum="${rboard.rb_num}" src="" width="36px">
 					</h2>
-					
-					<div>
-						<c:if test="${rboard.mem_photo != null}">
-						<img src="${pageContext.request.contextPath}/upload/${rboard.mem_photo}" class="profile-photo">						
-						</c:if>
-						<c:if test="${rboard.mem_photo == null}">
-						<img src="${pageContext.request.contextPath}/images/face.png" class="profile-photo">
-						</c:if>
-						<span>${rboard.mem_nickname}</span>
 						<span>${rboard.rb_reg_date}(작성일자)</span> 
-						<c:if test="${mem_num == rboard.mem_num}">
-						<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
-						<input type="button" value="수정하기" id="modify_btn" class="btn-basic btn" onclick='location.href="modifyForm.do?rb_num=${rboard.rb_num}"'>
-						</c:if>
-						<input type="button" value="삭제하기" id="delete_btn" class="btn-basic btn" onclick='deleteRboard(${rboard.rb_num})'>
-						<script>
-						//글삭제
-						function deleteRboard(rb_num) {
-							var check = confirm("정말 삭제하시겠습니까?", "list.do");
-							
-							if (check) {
-								location.href="deleteRboard.do?rb_num=" + rb_num;
-							} else {
+						<span>조회수 <span id="rb_hit">${rboard.rb_hit}</span></span>					
+					<div>
+						<div class="flex-container">
+								<div id="profile_div">
+								<c:if test="${rboard.mem_photo != null}">
+								<img src="${pageContext.request.contextPath}/upload/${rboard.mem_photo}" class="profile-photo">						
+								</c:if>
+								<c:if test="${rboard.mem_photo == null}">
+								<img src="${pageContext.request.contextPath}/images/face.png" class="profile-photo">
+								</c:if>
+								<span>${rboard.mem_nickname}</span>
+							</div>
+							<c:if test="${mem_num == rboard.mem_num}">
+							<div id="header_btn_div">
+								<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
+								<input type="button" value="수정하기" id="modify_btn" class="btn-basic btn" onclick='location.href="modifyForm.do?rb_num=${rboard.rb_num}"'>
+								</c:if>
+								<input type="button" value="삭제하기" id="delete_btn" class="btn-cancel btn" onclick='deleteRboard(${rboard.rb_num})'>
+							</div>
+							<script>
+							//글삭제
+							function deleteRboard(rb_num) {
+								var check = confirm("정말 삭제하시겠습니까?", "list.do");
+								
+								if (check) {
+									location.href="deleteRboard.do?rb_num=" + rb_num;
+								} else {
+								}
 							}
-						}
-						</script>
-						</c:if>
-						<c:if test="${mem_num != rboard.mem_num}">
-						<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
-						<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn" 
-						data-memnum="${mem_num}" data-rbmemnum="${rboard.mem_num}" <c:if test="${alreadyApplied}">data-alreadyapplied="1"</c:if>>
-						<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
-						</c:if>
-						</c:if>
-						<span>조회수 <span id="rb_hit">${rboard.rb_hit}</span></span>
-						<img id="bookmark_img" data-rbnum="${rboard.rb_num}" src="" width="36px">
+							</script>
+							</c:if>
+							<c:if test="${mem_num != rboard.mem_num}">
+							<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
+							<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn" 
+							data-memnum="${mem_num}" data-rbmemnum="${rboard.mem_num}" <c:if test="${alreadyApplied}">data-alreadyapplied="1"</c:if>>
+							<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
+							</c:if>
+							</c:if>
+						</div>
 					</div>
 				</div>
 				<div class="content">
 					<h3>모집 정보</h3>
-					<ul>
-						<li><span>모집 구분</span> <span>
+					<ul id="content_info">
+						<li><span class="info-title">모집 구분</span> <span>
 							<c:if test="${rboard.rb_category == 0}">
 							스터디
 							</c:if>
@@ -94,8 +99,8 @@
 							프로젝트
 							</c:if>
 							</span></li>
-						<li><span>시작 예정</span> <span>${rboard.rb_start}</span></li>
-						<li><span>진행 방식</span> <span>
+						<li><span class="info-title">시작 예정</span> <span>${rboard.rb_start}</span></li>
+						<li><span class="info-title">진행 방식</span> <span>
 							<c:if test="${rboard.rb_meet == 0}">
 							온라인
 							</c:if>
@@ -106,7 +111,7 @@
 							온라인/오프라인	
 							</c:if>
 							</span></li>
-						<li><span>예상 기간</span> 
+						<li><span class="info-title">예상 기간</span> 
 							<c:if test="${rboard.rb_period == 0}">
 							<span>1개월 미만</span>
 							</c:if>
@@ -117,15 +122,15 @@
 							<span>${rboard.rb_period}개월</span>
 							</c:if>
 						</li>
-						<li><span>모집 인원</span> <span>${rboard.rb_teamsize}명</span></li>
-						<li><span>요구 스킬</span> 
+						<li><span class="info-title">모집 인원</span> <span>${rboard.rb_teamsize}명</span></li>
+						<li id="hskill_li"><span class="info-title">요구 스킬</span> 
 							<span>
 			                    <c:forEach var="i" begin="0" end="${fn:length(rboard.hs_photo_arr) - 1}">
 			    				<img src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}" title="${rboard.hs_name_arr[i]}" class="skill-logo">
 								</c:forEach>
 							</span>
 						</li>
-						<li><span>모집 필드</span> 
+						<li><span class="info-title">모집 필드</span> 
 							<c:forEach var="field" items="${rboard.f_name_arr}">
 								<span>${field}</span>
 							</c:forEach>
