@@ -396,13 +396,14 @@ public class RboardDAO {
 				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
 			}
 			if (recruiting_filter) {
-				conditions.add("rb_endRecruit > SYSDATE AND team_status = 0");
+				conditions.add("rb_endRecruit >= TO_CHAR(sysdate, 'YYYY-MM-DD') AND team_status != 1");
 			}
 
 			// 조건이 있을 경우에만 WHERE 추가
 			if (!conditions.isEmpty()) {
 				sub_sql += "WHERE " + String.join(" AND ", conditions);
 			}
+			
 
 			// SQL문 작성
 			sql = "SELECT * FROM ( " + "  SELECT a.*, rownum rnum FROM ( "
@@ -418,7 +419,7 @@ public class RboardDAO {
 					+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
 					+ "    ON r_board.rb_num = apply_agg.rb_num "
 					+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num"
-					+ "    ORDER BY r_board.rb_num DESC) a " + sub_sql + "		) WHERE rnum >= ? AND rnum <= ?";
+					+ "    ORDER BY r_board.rb_num DESC) a " + sub_sql + ") WHERE rnum >= ? AND rnum <= ?";
 
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -552,6 +553,7 @@ public class RboardDAO {
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
+				
 
 				sql = "SELECT team_status FROM team WHERE team_num=?";
 				pstmt2 = conn.prepareStatement(sql);
@@ -669,18 +671,45 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	// 나의 모집글에 지원한 신청자 수
+	public int myRboardApplyCountByRbNum(int rb_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			String sql = "SELECT COUNT(*) FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_num);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return count;
+	}
 
 	// 나의 모집글에 지원한 신청자 리스트 - 민재
 	public List<RapplyVO> myRboardApplyListByRbNum(int rb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
-		ResultSet rs2 = null;
 		List<RapplyVO> list = new ArrayList<>();
-		String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
+
 		try {
 			conn = DBUtil.getConnection();
+			
+			String sql = "SELECT ra.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num WHERE ra.rb_num =?";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
 
@@ -781,6 +810,7 @@ public class RboardDAO {
 				rboard.setRa_pass(rs.getInt("ra_pass"));
 				rboard.setRb_category(rs.getInt("rb_category"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+				rboard.setRb_apply_count(myRboardApplyCountByRbNum(rs.getInt("rb_num")));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 				rboard.setRb_start(rs.getString("rb_start"));
 				rboard.setRb_period(rs.getInt("rb_period"));
