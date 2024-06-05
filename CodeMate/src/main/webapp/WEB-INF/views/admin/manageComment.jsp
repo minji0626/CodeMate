@@ -67,7 +67,7 @@
 											<td>${community.mem_nickname}</td>
 										
 										<td>
-											<button id="delete_community" class="deleteMemberBtn" data-cbnum="${community.cb_num}">삭제</button>
+											<a href="deleteComment.do" class="button delete"> 삭제</a>
 										</td>
 									</tr>
 								</c:forEach>
