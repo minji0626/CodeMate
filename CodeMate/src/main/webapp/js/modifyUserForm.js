@@ -4,22 +4,19 @@ $(function() {
 	let phoneChecked = 0;
 
 	
+	// 아이디 입력 필드 비활성화
+	const idField2 = document.getElementById('mem_id');
+	const originalId = document.getElementById('original_mem_id').value;
+	if (idField2.value == originalId) {
+		idField2.disabled = true;
+	}
+
 	// 회원 정보 수정 유효성 체크
 	$('#modify_form').submit(function() {
-
 		const idField1 = document.getElementById('mem_name');
 		if (idField1.value.trim() == '') {
 			alert('이름은 필수 입력');
 			idField1.focus();
-			return false;
-		}
-
-		const idField2 = document.getElementById('mem_id');
-		const originalId = document.getElementById('original_mem_id').value;
-		if (idField2.value.trim() == '' || idField2.value != originalId) {
-			alert('아이디는 변경할 수 없습니다.');
-			idField2.focus();
-			idField2.value = originalId;
 			return false;
 		}
 
@@ -163,21 +160,7 @@ $(function() {
 		$('#mem_photo').val('');
 		$('#mem_photo_choice').hide();
 		$('#mem_photo_btn').show(); // 수정 버튼 표시
-	});
-
-	
-	    
-    
-    /*const idField2 = document.getElementById('mem_id');
-		const originalId = document.getElementById('original_mem_id').value;
-		if (idField2.value.trim() == '' || idField2.value != originalId) {
-			alert('아이디는 변경할 수 없습니다.');
-			idField2.focus();
-			idField2.value = originalId;*/
-			
-			
-			
-			
+	});	
 	
 	//닉네임 중복 시작
 	$('#mem_nickname').on('blur', function() {
@@ -188,8 +171,8 @@ $(function() {
         $('#message_nickname').text('');
         return;
     	}
-    	
-    	
+        
+        
         
 		// 서버에 닉네임 중복 확인 요청을 보냄
 		$.ajax({
@@ -229,11 +212,6 @@ $(function() {
 	//닉네임 중복 끝
 
 	
-	
-	
-	
-	/*emailChecked
-	  phoneChecked*/
 	//이메일 중복 시작
 	$('#mem_email').on('blur', function() {
 		var email = $(this).val();
@@ -282,5 +260,52 @@ $(function() {
 	//이메일 중복 끝
 
 
+
+	//전화번호 중복 시작
+	$('#mem_phone').on('blur', function() {
+		var phone = $(this).val();
+		
+		//전화번호 비어 있을 때 중복 메세지X
+		if (phone.trim() == '') {
+        $('#message_phone').text('');
+        return;
+    	}
+    
+		// 서버에 전화번호 중복 확인 요청을 보냄
+		$.ajax({
+			url: 'checkDuplicatedPhone.do',
+			type: 'post',
+			data: { mem_phone: phone },
+			dataType: 'json',
+			success: function(param) {
+				if (param.result == 'phoneDuplicated') {
+					phoneChecked = 0;
+					$('#message_phone').css('color', 'red').text('이미 사용 중인 전화번호입니다.');
+					$('#mem_phone').val('').focus();
+					$('#mem_phone').css('margin-bottom', '0');
+				} else if (param.result == 'phoneNotFound') {
+					phoneChecked = 1;
+					$('#mem_phone').css('margin-bottom', '0');
+					$('#message_phone').css('color', 'black').text('사용 가능한 전화번호입니다.');
+				} else {
+					phoneChecked = 0;
+					$('#mem_phone').css('margin-bottom', '0');
+					$('#message_phone').css('color', 'red').text('전화번 중복 체크 중 오류 발생');
+				}
+			},
+			error: function() {
+				phoneChecked = 0;
+				$('#mem_phone').css('margin-bottom', '0');
+				$('#message_phone').css('color', 'red').text('서버 오류가 발생했습니다.');
+			}
+		});
+	});
+
+	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복값 초기화
+	$('#modify_form #mem_phone').keydown(function() {
+		emailChecked = 0;
+		$('#message_phone').text('');
+	});//end of keydown
+	//전화번호 중복 끝
 
 });

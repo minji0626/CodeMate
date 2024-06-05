@@ -121,23 +121,31 @@ public class MemberDAO {
 	}
 	
 	//닉네임 중복 체크
-		public MemberVO checkNickname(String mem_nickname)throws Exception{
+		public MemberVO checkNickname(String mem_nickname,Integer mem_num)throws Exception{
 			Connection conn = null; 
 			PreparedStatement pstmt = null; 
 			ResultSet rs = null;
 			MemberVO member = null; 
 			String sql = null; 
-			
+			String sub_sql = "";
 			try{ 
 				//커넥션풀로부터 커넥션 할당 
 				conn =DBUtil.getConnection(); 
+				
+				if(mem_num != null) {
+					sub_sql = "AND mem_num != ?";					
+				}
+				
 				//SQL문 작성
 				sql = "SELECT * FROM member LEFT OUTER JOIN " +
-						"member_detail USING(mem_num) WHERE mem_nickname = ?"; 
+						"member_detail USING(mem_num) WHERE mem_nickname = ?" +sub_sql; 
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
 				pstmt.setString(1, mem_nickname); 
+				if(mem_num != null) {
+					pstmt.setInt(2, mem_num);				
+				}
 				//SQL문 실행 
 				rs = pstmt.executeQuery(); 
 				if(rs.next()) { 
@@ -160,23 +168,31 @@ public class MemberDAO {
 		}
 	
 	// 이메일 중복 체크
-		public MemberVO checkEmail(String mem_email)throws Exception{
+		public MemberVO checkEmail(String mem_email, Integer mem_num)throws Exception{
 			Connection conn = null; 
 			PreparedStatement pstmt = null; 
 			ResultSet rs = null;
 			MemberVO member = null; 
 			String sql = null; 
-
+			String sub_sql = "";
+			
 			try{ 
 				//커넥션풀로부터 커넥션 할당 
 				conn =DBUtil.getConnection(); 
+				
+				if(mem_num != null) {
+					sub_sql = "AND mem_num != ?";
+				}
 				//SQL문 작성
 				sql = "SELECT * FROM member LEFT OUTER JOIN " +
-						"member_detail USING(mem_num) WHERE mem_email=?"; 
+						"member_detail USING(mem_num) WHERE mem_email=?" + sub_sql; 
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
 				pstmt.setString(1, mem_email); 
+				if(mem_num != null) {
+					pstmt.setInt(2, mem_num);				
+				}
 				//SQL문 실행 
 				rs = pstmt.executeQuery(); 
 				if(rs.next()) { 
@@ -200,23 +216,31 @@ public class MemberDAO {
 		}
 		
 		// 핸드폰 중복 체크
-		public MemberVO checkPhone(String phone)throws Exception{
+		public MemberVO checkPhone(String mem_phone, Integer mem_num)throws Exception{
 			Connection conn = null; 
 			PreparedStatement pstmt = null; 
 			ResultSet rs = null;
 			MemberVO member = null; 
 			String sql = null; 
-
+			String sub_sql = "";
+			
 			try{ 
 				//커넥션풀로부터 커넥션 할당 
 				conn =DBUtil.getConnection(); 
+				
+				if(mem_num != null) {
+					sub_sql = "AND mem_num != ?";
+				}
 				//SQL문 작성
 				sql = "SELECT * FROM member LEFT OUTER JOIN " +
-						"member_detail USING(mem_num) WHERE mem_phone=?"; 
+						"member_detail USING(mem_num) WHERE mem_phone=?" + sub_sql; 
 				//preparedStatment 객체 생성 
 				pstmt =conn.prepareStatement(sql); 
 				//?에 데이터 바인딩 
-				pstmt.setString(1, phone); 
+				pstmt.setString(1, mem_phone); 
+				if(mem_num != null) {
+					pstmt.setInt(2, mem_num);
+				}
 				//SQL문 실행 
 				rs = pstmt.executeQuery(); 
 				if(rs.next()) { 
