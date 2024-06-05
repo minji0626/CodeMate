@@ -49,8 +49,8 @@
 										<c:if test="${tmember.tm_auth==3}">
 											<td>팀원</td>
 										</c:if>
-										<td><a href="changeLeader.do?team_num=${team_num}&mem_num=${tmember.mem_num}" class="button changeLeader">팀장 위임</a>
-										<td><button class="deleteMemberBtn" data-memnum="${member.rb_num}">강제 정지</button>
+										<td><a class="mem_auth_btn button changeLeader" style="cursor: pointer" data-current-leader="${currentLeaderMemNum}" data-new-leader="${tmember.mem_num}">팀장 위임</a>
+										<td><a class="mem_delete_btn button deleteTeamMember" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a></td>
 										
 									</tr>
 								</c:forEach>
