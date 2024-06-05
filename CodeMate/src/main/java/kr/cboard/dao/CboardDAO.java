@@ -137,6 +137,7 @@ public class CboardDAO {
 				cboard.setCb_reg_date(rs.getDate("cb_reg_date"));
 				cboard.setCb_type(rs.getInt("cb_type"));
 				cboard.setCb_hit(rs.getInt("cb_hit"));
+				cboard.setMem_num(rs.getInt("mem_num"));
 				list.add(cboard);
 			}
 		} catch (Exception e) {

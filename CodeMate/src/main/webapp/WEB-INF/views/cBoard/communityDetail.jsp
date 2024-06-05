@@ -52,7 +52,13 @@
 						<c:if test="${empty board.mem_photo}">
 							<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40">
 						</c:if>
-		       			<span> ${board.mem_nickname}</span>
+						<c:if test="${board.cb_type==0}">
+							<span>코메</span>
+						</c:if>
+		       			
+		       			<c:if test="${board.cb_type==1}">
+		       				<span> <a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${board.mem_num}">${board.mem_nickname}</a></span>
+						</c:if>
 		       			<span>${board.cb_reg_date}</span>
 		       			<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png" width="15">
 		       			<span>${board.cb_hit}</span>

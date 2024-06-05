@@ -15,7 +15,7 @@
 	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 	
-<title>자유 게시판</title>
+<title>커뮤니티</title>
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
 <style type="text/css">
 	.page-container {
@@ -89,7 +89,13 @@
 		                        <tr>
 		                            <td>${cboard.cb_num}</td>
 		                            <td><a href="${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
-		                            <td>${cboard.mem_nickname}</td>
+		                            <c:if test="${cboard.cb_type==0}">
+		                            	<td>코메</td>
+		                            </c:if>
+		                            <c:if test="${cboard.cb_type==1}">
+		                            	<td><a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${cboard.mem_num}">${cboard.mem_nickname}</a></td>
+		                            </c:if>
+		                            
 		                            <td>${cboard.cb_reg_date}</td>
 		                            <td>${cboard.cb_hit}</td>
 		                        </tr>
