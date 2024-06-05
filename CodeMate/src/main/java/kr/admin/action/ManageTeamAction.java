@@ -44,7 +44,7 @@ public class ManageTeamAction implements Action {
 			List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 
 			RboardDAO rdao = RboardDAO.getInstance();
-			int count = rdao.getRboardCount();
+			int count = rdao.getRboardCount(null, null, null, null, null, false);
 			
 			ApplyDAO dao = ApplyDAO.getInstance();
 			

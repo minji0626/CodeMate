@@ -148,7 +148,9 @@
 					</ul>
 
 					<!--페이지 표시-->
-					<div class="align-center">${page}</div>
+					<div class="paging-button" style="display:none;">
+						<input type="button" value="다음글 보기">
+					</div>
 				</c:if>
 			</div>
 		</div>
