@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -21,8 +22,11 @@ public class CheckDuplicatedEmailAction implements Action{
 		//전송된 데이터 반환
 		String mem_email = request.getParameter("mem_email");
 		
+		HttpSession session = request.getSession();
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.checkEmail(mem_email);
+		MemberVO member = dao.checkEmail(mem_email,mem_num);
 		
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();
@@ -32,12 +36,6 @@ public class CheckDuplicatedEmailAction implements Action{
 			mapAjax.put("result", "emailDuplicated");
 		}
 		
-		/*
-		 * JSON 형식으로 변환하기를 원하는 문자열을 HashMap에 key와 value의 
-		 * 쌍으로 저장한 후 ObjectMapper의 writeValueAsString에
-		 * Map 객체를 전달해서 일반 문자열 데이터를 JSON 형식의 문자열 데이터로 
-		 * 변환 후 반환
-		 */
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		//JSON 문자열 반환 -> 클라이언트에게 보내려면 jsp가 필요함

@@ -56,8 +56,8 @@
             </div>
         </div>
         <div class="btn_box_write">
-            <input type="button" value="수정" class="myUpdate_btn" onclick="">
-            <input type="submit" value="삭제" class="myDelete_btn" data-cbnum="${cboardList.cb_num}">
+             <input type="button" value="수정" class="myUpdate_btn" onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/cboard/modifyCommunityForm.do?cb_num=${cboardList.cb_num}'">
+       		 <input type="submit" value="삭제" class="myDelete_btn" data-cbnum="${cboardList.cb_num}" onclick="event.stopPropagation();">
         </div>
     </div>
 </c:forEach>

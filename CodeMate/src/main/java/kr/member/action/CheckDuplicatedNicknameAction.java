@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -21,15 +22,20 @@ public class CheckDuplicatedNicknameAction implements Action {
 
 		// 전송된 데이터 반환
 		String mem_nickname = request.getParameter("mem_nickname");
+		
+		//mem_num 구하기
+		HttpSession session = request.getSession();
+		Integer mem_num = (Integer) session.getAttribute("mem_num");
 
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.checkNickname(mem_nickname);
+		MemberVO member = dao.checkNickname(mem_nickname, mem_num);
 
 		Map<String, String> mapAjax = new HashMap<String, String>();
 
 		if (member == null) { // 아이디 미중복
 			mapAjax.put("result", "nicknameNotFound");
 		} else { // 아이디 중복
+
 			mapAjax.put("result", "nicknameDuplicated");
 		}
 

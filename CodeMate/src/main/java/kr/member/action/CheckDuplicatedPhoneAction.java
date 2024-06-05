@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -19,13 +20,16 @@ public class CheckDuplicatedPhoneAction implements Action{
 		// 전송된 데이터 인코딩 타입 지정
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
-		String phone = request.getParameter("phone");
+		String mem_phone = request.getParameter("mem_phone");//phone이었던걸 다 mem_phone으로 바꿨습니다.
+		
+		HttpSession session = request.getSession();
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.checkPhone(phone);
-		
+		MemberVO member = dao.checkPhone(mem_phone,mem_num);
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();
+		
 		if(member == null) {//전화번호 미중복
 			mapAjax.put("result", "phoneNotFound");
 		}else {//전화번호 중복
