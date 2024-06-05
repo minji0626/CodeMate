@@ -87,7 +87,7 @@
 				<c:if test="${count > 0}">
 					<ul id="r_board">
 						<c:forEach var="rboard" items="${rboardList}">
-							<li class="r-item"
+							<li class="r-item <c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">not-recruiting</c:if>"
 								onclick="location.href= '${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
 								<div class="r-item-header">
 									<div class="rb_category_div">
