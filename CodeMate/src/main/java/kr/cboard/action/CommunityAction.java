@@ -32,7 +32,7 @@ public class CommunityAction implements Action{
 
         CboardDAO dao = CboardDAO.getInstance();
         
-        int count = dao.getCboardCount(keyfield, keyword);
+        int count = dao.getCboardCount(keyfield, keyword, cb_type);
 
         PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "community.do");
 

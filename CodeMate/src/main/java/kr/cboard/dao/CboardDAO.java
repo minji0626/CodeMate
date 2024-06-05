@@ -49,7 +49,7 @@ public class CboardDAO {
 	}
 
 	// 팀 게시판 총 글의 개수, 검색 개수
-	public int getCboardCount(String keyfield, String keyword) throws Exception {
+	public int getCboardCount(String keyfield, String keyword, int cb_type) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -62,17 +62,18 @@ public class CboardDAO {
 
 			if(keyword!=null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) {
-					sub_sql += "WHERE cb_title LIKE '%' || ? || '%'"; 
+					sub_sql += "AND cb_title LIKE '%' || ? || '%'"; 
 				} else if(keyfield.equals("2")) {
-					sub_sql += "WHERE mem_nickname LIKE '%' || ? || '%'";
-				} else if(keyfield.equals("3")) sub_sql += "WHERE cb_content LIKE '%' || ? || '%'";
+					sub_sql += "AND mem_nickname LIKE '%' || ? || '%'";
+				} else if(keyfield.equals("3")) sub_sql += "AND cb_content LIKE '%' || ? || '%'";
 			}
 
-			sql = "SELECT COUNT(*) FROM c_board JOIN member_detail USING(mem_num) " + sub_sql;
+			sql = "SELECT COUNT(*) FROM c_board JOIN member_detail USING(mem_num) WHERE cb_type=? " + sub_sql;
 
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cb_type);
 			if(keyword!=null && !"".equals(keyword)) {
-				pstmt.setString(1, keyword);
+				pstmt.setString(2, keyword);
 			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
