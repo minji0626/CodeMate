@@ -50,6 +50,7 @@
         <a class="sideB_font">게시판 관리</a>
         <a href="${pageContext.request.contextPath}/admin/manageRboard.do">팀원 구하기</a>
         <a href="${pageContext.request.contextPath}/admin/manageCommunity.do">커뮤니티</a>
+        <a href="${pageContext.request.contextPath}/admin/manageComment.do">댓글 관리</a>
         <a href="${pageContext.request.contextPath}/admin/manageTeam.do">활성화 팀</a>
         <a href="${pageContext.request.contextPath}/admin/manageStopTeam.do">비활성화 팀</a>
         <a class="sideB_font">1:1 문의</a>
