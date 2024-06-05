@@ -28,7 +28,6 @@
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 
-
 <body>
 	<div class="page-container">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -53,19 +52,23 @@
 							<c:forEach var="field" items="${fieldList}">
 								<option value="${field.f_name}">${field.f_name}</option>
 							</c:forEach>
-						</select> <select name="rb_category" class="search-menu">
+						</select> 
+						<select name="rb_category" class="search-menu">
 							<option value="" selected>모집구분</option>
 							<option value="0">스터디</option>
 							<option value="1">프로젝트</option>
 							<option value="2">전체</option>
-						</select> <select name="rb_meet" class="search-menu">
+						</select> 
+						<select name="rb_meet" class="search-menu">
 							<option value="" selected>진행 방식</option>
 							<option value="0">온라인</option>
 							<option value="1">오프라인</option>
 							<option value="2">온라인/오프라인</option>
-						</select> <span class="search-menu" id="recruiting_filter_span"><input
-							type="checkbox" id="recruiting_filter" name="recruiting_filter"
-							value="1"><label for="recruiting_filter">모집중 보기</label></span>
+						</select> 
+						<span class="search-menu" id="recruiting_filter_span">
+							<input type="checkbox" id="recruiting_filter" name="recruiting_filter" value="1">
+							<label for="recruiting_filter">모집중 보기</label>
+						</span>
 					</div>
 					<div id="r_btn_div" class="flex-container">
 						<div id="search_key_div" class="search-menu">

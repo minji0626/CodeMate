@@ -33,7 +33,7 @@
 }
 
 /* 검색옵션 */
-span.search-menu.selected, select.search-menu.selected, div.search-menu.selected,
+select.search-menu.selected, div.search-menu.selected,
 	#search_key_div.selected {
 	color: #57d47d;
 	border: 1px solid #57d47d;
@@ -44,12 +44,6 @@ select.search-menu.selected:focus {
 	color: #57d47d;
 	border: 1px solid #57d47d;
 	outline: none;
-}
-
-#recruiting_filter_span.selected {
-	color: #57d47d;
-	border: 1px solid #57d47d;
-	font-weight: 700;
 }
 
 .search-container {
@@ -101,6 +95,15 @@ span.search-menu, select.search-menu {
 
 option {
 	color: black;
+}
+/* 체크 되었을 때 체크 박스 사라짐 */
+input[id="recruiting_filter"]:checked {
+  display: none;
+}
+/* 체크 되었을 때 label 변경 */
+input[id="recruiting_filter"]:checked + label {
+  	color: #57d47d;
+	font-weight: 700;
 }
 
 /*스크롤창*/

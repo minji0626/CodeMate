@@ -262,4 +262,15 @@ $(document).ready(function() {
 	$('.scrollable input[type="checkbox"]').change(function() {
 		updateSkillTags(); // 체크박스 상태 변경 시 함수 호출
 	});
+	
+	document.getElementById('recruiting_filter').addEventListener('change', function() {
+    var span = document.getElementById('recruiting_filter_span');
+    if (this.checked) {
+        span.style.border = '1px solid #57d47d'; // 원하는 border 컬러로 변경
+       
+    } else {
+        span.style.border = '1px solid #ccc'; // 기본 border 컬러로 되돌림
+    }
+});
+	
 });
