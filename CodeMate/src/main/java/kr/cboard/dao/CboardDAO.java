@@ -156,15 +156,13 @@ public class CboardDAO {
 			ResultSet rs = null;
 			List<CboardVO> list = null;
 			String sql = null;
-			String sub_sql = ""; // 이 부분은 필요 없을 것 같습니다.
-			int cnt = 0;
 
 			try {
 				conn = DBUtil.getConnection();
 
-				sql =  "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-						+ "(SELECT * FROM c_board LEFT OUTER JOIN member_detail USING(mem_num) WHERE cb_type=? " 
-						+ sub_sql +" ORDER BY cb_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+				sql =  "SELECT * FROM (SELECT a.* FROM "
+						+ "(SELECT * FROM c_board LEFT OUTER JOIN member_detail USING(mem_num) " 
+					    +" ORDER BY c_board.cb_hit DESC) a) WHERE ROWNUM <= 8 ";
 
 				pstmt = conn.prepareStatement(sql);
 

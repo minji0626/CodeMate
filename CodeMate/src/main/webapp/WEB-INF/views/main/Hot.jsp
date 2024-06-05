@@ -89,29 +89,20 @@
 		<div class="mini-container2">
 			<div class="wrapper2">
 				<div class="mini2">
-					<div class="content2">slide1</div>
+				<c:forEach var="cboard" items="${SlideList2}">
+					<div class="content2">
+					<c:if test="${cboard.cb_type == 1}">개발게시판</c:if>
+					<c:if test="${cboard.cb_type == 0}">자유게시판</c:if>
+					<hr size="2px">
+					<span>${cboard.cb_title}</span>
+					<hr size="2px">
+					<span>등록일</span><span>${cboard.cb_reg_date}</span>
+					<br>
+		            <span>조회수</span><span>${cboard.cb_hit}</span>
+					</div>
+				</c:forEach>
 				</div>
-				<div class="mini2">
-					<div class="content2">slide2</div>
-				</div>
-				<div class="mini2">
-					<div class="content2">slide3</div>
-				</div>
-				<div class="mini2">
-					<div class="content2">slide4</div>
-				</div>
-				<div class="mini2">
-					<div class="content2">slide5</div>
-				</div>
-				<div class="mini2">
-					<div class="content2">slide6</div>
-				</div>
-				<div class="mini2">
-					<div class="content2">slide7</div>
-				</div>
-				<div class="mini2">
-					<div class="content2">slide8</div>
-				</div>
+				
 			</div>
 
 		</div>

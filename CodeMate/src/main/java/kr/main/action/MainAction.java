@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.cboard.dao.CboardDAO;
+import kr.cboard.vo.CboardVO;
 import kr.controller.Action;
 import kr.db.dao.DBDAO;
 import kr.db.vo.FieldVO;
@@ -30,13 +32,16 @@ public class MainAction implements Action{
 		if (count > 0) {
 			SlideList = rdao.getSlideList();
 		}
-		
-		
 
 		request.setAttribute("fieldList", fieldList);
 		request.setAttribute("hskillList", hskillList);
 		request.setAttribute("SlideList", SlideList);
 		request.setAttribute("count", count);
+		
+		CboardDAO cdao = CboardDAO.getInstance();
+		List<CboardVO> SlideList2 = null;
+		SlideList2 = cdao.getSlideListBoard();
+		request.setAttribute("SlideList2",SlideList2);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/main/main.jsp";
