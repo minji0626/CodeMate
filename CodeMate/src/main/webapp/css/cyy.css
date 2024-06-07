@@ -1,315 +1,659 @@
 @charset "utf-8";
 
+
+
+
+
+
+
 /* 카드 슬라이드 */
+
 div#mini-card1 {/* 1 */
+
    position:relative;
+
    top:70px; left:70px;
+
    width:90%; 
+
    margin-bottom:70px;	
+
 }
+
+
 
 .w{/* 설명글 */
+
    width:50%;
+
 }
+
+
 
 .mini-container1 {/* 보여지는 창 */
+
    position:relative;
+
    top:30px;
+
    overflow:hidden;
+
    height:330px;
+
    width:1178px;
+
 }  
+
  .wrapper1 {/* 움직이는 부분 */
+
    height:330px;
+
 }   
+
+
 
 .content1{/* 이미지 */
+
    height:290px;
+
    float:left;
+
    width:250px;
+
    margin:20px;
+
    border:2px solid #d4d4d4;
+
    border-radius:10px;
+
    background-color:#f0f0f0;
+
 } 
 
+
+
 /* .animated{
+
    transition:0.5s ease-out;
+
 } */
+
+
 
 .p1{
+
 	position:relative;
+
 	bottom:150px; right:20px;	
+
 	background:none;
+
 	border:none;
+
 }
+
 .n1{
+
 	position:relative;
+
 	bottom:150px; left:1140px; 
+
 	background:none;
+
 	border:none;
+
 }
+
 /* 더보기 */
+
  a.more{
+
   font-size:12px;
+
   position:relative;
+
   left:1100px; top:15px;
+
 } 
+
 .explain{
+
 	font-size:20px;
+
 	transform:translate3d(5%,180%,0);
+
 }
+
 #back_btn{
+
    transform:translate3d(200%,120%,0);
+
    font-size:13px;
+
    width:70px;
+
    color:white;
+
    border-radius:20px;
+
    background-color:#5aca7c;
+
    padding:2px 13px 2px;
+
 }
+
 /* 2 */
+
 div#mini-card2 {/* 1 */
+
    position:relative;
+
    top:70px; left:70px;
+
    width:90%; 
+
    margin-bottom:70px;	
+
 }
+
+
 
 .w2{/* 설명글 */
+
    width:50%;
+
 }
+
+
 
 .mini-container2 {/* 보여지는 창 */
+
    position:relative;
+
    top:30px;
+
    overflow:hidden;
+
    height:330px;
+
    width:1178px;
+
 }  
+
  .wrapper2 {/* 움직이는 부분 */
+
    height:330px;
+
 }   
 
+
+
 .content2{/* 이미지 */
+
    height:290px;
+
    float:left;
+
    width:250px;
+
    margin:20px;
+
    border:2px solid #d4d4d4;
+
    border-radius:10px;
+
    background-color:#f0f0f0;
+
 } 
 
+
+
 /* .animated{
+
    transition:0.5s ease-out;
+
 } */
 
+
+
 .p2{
+
 	position:relative;
+
 	bottom:150px; right:20px;
+
 	background:none;
+
 	border:none;	
+
 }
+
 .n2{
+
 	position:relative;
+
 	bottom:150px; left:1140px; 
+
 	background:none;
+
 	border:none;
+
 }
+
 /* 더보기 */
+
 #front_btn{
+
    transform:translate3d(200%,120%,0);
+
    font-size:13px;
+
    width:70px;
+
    color:white;
+
    border-radius:20px;
+
    background-color:#5aca7c;
+
    padding:2px 13px 2px;
+
 }
+
+
+
+
 
 
 
 /* 로그인화면*/
+
 /* 헤더 위치 */
+
 #login_logo a{
+
    position:absolute;
+
    top:135px; left:750px;
+
    font-family: "Noto Sans KR", sans-serif;
+
    text-decoration: none;
+
    color: #000000;
+
    font-size: 2.5em;
+
    font-weight: bold;
+
 }
+
 #logo_pic_login{
+
    position:relative;
+
    top:20px;
+
 }
+
+
 
  #login_header {
+
    height : 80px;
+
    margin-top: 30px;
+
    background-color: white;
+
 }
+
+
 
 /*로그인 폼 */
+
 #insert{
+
    position:relative;
+
    top:150px; right:35px;
+
 }
+
 .floating-label input{
+
    border-radius:5px;
+
    margin:20px;
+
 }
+
 .floating-label ul li{
+
    position:relative;
+
    left:20px;
+
 }
+
+
 
 #login_btn{
+
    border:none;
+
    color:white;
+
    background-color:black;
+
    border-radius:10px;
+
    width:300px; height: 40px;
+
    margin:50px;
+
    position:absolute;
+
    top:530px; left:720px;
+
 }
+
+
 
 #find{
+
    text-align:center;
+
    position:relative;
+
    top:300px; right:5px;
+
 } 
+
 #sign_up{
+
    position:relative;
+
    top:350px; right:5px;  
+
    text-align:center;
+
 }
+
+
 
 /* 회원가입 폼 */
+
 #insert_register{
+
    position:relative;
+
    top:100px; left:15px;
+
 }
+
 .info input{
+
    border-radius:5px;
+
    margin:18px;
+
    height:40px;
+
 }
+
+
 
 .floating-label-reg ul li{
+
    position:relative;
+
    left:20px;
+
 }
+
 #register_form input[id="id"]{
+
    width:312px;
+
 }
+
+
 
  #btns{
+
    position:absolute;
+
    top:700px; left:750px;
+
 }
 
+
+
 #reg_btn{
+
    border:none;
+
    color:white;
+
    background-color:black;
+
    border-radius:10px;
+
    width:300px; height: 40px;
+
    margin:50px;
+
    
+
 }
+
 #cancel_btn{
+
    color:blck;
+
    background-color:white;
+
    border-radius:10px;
+
    width:300px; height: 40px;
+
    margin:50px;
+
    position:relative;
+
    top:60px; right:408px;
+
 }
+
  
+
 .info label{
+
    position:relative;
+
    bottom:10px; left:150px;
+
 }
+
+
+
 
 
 .content-main{
+
    height:780px;
+
 }
+
+
 
 #greeting{
+
    position:relative;
+
    top:110px; left:410px;
+
    font-size:0.8em;
+
 }
+
 form{
+
    border:none !important;
+
 }
+
+
 
 /* 슬라이드 글 목록 */
+
 /* 팀원 구하기 */
+
+.rb_category{
+
+	margin-left:5px;
+
+	position:relative;
+
+	top:5px;
+
+}
+
 .project {
+
 	font-size:14px;
+
 	background: #b1db63;
+
 	border-radius:10px;
+
 	padding:4px;
+
 	color:white;
+
 }
+
 .study {
+
 	font-size:14px;
+
 	background: #f5c33b;
+
 	border-radius:10px;
+
 	padding:4px;
+
 	color:white;
+
 }
+
 #endDate{
+
 	transform:translateY(330%);
+
+	margin-left:140px;
+
+	font-size:13px;	 
+
 }
+
+
+
 #line1{
+
 	transform:translateY(390%);
+
 }
+
+
 
 .hit-div{
+
 	margin-bottom:5px;
-	transform:translateY(300%);
-}
-.way{
-	transform:translateY(80%);
-	width:230px;
+
+	font-size:13px;	
+
+	transform:translateY(450%);
+
 }
 
+.way{
+
+	font-size:14px;
+
+	margin-left:5px;
+
+	transform:translateY(140%);
+
+	width:230px;
+
+}
+
+
+
 .link{
+
 	margin:5px;
+
 	cursor: pointer;
+
 }
+
 .rb-title{
+
+	font-size:17px;
+
+	margin-left:8px;
+
 	margin-top:10px;
+
 	transform:translateY(40%);
+
 }
+
 #field{
+
   width: 180px;
+
   white-space: nowrap;
+
   overflow: hidden;
+
   text-overflow: ellipsis; 
+
 }
+
 /* 커뮤니티 */
+
 #middle{
+
 margin-bottom:5px;
+
 	transform:translateY(10%);
+
 	margin:10px 5px 5px 10px;
+
 }
+
 #below{
+
 	margin-bottom:5px;
+
 	transform:translateY(80%);
+
 }
+
 .b{
+
 	margin:10px 5px 5px 10px;
+
 }
+
 .hit{
+
 	position:relative;
+
 	top:10px; left:160px;	
+
 }
