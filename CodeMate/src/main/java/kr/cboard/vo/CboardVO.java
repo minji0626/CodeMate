@@ -33,6 +33,7 @@ public class CboardVO {
 	
 	
 	
+	
 	public String getMem_id() {
 		return mem_id;
 	}
