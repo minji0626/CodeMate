@@ -54,17 +54,19 @@
 									<div class="skill_font_T">${rboard.rb_pj_title}</div>
 									<div class="projectName_font">${rboard.rb_title}</div>
 								</div>
-								<div class="team-right">
-									<input type="button" value="모집글 보기" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
-									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글
-										삭제</div>
-									<div>
+								<div class="team-right-mo">
+								<div class="count">
 										<div class="team-count">신청인원:${rboard.rb_apply_count}명</div>
 										<div>모집마감:${rboard.rb_endRecruit}</div>
-									</div>
+								</div>
+										<div class="right">
+									<input type="button" value="모집글 보기" class="rboard-click" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
+									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>
+									
 									<div class="close-green"
 										onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/member/activation.do?rb_num=${rboard.rb_num}';"
 										data-rbnum="${rboard.rb_num}">활성화</div>
+										</div>
 								</div>
 							</div>
 						</c:if>
