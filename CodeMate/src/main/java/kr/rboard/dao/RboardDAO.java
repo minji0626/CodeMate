@@ -364,7 +364,7 @@ public class RboardDAO {
 		String sub_sql = "";
 		List<String> conditions = null;
 
-		try {
+		try {	
 			// 커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 
@@ -373,14 +373,14 @@ public class RboardDAO {
 
 			// 조건 설정
 			if (r_skills != null && r_skills.length != 0) {
-				String r_skills_string = "";
+				String r_skills_string = "(";
 				for (int i = 0; i < r_skills.length; i++) {
 					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + r_skills[i] + "($|,)')";
 					if (i != r_skills.length - 1) {
 						r_skills_string += " AND ";
 					}
 				}
-				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "'";
+				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "')";
 				conditions.add(r_skills_string);
 			}
 			if (rb_category != null && rb_category != "" && !rb_category.equals("2")) {
@@ -403,7 +403,6 @@ public class RboardDAO {
 			if (!conditions.isEmpty()) {
 				sub_sql += "WHERE " + String.join(" AND ", conditions);
 			}
-			
 
 			// SQL문 작성
 			sql = "SELECT * FROM ( " + "  SELECT a.*, rownum rnum FROM ( "

@@ -120,7 +120,7 @@
 									</div>
 									<div class="r-item-info">
 										<span>진행방식 | </span> <span> <c:if
-												test="$	{rboard.rb_meet == 0}">
+												test="${rboard.rb_meet == 0}">
 					온라인
 					</c:if> <c:if test="${rboard.rb_meet == 1}">
 					오프라인
@@ -151,7 +151,7 @@
 					</ul>
 
 					<!--페이지 표시-->
-					<div class="paging-button" style="display:none;">
+					<div class="paging-button" <c:if test="${count <= 12}">style="display:none;"</c:if>>
 						<input type="button" value="다음글 보기">
 					</div>
 				</c:if>

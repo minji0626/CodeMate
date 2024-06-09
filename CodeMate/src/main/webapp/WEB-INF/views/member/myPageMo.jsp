@@ -61,11 +61,12 @@
 								</div>
 										<div class="right">
 									<input type="button" value="모집글 보기" class="rboard-click" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
-									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>
+									
 									
 									<div class="close-green"
 										onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/member/activation.do?rb_num=${rboard.rb_num}';"
 										data-rbnum="${rboard.rb_num}">활성화</div>
+									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>	
 										</div>
 								</div>
 							</div>
