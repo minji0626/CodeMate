@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
 /*페이지 설정*/
+html {
+	margin-bottom: 60px;
+}
+
 .align-center {
 	text-align: center;
 }
@@ -198,12 +202,14 @@ input[id="recruiting_filter"]:checked+label {
 	/* 요소들이 넘치면 다음 줄로 내려갈 수 있도록 설정 */
 	justify-content: flex-start;
 	/* 요소들을 왼쪽과 오른쪽으로 정렬하여 간격을 두어 배치 */
+	margin-bottom: 30px;
+	margin: 0 auto;
 }
 
 .r-item {
-	width: calc(25% - 58px); /* 각 요소의 너비를 설정하여 한 줄에 4개씩 표시되도록 함 */
+	width: calc(25% - 54px); /* 각 요소의 너비를 설정하여 한 줄에 4개씩 표시되도록 함 */
 	height: 380px;
-	margin: 0 10px 20px 0; /* 좌우 간격은 10px, 아래 간격은 20px, 오른쪽 여백은 없음 */
+	margin: 0 5px 20px 5px; /* 좌우 간격은 10px, 아래 간격은 20px, 오른쪽 여백은 없음 */
 	padding: 20px;
 	border: 2px solid var(--gray-4);
 	border-radius: 12px;
@@ -267,19 +273,20 @@ input[id="recruiting_filter"]:checked+label {
 	border-top: 1px solid var(--gray-4);
 }
 
-/* 댓글 */
-#comment_form {
-	margin: 20px;
+/*페이징 버튼*/
+.paging-button {
+	cursor: pointer;
 }
 
-#comment_form .profile-photo {
-	width: 5%;
-	margin-right: 20px;
-}
-
-#comment_form textarea {
-	width: 85%;
-	padding: 10px;
-	border: 2px solid var(--gray-4);
-	border-radius: 6px;
+.paging-button input[type="button"] {
+	width: calc(100% - 20px);
+	display: block;
+    padding: 10px 20px;
+    border: 2px solid #474747;
+    border-radius: 5px;
+    background-color: white;
+    color: #474747;
+    cursor: pointer;
+    margin: 0 auto 10px;
+    padding: 10px 20px;
 }

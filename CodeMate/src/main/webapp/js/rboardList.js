@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	let rowCount = 12;
-	let currentPage;
+	let currentPage = 1;
 	let count;
 
 	// 페이지처리 함수
