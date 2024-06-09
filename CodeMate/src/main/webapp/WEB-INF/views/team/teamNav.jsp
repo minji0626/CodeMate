@@ -15,7 +15,7 @@ a{
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 230px;
+	width: 12%;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -49,14 +49,14 @@ a{
 
 .profile {
 	width: 86%;
-	height: 230px;
-	border-radius: 5%;
+	height: 200px;
+	border-radius: 8%;
 	background: #FFFFFF;
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 5px;
+	justify-content: center;
 	position: relative;
 }
 
@@ -64,6 +64,8 @@ a{
 #profile-img {
 	margin: 15px auto;
 	border-radius: 50%;
+	width: 33%;
+	height: auto;
 }
 
 /* 팀원, 팀장 지위 (flexbox 이용하여 수평, 수직 정렬) */
@@ -72,9 +74,7 @@ a{
 	height: 10%;
 	font-size: 12px;
 	font-weight: bold;
-	line-height: normal;
 	color: #3D3D3D;
-	text-align: center;
 	border-radius: 294px;
 	background: #D8D8D8;
 	margin-top: 8px;
@@ -83,7 +83,6 @@ a{
 .team_nickname {
 	font-size: 20px;
 	font-weight: bold;
-	line-height: 30px;
 	color: #3D3D3D;
 	margin-top: 10px;
 }
@@ -125,10 +124,10 @@ a{
 		</c:if>
         <div class="team_status">
         	<c:if test="${tm_auth == 3 }">
-        	<p>팀원</p>
+        	<p style="display: flex; justify-content: center;align-items: center;">팀장</p>
         	</c:if>
         	<c:if test="${tm_auth == 4 }">
-        	<p>팀장</p>
+        	<p style="display: flex; justify-content: center;align-items: center;">팀장</p>
         	</c:if>
         </div>
         <span class="team_nickname">${mem_nickname}</span>

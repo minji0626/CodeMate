@@ -92,10 +92,10 @@
         <i class="fas fa-plus"></i>
       </button>
     </div>
-    
     </c:if>
     
 </div>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/team.main.js"></script>
   </body>
 </html>
