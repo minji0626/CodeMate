@@ -29,8 +29,14 @@ public class DeleteRboardAction implements Action {
 			request.setAttribute("notice_url", "detail.do?rb_num=" + rb_num);
 			return "/WEB-INF/views/common/alert_view.jsp";
 		}
+		
+		if (db_rboard.getTeam_status() == 1) {
+			request.setAttribute("notice_msg", "이미 활성화된 팀은 삭제할 수 없습니다");
+			request.setAttribute("notice_url", "detail.do?rb_num=" + rb_num);
+			return "/WEB-INF/views/common/alert_view.jsp";
+		}
 
-		// 로그인한 회원번호와 작성한 회원번호 일치
+		// 로그인한 회원번호와 작성한 회원번호 일치 && 활성화되지 않은 팀일 때
 		rdao.deleteRboard(rb_num);
 
 		return "redirect:/rboard/list.do";

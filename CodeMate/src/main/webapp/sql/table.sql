@@ -303,3 +303,74 @@ FOREIGN KEY (team_num)
 REFERENCES team(team_num);
 
 ALTER TABLE mate_review ADD team_num number;
+
+--mem_report값이 업데이트 될 때 정지취소일을 업데이트 하는 트리거(첫번째 경고)
+CREATE OR REPLACE TRIGGER update_unlock_date1_trigger
+BEFORE UPDATE OF mem_report ON member
+FOR EACH ROW
+BEGIN
+  -- 특정 조건에 맞을 때만 실행
+  IF :NEW.mem_auth = 1 AND :NEW.mem_report = 1 THEN
+    :NEW.mem_unlock_date := SYSTIMESTAMP + INTERVAL '7' DAY;
+  END IF;
+END;
+
+--mem_report값이 업데이트 될 때 정지취소일을 업데이트 하는 트리거(두번째 경고)
+CREATE OR REPLACE TRIGGER update_unlock_date2_trigger
+BEFORE UPDATE OF mem_report ON member
+FOR EACH ROW
+BEGIN
+  -- 특정 조건에 맞을 때만 실행
+  IF :NEW.mem_auth = 1 AND :NEW.mem_report = 2 THEN
+    :NEW.mem_unlock_date := SYSTIMESTAMP + INTERVAL '14' DAY;
+  END IF;
+END;
+
+--mem_report값이 업데이트 될 때 정지취소일을 업데이트 하는 트리거(세번째 경고)
+CREATE OR REPLACE TRIGGER update_unlock_date3_trigger
+BEFORE UPDATE OF mem_report ON member
+FOR EACH ROW
+BEGIN
+  -- 특정 조건에 맞을 때만 실행
+  IF :NEW.mem_auth = 1 AND :NEW.mem_report = 3 THEN
+    :NEW.mem_unlock_date := SYSTIMESTAMP + INTERVAL '30' DAY;
+  END IF;
+END;
+
+--mem_report값이 업데이트 될 때 정지취소일을 업데이트 하는 트리거(네번째 경고)
+CREATE OR REPLACE TRIGGER update_unlock_date4_trigger
+BEFORE UPDATE OF mem_report ON member
+FOR EACH ROW
+BEGIN
+  -- 특정 조건에 맞을 때만 실행
+  IF :NEW.mem_auth = 1 AND :NEW.mem_report = 4 THEN
+    :NEW.mem_unlock_date := NULL;
+  END IF;
+END;
+
+--정지취소일이 지나면 자동으로 mem_auth값을 2로 변경하는 스케줄러
+BEGIN
+  DBMS_SCHEDULER.create_job (
+    job_name        => 'UNLOCK_MEM_JOB',
+    job_type        => 'PLSQL_BLOCK',
+    job_action      => 'BEGIN
+                          UPDATE member
+                          SET mem_auth = 2, mem_unlock_date = null
+                          WHERE mem_unlock_date < SYSTIMESTAMP AND mem_auth = 1;
+                        END;',
+    start_date      => SYSTIMESTAMP,
+    repeat_interval => 'FREQ=MINUTELY; INTERVAL=1', -- 1분마다 실행
+    enabled         => TRUE
+  );
+END;
+
+--mem_auth값이 변경되면 mem_unlock_date를 null로 변경하는 트리거
+CREATE OR REPLACE TRIGGER update_after_unlock_trigger
+BEFORE UPDATE OF mem_auth ON member
+FOR EACH ROW
+BEGIN
+  -- 특정 조건에 맞을 때만 실행
+  IF :NEW.mem_auth = 2 THEN
+    :NEW.mem_unlock_date := null;
+  END IF;
+END;

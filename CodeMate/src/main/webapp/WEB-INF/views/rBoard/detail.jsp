@@ -63,8 +63,8 @@
 							<div id="header_btn_div">
 								<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
 								<input type="button" value="수정하기" id="modify_btn" class="btn-basic btn" onclick='location.href="modifyForm.do?rb_num=${rboard.rb_num}"'>
-								</c:if>
 								<input type="button" value="삭제하기" id="delete_btn" class="btn-cancel btn" onclick='deleteRboard(${rboard.rb_num})'>
+								</c:if>
 							</div>
 							<script>
 							//글삭제
