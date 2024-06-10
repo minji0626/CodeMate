@@ -19,6 +19,7 @@ public class LogoutAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		//로그아웃 처리
+		session.invalidate();
 		SessionManager.invalidateUserSession(mem_num);
 		//메인으로 리다이렉트
 		return "redirect:/main/main.do";
