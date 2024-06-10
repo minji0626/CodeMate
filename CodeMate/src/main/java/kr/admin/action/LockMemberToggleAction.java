@@ -11,7 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
-import kr.util.SessionManager;
+//import kr.util.SessionManager;
 
 public class LockMemberToggleAction implements Action {
 
