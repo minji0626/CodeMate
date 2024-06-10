@@ -55,7 +55,7 @@
 										<td>${list.rb_num}</td>
 										<td><a href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${list.rb_num}'>${list.rb_title}</a></td>
 										<td>${list.mem_nickname}</td>
-										
+										<td></td>
 										<td>
 											<button id="delete_community" class="deleteMemberBtn" data-cbnum="${community.cb_num}">삭제</button>
 										</td>
