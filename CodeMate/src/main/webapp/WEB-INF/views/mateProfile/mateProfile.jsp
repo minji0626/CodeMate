@@ -23,8 +23,6 @@
             <!-- 메이트 프로필 제목 -->
             <div class="mp_view_title">
                 <h2>메이트 프로필</h2>
-                <!-- 메이트 프로필 창 닫기 -->
-                <div class="mp_view_close">X</div>
             </div>
             <!-- 메이트 프로필 본문 -->
             <div class="content">
@@ -168,7 +166,7 @@
 	                       <div class="mp_content"><p>비공개 정보입니다.</p></div>
 	                 </c:if>
 	                 <c:if test="${member.mp_state==1}">
-	                 	<c:if test="${!empty mateExpList}"> 	
+	                 	<c:if test="${!empty mateReviewList}"> 	
 		                 	<c:forEach var="mr" items="${mateReviewList}" varStatus="loop">
 							    <c:if test="${loop.index < 5}">
 							        <div class="mp_project">
