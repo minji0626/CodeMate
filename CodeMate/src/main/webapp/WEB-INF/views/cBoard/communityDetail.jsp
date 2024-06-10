@@ -120,6 +120,7 @@
 				<div id="container_re">
 					<form id="comment_form">
 						<input type="hidden" id="cb_num" name="cb_num" value="${board.cb_num}" >
+						<input type="hidden" id="cb_type" name="cb_type" value="${board.cb_type}">
 						<div class="form-group">
 							<textarea name="cc_content" id="cc_content" placeholder="댓글을 입력하세요." rows="3" cols="78" class="form-control"></textarea>
 							<input type="submit" value="등록" class="btn btn-primary">

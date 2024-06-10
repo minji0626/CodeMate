@@ -810,6 +810,38 @@ public class CboardDAO {
 
 			return list;
 		}
+		
+		// 댓글의 cb_type
+		public int commentBoardType(int cc_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int cb_type = -1;
+
+			try {
+				conn = DBUtil.getConnection();
+
+				sql = "SELECT cb_type FROM c_board JOIN c_comment USING(cb_num) WHERE cc_num=?";
+
+				pstmt = conn.prepareStatement(sql);
+		
+				pstmt.setInt(1, cc_num);
+				
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					cb_type= rs.getInt(1);
+				}
+			} catch(Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return cb_type;
+		}
+		
+
 
 
 }

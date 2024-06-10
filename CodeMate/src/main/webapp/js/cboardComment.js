@@ -51,7 +51,7 @@ $(function() {
         $.ajax({
             url: 'commentsList.do',
             type: 'get',
-            data: { cb_num: $('#cb_num').val() },
+            data: { cb_num: $('#cb_num').val(), cb_type: $('#cb_type').val()},
             dataType: 'json',
             success: function(param) {
                 let output = '';
@@ -64,8 +64,13 @@ $(function() {
 					} else {
 						output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
 					}
+					
+                    if(param.cb_type===0){
+						output += 	'<span> 코메 </span>';
+					} else if(param.cb_type==1) {
+						output += '<span>' + item.mem_nickname + '</span>';
+					}
                     
-                    output += '<span>' + item.mem_nickname + '</span>';
                     
                     if(item.cc_modify_date){
                         output += '<span class="modify-date">수정 : ' + item.cc_modify_date + '</span>';

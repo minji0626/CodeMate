@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.cboard.dao.CboardDAO;
+import kr.cboard.vo.CboardVO;
 import kr.cboard.vo.CcommentVO;
 import kr.controller.Action;
 
@@ -29,6 +30,11 @@ public class CommentsListAction implements Action {
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
 		mapAjax.put("commentsList", commentsList);
 		mapAjax.put("mem_num", mem_num);
+		
+		CboardVO board = cdao.detailCboard(cb_num);
+		
+		int cb_type= board.getCb_type();
+		mapAjax.put("cb_type", cb_type);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
