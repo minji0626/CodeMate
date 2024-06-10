@@ -49,7 +49,9 @@
                         <!-- 아이디 옆 이미지 추가하기 -->
                         <img>
                     </div>
-                    <button class="mp_view_modify" onclick="location.href='mateProfileForm.do?mem_num=${mem.mem_num}'"><span>수정하기</span> </button>     
+                    <c:if test="${member.mem_num==mem_num}">
+                    	<button class="mp_view_modify" onclick="location.href='mateProfileForm.do?mem_num=${mem.mem_num}'"><span>수정하기</span> </button>
+                    </c:if>     
                 </div>
                 <!-- 포지션 DIV -->
                 <!-- 
@@ -147,7 +149,9 @@
 							            <form action="deleteEXP.do" method="post">
 							                <input type="hidden" name="me_num" value="${exp.me_num}">
 							                <input type="hidden" name="mem_num" value="${user_num}">
+							                <c:if test="${member.mem_num==mem_num}">
 							                <button type="submit" class="delete-btn">삭제</button>
+							                </c:if>
 							            </form>
 							        </div>
 							    </c:if>
@@ -181,8 +185,6 @@
 	                 	</c:if>
 	                 </c:if>
                 </div>
-                <!-- 닫기 버튼 -->
-                <button class="mp_view_close" id="close-btn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"> <span>닫기</span> </button>
 
             </div>
         </div>
