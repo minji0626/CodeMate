@@ -64,21 +64,19 @@
 									
 									
 									<div class="close-green"
-										onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/member/activation.do?rb_num=${rboard.rb_num}';"
+										
 										data-rbnum="${rboard.rb_num}">활성화</div>
 									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>
 										</div>
 								</div>
 							</div>
 						</c:if>
-						
-						
-						
 					</c:forEach>
+					
 					<c:forEach var="rboard" items="${rboardList}">
 						<c:if test="${rboard.team_status==1}"><%--/team/teamMain.do?team_num=${rboard.team_num} --%>
 							<div class="myPage-line-box"
-								onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do?rb_num=${rboard.rb_num}'"
+								onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'"
 								style="cursor: pointer; background-color: #e6e6e6;">
 								<div class="team-left">
 									<div class="skill_font_T">${rboard.rb_pj_title}</div>

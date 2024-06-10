@@ -54,8 +54,9 @@
 	        </div>
         </c:if>
     </c:forEach>
+ 
     <c:forEach var="myteam" items="${team}">
-    	<c:if test="${myteam.team_status==0}">
+    	<c:if test="${myteam.team_status==3}">
 	        <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer; background-color: #e6e6e6;">
 	        <div class="team-left">
 	        	<div class="skill_font_T"></div>

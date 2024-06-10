@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 import kr.controller.Action;
 import kr.rboard.dao.ApplyDAO;
 import kr.rboard.vo.RapplyVO;
@@ -24,9 +26,9 @@ public class ActivationAction  implements Action{
 		// 로그인 체크
 		Integer login_num = (Integer)session.getAttribute("mem_num");
 		if(login_num == null) { // 로그인이 되지 않은 경우
-			request.setAttribute("notice_msg","로그인 하세요!");
-			request.setAttribute("notice_url", "redirect:/member/loginForm.do");
-			return "/WEB-INF/views/common/alert_view.jsp";
+			mapAjax.put("result", "logout");
+			
+			
 		}  
 
 		request.setCharacterEncoding("utf-8");
@@ -37,17 +39,17 @@ public class ActivationAction  implements Action{
 		boolean check = dao.minimumTeamMember(rb_num);
 		if(check) {
 			dao.teamActivation(rb_num);
-			request.setAttribute("notice_msg","프로젝트가 활성화되었습니다!");
-			request.setAttribute("notice_url", request.getContextPath()+"/member/myPageMo.do");
-			return "/WEB-INF/views/common/alert_view.jsp";
+			mapAjax.put("result", "success");
 		} else {
-			request.setAttribute("notice_msg","최소 한 명의 팀원이 필요합니다!");
-			request.setAttribute("notice_url", request.getContextPath()+"/member/myPageMo.do");
-			return "/WEB-INF/views/common/alert_view.jsp";
+			mapAjax.put("result", "noMember");
 		}
 		
+		ObjectMapper mapper = new ObjectMapper();
+        String ajaxData = mapper.writeValueAsString(mapAjax);
+        request.setAttribute("ajaxData", ajaxData);
 
-
+        return "/WEB-INF/views/common/ajax_view.jsp";
+		
 
 	}
 
