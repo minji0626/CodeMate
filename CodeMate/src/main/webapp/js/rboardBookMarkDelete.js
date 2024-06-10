@@ -3,6 +3,9 @@ $(function(){
 	$('.delete-green').on('click', function(event) {
 		// '북마크 삭제' 버튼 클릭 이벤트
 		event.stopPropagation();
+		
+		var check = confirm("북마크를 제거하시겠습니까?");
+		if(check){
         // 서버와 통신
         $.ajax({
             url: 'deleteMyPageBookMark.do', 
@@ -13,7 +16,7 @@ $(function(){
                 if (param.result === 'logout') {
                     alert('로그인 후 사용하세요!');
                 } else if (param.result === 'success') {
-                    alert('북마크 제거');
+                   /* alert('북마크 제거');*/
                     location.reload(); 
                 } else {
                     alert('북마크 제거 실패');
@@ -23,5 +26,6 @@ $(function(){
                 alert('네트워크 오류 발생');
             }
         });
+        }
     });
 });

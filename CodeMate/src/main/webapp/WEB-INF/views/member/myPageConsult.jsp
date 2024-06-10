@@ -43,7 +43,7 @@
 </c:if>
 <c:if test="${!empty consultList}">
 <c:forEach var="consult" items="${consultList}">
-    <div class="myPage-line-box" data-type="<c:out value="${consult.cs_category}"/>">
+    <div class="myPage-line-box" data-type="<c:out value="${consult.cs_category}"/>" onclick="">
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${consult.cs_category == 0}">

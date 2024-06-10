@@ -72,10 +72,7 @@
 							</div>
 						</c:if>
 						
-						<c:if test="${rboard.team_status== 1}">
-							<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${rboard.team_num}'"
-								style="cursor: pointer;"></div>
-						</c:if>
+						
 						
 					</c:forEach>
 					<c:forEach var="rboard" items="${rboardList}">

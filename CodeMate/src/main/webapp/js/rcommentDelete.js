@@ -1,6 +1,9 @@
 $(function() {
     $('.myDelete_btn').on('click', function(event) {
 		event.stopPropagation();
+		
+		var check = confirm("정말 삭제하시겠습니까?");
+		if(check){
         // 서버와 통신
         $.ajax({
             url: 'deleteMyPageRcomment.do',
@@ -21,5 +24,6 @@ $(function() {
                 alert('네트워크 오류 발생');
             }
         });
+        }
     });
 });
