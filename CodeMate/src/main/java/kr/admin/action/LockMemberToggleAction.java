@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
-import kr.member.dao.MemberDAO2;
+import kr.member.dao.MemberDAO;
 
 public class LockMemberToggleAction implements Action {
 
@@ -33,7 +33,7 @@ public class LockMemberToggleAction implements Action {
 			request.setCharacterEncoding("utf-8");
 			int lock_mem_num = Integer.parseInt(request.getParameter("mem_num"));
 			int locked = Integer.parseInt(request.getParameter("locked")); //0:정지 안됨, 1:정지됨 
-			MemberDAO2 mdao = MemberDAO2.getInstance();
+			MemberDAO mdao = MemberDAO.getInstance();
 			mdao.lockMemberToggle(lock_mem_num, locked);
 			if (locked == 0) {
 				mapAjax.put("result_msg", "회원 정지에 성공했습니다.");				

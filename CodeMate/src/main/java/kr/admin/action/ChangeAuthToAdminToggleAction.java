@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
-import kr.member.dao.MemberDAO2;
+import kr.member.dao.MemberDAO;
 
 public class ChangeAuthToAdminToggleAction implements Action {
 
@@ -34,7 +34,7 @@ public class ChangeAuthToAdminToggleAction implements Action {
 			int change_mem_num = Integer.parseInt(request.getParameter("mem_num"));
 			int change_mem_auth = Integer.parseInt(request.getParameter("mem_auth")); // 0:정지 안됨, 1:정지됨
 			
-			MemberDAO2 mdao = MemberDAO2.getInstance();
+			MemberDAO mdao = MemberDAO.getInstance();
 			mdao.changeAuthToAdminToggle(change_mem_num, change_mem_auth);
 			if (change_mem_auth == 9) { //관리자 -> 일반회원
 				mapAjax.put("result_msg", "회원을 일반회원으로 변경했습니다.");
