@@ -19,6 +19,11 @@
     width:80%;
 }
 
+button, #modify-btn, #close-btn, #insert-btn{
+	cursor:pointer;
+}
+
+
 /********************************
 /*메이트 프로필 모달 창 제목 바 DIV*/
 .mp_view_title {
@@ -92,7 +97,8 @@
 	margin-left: 20px;
     padding-top: 15px;
     margin-right: 20px;
-    margin-bottom:40px; 
+    margin-bottom:50px; 
+    min-height:90px;
 	 
 }
 
@@ -100,7 +106,7 @@
 .mp_content {
     border-radius: 8px;
     background: #e0e0e0;
-    min-height:100px;
+    min-height:90px;
 }
 
 .mp_content p, .mp_mate_review p, .mp_project p {
@@ -131,7 +137,7 @@
     border-radius: 8px;
 	background: #e0e0e0;
 	width: 100%;
-	min-height:100px;
+	min-height:120px;
 	border:none;
 }
 
@@ -413,4 +419,16 @@ option {
 	padding: 2px 4px;
 	border-radius: 2px;
 	font-size: 10pt;
+}
+
+.in_introduce {
+    padding: 10px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#mp_introduce.in_introduce {
+    padding: 10px;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }

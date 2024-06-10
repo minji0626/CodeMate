@@ -130,6 +130,9 @@
 	margin: 0 auto;
 }
 
+button{
+	cursor:pointer;
+}
 
 /*****************************/
 /*버튼*/
