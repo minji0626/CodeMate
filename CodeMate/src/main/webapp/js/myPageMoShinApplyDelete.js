@@ -1,5 +1,0 @@
-$(function(){
-	 $(".no").click(function() {
-	
-    });
-});
