@@ -8,7 +8,10 @@ import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.rboard.dao.RboardDAO;
+import kr.rboard.dao.rBoardDAO2;
 import kr.rboard.vo.RboardVO;
+import kr.tboard.dao.TboardDAO;
+import kr.tmember.vo.TmemberVO;
 import kr.util.FileUtil;
 
 public class DeleteUserAction implements Action{
@@ -39,16 +42,21 @@ public class DeleteUserAction implements Action{
 		//사용자가 입력한 아이디가 존재하고 로그인한 아이디와 일치하는지 체크,
 		
 		
-		RboardDAO rdao = RboardDAO.getInstance();
+		rBoardDAO2 rdao = rBoardDAO2.getInstance();//후에 RboardDAO로 바꾸기!!
+		TboardDAO tdao = TboardDAO.getInstance();
+		TmemberVO t_member = tdao.getTmemberAuth(mem_id);
 		
+		int tm_auth = t_member.getTm_auth();
 		
-		if(check) {//인증 성공
+		if(check && tm_auth!=4) {//인증 성공 + 팀장이 아님
 			//회원정보 삭제
 			dao.deleteMember(mem_num);
 			//프로필 사진 삭제				디비나 세션중에서 photo빼와도됨(여기선 디비 사용)
 			FileUtil.removeFile(request, db_member.getMem_photo());
 			//Rboard 삭제
 			rdao.deleteUserRboard(mem_id);
+			//Tboard 삭제
+			tdao.deleteTeamMember(mem_id);
 			//로그아웃
 			session.invalidate();
 		}
