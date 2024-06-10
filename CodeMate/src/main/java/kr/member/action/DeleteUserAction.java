@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.cboard.dao.CboardDAO;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
@@ -43,8 +44,12 @@ public class DeleteUserAction implements Action{
 		
 		
 		rBoardDAO2 rdao = rBoardDAO2.getInstance();//후에 RboardDAO로 바꾸기!!
+		
+		//팀 내 등급 확인
 		TboardDAO tdao = TboardDAO.getInstance();
 		TmemberVO t_member = tdao.getTmemberAuth(mem_id);
+		
+		CboardDAO cdao = CboardDAO.getInstance();
 		
 		int tm_auth = t_member.getTm_auth();
 		
@@ -57,6 +62,8 @@ public class DeleteUserAction implements Action{
 			rdao.deleteUserRboard(mem_id);
 			//Tboard 삭제
 			tdao.deleteTeamMember(mem_id);
+			//Cboard 삭제
+			cdao.deleteUserCboard(mem_id);
 			//로그아웃
 			session.invalidate();
 		}
@@ -64,9 +71,6 @@ public class DeleteUserAction implements Action{
 		//인증 실패
 		request.setAttribute("check", check);
 		//JSP 경로 반환
-		
-		
-		
 		return "/WEB-INF/views/member/deleteUser.do";
 	}
 
