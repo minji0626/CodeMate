@@ -17,6 +17,7 @@ public class DeleteUserFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
+		request.setAttribute("mem_num", mem_num);
 		return "/WEB-INF/views/member/deleteUserForm.jsp";
 	}
 

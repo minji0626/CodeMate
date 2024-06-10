@@ -268,6 +268,86 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	// 회원 탈퇴 시 rbaord 관련 정보 삭제 - 예영작성
+	public void deleteUserRboard(int mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null; // 북마크
+		PreparedStatement pstmt2 = null; // 댓글
+		/*
+		 * PreparedStatement pstmt3 = null; // 모집스킬 PreparedStatement pstmt4 = null; //
+		 * 모집필드 PreparedStatement pstmt5 = null; // 팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
+		 * PreparedStatement pstmt6 = null; // apply레코드는 지우지 않고 rb_num만 null되게
+		 * PreparedStatement pstmt7 = null; // 모집글
+		 */		List<RboardVO> list = null;
+
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+
+			// 북마크 삭제
+			sql = "DELETE FROM r_bookmark WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.executeUpdate();
+
+			// 댓글 삭제
+			sql = "DELETE FROM r_comment WHERE mem_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, mem_num);
+			pstmt2.executeUpdate();
+			
+			list = new ArrayList<RboardVO>();
+			list = getRboardListByMemNum(mem_num);
+			
+			for (RboardVO rboard : list) {
+				int rb_num = rboard.getRb_num();
+				deleteRboard(rb_num);
+			}
+
+			/*
+			 * // 모집스킬 삭제 sql = "DELETE FROM r_skill WHERE mem_num=?"; pstmt3 =
+			 * conn.prepareStatement(sql); pstmt3.setInt(1, mem_num);
+			 * pstmt3.executeUpdate();
+			 * 
+			 * // 모집필드 삭제 sql = "DELETE FROM r_field WHERE mem_num=?"; pstmt4 =
+			 * conn.prepareStatement(sql); pstmt4.setInt(1, mem_num);
+			 * pstmt4.executeUpdate();
+			 * 
+			 * // 모집이 마감되지 않은 글(0)은 team테이블에서도 삭제 sql = "DELETE FROM team WHERE mem_num=?";
+			 * pstmt5 = conn.prepareStatement(sql); pstmt5.setInt(1, mem_num);
+			 * pstmt5.executeUpdate();
+			 * 
+			 * // 모집이 마감된 글은 team
+			 * 
+			 * // apply레코드는 지우지 않고 rb_num만 null되게 sql = "UPDATE r_apply " +
+			 * "SET rb_num = null " + "WHERE mem_num=?"; pstmt6 =
+			 * conn.prepareStatement(sql); pstmt6.setInt(1, mem_num);
+			 * pstmt6.executeUpdate();
+			 * 
+			 * // 모집글 삭제 sql = "DELETE FROM r_board WHERE mem_num=?"; pstmt7 =
+			 * conn.prepareStatement(sql); pstmt7.setInt(1, mem_num);
+			 * pstmt7.executeUpdate();
+			 */
+
+			conn.commit();
+
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+//			DBUtil.executeClose(null, pstmt7, null);
+//			DBUtil.executeClose(null, pstmt6, null);
+//			DBUtil.executeClose(null, pstmt5, null);
+//			DBUtil.executeClose(null, pstmt4, null);
+//			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+	}
 
 	// rboard 개수 구하기
 	public int getRboardCount(String[] r_skills, String rb_category, String r_fields, String rb_meet,
@@ -1211,9 +1291,7 @@ public class RboardDAO {
 	public List<RboardVO> getListBoardManage(int start, int end, String keyfield, String keyword) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
-		ResultSet rs2 = null;
 		List<RboardVO> list = null;
 		String sql = null;
 		String sub_sql = ""; // 이 부분은 필요 없을 것 같습니다.
@@ -1246,33 +1324,21 @@ public class RboardDAO {
 			list = new ArrayList<RboardVO>();
 			while (rs.next()) {
 				RboardVO board = new RboardVO();
-				
 				board.setRb_num(rs.getInt("rb_num"));
-				int rb_num = rs.getInt("rb_num");
 				board.setRb_title(StringUtil.useNoHTML(rs.getString("rb_title")));
 				board.setMem_nickname(rs.getString("mem_nickname"));
 				board.setRb_reg_date(rs.getDate("Rb_reg_date"));
 				board.setMem_num(rs.getInt("mem_num"));
-				sql = "SELECT team_status FROM team WHERE team_num=?";
-				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setInt(1, rb_num);
-				rs2 = pstmt2.executeQuery();
-				if(rs2.next()) {
-					board.setTeam_status(rs2.getInt("team_status"));
-				}
-				
 				list.add(board);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(rs2, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 
 		return list;
 	}
-	
 
 
 }

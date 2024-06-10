@@ -508,7 +508,7 @@ public class MemberDAO {
 				conn =DBUtil.getConnection();
 				conn.setAutoCommit(false);
 				//member의 auth값 변경
-				sql = "UPDATE member SET auth=0 WHERE mem_num=?";
+				sql = "UPDATE member SET mem_auth=0 WHERE mem_num=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, mem_num);
 				pstmt.executeUpdate();

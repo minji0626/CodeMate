@@ -507,8 +507,8 @@ public class TboardDAO {
 				pstmt.setString(1, mem_id);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					TmemberVO tmember = new TmemberVO();
-					tmember.setTm_auth(rs.getInt("tm_auth"));
+					auth = new TmemberVO();
+					auth.setTm_auth(rs.getInt("tm_auth"));
 				}
 			} catch (Exception e) {
 				throw new Exception(e);

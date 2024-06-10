@@ -35,7 +35,8 @@ $(function(){
 		</div>
 		
 		<div class="login_main">
-		<form id="login_form" action="logout.do" method="post"><!-- login에서 폼 가져온거라 action만 logout.do로 보냄 -->
+		<form id="login_form" action="deleteUser.do" method="post"><!-- login에서 폼 가져온거라 action만 logout.do로 보냄 -->
+		<input type="hidden" name="mem_num" value="${mem_num}">
 			<ul id="insert">
 				<li class="floating-label">
 					<input type="text" class="form-input" placeholder="아이디" 
