@@ -63,9 +63,9 @@ public class CboardDAO {
 			if(keyword!=null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) {
 					sub_sql += "AND cb_title LIKE '%' || ? || '%'"; 
-				} else if(keyfield.equals("2")) {
+				} else if(keyfield.equals("3")) {
 					sub_sql += "AND mem_nickname LIKE '%' || ? || '%'";
-				} else if(keyfield.equals("3")) sub_sql += "AND cb_content LIKE '%' || ? || '%'";
+				} else if(keyfield.equals("2")) sub_sql += "AND cb_content LIKE '%' || ? || '%'";
 			}
 
 			sql = "SELECT COUNT(*) FROM c_board JOIN member_detail USING(mem_num) WHERE cb_type=? " + sub_sql;
@@ -109,9 +109,9 @@ public class CboardDAO {
 			if(keyword!=null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) {
 					sub_sql += "AND cb_title LIKE '%' || ? || '%'"; 
-				} else if(keyfield.equals("2")) {
+				} else if(keyfield.equals("3")) {
 					sub_sql += "AND mem_nickname LIKE '%' || ? || '%'";
-				} else if(keyfield.equals("3")) sub_sql += "AND cb_content LIKE '%' || ? || '%'";
+				} else if(keyfield.equals("2")) sub_sql += "AND cb_content LIKE '%' || ? || '%'";
 			}
 
 			sql =  "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM c_board LEFT OUTER JOIN member_detail USING(mem_num) WHERE cb_type=? " + sub_sql +" ORDER BY cb_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
