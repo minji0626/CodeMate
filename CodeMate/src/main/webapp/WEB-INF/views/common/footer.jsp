@@ -110,7 +110,10 @@
 
 		<div class="flex">
 			<div class="main_page">
-				<a href="${pageContext.request.contextPath}/main/main.do"><b>메인</b></a>
+			<ul>
+				<li><a href="${pageContext.request.contextPath}/main/main.do"><b>메인</b></a></li>
+				<li style="margin-top: 25%;"><a href="${pageContext.request.contextPath}/main/intro.do"><b>코메 사용설명서</b></a></li>
+			</ul>
 			</div>
 
 			<div class="my_page">
