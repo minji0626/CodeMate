@@ -1,7 +1,7 @@
 $(function() {
 	/* 나의 모집글 삭제 */
 	$('.delete-green').on('click', function(event) {
-		// '모집글 삭제' 버튼 클릭 이벤트
+		
 		event.stopPropagation();
 
 		var check = confirm("정말 삭제하시겠습니까?");

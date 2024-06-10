@@ -61,14 +61,14 @@
 
                 <div class="mp_content_div">
                     <h4>포지션</h4>
-                    <div class="mp_content">
-                    	<input type="text" name="mp_position" id="mp_position" <c:if test="${!empty member.mp_position}">value="${member.mp_position}"</c:if> class="in_position">
+                    <div class="">
+                      <textarea name="mp_position" id="mp_position" class="in_introduce"> <c:if test="${!empty member.mp_position}">${member.mp_position}</c:if></textarea>
                     </div>
                 </div>
                 <!-- 자기소개 DIV -->
                 <div class="mp_content_div">
                     <h4>자기소개</h4>
-                    <div class="mp_content">
+                    <div class="">
                         <textarea name="mp_introduce" id="mp_introduce" class="in_introduce"><c:if test="${!empty member.mp_introduce}">${member.mp_introduce}</c:if></textarea>
                     </div>
                 </div>

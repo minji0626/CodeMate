@@ -60,9 +60,13 @@
 		            <div class="search-container">
 		                <select name="keyfield" class="search-select">
 		                    <option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
-		                    <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>
-		                    <option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
+		                    
+		                    <option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>내용</option>
+		                    <c:if test="${cb_type==1}">
+		                    	<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>작성자</option>
+		                    </c:if>
 		                </select>
+		                <input type="hidden" name="cb_type" value="${cb_type}">
 		                <input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input">
 		                <input type="submit" value="검색" class="search-submit">
 		            </div>
@@ -79,7 +83,9 @@
 		                    <tr>
 		                        <th>번호</th>
 		                        <th>제목</th>
+		                        <c:if test="${cb_type==1}">
 		                        <th>작성자</th>
+		                        </c:if>
 		                        <th>작성일</th>
 		                        <th>조회수</th>
 		                    </tr>
@@ -89,9 +95,6 @@
 		                        <tr>
 		                            <td>${cboard.cb_num}</td>
 		                            <td><a href="${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
-		                            <c:if test="${cboard.cb_type==0}">
-		                            	<td>코메</td>
-		                            </c:if>
 		                            <c:if test="${cboard.cb_type==1}">
 		                            	<td><a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${cboard.mem_num}">${cboard.mem_nickname}</a></td>
 		                            </c:if>

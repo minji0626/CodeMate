@@ -43,7 +43,7 @@
 				<c:if test="${empty rboardList}">
 					<div class="none_messgae">나의 모집글이 없습니다</div>
 				</c:if>
-
+				
 				<c:if test="${!empty rboardList}">
 					<c:forEach var="rboard" items="${rboardList}">
 						<c:if test="${rboard.team_status==0}">
@@ -66,12 +66,17 @@
 									<div class="close-green"
 										onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/member/activation.do?rb_num=${rboard.rb_num}';"
 										data-rbnum="${rboard.rb_num}">활성화</div>
-									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>	
+									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>
 										</div>
 								</div>
 							</div>
 						</c:if>
-
+						
+						<c:if test="${rboard.team_status== 1}">
+							<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${rboard.team_num}'"
+								style="cursor: pointer;"></div>
+						</c:if>
+						
 					</c:forEach>
 					<c:forEach var="rboard" items="${rboardList}">
 						<c:if test="${rboard.team_status==1}">

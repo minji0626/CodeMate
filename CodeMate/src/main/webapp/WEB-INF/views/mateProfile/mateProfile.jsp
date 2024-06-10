@@ -23,8 +23,6 @@
             <!-- 메이트 프로필 제목 -->
             <div class="mp_view_title">
                 <h2>메이트 프로필</h2>
-                <!-- 메이트 프로필 창 닫기 -->
-                <div class="mp_view_close">X</div>
             </div>
             <!-- 메이트 프로필 본문 -->
             <div class="content">
@@ -45,13 +43,15 @@
                     <div class="mp_account_nickname">
                         <span class="user_nickname">${member.mem_nickname}</span>
                         <!-- 레벨 이미지 추가하기 -->
-                        <img>
+                        <span class="user_level">${member.mem_level }</span>
                         <br>
                         <span class="user_id">${mem.mem_id}</span>
                         <!-- 아이디 옆 이미지 추가하기 -->
                         <img>
                     </div>
-                    <button class="mp_view_modify" onclick="location.href='mateProfileForm.do?mem_num=${mem.mem_num}'"><span>수정하기</span> </button>     
+                    <c:if test="${member.mem_num==mem_num}">
+                    	<button class="mp_view_modify" onclick="location.href='mateProfileForm.do?mem_num=${mem.mem_num}'"><span>수정하기</span> </button>
+                    </c:if>     
                 </div>
                 <!-- 포지션 DIV -->
                 <!-- 
@@ -149,7 +149,9 @@
 							            <form action="deleteEXP.do" method="post">
 							                <input type="hidden" name="me_num" value="${exp.me_num}">
 							                <input type="hidden" name="mem_num" value="${user_num}">
+							                <c:if test="${member.mem_num==mem_num}">
 							                <button type="submit" class="delete-btn">삭제</button>
+							                </c:if>
 							            </form>
 							        </div>
 							    </c:if>
@@ -168,12 +170,12 @@
 	                       <div class="mp_content"><p>비공개 정보입니다.</p></div>
 	                 </c:if>
 	                 <c:if test="${member.mp_state==1}">
-	                 	<c:if test="${!empty mateExpList}"> 	
+	                 	<c:if test="${!empty mateReviewList}"> 	
 		                 	<c:forEach var="mr" items="${mateReviewList}" varStatus="loop">
 							    <c:if test="${loop.index < 5}">
 							        <div class="mp_project">
-							            <h4 class="pj_name">리뷰 등록일 : ${mr.mr_reg_date }</h4> 
-							            <p class="pj_content">내용 : ${mr.mr_content}</p>
+							            <h4 class="pj_name">내용 : ${mr.mr_content}</h4> 
+							            <p class="pj_content">리뷰 등록일 : ${mr.mr_reg_date }</p>
 							        </div>
 							    </c:if>
 							</c:forEach>
@@ -183,8 +185,6 @@
 	                 	</c:if>
 	                 </c:if>
                 </div>
-                <!-- 닫기 버튼 -->
-                <button class="mp_view_close" id="close-btn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"> <span>닫기</span> </button>
 
             </div>
         </div>
