@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
+import kr.util.SessionManager;
 
 public class LockMemberToggleAction implements Action {
 
@@ -36,6 +37,7 @@ public class LockMemberToggleAction implements Action {
 			MemberDAO mdao = MemberDAO.getInstance();
 			mdao.lockMemberToggle(lock_mem_num, locked);
 			if (locked == 0) {
+				SessionManager.invalidateUserSession(lock_mem_num);
 				mapAjax.put("result_msg", "회원 정지에 성공했습니다.");				
 			} else if (locked == 1) {				
 				mapAjax.put("result_msg", "회원 정지를 취소했습니다.");				
