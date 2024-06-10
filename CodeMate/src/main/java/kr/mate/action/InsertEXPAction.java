@@ -59,7 +59,7 @@ public class InsertEXPAction implements Action {
 		request.setAttribute("mate", mate);
 		request.setAttribute("user_num", user_num);
 		request.setAttribute("notice_msg", "프로젝트 경험이 추가되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfileForm.do?mem_num="+user_num);
+		request.setAttribute("notice_url", request.getContextPath() + "/mateProfile/mateProfile.do?mem_num="+mem_num);
 
 		return "/WEB-INF/views/common/alert_view.jsp";
 	}

@@ -170,8 +170,8 @@
 		                 	<c:forEach var="mr" items="${mateReviewList}" varStatus="loop">
 							    <c:if test="${loop.index < 5}">
 							        <div class="mp_project">
-							            <h4 class="pj_name">리뷰 등록일 : ${mr.mr_reg_date }</h4> 
-							            <p class="pj_content">내용 : ${mr.mr_content}</p>
+							            <h4 class="pj_name">내용 : ${mr.mr_content}</h4> 
+							            <p class="pj_content">리뷰 등록일 : ${mr.mr_reg_date }</p>
 							        </div>
 							    </c:if>
 							</c:forEach>
