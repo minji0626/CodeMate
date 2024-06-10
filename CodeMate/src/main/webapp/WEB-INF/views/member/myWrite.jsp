@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/myPageWriteCboardDelete.js"></script>
+<style>
+.hidden {
+    display: none !important;
+}
+</style>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -32,32 +37,30 @@
     <option value="all">전체</option>
     <option value="dev">개발</option>
     <option value="free">자유</option>
-    
 </select>
 
-<c:if test="${empty cboardList}">
-<div class="none_messgae">나의 작성 글이 없습니다</div>
-</c:if>
+<div id="no-comments-message" class="none_messgae hidden">나의 작성 글이 없습니다</div>
+
 <c:if test="${!empty cboardList}">
-<c:forEach var="cboardList" items="${cboardList}">
-    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboardList.cb_num}'" data-type="<c:out value="${cboardList.cb_type}"/>">
+<c:forEach var="cboard" items="${cboardList}">
+    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}'" data-type="${cboard.cb_type}">
         <div class="team-left-myWrite">
             <div class="cboard_name">
-                <c:if test="${cboardList.cb_type == '0'}">
+                <c:if test="${cboard.cb_type == '0'}">
                     자유게시판
                 </c:if>
-                <c:if test="${cboardList.cb_type == '1'}">
+                <c:if test="${cboard.cb_type == '1'}">
                     개발게시판
                 </c:if>
             </div>
-            <div class="projectName_font">${cboardList.cb_title}</div>
+            <div class="projectName_font">${cboard.cb_title}</div>
             <div class="fav-reply">
-                <div class="myWrite-fav">조회수:${cboardList.cb_hit}</div>
+                <div class="myWrite-fav">조회수:${cboard.cb_hit}</div>
             </div>
         </div>
         <div class="btn_box_write">
-             <input type="button" value="수정" class="myUpdate_btn" onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/cboard/modifyCommunityForm.do?cb_num=${cboardList.cb_num}'">
-       		 <input type="submit" value="삭제" class="myDelete_btn" data-cbnum="${cboardList.cb_num}" onclick="event.stopPropagation();">
+             <input type="button" value="수정" class="myUpdate_btn" onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/cboard/modifyCommunityForm.do?cb_num=${cboard.cb_num}'">
+       		 <input type="submit" value="삭제" class="myDelete_btn" data-cbnum="${cboard.cb_num}" onclick="event.stopPropagation();">
         </div>
     </div>
 </c:forEach>
@@ -72,23 +75,31 @@
 function filterList() {
     var selectedOption = document.getElementById("filter").value;
     var items = document.getElementsByClassName("myPage-line-box");
+    var noCommentsMessage = document.getElementById("no-comments-message");
 
+    var visibleItems = 0;
     for (var i = 0; i < items.length; i++) {
         var itemType = items[i].getAttribute("data-type");
-        if (selectedOption === "all" || selectedOption === "dev" && itemType === "1" || selectedOption === "free" && itemType === "0") {
+        if (selectedOption === "all" || (selectedOption === "dev" && itemType === "1") || (selectedOption === "free" && itemType === "0")) {
             items[i].classList.remove("hidden");
+            visibleItems++;
         } else {
             items[i].classList.add("hidden");
         }
     }
-}
-</script>
 
-<style>
-.hidden {
-    display: none !important;
+    if (visibleItems === 0) {
+        noCommentsMessage.classList.remove("hidden");
+    } else {
+        noCommentsMessage.classList.add("hidden");
+    }
 }
-</style>
+
+// 초기 로드시 필터 적용
+window.onload = function() {
+    filterList();
+};
+</script>
 
 </body>
 </html>
