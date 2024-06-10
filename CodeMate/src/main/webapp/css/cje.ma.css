@@ -134,6 +134,18 @@ button{
 	cursor:pointer;
 }
 
+.user_level {
+    font-weight: bold;
+    background-color: #ccf7d9;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    width: 30px; /* 너비 조정 */
+    height: 30px; /* 높이 조정 */
+    text-align: center;
+}
+
 /*****************************/
 /*버튼*/
 .btn-div {

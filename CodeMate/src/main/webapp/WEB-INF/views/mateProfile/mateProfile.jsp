@@ -43,7 +43,7 @@
                     <div class="mp_account_nickname">
                         <span class="user_nickname">${member.mem_nickname}</span>
                         <!-- 레벨 이미지 추가하기 -->
-                        <img>
+                        <span class="user_level">${member.mem_level }</span>
                         <br>
                         <span class="user_id">${mem.mem_id}</span>
                         <!-- 아이디 옆 이미지 추가하기 -->

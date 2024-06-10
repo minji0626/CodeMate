@@ -24,6 +24,7 @@ public class MemberVO {
  	private Date mp_modify_date; // 메이트 프로필 수정일
 	private int mp_state; // 메이트 프로필 공개 여부
 	
+	
 	public String getMp_position() {
 		return mp_position;
 	}
