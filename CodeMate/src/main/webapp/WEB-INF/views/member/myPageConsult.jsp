@@ -43,7 +43,8 @@
 </c:if>
 <c:if test="${!empty consultList}">
 <c:forEach var="consult" items="${consultList}">
-    <div class="myPage-line-box" data-type="<c:out value="${consult.cs_category}"/>" onclick="">
+    <div class="myPage-line-box" data-type="<c:out value="${consult.cs_category}"/>" 
+    onclick="window.location.href='${pageContext.request.contextPath}/member/myPageConsultDetail.do?cs_num=${consult.cs_num}'" style="cursor: pointer;">
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${consult.cs_category == 0}">
@@ -60,7 +61,7 @@
         </div>
         <div class="btn_box_write">
             
-            <input type="submit" value="삭제" class="myConsultDelete_btn" data-csnum="${consult.cs_num}">
+            <input type="submit" value="삭제" class="myConsultDelete_btn" data-csnum="${consult.cs_num}" onclick="event.stopPropagation();">
         </div>
     </div>
 </c:forEach>

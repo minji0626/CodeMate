@@ -76,7 +76,7 @@
 						
 					</c:forEach>
 					<c:forEach var="rboard" items="${rboardList}">
-						<c:if test="${rboard.team_status==1}">
+						<c:if test="${rboard.team_status==1}"><%--/team/teamMain.do?team_num=${rboard.team_num} --%>
 							<div class="myPage-line-box"
 								onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do?rb_num=${rboard.rb_num}'"
 								style="cursor: pointer; background-color: #e6e6e6;">

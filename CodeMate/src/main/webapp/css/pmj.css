@@ -279,3 +279,14 @@ input[type=file]::file-selector-button{
 input[type=file]::file-selector-button:hover{
 	background-color: #5aca7c;
 }
+/*문의글 상세보기*/
+.myConsult{
+	margin-top: 15px;
+}
+.consult-write{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.c_bold{
+	font-weight: bold;
+}

@@ -16,7 +16,7 @@ $(function(){
                 if (param.result === 'logout') {
                     alert('로그인 후 사용하세요!');
                 } else if (param.result === 'success') {
-                   /* alert('북마크 제거');*/
+                   alert('북마크 제거');
                     location.reload(); 
                 } else {
                     alert('북마크 제거 실패');
