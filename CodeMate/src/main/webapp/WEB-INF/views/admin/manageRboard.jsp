@@ -55,9 +55,35 @@
 										<td>${list.rb_num}</td>
 										<td><a href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${list.rb_num}'>${list.rb_title}</a></td>
 										<td>${list.mem_nickname}</td>
-										<td></td>
 										<td>
-											<button id="delete_community" class="deleteMemberBtn" data-cbnum="${community.cb_num}">삭제</button>
+											<c:if test="${list.team_status==0}">
+												비활성화
+											</c:if>
+												
+											<c:if test="${list.team_status==1}">
+												활성화
+											</c:if>
+												
+											<c:if test="${list.team_status==3}">
+												종료
+											</c:if>
+										</td>
+										<td>
+											<c:if test="${list.team_status==0}">
+											<input type="button" value="삭제하기" id="delete_btn" class="deleteMemberBtn" onclick='deleteRboard(${list.rb_num})'>
+												<script>
+												//글삭제
+												function deleteRboard(rb_num) {
+													var check = confirm("정말 삭제하시겠습니까?", "manageRboard.do");
+													if (check) {
+														location.href="deleteRboard.do?rb_num=" + rb_num;
+													} 
+												}
+												</script>
+											</c:if>
+											<c:if test="${list.team_status==1 || list.team_status==2}">
+												
+											</c:if>
 										</td>
 									</tr>
 								</c:forEach>
