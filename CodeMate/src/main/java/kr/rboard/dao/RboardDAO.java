@@ -560,6 +560,7 @@ public class RboardDAO {
 				rs2 = pstmt2.executeQuery();
 				if (rs2.next()) {
 					rboard.setTeam_status(rs2.getInt("team_status"));
+					//rboard.setTeam_num(rs2.getInt("team_num"));
 				}
 
 				list.add(rboard);
