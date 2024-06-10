@@ -1244,5 +1244,99 @@ public class RboardDAO {
 
 		return cnt;
 	}
+	
+
+	public int getRboardCountManage(String keyfield, String keyword) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+
+		try {
+			conn = DBUtil.getConnection();
+
+			if(keyword!=null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) {
+					sub_sql += "WHERE  rb_title LIKE '%' || ? || '%'"; 
+				} else if(keyfield.equals("2")) {
+					sub_sql += "WHERE  mem_nickname LIKE '%' || ? || '%'";
+				} 
+			}
+
+			sql = "SELECT COUNT(*) FROM r_board JOIN member_detail USING(mem_num) " + sub_sql;
+
+			pstmt = conn.prepareStatement(sql);
+			if(keyword!=null && !"".equals(keyword)) {
+				pstmt.setString(1, keyword);
+			}
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				// 컬럼 인덱스
+				count = rs.getInt(1);
+				// count(*)처럼 기호가 있으면 안에 쓰지 않고 알리아스를 명시해주는 것도 번거롭기 때문에 인덱스 사용
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return count;
+	}
+
+	// 게시판 목록 가져오기
+		public List<RboardVO> getListBoardManage(int start, int end, String keyfield, String keyword) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<RboardVO> list = null;
+			String sql = null;
+			String sub_sql = ""; // 이 부분은 필요 없을 것 같습니다.
+			int cnt = 0;
+
+			try {
+				conn = DBUtil.getConnection();
+
+				if(keyword!=null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) {
+						sub_sql += "WHERE  rb_title LIKE '%' || ? || '%'"; 
+					} else if(keyfield.equals("2")) {
+						sub_sql += "WHERE  mem_nickname LIKE '%' || ? || '%'";
+					} 
+				}
+
+				sql =  "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM r_board LEFT OUTER JOIN member_detail USING(mem_num)  " + sub_sql +" ORDER BY rb_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+
+				pstmt = conn.prepareStatement(sql);
+
+				// 검색어가 있을 경우에만 바인딩
+				if (keyword != null && !"".equals(keyword)) {
+					pstmt.setString(++cnt, "%" + keyword + "%");
+				}
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+
+				rs = pstmt.executeQuery();
+
+				list = new ArrayList<RboardVO>();
+				while (rs.next()) {
+					RboardVO board = new RboardVO();
+					board.setRb_num(rs.getInt("rb_num"));
+					board.setRb_title(StringUtil.useNoHTML(rs.getString("rb_title")));
+					board.setMem_nickname(rs.getString("mem_nickname"));
+					board.setRb_reg_date(rs.getDate("Rb_reg_date"));
+					board.setMem_num(rs.getInt("mem_num"));
+					list.add(board);
+				}
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+
+			return list;
+		}
 
 }
