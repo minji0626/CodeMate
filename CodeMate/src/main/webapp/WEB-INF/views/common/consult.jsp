@@ -67,7 +67,8 @@
 }
 
 .btn {
-	width: 30%; padding : 10px 20px;
+	width: 30%;
+	padding: 10px 20px;
 	border: none;
 	border-radius: 5px;
 	background-color: #007bff;
@@ -83,10 +84,8 @@
 }
 
 .consult_modal_close {
- cursor: pointer;
- 
+	cursor: pointer;
 }
-
 
 /* 1:1문의와 select 요소의 위치 조정 */
 #consult_auth {
@@ -125,7 +124,8 @@
 					action="${pageContext.request.contextPath}/main/sendConsult.do"
 					method="post">
 					<ul>
-						<li><select name="cs_category" class="input-check" id="consult_auth">
+						<li><select name="cs_category" class="input-check"
+							id="consult_auth">
 								<option value="" selected>구분</option>
 								<option value="0">일반문의</option>
 								<option value="1">신고</option>
@@ -175,12 +175,7 @@
     const btnModal = document.getElementById("btn-modal");
 
     btnModal.onclick = function() {
-    	if (${empty mem_num}) {
-    		alert('로그인 후 이용해주세요');
-    		window.location.replace("../member/loginForm.do");
-    	} else {
-            modalOn();
-        }
+		modalOn();
     }
 
     // 첫 번째 닫기 버튼

@@ -17,9 +17,9 @@ public class SessionManager {
 	}
 
 	public static void invalidateUserSession(int mem_num) {
-		HttpSession session = userSessions.get(mem_num);
-		if (session != null) {
-			session.invalidate();
+		HttpSession userSession = userSessions.get(mem_num);
+		if (userSession != null) {
+			userSession.invalidate();
 			removeUserSession(mem_num);
 		}
 	}

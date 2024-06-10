@@ -645,7 +645,7 @@ public class MemberDAO {
 			try {
 				conn = DBUtil.getConnection();
 				if (locked == 0) { // 회원 정지하기
-					sql = "UPDATE member SET mem_auth=1 WHERE mem_num=?";
+					sql = "UPDATE member SET mem_auth=1, mem_report = NVL(mem_report, 0)+1 WHERE mem_num=?";
 				} else if (locked == 1) { // 회원 정지풀기
 					sql = "UPDATE member SET mem_auth=2 WHERE mem_num=?";
 				}
