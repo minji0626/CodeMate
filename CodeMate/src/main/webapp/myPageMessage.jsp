@@ -10,92 +10,161 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myTeam.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <style type="text/css">
 
 /* 메뉴 스타일 */
 .menu {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 .menu ul li {
-    display: inline;
-    margin-right: 10px;
+	display: inline;
+	margin-right: 10px;
 }
 
 .menu ul li a {
-    text-decoration: none;
-    color: #333;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+	text-decoration: none;
+	color: #333;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 .menu ul li a.active {
-    background-color: #ccc;
+	background-color: #ccc;
 }
-
 
 /* 테이블 스타일 */
 .message-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
 }
 
-.message-table th,
-.message-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
+.message-table th, .message-table td {
+	border: 1px solid #ccc;
+	padding: 8px;
 }
 
 .message-table th {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
 /* 버튼 스타일 */
 .message-buttons {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .message-buttons button {
-    margin-right: 10px;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
+	margin-right: 10px;
+	padding: 8px 16px;
+	font-size: 14px;
+	cursor: pointer;
 }
 
 /* 버튼 스타일 수정 */
 .action-buttons {
-    position: relative;
-    margin-top: 10px; 
-    text-align: right;
+	position: relative;
+	margin-top: 10px;
+	text-align: right;
 }
 
 .btn {
-    background-color: #78AFE2;
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+	background-color: #78AFE2;
+	border: none;
+	color: white;
+	padding: 8px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin-left: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s;
 }
 
-</style>
+* {
+	margin: 0;
+	padding: 0;
+}
 
+a {
+	text-decoration: none;
+}
+
+.wrap {
+	padding: 10px;
+}
+
+.pop_wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .5);
+	font-size: 0;
+	text-align: center;
+}
+
+.pop_wrap:after {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+}
+
+.pop_wrap .pop_inner {
+	display: inline-block;
+	padding: 20px 30px;
+	background: #fff;
+	width: 400px;
+	vertical-align: middle;
+	font-size: 15px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.pop_inner .header {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+.pop_inner .content {
+	margin-bottom: 20px;
+}
+
+.pop_inner .footer {
+	text-align: right;
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+}
+
+.pop_inner .footer button {
+	margin-left: 10px;
+}
+
+.pop_inner .message-details {
+	margin-bottom: 20px;
+}
+
+.pop_inner .message-details p {
+	margin: 5px 0;
+}
+</style>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -135,37 +204,16 @@
             <tbody>
                 <tr>
                     <td><input type="checkbox" class="message-checkbox"></td>
-                    <td>유저1</td>
-                    <td>안녕하세요!</td>
+                    <td data-sender="유저1">유저1</td>
+                    <td><a href="#" class="btn_open" data-message="안녕하세요! 이 쪽지의 세부 내용입니다." data-date="2024년 6월 5일" data-time="오후 1:30">안녕하세요!</a></td>
                     <td>2024년 6월 5일</td>
                     <td>읽음</td>
                 </tr>
                 <tr>
                     <td><input type="checkbox" class="message-checkbox"></td>
-                    <td>유저1</td>
-                    <td>안녕하세요!</td>
-                    <td>2024년 6월 5일</td>
-                    <td>읽음</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="message-checkbox"></td>
-                    <td>유저1</td>
-                    <td>안녕하세요!</td>
-                    <td>2024년 6월 5일</td>
-                    <td>읽음</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="message-checkbox"></td>
-                    <td>유저1</td>
-                    <td>안녕하세요!</td>
-                    <td>2024년 6월 5일</td>
-                    <td>읽음</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="message-checkbox"></td>
-                    <td>유저1</td>
-                    <td>안녕하세요!</td>
-                    <td>2024년 6월 5일</td>
+                    <td data-sender="유저2">유저2</td>
+                    <td><a href="#" class="btn_open" data-message="두 번째 쪽지의 세부 내용입니다." data-date="2024년 6월 6일" data-time="오전 10:00">두 번째 쪽지</a></td>
+                    <td>2024년 6월 6일</td>
                     <td>읽음</td>
                 </tr>
             </tbody>
@@ -182,7 +230,9 @@
 </div><!-- flex_container끝 -->
 </div><!-- page-container끝 -->
 
-
+<jsp:include page="messagePopUp.jsp"/>
+<jsp:include page="replyMessage.jsp"/>
 
 </body>
 </html>
+
