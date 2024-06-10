@@ -310,6 +310,7 @@ a.mem_auth_btn {
 	text-align: center;
 	border-radius: 30px;
 	margin: 0 10px; /* 버튼 간격을 조정합니다 */
+	cursor: pointer;
 }
 
 #close-btn {

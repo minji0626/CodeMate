@@ -21,17 +21,13 @@
     font-weight: bold;
     font-size: 13px;
     padding: 10px 20px;
-    background-color: #ACE4BD;
-    color: #fff;
+    background-color: #5aca7c;
+    color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.write-button:hover {
-    color: #000;
-}
 
 /* 작성된 테이블 */
 .table-container {
