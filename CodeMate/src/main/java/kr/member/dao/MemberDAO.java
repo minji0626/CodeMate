@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.member.vo.MemberVO;
+import kr.rboard.dao.RboardDAO;
 import kr.util.DBUtil;
 
 public class MemberDAO {
