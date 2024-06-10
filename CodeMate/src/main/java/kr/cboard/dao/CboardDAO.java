@@ -712,7 +712,7 @@ public class CboardDAO {
 	}
 
 	//회원탈퇴 시 커뮤니티 글 삭제 - 예영작성
-	public void deleteUserCboard(String mem_id)throws Exception{
+	public void deleteUserCboard(int mem_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
@@ -725,21 +725,21 @@ public class CboardDAO {
 			conn.setAutoCommit(false);
 
 			//좋아요 삭제
-			sql = "DELETE FROM c_like JOIN member USING (mem_num) WHERE mem_id=?";
+			sql = "DELETE FROM c_like WHERE mem_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mem_id);
+			pstmt.setInt(1, mem_num);
 			pstmt.executeUpdate();
 
 			//댓글 삭제
-			sql = "DELETE FROM c_comment JOIN member USING (mem_num) WHERE mem_id=?";
+			sql = "DELETE FROM c_comment WHERE mem_num=?";
 			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setString(1, mem_id);
+			pstmt2.setInt(1, mem_num);
 			pstmt2.executeUpdate();
 
 			//부모글 삭제
-			sql = "DELETE FROM c_board JOIN member USING (mem_num) WHERE mem_id=?";
+			sql = "DELETE FROM c_board WHERE mem_num=?";
 			pstmt3 = conn.prepareStatement(sql);
-			pstmt3.setString(1, mem_id);
+			pstmt3.setInt(1, mem_num);
 			pstmt3.executeUpdate();
 
 			//예외 발생 없이 정상적으로 SQL문 실행

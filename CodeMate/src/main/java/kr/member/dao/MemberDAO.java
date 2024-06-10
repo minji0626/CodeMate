@@ -383,6 +383,7 @@ public class MemberDAO {
 				member.setMem_num(rs.getInt("mem_num"));
 				member.setMem_name(rs.getString("mem_name"));
 				member.setMem_id(rs.getString("mem_id"));
+				member.setMem_passwd(rs.getString("mem_passwd"));
 				member.setMem_email(rs.getString("mem_email"));
 				member.setMem_nickname(rs.getString("mem_nickname"));
 				member.setMem_phone(rs.getString("mem_phone"));

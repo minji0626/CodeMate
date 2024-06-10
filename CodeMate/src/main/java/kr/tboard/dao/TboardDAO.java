@@ -425,7 +425,7 @@ public class TboardDAO {
 
 	
 	// 회원탈퇴 시 팀에서 삭제하기 - 예영작성
-		public void deleteTeamMember(String mem_id) throws Exception{
+		public void deleteTeamMember(int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt5= null;
 			PreparedStatement pstmt4= null;
@@ -442,14 +442,14 @@ public class TboardDAO {
 				conn.setAutoCommit(false);
 
 				//mem_id와 같은 mem_num을 가진 tb_num을 내놓음
-				sql = "SELECT tb_num FROM team_board JOIN member USING (mem_num) WHERE mem_id=?";
+				sql = "SELECT tb_num FROM team_board WHERE mem_num=?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, mem_id);
+				pstmt.setInt(1, mem_num);
 				rs = pstmt.executeQuery();
 
 				while(rs.next()) {//tb_num과 동일한 tb_num을 가진 team_comment를 전부 삭제 -> mem_id의 team_comment를 전부 삭제?
 					tb_num = rs.getInt("tb_num");
-					sql = "DELETE FROM team_comment JOIN member USING (mem_num) "
+					sql = "DELETE FROM team_comment "
 							+ "WHERE tb_num IN (SELECT tb_num FROM team_board WHERE tb_num = ?)";
 					pstmt2 = conn.prepareStatement(sql);
 					pstmt2.setInt(1, tb_num);
@@ -458,21 +458,21 @@ public class TboardDAO {
 
 
 				// 해당 멤버가 작성한 댓글 삭제
-				sql="DELETE FROM team_comment JOIN member USING (mem_num) WHERE mem_id=?"; 
+				sql="DELETE FROM team_comment WHERE mem_num=?"; 
 				pstmt3 = conn.prepareStatement(sql); 
-				pstmt3.setString(1, mem_id); 
+				pstmt3.setInt(1, mem_num);
 				pstmt3.executeUpdate();
 
 				// 해당 멤버가 작성한 글 삭제
-				sql="DELETE FROM team_board WHERE mem_id=?";
+				sql="DELETE FROM team_board WHERE mem_num=?";
 				pstmt4 = conn.prepareStatement(sql);
-				pstmt4.setString(1, mem_id);
+				pstmt4.setInt(1, mem_num);
 				pstmt4.executeUpdate();
 
 				// team_member에서 해당 멤버 삭제하기
-				sql="DELETE FROM team_member WHERE mem_id=?";
+				sql="DELETE FROM team_member WHERE mem_num=?";
 				pstmt5 = conn.prepareStatement(sql);
-				pstmt5.setString(1, mem_id);
+				pstmt5.setInt(1, mem_num);
 				pstmt5.executeUpdate();
 
 				// 모든 sql문이 성공한다면 커밋을 시킨다
@@ -494,7 +494,7 @@ public class TboardDAO {
 		}
 
 		// 회원탈퇴 전 회원의 등급 구하기 - 예영작성 (등급을 반환해 DeleteUserAction에서 팀장등급일 경우 알림창을 띄울거임!)
-		public TmemberVO getTmemberAuth (String mem_id) throws Exception{
+		public TmemberVO getTmemberAuth (int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -502,9 +502,9 @@ public class TboardDAO {
 			TmemberVO auth = null;
 			try {
 				conn = DBUtil.getConnection();
-				sql = "SELECT * FROM team_member JOIN member USING(mem_num) WHERE mem_id=?";
+				sql = "SELECT * FROM team_member WHERE mem_num=?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, mem_id);
+				pstmt.setInt(1, mem_num);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					auth = new TmemberVO();
