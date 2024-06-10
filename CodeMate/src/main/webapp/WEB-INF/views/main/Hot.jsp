@@ -135,7 +135,6 @@
 
 									<div id="below">
 										<span class="b date">등록일 | ${cboard.cb_reg_date}</span> <br>
-										<span class="b nick">작성자 | ${cboard.mem_nickname}</span>
 									</div>
 
 									<div class="hit">
