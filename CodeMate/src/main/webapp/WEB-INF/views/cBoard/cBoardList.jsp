@@ -79,7 +79,9 @@
 		                    <tr>
 		                        <th>번호</th>
 		                        <th>제목</th>
+		                        <c:if test="${cb_type==1}">
 		                        <th>작성자</th>
+		                        </c:if>
 		                        <th>작성일</th>
 		                        <th>조회수</th>
 		                    </tr>
@@ -89,9 +91,6 @@
 		                        <tr>
 		                            <td>${cboard.cb_num}</td>
 		                            <td><a href="${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}">${cboard.cb_title}</a></td>
-		                            <c:if test="${cboard.cb_type==0}">
-		                            	<td>코메</td>
-		                            </c:if>
 		                            <c:if test="${cboard.cb_type==1}">
 		                            	<td><a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${cboard.mem_num}">${cboard.mem_nickname}</a></td>
 		                            </c:if>
