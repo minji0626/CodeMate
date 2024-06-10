@@ -18,7 +18,7 @@ public class MemberVO {
 	private Date mem_reg_date;
 	private Date mem_modify_date;
 	private String mem_photo;
-	
+
 	private String mp_position; // 메이트 프로필에서의 포지션
 	private String mp_introduce; // 메이트 프로필에서의 자기소개
  	private Date mp_modify_date; // 메이트 프로필 수정일
