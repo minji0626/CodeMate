@@ -124,7 +124,7 @@ a{
 		</c:if>
         <div class="team_status">
         	<c:if test="${tm_auth == 3 }">
-        	<p style="display: flex; justify-content: center;align-items: center;">팀장</p>
+        	<p style="display: flex; justify-content: center;align-items: center;">팀원</p>
         	</c:if>
         	<c:if test="${tm_auth == 4 }">
         	<p style="display: flex; justify-content: center;align-items: center;">팀장</p>
