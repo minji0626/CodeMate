@@ -43,6 +43,10 @@
 	background-color: #a5a5a5;
 }
 
+.content-main-msg .btn-basic {
+	width: 140px;
+}
+
 /* result_view_two_btn 페이지
 ---------------------*/
 .content-main-div {

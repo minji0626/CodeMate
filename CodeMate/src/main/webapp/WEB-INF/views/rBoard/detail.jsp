@@ -47,7 +47,7 @@
 					<img id="bookmark_img" data-rbnum="${rboard.rb_num}" src="" width="36px">
 					</h2>
 						<span>${rboard.rb_reg_date}(작성일자)</span> 
-						<span>조회수 <span id="rb_hit">${rboard.rb_hit}</span></span>					
+						<span><img class="hit-image" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png"> <span id="rb_hit">${rboard.rb_hit}</span></span>					
 					<div>
 						<div class="flex-container">
 								<div id="profile_div">
@@ -57,7 +57,7 @@
 								<c:if test="${rboard.mem_photo == null}">
 								<img src="${pageContext.request.contextPath}/images/face.png" class="profile-photo">
 								</c:if>
-								<span>${rboard.mem_nickname}</span>
+								<span><a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${rboard.mem_num}">${rboard.mem_nickname}</a></span>
 							</div>
 							<c:if test="${mem_num == rboard.mem_num}">
 							<div id="header_btn_div">

@@ -271,6 +271,14 @@ input[id="recruiting_filter"]:checked+label {
 	text-align: right;
 	padding-top: 10px;
 	border-top: 1px solid var(--gray-4);
+	display: flex;
+	justify-content: flex-end;
+}
+
+.r-item .hit-div img {
+	width: 15px;
+	margin-right: 3px;
+	object-fit: contain;
 }
 
 /*페이징 버튼*/

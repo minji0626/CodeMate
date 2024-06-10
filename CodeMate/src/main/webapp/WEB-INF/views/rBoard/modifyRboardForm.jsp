@@ -34,12 +34,12 @@
 				<div class="content">
 					<h3>1.프로젝트 기본 정보를 입력해주세요.</h3>
 					<ul id="project_info">
-						<li><label for="rb_category">모집 구분</label> <select class="input-check"
+						<li class="flex-container"><label for="rb_category" class="info-label">모집 구분</label> <select class="input-check input-style"
 							name="rb_category" id="rb_category">
 								<option value="0" <c:if test="${rboard.rb_category==0}">selected</c:if>>스터디</option>
 								<option value="1" <c:if test="${rboard.rb_category==1}">selected</c:if>>프로젝트</option>
 						</select></li>
-						<li><label for="rb_teamsize">모집 인원</label> <select class="input-check"
+						<li class="flex-container"><label for="rb_teamsize" class="info-label">모집 인원</label> <select class="input-check input-style"
 							name="rb_teamsize" id="rb_teamsize">
 								<option value="0" <c:if test="${rboard.rb_teamsize==0}">selected</c:if>>인원 미정</option>
 								<option value="1" <c:if test="${rboard.rb_teamsize==1}">selected</c:if>>1명</option>
@@ -53,15 +53,15 @@
 								<option value="9" <c:if test="${rboard.rb_teamsize==9}">selected</c:if>>9명</option>
 								<option value="10" <c:if test="${rboard.rb_teamsize==10}">selected</c:if>>10명 이상</option>
 						</select></li>
-						<li><label for="rb_meet">진행 방식</label> <select class="input-check" name="rb_meet"
+						<li class="flex-container"><label for="rb_meet" class="info-label">진행 방식</label> <select class="input-check input-style" name="rb_meet"
 							id="rb_meet">
 								<option value="0" <c:if test="${rboard.rb_meet==0}">selected</c:if>>온라인</option>
 								<option value="1" <c:if test="${rboard.rb_meet==1}">selected</c:if>>오프라인</option>
 								<option value="2" <c:if test="${rboard.rb_meet==2}">selected</c:if>>온라인/오프라인</option>
 						</select></li>
-						<li><label for="rb_start">시작 예정일</label> <input class="input-check" type="date"
+						<li class="flex-container"><label for="rb_start" class="info-label">시작예정일</label><input class="input-check input-style" type="date"
 							name="rb_start" id="rb_start" value=${rboard.rb_start}></li>
-						<li><label for="rb_period">진행 기간</label> <select class="input-check"
+						<li class="flex-container"><label for="rb_period"  class="info-label">진행 기간</label> <select class="input-check input-style"
 							name="rb_period" id="rb_period">
 								<option value="0" <c:if test="${rboard.rb_period==0}">selected</c:if>>1개월 미만</option>
 								<option value="1" <c:if test="${rboard.rb_period==1}">selected</c:if>>1개월</option>
@@ -71,10 +71,10 @@
 								<option value="5" <c:if test="${rboard.rb_period==5}">selected</c:if>>5개월</option>
 								<option value="6" <c:if test="${rboard.rb_period==6}">selected</c:if>>6개월 이상</option>
 						</select></li>
-						<li><label for="rb_endRecruit">모집 종료일</label> <input class="input-check" type="date"
+						<li class="flex-container"><label for="rb_endRecruit" class="info-label">모집 종료일</label> <input class="input-check input-style" type="date"
 							name="rb_endRecruit" id="rb_endRecruit" value=${rboard.rb_endRecruit}></li>
-						<li id="scroll_container_sub">
-						<label>요구 기술</label>
+						<li id="scroll_container_sub"  class="flex-container">
+						<label class="info-label">요구 기술</label>
 							<div id="scrollable_trigger" class="input-style">요구하는 기술 스택을 선택하세요.</div>
 							<ul class="scrollable">
 								<c:forEach var="hskill" items="${hskillList}">
@@ -86,9 +86,9 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<li>
-							<label class="block">모집 필드</label>
-							<ul>
+						<li class="flex-container">
+							<label class="block info-label">모집 필드</label>
+							<ul id="field_list">
 								<c:forEach var="field" items="${fieldList}">
 									<li class="block">
 										<input type="checkbox" name="r_fields" id="r_field_${field.f_code}" value="${field.f_code}"
@@ -98,7 +98,7 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<li><label for="rb_pj_title">프로젝트 제목</label> <input class="input-check"
+						<li class="flex-container"><label for="rb_pj_title" class="info-label">프로젝트 제목</label> <input class="input-check input-style"
 							type="text" name="rb_pj_title" id="rb_pj_title" value=${rboard.rb_pj_title}
 							placeholder="프로젝트의 제목을 입력해주세요"></li>
 					</ul>
@@ -107,7 +107,7 @@
 				<div class="content">
 					<h3>2.프로젝트에 대해 소개해주세요.</h3>
 					<ul id="project_detail">
-						<li><label for="rb_title">모집글 제목</label> <input class="input-check" type="text"
+						<li><label for="rb_title" class="info-label">모집글 제목</label> <input class="input-check" type="text"
 							id="rb_title" name="rb_title" placeholder="글 제목을 입력해주세요" value="${rboard.rb_title}">
 						</li>
 						<li>
@@ -128,5 +128,3 @@
 	</div>
 </body>
 </html>
-
-<!--자바스크립트 작성 완료 후 전체 input required 넣기-->

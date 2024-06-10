@@ -63,6 +63,12 @@
 /********************************
 /* 글 */
 
+.content-header .hit-image {
+	width: 15px;
+	margin-left: 5px;
+	object-fit: contain;
+}
+
 .content-header {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #b8b8b8;
@@ -263,7 +269,7 @@
 }
 
 .ra_content_div h4 {
-	margin: 10px 0 20px 0;
+	margin-bottom:20px;
 }
 
 /*메이트 프로필에 쓰이는 내용란 (회색 박스) DIV*/
@@ -273,10 +279,11 @@
 	border-radius: 8px;
 	background: #e0e0e0;
 	border: none;
-	width: 535px;
+	width: 495px;
 	height: 300px;
 	margin: 0 auto;
 	resize: none;
+	padding: 20px;
 }
 
 .ra_content p {
@@ -296,7 +303,6 @@
 /*닫기 버튼*/
 #close_btn, #apply_btn {
 	width: 100px;
-	height: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -307,10 +313,15 @@
 	font-size: 11pt;
 }
 
+#close_btn span {
+	width: 60px;
+}
+
 #close_btn {
 	background: white;
 	margin-left: 10px;
 	color: black;
+	padding: 8px 0;
 }
 
 #apply_btn {

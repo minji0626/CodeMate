@@ -104,7 +104,7 @@ $(document).ready(function() {
 					output += '</div></div>';
 					output += '</div>';
 					output += '<div class="hit-div">';
-					output += '<span>조회수 </span> <span>' + item.rb_hit + '</span>';
+					output += '<img src="'+ getContextPath() +'/images/cje/boardHitIcon.png"> <span>' + item.rb_hit + '</span>';
 					output += '</div>';
 					output += '</li>';
 				});

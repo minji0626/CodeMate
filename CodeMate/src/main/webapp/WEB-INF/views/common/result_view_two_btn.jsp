@@ -25,9 +25,9 @@
 					${result_msg}
 					<p></p>
 					<div class="btn-div">
-					<input type="button" class="btn-basic" value="${btn_value1}"
+					<input type="button" class="btn-basic btn" value="${btn_value1}"
 						onclick="location.href='${result_url1}'"> <input
-						type="button" class="btn-basic" value="${btn_value2}"
+						type="button" class="btn-basic btn" value="${btn_value2}"
 						onclick="location.href='${result_url2}'">
 					</div>
 				</div>
