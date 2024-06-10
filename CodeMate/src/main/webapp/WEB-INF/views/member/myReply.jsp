@@ -1,8 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +10,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/myPageApplyCboardDelete.js"></script>
-
+<style>
+.hidden {
+    display: none !important;
+}
+</style>
 </head>
 <body>
-<!-- 헤더 링크-->
 <div class="page-container">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div id="flex_container">
@@ -37,13 +35,11 @@
     <option value="free">자유</option>
 </select>
 
+<div id="no-comments-message" class="none_messgae hidden">나의 작성 댓글이 없습니다</div>
 
-<c:if test="${empty commentList}">
-<div class="none_messgae">나의 작성 댓글이 없습니다</div>
-</c:if>
 <c:if test="${!empty commentList}">
 <c:forEach var="comment" items="${commentList}">
-    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${comment.cb_num}'" data-type="<c:out value="${comment.cb_type}"/>">
+    <div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${comment.cb_num}'" data-type="${comment.cb_type}">
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${comment.cb_type == 0}">
@@ -66,6 +62,9 @@
 </c:forEach>
 </c:if>
 
+<c:if test="${empty commentList}">
+    <div class="myPage-line-box hidden"></div>
+</c:if>
 
 </div>
 <!-- 메인 정보 수정 끝 -->
@@ -76,23 +75,31 @@
 function filterList() {
     var selectedOption = document.getElementById("filter").value;
     var items = document.getElementsByClassName("myPage-line-box");
+    var noCommentsMessage = document.getElementById("no-comments-message");
 
+    var visibleItems = 0;
     for (var i = 0; i < items.length; i++) {
         var itemType = items[i].getAttribute("data-type");
         if (selectedOption === "all" || (selectedOption === "dev" && itemType === "1") || (selectedOption === "free" && itemType === "0")) {
             items[i].classList.remove("hidden");
+            visibleItems++;
         } else {
             items[i].classList.add("hidden");
         }
     }
-}
-</script>
 
-<style>
-.hidden {
-    display: none !important;
+    if (visibleItems === 0) {
+        noCommentsMessage.classList.remove("hidden");
+    } else {
+        noCommentsMessage.classList.add("hidden");
+    }
 }
-</style>
+
+// 초기 로드시 필터 적용
+window.onload = function() {
+    filterList();
+};
+</script>
 
 </body>
 </html>
