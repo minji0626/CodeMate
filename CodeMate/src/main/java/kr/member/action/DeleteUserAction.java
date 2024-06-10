@@ -67,6 +67,9 @@ public class DeleteUserAction implements Action{
 			//로그아웃
 			session.invalidate();
 		}
+		if(tm_auth == 4) {//팀장 직급일 경우 팀 설정으로 들어가 팀장직을 위임하도록 함
+			return "/WEB-INF/views/team/teamSetting.do";
+		}
 		
 		//인증 실패
 		request.setAttribute("check", check);
