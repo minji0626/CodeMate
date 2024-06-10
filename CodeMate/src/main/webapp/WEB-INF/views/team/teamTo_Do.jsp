@@ -20,6 +20,12 @@
   	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <jsp:include page="/WEB-INF/views/team/teamNav.jsp"/>
     
+    <c:if test="${alert == 1 }">
+   	 	<script type="text/javascript">
+    	alert('팀 프로젝트가 종료되었습니다. 리뷰를 작성해주세요.');
+    	</script>
+    </c:if>
+    
     <c:if test="${team_num != sessionScope.team_num }">
     <div id="wrong_access" style="text-align: center; margin-top: 25%; font-size: 20px; font-weight: bold;">
     잘못된 접근입니다.

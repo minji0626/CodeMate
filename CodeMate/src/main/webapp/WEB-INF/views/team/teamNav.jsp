@@ -87,33 +87,35 @@ a{
 	margin-top: 10px;
 }
 
-.written_post {
-	display: flex;
-	justify-content: center;
-	margin-top: 10px;
+.pj_close {
+	margin-top: 200%;
 }
 
-#post_icon {
-	width: 18px;
-	height: 18px;
+.pj_close_btn {
+	border: none;
+	cursor: pointer;
+	background-color: #E7E7E7;
+	padding: 10px;
+	border-radius: 20px;
 }
 
-.my_post {
-	font-size: 10px;
-	font-weight: bold;
-	line-height: normal;
-	color: #3D3D3D;
-	margin-left: 5px;
+.pj_close_btn:hover {
+	background-color: #FF2910;
+	transition: background-color 0.3s ease;
+	color: white;
 }
 
-.my_post_cnt {
-	font-size: 10px;
-	font-weight: bold;
-	line-height: normal;
-	color: #3D3D3D;
-	margin-left: 5px;
-}
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var closeBtn = document.querySelector(".pj_close_btn");
+    closeBtn.addEventListener("click", function() {
+        var closeForm = document.querySelector(".pj_close");
+        closeForm.submit();
+    });
+});
+</script>
+
 <div class="left-outer">
     <div class="profile">
     	<c:if test="${!empty mem_num && !empty mem_photo}">
@@ -141,4 +143,10 @@ a{
         <a href="${pageContext.request.contextPath}/team/teamSetting.do?team_num=${team_num}" class="menu-item">팀 설정</a>
         <!-- 다른 메뉴 항목들 추가 -->
     </div>
+    <c:if test="${tm_auth == 4 }">
+    <form action="endProject.do" class="pj_close" method="post">
+    	<input type="hidden" name="team_num" value="${team_num}">
+    	<input type="button" value="프로젝트 종료" class="pj_close_btn">
+    </form>
+    </c:if>
 </div>

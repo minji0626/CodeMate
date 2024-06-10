@@ -5,6 +5,7 @@ public class TmemberVO {
 	private int team_num;			// 팀 번호
 	private int tm_auth;			// 팀 지위 (3 : 팀원 4: 팀장 (정지회원, 탈퇴회원은 팀테이블에서 삭제)
 	private int tm_review_status;	// 0: 안 씀 1: 씀 (default 0) => 다 써야만 완료한 프로젝트 카운트
+	private int team_status;
 	
 	private String mem_nickname;
 	private String mem_id;
@@ -13,6 +14,12 @@ public class TmemberVO {
 	
 	
 	
+	public int getTeam_status() {
+		return team_status;
+	}
+	public void setTeam_status(int team_status) {
+		this.team_status = team_status;
+	}
 	public String getMem_photo() {
 		return mem_photo;
 	}
