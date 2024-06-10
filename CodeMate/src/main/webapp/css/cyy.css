@@ -10,7 +10,7 @@ div#mini-card1 { /* 1 */
 
 	top: 70px;
 
-	right:70px;
+	left:70px;
 	width: 90%;
 
 	margin-bottom: 70px;
@@ -159,7 +159,7 @@ div#mini-card2 { /* 1 */
 
 	top: 70px;
 
-	right: 70px;
+	left:70px;
 
 	width: 90%;
 
@@ -680,6 +680,13 @@ form {
 	transform: translateY(40%);
 
 	margin-left: 8px;
+	width: 180px;
+
+	white-space: nowrap;
+
+	overflow: hidden;
+
+	text-overflow: ellipsis;
 
 }
 
