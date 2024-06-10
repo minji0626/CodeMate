@@ -81,6 +81,7 @@ body {
 }
 .my-photo{
 	border-radius: 80px;
+	object-fit: cover;
 }
 
 
