@@ -1,292 +1,129 @@
 @charset "utf-8";
-
-
-
 /* 카드 슬라이드 */
-
 div#mini-card1 { /* 1 */
-
 	position: relative;
-
 	top: 70px;
-
 	left:70px;
 	width: 90%;
-
 	margin-bottom: 70px;
-
 }
-
-
-
 .w { /* 설명글 */
-
 	width: 50%;
-
 }
-
-
-
 .mini-container1 { /* 보여지는 창 */
-
 	position: relative;
-
 	top: 30px;
-
 	overflow: hidden;
-
 	height: 330px;
-
 	width: 1178px;
-
 }
-
-
-
 .wrapper1 { /* 움직이는 부분 */
-
 	height: 330px;
-
 }
-
-
-
 .content1 { /* 이미지 */
-
 	height: 290px;
-
 	float: left;
-
 	width: 250px;
-
 	margin: 20px;
-
 	border: 2px solid #d4d4d4;
-
 	border-radius: 10px;
-
 	background-color: #f0f0f0;
-
 }
-
-
-
-/* .animated{
-
-   transition:0.5s ease-out;
-
-} */
-
 .p1 {
-
 	position: relative;
-
 	bottom: 150px;
-
 	right: 20px;
-
 	background: none;
-
 	border: none;
-
 }
-
-
-
 .n1 {
-
 	position: relative;
-
 	bottom: 150px;
-
 	left: 1140px;
-
 	background: none;
-
 	border: none;
-
 }
-
 /* 더보기 */
-
 a.more {
-
 	font-size: 12px;
-
 	position: relative;
-
 	left: 1100px;
-
 	top: 15px;
-
 }
-
-
-
 .explain {
-
 	font-size: 20px;
-
 	transform: translate3d(5%, 180%, 0);
-
 }
-
-
-
 #back_btn {
-
 	transform: translate3d(215%, 120%, 0);
-
 	font-size: 13px;
-
 	width: 65px;
-
 	color: white;
-
 	border-radius: 20px;
-
 	background-color: #5aca7c;
-
 	padding: 2px 13px 2px;
-
 }
-
 /* 2 */
 
 div#mini-card2 { /* 1 */
-
 	position: relative;
-
 	top: 70px;
-
 	left:70px;
-
 	width: 90%;
-
 	margin-bottom: 70px;
-
 }
-
-
-
 .w2 { /* 설명글 */
-
 	width: 50%;
-
 }
-
-
-
 .mini-container2 { /* 보여지는 창 */
-
 	position: relative;
-
 	top: 30px;
-
 	overflow: hidden;
-
 	height: 330px;
-
 	width: 1178px;
-
 }
-
-
-
 .wrapper2 { /* 움직이는 부분 */
-
 	height: 330px;
-
 }
-
-
-
 .content2 { /* 이미지 */
-
 	height: 290px;
-
 	float: left;
-
 	width: 250px;
-
 	margin: 20px;
-
 	border: 2px solid #d4d4d4;
-
 	border-radius: 10px;
-
 	background-color: #f0f0f0;
-
 }
-
-
-
-/* .animated{
-
-   transition:0.5s ease-out;
-
-} */
-
 .p2 {
-
 	position: relative;
-
 	bottom: 150px;
-
 	right: 20px;
-
 	background: none;
-
 	border: none;
-
 }
-
-
-
 .n2 {
-
 	position: relative;
-
 	bottom: 150px;
-
 	left: 1140px;
-
 	background: none;
-
 	border: none;
-
 }
 
 /* 더보기 */
-
 #front_btn {
-
-	transform: translate3d(232%, 100%, 0);
-
+	transform: translate3d(220%, 100%, 0);
 	font-size: 13px;
-
-	width: 50px;
-
+	width: 90px;
 	color: white;
-
 	border-radius: 20px;
-
 	background-color: #5aca7c;
-
 	padding:3px 17px;
-
+	border:none;	
 }
-
-
-
 /* 로그인화면*/
-
 /* 헤더 위치 */
-
 #login_logo a {
-
 	position: absolute;
-
 	top: 135px;
 
 	left: 750px;
@@ -626,15 +463,14 @@ form {
 
 
 .hit-div {
-
 	margin-bottom: 5px;
-
 	font-size: 13px;
-
-	transform: translate3d(70%, 400%, 0);
-
+	transform: translate3d(80%, 370%, 0);
 }
-
+#hit1{
+	width:16px;	
+	transform:translateY(10%);
+}
 
 
 .way {
@@ -685,125 +521,74 @@ form {
 	white-space: nowrap;
 
 	overflow: hidden;
-
 	text-overflow: ellipsis;
-
 }
-
-
-
 #field {
-
 	width: 180px;
-
 	white-space: nowrap;
-
 	overflow: hidden;
-
 	text-overflow: ellipsis;
-
 }
-
 /* 커뮤니티 */
-
 .top{
-
 	position:relative;
-
 	top:5px;
-
 }
-
 .type{
-
 	margin:5px;
-
 }
-
 .F{
-
 	position:relative;
-
 	right:6px;
-
 }
-
 #line2{
-
 	position:relative;
-
 	top:10px;
-
 }
-
 #middle {
-
 	margin-bottom: 5px;
-
 	transform: translateY(10%);
-
 	margin: 10px 5px 5px 10px;
-
 	width: 170px;
-
 	white-space: nowrap;
-
 	overflow: hidden;
-
 	text-overflow: ellipsis;
-
 	position:relative;
-
 	top:10px;
-
 }
-
 .title{
-
 	font-size:19px;
-
 }
-
 #below {
-
 	font-size: 14px;
-
 	margin-bottom: 5px;
-
-	transform: translateY(120%);
-
+	transform: translateY(160%);
 	width: 180px;
-
 	white-space: nowrap;
-
 	overflow: hidden;
-
 	text-overflow: ellipsis;
-
 }
-
-
-
 .b {
-
 	margin: 10px 5px 5px 10px;
-
 }
-
-
-
 .hit {
-
 	font-size: 13px;
-
-	transform: translate3d(70%, 130%, 0);
-
+	transform: translate3d(83%, 185%, 0);
 }
-
+#hit2{
+	width:16px;	
+	transform:translateY(30%);
+}
 .detail2{
-
 	position: relative;
-
 	top: 70px;
-
+}
+.board_type{
+	transform:translateX(10%);
+}
+#coding{
+	transform:translateY(30%);
+}
+#free{
+	transform:translateY(30%);
 }

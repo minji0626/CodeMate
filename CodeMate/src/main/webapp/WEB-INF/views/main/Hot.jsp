@@ -11,7 +11,7 @@
 				<b>이번주 코메 인기글</b>
 			</div>
 
-			<div id="back_btn">팀원 구하기</div>
+			<div id="back_btn" onclick="location.href='${pageContext.request.contextPath}/rboard/list.do'">팀원 구하기</div>
 			<a class="more"
 				href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
 		</div>
@@ -38,7 +38,7 @@
 									<br> <span id="endDate">${rboard.rb_endRecruit} 마감</span>
 								</div>
 
-								<hr size="1px" id="line1">
+								<!-- <hr size="1px" id="line1"> -->
 								<p class="rb-title">${rboard.rb_title}</p>
 								<!-- 제목 -->
 								<div class="detail">
@@ -70,7 +70,9 @@
 									</div>
 
 									<div class="hit-div">
-										<span class="b hit">조회수 ${rboard.rb_hit}</span>
+										<span class="b hit">
+										<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png" id="hit1"> 
+										${rboard.rb_hit}</span>
 									</div>
 
 								</div>
@@ -100,8 +102,8 @@
 
 		<div class="w2">
 			<div class="explain"> <b>이번주 코메 인기글</b> </div>
-			<div id="front_btn">커뮤니티</div>
-			<a class="more" href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
+			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">커뮤니티</button>
+			<a class="more" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
 		</div>
 
 		<div class="mini-container2">
@@ -112,10 +114,15 @@
 							<div class="link">
 								<div class="top">
 									<span class="type D"> 
-										<c:if test="${cboard.cb_type == 1}">개발게시판</c:if>
+										<c:if test="${cboard.cb_type == 1}">
+										<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="25px" id="coding"> 
+										<span class="board_type">개발 게시판</span></c:if>
 									</span> 
 									<span class="type F"> 
-										<c:if test="${cboard.cb_type == 0}">자유게시판</c:if>
+										<c:if test="${cboard.cb_type == 0}">
+										<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="25px" id="free">
+										<span class="board_type">자유 게시판</span>
+										</c:if>
 									</span>
 									<hr size="2px" id="line2">
 								</div>
@@ -132,7 +139,9 @@
 									</div>
 
 									<div class="hit">
-										<span>조회수 ${cboard.cb_hit}</span>
+										<span>
+										<img id="hit2" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
+										 ${cboard.cb_hit}</span>
 									</div>
 								</div><!-- end of detail2 -->
 								
