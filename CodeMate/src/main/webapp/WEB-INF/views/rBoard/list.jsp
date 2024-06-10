@@ -144,7 +144,7 @@
 									</div>
 								</div>
 								<div class="hit-div">
-									<span>조회수 </span> <span>${rboard.rb_hit}</span>
+									<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png"> <span>${rboard.rb_hit}</span>
 								</div>
 							</li>
 						</c:forEach>

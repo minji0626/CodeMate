@@ -5,30 +5,53 @@ body {
 }
 
 .content {
-	margin: 30px 0;
+	margin: 60px 0;
 }
 
 .content>h3 {
+	font-size: 18pt;
 	margin: 20px 0;
+	margin-bottom: 40px;
 }
 
 .block {
 	display: block;
 }
 
+li.block {
+	display: flex;
+	align-items: center;
+	margin-right: 8px;
+}
+
 .input-style {
-	display: inline-block;
-	height: 28px;
+	height: 32px;
 	border: 1px solid var(--gray-4);
 	box-sizing: border-box;
 	margin: 0;
-	padding: 2px 4px;
-	border-radius: 2px;
+	padding: 2px 8px;
+	border-radius: 8px;
 	font-size: 10pt;
+	min-width: 300px;
+}
+
+#rb_pj_title {
+	width: 1019px;
 }
 
 #project_info>li {
 	margin-bottom: 4px;
+}
+
+.flex-container {
+	display: flex;
+}
+
+.info-label {
+	font-weight: bold;
+	color: var(--gray-7);
+	display: block;
+	width: 120px;
 }
 
 /*스크롤창*/
@@ -42,6 +65,8 @@ body {
 
 .scrollable {
 	position: absolute;
+	top: 30px;
+	left: 120px;
 	max-height: 300px; /* 원하는 높이로 설정 */
 	width: 500px;
 	overflow-y: auto; /* 세로 스크롤 활성화 */
@@ -70,7 +95,9 @@ body {
 
 #scrollable_trigger {
 	display: inline-flex;
-	vertical-align: middle;
+	align-items: center;
+	color: var(--gray-7);
+	
 }
 
 #scrollable_trigger .skill-tag {
@@ -113,13 +140,22 @@ body {
 	border-radius: 50px;
 }
 
+/*필드리스트*/
+#field_list {
+	display: flex;
+	align-items: center;
+}
+
+#field_list label {
+	margin-left: 3px;
+}
+
 /*input 필드*/
-#rboard_form #project_info input, #rboard_form #project_info select
-	{
-	height: 28px;
+#rboard_form #project_info input, #rboard_form #project_info select {
+	height: 32px;
 	border: 1px solid var(--gray-4);
 	box-sizing: border-box;
-	padding: 2px 4px;
+	padding: 2px 8px;
 }
 
 #rboard_form #project_detail input, #rboard_form #project_detail textarea

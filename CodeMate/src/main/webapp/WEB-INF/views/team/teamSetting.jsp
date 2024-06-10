@@ -12,6 +12,16 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+
+
+<style>
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    background-color: #f0f0f0;
+}
+</style>
+
 </head>
     
 <body>
@@ -60,7 +70,9 @@
                                     <li>
                                         <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                                         <div class="dropdown_menu">
-                                            <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
+                                        <c:if test="${tmember.team_status == 3 }">
+                                           <a class="review-link" style="cursor: pointer; " data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
+                                        </c:if>   
                                             <c:if test="${tm_auth == 4}">
                                                 <!-- 팀장인 경우 데이터 속성 추가 -->
                                                 <a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>
@@ -97,7 +109,9 @@
                                     <li>
                                         <button class="team_setting_btn"><img src="${pageContext.request.contextPath}/images/cmj/setting_icon.png" class="setting_btn"></button>
                                         <div class="dropdown_menu">
-                                            <a class="review-link" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
+                                           <c:if test="${tmember.team_status == 3 }">
+                                           <a class="review-link" style="cursor: pointer; " data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">리뷰 쓰기</a>
+                                        </c:if>
                                             <c:if test="${tm_auth == 4}">
                                                 <!-- 팀장인 경우 데이터 속성 추가 -->
                                                 <a class="mem_delete_btn" style="cursor: pointer" data-team-num="${tmember.team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a>

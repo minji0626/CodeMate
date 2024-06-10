@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.util.SessionManager;
 
 public class LoginAction implements Action{
 
@@ -37,6 +38,8 @@ public class LoginAction implements Action{
 			session.setAttribute("mem_auth", member.getMem_auth());
 			session.setAttribute("mem_nickname", member.getMem_nickname());
 			session.setAttribute("mem_level", member.getMem_level());
+			
+			SessionManager.addUserSession(member.getMem_num(), session);
 			//메인으로 리다이렉트
 			return "redirect:/main/main.do"; 
 		}

@@ -97,7 +97,7 @@ public class TeamDAO {
         TeamVO userTeam = null;
         try {
             conn = DBUtil.getConnection();
-            String sql = "SELECT tm_auth FROM team_member WHERE mem_num=? AND team_num=?";
+            String sql = "SELECT tm_auth,tm_review_status FROM team_member WHERE mem_num=? AND team_num=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, mem_num);
             pstmt.setInt(2, team_num);
@@ -105,6 +105,7 @@ public class TeamDAO {
             if (rs.next()) {
                 userTeam = new TeamVO();
                 userTeam.setTm_auth(rs.getInt("tm_auth"));
+                userTeam.setTm_review_status(rs.getInt("tm_review_status"));
             }
         } catch (Exception e) {
             throw new Exception(e);

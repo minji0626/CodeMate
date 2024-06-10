@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.member.dao.MemberDAO2;
+import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.util.PagingUtil;
 
@@ -30,7 +30,7 @@ public class ManageMembersFormAction implements Action {
 			String keyfield = request.getParameter("keyfield");
 			String keyword = request.getParameter("keyword");
 			
-			MemberDAO2 mdao = MemberDAO2.getInstance();
+			MemberDAO mdao = MemberDAO.getInstance();
 			int count = mdao.getMembersCount(keyfield, keyword);
 			//페이지 처리
 			PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "manageMembers.do");

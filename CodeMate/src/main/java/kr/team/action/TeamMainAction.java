@@ -32,29 +32,29 @@ public class TeamMainAction implements Action{
         TeamVO teams = dao.getTeam(team_num);
 		if (teams == null || teams.getTeam_status() == 0) {
 		    // 팀이 존재하지 않는 경우
-		    response.setContentType("text/html; charset=UTF-8");
-		    PrintWriter out = response.getWriter();
-		    out.println("<script type=\"text/javascript\">");
-		    out.println("var contextPath = '" + request.getContextPath() + "';");
-		    out.println("alert('팀이 존재하지 않거나 비활성화 팀입니다. 참여중인 팀 페이지로 돌아갑니다.');");
-		    out.println("window.location.href = contextPath + '/member/myTeam.do';");
-		    out.println("</script>");
-		    return null;
+		    request.setAttribute("notice_msg", "팀이 존재하지 않거나 비활성화 팀입니다. 참여중인 팀 페이지로 돌아갑니다.");
+			request.setAttribute("notice_url", request.getContextPath() + "/member/myTeam.do");
+			return "/WEB-INF/views/common/alert_view.jsp";
+		}
+		
+		TeamVO review = dao.getUserTeam(mem_num, team_num);
+		if(review.getTm_review_status() == 0 && teams.getTeam_status() == 3) {
+			/*
+			 * request.setAttribute("notice_msg", "팀 프로젝트가 종료되었습니다. 리뷰를 작성해주세요.");
+			 * request.setAttribute("notice_url", request.getContextPath() +
+			 * "/team/teamTo_Do.do?team_num="+team_num); return
+			 * "/WEB-INF/views/common/alert_view.jsp";
+			 */
+			
+			request.setAttribute("alert", 1);
 		}
         
         TeamVO teammember = dao.getTeamMember(mem_num, team_num);
         if(teammember == null) {
-        	response.setContentType("text/html; charset=UTF-8");
-        	PrintWriter out = response.getWriter();
-        	out.println("<script type=\"text/javascript\">");
-        	out.println("var contextPath = '" + request.getContextPath() + "';");
-        	out.println("alert('잘못된 접근입니다. 참여중인 팀 페이지로 돌아갑니다.');");
-        	out.println("window.location.href = contextPath + '/member/myTeam.do';");
-        	out.println("</script>");
-
-            return null;
-        } 
-        
+        	request.setAttribute("notice_msg", "잘못된 접근입니다. 참여중인 팀 페이지로 돌아갑니다.");
+			request.setAttribute("notice_url", request.getContextPath() + "/member/myTeam.do");
+			return "/WEB-INF/views/common/alert_view.jsp";
+        }        
         
         
         // TeamDAO를 사용하여 사용자의 권한 정보를 가져옵니다.

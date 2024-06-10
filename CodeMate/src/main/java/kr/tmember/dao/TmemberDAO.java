@@ -21,18 +21,30 @@ public class TmemberDAO {
 
 	private TmemberDAO() { }
 
-	/*
-	 * //team_status -> 1 => r_apply에서 합격한 사람 (팀원) public void
-	 * insertApprovedMembers() throws Exception {
-	 * 
-	 * }
-	 * 
-	 * // team_status ->1 => r_board 작성자 (팀장) public void insertTeamLeader() throws
-	 * Exception {
-	 * 
-	 * }
-	 */
+	// team_status 3으로 변경시키기
+	public void projectDone (int team_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE team SET team_status = 3 WHERE team_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, team_num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 
+	/*
+	 * // team_status가 3이고 tm_review_status가 0인 멤버들 선택하기 public void noReviewMem
+	 * (int team_num) throws Exception { Connection conn = null; PreparedStatement }
+	 */
 
 	// team_setting에서 사용되는 팀멤버 count 하기
 	public int getTmemberCount (int team_num) throws Exception{
@@ -68,7 +80,7 @@ public class TmemberDAO {
 		List<TmemberVO> list = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM team_member JOIN member USING(mem_num) JOIN member_detail USING(mem_num) WHERE team_num=?";
+			sql = "SELECT * FROM team_member JOIN member USING(mem_num) JOIN member_detail USING(mem_num) JOIN team USING(team_num) WHERE team_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,team_num);
 			rs = pstmt.executeQuery();
@@ -84,6 +96,7 @@ public class TmemberDAO {
 				tmember.setMem_nickname(rs.getString("mem_nickname"));
 				tmember.setTm_auth(rs.getInt("tm_auth"));
 				tmember.setTm_review_status(rs.getInt("tm_review_status"));
+				tmember.setTeam_status(rs.getInt("team_status"));
 
 				list.add(tmember);
 			}

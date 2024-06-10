@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.rboard.dao.RboardDAO;
+import kr.rboard.vo.RboardVO;
 import kr.util.FileUtil;
 
 public class DeleteUserAction implements Action{
@@ -36,11 +38,17 @@ public class DeleteUserAction implements Action{
 		boolean check = false;
 		//사용자가 입력한 아이디가 존재하고 로그인한 아이디와 일치하는지 체크,
 		
+		
+		RboardDAO rdao = RboardDAO.getInstance();
+		
+		
 		if(check) {//인증 성공
 			//회원정보 삭제
 			dao.deleteMember(mem_num);
 			//프로필 사진 삭제				디비나 세션중에서 photo빼와도됨(여기선 디비 사용)
 			FileUtil.removeFile(request, db_member.getMem_photo());
+			//Rboard 삭제
+			rdao.deleteUserRboard(mem_id);
 			//로그아웃
 			session.invalidate();
 		}
