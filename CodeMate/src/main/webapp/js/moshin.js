@@ -76,14 +76,16 @@ $(function() {
      // JavaScript 코드
 	$(function() {
 	    $('.myPage-line-box-moshin').each(function() {
-	        var passValue = $(this).data('pass'); // data-pass 속성의 값 읽기
-	        if (passValue == '0') {
+	        let passValue = $(this).data('pass'); // data-pass 속성의 값 읽기
+	        if (passValue == 0) {
 	            $(this).css('border', '2px solid  red');
-	            
 	        }
-	         if (passValue == '1') {
+	         if (passValue == 1) {
 	            $(this).css('border', '2px solid #5aca7c'); 
 	        }
+	          if(passValue == -1){
+				$(this).css('border', '2px solid black');
+			}
 	    });
 	});
 	/*

@@ -4,7 +4,7 @@ $(function() {
 		// '모집글 삭제' 버튼 클릭 이벤트
 		event.stopPropagation();
 		
-		var check = confirm("정말 삭제하시겠습니까?");
+		var check = confirm("정말 신청 취소하시겠습니까?");
 		
 		if(check){
 	        // 서버와 통신

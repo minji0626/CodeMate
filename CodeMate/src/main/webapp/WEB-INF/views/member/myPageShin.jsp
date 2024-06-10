@@ -82,12 +82,17 @@
 	        let passValue = $(this).data('pass');
 	        if (passValue == '0') {
 	            $(this).css('border', '2px solid red');
-	            $(this).find('.delete-green').show(); // 신청하기 div 보이기
+	            $(this).find('.delete-green').hide(); // 신청하기 div 숨기기
 	            
 	        }
 	        if (passValue == '1') {
 	            $(this).css('border', '2px solid #5aca7c');
 	            $(this).find('.delete-green').hide(); // 신청하기 div 숨기기
+	        }
+	        
+	        if (passValue == '-1') {
+	            $(this).css('border', '2px solid black');
+	            $(this).find('.delete-green').show(); // 신청하기 div 보이기
 	        }
 	    });
 	});
