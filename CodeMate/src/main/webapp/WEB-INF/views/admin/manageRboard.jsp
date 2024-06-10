@@ -70,7 +70,7 @@
 										</td>
 										<td>
 											<c:if test="${list.team_status==0}">
-											<input type="button" value="삭제하기" id="delete_btn" class="deleteMemberBtn" onclick='deleteRboard(${list.rb_num})'>
+											 <a href="#" onclick='deleteRboard(${list.rb_num}); return false;' class="deleteMemberBtn">삭제하기</a>
 												<script>
 												//글삭제
 												function deleteRboard(rb_num) {
@@ -81,8 +81,8 @@
 												}
 												</script>
 											</c:if>
-											<c:if test="${list.team_status==1 || list.team_status==2}">
-												
+											<c:if test="${list.team_status==1 || list.team_status==3}">
+												<button class="changeAuthBtn"> 삭제 불가</button>
 											</c:if>
 										</td>
 									</tr>

@@ -126,7 +126,7 @@ button {
     font-size: 12px;
 }
 
-.checkTeamMember, .changeLeader, .deleteTeam, .startTeam, .delete {
+.checkTeamMember, .changeLeader, .deleteTeam, .startTeam, .delete, .deleteMemberBtn {
 	padding: 5px 10px;
     border: none;
     border-radius: 4px;
