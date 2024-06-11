@@ -120,7 +120,7 @@ a {
 #main_header #profile_pic {
 	border-radius: 50%;
 	margin-right: 10px;
-	object-fit:cover;
+	object-fit: cover;
 }
 
 #main_header #header_more {
@@ -143,7 +143,6 @@ a {
 #main_header .login_profile span {
 	font-weight: bold;
 	color: #3D3D3D;
-	margin-right: 10px;
 	font-size: 0.8em;
 }
 
@@ -153,12 +152,12 @@ a {
 }
 
 #main_header #header_more {
-	    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    width: 36px;
-    height: 20px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	width: 20px;
+	height: 20px;
 }
 
 .dropdown_header_menu {
@@ -182,10 +181,6 @@ a {
 
 .dropdown_header_menu a:hover {
 	background-color: #ddd;
-}
-
-#level_pic {
-    margin-top: 3%;
 }
 
 /* 미디어 쿼리 추가 */
@@ -223,7 +218,6 @@ a {
 }
 
 /*1:1문의 버튼*/
-
 .fixed-button {
 	position: fixed;
 	bottom: 50px;

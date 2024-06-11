@@ -31,25 +31,24 @@
 			<c:if test="${!empty mem_num && !empty mem_photo && mem_auth != 9}">
 					<div class="login_profile">
 					<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40"> 
+					
+					<span id="mem_id_span">${mem_nickname}</span>
+					
 					<c:if test="${mem_level == 1 }">
-					<img id="level_pic" src="${pageContext.request.contextPath}/images/level1.png" height="40" width="40">
+					<img id="level_pic" src="${pageContext.request.contextPath}/images/level1.png" height="20" width="20">
 					</c:if>
 					<c:if test="${mem_level == 2 }">
-					<img id="level_pic" src="${pageContext.request.contextPath}/images/level2.png" height="40" width="40">
+					<img id="level_pic" src="${pageContext.request.contextPath}/images/level2.png" height="20" width="20">
 					</c:if>
 					<c:if test="${mem_level == 3 }">
-					<img id="level_pic" src="${pageContext.request.contextPath}/images/level3.png" height="40" width="40">
+					<img id="level_pic" src="${pageContext.request.contextPath}/images/level3.png" height="20" width="20">
 					</c:if>
 					<c:if test="${mem_level == 4 }">
-					<img id="level_pic" src="${pageContext.request.contextPath}/images/level4.png" height="40" width="40">
+					<img id="level_pic" src="${pageContext.request.contextPath}/images/level4.png" height="20" width="20">
 					</c:if>
 					<c:if test="${mem_level == 5 }">
-					<img id="level_pic" src="${pageContext.request.contextPath}/images/level5.png" height="40" width="40">
+					<img id="level_pic" src="${pageContext.request.contextPath}/images/level5.png" height="20" width="20">
 					</c:if>
-					<div style="width: -webkit-fill-available;">
-					<span id="mem_id_span">${mem_nickname}</span>
-					</div>
-					
 					
 					<button id="header_more">
 						<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
@@ -67,6 +66,9 @@
 			<c:if test="${!empty mem_num && empty mem_photo && mem_auth != 9}">
 					<div class="login_profile">
 					<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40"> 
+					
+					<span id="mem_id_span">${mem_nickname}</span>
+					
 					<c:if test="${mem_level == 1 }">
 					<img id="level_pic" src="${pageContext.request.contextPath}/images/level1.png" height="20" width="20">
 					</c:if>
@@ -82,9 +84,6 @@
 					<c:if test="${mem_level == 5 }">
 					<img id="level_pic" src="${pageContext.request.contextPath}/images/level5.png" height="20" width="20">
 					</c:if>
-					<div style="width: -webkit-fill-available;">
-					<span id="mem_id_span">${mem_nickname}</span>
-					</div>
 					
 					<button id="header_more">
 					<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
