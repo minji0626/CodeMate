@@ -31,7 +31,7 @@ div#mini-card1 { /* 1 */
 	  transform:scale(1.0);
 }
 .content1:hover{
-	transform:scale(1.05);
+	transform:scale(1.01);
   transition: transform .5s;
   box-shadow:0px 4px 12px rgba(0, 0, 0, 0.3);	
 }
@@ -103,7 +103,7 @@ div#mini-card2 { /* 1 */
 	transform:scale(1.0);
 }
 .content2:hover{
-	transform:scale(1.05);
+	transform:scale(1.01);
   transition: transform .5s;
    box-shadow:0px 4px 12px rgba(0, 0, 0, 0.3);	
 }
