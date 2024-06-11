@@ -23,7 +23,10 @@ button, #modify-btn, #close-btn, #insert-btn{
 	cursor:pointer;
 }
 
-
+.center-image {
+    display: block;
+    margin: 0 auto;
+}
 /********************************
 /*메이트 프로필 모달 창 제목 바 DIV*/
 .mp_view_title {

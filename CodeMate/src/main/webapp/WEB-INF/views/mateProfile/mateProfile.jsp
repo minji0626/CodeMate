@@ -40,15 +40,37 @@
 					</c:if>
                     </div> 
                     <!-- 닉네임 -->
-                    <div class="mp_account_nickname">
-                        <span class="user_nickname">${member.mem_nickname}</span>
-                        <!-- 레벨 이미지 추가하기 -->
-                        <span class="user_level">${member.mem_level }</span>
-                        <br>
-                        <span class="user_id">${mem.mem_id}</span>
-                        <!-- 아이디 옆 이미지 추가하기 -->
-                        <img>
-                    </div>
+					<div class="mp_account_nickname">
+					    <div class="user_info_container">
+					        <span class="user_nickname">${member.mem_nickname}</span>
+					        <!-- 레벨 이미지 추가하기 -->
+					        <c:choose>
+					            <c:when test="${mem.mem_level==1}">
+					                <img src="${pageContext.request.contextPath}/images/level1.png" width="30px">
+					            </c:when>
+					            <c:when test="${mem.mem_level==2}">
+					                <img src="${pageContext.request.contextPath}/images/level2.png" width="30px">
+					            </c:when>
+					            <c:when test="${mem.mem_level==3}">
+					                <img src="${pageContext.request.contextPath}/images/level3.png" width="30px">
+					            </c:when>
+					            <c:when test="${mem.mem_level==4}">
+					                <img src="${pageContext.request.contextPath}/images/level4.png" width="30px">
+					            </c:when>
+					            <c:when test="${mem.mem_level>=5}">
+					                <img src="${pageContext.request.contextPath}/images/level5.png" width="30px">
+					            </c:when>
+					        </c:choose>
+					    </div>
+					    <div class="id_user">
+					        <span class="user_id">${mem.mem_id}</span> <!-- 아이디 영역 -->
+					    </div>
+					</div>
+
+
+
+
+
                     <c:if test="${member.mem_num==mem_num}">
                     	<button class="mp_view_modify" onclick="location.href='mateProfileForm.do?mem_num=${mem.mem_num}'"><span>수정하기</span> </button>
                     </c:if>     

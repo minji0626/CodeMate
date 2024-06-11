@@ -10,7 +10,10 @@
 *{
 	font-family: "Noto Sans KR", sans-serif;
 }
-
+.center-image {
+    display: block;
+    margin: 0 auto;
+}
 #mate_review {
 	width: 100%;
 	height: 100%;
