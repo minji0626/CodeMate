@@ -237,7 +237,7 @@ public class RboardDAO {
 			pstmt4.setInt(1, rb_num);
 			pstmt4.executeUpdate();
 
-			// 모집이 마감되지 않은 글은 team테이블에서도 삭제
+			// 모집이 마감되지 않은 글(team_status가 0인글)은 team테이블에서도 삭제
 			sql = "DELETE FROM team WHERE team_num=? AND team_status=0";
 			pstmt5 = conn.prepareStatement(sql);
 			pstmt5.setInt(1, rb_num);
@@ -249,7 +249,7 @@ public class RboardDAO {
 			pstmt6.setInt(1, rb_num);
 			pstmt6.executeUpdate();
 
-			// team_status가 1,3일때는 rboard 삭제X 
+			// team_status가 0일 때만 rboard 삭제
 			sql = "DELETE FROM r_board WHERE rb_num IN (" +
                     "SELECT r.rb_num FROM r_board r JOIN team t ON r.rb_num = t.team_num " +
                     "WHERE r.rb_num = ? AND t.team_status = 0)";
@@ -281,7 +281,6 @@ public class RboardDAO {
 	    PreparedStatement pstmt = null; // 북마크
 	    PreparedStatement pstmt2 = null; // 댓글
 	    PreparedStatement pstmt3 = null;
-	    PreparedStatement pstmt4 = null;
 	    PreparedStatement pstmt5 = null;
 	    PreparedStatement pstmt6 = null;
 	    PreparedStatement pstmt7 = null;
@@ -290,7 +289,6 @@ public class RboardDAO {
 	    PreparedStatement pstmt10 = null;
 	    PreparedStatement pstmt11 = null;
 	    ResultSet rs = null;
-	    ResultSet rs2 = null;
 	    List<RboardVO> list = null;
 
 	    String sql = null;
@@ -315,7 +313,7 @@ public class RboardDAO {
 	        
 	        // 회원의 rboard 글 불러오기
 	        System.out.println("Fetching user's rboard posts...");
-	        sql = "SELECT * FROM r_board WHERE mem_num=?";
+	        sql = "SELECT * FROM r_board r JOIN team t ON  r.rb_num = t.team_num WHERE mem_num=?";
 	        pstmt3 = conn.prepareStatement(sql);
 	        pstmt3.setInt(1, mem_num);
 
@@ -329,16 +327,7 @@ public class RboardDAO {
 	            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 	            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
 	            rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
-
-	            sql = "SELECT team_status FROM team WHERE team_num=?";
-	            pstmt4 = conn.prepareStatement(sql);
-	            pstmt4.setInt(1, rboard.getRb_num());
-	            rs2 = pstmt4.executeQuery();
-	            
-	            if (rs2.next()) {
-	                rboard.setTeam_status(rs2.getInt("team_status"));
-	                // rboard.setTeam_num(rs2.getInt("team_num"));
-	            }
+	            rboard.setTeam_status(rs.getInt("team_status"));
 
 	            list.add(rboard);
 	        }
@@ -417,11 +406,9 @@ public class RboardDAO {
 	        DBUtil.executeClose(null, pstmt7, null);
 	        DBUtil.executeClose(null, pstmt6, null);
 	        DBUtil.executeClose(null, pstmt5, null);
-	        DBUtil.executeClose(null, pstmt4, null);
 	        DBUtil.executeClose(null, pstmt3, null);
 	        DBUtil.executeClose(null, pstmt2, null);
-	        DBUtil.executeClose(rs2, pstmt, conn);
-	        DBUtil.executeClose(rs, null, null);
+	        DBUtil.executeClose(rs, pstmt, conn);
 	        System.out.println("Resources closed.");
 	    }
 	}
