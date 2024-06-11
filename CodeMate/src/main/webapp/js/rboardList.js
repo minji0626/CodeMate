@@ -54,28 +54,24 @@ $(document).ready(function() {
 					output += '<div class="r-item-header">';
 					output += '<div class="rb_category_div">';
 					if (item.rb_category == 0) {
-						output += '<span class="rb_category study">스터디</span>';
+						output += '<span class="rb_category study"><img src="'+contextPath+'/images/study_w2.png" width="13" height="13"> 스터디</span>';
 					} else {
-						output += '<span class="rb_category project">프로젝트</span>';
+						output += '<span class="rb_category project"><img src="'+contextPath+'/images/project_w.png" width="13" height="13"> 프로젝트</span>';
 					}
 					output += '</div>';
 					output += '<span class="rb_endRecruit">';
-					if (item.daysLeft < 0 || item.team_status == 1) {
-						output += '모집 종료됨';
-					} else {
-						output += item.rb_endRecruit + ' 마감';
-					}
+					output += '마감일 &nbsp;|&nbsp;' + item.rb_endRecruit;
 					output += '</span>';
 					output += '</div>';
 					output += '<div class="r-item-main">';
-					output += '<p class="rb-title">' + item.rb_title + '</p>';
+					output += '<div class="rb-title">' + item.rb_title + '</div>';
 					output += '<div class="skill-logo-div">';
 					for (var i = 0; i < item.hs_photo_arr.length; i++) {
 						output += '<img src="' + contextPath + '/images/hard_skill_logo/' + item.hs_photo_arr[i] + '"';
 						output += 'title="' + item.hs_name_arr[i] + '" class="skill-logo"> ';
 					}
 					output += '</div>';
-					output += '<div class="r-item-info"><span>진행방식 | </span> <span>';
+					output += '<div class="r-item-info"><div class="proceed_all"><span class="proceed">';
 					if (item.rb_meet == 0) {
 						output += '온라인';
 					} else if (item.rb_meet == 1) {
@@ -83,22 +79,21 @@ $(document).ready(function() {
 					} else {
 						output += '온라인/오프라인';
 					}
-					output += '</span>';
-					output += '<div>';
-					output += '<span>모집필드 | </span>';
+					output += '</span></div>';
+					output += '<div class="field_all">';
 					$(item.f_name_arr).each(function(index, field) {
-						output += '<span>' + field + '</span> ';
+						output += '<span class="mofield"> ' + field + '</span> ';
 					});
 					output += '</div>';
-					output += '<div>';
-					output += '<span>신청인원 | </span>';
-					output += '<span>' + item.rb_apply_count + '/';
+					output += '<div class="apply_count_all">';
+					output += '<span class="apply_count">신청인원 | ';
+					output +=  item.rb_apply_count;
 					if (item.rb_teamsize == 0) {
-						output += '인원 미정';
+						output += ' / 인원 미정';
 					} else if (item.rb_teamsize == 10) {
-						output += '10명 이상';
+						output += ' / 10명 이상';
 					} else {
-						output += item.rb_teamsize;
+						output += ' / ' + item.rb_teamsize;
 					}
 					output += '</span>';
 					output += '</div></div>';
@@ -106,6 +101,9 @@ $(document).ready(function() {
 					output += '<div class="hit-div">';
 					output += '<img src="'+ getContextPath() +'/images/cje/boardHitIcon.png"> <span>' + item.rb_hit + '</span>';
 					output += '</div>';
+					if(item.daysLeft < 0 || item.team_status == 1) {
+						output += '<div class="end_recruit">모집 마감</div>';
+					}
 					output += '</li>';
 				});
 
