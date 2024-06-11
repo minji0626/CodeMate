@@ -92,24 +92,20 @@
 								<div class="r-item-header">
 									<div class="rb_category_div">
 										<c:if test="${rboard.rb_category == 0}"><span class="rb_category study"> 
+										<img src="${pageContext.request.contextPath}/images/study_w2.png" width="13" height="13">
 										스터디</span>
 										</c:if>
 										<c:if test="${rboard.rb_category == 1}"><span class="rb_category project"> 
+										<img src="${pageContext.request.contextPath}/images/project_w.png" width="13" height="13">
 										프로젝트</span>
 										</c:if>
-										
 									</div>
 									<span class="rb_endRecruit">
-										<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">
-											모집 종료됨
-										</c:if>
-										<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
-											${rboard.rb_endRecruit} 마감
-										</c:if>
+										마감일 &nbsp;|&nbsp; ${rboard.rb_endRecruit}
 									</span>
 								</div>
 								<div class="r-item-main">
-									<p class="rb-title">${rboard.rb_title}</p>
+									<div class="rb-title">${rboard.rb_title}</div>
 									<div class="skill-logo-div">
 										<c:forEach var="i" begin="0"
 											end="${fn:length(rboard.hs_photo_arr) - 1}">
@@ -119,26 +115,30 @@
 										</c:forEach>
 									</div>
 									<div class="r-item-info">
-										<span>진행방식 | </span> <span> <c:if
-												test="${rboard.rb_meet == 0}">
-					온라인
-					</c:if> <c:if test="${rboard.rb_meet == 1}">
-					오프라인
-					</c:if> <c:if test="${rboard.rb_meet == 2}">
-					온라인/오프라인
-					</c:if>
-										</span>
-										<div>
-											<span>모집필드 | </span>
+										<div class="proceed_all">
+											<span class="proceed"> 
+											<c:if test="${rboard.rb_meet == 0}">
+											온라인
+											</c:if> 
+											<c:if test="${rboard.rb_meet == 1}">
+											오프라인
+											</c:if> 
+											<c:if test="${rboard.rb_meet == 2}">
+											온라인/오프라인
+											</c:if>
+											</span>
+										</div>
+										<div class="field_all">
 											<c:forEach var="field" items="${rboard.f_name_arr}">
-												<span>${field}</span>
+												<span class="mofield">${field}</span>
 											</c:forEach>
 										</div>
-										<div>
-											<span>신청인원 | </span> <span>${rboard.rb_apply_count}/<c:if
-													test="${rboard.rb_teamsize==0}">인원 미정</c:if><c:if
-													test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">${rboard.rb_teamsize}</c:if>
-												<c:if test="${rboard.rb_teamsize==10}">10명이상</c:if>
+										<div class="apply_count_all">
+											<span class="apply_count">신청인원 |
+											${rboard.rb_apply_count}
+											<c:if test="${rboard.rb_teamsize==0}">/ 인원 미정</c:if>
+											<c:if test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">/ ${rboard.rb_teamsize}</c:if>
+											<c:if test="${rboard.rb_teamsize==10}">/ 10명이상</c:if>
 											</span>
 										</div>
 									</div>
@@ -146,6 +146,11 @@
 								<div class="hit-div">
 									<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png"> <span>${rboard.rb_hit}</span>
 								</div>
+								<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">
+									<div class="end_recruit">
+									모집 마감
+									</div>
+								</c:if>
 							</li>
 						</c:forEach>
 					</ul>
