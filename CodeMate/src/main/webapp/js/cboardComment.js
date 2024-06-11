@@ -149,10 +149,10 @@ $(function() {
         // 댓글 수정폼 UI
         let modifyUI = '<form id="mcc_form">';
         modifyUI += `<input type="hidden" name="cc_num" id="mcc_num" value="${cc_num}">`;
-        modifyUI += `<textarea rows="3" cols="50" name="cc_content" id="mcc_content" class="cc-content">${content}</textarea>`;
+        modifyUI += `<textarea rows="3" cols="50" name="cc_content" id="mcc_content" class="cc-content tc-content">${content}</textarea>`;
         modifyUI += '<div id="btn-div" class="align-right">';
-        modifyUI += ' <input type="submit" value="수정">';
-        modifyUI += ' <input type="button" value="취소" class="cc-reset">';
+        modifyUI += ' <input type="submit" value="수정" class="tc-modify" id="btn-div">';
+        modifyUI += ' <input type="button" value="취소" class="cc-reset tc-reset" id="btn-div"	>';
         modifyUI += '</div>';
         modifyUI += '</form>';
 
