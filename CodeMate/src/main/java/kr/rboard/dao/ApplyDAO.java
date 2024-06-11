@@ -65,7 +65,7 @@ public class ApplyDAO {
 		try {
 			conn = DBUtil.getConnection();
 
-			sql = "SELECT ra.*, md.* FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num JOIN member_detail md ON ra.mem_num = md.mem_num WHERE ra.rb_num = ?";
+			sql = "SELECT ra.*, md.*, rb.rb_title FROM r_apply ra JOIN r_board rb ON ra.rb_num = rb.rb_num JOIN member_detail md ON ra.mem_num = md.mem_num WHERE ra.rb_num = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rb_num);
@@ -77,6 +77,7 @@ public class ApplyDAO {
 				RapplyVO rapply = new RapplyVO();
 				rapply.setRa_num(rs.getInt("ra_num"));
 				rapply.setRb_num(rs.getInt("rb_num"));
+				rapply.setRb_title(rs.getString("rb_title"));
 				rapply.setMem_num(rs.getInt("mem_num"));
 				rapply.setRa_content(rs.getString("ra_content"));
 				rapply.setRa_date(rs.getDate("ra_date"));

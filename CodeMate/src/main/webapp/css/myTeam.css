@@ -134,6 +134,12 @@ myPageMoshin.jsp
 	margin-left: 25px;
 	margin-top: 20px;
 }
+
+.profile_mypage .rb-title {
+	margin-bottom: 2%;
+	font-weight: bold;
+	font-size: 14pt;
+}
 .profile_pic_mypage{
 	border-radius: 50px;
 	margin-right: 10px;

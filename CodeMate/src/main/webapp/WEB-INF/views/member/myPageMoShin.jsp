@@ -36,7 +36,7 @@
 	<c:forEach var="ra" items="${rapplyList}">
 		<div class="myPage-line-box-moshin" data-pass="${ra.ra_pass}">
 			<div class="profile_mypage">
-
+				<div class="rb-title">${ra.rb_title}</div>
 				<!-- 이미지 수정 -->
 				<c:if test="${empty ra.mem_photo}">
 					<img src="${pageContext.request.contextPath}/images/face.png"
