@@ -51,7 +51,7 @@
 							<div class="team-left">
 								<c:if test="${aprboard.rb_category == '0'}">스터디</c:if>
 								<c:if test="${aprboard.rb_category == '1'}">프로젝트</c:if>
-								<div class="projectName_font">${aprboard.rb_pj_title}</div>
+								<div class="projectName_font">${aprboard.rb_title}</div>
 							</div>
 
 							<div class="team-right">

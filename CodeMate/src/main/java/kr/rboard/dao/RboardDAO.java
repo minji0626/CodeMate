@@ -979,6 +979,7 @@ public class RboardDAO {
 				rboard.setRb_num(rs.getInt("rb_num"));
 				rboard.setRa_pass(rs.getInt("ra_pass"));
 				rboard.setRb_category(rs.getInt("rb_category"));
+				rboard.setRb_title(rs.getString("rb_title"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_apply_count(myRboardApplyCountByRbNum(rs.getInt("rb_num")));
 				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
