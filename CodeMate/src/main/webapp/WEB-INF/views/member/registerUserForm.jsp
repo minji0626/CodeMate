@@ -44,14 +44,14 @@
                     	<!-- 닉네임 중복체크 -->
                 	</li>
 					<li class="info">
-					<label for="email">이메일</label> 
-						<input type="email" name="email" id="email" maxlength="50" class="input-check">
+					<label for="mem_email">이메일</label> 
+						<input type="email" name="mem_email" id="mem_email" maxlength="50" class="input-check">
 						<div id="message_email" class="error-message"></div> <!-- 수정 -->
 					</li>
 					
 					<li class="info">
-					<label for="phone">전화번호</label> 
-						<input type="text" name="phone" id="phone" maxlength="30" class="input-check">
+					<label for="mem_phone">전화번호</label> 
+						<input type="text" name="mem_phone" id="mem_phone" maxlength="30" class="input-check">
 						<div id="message_phone" class="error-message"></div> <!-- 수정 -->
 					</li>
 				</ul>
