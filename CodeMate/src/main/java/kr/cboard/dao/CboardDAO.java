@@ -160,9 +160,22 @@ public class CboardDAO {
 		try {
 			conn = DBUtil.getConnection();
 
-			sql =  "SELECT * FROM (SELECT a.* FROM "
-					+ "(SELECT * FROM c_board LEFT OUTER JOIN member_detail USING(mem_num) " 
-					+" ORDER BY c_board.cb_hit DESC) a) WHERE ROWNUM <= 8 ";
+			sql =  "SELECT *"
+					+ "FROM ("
+					+ "    SELECT a.*, ROWNUM AS rnum"
+					+ "    FROM ("
+					+ "        SELECT *"
+					+ "        FROM ("
+					+ "            SELECT cb_num, COUNT(*) AS num_rows"
+					+ "            FROM c_like" 
+					+ "            GROUP BY cb_num"
+					+ "            ORDER BY num_rows DESC"
+					+ "        )"
+					+ "        JOIN c_board USING (cb_num)"
+					+ "        ORDER BY num_rows DESC"
+					+ "    ) a"
+					+ ")"
+					+ "WHERE ROWNUM <= 8";
 
 			pstmt = conn.prepareStatement(sql);
 
