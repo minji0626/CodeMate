@@ -56,6 +56,7 @@
 
 							<div class="team-right">
 								<div class="delete-green" id="delete_green" data-ranum="${aprboard.ra_num}">신청취소</div>
+								<input type="button" value="나의 신청서" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/member/myPageApplyDetail.do?ra_num=${aprboard.ra_num}'">
 								<div class="team-count">모집인원:${aprboard.rb_teamsize}명</div>
 								<!-- 시작일인데 진행기간 넣어봄 -->
 								<div class="team-count">프로젝트 진행기간:${aprboard.rb_period}개월</div>
