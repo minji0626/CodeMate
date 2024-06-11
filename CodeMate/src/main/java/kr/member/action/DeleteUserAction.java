@@ -32,8 +32,6 @@ public class DeleteUserAction implements Action {
         MemberVO db_vo = dao.getMember(mem_num);
         String input_id = request.getParameter("id");
         String input_passwd = request.getParameter("passwd");
-        System.out.println("input_id: " +input_id);
-        System.out.println("input_passwd: " +input_passwd);
 
         if (!input_id.equals(db_vo.getMem_id()) || !input_passwd.equals(db_vo.getMem_passwd())) {
             

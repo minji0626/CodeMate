@@ -56,8 +56,8 @@
 								</div>
 								<div class="team-right-mo">
 								<div class="count">
-										<div class="team-count">신청인원:${rboard.rb_apply_count}명</div>
-										<div class="team-count">합격된 인원:${rboard.rb_apply_count}명</div>
+										<div class="team-count">신청인원:${rboard.apply_count}명</div>
+										<div class="team-count">합격된 인원:${rboard.apply_count}명</div>
 										<div>모집마감:${rboard.rb_endRecruit}</div>
 								</div>
 										<div class="right">

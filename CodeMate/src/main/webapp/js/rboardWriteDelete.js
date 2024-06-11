@@ -33,7 +33,7 @@ $(function() {
     $('.close-green').on('click', function(event) {
         event.stopPropagation();
 
-        var check = confirm("이 코메 모집글을 활성화하시겠습니까?");
+        var check = confirm("팀활성화시 코메 모집이 종료됩니다");
 		
 		
         if (check) {
