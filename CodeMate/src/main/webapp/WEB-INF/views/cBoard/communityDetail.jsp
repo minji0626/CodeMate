@@ -70,7 +70,7 @@
 		       		<div class="board_content">
 		       			<!-- 이미지 --> 
 		       			<c:if test="${!empty board.cb_file}">
-    						<div class="board_file">
+    						<div class="board_file" style="text-align: center;">
         						<img src="${pageContext.request.contextPath}/upload/${board.cb_file}" width="400">
         					</div>
         				</c:if>
@@ -89,7 +89,7 @@
 		   		</div>
 		   		<div class="list-actions">    
 		   			<c:if test="${!empty board.cb_modify_date}">
-        					최근 수정일 : ${board.cb_modify_date}
+        					<span>최근 수정일 : ${board.cb_modify_date}</span>
         			</c:if>
         			<c:if test="${board.mem_num==mem_num}">
 				    <button class="btn btn-primary list-action" onclick="location.href='modifyCommunityForm.do?cb_num=${board.cb_num}'">수정</button>
