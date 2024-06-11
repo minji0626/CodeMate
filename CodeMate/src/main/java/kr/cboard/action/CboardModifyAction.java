@@ -55,9 +55,8 @@ public class CboardModifyAction implements Action{
 		
 		if(board.getCb_file()!=null && !"".equals(board.getCb_file())) {
 			FileUtil.removeFile(request, db_board.getCb_file());
-		} else {
-			dao.deleteFile(cb_num);
 		}
+
 
 		return "redirect:/cboard/communityDetail.do?cb_num="+cb_num;
 	}
