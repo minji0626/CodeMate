@@ -144,6 +144,7 @@ a {
 	font-weight: bold;
 	color: #3D3D3D;
 	margin-right: 10px;
+	font-size: 0.8em;
 }
 
 #main_header #header_icon {
@@ -152,12 +153,12 @@ a {
 }
 
 #main_header #header_more {
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	padding: 0;
-	width: 20px;
-	height: 20px;
+	    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 20px;
 }
 
 .dropdown_header_menu {
@@ -184,7 +185,6 @@ a {
 }
 
 #level_pic {
-	margin-right: 3%;
     margin-top: 3%;
 }
 

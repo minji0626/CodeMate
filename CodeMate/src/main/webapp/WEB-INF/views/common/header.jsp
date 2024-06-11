@@ -46,7 +46,11 @@
 					<c:if test="${mem_level == 5 }">
 					<img id="level_pic" src="${pageContext.request.contextPath}/images/level5.png" height="40" width="40">
 					</c:if>
-					<span id="mem_id_span">${mem_id}</span>
+					<div style="width: -webkit-fill-available;">
+					<span id="mem_id_span">${mem_nickname}</span>
+					</div>
+					
+					
 					<button id="header_more">
 						<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
 					</button>
@@ -78,7 +82,10 @@
 					<c:if test="${mem_level == 5 }">
 					<img id="level_pic" src="${pageContext.request.contextPath}/images/level5.png" height="20" width="20">
 					</c:if>
-					<span id="mem_id_span">${mem_id}</span>
+					<div style="width: -webkit-fill-available;">
+					<span id="mem_id_span">${mem_nickname}</span>
+					</div>
+					
 					<button id="header_more">
 					<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
 						</button>

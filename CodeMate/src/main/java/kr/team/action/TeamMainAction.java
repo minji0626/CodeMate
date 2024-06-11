@@ -36,16 +36,10 @@ public class TeamMainAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath() + "/member/myTeam.do");
 			return "/WEB-INF/views/common/alert_view.jsp";
 		}
+		int team_status = teams.getTeam_status();
 		
 		TeamVO review = dao.getUserTeam(mem_num, team_num);
 		if(review.getTm_review_status() == 0 && teams.getTeam_status() == 3) {
-			/*
-			 * request.setAttribute("notice_msg", "팀 프로젝트가 종료되었습니다. 리뷰를 작성해주세요.");
-			 * request.setAttribute("notice_url", request.getContextPath() +
-			 * "/team/teamTo_Do.do?team_num="+team_num); return
-			 * "/WEB-INF/views/common/alert_view.jsp";
-			 */
-			
 			request.setAttribute("alert", 1);
 		}
         
@@ -63,11 +57,9 @@ public class TeamMainAction implements Action{
                 tm_auth = team.getTm_auth();
          }
 
-        // 가져온 권한 정보를 세션에 저장합니다.
         session.setAttribute("tm_auth", tm_auth);
-        
-        // 가져온 팀 정보를 세션에 저장합니다.
         session.setAttribute("team_num", team_num);
+        session.setAttribute("team_status", team_status);
 
         // 팀의 홈페이지로 이동합니다.
         return "/WEB-INF/views/team/teamTo_Do.jsp";

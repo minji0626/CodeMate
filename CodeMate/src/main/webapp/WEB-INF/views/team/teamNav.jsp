@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <a href="${pageContext.request.contextPath}/team/teamSetting.do?team_num=${team_num}" class="menu-item">팀 설정</a>
         <!-- 다른 메뉴 항목들 추가 -->
     </div>
-    <c:if test="${tm_auth == 4 }">
+    <c:if test="${tm_auth == 4 && team_status != 3}">
     <form action="endProject.do" class="pj_close" method="post">
     	<input type="hidden" name="team_num" value="${team_num}">
     	<input type="button" value="프로젝트 종료" class="pj_close_btn">
