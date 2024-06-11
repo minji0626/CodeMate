@@ -106,40 +106,49 @@
 								</div>
 								<div class="r-item-main">
 									<div class="rb-title">${rboard.rb_title}</div>
-									<div class="skill-logo-div">
-										<c:forEach var="i" begin="0"
-											end="${fn:length(rboard.hs_photo_arr) - 1}">
-											<img
-												src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}"
-												title="${rboard.hs_name_arr[i]}" class="skill-logo">
-										</c:forEach>
-									</div>
-									<div class="r-item-info">
-										<div class="proceed_all">
-											<span class="proceed"> 
-											<c:if test="${rboard.rb_meet == 0}">
-											온라인
-											</c:if> 
-											<c:if test="${rboard.rb_meet == 1}">
-											오프라인
-											</c:if> 
-											<c:if test="${rboard.rb_meet == 2}">
-											온라인/오프라인
-											</c:if>
-											</span>
-										</div>
-										<div class="field_all">
-											<c:forEach var="field" items="${rboard.f_name_arr}">
-												<span class="mofield">${field}</span>
+									<div>
+										<div class="skill-logo-div">
+											<c:forEach var="i" begin="0"
+												end="${fn:length(rboard.hs_photo_arr) - 1}">
+												<c:if test="${i < 6}">
+												<img
+													src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}"
+													title="${rboard.hs_name_arr[i]}" class="skill-logo">
+												</c:if>
+												<c:if test="${i == 6}">
+												<img
+													src="${pageContext.request.contextPath}/images/more_icon.png"
+													class="skill-logo">
+												</c:if>
 											</c:forEach>
 										</div>
-										<div class="apply_count_all">
-											<span class="apply_count">신청인원 |
-											${rboard.rb_apply_count}
-											<c:if test="${rboard.rb_teamsize==0}">/ 인원 미정</c:if>
-											<c:if test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">/ ${rboard.rb_teamsize}</c:if>
-											<c:if test="${rboard.rb_teamsize==10}">/ 10명이상</c:if>
-											</span>
+										<div class="r-item-info">
+											<div class="proceed_all">
+												<span class="proceed"> 
+												<c:if test="${rboard.rb_meet == 0}">
+												온라인
+												</c:if> 
+												<c:if test="${rboard.rb_meet == 1}">
+												오프라인
+												</c:if> 
+												<c:if test="${rboard.rb_meet == 2}">
+												온라인/오프라인
+												</c:if>
+												</span>
+											</div>
+											<div class="field_all">
+												<c:forEach var="field" items="${rboard.f_name_arr}">
+													<span class="mofield">${field}</span>
+												</c:forEach>
+											</div>
+											<div class="apply_count_all">
+												<span class="apply_count">신청인원 |
+												${rboard.rb_apply_count}
+												<c:if test="${rboard.rb_teamsize==0}">/ 인원 미정</c:if>
+												<c:if test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">/ ${rboard.rb_teamsize}</c:if>
+												<c:if test="${rboard.rb_teamsize==10}">/ 10명이상</c:if>
+												</span>
+											</div>
 										</div>
 									</div>
 								</div>

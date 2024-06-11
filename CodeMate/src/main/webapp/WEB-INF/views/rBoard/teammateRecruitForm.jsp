@@ -108,12 +108,12 @@
 					<h3>2.프로젝트에 대해 소개해주세요.</h3>
 					<ul id="project_detail">
 						<li><label for="rb_title" class="info-label">모집글 제목</label> <input class="input-check" type="text"
-							id="rb_title" name="rb_title" placeholder="글 제목을 입력해주세요">
+							id="rb_title" name="rb_title" placeholder="글 제목을 입력해주세요" maxlength="20">
 						</li>
 						<li>
 						<label style="display:none">프로젝트 소개글</label>
 						<textarea name="rb_content" id="rb_content" class="input-check" rows="30"
-								placeholder="프로젝트에 대해 소개해주세요"></textarea>
+								placeholder="프로젝트에 대해 소개해주세요" maxlength="60"></textarea>
 						</li>
 					</ul>
 				</div>
