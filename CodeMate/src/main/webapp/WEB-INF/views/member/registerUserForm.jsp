@@ -25,7 +25,7 @@
 				<ul id="insert_register">
 					<li class="info">
 						<label for="id">아이디</label> 
-						<input type="text" name="id" id="id" maxlength="12" autocomplete="off" class="input-check">
+						<input type="text" name="mem_id" id="mem_id" maxlength="12" autocomplete="off" class="input-check">
 						<div id="message_id" class="error-message"></div> <!-- 수정 -->
 						<div class="form-notice">*영문 또는 숫자(4자~12자)</div>
 		
