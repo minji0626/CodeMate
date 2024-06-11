@@ -208,20 +208,20 @@ input[id="recruiting_filter"]:checked+label {
 
 .r-item {
 	width: calc(25% - 50px);
-    height: 355px;
-    margin: 0 5px 20px 5px;
-    padding: 16px;
-    border: 2px solid var(--gray-4);
-    border-radius: 12px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: white;
-    transition: all .3s ease-in-out;
+	height: 355px;
+	margin: 0 5px 20px 5px;
+	padding: 16px;
+	border: 2px solid var(--gray-4);
+	border-radius: 12px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: white;
+	transition: all .3s ease-in-out;
 }
 /* r-item 올렸을 때 스케일 확대 */
-.r-item:hover{
+.r-item:hover {
 	transform: scale(1.03);
 }
 /* 모집 종료되었을 때 전체 opacity 줄이기 */
@@ -272,19 +272,32 @@ input[id="recruiting_filter"]:checked+label {
 }
 
 .r-item div.rb-title {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin-bottom: 5%;
-    height: 90px;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 1.3em;
+	margin-bottom: 5%;
+	font-weight: 600;
+	/* 여러 줄 밑줄임표 적용 */ display : -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	display: -webkit-box /* 3번째 줄까지만 글자를 표현하고 그 이후는 줄임 처리 */
+
 }
 
 .r-item .r-item-info {
 	font-size: 11pt;
 	height: 90px;
 }
+
 .r-item .r-item-main {
 	font-size: 11pt;
 	height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: 5%;	
 }
 
 .r-item .skill-logo-div {
@@ -292,11 +305,11 @@ input[id="recruiting_filter"]:checked+label {
 }
 
 .r-item .hit-div {
-	font-weight : bold;
-	font-size : 14px;
+	font-weight: bold;
+	font-size: 14px;
 	display: flex;
 	justify-content: flex-end;
-	color : var(--gray-5);
+	color: var(--gray-5);
 }
 
 .r-item .hit-div img {
@@ -313,21 +326,26 @@ input[id="recruiting_filter"]:checked+label {
 .paging-button input[type="button"] {
 	width: calc(100% - 20px);
 	display: block;
-    padding: 10px 20px;
-    border: 2px solid #474747;
-    border-radius: 5px;
-    background-color: white;
-    color: #474747;
-    cursor: pointer;
-    margin: 0 auto 10px;
-    padding: 10px 20px;
+	padding: 10px 20px;
+	border: 2px solid #474747;
+	border-radius: 5px;
+	background-color: white;
+	color: #474747;
+	cursor: pointer;
+	margin: 0 auto 10px;
+	padding: 10px 20px;
 }
 
-
-
-
 /* 진행 방식 css */
-.proceed_all, .field_all{
+.field_all {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+	max-height: 20px;
+}
+
+.proceed_all, .field_all {
 	margin-bottom: 4%;
 }
 
@@ -337,7 +355,7 @@ input[id="recruiting_filter"]:checked+label {
 }
 
 .proceed {
-	background-color : #e1f7ff;
+	background-color: #e1f7ff;
 	border-radius: 20px;
 	padding: 2px 8px;
 	border-radius: 20px;
@@ -346,17 +364,20 @@ input[id="recruiting_filter"]:checked+label {
 	text-align: center;
 }
 
-.mofield{
-	background-color : #bcdef7;
+.mofield {
+	display: inline-block;
+	background-color: #bcdef7;
 	border-radius: 20px;
 	padding: 2px 8px;
 	border-radius: 20px;
 	font-size: 0.75em;
 	font-weight: bold;
+	background-color: #bcdef7;
+	margin-right: 5px;
 }
 
 .apply_count {
-	border : 2px solid #f9fc8b;
+	border: 2px solid #f9fc8b;
 	border-radius: 20px;
 	padding: 4px 8px;
 	border-radius: 20px;
