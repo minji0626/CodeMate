@@ -15,7 +15,7 @@ public class RegisterUserAction implements Action{
 		 request.setCharacterEncoding("utf-8");
 		//자바빈(VO)생성
 		 MemberVO member = new MemberVO();
-		 member.setMem_id(request.getParameter("id"));
+		 member.setMem_id(request.getParameter("mem_id"));
 		 member.setMem_name(request.getParameter("name"));
 		 member.setMem_passwd(request.getParameter("passwd"));
 		 member.setMem_phone(request.getParameter("mem_phone"));
