@@ -1008,6 +1008,18 @@ public class RboardDAO {
 		String sql = null;
 		RapplyVO rapply = null;
 		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM r_apply ra JOIN r_board rb USING(rb_num) where ra.ra_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ra_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rapply = new RapplyVO();
+				rapply.setMem_name(rs.getString("mem_name"));
+				rapply.setRa_content(rs.getString("ra_content"));
+				rapply.setRb_title(rs.getString("rb_title"));
+			}
 			
 		}catch(Exception e) {
 			throw new Exception(e);
