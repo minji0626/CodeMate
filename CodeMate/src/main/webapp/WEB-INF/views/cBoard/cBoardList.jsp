@@ -34,7 +34,7 @@
 		</div>	
 			<div class="table-container">
 				<div class="button-container">
-		    		<button class="write-button" onclick="location.href='writeCommunityForm.do'">글쓰기</button>
+		    		<button class="write-button" onclick="location.href='writeCommunityForm.do?cb_type=${cb_type}'">글쓰기</button>
 				</div>
 				<!-- 게시판 선택 메뉴 -->
 				<div>		 

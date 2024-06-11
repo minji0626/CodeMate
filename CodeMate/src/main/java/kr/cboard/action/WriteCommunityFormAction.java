@@ -16,6 +16,11 @@ public class WriteCommunityFormAction implements Action{
 		if(mem_num == null) {// 로그인 미실시
 			return "redirect:/member/loginForm.do";
 		} 
+		
+		int cb_type = Integer.parseInt(request.getParameter("cb_type"));
+		
+		request.setAttribute("cb_type",cb_type);
+		
 		//커뮤니티 (개발 게시판으로 이동)
 		return "/WEB-INF/views/cBoard/writeCommunityForm.jsp";
 	}

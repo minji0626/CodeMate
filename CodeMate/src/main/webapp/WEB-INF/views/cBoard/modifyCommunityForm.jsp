@@ -52,9 +52,15 @@ window.onload = function(){
 		        <form action="${pageContext.request.contextPath}/cboard/cboardModify.do" id="modify_form" method="post" enctype="multipart/form-data">
 		        	<input type="hidden" name="cb_num" value="${board.cb_num}">
 		        	<div class="form-group">
-						<input type="radio" name="cb_type" value="0" id="cb_type0" <c:if test="${board.cb_type==0}">checked</c:if>>
+						<input type="radio" <c:if test="${cb_type==0}">checked</c:if> disabled>
 						<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
-						<input type="radio" name="cb_type" value="1" id="cb_type1" <c:if test="${board.cb_type==1}">checked</c:if>> 
+						<input type="radio" <c:if test="${cb_type==1}">checked</c:if> disabled>
+						<c:if test="${cb_type==0}">
+							<input type="hidden" name="cb_type" value="0" id="cb_type0">
+						</c:if>
+						<c:if test="${cb_type==1}">
+							<input type="hidden" name="cb_type" value="1" id="cb_type1">
+						</c:if>  
 						<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
 					</div>
 		            <div class="form-group">

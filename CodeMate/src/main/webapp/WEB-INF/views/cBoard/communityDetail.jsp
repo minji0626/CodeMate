@@ -92,7 +92,7 @@
         					<span>최근 수정일 : ${board.cb_modify_date}</span>
         			</c:if>
         			<c:if test="${board.mem_num==mem_num}">
-				    <button class="btn btn-primary list-action" onclick="location.href='modifyCommunityForm.do?cb_num=${board.cb_num}'">수정</button>
+				    <button class="btn btn-primary list-action" onclick="location.href='modifyCommunityForm.do?cb_num=${board.cb_num}&cb_type=${board.cb_type}'">수정</button>
 				    <button id="delete_btn" class="btn btn-primary list-action">삭제</button>
 						<script type="text/javascript">
 							const delete_btn = document.getElementById('delete_btn');

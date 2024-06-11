@@ -21,6 +21,8 @@ public class ModifyCommunityFormAction implements Action {
 		} 
 		
 		int cb_num = Integer.parseInt(request.getParameter("cb_num"));
+		int cb_type = Integer.parseInt(request.getParameter("cb_type"));
+		
 		CboardDAO dao = CboardDAO.getInstance();
 		CboardVO board = dao.detailCboard(cb_num);
 		
@@ -32,6 +34,7 @@ public class ModifyCommunityFormAction implements Action {
 
 		board.setCb_title(StringUtil.parseQuot(board.getCb_title()));
 		request.setAttribute("board", board);
+		request.setAttribute("cb_type", cb_type);
 		
 		return "/WEB-INF/views/cBoard/modifyCommunityForm.jsp";
 	}

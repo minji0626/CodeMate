@@ -57,9 +57,9 @@ window.onload = function(){
 	        <div class="container_write">
 		        <form action="${pageContext.request.contextPath}/cboard/cboardWrite.do" id="write_form" method="post" enctype="multipart/form-data">
 		        	<div class="form-group">
-						<input type="radio" name="cb_type" value="0" id="cb_type0">
+						<input type="radio" name="cb_type" value="0" id="cb_type0" <c:if test="${cb_type==0}">checked</c:if>>
 						<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="15"> 자유 게시판
-						<input type="radio" name="cb_type" value="1" id="cb_type1"> 
+						<input type="radio" name="cb_type" value="1" id="cb_type1" <c:if test="${cb_type==1}">checked</c:if>> 
 						<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="15"> 개발 게시판
 					</div>
 		            <div class="form-group">
