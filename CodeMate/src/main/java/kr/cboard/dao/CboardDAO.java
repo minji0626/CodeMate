@@ -717,6 +717,9 @@ public class CboardDAO {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
+		PreparedStatement pstmt5 = null;
+		ResultSet rs = null;
 		String sql = null;
 		try {
 			//커넥션풀로부터 커넥션 할당
@@ -735,12 +738,35 @@ public class CboardDAO {
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, mem_num);
 			pstmt2.executeUpdate();
-
-			//부모글 삭제
-			sql = "DELETE FROM c_board WHERE mem_num=?";
+			
+			//이 회원이 쓴 커뮤니티 글 불러오기
+			sql = "SELECT cb_num FROM c_board where mem_num=?";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, mem_num);
-			pstmt3.executeUpdate();
+			rs = pstmt3.executeQuery();
+			
+			//회원이 쓴 커뮤니티 글의 댓글, 부모글 삭제
+			sql = "DELETE FROM c_comment WHERE cb_num=?";
+			pstmt4 = conn.prepareStatement(sql);
+			sql = "DELETE FROM c_board WHERE cb_num=?";
+			pstmt5 = conn.prepareStatement(sql);
+
+			while (rs.next()) {
+			    int cb_num = rs.getInt(1);
+			    
+			    // 댓글 삭제 배치에 추가
+			    pstmt4.setInt(1, cb_num);
+			    pstmt4.addBatch();
+			    
+			    // 게시글 삭제 배치에 추가
+			    pstmt5.setInt(1, cb_num);
+			    pstmt5.addBatch();
+			}
+
+			// 배치 실행
+			pstmt4.executeBatch();
+			pstmt5.executeBatch();
+
 
 			//예외 발생 없이 정상적으로 SQL문 실행
 			conn.commit();
@@ -749,9 +775,11 @@ public class CboardDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt5, null);
+			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
 
