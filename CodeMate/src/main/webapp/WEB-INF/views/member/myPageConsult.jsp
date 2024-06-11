@@ -15,7 +15,160 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/myPageConsultDelete.js"></script>
+<style>
 
+/* 메뉴 스타일 */
+.menu {
+	margin-bottom: 20px;
+}
+
+.menu ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.menu ul li {
+	display: inline;
+	margin-right: 10px;
+}
+
+.menu ul li a {
+	text-decoration: none;
+	color: #333;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.menu ul li a.active {
+	background-color: #ccc;
+}
+
+/* 테이블 스타일 */
+.message-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.message-table th, .message-table td {
+	border: 1px solid #ccc;
+	padding: 8px;
+}
+
+.message-table th {
+	background-color: #f2f2f2;
+}
+
+/* 버튼 스타일 */
+.message-buttons {
+	margin-top: 20px;
+}
+
+.message-buttons button {
+	margin-right: 10px;
+	padding: 8px 16px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+/* 버튼 스타일 수정 */
+.action-buttons {
+	position: relative;
+	margin-top: 10px;
+	text-align: right;
+}
+
+.btn {
+	background-color: #78AFE2;
+	border: none;
+	color: white;
+	padding: 8px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin-left: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.wrap {
+	padding: 10px;
+}
+
+.pop_wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .5);
+	font-size: 0;
+	text-align: center;
+}
+
+.pop_wrap:after {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+}
+
+.pop_wrap .pop_inner {
+	display: inline-block;
+	padding: 20px 30px;
+	background: #fff;
+	width: 400px;
+	vertical-align: middle;
+	font-size: 15px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.pop_inner .header {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+.pop_inner .content {
+	margin-bottom: 20px;
+}
+
+.pop_inner .footer {
+	text-align: right;
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+}
+
+.pop_inner .footer button {
+	margin-left: 10px;
+}
+
+.pop_inner .message-details {
+	margin-bottom: 20px;
+}
+
+.pop_inner .message-details p {
+	margin: 5px 0;
+}
+</style>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -43,8 +196,9 @@
 </c:if>
 <c:if test="${!empty consultList}">
 <c:forEach var="consult" items="${consultList}">
-    <div class="myPage-line-box" data-type="<c:out value="${consult.cs_category}"/>" 
-    onclick="window.location.href='${pageContext.request.contextPath}/member/myPageConsultDetail.do?cs_num=${consult.cs_num}'" style="cursor: pointer;">
+    <div class="btn_open myPage-line-box" data-type="<c:out value="${consult.cs_category}"/>" 
+    data-cs-title="${consult.cs_title}" data-cs-reg-date="${consult.cs_reg_date}" data-cs-email="${consult.cs_reply_email}" data-cs-content="${consult.cs_content}" data-cs-confirmed="${consult.cs_confirmed}"
+    style="cursor: pointer;">
         <div class="team-left-myWrite">
             <div class="cboard_name">
                 <c:if test="${consult.cs_category == 0}">
@@ -71,7 +225,7 @@
 <!-- 메인 정보 수정 끝 -->
 </div><!-- flex_container끝 -->
 </div><!-- page-container끝 -->
-
+<jsp:include page="myPageConsultDetail.jsp"/>
 <script>
 function filterList() {
     var selectedOption = document.getElementById("filter").value;
