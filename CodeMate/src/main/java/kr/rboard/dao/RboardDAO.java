@@ -249,7 +249,9 @@ public class RboardDAO {
 			// 여기서 문제 발생
 			int team_status = getrboard(rb_num).getTeam_status();
 			System.out.println("team_status: " +team_status);
-			if (team_status != 1 && team_status != 3) {
+			System.out.println("tb_num:"+rb_num);
+			if (team_status == 0) {
+				System.out.println("delete");
 				// 모집글 삭제
 				sql = "DELETE FROM r_board WHERE rb_num=?";
 				pstmt7 = conn.prepareStatement(sql);
