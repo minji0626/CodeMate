@@ -935,7 +935,7 @@ public class RboardDAO {
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "select b.rb_title, c.* from r_board b JOIN r_comment c ON b.rb_num = c.rb_num WHERE c.mem_num=?";
+			sql = "select b.rb_title, c.* from r_board b JOIN r_comment c ON b.rb_num = c.rb_num WHERE c.mem_num=? ORDER BY rc_reg_date DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 
@@ -1249,7 +1249,7 @@ public class RboardDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM r_bookmark ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
+			sql = "SELECT * FROM r_bookmark ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=? ORDER BY rb_endrecruit ASC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 

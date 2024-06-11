@@ -145,6 +145,8 @@ public class ConsultDAO {
 		return list;
 	}
 
+	
+	
 	// 문의글 상세 불러오기
 	public ConsultVO getConsult(int cs_num) throws Exception {
 		Connection conn = null;
