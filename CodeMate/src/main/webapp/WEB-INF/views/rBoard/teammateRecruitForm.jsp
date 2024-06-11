@@ -119,7 +119,7 @@
 				</div>
 				<!--버튼-->
 				<div class="btn-div align-center">
-					<input type="button" value="취소" class="btn btn-cancel"> <input type="submit" class="btn btn-basic"
+					<input type="button" value="취소" class="btn btn-cancel" onclick="location.href='list.do'"> <input type="submit" class="btn btn-basic"
 						value="글 등록">
 				</div>
 
