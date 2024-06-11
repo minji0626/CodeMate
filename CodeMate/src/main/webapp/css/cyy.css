@@ -15,7 +15,6 @@ div#mini-card1 { /* 1 */
 	top: 30px;
 	overflow: hidden;
 	height: 330px;
-	/* width: 1178px; */
 }
 .wrapper1 { /* 움직이는 부분 */
 	height: 330px;
@@ -80,7 +79,6 @@ div#mini-card2 { /* 1 */
 	top: 30px;
 	overflow: hidden;
 	height: 330px;
-	width: 1178px;
 }
 .wrapper2 { /* 움직이는 부분 */
 	height: 330px;
