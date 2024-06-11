@@ -193,87 +193,98 @@ public class RboardDAO {
 
 	// rboard 삭제
 	public void deleteRboard(int rb_num) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null; // 북마크
-		PreparedStatement pstmt2 = null; // 댓글
-		PreparedStatement pstmt3 = null; // 모집스킬
-		PreparedStatement pstmt4 = null; // 모집필드
-		PreparedStatement pstmt5 = null; // 팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
-		PreparedStatement pstmt6 = null; // apply레코드는 지우지 않고 rb_num만 null되게
-		PreparedStatement pstmt7 = null; // 모집글
+	    Connection conn = null;
+	    PreparedStatement pstmt = null; // 북마크
+	    PreparedStatement pstmt2 = null; // 댓글
+	    PreparedStatement pstmt3 = null; // 모집스킬
+	    PreparedStatement pstmt4 = null; // 모집필드
+	    PreparedStatement pstmt5 = null; // 팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
+	    PreparedStatement pstmt6 = null; // apply레코드는 지우지 않고 rb_num만 null되게
+	    PreparedStatement pstmt7 = null; // 모집글
 
-		String sql = null;
+	    String sql = null;
 
-		try {
-			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
-			
-			System.out.println("북마크 삭제전");
+	    try {
+	        conn = DBUtil.getConnection();
+	        conn.setAutoCommit(false);
 
-			// 북마크 삭제
-			sql = "DELETE FROM r_bookmark WHERE rb_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rb_num);
-			pstmt.executeUpdate();
+	        System.out.println("북마크 삭제전");
 
-			
-			System.out.println("북마크 삭제됨");
-			
-			// 댓글 삭제
-			sql = "DELETE FROM r_comment WHERE rb_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, rb_num);
-			pstmt2.executeUpdate();
+	        // 북마크 삭제
+	        sql = "DELETE FROM r_bookmark WHERE rb_num=?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, rb_num);
+	        pstmt.executeUpdate();
 
-			// 모집스킬 삭제
-			sql = "DELETE FROM r_skill WHERE rb_num=?";
-			pstmt3 = conn.prepareStatement(sql);
-			pstmt3.setInt(1, rb_num);
-			pstmt3.executeUpdate();
+	        System.out.println("북마크 삭제됨");
 
-			// 모집필드 삭제
-			sql = "DELETE FROM r_field WHERE rb_num=?";
-			pstmt4 = conn.prepareStatement(sql);
-			pstmt4.setInt(1, rb_num);
-			pstmt4.executeUpdate();
+	        // 댓글 삭제
+	        System.out.println("댓글 삭제전");
+	        sql = "DELETE FROM r_comment WHERE rb_num=?";
+	        pstmt2 = conn.prepareStatement(sql);
+	        pstmt2.setInt(1, rb_num);
+	        pstmt2.executeUpdate();
+	        System.out.println("댓글 삭제됨");
 
-			// 모집이 마감되지 않은 글(team_status가 0인글)은 team테이블에서도 삭제
-			sql = "DELETE FROM team WHERE team_num=? AND team_status=0";
-			pstmt5 = conn.prepareStatement(sql);
-			pstmt5.setInt(1, rb_num);
-			pstmt5.executeUpdate();
+	        // 모집스킬 삭제
+	        System.out.println("모집스킬 삭제전");
+	        sql = "DELETE FROM r_skill WHERE rb_num=?";
+	        pstmt3 = conn.prepareStatement(sql);
+	        pstmt3.setInt(1, rb_num);
+	        pstmt3.executeUpdate();
+	        System.out.println("모집스킬 삭제됨");
 
-			// apply레코드는 지우지 않고 rb_num만 null되게
-			sql = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
-			pstmt6 = conn.prepareStatement(sql);
-			pstmt6.setInt(1, rb_num);
-			pstmt6.executeUpdate();
+	        // 모집필드 삭제
+	        System.out.println("모집필드 삭제전");
+	        sql = "DELETE FROM r_field WHERE rb_num=?";
+	        pstmt4 = conn.prepareStatement(sql);
+	        pstmt4.setInt(1, rb_num);
+	        pstmt4.executeUpdate();
+	        System.out.println("모집필드 삭제됨");
 
-			// team_status가 0일 때만 rboard 삭제
-			sql = "DELETE FROM r_board WHERE rb_num IN (" +
-                    "SELECT r.rb_num FROM r_board r JOIN team t ON r.rb_num = t.team_num " +
-                    "WHERE r.rb_num = ? AND t.team_status = 0)";
-			
-			pstmt7 = conn.prepareStatement(sql);
-			pstmt7.setInt(1, rb_num);
-			pstmt7.executeUpdate();
-			
+	        // apply레코드는 지우지 않고 rb_num만 null되게
+	        System.out.println("apply 업데이트 전");
+	        sql = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
+	        pstmt5 = conn.prepareStatement(sql);
+	        pstmt5.setInt(1, rb_num);
+	        pstmt5.executeUpdate();
+	        System.out.println("apply 업데이트 됨");
 
-			conn.commit();
+	        // team_status가 1이 아니고 3이 아닐 때만 rboard 삭제
+	        System.out.println("rboard 삭제전");
+	        sql = "DELETE FROM r_board WHERE rb_num IN (" +
+	                "SELECT r.rb_num FROM r_board r "
+	                + "JOIN team t ON r.rb_num = t.team_num WHERE r.rb_num = ? "
+	                + "AND (t.team_status != 1 AND t.team_status != 3))";
+	        pstmt6 = conn.prepareStatement(sql);
+	        pstmt6.setInt(1, rb_num);
+	        pstmt6.executeUpdate();
+	        System.out.println("rboard 삭제됨");
+	        
+	        // 모집이 마감되지 않은 글(team_status가 0인글)은 team테이블에서도 삭제
+	        System.out.println("팀 삭제전");
+	        sql = "DELETE FROM team WHERE team_num=? AND team_status=0";
+	        pstmt7 = conn.prepareStatement(sql);
+	        pstmt7.setInt(1, rb_num);
+	        pstmt7.executeUpdate();
+	        System.out.println("팀 삭제됨");
 
-		} catch (Exception e) {
-			conn.rollback();
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(null, pstmt7, null);
-			DBUtil.executeClose(null, pstmt6, null);
-			DBUtil.executeClose(null, pstmt5, null);
-			DBUtil.executeClose(null, pstmt4, null);
-			DBUtil.executeClose(null, pstmt3, null);
-			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt, conn);
-		}
+	        conn.commit();
+
+	    } catch (Exception e) {
+	        conn.rollback();
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(null, pstmt7, null);
+	        DBUtil.executeClose(null, pstmt6, null);
+	        DBUtil.executeClose(null, pstmt5, null);
+	        DBUtil.executeClose(null, pstmt4, null);
+	        DBUtil.executeClose(null, pstmt3, null);
+	        DBUtil.executeClose(null, pstmt2, null);
+	        DBUtil.executeClose(null, pstmt, conn);
+	    }
 	}
+
 
 	// 회원 탈퇴 시 rbaord 관련 정보 삭제 - 예영작성
 	public void deleteUserRboard(int mem_num) throws Exception {
@@ -343,7 +354,7 @@ public class RboardDAO {
 	        String sqlApply = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
 	        String sqlRboard = "DELETE FROM r_board WHERE rb_num IN (" +
 	                           "SELECT r.rb_num FROM r_board r JOIN team t ON r.rb_num = t.team_num " +
-	                           "WHERE r.rb_num = ? AND t.team_status = 0)";
+	                           "WHERE r.rb_num = ? AND (t.team_status != 1 AND t.team_status != 3))";
 
 	        pstmt5 = conn.prepareStatement(sqlBookmark);
 	        pstmt6 = conn.prepareStatement(sqlComment);
