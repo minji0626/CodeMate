@@ -33,6 +33,7 @@ div#mini-card1 { /* 1 */
 .content1:hover{
 	transform:scale(1.05);
   transition: transform .5s;
+  box-shadow:0px 4px 12px rgba(0, 0, 0, 0.3);	
 }
 .p1 {
 	position: relative;
@@ -104,6 +105,7 @@ div#mini-card2 { /* 1 */
 .content2:hover{
 	transform:scale(1.05);
   transition: transform .5s;
+   box-shadow:0px 4px 12px rgba(0, 0, 0, 0.3);	
 }
 .p2 {
 	position: relative;
