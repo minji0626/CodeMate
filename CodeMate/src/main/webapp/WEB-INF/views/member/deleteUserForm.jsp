@@ -51,7 +51,7 @@ $(function(){
 			</ul>
 			<div class="align-center">
 				<input type="submit" value="회원탈퇴" id="login_btn">
-				<input type="button" value="My페이지" onclick="location.href='myPage.do'" id="login_btn"><!-- id는 css디자인 있으면 사용하려고 넣음 -->
+				<input type="button" value="My페이지" onclick="location.href='modifyUserForm.do'" id="login_btn"><!-- id는 css디자인 있으면 사용하려고 넣음 -->
 			</div>
 		</form>	
 	</div>
