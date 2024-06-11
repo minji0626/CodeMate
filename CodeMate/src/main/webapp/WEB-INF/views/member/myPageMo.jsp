@@ -60,15 +60,11 @@
 										<div class="team-count">합격된 인원:${rboard.pass_count}명</div>
 										<div>모집마감:${rboard.rb_endRecruit}</div>
 								</div>
-										<div class="right">
+								<div class="right">
 									<input type="button" value="모집글 보기" class="rboard-click" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
-									
-									
-									<div class="close-green"
-										
-										data-rbnum="${rboard.rb_num}">활성화</div>
+									<div class="close-green" data-rbnum="${rboard.rb_num}">활성화</div>
 									<div class="delete-green" data-rbnum="${rboard.rb_num}">모집글 삭제</div>
-										</div>
+								</div>
 								</div>
 							</div>
 						</c:if>

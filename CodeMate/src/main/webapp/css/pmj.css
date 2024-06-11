@@ -135,6 +135,7 @@
 	margin-left:35px;
 	margin-right:10px;
 	width:130px;
+	cursor: pointer;
 }
 /* 내가 쓴 글 끝  */
 .box_reply {
@@ -193,6 +194,7 @@
     border:none;
     font-size: 13px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .myDelete_btn {
@@ -219,8 +221,8 @@
 	height:88px;
 	border: 1px solid #8f8f8f;
 	margin: 0 auto;
-	cursor: pointer;
 	margin-bottom: 3%;
+	cursor: pointer;
 }
 
 .myPage-line-box:hover {

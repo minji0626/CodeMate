@@ -93,10 +93,6 @@ function filterList() {
     }
 }
 
-// 초기 로드시 필터 적용
-window.onload = function() {
-    filterList();
-};
 </script>
 
 </body>

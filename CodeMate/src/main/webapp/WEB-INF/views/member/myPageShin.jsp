@@ -48,20 +48,23 @@
 						<div class="myPage-line-box" data-pass="${aprboard.ra_pass}"
 							onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${aprboard.rb_num}'" 
 							style="cursor: pointer;">
+							
 							<div class="team-left">
 								<c:if test="${aprboard.rb_category == '0'}">스터디</c:if>
 								<c:if test="${aprboard.rb_category == '1'}">프로젝트</c:if>
 								<div class="projectName_font">${aprboard.rb_title}</div>
 							</div>
 
-							<div class="team-right">
-								<div class="delete-green" id="delete_green" data-ranum="${aprboard.ra_num}">신청취소</div>
-								<input type="button" value="나의 신청서" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/member/myPageApplyDetail.do?ra_num=${aprboard.ra_num}'">
+							<div class="team-right-mo">
+							<div class="count-myPageShin">
 								<div class="team-count">모집인원:${aprboard.rb_teamsize}명</div>
-								<!-- 시작일인데 진행기간 넣어봄 -->
 								<div class="team-count">프로젝트 진행기간:${aprboard.rb_period}개월</div>
-								<!-- 글자 간격 마진 주려고 클래스 복붙 -->
 								<div>모집 마감일:${aprboard.rb_endRecruit}</div>
+							</div>
+							<div class="right">
+								<input type="button" value="나의 신청서" class="rboard-click" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/member/myPageApplyDetail.do?ra_num=${aprboard.ra_num}'">
+								<div class="delete-green" id="delete_green" data-ranum="${aprboard.ra_num}">신청취소</div>
+							</div>
 							</div>
 						</div>
 					</c:forEach>

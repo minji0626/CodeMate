@@ -33,7 +33,6 @@
         <a href="${pageContext.request.contextPath}/member/myPageMo.do">나의 코메 모집</a>
         <a href="${pageContext.request.contextPath}/member/myPageBookMark.do">북마크</a>
         <a class="sideB_font">나의 활동</a>
-        <a href="${pageContext.request.contextPath}/member/myPageMessage.do">쪽지</a>
         <a href="${pageContext.request.contextPath}/member/myWrite.do">내가 쓴 글</a>
         <a href="${pageContext.request.contextPath}/member/myReply.do">내가 쓴 댓글</a>
         <a href="${pageContext.request.contextPath}/member/myPageRboardComment.do">팀원구하기 댓글</a>

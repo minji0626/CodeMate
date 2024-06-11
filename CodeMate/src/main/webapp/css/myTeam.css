@@ -43,6 +43,10 @@
 	font-weight: bold;
 	margin-bottom: 3px;
 	margin-left: 3px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 700px;
 }
 .team-count{
 	margin-bottom: 5px;
@@ -71,6 +75,7 @@
 	font-size: 12px;
 	font-weight: bold;
 	line-height: 8px;
+	cursor: pointer;
 }
 .close-green{
 	color:#fff;
@@ -84,6 +89,9 @@
 }
 .count{
 	width:120px;
+}
+.count-myPageShin{
+	width:130px;
 }
 .right{
 	float:right;

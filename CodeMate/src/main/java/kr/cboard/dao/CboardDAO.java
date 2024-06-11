@@ -234,7 +234,7 @@ public class CboardDAO {
 		String sql = null;
 
 		conn = DBUtil.getConnection();
-		sql = "SELECT * FROM c_board WHERE mem_num=?";
+		sql = "SELECT * FROM c_board WHERE mem_num=? ORDER BY cb_reg_date DESC";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, mem_num);
 		rs = pstmt.executeQuery();
@@ -265,8 +265,8 @@ public class CboardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<CcommentVO> list = new ArrayList<>();
-		String sql = "SELECT cc.*, cb.cb_title, cb.cb_type FROM c_comment cc JOIN c_board cb "
-				+ "ON cc.cb_num = cb.cb_num WHERE cc.mem_num =?";
+		String sql = "SELECT cc.*, cb.cb_title, cb.cb_type FROM c_comment cc JOIN "
+				+ "c_board cb ON cc.cb_num = cb.cb_num WHERE cc.mem_num =? ORDER BY cc_reg_date DESC";
 
 		try {
 			conn = DBUtil.getConnection();
