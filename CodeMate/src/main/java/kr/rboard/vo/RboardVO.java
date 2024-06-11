@@ -45,6 +45,25 @@ public class RboardVO {
 
 	private int team_num;
 	private int team_status;
+	
+	private int apply_count;
+	private int pass_count;
+
+	public int getPass_count() {
+		return pass_count;
+	}
+
+	public void setPass_count(int pass_count) {
+		this.pass_count = pass_count;
+	}
+
+	public int getApply_count() {
+		return apply_count;
+	}
+
+	public void setApply_count(int apply_count) {
+		this.apply_count = apply_count;
+	}
 
 	// 남은 날짜 계산 및 필드 설정 메서드
 	public void calculateDaysLeft() {

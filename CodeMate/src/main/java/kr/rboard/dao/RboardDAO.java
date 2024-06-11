@@ -669,11 +669,15 @@ public class RboardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
+		ResultSet rs3 = null;
+		ResultSet rs4 = null;
 		List<RboardVO> list = null;
 		String sql = null;
-
+		int count = 0;
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM r_board WHERE mem_num=?";
@@ -686,6 +690,7 @@ public class RboardDAO {
 			list = new ArrayList<RboardVO>();
 			while (rs.next()) {
 				RboardVO rboard = new RboardVO();
+				int rb_num =rs.getInt("rb_num");
 				rboard.setRb_num(rs.getInt("rb_num"));
 				rboard.setRb_title(rs.getString("rb_title"));
 				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
@@ -700,12 +705,31 @@ public class RboardDAO {
 					rboard.setTeam_status(rs2.getInt("team_status"));
 					// rboard.setTeam_num(rs2.getInt("team_num"));
 				}
-
+				
+				sql = "SELECT COUNT(*) FROM r_apply WHERE rb_num=?";
+				pstmt3 = conn.prepareStatement(sql);
+				pstmt3.setInt(1, rb_num);
+				rs3 = pstmt3.executeQuery();
+				if(rs3.next()) {
+					rboard.setApply_count(rs3.getInt(1));
+				}
+				
+				sql = "SELECT COUNT(*) FROM r_apply WHERE rb_num=? AND ra_pass=1";
+				pstmt4 = conn.prepareStatement(sql);
+				pstmt4.setInt(1, rb_num);
+				rs4 = pstmt4.executeQuery();
+				if(rs4.next()) {
+					rboard.setPass_count(rs4.getInt(1));
+				}
+				
+				
 				list.add(rboard);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
+			DBUtil.executeClose(rs4, pstmt4, null);
+			DBUtil.executeClose(rs3, pstmt3, null);
 			DBUtil.executeClose(rs2, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
