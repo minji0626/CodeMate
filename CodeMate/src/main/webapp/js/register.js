@@ -4,18 +4,18 @@ $(function() {
 	let phoneChecked = 0;
 	let nicknameChecked = 0;
 
-	$('#id').on('blur', function() {
+	$('#mem_id').on('blur', function() {
 		//아이디 중복 체크
-		if (!/^[A-Za-z0-9]{4,12}$/.test($('#id').val())) {
+		if (!/^[A-Za-z0-9]{4,12}$/.test($('#mem_id').val())) {
 			$('#message_id').text('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
-			$('#id').val('').focus();
+			$('#mem_id').val('').focus();
 			return;
 		}
 		//서버와 통신
 		$.ajax({
 			url: 'checkDuplicatedId.do',
 			type: 'post',
-			data: { id: $('#id').val() },
+			data: { id: $('#mem_id').val() },
 			dataType: 'json',
 			success: function(param) {
 				if (param.result == 'idNotFound') {
@@ -24,7 +24,7 @@ $(function() {
 				} else if (param.result == 'idDuplicated') {
 					idChecked = 0;
 					$('#message_id').css('color', 'red').text('중복된 ID');
-					$('#id').val('').focus();
+					$('#mem_id').val('').focus();
 				} else {
 					idChecked = 0;
 					$('#message_id').text('아이디 중복 체크 오류 발생');
@@ -41,12 +41,12 @@ $(function() {
 
 
 	//이메일 중복 체크
-	$('#email').on('blur', function() {
+	$('#mem_email').on('blur', function() {
 		//서버와 통신
 		$.ajax({
 			url: 'checkDuplicatedEmail.do',
 			type: 'post',
-			data: { email: $('#email').val() },
+			data: { email: $('#mem_email').val() },
 			dataType: 'json',
 			success: function(param) {
 				if (param.result == 'emailNotFound') {
@@ -55,7 +55,7 @@ $(function() {
 				} else if (param.result == 'emailDuplicated') {
 					emailChecked = 0;
 					$('#message_email').css('color', 'red').text('중복된 Email');
-					$('#email').val('').focus();
+					$('#mem_email').val('').focus();
 				} else {
 					emailChecked = 0;
 					alert('이메일 중복 체크 오류 발생');
@@ -99,17 +99,17 @@ $(function() {
 
 
 	//전화번호 중복 체크
-	$('#phone').on('blur', function() {
-		if (!/^[0-9]{11,12}$/.test($('#phone').val())) {
+	$('#mem_phone').on('blur', function() {
+		if (!/^[0-9]{11,12}$/.test($('#mem_phone').val())) {
 			$('#message_phone').css('color', 'red').text('11자리 이상의 숫자만 입력하세요!');
-			$('#phone').val('').focus();
+			$('#mem_phone').val('').focus();
 			return false;
 		}
 		//서버와 통신
 		$.ajax({
 			url: 'checkDuplicatedPhone.do',
 			type: 'post',
-			data: { phone: $('#phone').val() },
+			data: { phone: $('#mem_phone').val() },
 			dataType: 'json',
 			success: function(param) {
 				if (param.result == 'phoneNotFound') {
@@ -118,7 +118,7 @@ $(function() {
 				} else if (param.result == 'phoneDuplicated') {
 					phoneChecked = 0;
 					$('#message_phone').css('color', 'red').text('중복된 전화번호');
-					$('#phone').val('').focus();
+					$('#mem_phone').val('').focus();
 				} else {
 					phoneChecked = 0;
 					alert('전화번호 중복 체크 오류 발생');
@@ -135,19 +135,19 @@ $(function() {
 
 
 	//아이디 중복 안내 메시지 초기화 및 아이디 중복값 초기화
-	$('#register_form #id').keydown(function() {
+	$('#register_form #mem_id').keydown(function() {
 		idChecked = 0;
 		$('#message_id').text('');
 	});//end of keydown
 
 	//이메일 중복 안내 메시지 초기화 및 이메일 중복값 초기화
-	$('#register_form #email').keydown(function() {
+	$('#register_form #mem_email').keydown(function() {
 		emailChecked = 0;
 		$('#message_email').text('');
 	});//end of keydown
 
 	//전화번호 중복 안내 메시지 초기화 및 전화번호 중복값 초기화
-	$('#register_form #phone').keydown(function() {
+	$('#register_form #mem_phone').keydown(function() {
 		phoneChecked = 0;
 		$('#message_phone').text('');
 	});//end of keydown
@@ -170,20 +170,20 @@ $(function() {
 				items[i].focus();
 				return false;
 			}
-			if (items[i].id == 'id' && !/^[A-Za-z0-9]{4,12}$/.test($('#id').val())) {
+			if (items[i].id == 'mem_id' && !/^[A-Za-z0-9]{4,12}$/.test($('#mem_id').val())) {
 				alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
-				$('#id').val('').focus();
+				$('#mem_id').val('').focus();
 				return false;
 			}
-			if (items[i].id == 'id' && idChecked == 0) {
+			if (items[i].id == 'mem_id' && idChecked == 0) {
 				alert('아이디 중복 체크 필수');
 				return false;
 			}
-			if (items[i].id == 'email' && emailChecked == 0) {
+			if (items[i].id == 'mem_email' && emailChecked == 0) {
 				alert('이메일 중복 체크 필수');
 				return false;
 			}
-			if (items[i].id == 'phone' && phoneChecked == 0) {
+			if (items[i].id == 'mem_phone' && phoneChecked == 0) {
 				alert('전화번호 중복 체크 필수');
 				return false;
 			}
