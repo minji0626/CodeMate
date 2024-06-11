@@ -975,6 +975,7 @@ public class RboardDAO {
 			while (rs.next()) {
 				RboardVO rboard = new RboardVO();
 				// 코메신청 정보 설정
+				rboard.setMem_num(rs.getInt("mem_num"));
 				rboard.setRa_num(rs.getInt("ra_num"));
 				rboard.setRb_num(rs.getInt("rb_num"));
 				rboard.setRa_pass(rs.getInt("ra_pass"));
@@ -997,6 +998,23 @@ public class RboardDAO {
 		}
 
 		return list;
+	}
+	
+	//나의 신청서 상세보기
+	public RapplyVO getRapply(int ra_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		RapplyVO rapply = null;
+		try {
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return rapply;
 	}
 
 	// 이미 신청한 글인지 확인
