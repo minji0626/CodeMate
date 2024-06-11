@@ -20,7 +20,7 @@ public class CheckDuplicatedEmailAction implements Action{
 		// 전송된 데이터 인코딩 타입 지정
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
-		String mem_email = request.getParameter("mem_email");
+		String mem_email = request.getParameter("email");
 		
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("mem_num");

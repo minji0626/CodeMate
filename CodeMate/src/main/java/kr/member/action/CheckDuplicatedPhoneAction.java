@@ -20,7 +20,7 @@ public class CheckDuplicatedPhoneAction implements Action{
 		// 전송된 데이터 인코딩 타입 지정
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
-		String mem_phone = request.getParameter("mem_phone");//phone이었던걸 다 mem_phone으로 바꿨습니다.
+		String mem_phone = request.getParameter("phone");//phone이었던걸 다 mem_phone으로 바꿨습니다.
 		
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
