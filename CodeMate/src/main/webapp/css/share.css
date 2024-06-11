@@ -183,6 +183,11 @@ a {
 	background-color: #ddd;
 }
 
+#level_pic {
+	margin-right: 3%;
+    margin-top: 3%;
+}
+
 /* 미디어 쿼리 추가 */
 @media screen and (max-width: 768px) {
 	.page-container {
