@@ -134,6 +134,7 @@
 
 .re_content {
 	margin-left: 14px;
+	margin-bottom: 10px;
 }
 
 .reList {
@@ -149,9 +150,9 @@
 	margin-bottom: 5px;
 }
 
-.re_content {
-	margin-bottom: 10px;
-}
+/* .re_content {
+	
+} */
 
 .delete_button {
 	position: absolute;

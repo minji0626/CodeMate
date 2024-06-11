@@ -29,7 +29,7 @@
 	<div class="page-container">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="page-main">
-			<div class="content-main">
+			
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 					viewBox="0 0 24 24" fill="none" stroke="currentColor"
 					stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -37,6 +37,7 @@
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
+                <div class="content-main">
 				<div class="content-header">
 					<h2>${rboard.rb_title} 
 					<span id="d_day">
@@ -132,42 +133,51 @@
 						</li>
 						<li><span class="info-title">모집 필드</span> 
 							<c:forEach var="field" items="${rboard.f_name_arr}">
-								<span>${field}</span>
+								<span class="mofield">${field}</span>
 							</c:forEach>
 						</li>
 					</ul>
 				</div>
 				<div class="content">
 					<h3>프로젝트 소개</h3>
-					<div>
+					<div class="project_intro">
 					${rboard.rb_content}
 					</div>
 				</div>
-			</div>
+			
 			<%-- 댓글 섹션 --%>
 			<div id="comments_container">
+			
 				<h4>
 					댓글 <span id="comments-cnt">0</span>
 				</h4>
+				
+				<%-- 댓글 목록 --%>
+				<div id="comments_list">
+				
+				</div>
+			
 				<%-- 새 댓글창 --%>
 				<div id="new_comment">
 					<form id="comment_form">
 						<input type="hidden" id="rb_num" name="rb_num" value="${rboard.rb_num}" >
 						<div class="flex-container">
-							<img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="profile-photo">
-							<textarea name="rc_content" id="rc_content"
-								placeholder="댓글을 입력하세요." cols="100" rows="6"></textarea>						
+						<c:if test="${empty mem.mem_photo}">
+							<img src="${pageContext.request.contextPath}/images/face.png" class="profile-photo">
+						</c:if>
+						<c:if test="${!empty mem.mem_photo}">
+							<img src="${pageContext.request.contextPath}/upload/${mem.mem_photo}" class="profile-photo">
+						</c:if>
+					<textarea name="rc_content" id="rc_content" placeholder="댓글을 입력하세요." cols="100" rows="6"></textarea>						
 						</div>
 						<div class="align-right">
 							<input type="submit" class="btn btn-basic" value="댓글 등록">
 						</div>
 					</form>
 				</div>
-				<%-- 댓글 목록 --%>
-				<div id="comments_list">
 				
-				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </body>

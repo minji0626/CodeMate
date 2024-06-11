@@ -56,29 +56,34 @@ $(function() {
 			success: function(param) {
 				let output = '';
 				$(param.commentsList).each(function(index, item) {
-					output += '<div class="comment-item">'
-					output += '<div class="comment-item-header">';
-					output += '<img src="../upload/' + item.mem_photo + '" class="profile-photo">';
-					output += '<div class="flex-container">'
-					output += '<span class="mem_nickname">' + item.mem_nickname + '</span>';
+					output += '<div class="reList">';
+					output += '<div class="re_writer">';
+					if (item.mem_photo == null) {
+						output += '<img src="../images/face.png" id="profile_pic" height="25" width="25">';
+					} else {
+						output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
+					}
+					output += '<span class="mem_nickname"> ' + item.mem_nickname + ' </span>';
+					
 					if (item.modify_date_string) {
-						output += '<span class="rc_modify_date">' + item.modify_date_string + ' 수정</span>';
+						output += '<span class="rc_modify_date">' + item.modify_date_string + ' 수정됨</span>';
 					} else {
 						output += '<span class="rc_reg_date">' + item.reg_date_string + ' 작성</span>';
 					}
 					output += '</div>'
-					output += '</div>'
+					output += '<div class="re_content">';
 					output += '<p>' + item.rc_content + '</p>'
+					output += '</div>';
 
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
 					if (param.mem_num == item.mem_num) {
 						output += '<div id="btn-div" class="align-right">';
 						output += ' <input type="button" data-rcnum="' + item.rc_num + '" value="수정" class="modify-btn btn">';
 						output += ' <input type="button" data-rcnum="' + item.rc_num + '" value="삭제" class="delete-btn btn">';
-						output += '</div>'
+						output += '</div>';
 					}
 
-					output += '</div>'
+					output += '</div>';
 				});
 				$('#comments_list').empty().append(output);
 				setCommentsCount(param.commentsList.length);
@@ -133,15 +138,15 @@ $(function() {
 	$(document).on('click', '.modify-btn', function() {
 		//댓글 번호
 		let rc_num = $(this).attr('data-rcnum');
-		let content = $(this).parent().parent().find('p').html().replace(/<br>/gi, '\n'); //<br>을 전부 검색해서 \n으로 바꿔라
+		let content = $(this).closest('.reList').find('.re_content p').text();
 		//(g:지정문자열 모두, i:대소문자 구분x)
 
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mrc_form">';
-		modifyUI += `<input type="hidden" name="rc_num" id="mrc_num" value="${rc_num}">`
+		modifyUI += `<input type="hidden" name="rc_num" id="mrc_num" value="${rc_num}">`;
 		modifyUI += `<textarea rows="3" cols="50" name="rc_content" id="mrc_content" class="rc-content">${content}</textarea>`;
 		modifyUI += '<div id="btn-div" class="align-right">';
-		modifyUI += ' <input type="submit" value="수정">';
+		modifyUI += ' <input type="submit" value="수정" class="rc-modify">';
 		modifyUI += ' <input type="button" value="취소" class="rc-reset">';
 		modifyUI += '</div>';
 		modifyUI += '</form>';
@@ -155,7 +160,7 @@ $(function() {
 
 		//수정폼을 수정하고자 하는 데이터가 있는 div에 노출
 		//parents() 내에 원하는 선택자를 넣으면 해당 부모를 검색할 수 있음
-		$(this).parents('.comment-item').append(modifyUI);
+		$(this).parents('.reList').append(modifyUI);
 
 	});
 

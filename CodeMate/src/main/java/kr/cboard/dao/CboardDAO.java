@@ -160,23 +160,7 @@ public class CboardDAO {
 		try {
 			conn = DBUtil.getConnection();
 
-			sql =  "SELECT *"
-					+ "FROM ("
-					+ "    SELECT a.*, ROWNUM AS rnum"
-					+ "    FROM ("
-					+ "        SELECT *"
-					+ "        FROM ("
-					+ "            SELECT cb_num, COUNT(*) AS num_rows"
-					+ "            FROM c_like" 
-					+ "            GROUP BY cb_num"
-					+ "            ORDER BY num_rows DESC"
-					+ "        )"
-					+ "        JOIN c_board USING (cb_num)"
-					+ "        ORDER BY num_rows DESC"
-					+ "    ) a"
-					+ ")"
-					+ "WHERE ROWNUM <= 8";
-
+		sql =  "SELECT * FROM  ( SELECT a.*, ROWNUM AS rnum  FROM ( SELECT * FROM ( SELECT cb_num, COUNT(*) cboard_like FROM c_like  GROUP BY cb_num )  JOIN c_board USING (cb_num) ORDER BY cboard_like DESC ) a )  WHERE rnum <= 8";
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -186,13 +170,11 @@ public class CboardDAO {
 				CboardVO cboard = new CboardVO();
 				cboard.setCb_num(rs.getInt("cb_num"));
 				cboard.setCb_title(StringUtil.useNoHTML(rs.getString("cb_title")));
-				cboard.setMem_nickname(rs.getString("mem_nickname"));
 				cboard.setCb_reg_date(rs.getDate("cb_reg_date"));
 				cboard.setCb_type(rs.getInt("cb_type"));
 				cboard.setCb_hit(rs.getInt("cb_hit"));
 				cboard.setMem_num(rs.getInt("mem_num"));
 				cboard.setCb_content(rs.getString("cb_content"));
-				cboard.setMem_nickname(rs.getString("mem_nickname"));
 				list.add(cboard);
 			}
 		} catch (Exception e) {

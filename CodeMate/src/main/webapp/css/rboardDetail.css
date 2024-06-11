@@ -63,6 +63,11 @@
 /********************************
 /* 글 */
 
+.content-main {
+	width: 80%;
+	margin: 3% auto;
+}
+
 .content-header .hit-image {
 	width: 15px;
 	margin-left: 5px;
@@ -86,6 +91,7 @@
 .content {
 	padding: 0 20px;
 	margin-top: 30px;
+	
 }
 
 .content h3 {
@@ -93,16 +99,20 @@
 }
 
 #content_info {
-	background: #f0f0f0;
-	padding: 40px 50px;	
+	padding: 20px 30px;	
 	border-radius: 12px;
 	color: #2b2b2b;
-	font-size: 13pt;
+	display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    grid-row-gap: 24px;
+    row-gap: 24px;
+    font-size: 1.2em;
 }
 
 #content_info li {
 	margin-bottom: 8px;	
 	display: flex;
+	align-items: center;
 }
 
 #hskill_li {
@@ -123,6 +133,8 @@
 	font-weight: bold;
 	color: #474747;
 }
+
+
 
 /********************************
 /* 댓글 */
@@ -154,6 +166,7 @@
 	padding: 10px;
 	border: 2px solid var(--gray-4);
 	border-radius: 6px;
+	resize: none;
 }
 
 /* 댓글 목록 */
@@ -162,9 +175,8 @@
 }
 
 .comment-item {
-	margin-top: 40px;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #b8b8b8;
+	margin-top: 3%;
+	padding-bottom: 3%;
 }
 
 .comment-item-header {
@@ -328,4 +340,115 @@
 	background: black;
 	margin-right: 10px;
 	color: white;
+}
+
+
+.mofield{
+	background-color : #bcdef7;
+	border-radius: 20px;
+	padding: 2px 8px;
+	border-radius: 20px;
+	font-size: 0.75em;
+	font-weight: bold;
+}
+
+.re_content {
+	margin-left: 14px;
+	margin-bottom: 10px;
+}
+
+.re_writer {
+	display: flex; /* 플렉스 박스 레이아웃 */
+	align-items: center; /* 수직 정렬 */
+	margin-bottom: 5px; /* 마진 */
+}
+
+.re_writer img {
+	border-radius: 50%; /* 이미지 둥글게 */
+	margin-right: 10px; /* 이미지와 닉네임 간격 */
+}
+
+.reg-date, .modify-date {
+	margin-left: 10px; /* 등록일과 수정일 간격 */
+	color: #777; /* 날짜 색상 */
+	font-size: 12px; /* 날짜 폰트 크기 */
+}
+
+.reList {
+	margin-bottom: 20px; /* 댓글 리스트 간 간격 */
+}
+
+.re_writer span {
+    padding-left: 5px;
+    padding-right: 30px;
+    font-size: 0.9em;
+}
+
+
+.rc-content {
+	width: 90%;
+	margin-left : 20px;
+	padding: 12px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	font-size: 15px;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* 수정 버튼 스타일링 */
+.rc-modify {
+    background-color: #35B572;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px; /* 버튼 패딩 */
+    border-radius: 4px; /* 둥근 모서리 */
+    font-size: 14px; /* 폰트 크기 */
+}
+
+/* 수정 버튼 호버 효과 */
+.rc-modify:hover {
+    background-color: #2b9b60;
+}
+
+/* 취소 버튼 스타일링 */
+.rc-reset {
+    background-color: #FF2910;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px; /* 버튼 패딩 */
+    border-radius: 4px; /* 둥근 모서리 */
+    font-size: 14px; /* 폰트 크기 */
+}
+
+/* 취소 버튼 호버 효과 */
+.rc-reset:hover {
+    background-color: #d0260d;
+}
+
+.modify-btn {
+	background-color: #35B572;
+	cursor: pointer;
+	padding: 8px 8px;
+	margin: 0 4px;
+	border-radius: 16px;
+	border: none;
+	width: 60px;
+	color: white;
+}
+
+.delete-btn {
+	background-color: #FF2910;
+	cursor: pointer;
+	padding: 8px 8px;
+	margin: 0 4px;
+	border-radius: 16px;
+	border: none;
+	width: 60px;
+	color: white;
+}
+
+.project_intro{
+	margin-left: 2%;
 }
