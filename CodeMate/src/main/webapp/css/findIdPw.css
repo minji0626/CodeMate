@@ -209,7 +209,13 @@ button[type="submit"]{
     left: 50%; top:40%;	
     transform: translateX(-50%);
 }
-
+/* 회원탈퇴 완료화면 */
+.check1{
+	position: absolute;
+    left: 50%; top:70%;	
+    transform: translateX(-50%);
+    font-size:20px;
+}
 
 
         
