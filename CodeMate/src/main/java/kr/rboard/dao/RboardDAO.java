@@ -233,8 +233,8 @@ public class RboardDAO {
 	        pstmt4.setInt(1, rb_num);
 	        pstmt4.executeUpdate();
 
-	        // apply레코드는 지우지 않고 rb_num만 null되게
-	        sql = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
+	        // apply 삭제
+	        sql = "DELETE FROM r_apply WHERE rb_num=?";
 	        pstmt5 = conn.prepareStatement(sql);
 	        pstmt5.setInt(1, rb_num);
 	        pstmt5.executeUpdate();
@@ -331,7 +331,7 @@ public class RboardDAO {
 	        String sqlComment = "DELETE FROM r_comment WHERE rb_num=?";
 	        String sqlSkill = "DELETE FROM r_skill WHERE rb_num=?";
 	        String sqlField = "DELETE FROM r_field WHERE rb_num=?";
-	        String sqlApply = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
+	        String sqlApply = "DELETE FROM r_apply WHERE rb_num=?";
 	        String sqlRboard = "DELETE FROM r_board WHERE rb_num IN (" +
 	                           "SELECT r.rb_num FROM r_board r JOIN team t ON r.rb_num = t.team_num " +
 	                           "WHERE r.rb_num = ? AND (t.team_status != 1 AND t.team_status != 3))";
