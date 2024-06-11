@@ -31,43 +31,45 @@ public class DeleteUserAction implements Action {
         MemberVO db_vo = dao.getMember(mem_num);
         String input_id = request.getParameter("id");
         String input_passwd = request.getParameter("passwd");
+        System.out.println("input_id: " +input_id);
+        System.out.println("input_passwd: " +input_passwd);
 
         int check = 0;
         if (!input_id.equals(db_vo.getMem_id()) || !input_passwd.equals(db_vo.getMem_passwd())) {
-            request.setAttribute("check", check);
-            return "/WEB-INF/views/member/deleteUser.jsp";
+//            request.setAttribute("check", check);
+            
+            request.setAttribute("notice_msg", "입력한 정보가 올바르지 않습니다.");
+            return "/WEB-INF/views/common/alert_view.jsp";
         } else {
             check = 1;
             request.setAttribute("check", check);
-        }
+            
+            RboardDAO rdao = RboardDAO.getInstance();
+            TboardDAO tdao = TboardDAO.getInstance();
+            TmemberVO t_member = tdao.getTmemberAuth(mem_num);
+            CboardDAO cdao = CboardDAO.getInstance();
 
-        RboardDAO rdao = RboardDAO.getInstance();
-        TboardDAO tdao = TboardDAO.getInstance();
-        TmemberVO t_member = tdao.getTmemberAuth(mem_num);
-        CboardDAO cdao = CboardDAO.getInstance();
+            Integer tm_auth = t_member != null ? t_member.getTm_auth() : null;
+            
+            if (check == 1 && (tm_auth == null || tm_auth != 4)) {
 
-        Integer tm_auth = t_member != null ? t_member.getTm_auth() : null;
+                // 프로필 사진 삭제
+                FileUtil.removeFile(request, db_vo.getMem_photo());
+                // Rboard 삭제
+                rdao.deleteUserRboard(mem_num);
+                // Tboard 삭제
+                tdao.deleteTeamMember(mem_num);
+                // Cboard 삭제
+                cdao.deleteUserCboard(mem_num);
+                // 회원정보 삭제
+                dao.deleteMember(mem_num);
 
-        if (check == 1 && (tm_auth == null || tm_auth != 4)) {
+                // 로그아웃
+                session.invalidate();
 
-            // 프로필 사진 삭제
-            FileUtil.removeFile(request, db_vo.getMem_photo());
-            // Rboard 삭제
-            rdao.deleteUserRboard(mem_num);
-            // Tboard 삭제
-            tdao.deleteTeamMember(mem_num);
-            // Cboard 삭제
-            cdao.deleteUserCboard(mem_num);
-            // 회원정보 삭제
-            dao.deleteMember(mem_num);
-
-            // 로그아웃
-            session.invalidate();
-
-            return "/WEB-INF/views/member/deleteUser.jsp";
-        } else {
-            if (tm_auth != null && tm_auth == 4) {
-                return "redirect:/member/myTeam.do";
+                return "/WEB-INF/views/member/deleteUser.jsp";
+            } else if (tm_auth != null && tm_auth == 4) {
+            	return "redirect:/member/myTeam.do";
             }
         }
 

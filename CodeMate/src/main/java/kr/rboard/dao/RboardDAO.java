@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.member.vo.TeamVO;
 import kr.rboard.vo.RapplyVO;
 import kr.rboard.vo.RboardVO;
 import kr.rboard.vo.RbookmarkVO;
@@ -109,7 +108,7 @@ public class RboardDAO {
 			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
 
@@ -208,6 +207,8 @@ public class RboardDAO {
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
+			
+			System.out.println("북마크 삭제전");
 
 			// 북마크 삭제
 			sql = "DELETE FROM r_bookmark WHERE rb_num=?";
@@ -215,6 +216,9 @@ public class RboardDAO {
 			pstmt.setInt(1, rb_num);
 			pstmt.executeUpdate();
 
+			
+			System.out.println("북마크 삭제됨");
+			
 			// 댓글 삭제
 			sql = "DELETE FROM r_comment WHERE rb_num=?";
 			pstmt2 = conn.prepareStatement(sql);
@@ -246,19 +250,14 @@ public class RboardDAO {
 			pstmt6.executeUpdate();
 
 			// team_status가 1,3일때는 rboard 삭제X 
-			// 여기서 문제 발생
-			int team_status = getrboard(rb_num).getTeam_status();
-			System.out.println("team_status: " +team_status);
-			System.out.println("tb_num:"+rb_num);
-			if (team_status == 0) {
-				System.out.println("delete");
-				// 모집글 삭제
-				sql = "DELETE FROM r_board WHERE rb_num=?";
-				pstmt7 = conn.prepareStatement(sql);
-				pstmt7.setInt(1, rb_num);
-				pstmt7.executeUpdate();
-				System.out.println("team_status2: " +team_status);
-			}
+			sql = "DELETE FROM r_board WHERE rb_num IN (" +
+                    "SELECT r.rb_num FROM r_board r JOIN team t ON r.rb_num = t.team_num " +
+                    "WHERE r.rb_num = ? AND t.team_status = 0)";
+			
+			pstmt7 = conn.prepareStatement(sql);
+			pstmt7.setInt(1, rb_num);
+			pstmt7.executeUpdate();
+			
 
 			conn.commit();
 
@@ -278,48 +277,155 @@ public class RboardDAO {
 
 	// 회원 탈퇴 시 rbaord 관련 정보 삭제 - 예영작성
 	public void deleteUserRboard(int mem_num) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null; // 북마크
-		PreparedStatement pstmt2 = null; // 댓글
-		List<RboardVO> list = null;
+	    Connection conn = null;
+	    PreparedStatement pstmt = null; // 북마크
+	    PreparedStatement pstmt2 = null; // 댓글
+	    PreparedStatement pstmt3 = null;
+	    PreparedStatement pstmt4 = null;
+	    PreparedStatement pstmt5 = null;
+	    PreparedStatement pstmt6 = null;
+	    PreparedStatement pstmt7 = null;
+	    PreparedStatement pstmt8 = null;
+	    PreparedStatement pstmt9 = null;
+	    PreparedStatement pstmt10 = null;
+	    PreparedStatement pstmt11 = null;
+	    ResultSet rs = null;
+	    ResultSet rs2 = null;
+	    List<RboardVO> list = null;
 
-		String sql = null;
+	    String sql = null;
 
-		try {
-			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
+	    try {
+	        conn = DBUtil.getConnection();
+	        conn.setAutoCommit(false);
 
-			// 북마크 삭제
-			sql = "DELETE FROM r_bookmark WHERE mem_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mem_num);
-			pstmt.executeUpdate();
+	        // 북마크 삭제
+	        System.out.println("Deleting bookmarks...");
+	        sql = "DELETE FROM r_bookmark WHERE mem_num=?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, mem_num);
+	        pstmt.executeUpdate();
 
-			// 댓글 삭제
-			sql = "DELETE FROM r_comment WHERE mem_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, mem_num);
-			pstmt2.executeUpdate();
+	        // 댓글 삭제
+	        System.out.println("Deleting comments...");
+	        sql = "DELETE FROM r_comment WHERE mem_num=?";
+	        pstmt2 = conn.prepareStatement(sql);
+	        pstmt2.setInt(1, mem_num);
+	        pstmt2.executeUpdate();
+	        
+	        // 회원의 rboard 글 불러오기
+	        System.out.println("Fetching user's rboard posts...");
+	        sql = "SELECT * FROM r_board WHERE mem_num=?";
+	        pstmt3 = conn.prepareStatement(sql);
+	        pstmt3.setInt(1, mem_num);
 
-			list = new ArrayList<RboardVO>();
-			list = getRboardListByMemNum(mem_num);
+	        rs = pstmt3.executeQuery();
 
-			for (RboardVO rboard : list) {
-				int rb_num = rboard.getRb_num();
-				deleteRboard(rb_num);
-			}
+	        list = new ArrayList<RboardVO>();
+	        while (rs.next()) {
+	            RboardVO rboard = new RboardVO();
+	            rboard.setRb_num(rs.getInt("rb_num"));
+	            rboard.setRb_title(rs.getString("rb_title"));
+	            rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+	            rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+	            rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
 
-			conn.commit();
+	            sql = "SELECT team_status FROM team WHERE team_num=?";
+	            pstmt4 = conn.prepareStatement(sql);
+	            pstmt4.setInt(1, rboard.getRb_num());
+	            rs2 = pstmt4.executeQuery();
+	            
+	            if (rs2.next()) {
+	                rboard.setTeam_status(rs2.getInt("team_status"));
+	                // rboard.setTeam_num(rs2.getInt("team_num"));
+	            }
 
-		} catch (Exception e) {
-			conn.rollback();
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt, conn);
-		}
+	            list.add(rboard);
+	        }
+	        System.out.println("User's rboard posts fetched: " + list.size());
 
+	        // 회원 rboard 관련 데이터 모두 삭제
+	        // 미리 PreparedStatement를 생성
+	        String sqlBookmark = "DELETE FROM r_bookmark WHERE rb_num=?";
+	        String sqlComment = "DELETE FROM r_comment WHERE rb_num=?";
+	        String sqlSkill = "DELETE FROM r_skill WHERE rb_num=?";
+	        String sqlField = "DELETE FROM r_field WHERE rb_num=?";
+	        String sqlTeam = "DELETE FROM team WHERE team_num=? AND team_status=0";
+	        String sqlApply = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
+	        String sqlRboard = "DELETE FROM r_board WHERE rb_num IN (" +
+	                           "SELECT r.rb_num FROM r_board r JOIN team t ON r.rb_num = t.team_num " +
+	                           "WHERE r.rb_num = ? AND t.team_status = 0)";
+
+	        pstmt5 = conn.prepareStatement(sqlBookmark);
+	        pstmt6 = conn.prepareStatement(sqlComment);
+	        pstmt7 = conn.prepareStatement(sqlSkill);
+	        pstmt8 = conn.prepareStatement(sqlField);
+	        pstmt9 = conn.prepareStatement(sqlTeam);
+	        pstmt10 = conn.prepareStatement(sqlApply);
+	        pstmt11 = conn.prepareStatement(sqlRboard);
+
+	        // 각 배치에 추가
+	        for (RboardVO rboard : list) {
+	            int rb_num = rboard.getRb_num();
+
+	            pstmt5.setInt(1, rb_num);
+	            pstmt5.addBatch();
+
+	            pstmt6.setInt(1, rb_num);
+	            pstmt6.addBatch();
+
+	            pstmt7.setInt(1, rb_num);
+	            pstmt7.addBatch();
+
+	            pstmt8.setInt(1, rb_num);
+	            pstmt8.addBatch();
+
+	            pstmt9.setInt(1, rb_num);
+	            pstmt9.addBatch();
+
+	            pstmt10.setInt(1, rb_num);
+	            pstmt10.addBatch();
+
+	            pstmt11.setInt(1, rb_num);
+	            pstmt11.addBatch();
+	        }
+	        System.out.println("Batches prepared for deletion...");
+
+	        // 배치 실행
+	        pstmt5.executeBatch();
+	        pstmt6.executeBatch();
+	        pstmt7.executeBatch();
+	        pstmt8.executeBatch();
+	        pstmt9.executeBatch();
+	        pstmt10.executeBatch();
+	        pstmt11.executeBatch();
+
+	        System.out.println("Batches executed...");
+	        conn.commit();
+	        System.out.println("Transaction committed...");
+
+	    } catch (Exception e) {
+	        conn.rollback();
+	        System.out.println("Transaction rolled back due to error: " + e.getMessage());
+	        throw new Exception(e);
+	    } finally {
+	        System.out.println("Closing resources...");
+	        DBUtil.executeClose(null, pstmt11, null);
+	        DBUtil.executeClose(null, pstmt10, null);
+	        DBUtil.executeClose(null, pstmt9, null);
+	        DBUtil.executeClose(null, pstmt8, null);
+	        DBUtil.executeClose(null, pstmt7, null);
+	        DBUtil.executeClose(null, pstmt6, null);
+	        DBUtil.executeClose(null, pstmt5, null);
+	        DBUtil.executeClose(null, pstmt4, null);
+	        DBUtil.executeClose(null, pstmt3, null);
+	        DBUtil.executeClose(null, pstmt2, null);
+	        DBUtil.executeClose(rs2, pstmt, conn);
+	        DBUtil.executeClose(rs, null, null);
+	        System.out.println("Resources closed.");
+	    }
 	}
+
 
 	// rboard 개수 구하기
 	public int getRboardCount(String[] r_skills, String rb_category, String r_fields, String rb_meet,
@@ -1190,7 +1296,7 @@ public class RboardDAO {
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 
 	}
@@ -1218,7 +1324,7 @@ public class RboardDAO {
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 
 		return cnt;
