@@ -167,7 +167,7 @@ public class CboardDAO {
 					+ "        SELECT *"
 					+ "        FROM ("
 					+ "            SELECT cb_num, COUNT(*) AS num_rows"
-					+ "            FROM c_like"
+					+ "            FROM c_like" 
 					+ "            GROUP BY cb_num"
 					+ "            ORDER BY num_rows DESC"
 					+ "        )"
