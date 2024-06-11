@@ -110,8 +110,11 @@ a{
 document.addEventListener("DOMContentLoaded", function() {
     var closeBtn = document.querySelector(".pj_close_btn");
     closeBtn.addEventListener("click", function() {
-        var closeForm = document.querySelector(".pj_close");
-        closeForm.submit();
+    	let check = confirm("프로젝트를 종료하시겠습니까? 종료한 프로젝트는 되돌릴 수 없습니다.");
+    	if (check) {
+	        var closeForm = document.querySelector(".pj_close");
+	        closeForm.submit();    		
+    	}
     });
 });
 </script>
