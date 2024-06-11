@@ -112,9 +112,14 @@
 	margin-top: 3px;
 	font-size: 12px;
 }
+
 .rcomment{
 	margin-top: 12px;
 	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden; /* 내용이 넘치는 경우 가려짐 */
+    text-overflow: ellipsis; /* 넘치는 내용을 "..."으로 표시 */
+    max-width: 700px;
 }
 .myWrite-fav{
 	width:80px;
@@ -132,8 +137,6 @@
 	width:130px;
 }
 /* 내가 쓴 글 끝  */
-
-
 .box_reply {
 	margin:0 auto;
     margin-top:50px;

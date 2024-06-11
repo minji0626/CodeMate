@@ -199,7 +199,7 @@ public class RboardDAO {
 	    PreparedStatement pstmt3 = null; // 모집스킬
 	    PreparedStatement pstmt4 = null; // 모집필드
 	    PreparedStatement pstmt5 = null; // 팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
-	    PreparedStatement pstmt6 = null; // rboard에 딸린 apply 삭제
+	    PreparedStatement pstmt6 = null; // apply레코드는 지우지 않고 rb_num만 null되게
 	    PreparedStatement pstmt7 = null; // 모집글
 
 	    String sql = null;
@@ -233,8 +233,8 @@ public class RboardDAO {
 	        pstmt4.setInt(1, rb_num);
 	        pstmt4.executeUpdate();
 
-	        // rboard에 딸린 apply 삭제
-	        sql = "DELETE FROM r_apply WHERE rb_num=?";
+	        // apply레코드는 지우지 않고 rb_num만 null되게
+	        sql = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
 	        pstmt5 = conn.prepareStatement(sql);
 	        pstmt5.setInt(1, rb_num);
 	        pstmt5.executeUpdate();
@@ -681,7 +681,7 @@ public class RboardDAO {
 		int count = 0;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM r_board WHERE mem_num=? ORDER BY reg_date DESC";
+			sql = "SELECT * FROM r_board WHERE mem_num=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
