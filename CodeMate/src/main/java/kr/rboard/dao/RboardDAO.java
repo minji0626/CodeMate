@@ -277,6 +277,7 @@ public class RboardDAO {
 	    PreparedStatement pstmt = null; // 북마크
 	    PreparedStatement pstmt2 = null; // 댓글
 	    PreparedStatement pstmt3 = null;
+	    PreparedStatement pstmt4 = null;
 	    PreparedStatement pstmt5 = null;
 	    PreparedStatement pstmt6 = null;
 	    PreparedStatement pstmt7 = null;
@@ -305,12 +306,18 @@ public class RboardDAO {
 	        pstmt2.setInt(1, mem_num);
 	        pstmt2.executeUpdate();
 	        
-	        // 회원의 rboard 글 불러오기
-	        sql = "SELECT * FROM r_board r JOIN team t ON  r.rb_num = t.team_num WHERE mem_num=?";
+	        // rapply 삭제
+	        sql = "DELETE FROM r_apply WHERE mem_num=?";
 	        pstmt3 = conn.prepareStatement(sql);
 	        pstmt3.setInt(1, mem_num);
+	        pstmt3.executeUpdate();
+	        
+	        // 회원의 rboard 글 불러오기
+	        sql = "SELECT * FROM r_board r JOIN team t ON  r.rb_num = t.team_num WHERE mem_num=?";
+	        pstmt4 = conn.prepareStatement(sql);
+	        pstmt4.setInt(1, mem_num);
 
-	        rs = pstmt3.executeQuery();
+	        rs = pstmt4.executeQuery();
 
 	        list = new ArrayList<RboardVO>();
 	        while (rs.next()) {
@@ -393,6 +400,7 @@ public class RboardDAO {
 	        DBUtil.executeClose(null, pstmt7, null);
 	        DBUtil.executeClose(null, pstmt6, null);
 	        DBUtil.executeClose(null, pstmt5, null);
+	        DBUtil.executeClose(null, pstmt4, null);
 	        DBUtil.executeClose(null, pstmt3, null);
 	        DBUtil.executeClose(null, pstmt2, null);
 	        DBUtil.executeClose(rs, pstmt, conn);
