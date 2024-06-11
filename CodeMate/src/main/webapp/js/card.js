@@ -13,7 +13,8 @@ show1 = document.querySelector('.mini-container1'),
   move1 = 0,
   AllSlideCount1 = slideCount1 * 3, //전체 슬라이드 개수
 
-	showWidth1 = (slideWidth1+slideMargin1) * slideCount1 + 'px',
+	showWidth1 = (slideWidth1+slideMargin1) * slideCount1 + 'px',//4개까지 커버 가능
+	showOverWidth1= (slideWidth1+slideMargin1) * 4 + 'px',//5개 이상일 경우
   newWidth1 = (slideWidth1+slideMargin1) * AllSlideCount1  + 'px';//wrapper 너비
 /*------------------------------------------------------------------*/
 
@@ -43,8 +44,13 @@ function makeClone1(){
   //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
   slides1.style.transform = 'translateX('+ position1 +'px)';//x축 -2320px
    //생성된 슬라이드의 개수에 따라 보여지는 창의 너비가 달라짐
-   show1.style.width = showWidth1;
+   
   
+  if(slideCount1 < 5 ){//5개 미만인 경우
+	  show1.style.width = showWidth1;
+  }else{//5개 이상일 경우 화면이 너무 커지면 흘러넘침
+	  show1.style.width=showOverWidth1;
+  }
 }
 
 /*------------------------------------------------------------------*/
@@ -91,6 +97,7 @@ var slides = document.querySelector('.wrapper2'),
   move = 0,
   AllSlideCount = slideCount * 3, //전체 슬라이드 개수
 showWidth = (slideWidth+slideMargin) * slideCount + 'px',
+showOverWidth= (slideWidth+slideMargin) * 4 + 'px',//5개 이상일 경우
   newWidth = (slideWidth+slideMargin) * AllSlideCount  + 'px';//wrapper 너비
 /*------------------------------------------------------------------*/
 
@@ -119,8 +126,12 @@ function makeClone(){
    position = -((slideWidth+slideMargin+5) * slideCount);//290 * 4 = 1160
   //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
   slides.style.transform = 'translateX('+ position +'px)';//x축 -1160px
-   //생성된 슬라이드의 개수에 따라 보여지는 창의 너비가 달라짐
-   show.style.width = showWidth;
+   
+   if(slideCount < 5 ){//5개 미만인 경우
+	  show.style.width = showWidth;
+  }else{//5개 이상일 경우 화면이 너무 커지면 흘러넘침
+	  show.style.width=showOverWidth;
+  }
   
 }
 
