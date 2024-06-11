@@ -41,7 +41,7 @@
 
 <div class="team-right">
 <div class="delete-green" data-rbnum="${rboard.rb_num}">북마크 취소</div>
-<div class="team-count">신청인원:${rboard.rb_teamsize}명</div>
+<div class="team-count">모집인원:${rboard.rb_teamsize}명</div>
 <div>모집마감일 ${rboard.rb_endRecruit}</div>
 </div>
 </div>
