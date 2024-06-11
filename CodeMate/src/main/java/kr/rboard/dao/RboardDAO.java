@@ -294,21 +294,18 @@ public class RboardDAO {
 	        conn.setAutoCommit(false);
 
 	        // 북마크 삭제
-	        System.out.println("Deleting bookmarks...");
 	        sql = "DELETE FROM r_bookmark WHERE mem_num=?";
 	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setInt(1, mem_num);
 	        pstmt.executeUpdate();
 
 	        // 댓글 삭제
-	        System.out.println("Deleting comments...");
 	        sql = "DELETE FROM r_comment WHERE mem_num=?";
 	        pstmt2 = conn.prepareStatement(sql);
 	        pstmt2.setInt(1, mem_num);
 	        pstmt2.executeUpdate();
 	        
 	        // 회원의 rboard 글 불러오기
-	        System.out.println("Fetching user's rboard posts...");
 	        sql = "SELECT * FROM r_board r JOIN team t ON  r.rb_num = t.team_num WHERE mem_num=?";
 	        pstmt3 = conn.prepareStatement(sql);
 	        pstmt3.setInt(1, mem_num);
@@ -327,7 +324,6 @@ public class RboardDAO {
 
 	            list.add(rboard);
 	        }
-	        System.out.println("User's rboard posts fetched: " + list.size());
 
 	        // 회원 rboard 관련 데이터 모두 삭제
 	        // 미리 PreparedStatement를 생성
@@ -335,19 +331,19 @@ public class RboardDAO {
 	        String sqlComment = "DELETE FROM r_comment WHERE rb_num=?";
 	        String sqlSkill = "DELETE FROM r_skill WHERE rb_num=?";
 	        String sqlField = "DELETE FROM r_field WHERE rb_num=?";
-	        String sqlTeam = "DELETE FROM team WHERE team_num=? AND team_status=0";
 	        String sqlApply = "UPDATE r_apply SET rb_num=null WHERE rb_num=?";
 	        String sqlRboard = "DELETE FROM r_board WHERE rb_num IN (" +
 	                           "SELECT r.rb_num FROM r_board r JOIN team t ON r.rb_num = t.team_num " +
 	                           "WHERE r.rb_num = ? AND (t.team_status != 1 AND t.team_status != 3))";
+	        String sqlTeam = "DELETE FROM team WHERE team_num=? AND team_status=0";
 
 	        pstmt5 = conn.prepareStatement(sqlBookmark);
 	        pstmt6 = conn.prepareStatement(sqlComment);
 	        pstmt7 = conn.prepareStatement(sqlSkill);
 	        pstmt8 = conn.prepareStatement(sqlField);
-	        pstmt9 = conn.prepareStatement(sqlTeam);
-	        pstmt10 = conn.prepareStatement(sqlApply);
-	        pstmt11 = conn.prepareStatement(sqlRboard);
+	        pstmt9 = conn.prepareStatement(sqlApply);
+	        pstmt10 = conn.prepareStatement(sqlRboard);
+	        pstmt11 = conn.prepareStatement(sqlTeam);
 
 	        // 각 배치에 추가
 	        for (RboardVO rboard : list) {
@@ -374,7 +370,6 @@ public class RboardDAO {
 	            pstmt11.setInt(1, rb_num);
 	            pstmt11.addBatch();
 	        }
-	        System.out.println("Batches prepared for deletion...");
 
 	        // 배치 실행
 	        pstmt5.executeBatch();
@@ -385,16 +380,12 @@ public class RboardDAO {
 	        pstmt10.executeBatch();
 	        pstmt11.executeBatch();
 
-	        System.out.println("Batches executed...");
 	        conn.commit();
-	        System.out.println("Transaction committed...");
 
 	    } catch (Exception e) {
 	        conn.rollback();
-	        System.out.println("Transaction rolled back due to error: " + e.getMessage());
 	        throw new Exception(e);
 	    } finally {
-	        System.out.println("Closing resources...");
 	        DBUtil.executeClose(null, pstmt11, null);
 	        DBUtil.executeClose(null, pstmt10, null);
 	        DBUtil.executeClose(null, pstmt9, null);
@@ -405,7 +396,6 @@ public class RboardDAO {
 	        DBUtil.executeClose(null, pstmt3, null);
 	        DBUtil.executeClose(null, pstmt2, null);
 	        DBUtil.executeClose(rs, pstmt, conn);
-	        System.out.println("Resources closed.");
 	    }
 	}
 
