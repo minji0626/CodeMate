@@ -1,0 +1,52 @@
+.myPage-rapply-box {
+    display: grid;
+    grid-template-rows: auto auto;
+/*     justify-content: center; */
+/*     align-items: center; */
+    border-radius: 7px;
+    width: 100%;
+    max-width: 900px;
+    padding: 3% 3% 2% 3%;
+    border: 1px solid #8f8f8f;
+    margin: 0 auto;
+    margin-bottom: 3%;
+    box-sizing: border-box;
+}
+
+/* .projectName {
+    font-size: 22px;
+    font-weight: bold;
+    width: 500px;
+    text-align: center;
+} */
+
+.rboardCon-left{
+	font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8%;
+}
+
+.applyCon-center {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 4%;
+}
+.delete-flexbox{
+	display:flex;
+}
+.delete-green {
+    color: #fff;
+    margin-bottom: 5px;
+    width: 70px;
+    height: 20px;
+    float: right;
+    background-color: red;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-left: auto;
+}

@@ -96,7 +96,38 @@ public class ApplyDAO {
 
 		return list;
 	}
-
+	
+	//나의 신청서 상세보기
+		public RapplyVO getRapply(int ra_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			RapplyVO rapply = null;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM r_apply ra JOIN r_board rb USING(rb_num) where ra.ra_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, ra_num);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					rapply = new RapplyVO();
+					rapply.setRa_content(rs.getString("ra_content"));
+					rapply.setRb_title(rs.getString("rb_title"));
+					rapply.setRa_date(rs.getDate("ra_date"));
+					rapply.setRa_pass(rs.getInt("ra_pass"));
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return rapply;
+		}
+		
+	
 	// 코메 신청자 합격시키기
 	public void passMember(int ra_num) throws Exception{
 		Connection conn = null;

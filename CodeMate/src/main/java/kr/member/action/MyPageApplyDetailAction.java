@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.rboard.dao.ApplyDAO;
+import kr.rboard.vo.RapplyVO;
 
 public class MyPageApplyDetailAction implements Action{
 
@@ -21,10 +23,14 @@ public class MyPageApplyDetailAction implements Action{
 		//로그인이 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(mem_num);
-	
+		
+		int ra_num = Integer.parseInt(request.getParameter("ra_num"));
+		ApplyDAO adao = ApplyDAO.getInstance();
+		RapplyVO rapply = adao.getRapply(ra_num);
 		
 		request.setAttribute("member", member);
-
+		request.setAttribute("rapply", rapply);
+		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPageApplyDetail.jsp";
 	}
