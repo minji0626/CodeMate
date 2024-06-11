@@ -87,7 +87,7 @@
 				<c:if test="${count > 0}">
 					<ul id="r_board">
 						<c:forEach var="rboard" items="${rboardList}">
-							<li class="r-item <c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">not-recruiting</c:if>"
+							<li class="r-item <c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">not-recruiting</c:if>"
 								onclick="location.href= '${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rboard.rb_num}'">
 								<div class="r-item-header">
 									<div class="rb_category_div">
@@ -146,7 +146,7 @@
 								<div class="hit-div">
 									<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png"> <span>${rboard.rb_hit}</span>
 								</div>
-								<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">
+								<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">
 									<div class="end_recruit">
 									모집 마감
 									</div>

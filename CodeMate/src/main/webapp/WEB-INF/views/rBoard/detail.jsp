@@ -40,9 +40,9 @@
 				<div class="content-header">
 					<h2>${rboard.rb_title} 
 					<span id="d_day">
-						<c:if test="${rboard.daysLeft > 0 && rboard.team_status != 1}">D-${rboard.daysLeft}</c:if>
-						<c:if test="${rboard.daysLeft == 0 && rboard.team_status != 1}">오늘 마감</c:if>
-						<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1}">모집 종료</c:if>
+						<c:if test="${rboard.daysLeft > 0 && rboard.team_status != 1 && rboard.team_status != 3}">D-${rboard.daysLeft}</c:if>
+						<c:if test="${rboard.daysLeft == 0 && rboard.team_status != 1&& rboard.team_status != 3}">오늘 마감</c:if>
+						<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">모집 종료</c:if>
 					</span>
 					<img id="bookmark_img" data-rbnum="${rboard.rb_num}" src="" width="36px">
 					</h2>
@@ -61,7 +61,7 @@
 							</div>
 							<c:if test="${mem_num == rboard.mem_num}">
 							<div id="header_btn_div">
-								<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
+								<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1 && rboard.team_status != 3}">
 								<input type="button" value="수정하기" id="modify_btn" class="btn-basic btn" onclick='location.href="modifyForm.do?rb_num=${rboard.rb_num}"'>
 								<input type="button" value="삭제하기" id="delete_btn" class="btn-cancel btn" onclick='deleteRboard(${rboard.rb_num})'>
 								</c:if>
@@ -79,7 +79,7 @@
 							</script>
 							</c:if>
 							<c:if test="${mem_num != rboard.mem_num}">
-							<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1}">
+							<c:if test="${rboard.daysLeft >= 0 && rboard.team_status != 1 && rboard.team_status != 3}">
 							<input type="button" value="신청하기" id="btn-modal" class="btn-basic btn" 
 							data-memnum="${mem_num}" data-rbmemnum="${rboard.mem_num}" <c:if test="${alreadyApplied}">data-alreadyapplied="1"</c:if>>
 							<jsp:include page="/WEB-INF/views/rBoard/applyModal.jsp" />
