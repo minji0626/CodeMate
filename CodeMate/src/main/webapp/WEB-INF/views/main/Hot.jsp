@@ -103,7 +103,7 @@
 		<div class="w2">
 			<div class="explain"> <b>이번주 코메 인기글</b> </div>
 			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">커뮤니티</button>
-			<a class="more" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
+			<a class="more2" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
 		</div>
 
 		<div class="mini-container2">

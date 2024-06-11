@@ -592,3 +592,9 @@ form {
 #free{
 	transform:translateY(30%);
 }
+.more2{
+	font-size: 12px;
+	position: relative; 
+	left: 1000px;
+	top: 15px;
+}
