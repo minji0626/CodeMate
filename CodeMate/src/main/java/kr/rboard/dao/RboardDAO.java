@@ -958,7 +958,7 @@ public class RboardDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM r_apply ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=?";
+			sql = "SELECT * FROM r_apply ra JOIN r_board rb USING(rb_num) WHERE ra.mem_num=? ORDER BY ra_num DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 

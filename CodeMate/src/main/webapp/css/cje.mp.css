@@ -80,6 +80,7 @@ button{
     width: 60px;
     height: 60px;
     border-radius: 50%; /* 동그라미 모양으로 설정 */
+    object-fit: cover;
 }
 
 /*닉네임, 아이디 있는 div*/
