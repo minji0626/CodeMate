@@ -114,3 +114,7 @@ body {
     margin-right: 5px;
 }
 
+/* 회원탈퇴 폼 */
+.delete_user{
+	transform:translate3d(20%,62%,0);
+}

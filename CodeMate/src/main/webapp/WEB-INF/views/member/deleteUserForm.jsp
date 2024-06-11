@@ -28,13 +28,13 @@ $(function(){
 </script>
 </head>
 <body>
-		<div id="login_logo">
+		<div id="login_logo" class="delete">
 			<a href="${pageContext.request.contextPath}/main/main.do" class="logo"> 
 			<img id="logo_pic_login" src="${pageContext.request.contextPath}/images/로고1.png" height="80" width="80"> CODEMATE
 			</a>
 		</div>
 		
-		<div class="login_main">
+		<div class="delete_user">
 		<form id="login_form" action="deleteUser.do" method="post"><!-- login에서 폼 가져온거라 action만 logout.do로 보냄 -->
 		<input type="hidden" name="mem_num" value="${mem_num}">
 			<ul id="insert">
