@@ -36,22 +36,19 @@ public class ManageStopTeamAction  implements Action {
 			String keyfield = null; // 검색 로직 추가 후 수정
 			String keyword = null;
 
-			DBDAO dbdao = DBDAO.getInstance();
-			List<FieldVO> fieldList = dbdao.getFieldList();
-			List<HardSkillVO> hskillList = dbdao.getHardSkillList();
 
 			RboardDAO rdao = RboardDAO.getInstance();
 			int count = rdao.getRboardCount(null, null, null, null, null, false);
 			
 			ApplyDAO dao = ApplyDAO.getInstance();
 			
+
 			// 페이지 처리
-			PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10,
-					"/rboard/list.do");
+			PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, "/rboard/list.do");
 
 			List<RboardVO> rboardList = null;
 			if (count > 0) {
-				rboardList = dao.getRboardList(page.getStartRow(), page.getEndRow());
+				rboardList = rdao.getRboardList(page.getStartRow(), page.getEndRow(), null, null, null, null, null, false);
 			}
 			
 			for(int i=0; i<rboardList.size();i++) {
@@ -61,8 +58,8 @@ public class ManageStopTeamAction  implements Action {
 					rboardList.remove(i);
 				}
 			}
-			request.setAttribute("fieldList", fieldList);
-			request.setAttribute("hskillList", hskillList);
+			
+			
 			request.setAttribute("rboardList", rboardList);
 			request.setAttribute("count", count);
 			request.setAttribute("page", page.getPage());
