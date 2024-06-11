@@ -29,7 +29,7 @@
     <h3 class="mYPage-TitleText">팀원구하기 댓글</h3>
 </div>
 <c:if test="${empty rcommentList}">
-<div class="none_messgae">코메구하기에 작성한 댓글이 없습니다</div>
+<div class="none_message">코메구하기에 작성한 댓글이 없습니다</div>
 </c:if>
 
 <c:if test="${!empty rcommentList}">

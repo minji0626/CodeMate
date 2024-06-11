@@ -38,7 +38,7 @@
     <option value="free">자유</option>
 </select>
 
-<div id="no-comments-message" class="none_messgae hidden">나의 작성 댓글이 없습니다</div>
+<div id="no-comments-message" class="none_message hidden">나의 작성 댓글이 없습니다</div>
 
 <c:if test="${!empty commentList}">
 <c:forEach var="comment" items="${commentList}">

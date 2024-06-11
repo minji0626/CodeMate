@@ -30,7 +30,7 @@
 </div>
 
 <c:if test="${empty rapplyList}">
-<div class="none_messgae">나의 코메 모집 신청자가 존재하지 않습니다</div>
+<div class="none_message">나의 코메 모집 신청자가 존재하지 않습니다</div>
 </c:if>
 <c:if test="${!empty rapplyList}">
 	<c:forEach var="ra" items="${rapplyList}">

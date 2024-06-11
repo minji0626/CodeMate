@@ -3,6 +3,9 @@ $(function() {
     $('#delete_community').on('click', function() {
 		let cb_num = $(this).data('cbnum');
         // 서버와 통신
+        var check = confirm("커뮤니티 게시글을 삭제하시겠습니까?");
+        
+        if(check){
         $.ajax({
             url: 'deleteManageCommunity.do',
             type: 'post',
@@ -22,5 +25,6 @@ $(function() {
                 alert('네트워크 오류 발생');
             }
         });
+       } 
     });
 });

@@ -199,7 +199,7 @@ myPageMoshin.jsp
     white-space: nowrap; /* 글이 한 줄로 유지되도록 설정 */
 }
 /* 마이페이지 나의 내역이 존재하지 않을때 뜨는 메세지 */
-.none_messgae{
+.none_message{
 	text-align: center;
 	margin-top: 10%;
 }

@@ -39,7 +39,7 @@
     <option value="free">자유</option>
 </select>
 
-<div id="no-comments-message" class="none_messgae hidden">나의 작성 글이 없습니다</div>
+<div id="no-comments-message" class="none_message hidden">나의 작성 글이 없습니다</div>
 
 <c:if test="${!empty cboardList}">
 <c:forEach var="cboard" items="${cboardList}">

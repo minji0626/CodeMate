@@ -41,7 +41,7 @@
 				</div>
 
 				<c:if test="${empty rboardList}">
-					<div class="none_messgae">나의 모집글이 없습니다</div>
+					<div class="none_message">나의 모집글이 없습니다</div>
 				</c:if>
 				
 				<c:if test="${!empty rboardList}">
@@ -57,7 +57,7 @@
 								<div class="team-right-mo">
 								<div class="count">
 										<div class="team-count">신청인원:${rboard.apply_count}명</div>
-										<div class="team-count">합격된 인원:${rboard.apply_count}명</div>
+										<div class="team-count">합격된 인원:${rboard.pass_count}명</div>
 										<div>모집마감:${rboard.rb_endRecruit}</div>
 								</div>
 										<div class="right">
