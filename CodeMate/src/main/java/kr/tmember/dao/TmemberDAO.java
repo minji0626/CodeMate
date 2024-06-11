@@ -382,5 +382,34 @@ public class TmemberDAO {
 		}
 		return mem_num;
 	}
-
+	
+	public boolean UserTeamActive(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		boolean check=true;
+		int team_status = 0;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "select team_status FROM team JOIN team_member USING(team_num) WHERE mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mem_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				team_status = rs.getInt(1);
+				if(team_status==1) {
+					check=false;
+				}
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return check;
+	}
 }

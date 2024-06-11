@@ -10,6 +10,7 @@ import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.rboard.dao.RboardDAO;
 import kr.tboard.dao.TboardDAO;
+import kr.tmember.dao.TmemberDAO;
 import kr.tmember.vo.TmemberVO;
 import kr.util.FileUtil;
 
@@ -34,31 +35,26 @@ public class DeleteUserAction implements Action {
         System.out.println("input_id: " +input_id);
         System.out.println("input_passwd: " +input_passwd);
 
-        int check = 0;
         if (!input_id.equals(db_vo.getMem_id()) || !input_passwd.equals(db_vo.getMem_passwd())) {
-//            request.setAttribute("check", check);
             
             request.setAttribute("notice_msg", "입력한 정보가 올바르지 않습니다.");
+            request.setAttribute("notice_url", request.getContextPath() + "/member/deleteUserForm.do");
             return "/WEB-INF/views/common/alert_view.jsp";
         } else {
-            check = 1;
-            request.setAttribute("check", check);
             
             RboardDAO rdao = RboardDAO.getInstance();
-            TboardDAO tdao = TboardDAO.getInstance();
-            TmemberVO t_member = tdao.getTmemberAuth(mem_num);
             CboardDAO cdao = CboardDAO.getInstance();
-
-            Integer tm_auth = t_member != null ? t_member.getTm_auth() : null;
+            TmemberDAO tdao = TmemberDAO.getInstance();
             
-            if (check == 1 && (tm_auth == null || tm_auth != 4)) {
+            boolean check = tdao.UserTeamActive(mem_num);
+            
+            if (check) {
 
                 // 프로필 사진 삭제
                 FileUtil.removeFile(request, db_vo.getMem_photo());
-                // Rboard 삭제
+                // Rboard 삭제 -> 비활성화일 때만 삭제
                 rdao.deleteUserRboard(mem_num);
-                // Tboard 삭제
-                tdao.deleteTeamMember(mem_num);
+
                 // Cboard 삭제
                 cdao.deleteUserCboard(mem_num);
                 // 회원정보 삭제
@@ -68,11 +64,11 @@ public class DeleteUserAction implements Action {
                 session.invalidate();
 
                 return "/WEB-INF/views/member/deleteUser.jsp";
-            } else if (tm_auth != null && tm_auth == 4) {
-            	return "redirect:/member/myTeam.do";
+            } else {
+            	request.setAttribute("notice_msg", "진행 중인 프로젝트가 있으면 회원 탈퇴가 불가합니다.");
+            	request.setAttribute("notice_url", request.getContextPath() + "/member/modifyUserForm.do");
+                return "/WEB-INF/views/common/alert_view.jsp";
             }
         }
-
-        return null;
     }
 }
