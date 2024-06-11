@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${check==1}">
-	<!DOCTYPE html>
-	<html>
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
@@ -24,7 +24,7 @@
 		</a>
 	</div>
 	<hr size="1px" class="line">
-	<span class="check">회원탈퇴가 완료되었습니다.</span>
+	<span class="check1">회원탈퇴가 완료되었습니다.</span>
 	<p>
 	<input class="tryAgain_btn" type="button" value="홈으로" 
 			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
