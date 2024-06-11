@@ -681,7 +681,7 @@ public class RboardDAO {
 		int count = 0;
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM r_board WHERE mem_num=?";
+			sql = "SELECT * FROM r_board WHERE mem_num=? ORDER BY rb_reg_date DESC";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
