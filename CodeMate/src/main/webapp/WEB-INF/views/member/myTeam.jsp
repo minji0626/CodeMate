@@ -60,7 +60,7 @@
 	        <div class="myPage-line-box" onclick="location.href='${pageContext.request.contextPath}/team/teamMain.do?team_num=${myteam.team_num}'" style="cursor: pointer; background-color: #e6e6e6;">
 	        <div class="team-left">
 	        	<div class="skill_font_T"></div>
-	        	<div class="projectName_font">${myteam.rb_pj_title}</div>
+	        	<div class="projectName_font">[프로젝트 종료]${myteam.rb_pj_title}</div>
 		        <c:if test="${myteam.tm_auth == '4'}">
 		            팀장
 		        </c:if>

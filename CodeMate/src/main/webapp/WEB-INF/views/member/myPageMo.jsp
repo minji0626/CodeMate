@@ -81,7 +81,7 @@
 								style="cursor: pointer; background-color: #e6e6e6;">
 								<div class="team-left">
 									<div class="skill_font_T">${rboard.rb_pj_title}</div>
-									<div class="projectName_font">${rboard.rb_title}</div>
+									<div class="projectName_font">[모집 마감]${rboard.rb_title}</div>
 								</div>
 								<div class="team-right">
 									<div></div>
