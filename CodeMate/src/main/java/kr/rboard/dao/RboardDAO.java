@@ -584,6 +584,7 @@ public class RboardDAO {
 				rboard.setRb_title(rs.getString("rb_title"));
 				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
 				rboard.setRb_hit(rs.getInt("rb_hit"));
+				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
 				rboard.setRb_apply_count(rs.getInt("apply_count"));
 				rboard.setTeam_status(rs.getInt("team_status"));
 
