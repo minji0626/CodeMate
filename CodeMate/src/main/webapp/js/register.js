@@ -7,7 +7,7 @@ $(function() {
 	$('#mem_id').on('blur', function() {
 		//아이디 중복 체크
 		if (!/^[A-Za-z0-9]{4,12}$/.test($('#mem_id').val())) {
-			$('#message_id').text('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
+			$('#message_id').css('color','red').text('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
 			$('#mem_id').val('').focus();
 			return;
 		}
@@ -38,10 +38,13 @@ $(function() {
 
 	});//end of id_check
 
-
-
 	//이메일 중복 체크
 	$('#mem_email').on('blur', function() {
+		if($('#mem_email').val() == '') {
+			$('#message_email').css('color', 'red').text('이메일을 입력하세요.');
+			$('#mem_email').val('').focus();
+			return;
+		}
 		//서버와 통신
 		$.ajax({
 			url: 'checkDuplicatedEmail.do',
@@ -67,11 +70,17 @@ $(function() {
 			}
 		});
 
+
 	});//end of email check
 
 	/* 닉네임 중복 체크 */
 	$('#mem_nickname').on('blur', function() {
 		var nickname = $(this).val();
+		if(nickname == '') {
+			$('#message_nickname').css('color', 'red').text('닉네임을 입력하세요.');
+			$('#message_nickname').val('').focus();
+			return;
+		}
 		$.ajax({
 			url: 'checkDuplicatedNickname.do',
 			type: 'post',
@@ -109,7 +118,7 @@ $(function() {
 		$.ajax({
 			url: 'checkDuplicatedPhone.do',
 			type: 'post',
-			data: { phone: $('#mem_phone').val() },
+			data: { mem_phone: $('#mem_phone').val() },
 			dataType: 'json',
 			success: function(param) {
 				if (param.result == 'phoneNotFound') {
