@@ -219,6 +219,7 @@ input[id="recruiting_filter"]:checked+label {
 	justify-content: space-between;
 	background: white;
 	transition: all .3s ease-in-out;
+	position:flex;
 }
 /* r-item 올렸을 때 스케일 확대 */
 .r-item:hover {
@@ -230,13 +231,15 @@ input[id="recruiting_filter"]:checked+label {
 }
 
 .end_recruit {
-	opacity: 0.8;
-	position: absolute;
-	padding: 16px;
-	color: #fff;
-	background-color: #000;
-	border-radius: 6px;
-	transform: translate(95px, 155px);
+opacity: 0.8;
+right: 50%;
+transform: translateX(60%) translateY(-250%);
+padding: 16px;
+text-align: center;
+width: 35%;
+color: #fff;
+background-color: #000;
+border-radius: 6px;
 }
 
 .r-item .r-item-header {
