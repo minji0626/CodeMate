@@ -758,6 +758,7 @@ public class CboardDAO {
 		PreparedStatement pstmt3 = null;
 		PreparedStatement pstmt4 = null;
 		PreparedStatement pstmt5 = null;
+		PreparedStatement pstmt6 = null;
 		ResultSet rs = null;
 		String sql = null;
 		try {
@@ -784,11 +785,14 @@ public class CboardDAO {
 			pstmt3.setInt(1, mem_num);
 			rs = pstmt3.executeQuery();
 			
-			//회원이 쓴 커뮤니티 글의 댓글, 부모글 삭제
+			//회원이 쓴 커뮤니티 글의 댓글, 좋아요, 부모글 삭제
 			sql = "DELETE FROM c_comment WHERE cb_num=?";
 			pstmt4 = conn.prepareStatement(sql);
-			sql = "DELETE FROM c_board WHERE cb_num=?";
+			sql = "DELETE FROM c_like WHERE cb_num=?";
 			pstmt5 = conn.prepareStatement(sql);
+			//회원이 쓴 커뮤니티
+			sql = "DELETE FROM c_board WHERE cb_num=?";
+			pstmt6 = conn.prepareStatement(sql);
 
 			while (rs.next()) {
 			    int cb_num = rs.getInt(1);
@@ -797,14 +801,19 @@ public class CboardDAO {
 			    pstmt4.setInt(1, cb_num);
 			    pstmt4.addBatch();
 			    
-			    // 게시글 삭제 배치에 추가
+			    // 라이크 삭제 배치에 추가
 			    pstmt5.setInt(1, cb_num);
 			    pstmt5.addBatch();
+			    
+			    // 게시글 삭제 배치에 추가
+			    pstmt6.setInt(1, cb_num);
+			    pstmt6.addBatch();
 			}
 
 			// 배치 실행
 			pstmt4.executeBatch();
 			pstmt5.executeBatch();
+			pstmt6.executeBatch();
 
 
 			//예외 발생 없이 정상적으로 SQL문 실행
@@ -814,6 +823,7 @@ public class CboardDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt6, null);
 			DBUtil.executeClose(null, pstmt5, null);
 			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);

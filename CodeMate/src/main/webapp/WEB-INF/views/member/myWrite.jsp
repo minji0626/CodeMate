@@ -54,9 +54,7 @@
                 </c:if>
             </div>
             <div class="projectName_font">${cboard.cb_title}</div>
-            <div class="fav-reply">
-                <div class="myWrite-fav">조회수:${cboard.cb_hit}</div>
-            </div>
+           
         </div>
         <div class="btn_box_write">
              <input type="button" value="수정" class="myUpdate_btn" onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/cboard/modifyCommunityForm.do?cb_num=${cboard.cb_num}'">

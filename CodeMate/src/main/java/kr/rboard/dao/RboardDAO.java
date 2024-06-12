@@ -199,7 +199,7 @@ public class RboardDAO {
 	    PreparedStatement pstmt3 = null; // 모집스킬
 	    PreparedStatement pstmt4 = null; // 모집필드
 	    PreparedStatement pstmt5 = null; // 팀 (마감안된글은 팀도 지우고, 마감된 글은 팀 안지우기)
-	    PreparedStatement pstmt6 = null; // apply레코드는 지우지 않고 rb_num만 null되게
+	    PreparedStatement pstmt6 = null; // apply 삭제
 	    PreparedStatement pstmt7 = null; // 모집글
 
 	    String sql = null;
