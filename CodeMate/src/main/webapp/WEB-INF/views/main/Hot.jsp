@@ -96,7 +96,7 @@
 
 		<div class="w2">
 			<div class="explain"> <b>이번주 코메 인기글</b> </div>
-			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">커뮤니티</button>
+			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">자유 게시판</button>
 			<a class="more2" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
 		</div>
 
@@ -131,9 +131,8 @@
 										<span>
 										<img id="hit2" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
 										 ${cboard.cb_hit}
-										 </span>
-										 <span>
-										 <img id="good" src="">
+										 
+										 <img id="good2" src="${pageContext.request.contextPath}/images/cje/noLike.png">
 										 </span>
 									</div>
 								</div><!-- end of detail2 -->
@@ -163,8 +162,8 @@
 
 		<div class="w3">
 			<div class="explain"> <b>이번주 코메 인기글</b> </div>
-			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">커뮤니티</button>
-			<a class="more3" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
+			<button id="front_btn3" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do?cb_type=1'">개발 게시판</button>
+			<a class="more3" href=${pageContext.request.contextPath}/cboard/community.do?cb_type=1>더보기</a>
 		</div>
 
 		<div class="mini-container3">
@@ -193,13 +192,11 @@
 										<span class="b date">등록일 | ${cboard.cb_reg_date}</span> <br>
 									</div>
 
-									<div class="hit3">
+									<div class="hit">
 										<span>
 										<img id="hit3" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
 										 ${cboard.cb_hit}
-										 </span>
-										 <span>
-										 <img id="good" src="">
+										 <img id="good3" src="${pageContext.request.contextPath}/images/cje/noLike.png">
 										 </span>
 									</div>
 								</div><!-- end of detail3 -->

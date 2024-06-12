@@ -15,6 +15,8 @@ public class CboardVO {
 	private String cb_ip;
 	private int cb_type;
 	
+	
+	
 	private String mem_id;
 	private int mem_auth;
 	private int mem_report;
@@ -29,6 +31,7 @@ public class CboardVO {
 	private Date mem_reg_date;
 	private Date mem_modify_date;
 	private String mem_photo;
+	
 	
 	
 	
