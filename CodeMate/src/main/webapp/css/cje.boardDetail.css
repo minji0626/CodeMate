@@ -264,3 +264,7 @@
 	color: #A7A3A3;
 	margin-right: 20px;
 }
+#profile_pic{
+	border-radius: 20px;
+    object-fit: cover;
+}
