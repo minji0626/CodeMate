@@ -6,12 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 관리</title>
-<link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageMembers.css" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/manageMembers.js"></script>
+<link href="${pageContext.request.contextPath}/images/로고1.png"
+	rel="shortcut icon" type="image/x-icon">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/manageMembers.css"
+	type="text/css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/manageMembers.js"></script>
 </head>
 <body>
 	<!-- 헤더 링크-->
@@ -60,37 +68,47 @@
 										<td>${member.mem_num}</td>
 										<td>${member.mem_id}</td>
 										<td>${member.mem_nickname}</td>
-										<td>
-											<c:if test="${member.mem_auth == 0}">탈퇴</c:if>
-											<c:if test="${member.mem_auth == 1}">정지</c:if>
-											<c:if test="${member.mem_auth == 2}">일반</c:if>
-											<c:if test="${member.mem_auth == 9}">관리자</c:if>
-										
-										</td>
+										<td><c:if test="${member.mem_auth == 0}">탈퇴</c:if> <c:if
+												test="${member.mem_auth == 1}">정지</c:if> <c:if
+												test="${member.mem_auth == 2}">일반</c:if> <c:if
+												test="${member.mem_auth == 9}">관리자</c:if></td>
 										<td>${member.mem_email}</td>
 										<td>${member.mem_reg_date}</td>
+										<td><c:if test="${member.mem_auth != 1}">
+												<button
+													class="lockMemberBtn <c:if test="${member.mem_auth == 0}">disabled</c:if>"
+													data-memid="${member.mem_id}"
+													data-memnum="${member.mem_num}" data-locked="0"
+													<c:if test="${member.mem_auth == 0 || member.mem_auth == 9}">disabled="disabled"</c:if>>
+													정지</button>
+											</c:if> <c:if test="${member.mem_auth == 1}">
+												<button class="lockMemberBtn" data-memid="${member.mem_id}"
+													data-memnum="${member.mem_num}" data-locked="1">정지
+													취소</button>
+											</c:if></td>
 										<td>
-											<c:if test="${member.mem_auth ==0}"
-											></c:if>
-											<c:if test="${member.mem_auth != 9 && member.mem_auth != 1}"
-											><button class="lockMemberBtn" data-memid="${member.mem_id}" data-memnum="${member.mem_num}" data-locked="0"
-											>정지</button></c:if>
-											<c:if test="${member.mem_auth != 9 && member.mem_auth == 1}"
-											><button class="lockMemberBtn" data-memid="${member.mem_id}" data-memnum="${member.mem_num}" data-locked="1"
-											>정지 취소</button></c:if>
+											<button
+												class="deleteMemberBtn <c:if
+												test="${member.mem_auth == 0 || member_mem.auth == 9}">disabled</c:if>"
+												data-memid="${member.mem_id}"
+												data-memnum="${member.mem_num}"
+												<c:if
+												test="${member.mem_auth == 0 || member_mem.auth == 9}">disabled</c:if>>탈퇴</button>
 										</td>
-										<td><c:if test="${member.mem_auth != 9 && member.mem_auth != 0}"><button class="deleteMemberBtn" data-memid="${member.mem_id}" data-memnum="${member.mem_num}">탈퇴</button></c:if></td>
-										<td>
-											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
-											<select name="changeAuthToAdmin"  class="auth-select">
-												<option value="2" <c:if test="${member.mem_auth != 9}">selected</c:if>>일반</option>
-												<option value="9" <c:if test="${member.mem_auth == 9}">selected</c:if>>관리자</option>
-											</select>
-											</c:if>
-											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
-											<button class="changeAuthBtn" data-memnum="${member.mem_num}" data-memauth="${member.mem_auth}">등급 변경</button>
-											</c:if>
-										</td>
+										<td><select name="changeAuthToAdmin"
+											class="auth-select <c:if
+												test="${member.mem_num == mem_num || member.mem_auth == 0 || member.mem_auth == 1}">disabled</c:if>"
+											<c:if
+												test="${member.mem_num == mem_num || member.mem_auth == 0 || member.mem_auth == 1}">disabled</c:if>>
+												<option value="2"
+													<c:if test="${member.mem_auth != 9}">selected</c:if>>일반</option>
+												<option value="9"
+													<c:if test="${member.mem_auth == 9}">selected</c:if>>관리자</option>
+										</select>
+											<button class="changeAuthBtn <c:if
+												test="${member.mem_num == mem_num || member.mem_auth == 0 || member.mem_auth == 1}">disabled</c:if>" data-memnum="${member.mem_num}"
+												data-memauth="${member.mem_auth}" <c:if
+												test="${member.mem_num == mem_num || member.mem_auth == 0 || member.mem_auth == 1}">disabled</c:if>>등급 변경</button></td>
 									</tr>
 								</c:forEach>
 							</table>
