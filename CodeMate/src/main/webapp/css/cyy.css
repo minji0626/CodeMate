@@ -487,49 +487,25 @@ form {
 /* 팀원 구하기 */
 
 .rb_category {
-
 	margin-left: 5px;
-
 	position: relative;
-
 	top: 5px;
-
 }
-
-
-
 .project {
-
 	font-size: 14px;
-
 	background: #b1db63;
-
 	border-radius: 10px;
-
 	padding: 4px;
-
 	color: white;
-
 }
-
-
-
 .study {
-
 	font-size: 14px;
-
 	background: #f5c33b;
-
 	border-radius: 10px;
-
 	padding: 4px;
-
 	color: white;
 
 }
-
-
-
 .endDate {
 	font-size: 10pt;
 	font-weight: bold;
@@ -551,10 +527,14 @@ form {
 	transform:translateY(10%);
 }
 .way {
-	font-size: 14px; margin-left : 5px;
+	font-size: 14px;
 	transform: translateY(160%);
 	width: 230px;
 	margin-left: 5px;
+}
+.onoff{
+	position:relative;
+	bottom:5px;
 }
 .detail {
 	position: relative;
@@ -565,6 +545,7 @@ form {
 	cursor: pointer;
 }
 .rb-title {
+	font-weight: bold;
 	font-size: 17px; margin-left : 8px;
 	margin-top: 10px;
 	transform: translateY(40%);
@@ -579,6 +560,9 @@ form {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.apply_count{
+	margin-left:60%;
 }
 /* 커뮤니티 */
 .top{

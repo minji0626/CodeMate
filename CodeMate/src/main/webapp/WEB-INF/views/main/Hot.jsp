@@ -5,6 +5,9 @@
 	href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/rboardList.css" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+	rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <div class="page-main">
 	<div id="mini-card1">
@@ -31,11 +34,15 @@
 									<!-- 카테고리 -->
 
 									<c:if test="${rboard.rb_category == 0}">
-										<span class="rb_category study"> 스터디</span>
+									<span class="rb_category study">
+									<img src="${pageContext.request.contextPath}/images/study_w2.png" width="13" height="13">
+										 스터디</span>
 									</c:if>
 
 									<c:if test="${rboard.rb_category == 1}">
-										<span class="rb_category project"> 프로젝트</span>
+									<span class="rb_category project">
+									<img src="${pageContext.request.contextPath}/images/project_w.png" width="13" height="13">
+										 프로젝트</span>
 									</c:if>
 									<br> <span class="endDate">${rboard.rb_endRecruit} 마감</span>
 								</div>
@@ -45,7 +52,7 @@
 								<!-- 제목 -->
 								<div class="detail">
 									<div class="way">
-										<span class="proceed">
+										<span class="proceed onoff">
 											<c:if test="$	{rboard.rb_meet == 0}">
 												온라인
 											</c:if> 
@@ -63,11 +70,10 @@
 											</c:forEach>
 										</div>
 										<div>
-											<span class="apply_count">신청인원 | ${rboard.rb_apply_count}
+											<span class="apply_count">신청인원 | ${rboard.rb_apply_count}/
 											<c:if
 													test="${rboard.rb_teamsize==0}">인원 미정</c:if> <c:if
 													test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">${rboard.rb_teamsize}</c:if>
-
 												<c:if test="${rboard.rb_teamsize==10}">10명 이상</c:if>
 											</span>
 										</div>
