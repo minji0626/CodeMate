@@ -36,6 +36,7 @@ public class ModifyUserAction implements Action{
 		//데이터 전달
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.updateMember(member);
+		session.setAttribute("mem_nickname", request.getParameter("mem_nickname"));
 		
 		//정상적으로 수정된걸 알려주는 결과 페이지-자바스크립트
 		request.setAttribute("notice_msg", "나의 정보 수정 완료");
