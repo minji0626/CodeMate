@@ -61,7 +61,8 @@
 							</div>
 							<div class="right">
 								<input type="button" value="나의 신청서" class="rboard-click"
-								>
+								data-ra-content="${aprboard.ra_content}" data-ra-date="${aprboard.ra_date}" 
+								data-rb-title="${aprboard.rb_title}" data-ra-pass="${aprboard.ra_pass}" onclick="event.stopPropagation(); showModal(this);">
 								<div class="delete-green" id="delete_green" data-ranum="${aprboard.ra_num}">신청취소</div>
 							</div>
 							</div>
@@ -75,6 +76,28 @@
 		<!-- flex_container끝 -->
 	</div>
 	<!-- page-container끝 -->
+	
+	<!-- Modal Popup -->
+	<div class="wrap">
+	  <div id="pop_info" class="pop_wrap" style="display:none;">
+	    <div class="pop_inner">
+	      <div class="header">
+	        <span id="popup-title"></span>
+	        <div class="message-details">
+	          <span id="popup-date"></span>
+	        </div>
+	      </div>
+	      <span id="consult-message">신청 내용</span>
+	      <div class="consult_content">
+	        <span id="popup-message"></span>
+	      </div>
+	      <div class="footer">
+	        <button type="button" class="btn_close"><img src="${pageContext.request.contextPath}/images/delete_icon.png"></button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
 	<script type="text/javascript">
 	$(function(){
 	    $('.myPage-line-box').each(function(){
@@ -82,19 +105,36 @@
 	        if (passValue == '0') {
 	            $(this).css('border', '2px solid red');
 	            $(this).find('.delete-green').hide(); // 신청하기 div 숨기기
-	            
 	        }
 	        if (passValue == '1') {
 	            $(this).css('border', '2px solid #5aca7c');
 	            $(this).find('.delete-green').hide(); // 신청하기 div 숨기기
 	        }
-	        
 	        if (passValue == '-1') {
 	            $(this).css('border', '2px solid black');
 	            $(this).find('.delete-green').show(); // 신청하기 div 보이기
 	        }
 	    });
 	});
-</script>
+
+	// Show Modal function
+	function showModal(button) {
+	    var title = $(button).data('rb-title');
+	    var date = $(button).data('ra-date');
+	    var content = $(button).data('ra-content');
+	    $('#popup-title').text(title);
+	    $('#popup-date').text(date);
+	    $('#popup-message').text(content);
+	    $('#pop_info').show();
+	}
+
+	// Close Modal function
+	$(document).ready(function() {
+	    $('.btn_close').on('click', function() {
+	        $('#pop_info').hide();
+	    });
+	});
+	</script>
+
 </body>
 </html>
