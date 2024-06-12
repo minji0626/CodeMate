@@ -308,6 +308,7 @@ button{
     bottom: 5px;
     right: 5px;
     border: none;
+    border-radius: 10px;
 }
 
 /*span 태그*/
