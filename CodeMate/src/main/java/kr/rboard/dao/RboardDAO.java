@@ -406,7 +406,11 @@ public class RboardDAO {
 	        DBUtil.executeClose(rs, pstmt, conn);
 	    }
 	}
-
+	
+	// 정규 표현식에서 괄호 이스케이프 처리 함수
+	private String escapeRegex(String input) {
+	    return input.replaceAll("([\\\\()\\[\\]{}^$|*+?])", "\\\\$1");
+	}
 
 	// rboard 개수 구하기
 	public int getRboardCount(String[] r_skills, String rb_category, String r_fields, String rb_meet,
@@ -428,7 +432,7 @@ public class RboardDAO {
 			if (r_skills != null && r_skills.length != 0) {
 				String r_skills_string = "";
 				for (int i = 0; i < r_skills.length; i++) {
-					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + r_skills[i] + "($|,)')";
+					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + escapeRegex(r_skills[i]) + "($|,)')";
 					if (i != r_skills.length - 1) {
 						r_skills_string += " AND ";
 					}
@@ -503,6 +507,7 @@ public class RboardDAO {
 
 	}
 
+
 	// rboard 목록 구하기
 	public List<RboardVO> getRboardList(int start, int end, String[] r_skills, String rb_category, String r_fields,
 			String rb_meet, String search_key, boolean recruiting_filter) throws Exception {
@@ -525,7 +530,7 @@ public class RboardDAO {
 			if (r_skills != null && r_skills.length != 0) {
 				String r_skills_string = "(";
 				for (int i = 0; i < r_skills.length; i++) {
-					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + r_skills[i] + "($|,)')";
+					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + escapeRegex(r_skills[i]) + "($|,)')";
 					if (i != r_skills.length - 1) {
 						r_skills_string += " AND ";
 					}
@@ -533,6 +538,7 @@ public class RboardDAO {
 				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "')";
 				conditions.add(r_skills_string);
 			}
+
 			if (rb_category != null && rb_category != "" && !rb_category.equals("2")) {
 				conditions.add("rb_category = " + rb_category);
 			}
