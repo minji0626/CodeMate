@@ -49,7 +49,7 @@ $(function() {
 		$.ajax({
 			url: 'checkDuplicatedEmail.do',
 			type: 'post',
-			data: { email: $('#mem_email').val() },
+			data: { mem_email: $('#mem_email').val() },
 			dataType: 'json',
 			success: function(param) {
 				if (param.result == 'emailNotFound') {
