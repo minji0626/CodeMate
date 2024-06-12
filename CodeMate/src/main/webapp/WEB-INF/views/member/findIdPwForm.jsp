@@ -6,10 +6,9 @@
 <meta charset="UTF-8">
 <title>계정 찾기</title>
 <link href="${pageContext.request.contextPath}/images/로고1.png" rel="shortcut icon" type="image/x-icon">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/css/share.css" type="text/css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/css/findIdPw.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/share.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/findIdPw.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
