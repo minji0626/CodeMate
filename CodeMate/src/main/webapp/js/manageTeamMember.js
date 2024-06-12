@@ -22,7 +22,27 @@ $(document).ready(function() {
                     } else if (param.result == 'isLeader'){
 						alert('팀장은 삭제할 수 없습니다. 위임 후 시도해주세요.')
 					} else if(param.result=='min'){
-						alert('팀원은 최소 한 명이어야 합니다.');
+						let choice = confirm('마지막 팀원입니다. 삭제하시겠습니까?');
+						if(choice){
+							 $.ajax({
+				                url: 'deleteTmemberLast.do',
+				                type: 'post',
+				                data: { team_num: team_num, mem_num: mem_num, leader: leader },
+				                dataType: 'json',
+				                success: function(param) {
+									if(param.result=='success'){
+										alert('마지막 팀원을 삭제했습니다.');
+									} else if(param.result=='wrongAccess'){
+										alert('잘못된 접근입니다.');
+									} else{
+										alert('마지막 팀원 삭제 오류 발생');
+									}
+								},
+								error : function(){
+									alert('네트워크 오류 발생하였습니다');
+								}
+							});	
+						}	
 					} else if (param.result == 'success') {
                         alert('팀원이 삭제되었습니다');
                         location.href = 'checkTeamMember.do?team_num=' + team_num;

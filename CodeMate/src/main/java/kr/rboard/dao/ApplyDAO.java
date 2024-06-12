@@ -456,4 +456,38 @@ public class ApplyDAO {
 		        }
 		        return check;
 		}
+		
+		public boolean manageCheckTmember(int team_num) throws Exception{
+			Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        PreparedStatement pstmt2 = null;
+	        ResultSet rs = null;
+	        ResultSet rs2 = null;
+	        boolean check = false;
+	        try {
+	            conn = DBUtil.getConnection();
+	            String sql = "SELECT * FROM team WHERE team_num=? AND team_status=1";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setInt(1, team_num);
+	            
+	            rs = pstmt.executeQuery();
+	            if (rs.next()) {
+	                sql = "SELECT count(*) FROM team_member WHERE tm_auth=3 AND team_num=?";
+	                pstmt2 = conn.prepareStatement(sql);
+	                pstmt2.setInt(1, team_num);
+	                rs2 = pstmt2.executeQuery();
+	                if(rs2.next()) {
+	                	if(rs.getInt(1)==1) {
+	                		check=true;
+	                	}
+	                	
+	                }
+	            }
+	        } catch (Exception e) {
+	            throw new Exception(e);
+	        } finally {
+	            DBUtil.executeClose(rs, pstmt, conn);
+	        }
+	        return check;
+		}
 }

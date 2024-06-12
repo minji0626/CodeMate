@@ -11,10 +11,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
 import kr.rboard.dao.ApplyDAO;
-import kr.team.dao.TeamToDoDAO;
 import kr.tmember.dao.TmemberDAO;
 
-public class DeleteTmemberAction implements Action {
+public class DeleteTmemberLastAction  implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -32,28 +31,16 @@ public class DeleteTmemberAction implements Action {
 			return "redirect:/member/loginForm.do";
 
 		} else if (user_auth == 9) { //관리자로 로그인 된 경우 
-
 			// 전송된 데이터 인코딩 타입 지정
 			request.setCharacterEncoding("utf-8");
 
 			int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 			int team_num = Integer.parseInt(request.getParameter("team_num"));
 			int leader = Integer.parseInt(request.getParameter("leader"));
+			dao.deleteTeamMember(mem_num, team_num);
+			mapAjax.put("result", "success");
 
-			if(mem_num==leader) {
-				mapAjax.put("result", "isLeader");
-			} else {
-				ApplyDAO adao = ApplyDAO.getInstance();
-				boolean check = adao.minimumTeamMember(team_num);
-				if(check) {
-					mapAjax.put("result", "min");
-				} else {
-					dao.deleteTeamMember(mem_num, team_num);
-					mapAjax.put("result", "success");
-				}
-				
-			}
-			
+
 
 		} else {
 			mapAjax.put("result", "wrongAccess");

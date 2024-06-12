@@ -59,7 +59,6 @@ public class ManageTeamAction implements Action {
                     }
                 }
             }
-            
 
             request.setAttribute("rboardList", rboardList);
             request.setAttribute("count", count);
