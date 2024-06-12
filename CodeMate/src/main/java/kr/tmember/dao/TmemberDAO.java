@@ -41,11 +41,6 @@ public class TmemberDAO {
 		}
 	}
 
-	/*
-	 * // team_status가 3이고 tm_review_status가 0인 멤버들 선택하기 public void noReviewMem
-	 * (int team_num) throws Exception { Connection conn = null; PreparedStatement }
-	 */
-
 	// team_setting에서 사용되는 팀멤버 count 하기
 	public int getTmemberCount (int team_num) throws Exception{
 		Connection conn = null;

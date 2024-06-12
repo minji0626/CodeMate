@@ -1,7 +1,5 @@
 package kr.team.action;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.TeamDAO;
 import kr.member.vo.TeamVO;
+import kr.tmember.dao.TmemberDAO;
+import kr.tmember.vo.TmemberVO;
 
 public class TeamMainAction implements Action{
 
@@ -24,6 +24,7 @@ public class TeamMainAction implements Action{
         // 사용자가 클릭한 팀 번호를 가져옵니다.
         int team_num = Integer.parseInt(request.getParameter("team_num"));
         TeamDAO dao = TeamDAO.getInstance();
+        TmemberDAO tmdao = TmemberDAO.getInstance();
         
         if (mem_num == null) {// 로그인 미실시
             return "redirect:/member/loginForm.do";
@@ -39,9 +40,12 @@ public class TeamMainAction implements Action{
 		int team_status = teams.getTeam_status();
 		
 		TeamVO review = dao.getUserTeam(mem_num, team_num);
-		if(review.getTm_review_status() == 0 && teams.getTeam_status() == 3) {
+		int ctmember = tmdao.getTmemberCount(team_num);
+		
+		if(review.getTm_review_status() == 0 && teams.getTeam_status() == 3 && ctmember > 1) {
 			request.setAttribute("alert", 1);
 		}
+		
         
         TeamVO teammember = dao.getTeamMember(mem_num, team_num);
         if(teammember == null) {
@@ -49,7 +53,6 @@ public class TeamMainAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath() + "/member/myTeam.do");
 			return "/WEB-INF/views/common/alert_view.jsp";
         }        
-        
         
         // TeamDAO를 사용하여 사용자의 권한 정보를 가져옵니다.
         TeamVO team = dao.getUserTeam(mem_num,team_num);
