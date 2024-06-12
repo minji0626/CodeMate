@@ -39,7 +39,7 @@
        
         <div class="team-left-myRcomment">
             <!-- <div class="cboard_name">팀원구하기 댓글</div> -->
-                <div class="rcomment">게시글:${rcomment.rb_title}</div>
+                <div class="rcomment">[게시글]${rcomment.rb_title}</div>
             <div class="projectName_font">${rcomment.rc_content}</div>
         </div>
         <div class="btn_box_write">

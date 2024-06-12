@@ -18,7 +18,6 @@ $(function() {
 	                    alert('로그인 후 사용하세요!');
 	                } else if (param.result === 'success') {
 	                    alert('코메 신청 취소');
-	                    /*location.reload();*/
 	                    window.location.href = 'myPageShin.do';
 	                } else {
 	                    alert('코메 신청 취소에 실패했습니다.');

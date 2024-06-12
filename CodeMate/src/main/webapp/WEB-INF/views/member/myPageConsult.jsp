@@ -54,10 +54,7 @@
                     신고
                 </c:if>
             </div>
-            <div class="projectName_font">${consult.cs_content}</div>
-            <div class="fav-reply">
-                <div class="myApply-write">제목:${consult.cs_title}</div>
-            </div>
+            <div class="projectName_font">[제목]${consult.cs_title}</div>
         </div>
         <div class="btn_box_write">
             

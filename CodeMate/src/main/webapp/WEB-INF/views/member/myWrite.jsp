@@ -53,7 +53,7 @@
                     개발게시판
                 </c:if>
             </div>
-            <div class="projectName_font">${cboard.cb_title}</div>
+            <div class="projectName_font">[게시글]${cboard.cb_title}</div>
            
         </div>
         <div class="btn_box_write">
