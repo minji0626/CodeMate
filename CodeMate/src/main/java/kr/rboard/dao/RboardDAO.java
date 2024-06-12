@@ -1372,6 +1372,7 @@ public class RboardDAO {
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
+			
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 
@@ -1382,7 +1383,9 @@ public class RboardDAO {
 	public List<RboardVO> getListBoardManage(int start, int end, String keyfield, String keyword) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		List<RboardVO> list = null;
 		String sql = null;
 		String sub_sql = ""; // 이 부분은 필요 없을 것 같습니다.
@@ -1416,16 +1419,28 @@ public class RboardDAO {
 			list = new ArrayList<RboardVO>();
 			while (rs.next()) {
 				RboardVO board = new RboardVO();
+				int rb_num = rs.getInt("rb_num");
 				board.setRb_num(rs.getInt("rb_num"));
 				board.setRb_title(StringUtil.useNoHTML(rs.getString("rb_title")));
 				board.setMem_nickname(rs.getString("mem_nickname"));
 				board.setRb_reg_date(rs.getDate("Rb_reg_date"));
 				board.setMem_num(rs.getInt("mem_num"));
+				
+				sql = "SELECT team_status FROM team WHERE team_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, rb_num);
+				rs2 = pstmt2.executeQuery();
+				if(rs2.next()) {
+					board.setTeam_status(rs2.getInt(1));
+				}
+				
+				
 				list.add(board);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
+			DBUtil.executeClose(rs2, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 

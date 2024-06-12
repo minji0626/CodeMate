@@ -391,12 +391,12 @@ public class ApplyDAO {
 
 			return list;
 		}
-		
 		public boolean checkActivation(int rb_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			PreparedStatement pstmt2 = null;
 			ResultSet rs = null;
+			ResultSet rs2 = null;
 			String sql = null;
 			boolean check = false;
 
@@ -413,11 +413,22 @@ public class ApplyDAO {
 				if(rs.next()) {
 					check = true;
 				}
-
-
+				
+				sql = "SELECT team_num FROM team WHERE team_status=3 AND team_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				
+				pstmt2.setInt(1, rb_num);
+				
+				rs2 = pstmt2.executeQuery();
+				if(rs2.next()) {
+					check = true;
+				}
+				
+				
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
+				DBUtil.executeClose(rs2, pstmt2, null);
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return check;

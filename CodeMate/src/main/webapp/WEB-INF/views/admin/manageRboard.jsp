@@ -51,41 +51,43 @@
 									<th>삭제</th>
 								</tr>
 								<c:forEach var="list" items="${rboardList}">
-									<tr>
-										<td>${list.rb_num}</td>
-										<td><a href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${list.rb_num}'>${list.rb_title}</a></td>
-										<td>${list.mem_nickname}</td>
-										<td>
-											<c:if test="${list.team_status==0}">
-												비활성화
-											</c:if>
-												
-											<c:if test="${list.team_status==1}">
-												활성화
-											</c:if>
-												
-											<c:if test="${list.team_status==3}">
-												종료
-											</c:if>
-										</td>
-										<td>
-											<c:if test="${list.team_status==0}">
-											 <a href="#" onclick='deleteRboard(${list.rb_num}); return false;' class="deleteMemberBtn">삭제하기</a>
-												<script>
-												//글삭제
-												function deleteRboard(rb_num) {
-													var check = confirm("정말 삭제하시겠습니까?", "manageRboard.do");
-													if (check) {
-														location.href="deleteRboard.do?rb_num=" + rb_num;
-													} 
-												}
-												</script>
-											</c:if>
-											<c:if test="${list.team_status==1 || list.team_status==3}">
-												<button class="changeAuthBtn"> 삭제 불가</button>
-											</c:if>
-										</td>
-									</tr>
+									<c:if test="${!empty list.mem_nickname}">
+										<tr>
+											<td>${list.rb_num}</td>
+											<td><a href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${list.rb_num}'>${list.rb_title}</a></td>
+											<td>${list.mem_nickname}</td>
+											<td>
+												<c:if test="${list.team_status==0}">
+													비활성화
+												</c:if>
+													
+												<c:if test="${list.team_status==1}">
+													활성화
+												</c:if>
+													
+												<c:if test="${list.team_status==3}">
+													종료
+												</c:if>
+											</td>
+											<td>
+												<c:if test="${list.team_status==0}">
+												 <a href="#" onclick='deleteRboard(${list.rb_num}); return false;' class="deleteMemberBtn">삭제하기</a>
+													<script>
+													//글삭제
+													function deleteRboard(rb_num) {
+														var check = confirm("정말 삭제하시겠습니까?", "manageRboard.do");
+														if (check) {
+															location.href="deleteRboard.do?rb_num=" + rb_num;
+														} 
+													}
+													</script>
+												</c:if>
+												<c:if test="${list.team_status==1 || list.team_status==3}">
+													<button class="changeAuthBtn"> 삭제 불가</button>
+												</c:if>
+											</td>
+										</tr>
+									</c:if>
 								</c:forEach>
 							</table>
 							<div>${page}</div>
