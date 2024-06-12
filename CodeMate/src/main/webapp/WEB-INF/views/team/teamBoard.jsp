@@ -47,7 +47,6 @@
         <div class="table-container">
         <c:if test="${count == 0 }">
         	<p>표시할 글 정보가 없습니다.</p>
-        	${count }
         </c:if>
         
         <c:if test="${count > 0 }">

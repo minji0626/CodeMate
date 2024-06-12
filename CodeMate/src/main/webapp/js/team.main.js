@@ -219,66 +219,68 @@ $(document).ready(function() {
 
 
 	// 이벤트(To-Do) 리스트 가져오는 함수 (활성화 된 날짜만 가져오도록 조건 설정)
-	function updateEvents(date) {
-		$.ajax({
-			type: 'post',
-			url: 'getTeamTodoList.do',
-			data: {
-				team_num: sessionStorage.getItem("team_num"),
-				tt_date: `${year}-${month + 1}-${date}`
-			},
-			dataType: 'json',
-			success: function(param) {
-				console.log(param);  // 서버 응답 데이터 출력
-				let events = "";
-				const eventsArr = param.teamtodo; // 서버에서 받은 이벤트 배열
+function updateEvents(date) {
+    $.ajax({
+        type: 'post',
+        url: 'getTeamTodoList.do',
+        data: {
+            team_num: sessionStorage.getItem("team_num"),
+            tt_date: `${year}-${month + 1}-${date}`
+        },
+        dataType: 'json',
+        success: function(param) {
+            console.log(param);  // 서버 응답 데이터 출력
+            let events = "";
+            const eventsArr = param.teamtodo; // 서버에서 받은 이벤트 배열
 
-				// 해당 날짜의 이벤트만 필터링
-				const filteredEvents = eventsArr.filter(event => {
-					const eventDate = new Date(event.tt_date);
-					return eventDate.getDate() == date &&
-						eventDate.getMonth() == month &&
-						eventDate.getFullYear() == year;
-				});
+            // 해당 날짜의 이벤트만 필터링
+            const filteredEvents = eventsArr.filter(event => {
+                const eventDate = new Date(event.tt_date);
+                return eventDate.getDate() == date &&
+                    eventDate.getMonth() == month &&
+                    eventDate.getFullYear() == year;
+            });
 
-				// tt_num 순서로 정렬 (내림차순)
-				filteredEvents.sort((a, b) => b.tt_num - a.tt_num);
+            // tt_num 순서로 정렬 (내림차순)
+            filteredEvents.sort((a, b) => b.tt_num - a.tt_num);
 
-				filteredEvents.forEach((event) => {
-					console.log(event);
+            filteredEvents.forEach((event) => {
+                console.log(event);
 
-					const startTime = event.tt_start ? event.tt_start.replace(/(..)/, '$1:') : '';
-					const endTime = event.tt_end ? event.tt_end.replace(/(..)/, '$1:') : '';
+                // tt_state에 따라 클래스 설정
+                const eventClass = event.tt_state === 1 ? "completed" : "";
 
-					// tt_state에 따라 클래스 설정
-					const eventClass = event.tt_state === 1 ? "completed" : "";
+                // 시간이 null인 경우 빈 문자열로 설정
+                const eventStart = event.tt_start ? event.tt_start : '';
+                const eventEnd = event.tt_end ? event.tt_end : '';
 
-					events += `<div class="event ${eventClass}" data-tt-num="${event.tt_num}" data-tt-state="${event.tt_state}">
-        						<div class="title">
-           						 <h3 class="event-title">${event.tt_content}</h3>
-        						</div>
-        						<div class="event-time">
-            						<span class="event-time">${startTime} - ${endTime}</span>
-        						</div>
-        						<div class="event-buttons">
-            						<button class="del-btn" data-event-id="${event.tt_num}">삭제</button>
-        						</div>
-    							</div>`;
-				});
+                events += `<div class="event ${eventClass}" data-tt-num="${event.tt_num}" data-tt-state="${event.tt_state}">
+                            <div class="title">
+                                 <h3 class="event-title">${event.tt_content}</h3>
+                            </div>
+                            <div class="event-time">
+                                <span class="event-time">${eventStart} - ${eventEnd}</span>
+                            </div>
+                            <div class="event-buttons">
+                                <button class="del-btn" data-event-id="${event.tt_num}">삭제</button>
+                            </div>
+                        </div>`;
+            });
 
-				if (events === "") {
-					events = `<div class="no-event">
-                    <h3>예정된 이벤트 없음</h3>
+            if (events === "") {
+                events = `<div class="no-event">
+                    <h3>등록된 To-Do 없음</h3>
                 </div>`;
-				}
+            }
 
-				eventsContainer.html(events); // 이벤트 컨테이너 업데이트
-			},
-			error: function() {
-				alert("네트워크 오류가 발생하였습니다.");
-			}
-		});
-	}
+            eventsContainer.html(events); // 이벤트 컨테이너 업데이트
+        },
+        error: function() {
+            alert("네트워크 오류가 발생하였습니다.");
+        }
+    });
+}
+
 
 	$(document).on("click", ".event", function(e) {
 		// 클릭한 요소가 .event 클래스를 가지고 있는지 확인
@@ -340,14 +342,14 @@ $(document).ready(function() {
 			dataType: 'json',
 			success: function(param) {
 				if (param.result == 'success') {
-					console.log("이벤트 삭제 성공");
+					console.log("To-Do 삭제 성공");
 					initCalendar(activeDay);
 				} else {
 					alert('삭제 처리 중 오류가 발생하였습니다.')
 				}
 			},
 			error: function() {
-				alert("이벤트 삭제에 실패했습니다.");
+				alert("To-Do  삭제에 실패했습니다.");
 			}
 		});
 	}
@@ -359,60 +361,83 @@ $(document).ready(function() {
 
 
 	function addNewEvent() {
-		const eventTitle = addEventTitle.val().trim();
-		const eventTimeFrom = addEventFrom.val().trim();
-		const eventTimeTo = addEventTo.val().trim();
+    const eventTitle = addEventTitle.val().trim();
+    const eventTimeFrom = addEventFrom.val().trim();
+    const eventTimeTo = addEventTo.val().trim();
 
-		if (eventTitle === "") {
-			alert("To-Do 내용을 작성하세요");
-			addEventTitle.val('').focus();
-			return;
-		}
+    if (eventTitle === "") {
+        alert("To-Do 내용을 작성하세요");
+        addEventTitle.val('').focus();
+        return;
+    }
 
-		// 시간 값이 비어있는 경우에는 시간 형식 검증을 수행하지 않음
-		if (eventTimeFrom !== "" && eventTimeTo !== "") {
-			if (/\D/.test(eventTimeFrom) || /\D/.test(eventTimeTo)) {
-				alert("시간에는 숫자만 입력하세요.");
-				addEventFrom.val('');
-				addEventTo.val('');
-				return;
-			}
-		}
+    // 시간 값이 비어있는 경우에는 시간 형식 검증을 수행하지 않음
+    if (eventTimeFrom !== "" && eventTimeTo !== "") {
+        if (!isValidTime(eventTimeFrom) || !isValidTime(eventTimeTo)) {
+            alert("시간 형식이 잘못되었습니다. 올바른 형식으로 입력하세요 (예: 14:00).");
+            addEventFrom.val('');
+            addEventTo.val('');
+            return;
+        }
+    }
 
-		// 새로운 이벤트를 서버로 전송합니다.
-		$.ajax({
-			type: 'post',
-			url: 'AddTeam_Todo.do',
-			data: {
-				team_num: sessionStorage.getItem("team_num"),
-				tt_content: eventTitle,
-				tt_date: `${year}-${month + 1}-${activeDay}`,
-				tt_start: eventTimeFrom,
-				tt_end: eventTimeTo
-			},
-			dataType: 'json',
-			success: function(param) {
-				console.log(param); // 서버 응답 데이터 출력
-				if (param.result == "success") {
-					alert("이벤트가 추가되었습니다.");
-					initCalendar(activeDay);
-				} else if (param.result == "logout") {
-					alert("로그인 후 사용해주세요.");
-				} else {
-					alert("오류가 발생하였습니다.");
-				}
-			},
-			error: function() {
-				alert("네트워크 오류가 발생하였습니다.");
-			}
-		});
+    // 새로운 이벤트를 서버로 전송합니다.
+    $.ajax({
+        type: 'post',
+        url: 'AddTeam_Todo.do',
+        data: {
+            team_num: sessionStorage.getItem("team_num"),
+            tt_content: eventTitle,
+            tt_date: `${year}-${month + 1}-${activeDay}`,
+            tt_start: eventTimeFrom,
+            tt_end: eventTimeTo
+        },
+        dataType: 'json',
+        success: function(param) {
+            console.log(param); // 서버 응답 데이터 출력
+            if (param.result == "success") {
+                alert("To-Do가 추가되었습니다.");
+                initCalendar(activeDay);
+            } else if (param.result == "logout") {
+                alert("로그인 후 사용해주세요.");
+            } else {
+                alert("오류가 발생하였습니다.");
+            }
+        },
+        error: function() {
+            alert("네트워크 오류가 발생하였습니다.");
+        }
+    });
 
-		// 폼 초기화
-		addEventTitle.val("");
-		addEventFrom.val("");
-		addEventTo.val("");
-		addEventWrapper.removeClass("active");
-	}
+    // 폼 초기화
+    addEventTitle.val("");
+    addEventFrom.val("");
+    addEventTo.val("");
+    addEventWrapper.removeClass("active");
+}
+
+function isValidTime(time) {
+    if (time.length !== 5 || time[2] !== ':') return false;
+
+    const [hours, minutes] = time.split(':');
+    const [h1, h2] = hours.split('');
+    const [m1, m2] = minutes.split('');
+
+    // 첫번째 숫자는 1 또는 2만 가능
+    if (h1 !== '1' && h1 !== '2') return false;
+    // 첫번째 숫자가 1일 때 두번째 숫자는 0-9 가능
+    if (h1 === '1' && !/[0-9]/.test(h2)) return false;
+    // 첫번째 숫자가 2일 때 두번째 숫자는 0-4 가능
+    if (h1 === '2' && !/[0-4]/.test(h2)) return false;
+    // 세번째 숫자는 0-5 가능
+    if (!/[0-5]/.test(m1)) return false;
+    // 네번째 숫자는 세번째 숫자가 6일 때 0만 가능
+    if (m1 === '6' && m2 !== '0') return false;
+    // 네번째 숫자는 세번째 숫자가 0-5일 때 0-9 가능
+    if (/[0-5]/.test(m1) && !/[0-9]/.test(m2)) return false;
+
+    return true;
+}
 
 
 
@@ -427,16 +452,5 @@ $(document).ready(function() {
 		addEventWrapper.removeClass("active");
 	});
 
-	// 시간 변환 함수
-	function convertTime(time) {
-		//convert time to 24 hour format
-		let timeArr = time.split(":");
-		let timeHour = timeArr[0];
-		let timeMin = timeArr[1];
-		let timeFormat = timeHour >= 12 ? "PM" : "AM";
-		timeHour = timeHour % 12 || 12;
-		time = timeHour + ":" + timeMin + " " + timeFormat;
-		return time;
-	}
 
 });
