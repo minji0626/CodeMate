@@ -113,7 +113,7 @@
 						<li>
 						<label style="display:none">프로젝트 소개글</label>
 						<textarea name="rb_content" id="rb_content" class="input-check" rows="30"
-								placeholder="프로젝트에 대해 소개해주세요" maxlength="60"></textarea>
+								placeholder="프로젝트에 대해 소개해주세요"></textarea>
 						</li>
 					</ul>
 				</div>
