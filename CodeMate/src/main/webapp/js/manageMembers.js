@@ -3,11 +3,17 @@ $(document).ready(function() {
 	$('.lockMemberBtn').each(function() {
 		$(this).on('click', function() {
 			let mem_id = $(this).data('memid'); // 버튼에 저장된 회원 ID 가져오기
-			let check = confirm(mem_id + " 회원을 정지하시겠습니까?");
+			var locked = $(this).data('locked');
+			
+			let check;
+			if (locked == 1) {
+				check = confirm(mem_id + " 회원을 정지 취소하시겠습니까?");
+			} else if (locked == 0) {
+				check = confirm(mem_id + " 회원을 정지하시겠습니까?");
+			}
 
 			if (check) {
 				var mem_num = $(this).data('memnum'); // 버튼에 저장된 회원 번호 가져오기
-				var locked = $(this).data('locked');
 
 				$.ajax({
 					type: 'POST',
@@ -52,6 +58,7 @@ $(document).ready(function() {
 							alert('접근 권한이 없습니다.')
 						} else if (param.result == 'success') {
 							alert('회원을 성공적으로 탈퇴시켰습니다.');
+							window.location.reload();
 						} else {
 							alert('회원 탈퇴에 실패했습니다.');
 						}
