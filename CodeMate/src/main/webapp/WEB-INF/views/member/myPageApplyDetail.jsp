@@ -48,7 +48,7 @@
 						<div class="myApplyContent">${rapply.ra_content}</div>
 						</div>
 						<div class="delete-flexbox">
-							<div class="delete-green" id="delete_green" data-ranum="${rapply.ra_num}">신청취소</div>
+							<div class="delete-green" id="delete_green" data-ranum="${rapply.ra_num}" data-rbnum="${rapply.rb_num}">신청취소</div>
 						</div>
 						</div>
 						
@@ -66,17 +66,15 @@ $(function(){
         let passValue = $(this).data('pass');
         if (passValue == '0') {
             $(this).css('border', '2px solid red');
-            $(this).find('.delete-green').hide(); // 신청하기 div 숨기기
-            
+            $(this).find('.delete-green').hide(); // 신청취소 div 숨기기
         }
         if (passValue == '1') {
             $(this).css('border', '2px solid #5aca7c');
-            $(this).find('.delete-green').hide(); // 신청하기 div 숨기기
+            $(this).find('.delete-green').hide(); // 신청취소 div 숨기기
         }
-        
         if (passValue == '-1') {
             $(this).css('border', '2px solid black');
-            $(this).find('.delete-green').show(); // 신청하기 div 보이기
+            $(this).find('.delete-green').show(); // 신청취소 div 보이기
         }
     });
 });

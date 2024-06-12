@@ -114,6 +114,7 @@ public class ApplyDAO {
 				if(rs.next()) {
 					rapply = new RapplyVO();
 					rapply.setRa_num(ra_num);
+					rapply.setRb_num(rs.getInt("rb_num"));
 					rapply.setRa_content(rs.getString("ra_content"));
 					rapply.setRb_title(rs.getString("rb_title"));
 					rapply.setRa_date(rs.getDate("ra_date"));
