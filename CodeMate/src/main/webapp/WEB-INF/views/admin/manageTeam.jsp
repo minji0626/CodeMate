@@ -37,8 +37,8 @@
 									<th>프로젝트 이름</th>
 									<th>프로젝트 시작일</th>
 									<th>프로젝트 기간</th>
-									<th>팀원</th>
 									<th>상태</th>
+									<th>팀원</th>
 								</tr>
 								<c:forEach var="member" items="${rboardList}">
 									<tr>

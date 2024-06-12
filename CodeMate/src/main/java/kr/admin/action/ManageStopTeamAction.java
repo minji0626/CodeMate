@@ -44,7 +44,7 @@ public class ManageStopTeamAction  implements Action {
 			
 
 			// 페이지 처리
-			PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, "/rboard/list.do");
+			PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, request.getContextPath() + "/admin/manageTeam.do");
 
 			List<RboardVO> rboardList = null;
 			if (count > 0) {

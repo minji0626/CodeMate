@@ -43,7 +43,7 @@ public class ManageRboardAction implements Action{
 			int count = rdao.getRboardCountManage(keyfield, keyword);
 
 			// 페이지 처리
-			PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, "/admin/manageRboard.do");
+			PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10,request.getContextPath() + "/admin/manageRboard.do");
 
 			List<RboardVO> rboardList = null;
 			if (count > 0) {
