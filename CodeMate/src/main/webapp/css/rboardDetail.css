@@ -316,6 +316,14 @@
 	margin-top: 25px;
 }
 
+.r_apply_window .btn-div {
+	display: flex;
+	justify-content: center; /* 두 버튼을 좌우로 나란히 정렬합니다 */
+	align-items: center; /* 버튼을 수직으로 중앙 정렬합니다 */
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
+
 .btn-div input {
 	margin-right: 5px;
 }

@@ -421,6 +421,7 @@ public class RboardDAO {
 		int count = 0;
 		String sql = null;
 		String sub_sql = "";
+		String extra_condition_sql = "";
 		List<String> conditions = null;
 
 		try {
@@ -462,7 +463,6 @@ public class RboardDAO {
 				sub_sql += "AND " + String.join(" AND ", conditions);
 			}
 
-
 			sql = "SELECT COUNT(*) FROM ( " +
 		          "    SELECT r_board.rb_num " +
 		          "    FROM r_board " +
@@ -487,6 +487,108 @@ public class RboardDAO {
 		          "    LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num " +
 		          "    LEFT OUTER JOIN member ON r_board.mem_num = member.mem_num " +
 		          "    WHERE mem_auth != 0 " + sub_sql +
+		          ")";
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return count;
+
+	}
+	
+	// rboard 개수 구하기(EXTRA CONDITION)
+	public int getRboardCount(String[] r_skills, String rb_category, String r_fields, String rb_meet,
+			String search_key, boolean recruiting_filter, String extra_condition) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		String sql = null;
+		String sub_sql = "";
+		String extra_condition_sql = "";
+		List<String> conditions = null;
+
+		try {
+			conn = DBUtil.getConnection();
+
+			// 조건을 배열이나 리스트로 관리하여 반복문으로 처리
+			conditions = new ArrayList<>();
+
+			if (r_skills != null && r_skills.length != 0) {
+				String r_skills_string = "";
+				for (int i = 0; i < r_skills.length; i++) {
+					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + escapeRegex(r_skills[i]) + "($|,)')";
+					if (i != r_skills.length - 1) {
+						r_skills_string += " AND ";
+					}
+				}
+				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "'";
+				conditions.add(r_skills_string);
+
+			}
+			if (rb_category != null && rb_category != "" && !rb_category.equals("2")) {
+				conditions.add("rb_category = " + rb_category);
+			}
+			if (r_fields != null && r_fields != "") {
+				conditions.add("f_name LIKE '%'||'" + r_fields + "'||'%'");
+			}
+			if (rb_meet != null && rb_meet != "") {
+				conditions.add("rb_meet = " + rb_meet);
+			}
+			if (search_key != null && search_key != "") {
+				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
+			}
+			if (recruiting_filter) {
+				conditions.add("rb_endRecruit >= TO_CHAR(sysdate, 'YYYY-MM-DD') AND team_status != 1 AND team_status != 3");
+			}
+
+			// 조건이 있을 경우에만 WHERE 추가
+			if (!conditions.isEmpty()) {
+				sub_sql += "AND " + String.join(" AND ", conditions);
+			}
+			
+			if (extra_condition == "manageTeam") {
+				extra_condition_sql = "AND team_status IN (1,3)";
+			} else if (extra_condition == "manageStopTeam") {
+				extra_condition_sql = "AND team_status NOT IN (1,3)";
+			}
+
+
+			sql = "SELECT COUNT(*) FROM ( " +
+		          "    SELECT r_board.rb_num " +
+		          "    FROM r_board " +
+		          "    LEFT OUTER JOIN ( " +
+		          "        SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, " +
+		          "               LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo " +
+		          "        FROM r_skill " +
+		          "        JOIN hard_skill USING(hs_code) " +
+		          "        GROUP BY rb_num " +
+		          "    ) hs_agg ON r_board.rb_num = hs_agg.rb_num " +
+		          "    LEFT OUTER JOIN ( " +
+		          "        SELECT rb_num, LISTAGG(f_name, ',') WITHIN GROUP (ORDER BY f_name) f_name " +
+		          "        FROM r_field " +
+		          "        JOIN field_db USING(f_code) " +
+		          "        GROUP BY rb_num " +
+		          "    ) f_agg ON r_board.rb_num = f_agg.rb_num " +
+		          "    LEFT OUTER JOIN ( " +
+		          "        SELECT rb_num, COUNT(ra_num) AS apply_count " +
+		          "        FROM r_apply " +
+		          "        GROUP BY rb_num " +
+		          "    ) apply_agg ON r_board.rb_num = apply_agg.rb_num " +
+		          "    LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num " +
+		          "    LEFT OUTER JOIN member ON r_board.mem_num = member.mem_num " +
+		          "    WHERE mem_auth != 0 " + extra_condition_sql + sub_sql +
 		          ")";
 
 			pstmt = conn.prepareStatement(sql);
@@ -576,6 +678,122 @@ public class RboardDAO {
 					+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num"
 					+ "	   LEFT OUTER JOIN member ON r_board.mem_num = member.mem_num WHERE mem_auth !=0"
 					+ "    ORDER BY r_board.rb_num DESC) a " + sub_sql + ") WHERE rnum >= ? AND rnum <= ?";
+
+			// PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			// ?에 데이터 바인딩
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			// SQL문 실행
+			rs = pstmt.executeQuery();
+
+			list = new ArrayList<RboardVO>();
+			while (rs.next()) {
+				RboardVO rboard = new RboardVO();
+				rboard.setRb_num(rs.getInt("rb_num"));
+				rboard.setRb_reg_date(rs.getDate("rb_reg_date"));
+				rboard.setRb_category(rs.getInt("rb_category"));
+				rboard.setRb_meet(rs.getInt("rb_meet"));
+				rboard.setRb_teamsize(rs.getInt("rb_teamsize"));
+				rboard.setRb_period(rs.getInt("rb_period"));
+				rboard.setRb_start(rs.getString("rb_start"));
+				rboard.setRb_title(rs.getString("rb_title"));
+				rboard.setRb_endRecruit(rs.getString("rb_endRecruit"));
+				rboard.setRb_hit(rs.getInt("rb_hit"));
+				rboard.setRb_pj_title(rs.getString("rb_pj_title"));
+				rboard.setRb_apply_count(rs.getInt("apply_count"));
+				rboard.setTeam_status(rs.getInt("team_status"));
+
+				// 요구기술, 모집필드 배열로 저장
+				rboard.setHs_name_arr(rs.getString("hs_name").split(","));
+				rboard.setHs_photo_arr(rs.getString("hs_photo").split(","));
+				rboard.setF_name_arr(rs.getString("f_name").split(","));
+
+				list.add(rboard);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	// rboard 목록 구하기(EXTRA CONDITION)
+	public List<RboardVO> getRboardList(int start, int end, String[] r_skills, String rb_category, String r_fields,
+			String rb_meet, String search_key, boolean recruiting_filter, String extra_condition) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RboardVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		String extra_condition_sql = "";
+		List<String> conditions = null;
+
+		try {
+			// 커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+
+			// 조건을 배열이나 리스트로 관리하여 반복문으로 처리
+			conditions = new ArrayList<>();
+
+			// 조건 설정
+			if (r_skills != null && r_skills.length != 0) {
+				String r_skills_string = "(";
+				for (int i = 0; i < r_skills.length; i++) {
+					r_skills_string += "REGEXP_LIKE(hs_name, '(^|,)" + escapeRegex(r_skills[i]) + "($|,)')";
+					if (i != r_skills.length - 1) {
+						r_skills_string += " AND ";
+					}
+				}
+				r_skills_string += " OR hs_name = '" + String.join("", r_skills) + "')";
+				conditions.add(r_skills_string);
+			}
+
+			if (rb_category != null && rb_category != "" && !rb_category.equals("2")) {
+				conditions.add("rb_category = " + rb_category);
+			}
+			if (r_fields != null && r_fields != "") {
+				conditions.add("f_name LIKE '%'||'" + r_fields + "'||'%'");
+			}
+			if (rb_meet != null && rb_meet != "") {
+				conditions.add("rb_meet = " + rb_meet);
+			}
+			if (search_key != null && search_key != "") {
+				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
+			}
+			if (recruiting_filter) {
+				conditions.add("rb_endRecruit >= TO_CHAR(sysdate, 'YYYY-MM-DD') AND team_status != 1 AND team_status !=3");
+			}
+
+			// 조건이 있을 경우에만 WHERE 추가
+			if (!conditions.isEmpty()) {
+				sub_sql += "WHERE " + String.join(" AND ", conditions);
+			}
+			
+			if (extra_condition == "manageTeam") {
+				extra_condition_sql = "WHERE team_status IN (1,3)";
+			} else if (extra_condition == "manageStopTeam") {
+				extra_condition_sql = "WHERE team_status NOT IN (1,3)";
+			}
+
+			// SQL문 작성
+			sql = "SELECT * FROM ( " + "  SELECT a.*, rownum rnum FROM ( "
+					+ "    SELECT r_board.*, team.*, member.mem_auth, hs_agg.hs_name, hs_agg.hs_photo, "
+					+ "           f_agg.f_name, NVL(apply_agg.apply_count, 0) AS apply_count " + "    FROM r_board "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(hs_name, ',') WITHIN GROUP (ORDER BY hs_name) hs_name, "
+					+ "                            LISTAGG(hs_photo, ',') WITHIN GROUP (ORDER BY hs_name) hs_photo "
+					+ "                     FROM r_skill JOIN hard_skill USING(hs_code) GROUP BY rb_num) hs_agg "
+					+ "    ON r_board.rb_num = hs_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, LISTAGG(f_name, ',') WITHIN GROUP (ORDER BY f_name) f_name "
+					+ "                     FROM r_field JOIN field_db USING(f_code) GROUP BY rb_num) f_agg "
+					+ "    ON r_board.rb_num = f_agg.rb_num "
+					+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
+					+ "    ON r_board.rb_num = apply_agg.rb_num "
+					+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num"
+					+ "	   LEFT OUTER JOIN member ON r_board.mem_num = member.mem_num WHERE mem_auth !=0"
+					+ "    ORDER BY r_board.rb_num DESC) a " + sub_sql + extra_condition_sql + ") WHERE rnum >= ? AND rnum <= ?";
 
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);

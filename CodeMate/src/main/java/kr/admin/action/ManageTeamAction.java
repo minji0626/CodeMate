@@ -36,7 +36,7 @@ public class ManageTeamAction implements Action {
 
 
     		RboardDAO rdao = RboardDAO.getInstance();
-    		int count = rdao.getRboardCount(null, null, null, null, null, false);
+    		int count = rdao.getRboardCount(null, null, null, null, null, false, "manageTeam");
 
             ApplyDAO dao = ApplyDAO.getInstance();
 
@@ -45,7 +45,7 @@ public class ManageTeamAction implements Action {
 
     		List<RboardVO> rboardList = null;
     		if (count > 0) {
-    			rboardList = rdao.getRboardList(page.getStartRow(), page.getEndRow(), null, null, null, null, null, false);
+    			rboardList = rdao.getRboardList(page.getStartRow(), page.getEndRow(), null, null, null, null, null, false, "manageTeam");
     		}
 
             // 요소 제거 시 Iterator 사용

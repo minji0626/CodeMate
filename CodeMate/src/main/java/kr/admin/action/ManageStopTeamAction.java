@@ -38,7 +38,7 @@ public class ManageStopTeamAction  implements Action {
 
 
 			RboardDAO rdao = RboardDAO.getInstance();
-			int count = rdao.getRboardCount(null, null, null, null, null, false);
+			int count = rdao.getRboardCount(null, null, null, null, null, false, "manageStopTeam");
 			
 			ApplyDAO dao = ApplyDAO.getInstance();
 			
@@ -48,7 +48,7 @@ public class ManageStopTeamAction  implements Action {
 
 			List<RboardVO> rboardList = null;
 			if (count > 0) {
-				rboardList = rdao.getRboardList(page.getStartRow(), page.getEndRow(), null, null, null, null, null, false);
+				rboardList = rdao.getRboardList(page.getStartRow(), page.getEndRow(), null, null, null, null, null, false, "manageStopTeam");
 			}
 			
 			for(int i=0; i<rboardList.size();i++) {

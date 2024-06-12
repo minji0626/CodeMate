@@ -485,34 +485,46 @@ public class TmemberDAO {
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
 		PreparedStatement pstmt4 = null;
+		PreparedStatement pstmt5 = null;
+		ResultSet rs = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
+			
 			//team comment 삭제
-			sql = "DELETE FROM team_comment WHERE team_num=?";
+			sql = "SELECT tb_num FROM team_board WHERE team_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, team_num);
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+
+			int tb_num = 0;
+			while(rs.next()) {
+				tb_num = rs.getInt(1);
+				sql = "DELETE FROM team_comment WHERE tb_num IN (SELECT tb_num FROM team_board WHERE tb_num = ?)";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, tb_num);
+				pstmt2.executeUpdate();
+			}
 			
 			//team board 삭제
 			sql = "DELETE FROM team_board WHERE team_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, team_num);
-			pstmt2.executeUpdate();
-			
-			//team todo 삭제
-			sql = "DELETE FROM team_todo WHERE team_num=?";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, team_num);
 			pstmt3.executeUpdate();
 			
-			//team member 삭제
-			sql = "DELETE FROM team_member WHERE team_num=?";
+			//team todo 삭제
+			sql = "DELETE FROM team_todo WHERE team_num=?";
 			pstmt4 = conn.prepareStatement(sql);
 			pstmt4.setInt(1, team_num);
 			pstmt4.executeUpdate();
+			
+			//team member 삭제
+			sql = "DELETE FROM team_member WHERE team_num=?";
+			pstmt5 = conn.prepareStatement(sql);
+			pstmt5.setInt(1, team_num);
+			pstmt5.executeUpdate();
 
 			conn.commit();
 		} catch(Exception e) {
@@ -520,9 +532,10 @@ public class TmemberDAO {
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(null, pstmt4, null);
+			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
 }
