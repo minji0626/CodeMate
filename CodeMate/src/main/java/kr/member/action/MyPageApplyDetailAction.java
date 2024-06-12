@@ -31,6 +31,8 @@ public class MyPageApplyDetailAction implements Action{
 		request.setAttribute("member", member);
 		request.setAttribute("rapply", rapply);
 		
+		
+		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPageApplyDetail.jsp";
 	}

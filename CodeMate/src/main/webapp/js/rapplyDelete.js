@@ -19,7 +19,7 @@ $(function() {
 	                } else if (param.result === 'success') {
 	                    alert('코메 신청 취소');
 	                    /*location.reload();*/
-	                    window.location.href = '${pageContext.request.contextPath}/member/myPageShin.do';
+	                    window.location.href = 'myPageShin.do';
 	                } else {
 	                    alert('코메 신청 취소에 실패했습니다.');
 	                }

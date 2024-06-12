@@ -13,14 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pmj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modifyUserForm.js"></script>
-<style>
-/* 추가된 CSS */
-.photo-container {
-    position: relative;
-    display: inline-block;
-}
 
-</style>
 </head>
 <body>
 <!-- 헤더 링크-->
@@ -46,13 +39,7 @@
                 <c:if test="${!empty member.mem_photo}">
                     <img src="${pageContext.request.contextPath}/upload/${member.mem_photo}" width="150" height="150" class="my-photo">
                 </c:if>
-               <c:if test="${member.mem_level==1}"><img src="${pageContext.request.contextPath}/images/level1.png" class="level-photo"></c:if>
-               <c:if test="${member.mem_level==2}"><img src="${pageContext.request.contextPath}/images/level2.png" class="level-photo"></c:if>
-               <c:if test="${member.mem_level==3}"><img src="${pageContext.request.contextPath}/images/level3.png" class="level-photo"></c:if>
-               <c:if test="${member.mem_level==4}"><img src="${pageContext.request.contextPath}/images/level4.png" class="level-photo"></c:if>
-               <c:if test="${member.mem_level>=5}"><img src="${pageContext.request.contextPath}/images/level5.png" class="level-photo"></c:if> 
-                
-                
+              
             </div>
         </li>
         <li>
