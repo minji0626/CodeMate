@@ -77,21 +77,24 @@
 	</div>
 	<!-- page-container끝 -->
 	
-	<!-- Modal Popup -->
+	<!-- 모달팝업 -->
 	<div class="wrap">
 	  <div id="pop_info" class="pop_wrap" style="display:none;">
 	    <div class="pop_inner">
 	      <div class="header">
+	      <span id="popup-confirm">모집글</span>
 	        <span id="popup-title"></span>
-	        <div class="message-details">
-	          <span id="popup-date"></span>
-	        </div>
+	        
 	      </div>
-	      <span id="consult-message">신청 내용</span>
+	      <span id="consult-message">나의 신청 내용</span>
 	      <div class="consult_content">
 	        <span id="popup-message"></span>
 	      </div>
 	      <div class="footer">
+	      	<div class="consult_reg_date">
+	      	<span>모집 신청일 | </span>
+	          <span id="popup-date"></span>
+	        </div>
 	        <button type="button" class="btn_close"><img src="${pageContext.request.contextPath}/images/delete_icon.png"></button>
 	      </div>
 	    </div>
@@ -117,7 +120,6 @@
 	    });
 	});
 
-	// Show Modal function
 	function showModal(button) {
 	    var title = $(button).data('rb-title');
 	    var date = $(button).data('ra-date');
@@ -128,7 +130,6 @@
 	    $('#pop_info').show();
 	}
 
-	// Close Modal function
 	$(document).ready(function() {
 	    $('.btn_close').on('click', function() {
 	        $('#pop_info').hide();

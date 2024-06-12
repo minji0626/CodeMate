@@ -27,9 +27,11 @@ public class TeamDAO {
         PreparedStatement pstmt = null;
         PreparedStatement pstmt2 = null;
         PreparedStatement pstmt3 = null;
+        PreparedStatement pstmt4 = null;
         ResultSet rs = null;
         ResultSet rs2 = null;
         ResultSet rs3 = null;
+        ResultSet rs4 = null;
         List<TeamVO> list = null; 
         String sql = null;
         try {

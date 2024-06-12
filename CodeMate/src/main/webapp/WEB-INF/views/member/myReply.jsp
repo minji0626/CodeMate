@@ -54,7 +54,7 @@
             </div>
             <div class="projectName_font">[게시글]${comment.cb_title}</div>
             <div class="fav-reply">
-                <div class="myApply-write">${comment.cc_content}</div>
+                <div class="myApply-write">${comment.cc_content}⏎</div>
             </div>
         </div>
         <div class="btn_box_write">

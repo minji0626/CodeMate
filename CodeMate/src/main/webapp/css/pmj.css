@@ -241,7 +241,7 @@
 }
 /*글자가 길어지면 ...처리*/
 .projectName_font {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     width:500px;
     white-space: nowrap; /* 줄 바꿈 방지 */
