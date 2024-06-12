@@ -37,7 +37,11 @@
 									<c:if test="${rboard.rb_category == 1}">
 										<span class="rb_category project"> 프로젝트</span>
 									</c:if>
-									<br> <span class="endDate">${rboard.rb_endRecruit} 마감</span>
+									<br> <span class="endDate">
+											<c:if test="${rboard.daysLeft > 0 && rboard.team_status != 1 && rboard.team_status != 3}">D-${rboard.daysLeft}</c:if>
+											<c:if test="${rboard.daysLeft == 0 && rboard.team_status != 1&& rboard.team_status != 3}">오늘 마감</c:if>
+											<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">모집 종료</c:if>
+										</span>
 								</div>
 
 								<!-- <hr size="1px" id="line1"> -->
