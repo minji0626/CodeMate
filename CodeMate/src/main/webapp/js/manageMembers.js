@@ -2,27 +2,65 @@ $(document).ready(function() {
 	//회원 정지 버튼 이벤트 연결
 	$('.lockMemberBtn').each(function() {
 		$(this).on('click', function() {
-			var mem_num = $(this).data('memnum'); // 버튼에 저장된 회원 ID 가져오기
-			var locked = $(this).data('locked');
+			let mem_id = $(this).data('memid'); // 버튼에 저장된 회원 ID 가져오기
+			let check = confirm(mem_id + " 회원을 정지하시겠습니까?");
 
-			$.ajax({
-				type: 'POST',
-				url: 'lockMemberToggle.do',
-				data: { mem_num: mem_num, locked: locked },
-				dataType: "json",
-				success: function(param) {
-					if (param.result == 'wrongAccess') {
-						alert('접근 권한이 없습니다.')
-					} else if (param.result == 'success') {
-						alert(param.result_msg);
-					} else {
-						alert('회원 정지 관리에 실패했습니다.');
+			if (check) {
+				var mem_num = $(this).data('memnum'); // 버튼에 저장된 회원 번호 가져오기
+				var locked = $(this).data('locked');
+
+				$.ajax({
+					type: 'POST',
+					url: 'lockMemberToggle.do',
+					data: { mem_num: mem_num, locked: locked },
+					dataType: "json",
+					success: function(param) {
+						if (param.result == 'wrongAccess') {
+							alert('접근 권한이 없습니다.')
+						} else if (param.result == 'success') {
+							alert(param.result_msg);
+						} else {
+							alert('회원 정지 관리에 실패했습니다.');
+						}
+					},
+					error: function() {
+						alert('네트워크 오류 발생');
 					}
-				},
-				error: function() {
-					alert('네트워크 오류 발생');
-				}
-			});
+				});
+			}
+		});
+	});
+
+	//회원 탈퇴 버튼 이벤트 연결
+	$('.deleteMemberBtn').each(function() {
+		$(this).on('click', function() {
+			let mem_id = $(this).data('memid'); // 버튼에 저장된 회원 ID 가져오기
+			let check = confirm(mem_id + " 회원을 강제로 탈퇴시키시겠습니까?");
+
+			if (check) {
+				var mem_num = $(this).data('memnum'); // 버튼에 저장된 회원 번호 가져오기
+
+				$.ajax({
+					type: 'POST',
+					url: 'deleteMember.do',
+					data: { mem_num: mem_num },
+					dataType: "json",
+					success: function(param) {
+						if (param.result == 'logout') {
+							alert('로그인 후 이용해주세요')
+						} else if (param.result == 'wrongAccess') {
+							alert('접근 권한이 없습니다.')
+						} else if (param.result == 'success') {
+							alert('회원을 성공적으로 탈퇴시켰습니다.');
+						} else {
+							alert('회원 탈퇴에 실패했습니다.');
+						}
+					},
+					error: function() {
+						alert('네트워크 오류 발생');
+					}
+				});
+			}
 		});
 	});
 

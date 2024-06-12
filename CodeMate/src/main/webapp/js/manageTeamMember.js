@@ -21,6 +21,28 @@ $(document).ready(function() {
                         alert('잘못된 접근 정보입니다.');
                     } else if (param.result == 'isLeader'){
 						alert('팀장은 삭제할 수 없습니다. 위임 후 시도해주세요.')
+					} else if(param.result=='successLeader'){
+						let choice = confirm('해당 팀장을 삭제 시 프로젝트가 종료됩니다. 삭제하시겠습니까?');
+						if(choice){
+							$.ajax({
+				                url: 'deleteLeaderLast.do',
+				                type: 'post',
+				                data: { team_num: team_num, mem_num: mem_num, leader: leader },
+				                dataType: 'json',
+				                success: function(param) {
+									if(param.result=='success'){
+										alert('팀장을 삭제하고 프로젝트를 종료했습니다.');
+									} else if(param.result=='wrongAccess'){
+										alert('잘못된 접근입니다.');
+									} else{
+										alert('마지막 팀원 삭제 오류 발생');
+									}
+								},
+								error : function(){
+									alert('네트워크 오류 발생하였습니다');
+								}
+							});	
+						}
 					} else if(param.result=='min'){
 						let choice = confirm('마지막 팀원입니다. 삭제하시겠습니까?');
 						if(choice){

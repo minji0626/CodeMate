@@ -47,7 +47,7 @@ $(document).ready(function() {
 				let contextPath = getContextPath();
 				$(response.rboardList).each(function(index, item) {
 					output += '<li class="r-item ';
-					if (item.daysLeft < 0 || item.team_status == 1) {
+					if (item.daysLeft < 0 || item.team_status == 1 || item.team_status == 3) {
 						output += 'not-recruiting';
 					}
 					output += '" onclick="location.href=\'' + contextPath + '/rboard/detail.do?rb_num=' + item.rb_num + '\'">';
@@ -107,7 +107,7 @@ $(document).ready(function() {
 							output += '<div class="hit-div">';
 							output += '<img src="' + getContextPath() + '/images/cje/boardHitIcon.png"> <span>' + item.rb_hit + '</span>';
 							output += '</div>';
-							if (item.daysLeft < 0 || item.team_status == 1) {
+							if (item.daysLeft < 0 || item.team_status == 1 || item.team_status == 3) {
 								output += '<div class="end_recruit">모집 마감</div>';
 							}
 							output += '</li>';

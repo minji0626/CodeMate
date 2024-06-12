@@ -486,6 +486,35 @@ public class ApplyDAO {
 	        } catch (Exception e) {
 	            throw new Exception(e);
 	        } finally {
+	        	DBUtil.executeClose(rs2, pstmt2, null);
+	            DBUtil.executeClose(rs, pstmt, conn);
+	        }
+	        return check;
+		}
+		
+		public boolean manageLeaderLast(int team_num) throws Exception{
+			Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+	        int mem = 0;
+	        boolean check = false;
+	        try {
+	            conn = DBUtil.getConnection();
+	            String sql = "SELECT mem_num FROM member JOIN team_member USING(mem_num)WHERE team_num=? AND mem_auth!=0";
+	            
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setInt(1, team_num);
+	            
+	            rs = pstmt.executeQuery();
+	            while(rs.next()) {
+	            	mem ++;
+	            }
+	            if(mem==1) {
+	            	check=true;
+	            }
+	        } catch (Exception e) {
+	            throw new Exception(e);
+	        } finally {
 	            DBUtil.executeClose(rs, pstmt, conn);
 	        }
 	        return check;
