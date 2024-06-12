@@ -450,7 +450,7 @@ public class RboardDAO {
 				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
 			}
 			if (recruiting_filter) {
-				conditions.add("rb_endRecruit >= TO_CHAR(sysdate, 'YYYY-MM-DD') AND team_status != 1");
+				conditions.add("rb_endRecruit >= TO_CHAR(sysdate, 'YYYY-MM-DD') AND team_status != 1 AND team_status != 3");
 			}
 
 			// 조건이 있을 경우에만 WHERE 추가
@@ -546,7 +546,7 @@ public class RboardDAO {
 				conditions.add("rb_title LIKE '%'||'" + search_key + "'||'%'");
 			}
 			if (recruiting_filter) {
-				conditions.add("rb_endRecruit >= TO_CHAR(sysdate, 'YYYY-MM-DD') AND team_status != 1");
+				conditions.add("rb_endRecruit >= TO_CHAR(sysdate, 'YYYY-MM-DD') AND team_status != 1 AND team_status !=3");
 			}
 
 			// 조건이 있을 경우에만 WHERE 추가
