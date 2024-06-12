@@ -57,7 +57,7 @@
            
         </div>
         <div class="btn_box_write">
-             <input type="button" value="수정" class="myUpdate_btn" onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/cboard/modifyCommunityForm.do?cb_num=${cboard.cb_num}'">
+             <input type="button" value="수정" class="myUpdate_btn" onclick="event.stopPropagation(); window.location.href='${pageContext.request.contextPath}/cboard/modifyCommunityForm.do?cb_num=${cboard.cb_num}&cb_type=${cboard.cb_type}'">
        		 <input type="submit" value="삭제" class="myDelete_btn" data-cbnum="${cboard.cb_num}" onclick="event.stopPropagation();">
         </div>
     </div>
@@ -70,29 +70,57 @@
 </div><!-- page-container끝 -->
 
 <script>
-function filterList() {
-    var selectedOption = document.getElementById("filter").value;
-    var items = document.getElementsByClassName("myPage-line-box");
-    var noCommentsMessage = document.getElementById("no-comments-message");
+window.onload = function() {
+	 // 페이지 로딩 후에도 댓글이 없는지 확인
+	 checkCommentsExistence();
+	};
 
-    var visibleItems = 0;
-    for (var i = 0; i < items.length; i++) {
-        var itemType = items[i].getAttribute("data-type");
-        if (selectedOption === "all" || (selectedOption === "dev" && itemType === "1") || (selectedOption === "free" && itemType === "0")) {
-            items[i].classList.remove("hidden");
-            visibleItems++;
-        } else {
-            items[i].classList.add("hidden");
-        }
-    }
+	function checkCommentsExistence() {
+	 var items = document.getElementsByClassName("myPage-line-box");
+	 var noCommentsMessage = document.getElementById("no-comments-message");
 
-    if (visibleItems === 0) {
-        noCommentsMessage.classList.remove("hidden");
-    } else {
-        noCommentsMessage.classList.add("hidden");
-    }
-}
+	 var commentsExist = false;
 
+	 for (var i = 0; i < items.length; i++) {
+	     var itemType = items[i].getAttribute("data-type");
+	     if (itemType === "1" || itemType === "0") {
+	         commentsExist = true;
+	         break;
+	     }
+	 }
+
+
+	 if (!commentsExist) {
+	     noCommentsMessage.classList.remove("hidden");
+	 }
+	}
+
+	function filterList() {
+	 var selectedOption = document.getElementById("filter").value;
+	 var items = document.getElementsByClassName("myPage-line-box");
+	 var noCommentsMessage = document.getElementById("no-comments-message");
+
+	 var visibleItems = 0;
+	 var commentsExist = false;
+
+	 for (var i = 0; i < items.length; i++) {
+	     var itemType = items[i].getAttribute("data-type");
+	     if (selectedOption === "all" || (selectedOption === "dev" && itemType === "1") || (selectedOption === "free" && itemType === "0")) {
+	         items[i].classList.remove("hidden");
+	         visibleItems++;
+
+	         commentsExist = true;
+	     } else {
+	         items[i].classList.add("hidden");
+	     }
+	 }
+
+	 if (visibleItems === 0 && !commentsExist) {
+	     noCommentsMessage.classList.remove("hidden");
+	 } else {
+	     noCommentsMessage.classList.add("hidden");
+	 }
+	}
 </script>
 
 </body>

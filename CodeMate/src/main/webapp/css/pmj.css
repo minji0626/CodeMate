@@ -211,6 +211,7 @@
     font-size: 13px;
     font-weight: bold;
     margin-left: 69px;
+    cursor: pointer;
 }
 /* 참여중인 팀 */
 .myPage-line-box{

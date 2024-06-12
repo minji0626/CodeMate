@@ -42,6 +42,24 @@ public class RboardVO {
 	private int ra_num;
 
 	private int ra_pass;
+	private String ra_content;
+	private Date ra_date;
+
+	public String getRa_content() {
+		return ra_content;
+	}
+
+	public void setRa_content(String ra_content) {
+		this.ra_content = ra_content;
+	}
+
+	public Date getRa_date() {
+		return ra_date;
+	}
+
+	public void setRa_date(Date ra_date) {
+		this.ra_date = ra_date;
+	}
 
 	private int team_num;
 	private int team_status;

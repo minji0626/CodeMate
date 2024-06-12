@@ -38,8 +38,6 @@
 					<!-- myPage-TItleText만 가운데 정렬됨 -->
 					<h3 class="mYPage-TitleText">나의 코메 신청</h3>
 				</div>
-
-
 				<c:if test="${empty aprboardList}">
 					<div class="none_message">나의 신청내역이 없습니다</div>
 				</c:if>
@@ -62,7 +60,8 @@
 								<div>모집 마감일:${aprboard.rb_endRecruit}</div>
 							</div>
 							<div class="right">
-								<input type="button" value="나의 신청서" class="rboard-click" onclick="event.stopPropagation(); location.href='${pageContext.request.contextPath}/member/myPageApplyDetail.do?ra_num=${aprboard.ra_num}'">
+								<input type="button" value="나의 신청서" class="rboard-click"
+								>
 								<div class="delete-green" id="delete_green" data-ranum="${aprboard.ra_num}">신청취소</div>
 							</div>
 							</div>

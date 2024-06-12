@@ -39,11 +39,10 @@
 					<!-- myPage-TItleText만 가운데 정렬됨 -->
 					<h3 class="mYPage-TitleText">나의 코메 모집</h3>
 				</div>
-
+				
 				<c:if test="${empty rboardList}">
 					<div class="none_message">나의 모집글이 없습니다</div>
 				</c:if>
-				
 				<c:if test="${!empty rboardList}">
 					<c:forEach var="rboard" items="${rboardList}">
 						<c:if test="${rboard.team_status==0}">
