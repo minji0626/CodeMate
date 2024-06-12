@@ -61,7 +61,9 @@ public class DeleteUserAction implements Action {
                 // 로그아웃
                 session.invalidate();
 
-                return "/WEB-INF/views/member/deleteUser.jsp";
+                request.setAttribute("notice_msg", "회원탈퇴가 완료되었습니다.");
+                request.setAttribute("notice_url", request.getContextPath() + "/main/main.do");
+                return "/WEB-INF/views/common/alert_view.jsp";
             } else {
             	request.setAttribute("notice_msg", "진행 중인 프로젝트가 있으면 회원 탈퇴가 불가합니다.");
             	request.setAttribute("notice_url", request.getContextPath() + "/member/modifyUserForm.do");
