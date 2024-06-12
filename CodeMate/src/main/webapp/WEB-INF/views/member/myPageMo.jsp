@@ -50,7 +50,7 @@
 								onclick="window.location.href='${pageContext.request.contextPath}/member/myPageMoShin.do?rb_num=${rboard.rb_num}'"
 								style="cursor: pointer;">
 								<div class="team-left">
-									<div class="skill_font_T">${rboard.rb_pj_title}</div>
+									<div class="skill_font_T">[프로젝트명]${rboard.rb_pj_title}</div>
 									<div class="projectName_font">${rboard.rb_title}</div>
 								</div>
 								<div class="team-right-mo">

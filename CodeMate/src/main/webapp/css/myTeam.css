@@ -140,8 +140,7 @@ myPageMoshin.jsp
 
 
 .profile_mypage{
-	margin-left: 25px;
-	margin-top: 20px;
+	padding: 4%;
 }
 
 .profile_mypage .rb-title {
@@ -204,7 +203,7 @@ myPageMoshin.jsp
 
 .cboard_name{
 	font-size: 14px;
-	margin:2px 0 4px  0;
+	margin:2px 0 2px  0;
 }
 
 .myApply-write {
@@ -221,3 +220,13 @@ myPageMoshin.jsp
 }
 
 /*마이페이지 팀원구하기 댓글*/
+.rboardApply-font{
+	font-size: 18px;
+    font-weight: bold;
+    width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 700px;
+    margin: 20px 0 5px 0;
+}

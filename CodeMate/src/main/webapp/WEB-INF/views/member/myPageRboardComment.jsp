@@ -38,9 +38,10 @@
 	<div class="myPage-line-box" onclick="window.location.href='${pageContext.request.contextPath}/rboard/detail.do?rb_num=${rcomment.rb_num}'" style="cursor: pointer;">
        
         <div class="team-left-myRcomment">
-            <!-- <div class="cboard_name">팀원구하기 댓글</div> -->
-                <div class="rcomment">[게시글]${rcomment.rb_title}</div>
-            <div class="projectName_font">${rcomment.rc_content}</div>
+            <div class="rboardApply-font">[게시글]${rcomment.rb_title}</div>
+        	 <div class="fav-reply">
+                <div class="myApply-write">${rcomment.rc_content}⏎</div>
+            </div>
         </div>
         <div class="btn_box_write">
             <input type="button" value="수정" class="myUpdate_btn" onclick="">

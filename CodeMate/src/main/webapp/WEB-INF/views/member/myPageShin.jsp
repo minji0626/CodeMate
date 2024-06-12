@@ -48,8 +48,9 @@
 							style="cursor: pointer;">
 							
 							<div class="team-left">
-								<c:if test="${aprboard.rb_category == '0'}">스터디</c:if>
-								<c:if test="${aprboard.rb_category == '1'}">프로젝트</c:if>
+								<%-- <c:if test="${aprboard.rb_category == '0'}">스터디</c:if>
+								<c:if test="${aprboard.rb_category == '1'}">프로젝트</c:if> --%>
+								<div class="skill_font_T">[프로젝트명]${aprboard.rb_pj_title}</div>
 								<div class="projectName_font">${aprboard.rb_title}</div>
 							</div>
 
