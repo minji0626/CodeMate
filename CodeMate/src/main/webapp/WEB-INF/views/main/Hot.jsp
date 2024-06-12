@@ -130,7 +130,7 @@
 									<div class="hit">
 										<span>
 										 <img id="good2" src="${pageContext.request.contextPath}/images/cje/noLike.png">
-										 
+										  ${cboard.cboard_like} 
 										 <img id="hit2" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
 										 ${cboard.cb_hit}
 										 </span>
@@ -196,7 +196,7 @@
 										<span>
 										
 										 <img id="good3" src="${pageContext.request.contextPath}/images/cje/noLike.png">
-										 
+										  ${cboard.cb_like} 
 										 <img id="hit3" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
 										 ${cboard.cb_hit}
 										 </span>

@@ -218,9 +218,10 @@ public class CboardDAO {
 					cboard.setCb_hit(rs.getInt("cb_hit"));
 					cboard.setMem_num(rs.getInt("mem_num"));
 					cboard.setCb_content(rs.getString("cb_content"));
-					/* cboard.setCboard_like(rs.getInt("cboard_like")); */
+					cboard.setCboard_like(rs.getInt("cboard_like")); //좋아요 수
 					list.add(cboard);
 				}
+				 
 			} catch (Exception e) {
 				throw new Exception(e);
 			} finally {
