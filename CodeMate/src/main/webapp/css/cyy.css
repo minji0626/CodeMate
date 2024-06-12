@@ -20,20 +20,18 @@ div#mini-card1 { /* 1 */
 	height: 330px;
 }
 .content1 { /* 이미지 */
-	height: 290px;
-	float: left;
-	width: 250px;
-	margin: 20px;
-	border: 2px solid #d4d4d4;
-	border-radius: 10px;
-	background-color: #ffffff;
-	box-shadow:0px 2px 10px rgba(0, 0, 0, 0.3);	
-	  transform:scale(1.0);
+	height: 263px;
+    float: left;
+    width: 250px;
+    margin: 20px;
+    border: 2px solid #d4d4d4;
+    border-radius: 20px;
+    background-color: #ffffff;
+    transition: all .3s ease-in-out;
 }
 .content1:hover{
-	transform:scale(1.01);
-  transition: transform .1s;
-  box-shadow:0px 4px 12px rgba(0, 0, 0, 0.3);	
+	transform:scale(1.02);
+  	box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);	
 }
 .p1 {
 	position: relative;
@@ -332,11 +330,6 @@ form {
 
 /* 팀원 구하기 */
 
-.rb_category {
-	margin-left: 5px;
-	position: relative;
-	top: 5px;
-}
 .project {
 	font-size: 15px;
 	background: #b1db63;
@@ -352,13 +345,14 @@ form {
 	color: white;
 }
 .endDate {
-	font-size: 10pt;
-	font-weight: bold;
-	color: var(--gray-4);
-	position:relative;
-	bottom:20px;
-	margin-left: 190px;
-	font-size: 17px;
+	padding: 5px;
+    display: flex;
+    font-size: 10pt;
+    font-weight: bold;
+    color: #e14533;
+    position: relative;
+    font-size: 0.8em;
+    justify-content: flex-end;
 }
 #line1 {
 	transform: translateY(390%);
@@ -374,7 +368,6 @@ form {
 }
 .way {
 	font-size: 14px;
-	transform: translateY(180%);
 	width: 230px;
 	margin-left: 5px;
 }
@@ -391,15 +384,11 @@ form {
 	cursor: pointer; 
 }
 .rb-title {
-	font-weight: bold;
-	font-size: 18px; margin-left : 8px;
-	margin-top: 10px;
-	transform: translateY(40%);
-	margin-left: 8px;
-	width: 180px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	padding: 3px 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 2%;
+    height: 110px;
 }
 #field {
 	width: 140px;
@@ -411,6 +400,7 @@ form {
 	margin-left:60%;
 	position:relative;
 	bottom:23px;
+	font-weight: bold;
 }
 /* 커뮤니티 */
 .top{
@@ -503,3 +493,409 @@ form {
 	position: relative;
 	top: 70px;
 }
+
+
+
+
+
+
+/* r_board list css 복사 */
+.align-center {
+	text-align: center;
+}
+
+#r_btn_div.flex-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#r_btn_div .btn {
+	margin-right: 20px;
+	height: 42px;
+	border-radius: 20px;
+}
+
+/* rboardList */
+.category .category-item {
+	display: inline;
+	width: 50px;
+}
+
+.skill-logo {
+	width: 30px;
+	height: 30px;
+	object-fit: cover;
+	border-radius: 50px;
+	padding: 2px;
+	border: 1px solid #b8b8b8;
+}
+
+/* 검색옵션 */
+select.search-menu.selected, div.search-menu.selected, #search_key_div.selected
+	{
+	color: #57d47d;
+	border: 1px solid #57d47d;
+	font-weight: 700;
+}
+
+select.search-menu.selected:focus {
+	color: #57d47d;
+	border: 1px solid #57d47d;
+	outline: none;
+}
+
+.search-container {
+	margin: 20px 0;
+}
+
+.search-container .search-menu {
+	padding: 6px 12px;
+	font-size: 16px;
+	border-radius: 20px;
+	border: 1px solid #ccc;
+	margin-right: 10px;
+}
+
+.search-container div.search-menu {
+	padding: 0 12px;
+}
+
+#search_container_sub {
+	position: relative;
+}
+
+#search_key {
+	border: none;
+	font-size: 16px;
+	width: 340px;
+	height: 36px;
+	background: none;
+	color: inherit;
+}
+
+#search_key:focus {
+	outline: none;
+}
+
+#search_key_div {
+	margin: 10px 0;
+	width: 340px;
+}
+
+span.search-menu {
+	cursor: pointer;
+}
+
+span.search-menu, select.search-menu {
+	height: 38px;
+	color: #636363;
+}
+
+option {
+	color: black;
+}
+
+#recruiting_filter_label:hover {
+	cursor: pointer;
+}
+
+/* 체크 되었을 때 label 변경 */
+input[id="recruiting_filter"]:checked+label {
+	color: #57d47d;
+	font-weight: 700;
+}
+
+/*스크롤창*/
+#scrollable_trigger:hover {
+	cursor: pointer;
+}
+
+.scrollable {
+	position: absolute;
+	background-color: white;
+	max-height: 300px; /* 원하는 높이로 설정 */
+	width: 500px;
+	overflow-y: auto; /* 세로 스크롤 활성화 */
+	border: 1px solid #ddd;
+	padding: 10px; /* 안쪽 여백 추가 (선택 사항) */
+	margin-top: 4px;
+	border-radius: 10px;
+	box-sizing: border-box; /* 패딩과 보더를 포함하도록 설정 */
+	z-index: 10;
+}
+
+.scrollable li {
+	display: flex;
+	vertical-align: middle;
+}
+
+.scrollable li label {
+	margin-left: 4px;
+	display: flex;
+	vertical-align: middle;
+}
+
+.scrollable li label img.hskill-photo {
+	margin-right: 2px;
+}
+
+#scrollable_trigger {
+	display: inline-flex;
+	vertical-align: top;
+	align-items: center;
+	color: #636363;
+	height: 36px;
+}
+
+#scrollable_trigger .skill-tag {
+	font-size: 10pt;
+	display: inline-flex; /* flexbox를 사용하여 자식 요소 정렬 */
+	align-items: center; /* 자식 요소 수직 정렬 */
+	padding: 1px 4px;
+	margin: 1px 3px;
+	height: 28px;
+	background-color: #474747;
+	border-radius: 8px;
+	color: #fff;
+	line-height: 1.5;
+	background-color: #474747;
+}
+
+#scrollable_trigger .skill-tag .remove-btn {
+	color: #eb9696;
+	margin-left: 5px; /* 텍스트와 버튼 사이 간격 조절 */
+}
+
+/* 스크롤바 스타일 */
+.scrollable::-webkit-scrollbar {
+	width: 20px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+	background-color: grey; /* 회색 스크롤바 */
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid white; /* 스크롤바 사이의 간격을 위해 흰색 테두리 */
+}
+
+.scrollable::-webkit-scrollbar-track {
+	background-color: white;
+	border-radius: 10px;
+}
+
+.hskill-photo {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+	border-radius: 50px;
+}
+
+/* 리스트 */
+#r_board {
+	display: flex;
+	flex-wrap: wrap;
+	/* 요소들이 넘치면 다음 줄로 내려갈 수 있도록 설정 */
+	justify-content: flex-start;
+	/* 요소들을 왼쪽과 오른쪽으로 정렬하여 간격을 두어 배치 */
+	margin-bottom: 30px;
+	margin: 0 auto;
+}
+
+.r-item {
+	width: calc(25% - 50px);
+	height: 355px;
+	margin: 0 5px 20px 5px;
+	padding: 16px;
+	border: 2px solid var(--gray-4);
+	border-radius: 12px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: white;
+	transition: all .3s ease-in-out;
+	position: flex;
+}
+/* r-item 올렸을 때 스케일 확대 */
+.r-item:hover {
+	transform: scale(1.03);
+}
+/* 모집 종료되었을 때 전체 opacity 줄이기 */
+.not-recruiting {
+	opacity: 0.4;
+}
+
+.end_recruit {
+	opacity: 0.8;
+	right: 50%;
+	transform: translateX(60%) translateY(-250%);
+	padding: 16px;
+	text-align: center;
+	width: 35%;
+	color: #fff;
+	background-color: #000;
+	border-radius: 6px;
+}
+
+.r-item .r-item-header {
+	padding-bottom: 10px;
+}
+
+.rb_category_div {
+	display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.r-item .rb_category {
+	display: inline-block;
+	align-items: center;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 20px;
+	font-size: 11pt;
+	font-weight: 600;
+}
+
+.project {
+	background: #b1db63;
+	display: inline-block;
+	align-items: center;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 20px;
+	font-size: 11pt;
+	font-weight: 600;
+}
+
+.study {
+	background: #f5c33b;
+	display: inline-block;
+	align-items: center;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 20px;
+	font-size: 11pt;
+	font-weight: 600;
+}
+
+.r-item .rb_endRecruit {
+	font-size: 10pt;
+	font-weight: bold;
+	color: var(--gray-4);
+}
+
+.r-item div.rb-title {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 1.3em;
+	margin-bottom: 5%;
+	font-weight: 600;
+	/* 여러 줄 밑줄임표 적용 */
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	display: -webkit-box /* 2번째 줄까지만 글자를 표현하고 그 이후는 줄임 처리 */
+}
+
+.r-item .r-item-info {
+	font-size: 11pt;
+	height: 90px;
+}
+
+.r-item .r-item-main {
+	font-size: 11pt;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: 5%;
+}
+
+.r-item .skill-logo-div {
+	margin-bottom: 10px;
+}
+
+.r-item .hit-div {
+	font-weight: bold;
+	font-size: 14px;
+	display: flex;
+	justify-content: flex-end;
+	color: var(--gray-5);
+}
+
+.r-item .hit-div img {
+	width: 15px;
+	margin-right: 3px;
+	object-fit: contain;
+}
+
+/*페이징 버튼*/
+.paging-button {
+	cursor: pointer;
+}
+
+.paging-button input[type="button"] {
+	width: calc(100% - 20px);
+	display: block;
+	padding: 10px 20px;
+	border: 2px solid #474747;
+	border-radius: 5px;
+	background-color: white;
+	color: #474747;
+	cursor: pointer;
+	margin: 0 auto 10px;
+	padding: 10px 20px;
+}
+
+/* 진행 방식 css */
+.field_all {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+	max-height: 20px;
+}
+
+.proceed_all, .field_all {
+	margin-bottom: 4%;
+}
+
+.apply_count_all {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.proceed {
+	background-color: #e1f7ff;
+	border-radius: 20px;
+	padding: 2px 8px;
+	border-radius: 20px;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.mofield {
+	display: inline-block;
+	background-color: #bcdef7;
+	border-radius: 20px;
+	padding: 2px 8px;
+	border-radius: 20px;
+	font-size: 0.75em;
+	font-weight: bold;
+	background-color: #bcdef7;
+	margin-right: 5px;
+}
+
+.apply_count {
+	border: 2px solid #f9fc8b;
+	border-radius: 20px;
+	padding: 4px 8px;
+	border-radius: 20px;
+	font-size: 0.7em;
+}
+	

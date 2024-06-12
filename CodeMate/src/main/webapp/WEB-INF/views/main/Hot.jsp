@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/rboardList.css" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
 	rel="stylesheet">
@@ -41,11 +39,11 @@
 									<img src="${pageContext.request.contextPath}/images/project_w.png" width="13" height="13">
 										 프로젝트</span>
 									</c:if>
-									<br> <span class="endDate">
-											<c:if test="${rboard.daysLeft > 0 && rboard.team_status != 1 && rboard.team_status != 3}">D-${rboard.daysLeft}</c:if>
-											<c:if test="${rboard.daysLeft == 0 && rboard.team_status != 1&& rboard.team_status != 3}">오늘 마감</c:if>
-											<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">모집 종료</c:if>
-										</span>
+									<div class="endDate">
+										<c:if test="${rboard.daysLeft > 0 && rboard.team_status != 1 && rboard.team_status != 3}"> <img src="${pageContext.request.contextPath}/images/alert.png" width="20" height="20">마감 ${rboard.daysLeft}일 전</c:if>
+										<c:if test="${rboard.daysLeft == 0 && rboard.team_status != 1&& rboard.team_status != 3}">오늘 마감</c:if>
+										<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">모집 종료</c:if>
+									</div>
 								</div>
 
 								<!-- <hr size="1px" id="line1"> -->
@@ -54,7 +52,7 @@
 								<div class="detail">
 									<div class="way">
 										<span class="proceed onoff">
-											<c:if test="$	{rboard.rb_meet == 0}">
+											<c:if test="${rboard.rb_meet == 0}">
 												온라인
 											</c:if> 
 											<c:if test="${rboard.rb_meet == 1}">
