@@ -230,7 +230,7 @@ public class CboardDAO {
 			return list;
 		}
 
-	// 글 세부
+	// 글 세부 
 	public CboardVO detailCboard(int cb_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
