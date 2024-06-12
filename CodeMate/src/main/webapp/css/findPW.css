@@ -71,6 +71,15 @@ form {
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
+.tryAgain_btn2 {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ccc;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
 .tryAgain_btn:hover {
     opacity: 0.85;
 }
