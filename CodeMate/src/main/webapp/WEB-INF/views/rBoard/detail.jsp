@@ -126,9 +126,11 @@
 						<li><span class="info-title">모집 인원</span> <span>${rboard.rb_teamsize}명</span></li>
 						<li id="hskill_li"><span class="info-title">요구 스킬</span> 
 							<span>
-			                    <c:forEach var="i" begin="0" end="${fn:length(rboard.hs_photo_arr) - 1}">
+							<c:if test="${rboard.hs_photo_arr != null && fn:length(rboard.hs_photo_arr) > 0}">
+			                    <c:forEach var="i" begin="0" end="${fn:length(rboard.hs_photo_arr)-1}">
 			    				<img src="${pageContext.request.contextPath}/images/hard_skill_logo/${rboard.hs_photo_arr[i]}" title="${rboard.hs_name_arr[i]}" class="skill-logo">
 								</c:forEach>
+							</c:if>
 							</span>
 						</li>
 						<li><span class="info-title">모집 필드</span> 
@@ -162,11 +164,11 @@
 					<form id="comment_form">
 						<input type="hidden" id="rb_num" name="rb_num" value="${rboard.rb_num}" >
 						<div class="flex-container">
-						<c:if test="${empty mem.mem_photo}">
+						<c:if test="${empty mem_photo}">
 							<img src="${pageContext.request.contextPath}/images/face.png" class="profile-photo">
 						</c:if>
-						<c:if test="${!empty mem.mem_photo}">
-							<img src="${pageContext.request.contextPath}/upload/${mem.mem_photo}" class="profile-photo">
+						<c:if test="${!empty mem_photo}">
+							<img src="${pageContext.request.contextPath}/upload/${mem_photo}" class="profile-photo">
 						</c:if>
 					<textarea name="rc_content" id="rc_content" placeholder="댓글을 입력하세요." cols="100" rows="6"></textarea>						
 						</div>

@@ -170,6 +170,7 @@ $(function() {
 	function initModifyForm() {
 		$('.btn-div').show();
 		$('#mrc_form').remove();
+		$('.re_content p').show();
 	}
 
 	//수정폼에서 취소버튼 클릭시 수정폼 초기화
