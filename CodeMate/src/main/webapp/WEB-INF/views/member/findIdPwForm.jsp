@@ -48,11 +48,8 @@
                      <input type="text" id="phoneInput" name="mem_phone" placeholder="전화번호" required>
                      <input type="email" id="emailInput" name="mem_email" placeholder="이메일 주소" required>
                      <button type="submit" name="pw" value="비밀번호찾기">비밀번호 찾기</button>
-                     <div class="canc">
-                        <a href="${pageContext.request.contextPath}/member/loginForm.do">
-                           취소하기
-                        </a>
-                     </div>
+                     <button onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'" 
+                     class="canc">취소하기</button>
                   </form>
                   <div class="result"></div>
                </div>
