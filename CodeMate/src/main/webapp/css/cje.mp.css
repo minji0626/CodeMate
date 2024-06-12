@@ -138,6 +138,8 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    border:none;
 }
 
 .mp_view_modify span {
@@ -145,6 +147,7 @@ button{
     display: inline-block;
     color: white;
     font-weight: bold;
+    
 }
 
 /********************************/
@@ -303,12 +306,14 @@ button{
 .delete-btn {
 	width:50px;
 	height:30px;
-	background: #5ACA7C;
+	background: #4D9964;
+    border-radius: 10px;
+    border:none;
     position: absolute;
     bottom: 5px;
     right: 5px;
     border: none;
-    border-radius: 10px;
+    color:white;
 }
 
 /*span 태그*/

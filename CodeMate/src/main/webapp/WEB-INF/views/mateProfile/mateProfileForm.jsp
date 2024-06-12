@@ -67,7 +67,23 @@
                 <div class="mp_content_div">
                     <h4>포지션</h4>
                     <div class="">
-                      <textarea name="mp_position" id="mp_position" class="in_introduce"> <c:if test="${!empty member.mp_position}">${member.mp_position}</c:if></textarea>
+                      <textarea name="mp_position" id="mp_position" class="in_introduce" maxlength="40" oninput="checkByteLength(this, 40)"><c:if test="${!empty member.mp_position}">${member.mp_position}</c:if></textarea>
+
+						<script>
+						    function checkByteLength(obj, maxByte) {
+						        const str = obj.value;
+						        let byteLength = 0;
+						        for (let i = 0; i < str.length; i++) {
+						            const charCode = str.charCodeAt(i);
+						            byteLength += (charCode > 0x007F) ? 3 : 1; // UTF-8: 한글 3바이트, 영어 1바이트
+						            if (byteLength > maxByte) {
+						                alert(`최대 ${maxByte}바이트를 초과할 수 없습니다.`);
+						                obj.value = str.slice(0, i); // 초과한 부분을 잘라냄
+						                break;
+						            }
+						        }
+						    }
+						</script>
                     </div>
                 </div>
                 <!-- 자기소개 DIV -->
