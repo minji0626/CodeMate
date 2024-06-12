@@ -52,12 +52,17 @@
             <!-- 포지션 DIV -->
             <form id="mpModifyForm" action="mateProfileModify.do" method="post">
             	<input type="hidden" name="mem_num" value="${mem.mem_num}">
-            	메이트 프로필
-                <input type="radio" id="mp_state_0" name="mp_state" value="비공개" <c:if test="${member.mp_state == 0}">checked</c:if>>
-				<label for="mp_state_0">비공개</label>
-				
-				<input type="radio" id="mp_state_1" name="mp_state" value="공개" <c:if test="${member.mp_state == 1}">checked</c:if>>
-				<label for="mp_state_1">공개</label>
+            	
+            	<div class="mp_content_div div2">
+                    <h4>메이트 프로필</h4>
+	                    <div class="radioDiv">
+		                    <input type="radio" id="mp_state_0" name="mp_state" value="비공개" <c:if test="${member.mp_state == 0}">checked</c:if>>
+							<label for="mp_state_0">비공개</label>	
+							<input type="radio" id="mp_state_1" name="mp_state" value="공개" <c:if test="${member.mp_state == 1}">checked</c:if>>
+							<label for="mp_state_1">공개</label>
+	                    </div>
+                </div>
+                
 
                 <div class="mp_content_div">
                     <h4>포지션</h4>

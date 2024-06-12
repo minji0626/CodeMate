@@ -446,3 +446,33 @@ option {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+
+textarea{
+	resize: none;
+	
+}
+
+
+.radioDiv {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100%; 
+    border-radius: 8px;
+	border: 1px solid  #ddd;
+	padding:10px;
+	background: #ddd;
+	margin-bottom:0;
+}
+
+.radioDiv input[type="radio"] {
+    margin-right: 5px; /* 라디오 버튼과 라벨 사이에 간격을 둠 */
+}
+
+.radioDiv label {
+    margin-right: 20px; /* 라벨과 다음 라디오 버튼 사이에 간격을 둠 */
+}
+
+.div2{
+	margin-bottom:30px;
+}

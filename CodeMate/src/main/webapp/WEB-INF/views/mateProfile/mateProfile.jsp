@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,12 +84,17 @@
                     <h4>포지션</h4>
                     <div class="mp_content">
                         <p>
-                        <c:if test="${member.mp_state==0}">
-                        		비공개 정보입니다.
-                        </c:if>
-                        <c:if test="${member.mp_state==1}">
-                        	${member.mp_position}
-                        </c:if>
+                        <c:if test="${member.mp_state == 0 && member.mem_num != mem_num}">
+						    비공개 정보입니다.
+						</c:if>
+						<c:if test="${member.mp_state == 1 || member.mem_num == mem_num}">
+							 <c:if test="${fn:trim(member.mp_position) eq ''}"> 
+						        등록된 포지션이 없습니다.
+						    </c:if>
+						    <c:if test="${fn:trim(member.mp_position) ne ''}"> 
+						        ${member.mp_position}
+						    </c:if>
+						</c:if>
                         	
                         </p>
                     </div>
@@ -98,11 +104,16 @@
                     <h4>자기소개</h4>
                     <div class="mp_content">
                         <p>
-	                        <c:if test="${member.mp_state==0}">
+	                        <c:if test="${member.mp_state == 0 && member.mem_num != mem_num}">
 	                        		비공개 정보입니다.
 	                        </c:if>
-	                        <c:if test="${member.mp_state==1}">
-	                        	${member.mp_introduce}
+	                        <c:if test="${member.mp_state == 1 || member.mem_num == mem_num}">
+		                        <c:if test="${fn:trim(member.mp_introduce) eq ''}"> 
+							        등록된 자기소개가 없습니다.
+							    </c:if>
+							    <c:if test="${fn:trim(member.mp_introduce) ne ''}"> 
+							        ${member.mp_introduce}
+							    </c:if>
 	                        </c:if>                        	
                         </p>
                     </div>
@@ -113,17 +124,21 @@
                     <div class="mp_content_div skill-item">
                         <h4>하드스킬</h4>
                         <div class="mp_content_skill">
-                        	<c:if test="${member.mp_state==0}">
+                        	<c:if test="${member.mp_state == 0 && member.mem_num != mem_num}">
 	                        		<div class="mp_content"><p>비공개 정보입니다.</p></div>
 	                        </c:if>
-	                        <c:if test="${member.mp_state==1}">
+	                        <c:if test="${member.mp_state == 1 || member.mem_num == mem_num}">
 	                            <c:if test="${!empty hardSkillList}">
 	                            	<c:forEach var="hs_skill" items="${hardSkillList}">
+	                            		
 	                            		<div id="hs-options" class="option-container">
 	                            			<label for="hs_code_${hs_skill.hs_code}"><img class="hskill-photo" src="${pageContext.request.contextPath}/images/hard_skill_logo/${hs_skill.hs_photo}"><span class="option-item">${hs_skill.hs_name}</span></label>
 	                            		</div>
 	                            	</c:forEach>
 	                            </c:if>
+	                            <c:if test="${empty hardSkillList}">
+	                            			<div class="mp_content"><p>등록된 하드 스킬이 없습니다.</p></div>
+								</c:if>
                             </c:if>
                         </div>
                     </div>
@@ -131,10 +146,10 @@
                     <div class="mp_content_div skill-item">
                         <h4>소프트스킬</h4>
                         <div class="mp_content_skill">
-                            <c:if test="${member.mp_state==0}">
+                            <c:if test="${member.mp_state == 0 && member.mem_num != mem_num}">
 	                        		<div class="mp_content"><p>비공개 정보입니다.</p></div>
 	                        </c:if>
-	                        <c:if test="${member.mp_state==1}">
+	                        <c:if test="${member.mp_state == 1 || (member.mp_state == 0 &&member.mem_num == mem_num)}">
 	                            <c:if test="${!empty softSkillList}">
 	                            	<c:forEach var="ss_skill" items="${softSkillList}">
 	                            		<div id="ss-options" class="option-container">
@@ -142,6 +157,9 @@
 	                            		</div>
 	                            	</c:forEach>
 	                            </c:if>
+	                            <c:if test="${empty softSkillList}">
+	                            			<div class="mp_content"><p>등록된 소프트 스킬이 없습니다.</p></div>
+								</c:if>
                             </c:if>
                         </div>
                     </div>
@@ -150,10 +168,10 @@
                 
                 <div class="mp_content_div">
                     <h4>프로젝트 경험</h4>
-                     <c:if test="${member.mp_state==0}">
+                     <c:if test="${member.mp_state == 0 && member.mem_num !=mem_num}">
 	                       <div class="mp_content"><p>비공개 정보입니다.</p></div>
 	                 </c:if>
-	                 <c:if test="${member.mp_state==1}">
+	                 <c:if test="${member.mp_state == 1 || member.mem_num == mem_num}">
 	                 	<c:if test="${!empty mateExpList}"> 	
 		                 	<c:forEach var="exp" items="${mateExpList}" varStatus="loop">
 							    <c:if test="${loop.index < 5}">
@@ -170,7 +188,7 @@
 							            <p class="pj_content">프로젝트 설명 : ${exp.me_content} </p>
 							            <form action="deleteEXP.do" method="post">
 							                <input type="hidden" name="me_num" value="${exp.me_num}">
-							                <input type="hidden" name="mem_num" value="${user_num}">
+							                <input type="hidden" name="mem_num" value="${mem_num}">
 							                <c:if test="${member.mem_num==mem_num}">
 							                <button type="submit" class="delete-btn">삭제</button>
 							                </c:if>
@@ -188,10 +206,10 @@
                 
                 <div class="mp_content_div">
                     <h4>메이트 후기</h4>
-                      <c:if test="${member.mp_state==0}">
+                      <c:if test="${member.mp_state == 0 && member.mem_num != mem_num}">
 	                       <div class="mp_content"><p>비공개 정보입니다.</p></div>
 	                 </c:if>
-	                 <c:if test="${member.mp_state==1}">
+	                 <c:if test="${member.mp_state == 1 || member.mem_num == mem_num}">
 	                 	<c:if test="${!empty mateReviewList}"> 	
 		                 	<c:forEach var="mr" items="${mateReviewList}" varStatus="loop">
 							    <c:if test="${loop.index < 5}">
