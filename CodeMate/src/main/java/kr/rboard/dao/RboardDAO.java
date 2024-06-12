@@ -634,7 +634,7 @@ public class RboardDAO {
 					+ "    LEFT OUTER JOIN (SELECT rb_num, COUNT(ra_num) AS apply_count FROM r_apply GROUP BY rb_num) apply_agg "
 					+ "    ON r_board.rb_num = apply_agg.rb_num "
 					+ "	   LEFT OUTER JOIN TEAM ON r_board.rb_num = team.team_num WHERE team.team_status= 0 AND rb_endrecruit > SYSDATE"
-					+ "    ORDER BY r_board.rb_hit DESC " + "  ) a " + ") WHERE ROWNUM <= 8";
+					+ "    ORDER BY apply_count DESC " + "  ) a " + ") WHERE ROWNUM <= 8";
 
 			pstmt = conn.prepareStatement(sql);
 
