@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
+import kr.rboard.dao.ApplyDAO;
 import kr.team.dao.TeamToDoDAO;
 import kr.tmember.dao.TmemberDAO;
 
@@ -42,8 +43,15 @@ public class DeleteTmemberAction implements Action {
 			if(mem_num==leader) {
 				mapAjax.put("result", "isLeader");
 			} else {
-				dao.deleteTeamMember(mem_num, team_num);
-				mapAjax.put("result", "success");
+				ApplyDAO adao = ApplyDAO.getInstance();
+				boolean check = adao.minimumTeamMember(team_num);
+				if(check) {
+					dao.deleteTeamMember(mem_num, team_num);
+					mapAjax.put("result", "success");
+				} else {
+					mapAjax.put("result", "min");
+				}
+				
 			}
 			
 

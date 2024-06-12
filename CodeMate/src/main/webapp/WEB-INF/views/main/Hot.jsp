@@ -67,7 +67,6 @@
 									온라인/오프라인
 									</c:if> <br>
 										</span>
-
 										<div id="field">
 											<c:forEach var="field" items="${rboard.f_name_arr}">
 											<span class="mofield">${field}</span>

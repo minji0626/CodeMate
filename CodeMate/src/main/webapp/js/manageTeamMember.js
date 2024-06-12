@@ -21,6 +21,8 @@ $(document).ready(function() {
                         alert('잘못된 접근 정보입니다.');
                     } else if (param.result == 'isLeader'){
 						alert('팀장은 삭제할 수 없습니다. 위임 후 시도해주세요.')
+					} else if(param.result=='min'){
+						alert('팀원은 최소 한 명이어야 합니다.');
 					} else if (param.result == 'success') {
                         alert('팀원이 삭제되었습니다');
                         location.href = 'checkTeamMember.do?team_num=' + team_num;
