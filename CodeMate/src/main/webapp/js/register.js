@@ -109,7 +109,7 @@ $(function() {
 
 	//전화번호 중복 체크
 	$('#mem_phone').on('blur', function() {
-		if (!/^[0-9]{11,12}$/.test($('#mem_phone').val())) {
+		if (!/^[0-9]{11,11}$/.test($('#mem_phone').val())) {
 			$('#message_phone').css('color', 'red').text('11자리 이상의 숫자만 입력하세요!');
 			$('#mem_phone').val('').focus();
 			return false;
