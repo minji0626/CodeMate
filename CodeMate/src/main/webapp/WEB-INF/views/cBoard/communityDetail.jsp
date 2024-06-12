@@ -71,7 +71,7 @@
 		       			<!-- 이미지 --> 
 		       			<c:if test="${!empty board.cb_file}">
     						<div class="board_file" style="text-align: center;">
-        						<img src="${pageContext.request.contextPath}/upload/${board.cb_file}" width="400">
+        						<img src="${pageContext.request.contextPath}/upload/${board.cb_file}" width="70%">
         					</div>
         				</c:if>
 		       			<!-- 내용 -->

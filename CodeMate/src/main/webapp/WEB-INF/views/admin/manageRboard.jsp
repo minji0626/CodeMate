@@ -82,7 +82,7 @@
 													</script>
 												</c:if>
 												<c:if test="${list.team_status==1 || list.team_status==3}">
-													<button class="changeAuthBtn"> 삭제 불가</button>
+													<button class="changeAuthBtn"> 삭제불가</button>
 												</c:if>
 											</td>
 										</tr>
