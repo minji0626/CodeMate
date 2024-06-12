@@ -2,7 +2,6 @@ $(function() {
     /* 나의 모집글 삭제 */
     $('.deleteMemberBtn').on('click', function() {
 		let cb_num = $(this).data('cbnum');
-		alert(cb_num);
         // 서버와 통신
         var check = confirm("커뮤니티 게시글을 삭제하시겠습니까?");
         
