@@ -38,6 +38,7 @@ public class SearchResultsAction implements Action {
 		String rb_meet = request.getParameter("rb_meet");
 		String search_key = request.getParameter("search_key");
 		boolean recruiting_filter = Boolean.parseBoolean(request.getParameter("recruiting_filter"));
+		
 
 
 		// 검색 조건을 이용해 데이터베이스에서 결과를 조회
@@ -67,6 +68,3 @@ public class SearchResultsAction implements Action {
 	}
 
 }
-
-//이제 ajax 쪽으로 넘어가서 그부분 수정하고 js에서 페이지 처리 보여주는 부분도 수정
-//검색어 넣었을 때 잘 되는지
