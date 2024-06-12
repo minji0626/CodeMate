@@ -14,9 +14,15 @@ public class CboardVO {
 	private String cb_file;
 	private String cb_ip;
 	private int cb_type;
+	private int cboard_like;
 	
 	
-	
+	public int getCboard_like() {
+		return cboard_like;
+	}
+	public void setCboard_like(int cboard_like) {
+		this.cboard_like = cboard_like;
+	}
 	private String mem_id;
 	private int mem_auth;
 	private int mem_report;
