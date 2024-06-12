@@ -8,9 +8,11 @@ import java.util.List;
 
 import javax.naming.spi.DirStateFactory.Result;
 
+import kr.member.vo.TeamVO;
 import kr.tmember.vo.MateReviewVO;
 import kr.tmember.vo.TmemberVO;
 import kr.util.DBUtil;
+import oracle.jdbc.OracleConnection.CommitOption;
 
 public class TmemberDAO {
 	private static TmemberDAO instance = new TmemberDAO();
@@ -40,6 +42,11 @@ public class TmemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+
+	/*
+	 * // team_status가 3이고 tm_review_status가 0인 멤버들 선택하기 public void noReviewMem
+	 * (int team_num) throws Exception { Connection conn = null; PreparedStatement }
+	 */
 
 	// team_setting에서 사용되는 팀멤버 count 하기
 	public int getTmemberCount (int team_num) throws Exception{
@@ -137,7 +144,36 @@ public class TmemberDAO {
 		}
 	}
 
-
+	// 관리자가 팀장인 회원 삭제할 때 팀장 위임할 팀원 고르기
+	public int pickNextLeader(int team_num, int delete_mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int mem_num = 0;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT mem_num FROM team_member JOIN member USING(mem_num) JOIN member_detail USING(mem_num) "
+					+ "JOIN team USING(team_num) WHERE team_num=? and mem_num!=? and rownum= 1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, team_num);
+			pstmt.setInt(2, delete_mem_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				mem_num = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return mem_num;
+	}
 
 
 	// 팀 멤버 삭제하기
@@ -378,6 +414,7 @@ public class TmemberDAO {
 		return mem_num;
 	}
 	
+	//활성화된 팀이 있을 때 false 반환, 활성화된 팀이 없으면 true 반환
 	public boolean UserTeamActive(int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -406,5 +443,85 @@ public class TmemberDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return check;
+	}
+	
+	//활성화된 팀이 있을 때 리스트 반환
+	public List<TeamVO> getUserActiveTeams(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		List<TeamVO> teamList = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "select team_num,team_status FROM team JOIN team_member USING(team_num) WHERE mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			
+			rs = pstmt.executeQuery();
+			
+			teamList = new ArrayList<TeamVO>();
+			while(rs.next()) {
+				TeamVO team = new TeamVO();
+				team.setTeam_num(rs.getInt("team_num"));
+				team.setTeam_status(rs.getInt("team_status"));
+				
+				teamList.add(team);
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return teamList;
+	}
+	
+	//팀 삭제
+	public void deleteTeamContent(int team_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			//team comment 삭제
+			sql = "DELETE FROM team_comment WHERE team_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, team_num);
+			pstmt.executeUpdate();
+			
+			//team board 삭제
+			sql = "DELETE FROM team_board WHERE team_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, team_num);
+			pstmt2.executeUpdate();
+			
+			//team todo 삭제
+			sql = "DELETE FROM team_todo WHERE team_num=?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1, team_num);
+			pstmt3.executeUpdate();
+			
+			//team member 삭제
+			sql = "DELETE FROM team_member WHERE team_num=?";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1, team_num);
+			pstmt4.executeUpdate();
+
+			conn.commit();
+		} catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt4, null);
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 }

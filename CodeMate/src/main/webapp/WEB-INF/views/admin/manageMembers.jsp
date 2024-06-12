@@ -73,13 +73,13 @@
 											<c:if test="${member.mem_auth ==0}"
 											></c:if>
 											<c:if test="${member.mem_auth != 9 && member.mem_auth != 1}"
-											><button class="lockMemberBtn" data-memnum="${member.mem_num}" data-locked="0"
+											><button class="lockMemberBtn" data-memid="${member.mem_id}" data-memnum="${member.mem_num}" data-locked="0"
 											>정지</button></c:if>
 											<c:if test="${member.mem_auth != 9 && member.mem_auth == 1}"
-											><button class="lockMemberBtn" data-memnum="${member.mem_num}" data-locked="1"
+											><button class="lockMemberBtn" data-memid="${member.mem_id}" data-memnum="${member.mem_num}" data-locked="1"
 											>정지 취소</button></c:if>
 										</td>
-										<td><c:if test="${member.mem_auth != 9 && member.mem_auth != 0}"><button class="deleteMemberBtn" data-memnum="${member.mem_num}">탈퇴</button></c:if></td>
+										<td><c:if test="${member.mem_auth != 9 && member.mem_auth != 0}"><button class="deleteMemberBtn" data-memid="${member.mem_id}" data-memnum="${member.mem_num}">탈퇴</button></c:if></td>
 										<td>
 											<c:if test="${member.mem_num != mem_num && member.mem_auth != 0 && member.mem_auth != 1}">
 											<select name="changeAuthToAdmin"  class="auth-select">
