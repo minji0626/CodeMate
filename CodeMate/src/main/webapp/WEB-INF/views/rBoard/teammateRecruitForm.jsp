@@ -99,7 +99,7 @@
 							</ul>
 						</li>
 						<li class="flex-container"><label for="rb_pj_title" class="info-label">프로젝트 제목</label> <input class="input-check input-style"
-							type="text" name="rb_pj_title" id="rb_pj_title"
+							type="text" name="rb_pj_title" id="rb_pj_title" maxlength="40"
 							placeholder="프로젝트의 제목을 입력해주세요"></li>
 					</ul>
 				</div>
@@ -108,7 +108,7 @@
 					<h3>2.프로젝트에 대해 소개해주세요.</h3>
 					<ul id="project_detail">
 						<li><label for="rb_title" class="info-label">모집글 제목</label> <input class="input-check" type="text"
-							id="rb_title" name="rb_title" placeholder="글 제목을 입력해주세요" maxlength="20">
+							id="rb_title" name="rb_title" placeholder="글 제목을 입력해주세요" maxlength="60">
 						</li>
 						<li>
 						<label style="display:none">프로젝트 소개글</label>

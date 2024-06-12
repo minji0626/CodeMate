@@ -58,7 +58,24 @@
 								<c:if test="${rboard.mem_photo == null}">
 								<img src="${pageContext.request.contextPath}/images/face.png" class="profile-photo">
 								</c:if>
-								<span><a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${rboard.mem_num}">${rboard.mem_nickname}</a></span>
+								<span>
+									<a href="${pageContext.request.contextPath}/mateProfile/mateProfile.do?mem_num=${rboard.mem_num}">${rboard.mem_nickname}</a>
+									<c:if test="${mem_level == 1 }">
+									<img id="level_pic" src="${pageContext.request.contextPath}/images/level1.png" height="20" width="20">
+									</c:if>
+									<c:if test="${mem_level == 2 }">
+									<img id="level_pic" src="${pageContext.request.contextPath}/images/level2.png" height="20" width="20">
+									</c:if>
+									<c:if test="${mem_level == 3 }">
+									<img id="level_pic" src="${pageContext.request.contextPath}/images/level3.png" height="20" width="20">
+									</c:if>
+									<c:if test="${mem_level == 4 }">
+									<img id="level_pic" src="${pageContext.request.contextPath}/images/level4.png" height="20" width="20">
+									</c:if>
+									<c:if test="${mem_level == 5 }">
+									<img id="level_pic" src="${pageContext.request.contextPath}/images/level5.png" height="20" width="20">
+									</c:if>
+								</span>
 							</div>
 							<c:if test="${mem_num == rboard.mem_num}">
 							<div id="header_btn_div">
@@ -133,10 +150,12 @@
 							</c:if>
 							</span>
 						</li>
-						<li><span class="info-title">모집 필드</span> 
+						<li class="merge-columns"><span class="info-title">모집 필드</span> 
+							<div>
 							<c:forEach var="field" items="${rboard.f_name_arr}">
 								<span class="mofield">${field}</span>
 							</c:forEach>
+							</div>
 						</li>
 					</ul>
 				</div>

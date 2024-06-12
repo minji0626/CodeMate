@@ -100,7 +100,7 @@
 						</li>
 						<li class="flex-container"><label for="rb_pj_title" class="info-label">프로젝트 제목</label> <input class="input-check input-style"
 							type="text" name="rb_pj_title" id="rb_pj_title" value=${rboard.rb_pj_title}
-							placeholder="프로젝트의 제목을 입력해주세요" maxlength="20"></li>
+							placeholder="프로젝트의 제목을 입력해주세요" maxlength="40"></li>
 					</ul>
 				</div>
 				<!--프로젝트 소개-->

@@ -33,7 +33,7 @@
 	text-align: center;
 	background-color: #c23a3a;
 	border-radius: 18px;
-	width: 100px;
+	min-width: 100px;
 	font-size: 15pt;
 	color: #fff;
 	margin-left: 10px;
@@ -113,6 +113,11 @@
 	margin-bottom: 8px;	
 	display: flex;
 	align-items: center;
+}
+
+#content_info .merge-columns {
+	grid-column: span 2;
+	flex-wrap: wrap;
 }
 
 #hskill_li {
