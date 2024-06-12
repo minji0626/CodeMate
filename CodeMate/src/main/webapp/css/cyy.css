@@ -530,26 +530,17 @@ form {
 
 
 
-#endDate {
-
+.endDate {
+	font-size: 10pt;
+	font-weight: bold;
+	color: var(--gray-4);
 	transform: translateY(330%);
-
 	margin-left: 140px;
-
 	font-size: 13px;
-
 }
-
-
-
 #line1 {
-
 	transform: translateY(390%);
-
 }
-
-
-
 .hit-div {
 	margin-bottom: 5px;
 	font-size: 13px;
@@ -559,55 +550,27 @@ form {
 	width:16px;	
 	transform:translateY(10%);
 }
-
-
 .way {
-
 	font-size: 14px; margin-left : 5px;
-
 	transform: translateY(160%);
-
 	width: 230px;
-
 	margin-left: 5px;
-
 }
-
-
-
 .detail {
-
 	position: relative;
-
 	top: 30px;
-
 }
-
-
-
 .link {
-
 	margin: 5px;
-
 	cursor: pointer;
-
 }
-
-
-
 .rb-title {
-
 	font-size: 17px; margin-left : 8px;
-
 	margin-top: 10px;
-
 	transform: translateY(40%);
-
 	margin-left: 8px;
 	width: 180px;
-
 	white-space: nowrap;
-
 	overflow: hidden;
 	text-overflow: ellipsis;
 }

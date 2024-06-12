@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/cyy.css" type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/rboardList.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <div class="page-main">
 	<div id="mini-card1">
@@ -35,7 +37,7 @@
 									<c:if test="${rboard.rb_category == 1}">
 										<span class="rb_category project"> 프로젝트</span>
 									</c:if>
-									<br> <span id="endDate">${rboard.rb_endRecruit} 마감</span>
+									<br> <span class="endDate">${rboard.rb_endRecruit} 마감</span>
 								</div>
 
 								<!-- <hr size="1px" id="line1"> -->
@@ -43,24 +45,26 @@
 								<!-- 제목 -->
 								<div class="detail">
 									<div class="way">
-										<span>진행방식 | </span> <span> <c:if
-												test="$	{rboard.rb_meet == 0}">
-									온라인
-									</c:if> <c:if test="${rboard.rb_meet == 1}">
-									오프라인
-									</c:if> <c:if test="${rboard.rb_meet == 2}">
+										<span class="proceed">
+											<c:if test="$	{rboard.rb_meet == 0}">
+												온라인
+											</c:if> 
+											<c:if test="${rboard.rb_meet == 1}">
+												오프라인
+											</c:if> 
+										<c:if test="${rboard.rb_meet == 2}">
 									온라인/오프라인
 									</c:if> <br>
 										</span>
 
 										<div id="field">
-											<span>모집필드 | </span>
 											<c:forEach var="field" items="${rboard.f_name_arr}">
-												${field}
+											<span class="mofield">${field}</span>
 											</c:forEach>
 										</div>
 										<div>
-											<span>신청인원 | </span> <span>${rboard.rb_apply_count}/<c:if
+											<span class="apply_count">신청인원 | ${rboard.rb_apply_count}
+											<c:if
 													test="${rboard.rb_teamsize==0}">인원 미정</c:if> <c:if
 													test="${rboard.rb_teamsize!=0 && rboard.rb_teamsize!=10}">${rboard.rb_teamsize}</c:if>
 
