@@ -38,7 +38,7 @@
 									<th>프로젝트 시작일</th>
 									<th>프로젝트 기간</th>
 									<th>팀원</th>
-									<th>정지</th>
+									<th>상태</th>
 								</tr>
 								<c:forEach var="member" items="${rboardList}">
 									<tr>
@@ -46,9 +46,16 @@
 										<td>${member.rb_pj_title}</td>
 										<td>${member.rb_start}</td>
 										<td>${member.rb_period}개월</td>
+										<td>
+											<c:if test="${member.team_status==1}">
+												진행 중
+											</c:if>
+											<c:if test="${member.team_status==3}">
+												종료
+											</c:if>
+										</td>
 										<td><a href="checkTeamMember.do?team_num=${member.rb_num}" class="button checkTeamMember">팀원 확인</a>
-										<td><a href="stopTeam.do?team_num=${member.rb_num}" class="button deleteTeam"> 강제 정지 </a></td>
-										
+										<%-- <td><a href="stopTeam.do?team_num=${member.rb_num}" class="button deleteTeam"> 강제 정지 </a></td> --%>
 									</tr>
 								</c:forEach>
 							</table>

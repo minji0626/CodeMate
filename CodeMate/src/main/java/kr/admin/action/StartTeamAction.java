@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.member.dao.TeamDAO;
+import kr.rboard.dao.ApplyDAO;
 
 public class StartTeamAction  implements Action{
 
@@ -20,11 +21,21 @@ public class StartTeamAction  implements Action{
 			return "redirect:/member/loginForm.do";
 		} else if (mem_auth == 9) { //관리자로 로그인 된 경우
 			int team_num = Integer.parseInt(request.getParameter("team_num"));
-			TeamDAO dao = TeamDAO.getInstance();
-			dao.startTeam(team_num);
-			request.setAttribute("notice_msg", "팀을 활성화시켰습니다.");
-			request.setAttribute("notice_url", request.getContextPath() + "/admin/manageStopTeam.do");
-			return "/WEB-INF/views/common/alert_view.jsp";
+			TeamDAO tdao = TeamDAO.getInstance();
+			
+			ApplyDAO dao = ApplyDAO.getInstance();
+			boolean check = dao.minimumTeamMember(team_num);
+			if(check) {
+				dao.teamActivation(team_num);
+				request.setAttribute("notice_msg", "팀을 활성화시켰습니다.");
+				request.setAttribute("notice_url", request.getContextPath() + "/admin/manageStopTeam.do");
+				return "/WEB-INF/views/common/alert_view.jsp";
+			} else {
+				request.setAttribute("notice_msg", "팀원이 최소 한 명은 필요합니다.");
+				request.setAttribute("notice_url", request.getContextPath() + "/admin/manageStopTeam.do");
+				return "/WEB-INF/views/common/alert_view.jsp";
+			}
+			
 		} else {
 			request.setAttribute("notice_msg", "페이지 접근 권한이 없습니다.");
 			request.setAttribute("notice_url", request.getContextPath() + "/main/main.do");

@@ -130,7 +130,7 @@ button {
 	font-size: 12px;
 }
 
-.checkTeamMember, .changeLeader, .deleteTeam, .startTeam, .delete,
+.checkTeamMember, .changeLeader, .deleteTeam, .startTeam, .delete, .mem_delete_btn,
 	.deleteMemberBtn {
 	padding: 5px 10px;
 	border: none;
@@ -156,7 +156,7 @@ button {
 	color: white;
 }
 
-.deleteMemberBtn, .deleteTeam, .delete {
+.deleteMemberBtn, .deleteTeam, .delete, .mem_delete_btn {
 	transition: transform 0.3s;
 	background-color: #FF4500;
 	color: white;

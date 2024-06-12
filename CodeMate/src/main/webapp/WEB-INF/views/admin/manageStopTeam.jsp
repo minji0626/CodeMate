@@ -40,14 +40,16 @@
 									<th>활성화</th>
 								</tr>
 								<c:forEach var="member" items="${rboardList}">
-									<tr>
-										<td>${member.rb_num}</td>
-										<td>${member.rb_pj_title}</td>
-										<td>${member.rb_start}</td>
-										<td>${member.rb_period}개월</td>
-										<td><a href="startTeam.do?team_num=${member.rb_num}" class="button startTeam">활성화</a></td>
-										
-									</tr>
+									<c:if test="${member.team_status==0}">
+										<tr>
+											<td>${member.rb_num}</td>
+											<td>${member.rb_pj_title}</td>
+											<td>${member.rb_start}</td>
+											<td>${member.rb_period}개월</td>
+											<td><a href="startTeam.do?team_num=${member.rb_num}" class="button startTeam">활성화</a></td>
+											
+										</tr>
+									</c:if>
 								</c:forEach>
 							</table>
 							<div>${page}</div>
