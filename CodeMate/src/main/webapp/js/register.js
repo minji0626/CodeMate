@@ -7,7 +7,7 @@ $(function() {
 	$('#mem_id').on('blur', function() {
 		//아이디 중복 체크
 		if (!/^[A-Za-z0-9]{4,12}$/.test($('#mem_id').val())) {
-			$('#message_id').css('color','red').text('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
+			$('#message_id').css('color', 'red').text('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자 사용');
 			$('#mem_id').val('').focus();
 			return;
 		}
@@ -40,7 +40,7 @@ $(function() {
 
 	//이메일 중복 체크
 	$('#mem_email').on('blur', function() {
-		if($('#mem_email').val() == '') {
+		if ($('#mem_email').val() == '') {
 			$('#message_email').css('color', 'red').text('이메일을 입력하세요.');
 			$('#mem_email').val('').focus();
 			return;
@@ -76,9 +76,16 @@ $(function() {
 	/* 닉네임 중복 체크 */
 	$('#mem_nickname').on('blur', function() {
 		var nickname = $(this).val();
-		if(nickname == '') {
+		if (nickname == '') {
 			$('#message_nickname').css('color', 'red').text('닉네임을 입력하세요.');
 			$('#message_nickname').val('').focus();
+			return;
+		}
+
+		// 닉네임 길이 체크
+		if (nickname.length > 10) {
+			$('#message_nickname').css('color', 'red').text('닉네임은 최대 10자까지 설정할 수 있습니다.');
+			$('#mem_nickname').val('').focus();
 			return;
 		}
 		$.ajax({

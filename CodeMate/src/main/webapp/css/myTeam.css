@@ -39,9 +39,9 @@
 	font-weight: bold;
 }
 .skill_font_T{
-	font-size:13px;
+	    font-size: 0.8em;
 	color:#636363;
-	font-weight: bold;
+	font-weight: 500;
 	margin-bottom: 3px;
 	margin-left: 3px;
 	white-space: nowrap;

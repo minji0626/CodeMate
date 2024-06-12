@@ -177,6 +177,12 @@ $(function() {
 			return;
 		}
 
+		// 닉네임 길이 체크
+		if (nickname.length > 10) {
+			$('#message_nickname').css('color', 'red').text('닉네임은 최대 10자까지 설정할 수 있습니다.');
+			$('#mem_nickname').val('').focus();
+			return;
+		}
 
 
 		// 서버에 닉네임 중복 확인 요청을 보냄
