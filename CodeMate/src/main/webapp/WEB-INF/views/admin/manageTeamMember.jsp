@@ -35,7 +35,8 @@
 								<tr>
 									<th>팀 번호</th>
 									<th>이름</th>
-									<th>등급</th>
+									<th>상태</th>
+									<th>지위</th>
 									<th>팀장 위임</th>
 									<th>팀원 삭제</th>
 								</tr>
@@ -43,6 +44,20 @@
 									<tr>
 										<td>${team_num}</td>
 										<td>${tmember.mem_nickname}</td>
+										<td>
+											<c:if test="${tmember.mem_auth==2}">
+												일반 회원
+											</c:if>
+											<c:if test="${tmember.mem_auth==1}">
+												정지 회원
+											</c:if>
+											<c:if test="${tmember.mem_auth==0}">
+												탈퇴한 회원
+											</c:if>
+											<c:if test="${tmember.mem_auth==9}">
+												관리자
+											</c:if>
+										</td>
 										<c:if test="${tmember.tm_auth==4}">
 											<td>팀장</td>
 										</c:if>

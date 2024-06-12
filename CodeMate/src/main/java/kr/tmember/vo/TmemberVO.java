@@ -11,9 +11,17 @@ public class TmemberVO {
 	private String mem_id;
 	private int mem_level;
 	private String mem_photo;
+	private int mem_auth;
 	
 	
 	
+	
+	public int getMem_auth() {
+		return mem_auth;
+	}
+	public void setMem_auth(int mem_auth) {
+		this.mem_auth = mem_auth;
+	}
 	public int getTeam_status() {
 		return team_status;
 	}

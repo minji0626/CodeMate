@@ -93,6 +93,7 @@ public class TmemberDAO {
 				tmember.setMem_photo(rs.getString("mem_photo"));
 				tmember.setMem_num(rs.getInt("mem_num"));
 				tmember.setMem_id(rs.getString("mem_id"));
+				tmember.setMem_auth(rs.getInt("mem_auth"));
 				tmember.setMem_level(rs.getInt("mem_level"));
 				tmember.setTeam_num(rs.getInt("team_num"));
 				tmember.setMem_nickname(rs.getString("mem_nickname"));

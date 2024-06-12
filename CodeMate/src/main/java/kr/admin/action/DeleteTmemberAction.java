@@ -39,11 +39,18 @@ public class DeleteTmemberAction implements Action {
 			int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 			int team_num = Integer.parseInt(request.getParameter("team_num"));
 			int leader = Integer.parseInt(request.getParameter("leader"));
-
+			ApplyDAO adao = ApplyDAO.getInstance();
+			
 			if(mem_num==leader) {
-				mapAjax.put("result", "isLeader");
+				boolean check1 = adao.manageLeaderLast(team_num);
+				if(check1) {
+					mapAjax.put("result", "successLeader");
+				} else {
+					mapAjax.put("result", "isLeader");
+				}
+				
 			} else {
-				ApplyDAO adao = ApplyDAO.getInstance();
+				
 				boolean check = adao.minimumTeamMember(team_num);
 				if(check) {
 					mapAjax.put("result", "min");
