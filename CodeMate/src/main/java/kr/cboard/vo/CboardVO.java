@@ -18,6 +18,7 @@ public class CboardVO {
 	
 	
 	public int getCboard_like() {
+		
 		return cboard_like;
 	}
 	public void setCboard_like(int cboard_like) {

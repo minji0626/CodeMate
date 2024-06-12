@@ -196,7 +196,7 @@
 										<span>
 										
 										 <img id="good3" src="${pageContext.request.contextPath}/images/cje/noLike.png">
-										  ${cboard.cb_like} 
+										  ${cboard.cboard_like} 
 										 <img id="hit3" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
 										 ${cboard.cb_hit}
 										 </span>
