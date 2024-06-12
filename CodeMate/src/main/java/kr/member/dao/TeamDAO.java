@@ -38,7 +38,7 @@ public class TeamDAO {
             conn = DBUtil.getConnection();
             conn.setAutoCommit(false);
 
-            sql = "SELECT team_num, tm_auth FROM team_member WHERE mem_num=?";
+            sql = "SELECT team_num, tm_auth FROM team_member WHERE mem_num=? ORDER BY team_num DESC";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, mem_num);
 
