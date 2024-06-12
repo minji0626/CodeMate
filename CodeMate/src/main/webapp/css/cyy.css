@@ -124,7 +124,7 @@ div#mini-card2 { /* 1 */
 
 /* 더보기 */
 #front_btn {
-	transform: translate3d(220%, 100%, 0);
+	transform: translate3d(200%, 100%, 0);
 	font-size: 13px;
 	width: 100px;
 	color: white;
@@ -197,7 +197,7 @@ a.more {
 	transform: translate3d(5%, 180%, 0);
 }
 #front_btn3 {
-	transform: translate3d(220%, 100%, 0);
+	transform: translate3d(200%, 100%, 0);
 	font-size: 13px;
 	width: 100px;
 	color: white;
