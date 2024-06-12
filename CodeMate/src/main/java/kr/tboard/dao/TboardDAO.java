@@ -74,7 +74,7 @@ public class TboardDAO {
 				}
 			}
 
-			sql = "SELECT COUNT(*) FROM team_board JOIN member USING(mem_num) JOIN member_detail USING(mem_num) WHERE team_num = ?"
+			sql = "SELECT COUNT(*) FROM team_board LEFT OUTER JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) WHERE team_num = ?"
 					+ sub_sql;
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, team_num);
@@ -122,7 +122,7 @@ public class TboardDAO {
 			}
 
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM team_board "
-					+ "JOIN member USING(mem_num) JOIN member_detail USING(mem_num) " + "WHERE team_num = ? " + sub_sql
+					+ "LEFT OUTER JOIN member USING(mem_num) LEFT OUTER JOIN member_detail USING(mem_num) " + "WHERE team_num = ? " + sub_sql
 					+ " ORDER BY tb_num DESC) a) " + "WHERE rnum >= ? AND rnum <= ?";
 
 			pstmt = conn.prepareStatement(sql);

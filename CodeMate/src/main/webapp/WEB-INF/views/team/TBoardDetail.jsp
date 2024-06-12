@@ -39,7 +39,14 @@
         				<c:if test="${empty tboard.mem_photo}">
         				<img class="profile_pic" height="25" width="25" src="${pageContext.request.contextPath}/images/face.png" alt="기본 이미지" style="border-radius: 50%">
         				</c:if>
-		       			<span><b>${tboard.mem_nickname}</b></span>
+		       			<span><b>
+		       				<c:if test="${empty tboard.mem_nickname}">
+                             탈퇴한 사용자
+                            </c:if>
+                            <c:if test="${!empty tboard.mem_nickname}">
+                             ${tboard.mem_nickname}
+                            </c:if>
+                            </b></span>
 		       			<span>등록일 | ${tboard.tb_reg_date }</span>
 		       		</div>
 		       		

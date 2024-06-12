@@ -65,7 +65,15 @@ $(function() {
 					} else {
 						output += '<img src="../upload/' + item.mem_photo + '" id="profile_pic" height="25" width="25">';
 					}
-					output += '<span>' + item.mem_nickname + '</span>';
+					output += '<span>';
+					
+					if (item.mem_nickname == null){
+						output += '탈퇴한 사용자';
+					} else {
+						output += item.mem_nickname;
+					}
+					
+					output += '</span>';
 
 					if (item.tc_modify_date) {
 						output += '<span class="modify-date">' + item.tc_modify_date + ' 수정됨 </span>';

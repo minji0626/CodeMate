@@ -47,6 +47,7 @@
         <div class="table-container">
         <c:if test="${count == 0 }">
         	<p>표시할 글 정보가 없습니다.</p>
+        	${count }
         </c:if>
         
         <c:if test="${count > 0 }">
@@ -64,7 +65,14 @@
                         <c:if test="${tboard.tb_auth == 1}">
                             <tr class="notice">
                                 <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}&team_num=${team_num}">${tboard.tb_title}</a></td>
-                                <td>${tboard.mem_nickname}</td>
+                                <td>
+                               	<c:if test="${empty tboard.mem_nickname}">
+                               		탈퇴한 사용자
+                               	</c:if>
+                               	<c:if test="${!empty tboard.mem_nickname}">
+                               	${tboard.mem_nickname}
+                               	</c:if>
+                                </td>
                                 <td>${tboard.tb_reg_date}</td>
                             </tr>
                         </c:if>
@@ -74,7 +82,14 @@
                     <c:if test="${tboard.tb_auth == 2}">
                         <tr>
                             <td><a href="${pageContext.request.contextPath}/team/TBoardDetail.do?tb_num=${tboard.tb_num}&team_num=${team_num}">${tboard.tb_title}</a></td>
-                            <td>${tboard.mem_nickname}</td>
+                            <td>
+							<c:if test="${empty tboard.mem_nickname}">
+                             탈퇴한 사용자
+                            </c:if>
+                            <c:if test="${!empty tboard.mem_nickname}">
+                             ${tboard.mem_nickname}
+                            </c:if>
+							</td>
                             <td>${tboard.tb_reg_date}</td>
                         </tr>
                     </c:if>
