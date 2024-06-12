@@ -129,10 +129,10 @@
 
 									<div class="hit">
 										<span>
-										<img id="hit2" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
-										 ${cboard.cb_hit}
-										 
 										 <img id="good2" src="${pageContext.request.contextPath}/images/cje/noLike.png">
+										 
+										 <img id="hit2" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
+										 ${cboard.cb_hit}
 										 </span>
 									</div>
 								</div><!-- end of detail2 -->
@@ -194,9 +194,11 @@
 
 									<div class="hit">
 										<span>
-										<img id="hit3" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
-										 ${cboard.cb_hit}
+										
 										 <img id="good3" src="${pageContext.request.contextPath}/images/cje/noLike.png">
+										 
+										 <img id="hit3" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
+										 ${cboard.cb_hit}
 										 </span>
 									</div>
 								</div><!-- end of detail3 -->
