@@ -68,7 +68,7 @@
 											<td>${community.cb_modify_date}</td>
 										</c:if>
 										<td>
-											<button id="delete_community" class="deleteMemberBtn" data-cbnum="${community.cb_num}">삭제</button>
+											<button class="deleteMemberBtn" data-cbnum="${community.cb_num}">삭제</button>
 										</td>
 									</tr>
 								</c:forEach>
