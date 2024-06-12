@@ -1,11 +1,9 @@
 @charset "utf-8";
 /* 카드 슬라이드 */
 div#mini-card1 { /* 1 */
-	position: relative;
-	top: 70px;
-	left:70px;
-	width: 90%;
-	margin-bottom: 70px;
+	margin-left: 5.5%;
+    margin-top: 8.5%;
+    width: 90%;
 }
 .w { /* 설명글 */
 	display: flex;
@@ -53,39 +51,34 @@ div#mini-card1 { /* 1 */
 	cursor:pointer;
 }
 /* 더보기 */
-.explain1 {
-	font-size: 20px;
-	    margin-right: 1%;
-}
 .explain {
 	font-size: 20px;
-	transform: translate3d(5%, 180%, 0);
 }
+
 #back_btn {
-	font-size: 13px;
-	width: 65px;
-	color: white;
-	border-radius: 20px;
-	background-color: #5aca7c;
-	padding: 2px 13px 2px;
-	cursor: pointer;
-	margin-right: 70%;
+	    font-size: 13px;
+    width: 65px;
+    color: white;
+    border-radius: 20px;
+    background-color: #5aca7c;
+    padding: 2px 13px 2px;
+    cursor: pointer;
+    margin-right: 65.5%;
+    margin-left: 6.5%;
+    text-align: center;
 }
 /* 2 */
-
-div#mini-card2 { /* 1 */
-	position: relative;
-	top: 70px;
-	left:70px;
-	width: 90%;
-	margin-bottom: 70px;
+div#mini-card2 { 
+	    margin-left: 5.6%;
+    margin-top: 5%;
+    width: 90%;
+    
 }
 .w2 { /* 설명글 */
 	width: 50%;
 }
 .mini-container2 { /* 보여지는 창 */
 	position: relative;
-	top: 30px;
 	overflow: hidden;
 	height: 330px;
 }
@@ -93,31 +86,30 @@ div#mini-card2 { /* 1 */
 	height: 330px;
 }
 .content2 { /* 이미지 */
-	height: 290px;
-	float: left;
-	width: 250px;
-	margin: 20px;
-	border: 2px solid #d4d4d4;
-	border-radius: 10px;
-	background-color: #ffffff;
-	box-shadow:0px 2px 10px rgba(0, 0, 0, 0.3);	
-	transform:scale(1.0);
+	height: 210px;
+    float: left;
+    width: 250px;
+    margin: 20px;
+    border: 2px solid #d4d4d4;
+    border-radius: 20px;
+    background-color: #ffffff;
+    transition: all .3s ease-in-out;
+    transform: scale(1.0);
 }
 .content2:hover{
-	transform:scale(1.01);
-  transition: transform .2s;
-   box-shadow:0px 4px 12px rgba(0, 0, 0, 0.3);	
+	transform:scale(1.02);
+  	box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);	
 }
 .p2 {
 	position: relative;
-	bottom: 150px;
+	bottom: 210px;
 	right: 20px;
 	background: none;
 	border: none;
 }
 .n2 {
 	position: relative;
-	bottom: 150px;
+	bottom: 210px;
 	left: 1140px;
 	background: none;
 	border: none;
@@ -139,18 +131,15 @@ div#mini-card2 { /* 1 */
 
 /* 3 */
 div#mini-card3 { 
-	position: relative;
-	top: 70px;
-	left:70px;
-	width: 90%;
-	margin-bottom: 70px;
+	    margin-left: 5.6%;
+   margin-top: 2%;
+    width: 90%;
 }
 .w3 { /* 설명글 */
 	width: 50%;
 }
 .mini-container3 { /* 보여지는 창 */
 	position: relative;
-	top: 30px;
 	overflow: hidden;
 	height: 330px;
 }
@@ -175,14 +164,14 @@ div#mini-card3 {
 }
 .p3 {
 	position: relative;
-	bottom: 150px;
+	bottom: 210px;
 	right: 20px;
 	background: none;
 	border: none;
 }
 .n3 {
 	position: relative;
-	bottom: 150px;
+	bottom: 210px;
 	left: 1140px;
 	background: none;
 	border: none;
@@ -191,10 +180,7 @@ div#mini-card3 {
 a.more {
 	font-size: 0.9em;
 }
-.explain {
-	font-size: 20px;
-	transform: translate3d(5%, 180%, 0);
-}
+
 #front_btn3 {
 	transform: translate3d(200%, 100%, 0);
 	font-size: 13px;
@@ -330,7 +316,6 @@ form {
 /* 슬라이드 글 목록 */
 
 /* 팀원 구하기 */
-
 .endDate {
 	padding: 5px;
     display: flex;
@@ -358,6 +343,10 @@ form {
 	margin: 5px;
 	cursor: pointer; 
 }
+.link2 {
+	padding : 10px 10px;
+	cursor: pointer; 
+}
 .rb-title {
 	padding: 6px 10px;
     font-weight: bold;
@@ -367,95 +356,57 @@ form {
 }
 
 /* 커뮤니티 */
-.top{
-	position:relative;
-	top:5px;
-}
 .type{
-	margin:5px;
-}
-.F{
-	position:relative;
-	right:6px;
+	    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 1.05em;
+    font-weight: 700;
 }
 #line2{
 	position:relative;
 	top:10px;
 }
 #middle {
-	margin-bottom: 5px;
-	transform: translateY(10%);
-	margin: 10px 5px 5px 10px;
-	width: 170px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	position:relative;
-	top:10px;
-}
-.title{
-	font-size:19px;
-}
-#below {
-	font-size: 14px;
-	margin-bottom: 5px;
-	transform: translateY(380%);
-	width: 180px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-.b {
-	margin: 10px 5px 5px 10px;
-}
-.hit {
-	font-size: 13px;
-	transform: translate3d(70%, 250%, 0);
+	padding: 10px 10px;
+    font-size: 1.05em;
+    margin-bottom: 5px;
+    margin-top: 2%;
+    height: 110px;
+    font-weight: 500;
 }
 
-.board_type{
-	transform:translateX(10%);
+.like_hit {
+	display: flex;
+    justify-content: flex-end;
+}
+
+.cb_like {
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+}
+
+#free{
+	margin-right: 2%;
 }
 #coding{
-	transform:translateY(30%);
-}
-#free{
-	transform:translateY(30%);
-}
-/* 자유 게시판 */
-#hit2{
-	width:16px;	
-}
-#good2{
-	width:16px;	
+	    margin-right: 2%;
 }
 .detail2{
-	position: relative;
-	top: 70px;
-}
-.more2{
-	font-size: 12px;
-	position: relative; 
-	left: 1000px;
-	top: 15px;
+	    margin: 8px 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--gray-5);
 }
 
-/*개발 게시판*/
-#hit3{
-	width:16px;	
-}
 #good3{
-	width:16px;	
-}
-.more3{
-	font-size: 12px;
-	position: relative; 
-	left: 1000px;
-	top: 15px;
-}
-.detail3{
-	position: relative;
-	top: 70px;
+	width: 16px;
+    margin-right: 3px;
 }
 
 
@@ -875,4 +826,16 @@ input[id="recruiting_filter"]:checked+label {
     margin-right: 3px;
     padding: 5px;
 }
-	
+
+#back_btn1 {
+	font-size: 13px;
+    width: 65px;
+    color: white;
+    border-radius: 20px;
+    background-color: #5aca7c;
+    padding: 2px 13px 2px;
+    cursor: pointer;
+    margin-right: 65%;
+    margin-left: 2%;
+    text-align: center;
+}

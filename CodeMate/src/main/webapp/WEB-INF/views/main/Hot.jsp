@@ -9,8 +9,9 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <div class="page-main">
 	<div id="mini-card1">
+	
 		<div class="w">
-			<div class="explain1">
+			<div class="explain">
 				<b>이번주 코메 인기글</b>
 			</div>
 			<div id="back_btn" onclick="location.href='${pageContext.request.contextPath}/rboard/list.do'">
@@ -19,8 +20,8 @@
 			<div class="go_more">
 				<a class="more" href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
 			</div>
-			
 		</div>
+		
 		<div class="mini-container1">
 			<div class="wrapper1">
 				<c:forEach var="rboard" items="${SlideList}">
@@ -105,11 +106,13 @@
 	</div>
 
 	<div id="mini-card2">
-
-		<div class="w2">
-			<div class="explain"> <b>이번주 자유 게시판 인기글</b> </div>
-			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">자유 게시판</button>
-			<a class="more2" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
+	
+		<div class="w">
+			<div class="explain"> <b>이번주 자유 게시판 인기글</b></div>
+			<div id="back_btn1" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">자유 게시판</div>
+			<div class="go_more">
+				<a class="more" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
+			</div>
 		</div>
 
 		<div class="mini-container2">
@@ -117,37 +120,31 @@
 				<c:forEach var="cboard" items="${SlideList2}">
 					<div class="mini2">
 						<div class="content2" onclick="location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}'">
-							<div class="link">
+							<div class="link2">
 								<div class="top">
 									
-									<span class="type F"> 
-										
+									<div class="type"> 
 										<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="25px" id="free">
 										<span class="board_type">자유 게시판</span>
-										
-									</span>
-									<hr size="2px" id="line2">
+									</div>
+									
 								</div>
 
 								<div id="middle">
-									<span class="title">${cboard.cb_title}</span> <br> <br>
+									<span class="title">${cboard.cb_title}</span>
 								</div>
 
 								<div class="detail2">
-
+								
 									<div id="below">
-										<span class="b date">등록일 | ${cboard.cb_reg_date}</span> <br>
+										<span class="b date">등록일 | ${cboard.cb_reg_date}</span>
 									</div>
 
-									<div class="hit">
-										<span>
-										 <img id="good2" src="${pageContext.request.contextPath}/images/cje/noLike.png">
-										  ${cboard.cboard_like} 
-										 <img id="hit2" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
-										 ${cboard.cb_hit}
-										 </span>
-									</div>
-								</div><!-- end of detail2 -->
+										<div class="cb_like">
+										 <img id="good3" src="${pageContext.request.contextPath}/images/cje/yesLike.png">
+										  ${cboard.cboard_like}
+										 </div>
+								</div>
 								
 							</div>
 						</div>
@@ -171,49 +168,42 @@
 	<!-- end of mini-card2 -->
 	
 	<div id="mini-card3">
-
-		<div class="w3">
-			<div class="explain"> <b>이번주 코메 인기글</b> </div>
-			<button id="front_btn3" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do?cb_type=1'">개발 게시판</button>
-			<a class="more3" href=${pageContext.request.contextPath}/cboard/community.do?cb_type=1>더보기</a>
+	
+		<div class="w">
+			<div class="explain"> <b>이번주 개발 게시판 인기글</b></div>
+			<div id="back_btn1" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do?cb_type=1'">개발 게시판</div>
+			<div class="go_more">
+				<a class="more" href=${pageContext.request.contextPath}/cboard/community.do?cb_type=1>더보기</a>
+			</div>
 		</div>
 
 		<div class="mini-container3">
 			<div class="wrapper3">
 				<c:forEach var="cboard" items="${SlideList3}">
 					<div class="mini3">
-						<div class="content3" onclick="location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}'">
-							<div class="link">
-								<div class="top">
-									 <span class="type D"> 
-										
+						<div class="content2" onclick="location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}'">
+							<div class="link2">
+							
+								<div class="type">
 										<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="25px" id="coding"> 
 										<span class="board_type">개발 게시판</span>
-									</span>  
-									
-									<hr size="2px" id="line2">
 								</div>
 
 								<div id="middle">
-									<span class="title">${cboard.cb_title}</span> <br> <br>
+									<span class="title">${cboard.cb_title}</span>
 								</div>
 
 								<div class="detail2">
-
+								
 									<div id="below">
-										<span class="b date">등록일 | ${cboard.cb_reg_date}</span> <br>
+										<span class="b date">등록일 | ${cboard.cb_reg_date}</span>
 									</div>
 
-									<div class="hit">
-										<span>
-										
-										 <img id="good3" src="${pageContext.request.contextPath}/images/cje/noLike.png">
-										  ${cboard.cboard_like} 
-										 <img id="hit3" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
-										 ${cboard.cb_hit}
-										 </span>
-									</div>
-								</div><!-- end of detail3 -->
+										<div class="cb_like">
+										 <img id="good3" src="${pageContext.request.contextPath}/images/cje/yesLike.png">
+										  ${cboard.cboard_like}
+										 </div>
+								</div>
 								
 							</div>
 						</div>
