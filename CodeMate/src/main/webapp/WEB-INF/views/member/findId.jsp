@@ -30,7 +30,7 @@
 			<c:if test="${ckId ==1}">
 				<span class="check"><b>아이디 확인</b></span>
 					<span id="yourID">회원님의 아이디는 <b>[${mem_id}]</b> 입니다.</span>
-				
+				 
 				<div class="align-center">
 				<input id="login_btn" class="tryAgain_btn" type="button" value="로그인" 
 						onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
