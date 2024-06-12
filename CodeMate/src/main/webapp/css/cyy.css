@@ -213,275 +213,121 @@ a.more {
 #login_logo a {
 	position: absolute;
 	top: 135px;
-
 	left: 750px;
-
 	font-family: "Noto Sans KR", sans-serif;
-
 	text-decoration: none;
-
 	color: #000000;
-
 	font-size: 2.5em;
-
 	font-weight: bold;
-
 }
-
-
-
 #logo_pic_login {
-
 	position: relative;
-
 	top: 20px;
-
 }
-
-
-
 #login_header {
-
 	height: 80px;
-
 	margin-top: 30px;
-
 	background-color: white;
-
 }
-
-
-
 /*로그인 폼 */
-
 #insert {
-
 	position: relative;
-
 	top: 150px;
-
 	right: 35px;
-
 }
-
-
-
 .floating-label input {
-
 	border-radius: 5px;
-
 	margin: 20px;
-
 }
-
-
-
 .floating-label ul li {
-
 	position: relative;
-
 	left: 20px;
-
 }
-
-
-
 #login_btn {
-
 	border: none;
-
 	color: white;
-
 	background-color: black;
-
 	border-radius: 10px;
-
 	width: 300px;
-
 	height: 40px;
-
 	margin: 50px;
-
 	position: absolute;
-
 	top: 530px;
-
 	left: 720px;
-
 }
-
-
-
 #find {
-
 	text-align: center;
-
 	position: relative;
-
 	top: 300px;
-
 	right: 5px;
-
 }
-
-
-
 #sign_up {
-
 	position: relative;
-
 	top: 350px;
-
 	right: 5px;
-
 	text-align: center;
-
 }
-
-
-
 /* 회원가입 폼 */
 
 #insert_register {
-
 	position: relative;
-
 	top: 100px;
-
 	left: 15px;
-
 }
-
-
-
 .info input {
-
 	border-radius: 5px;
-
 	margin: 18px;
-
 	height: 40px;
-
 }
-
-
-
 .floating-label-reg ul li {
-
 	position: relative;
-
 	left: 20px;
-
 }
-
-
-
 #register_form input[id="id"] {
-
 	width: 312px;
-
 }
-
-
-
 #btns {
-
 	position: absolute;
-
 	top: 700px;
-
 	left: 750px;
-
 }
-
-
-
 #reg_btn {
-
 	border: none;
-
 	color: white;
-
 	background-color: black;
-
 	border-radius: 10px;
-
 	width: 300px;
-
 	height: 40px;
-
 	margin: 50px;
-
 }
-
-
-
 #cancel_btn {
-
 	color: blck;
-
 	background-color: white;
-
 	border-radius: 10px;
-
 	width: 300px;
-
 	height: 40px;
-
 	margin: 50px;
-
 	position: relative;
-
 	top: 60px;
-
 	right: 408px;
-
 }
-
-
-
 .info label {
-
 	position: relative;
-
 	bottom: 10px;
-
 	left: 150px;
-
 }
-
-
-
 .content-main {
-
 	height: 780px;
-
 }
-
-
-
 #greeting {
-
 	position: relative;
-
 	top: 110px;
-
 	left: 410px;
-
 	font-size: 0.8em;
-
 }
-
-
-
 form {
-
 	border: none !important;
-
 }
-
-
-
 /* 슬라이드 글 목록 */
 
 /* 팀원 구하기 */
@@ -492,27 +338,27 @@ form {
 	top: 5px;
 }
 .project {
-	font-size: 14px;
+	font-size: 15px;
 	background: #b1db63;
 	border-radius: 10px;
-	padding: 4px;
+	padding: 6px;
 	color: white;
 }
 .study {
-	font-size: 14px;
+	font-size: 15px;
 	background: #f5c33b;
 	border-radius: 10px;
-	padding: 4px;
+	padding: 6px;
 	color: white;
-
 }
 .endDate {
 	font-size: 10pt;
 	font-weight: bold;
 	color: var(--gray-4);
-	transform: translateY(330%);
-	margin-left: 140px;
-	font-size: 13px;
+	position:relative;
+	bottom:20px;
+	margin-left: 190px;
+	font-size: 17px;
 }
 #line1 {
 	transform: translateY(390%);
@@ -528,7 +374,7 @@ form {
 }
 .way {
 	font-size: 14px;
-	transform: translateY(160%);
+	transform: translateY(180%);
 	width: 230px;
 	margin-left: 5px;
 }
@@ -542,11 +388,11 @@ form {
 }
 .link {
 	margin: 5px;
-	cursor: pointer;
+	cursor: pointer; 
 }
 .rb-title {
 	font-weight: bold;
-	font-size: 17px; margin-left : 8px;
+	font-size: 18px; margin-left : 8px;
 	margin-top: 10px;
 	transform: translateY(40%);
 	margin-left: 8px;
@@ -556,13 +402,15 @@ form {
 	text-overflow: ellipsis;
 }
 #field {
-	width: 180px;
+	width: 140px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 .apply_count{
 	margin-left:60%;
+	position:relative;
+	bottom:23px;
 }
 /* 커뮤니티 */
 .top{

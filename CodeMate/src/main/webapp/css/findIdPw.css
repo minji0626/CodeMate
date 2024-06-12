@@ -50,6 +50,7 @@ button#Id{
 	border:none;
 	width:80px;
 	height:50px;
+	cursor:pointer;
 }
 button#Id:hover{
 	color:#ccc;
@@ -62,6 +63,7 @@ button#Pw{
 	background:none;
 	border:none;
 	height:50px;
+	cursor:pointer;
 }
 button#Pw:hover{
 	color:#ccc;
@@ -127,15 +129,17 @@ button[type="submit"]{
 }
   .canc{
   	position:relative;
-  	top:30px; left:5px;
+  	top:30px; right:10px;
  	border-radius:5px;
  	margin-top: 30px;
   	margin-left : 10px;
-    width: 85%;
     padding: 10px;
     font-size: 16px;
     border: solid 1px;
     background:none;
+    cursor:pointer;
+    width:90%;
+	height:50px;
  }
 
 /* 계정찾기 공통 */
@@ -162,6 +166,7 @@ button[type="submit"]{
     font-size: 16px;
     border: solid 1px;
     background:none;
+    cursor:pointer;
 }
 /* 아이디 찾기 */
 #yourID{
