@@ -13,8 +13,8 @@
 </head>
 <body>
    <div class="page-container">
-      <div class="page-main">
          <!-- 헤더 -->
+         <div class="find_all">
          <div id="login_logo">
             <a href="${pageContext.request.contextPath}/main/main.do"
                class="logo"> <img id="logo_pic_login"
@@ -24,7 +24,20 @@
          </div>
          
          <div id="find_main">
-         <h2>계정 찾기</h2>
+         
+         <div id="btn">
+         <button id="Id">
+            아이디찾기
+            </button>
+            <button id="Pw">
+            비밀번호 찾기
+            </button>
+               <div id="w">
+                  <hr class="btnHr"  id="btnHr_click" size="2px">
+               </div>
+            
+         </div>
+         
          <!-- 찾기 창 슬라이드 -->
          <div class="slider-container">
             <div class="slider-wrapper" id="sliderWrapper">
@@ -56,23 +69,10 @@
             </div><!-- end of sliderWrapper -->
             
          </div><!-- end of slider-container -->
-         <div id="btn">
-         <button id="Id">
-            아이디찾기
-            </button>
-            <button id="Pw">
-            비밀번호 찾기
-            </button>
-            <hr class="btnHr" size="2px">
-               <div id="w">
-                  <hr class="btnHr"  id="btnHr_click" size="2px">
-               </div>
-            
-         </div>
+         
          
          </div>
-         
-   </div><!-- end of pagemain -->
+         </div>
    </div>
    <script>
     document.addEventListener("DOMContentLoaded", function () {

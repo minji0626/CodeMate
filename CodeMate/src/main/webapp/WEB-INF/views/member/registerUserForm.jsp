@@ -14,12 +14,19 @@
 </head>
 <body>
 <div class="page-container">
-		<span id="greeting">팀원 구하기 제일 쉬운 곳 코메!</span>		
+
+<div class="container">
+<div class="logo_all">
+
+<span id="greeting">팀원 구하기 제일 쉬운 곳 코메!</span>		
 		<div id="login_logo">
 			<a href="${pageContext.request.contextPath}/main/main.do" class="logo"> 
 			<img id="logo_pic_login" src="${pageContext.request.contextPath}/images/로고1.png" height="80" width="80"> CODEMATE
 		</a>
 		</div>
+		
+</div>
+		
 
 			<form id="register_form" action="registerUser.do" method="post">
 				<ul id="insert_register">
@@ -27,7 +34,6 @@
 						<label for="mem_id">아이디</label> 
 						<input type="text" name="mem_id" id="mem_id" maxlength="12" autocomplete="off" class="input-check">
 						<div id="message_id" class="error-message"></div> <!-- 수정 -->
-						<div class="form-notice">*영문 또는 숫자(4자~12자)</div>
 		
 					<li class="info">
 						<label for="name">이름</label> 
@@ -61,6 +67,7 @@
 					<input id="cancel_btn" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			</form>
+	</div>
 	</div>
 </body>
 </html>

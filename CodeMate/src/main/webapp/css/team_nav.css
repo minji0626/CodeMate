@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-a{
+a {
 	text-decoration: none;
 }
 /* nav 전체 container 지정 */
@@ -45,22 +45,24 @@ a{
 }
 
 .profile {
-	width: 86%;
-	height: 230px;
-	border-radius: 5%;
+	width: 80%;
+	height: 200px;
+	border-radius: 8%;
 	background: #FFFFFF;
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 5px;
+	justify-content: center;
 	position: relative;
 }
 
 /* 프로필 사진 */
 #profile-img {
-	margin: 15px auto;
+	margin: 10px auto;
 	border-radius: 50%;
+	width: 30%;
+	height: auto;
 }
 
 /* 팀원, 팀장 지위 (flexbox 이용하여 수평, 수직 정렬) */

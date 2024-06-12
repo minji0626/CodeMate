@@ -1,4 +1,18 @@
+@charset "utf-8";
+
 /* 공통 스타일 */
+:root {
+    --primary-color: #000;
+    --hover-color: #ccc;
+    --gray-4: #bfbfbf;
+    --gray-7: #3f3f3f;
+    --font-size: 16px;
+    --button-height: 50px;
+    --input-height: 40px;
+    --container-width: 400px;
+    --container-height: 440px;
+}
+
 body {
     font-family: "Noto Sans KR", sans-serif;
     margin: 0;
@@ -14,224 +28,204 @@ body {
     text-align: center;
 }
 
-/* 로고 스타일 */
 #login_logo {
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 2em;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
 }
 
 #logo_pic_login {
     position: relative;
     top: 20px;
 }
-#find_main{
-	text-align:center;
+
+#find_main {
+    text-align: center;
 }
 
-h2{
-	position:relative;
-	top:100px; left:10px;
-}
-#btn{
- 	margin:0 auto;
-	position:relative;
-	bottom:480px; 
-	width:400px;
+#btn {
+    margin: 0 auto;
+    width: var(--container-width);
 } 
-button#Id{
-	position:relative;
-	right:10px;
-	font-size:16px;
-	background:none;
-	border:none;
-	width:80px;
-	height:50px;
-	cursor:pointer;
+
+button#Id, button#Pw {
+    position: relative;
+    font-size: var(--font-size);
+    background: none;
+    border: none;
+    height: var(--button-height);
+    cursor: pointer;
 }
-button#Id:hover{
-	color:#ccc;
+
+button#Id {
+    right: 10px;
+    width: 80px;
 }
-button#Pw{
-	width:150px;
-	position:relative;
-	left:80px;
-	font-size:16px;
-	background:none;
-	border:none;
-	height:50px;
-	cursor:pointer;
+
+button#Pw {
+    left: 80px;
+    width: 150px;
 }
-button#Pw:hover{
-	color:#ccc;
+
+button#Id:hover, button#Pw:hover {
+    color: var(--hover-color);
 }
-#w{
-	width:400px;
+
+#w {
+    width: var(--container-width);
 }
-.btnHr{
-	position:relative;
-	left:20px;
-	width:100%;
-	z-index:1;
+
+.btnHr {
+    position: relative;
+    left: 20px;
+    width: 100%;
+    z-index: 1;
 }
-#btnHr_click{
-	position:relative;
-	left:20px;
-	width:50%;
+
+#btnHr_click {
+    position: relative;
+    left: 20px;
+    width: 50%;
 }
-/* 슬라이더 */
+
 .slider-container {
-	position:relative;
-	top:175px; left:15px;
-	margin-top: 10px;
-	width: 400px; /* 컨테이너 너비 */
-	height: 600px; /* 컨테이너 높이 */
-	overflow: hidden; 
-	margin: 0 auto; /* 가운데 정렬 */
+    width: var(--container-width);
+    height: var(--container-height);
+    overflow: hidden;
+    margin: 0 auto;
 }
+
 .slider-wrapper {
-	display: flex;
-	height: 100%;
-	width: 400px;
+    display: flex;
+    height: 100%;
+    width: var(--container-width);
 }
 
 .slide {
-	margin-top: 10px;
-	width: 100%; /* 슬라이드 너비 */
-	flex-shrink: 0;
-	height:400px;
+    margin-top: 10px;
+    width: 100%;
+    flex-shrink: 0;
+    height: 400px;
 }
 
-input{
-	width: 90%;
-	height: 40px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	margin:10px auto !important;
-}
-button[type="submit"]{ 	
-	position:relative;
-	right:8px; top:30px;
-	background-color:black;
-	color:white;
-	margin-top: 30px;
-	margin-left : 10px;
-	width: 90%;
-	padding: 10px;
-	font-size: 16px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-button[type="submit"]:hover{
-	background-color: var(--gray-7);
-}
-  .canc{
-  	position:relative;
-  	top:30px; right:10px;
- 	border-radius:5px;
- 	margin-top: 30px;
-  	margin-left : 10px;
+input {
+    width: 90%;
+    height: var(--input-height);
     padding: 10px;
-    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px auto !important;
+}
+
+button[type="submit"] {
+    position: relative;
+    right: 8px;
+    top: 30px;
+    background-color: var(--primary-color);
+    color: white;
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 90%;
+    padding: 10px;
+    font-size: var(--font-size);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--gray-7);
+    transform: scale(1.02);
+}
+
+.canc {
+    position: relative;
+    top: 30px;
+    right: 10px;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-left: 10px;
+    padding: 10px;
+    font-size: var(--font-size);
     border: solid 1px;
-    background:none;
-    cursor:pointer;
-    width:90%;
-	height:45px;
- }
-.canc:hover{
-	color: var(--gray-4);
+    background: none;
+    cursor: pointer;
+    width: 90%;
+    height: 45px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
-/* 계정찾기 공통 */
-.line{
-	position: absolute;
-    left: 50%; top:30%;	
+
+.canc:hover {
+    color: var(--gray-4);
+    transform: scale(1.02);
+}
+	
+
+.line {
+    position: absolute;
+    left: 50%;
+    top: 30%;    
     transform: translateX(-50%);
-	width:25%;
+    width: 25%;
 }
-.check{
-	position: absolute;
-    left: 50%; top:25%;	
+
+.check {
+    position: absolute;
+    left: 50%;
+    top: 25%;    
     transform: translateX(-50%);
-    font-size:20px;
+    font-size: 20px;
 }
-.tryAgain_btn{
-	position: absolute;
+
+.tryAgain_btn {
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
- 	border-radius:5px;
- 	margin-top:30px;
-   	width:408px;
+    border-radius: 5px;
+    margin-top: 30px;
+    width: 408px;
     padding: 10px;
-    font-size: 16px;
+    font-size: var(--font-size);
     border: solid 1px;
-    background:none;
-    cursor:pointer;
+    background: none;
+    cursor: pointer;
 }
-.tryAgain_btn:hover{
-	color: var(--gray-4);
+
+.tryAgain_btn:hover {
+    color: var(--gray-4);
 }
-/* 아이디 찾기 */
-#yourID{
-	position: absolute;
-    left: 50%; top:40%;	
+
+#yourID, #IDnotFound, #PwNotFound, #LoginImp, .check1 {
+    position: absolute;
+    left: 50%;
+    top: 40%;    
     transform: translateX(-50%);
 }
 
-#IDnotFound{
-	position: absolute;
-    left: 50%; top:40%;	
-    transform: translateX(-50%);
+.input-check {
+    display: flex;
+    width: 25%;
+    position: relative;
+    bottom: 50px;
 }
 
-/* 비밀번호 찾기 */
-#PwNotFound{
-	position: absolute;
-    left: 50%; top:40%;	
-    transform: translateX(-50%);
+#pwCancel {
+    transform: translate3d(-50%, 160%, 0);
 }
 
-.input-check{
-	display:flex;
-	width:25%;
-	position:relative;
-	bottom:50px;
-
-}
-#pwCancel{
-	transform:translate3d(-50%,160%,0);
-}
-#pw_btn{
-	position:relative;
-	left: 34.5%; 
-	border-radius:5px;
-   	width:408px;
+#pw_btn {
+    position: relative;
+    left: 34.5%; 
+    border-radius: 5px;
+    width: 408px;
     padding: 10px;
-    font-size: 16px;
+    font-size: var(--font-size);
     border: solid 1px;
-    background:black;
-    color:white;	
-    cursor:pointer; 
-    height:45px; 
-}
-/*  */
-#LoginImp{
-	position: absolute;
-    left: 50%; top:40%;	
-    transform: translateX(-50%);
-}
-/* 회원탈퇴 완료화면 */
-.check1{
-	position: absolute;
-    left: 50%; top:40%;	
-    transform: translateX(-50%);
-    font-size:20px;
+    background: var(--primary-color);
+    color: white;    
+    cursor: pointer; 
+    height: 45px; 
 }
 
-
-        

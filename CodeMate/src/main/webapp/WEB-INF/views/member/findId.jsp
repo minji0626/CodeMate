@@ -11,11 +11,12 @@
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/css/findIdPw.css" type="text/css">
+   href="${pageContext.request.contextPath}/css/findID.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div class="page-container">
+<div class="container">
 <div class="page-main">
 			<!-- 헤더 -->
 			<div id="login_logo">
@@ -26,10 +27,9 @@
 				</a>
 			</div>
 			
-			<hr size="1px" class="line">
 			<c:if test="${ckId ==1}">
 				<span class="check"><b>아이디 확인</b></span>
-					<span id="yourID">회원님의 아이디는 <b>[ ${mem_id} ]</b> 입니다.</span>
+					<span id="yourID">회원님의 아이디는 <b> ${mem_id} </b> 입니다.</span>
 				 
 				<div class="align-center">
 				<input id="login_btn" class="tryAgain_btn" type="button" value="로그인" 
@@ -44,6 +44,7 @@
 				<input class="tryAgain_btn" type="button" value="계정 찾기" 
 						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">
 			</c:if>
+</div>
 </div>
 </div>
 </body>

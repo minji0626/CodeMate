@@ -11,11 +11,12 @@
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/css/share.css" type="text/css">
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/css/findIdPw.css" type="text/css">
+   href="${pageContext.request.contextPath}/css/findPW.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div class="page-container">
+	<div class="container">
 			<!-- 헤더 -->
 			<div id="login_logo">
 				<a href="${pageContext.request.contextPath}/main/main.do"
@@ -24,10 +25,9 @@
 					width="80"> CODEMATE
 				</a>
 			</div>
-			<hr size="1px" class="line">
 			<c:if test="${ckPw ==1}">
 				<div>
-				<span class="check"><b>비밀번호 재설정</b></span>
+				<div class="check"><b>비밀번호 재설정</b></div>
 					<form id="password_form" action="completePw.do" method="post">
 						<input type="hidden" name="mem_num" value="${mem_num}">
 						<input type="password" id="passwd" class="input-check" name="NewPw" placeholder="새 비밀번호" required>
@@ -45,6 +45,7 @@
 			<input class="tryAgain_btn" type="button" value="계정 찾기" 
 						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">
 			</c:if>
+</div>
 </div>
 <script type="text/javascript">
 $(function(){

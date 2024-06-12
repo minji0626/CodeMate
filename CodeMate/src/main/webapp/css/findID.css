@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh; 
+    box-sizing: border-box;
+}
+
+.page-main {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#login_logo {
+    margin-bottom: 20px;
+}
+
+.logo {
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo_pic_login {
+    margin-right: 10px;
+}
+
+.line {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.check {
+    display: block;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#yourID, #IDnotFound {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.tryAgain_btn {
+    background-color: #326BFF;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tryAgain_btn:hover {
+    background-color: #0056b3;
+}
