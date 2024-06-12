@@ -10,13 +10,16 @@
 <div class="page-main">
 	<div id="mini-card1">
 		<div class="w">
-			<div class="explain">
+			<div class="explain1">
 				<b>이번주 코메 인기글</b>
 			</div>
-
-			<div id="back_btn" onclick="location.href='${pageContext.request.contextPath}/rboard/list.do'">팀원 구하기</div>
-			<a class="more"
-				href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
+			<div id="back_btn" onclick="location.href='${pageContext.request.contextPath}/rboard/list.do'">
+				팀원 구하기
+			</div>
+			<div class="go_more">
+				<a class="more" href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
+			</div>
+			
 		</div>
 		<div class="mini-container1">
 			<div class="wrapper1">
@@ -29,15 +32,15 @@
 									<!-- 카테고리 -->
 
 									<c:if test="${rboard.rb_category == 0}">
-									<span class="rb_category study">
-									<img src="${pageContext.request.contextPath}/images/study_w2.png" width="13" height="13">
-										 스터디</span>
+									<div class="rb_category study">
+									<img class="category_pic" src="${pageContext.request.contextPath}/images/study_w2.png" width="13" height="13">
+										 스터디</div>
 									</c:if>
 
 									<c:if test="${rboard.rb_category == 1}">
-									<span class="rb_category project">
-									<img src="${pageContext.request.contextPath}/images/project_w.png" width="13" height="13">
-										 프로젝트</span>
+									<div class="rb_category project">
+									<img class="category_pic" src="${pageContext.request.contextPath}/images/project_w.png" width="13" height="13">
+										 프로젝트</div>
 									</c:if>
 									<div class="endDate">
 										<c:if test="${rboard.daysLeft > 0 && rboard.team_status != 1 && rboard.team_status != 3}"> <img src="${pageContext.request.contextPath}/images/alert.png" width="20" height="20">마감 ${rboard.daysLeft}일 전</c:if>
@@ -60,14 +63,15 @@
 											</c:if> 
 										<c:if test="${rboard.rb_meet == 2}">
 									온라인/오프라인
-									</c:if> <br>
+									</c:if>
 										</span>
-										<div id="field">
+									</div>	
+										<div class="field_all">
 											<c:forEach var="field" items="${rboard.f_name_arr}">
 											<span class="mofield">${field}</span>
 											</c:forEach>
 										</div>
-										<div>
+										<div class="apply_count_all">
 											<span class="apply_count">신청인원 | ${rboard.rb_apply_count}/
 											<c:if
 													test="${rboard.rb_teamsize==0}">인원 미정</c:if> <c:if
@@ -75,7 +79,7 @@
 												<c:if test="${rboard.rb_teamsize==10}">10명 이상</c:if>
 											</span>
 										</div>
-									</div>
+									
 
 								</div>
 							</div>
@@ -103,7 +107,7 @@
 	<div id="mini-card2">
 
 		<div class="w2">
-			<div class="explain"> <b>이번주 코메 인기글</b> </div>
+			<div class="explain"> <b>이번주 자유 게시판 인기글</b> </div>
 			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">자유 게시판</button>
 			<a class="more2" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
 		</div>

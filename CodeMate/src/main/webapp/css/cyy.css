@@ -8,11 +8,14 @@ div#mini-card1 { /* 1 */
 	margin-bottom: 70px;
 }
 .w { /* 설명글 */
-	width: 50%;
+	display: flex;
+    /* width: 50%; */
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 .mini-container1 { /* 보여지는 창 */
 	position: relative;
-	top: 30px;
 	overflow: hidden;
 	height: 330px;
 }
@@ -35,31 +38,30 @@ div#mini-card1 { /* 1 */
 }
 .p1 {
 	position: relative;
-	bottom: 150px;
+	bottom: 180px;
 	right: 20px;
 	background: none;
 	border: none;
+	cursor:pointer;
 }
 .n1 {
 	position: relative;
-	bottom: 150px;
+	bottom: 180px;
 	left: 1140px;
 	background: none;
 	border: none;
+	cursor:pointer;
 }
 /* 더보기 */
-a.more {
-	font-size: 12px;
-	position: relative;
-	left: 1100px;
-	top: 15px;
+.explain1 {
+	font-size: 20px;
+	    margin-right: 1%;
 }
 .explain {
 	font-size: 20px;
 	transform: translate3d(5%, 180%, 0);
 }
 #back_btn {
-	transform: translate3d(215%, 120%, 0);
 	font-size: 13px;
 	width: 65px;
 	color: white;
@@ -67,6 +69,7 @@ a.more {
 	background-color: #5aca7c;
 	padding: 2px 13px 2px;
 	cursor: pointer;
+	margin-right: 70%;
 }
 /* 2 */
 
@@ -122,7 +125,8 @@ div#mini-card2 { /* 1 */
 
 /* 더보기 */
 #front_btn {
-	transform: translate3d(200%, 100%, 0);
+	margin-left: 45%;
+    margin-top: 4.5%;
 	font-size: 13px;
 	width: 100px;
 	color: white;
@@ -185,10 +189,7 @@ div#mini-card3 {
 }
 /* 더보기 */
 a.more {
-	font-size: 12px;
-	position: relative;
-	left: 1100px;
-	top: 15px;
+	font-size: 0.9em;
 }
 .explain {
 	font-size: 20px;
@@ -330,20 +331,6 @@ form {
 
 /* 팀원 구하기 */
 
-.project {
-	font-size: 15px;
-	background: #b1db63;
-	border-radius: 10px;
-	padding: 6px;
-	color: white;
-}
-.study {
-	font-size: 15px;
-	background: #f5c33b;
-	border-radius: 10px;
-	padding: 6px;
-	color: white;
-}
 .endDate {
 	padding: 5px;
     display: flex;
@@ -366,42 +353,19 @@ form {
 	width:16px;	
 	transform:translateY(10%);
 }
-.way {
-	font-size: 14px;
-	width: 230px;
-	margin-left: 5px;
-}
-.onoff{
-	position:relative;
-	bottom:5px;
-}
-.detail {
-	position: relative;
-	top: 30px;
-}
+
 .link {
 	margin: 5px;
 	cursor: pointer; 
 }
 .rb-title {
-	padding: 10px 10px;
+	padding: 6px 10px;
     font-weight: bold;
     font-size: 1.2em;
     margin-left: 2%;
     height: 110px;
 }
-#field {
-	width: 140px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-.apply_count{
-	margin-left:60%;
-	position:relative;
-	bottom:23px;
-	font-weight: bold;
-}
+
 /* 커뮤니티 */
 .top{
 	position:relative;
@@ -758,25 +722,29 @@ input[id="recruiting_filter"]:checked+label {
 	font-weight: 600;
 }
 
+.category_pic{
+	margin-right: 5px;
+}
+
 .project {
 	background: #b1db63;
-	display: inline-block;
-	align-items: center;
+	display: flex;
+    align-items: center;
 	color: white;
 	padding: 5px 10px;
 	border-radius: 20px;
-	font-size: 11pt;
+	font-size: 0.8em;
 	font-weight: 600;
 }
 
 .study {
 	background: #f5c33b;
-	display: inline-block;
-	align-items: center;
+	display: flex;
+    align-items: center;
 	color: white;
 	padding: 5px 10px;
 	border-radius: 20px;
-	font-size: 11pt;
+	font-size: 0.8em;
 	font-weight: 600;
 }
 
@@ -861,9 +829,8 @@ input[id="recruiting_filter"]:checked+label {
 }
 
 .proceed_all, .field_all {
-	margin-bottom: 4%;
+    margin-top: 4%;
 }
-
 .apply_count_all {
 	display: flex;
 	justify-content: flex-end;
@@ -897,5 +864,15 @@ input[id="recruiting_filter"]:checked+label {
 	padding: 4px 8px;
 	border-radius: 20px;
 	font-size: 0.7em;
+	font-weight: 600;
+	margin-top: 3%;
+}
+
+.detail {
+	font-size: 11pt;
+    height: 75px;
+   margin-left: 3px;
+    margin-right: 3px;
+    padding: 5px;
 }
 	
