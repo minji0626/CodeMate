@@ -131,6 +131,7 @@ public class ConsultDAO {
 				consult.setMem_num(rs.getInt("mem_num"));
 				consult.setMem_id(rs.getString("mem_id"));
 				consult.setCs_title(rs.getString("cs_title"));
+				consult.setCs_content(rs.getString("cs_content"));
 				consult.setCs_reply_email(rs.getString("cs_reply_email"));
 				consult.setCs_confirmed(rs.getInt("cs_confirmed"));
 				consult.setCs_category(rs.getInt("cs_category"));

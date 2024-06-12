@@ -1,209 +1,353 @@
-
 #flex_container {
-    display: flex;
+	display: flex;
 }
+
 .float-B {
-    flex: 1;
+	flex: 1;
 }
 
 .align-center {
-    text-align: center;
+	text-align: center;
 }
 
 #manage_members_form {
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+	background: white;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
 }
 
 /* 옵션 선택하는 CSS */
 /* 검색할 때 지정하는 옵션 */
 select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    font-size: 14px;
-    color: #333;
-    appearance: none;
-    cursor: pointer;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: white;
+	font-size: 14px;
+	color: #333;
+	appearance: none;
+	cursor: pointer;
 }
 /* 등급 변경할 때 지정하는 옵션 */
 .auth-select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    font-size: 12px;
-    color: #333;
-    appearance: none;
-    cursor: pointer;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: white;
+	font-size: 12px;
+	color: #333;
+	appearance: none;
+	cursor: pointer;
 }
 /* 그 외 부분들은 통일 */
 select:hover {
-    border-color: #007bff;
+	border-color: #007bff;
 }
 
 select:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    border-color: #007bff;
+	outline: none;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+	border-color: #007bff;
 }
 
 select option {
-    padding: 10px;
-    background-color: white;
-    color: #333;
+	padding: 10px;
+	background-color: white;
+	color: #333;
 }
 
 /* 검색하는 창 */
 .search {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin-top : 10px;
-    margin-bottom: 20px;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 .search li {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .search input[type="search"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 .search input[type="submit"] {
-    padding: 8px 16px;
-    background: #4169E1;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: opacity 0.3s ease-in-out;
+	padding: 8px 16px;
+	background: #4169E1;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .search input[type="submit"]:hover {
-    opacity: 0.85;
+	opacity: 0.85;
 }
 
 /* 테이블 css 설정 */
 #search-result {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 14px;
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	font-size: 14px;
 }
 
 #search-result th, #search-result td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
+    white-space: nowrap; /* 공백을 줄 바꿈하지 않음 */
+    overflow: hidden;    /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시 */
+   max-width: 200px;    /* 필요한 경우 셀의 최대 너비를 설정 */
 }
 
 #search-result th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+	background-color: #f4f4f4;
+	font-weight: bold;
 }
 
 #search-result tr:nth-child(even) {
-    background-color: #f9f9f9;
+	background-color: #f9f9f9;
 }
 
 #search-result tr:hover {
-    background-color: #f1f1f1;
+	background-color: #f1f1f1;
 }
 
 /* 버튼들 스타일 */
 button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12px;
 }
 
-.checkTeamMember, .changeLeader, .deleteTeam, .startTeam, .delete, .deleteMemberBtn {
+.checkTeamMember, .changeLeader, .deleteTeam, .startTeam, .delete,
+	.deleteMemberBtn {
 	padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12px;
 }
 
 .lockMemberBtn, .checkTeamMember {
 	transition: transform 0.3s;
-    background-color: #FFC107;
-    color: white;
-    
+	background-color: #FFC107;
+	color: white;
 }
 
 .changeLeader, .lockMemberBtn:hover, .checkTeamMember:hover {
 	transform: scale(1.05);
-    opacity: 0.8;
+	opacity: 0.8;
 }
 
 .changeLeader, .startTeam {
 	transition: transform 0.3s;
-    background-color: #4dd8ff;
-    color: white;
-    
+	background-color: #4dd8ff;
+	color: white;
 }
-
 
 .deleteMemberBtn, .deleteTeam, .delete {
 	transition: transform 0.3s;
-    background-color: #FF4500;
-    color: white;
+	background-color: #FF4500;
+	color: white;
 }
 
 .deleteMemberBtn:hover {
 	transform: scale(1.05);
-    opacity: 0.8;
+	opacity: 0.8;
 }
 
 .changeAuthBtn {
 	transition: transform 0.3s;
-    background-color: #ADD8E6;
-    color: white;
+	background-color: #ADD8E6;
+	color: white;
 }
 
 .changeAuthBtn:hover {
 	transform: scale(1.05);
-    opacity: 0.8;
+	opacity: 0.8;
 }
-
 
 /* 처리하기, 처리 취소 버튼 스타일 */
 #confirm_cs {
-    padding: 10px 20px; 
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    margin-right: 10px; 
-    margin-top: 10px; 
-    transition: transform 0.3s;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #007bff;
+	color: white;
+	cursor: pointer;
+	margin-right: 10px;
+	margin-top: 10px;
+	transition: transform 0.3s;
 }
 
 #unconfirm_cs {
-    padding: 10px 20px; 
-    border: none;
-    border-radius: 5px;
-    background-color: #FF4500;
-    color: white;
-    cursor: pointer;
-    margin-right: 10px; 
-    margin-top: 10px;
-    transition: transform 0.3s; 
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #FF4500;
+	color: white;
+	cursor: pointer;
+	margin-right: 10px;
+	margin-top: 10px;
+	transition: transform 0.3s;
 }
 
 /* 처리하기, 처리 취소 버튼에 호버 효과 */
 #confirm_cs:hover, #unconfirm_cs:hover {
 	opacity: 0.8;
-	}
+}
 
+a {
+	text-decoration: none;
+}
+
+.wrap {
+	padding: 10px;
+}
+
+.pop_wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .5);
+	font-size: 0;
+	text-align: center;
+}
+
+.pop_wrap:after {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+}
+
+.pop_wrap .pop_inner {
+	display: inline-block;
+	padding: 20px 30px;
+	background: #fff;
+	width: 400px;
+	vertical-align: middle;
+	font-size: 15px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.pop_inner .header {
+	display: flex;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	flex-direction: column;
+}
+
+.pop_inner .content {
+	margin-bottom: 20px;
+}
+
+.pop_inner .message-details p {
+	margin: 5px 0;
+}
+
+.pop_inner #popup-confirm {
+	background-color: #f9edfa;
+	display: flex;
+	justify-content: center;
+	width: 85px;
+	border-radius: 20px;
+	padding: 3px 8px;
+	font-weight: bold;
+	font-size: 1em;
+	margin-bottom: 1%;
+}
+
+.pop_inner #popup-title {
+	font-weight: bold;
+	font-size: 1.25em;
+}
+
+.pop_inner #popup-email {
+	margin-top: 0.5%;
+	font-size: 0.85em;
+}
+
+.pop_inner #consult-email {
+	margin-top: 0.5%;
+	font-size: 0.95em;
+	font-weight: bold;
+}
+
+.pop_inner #consult-message {
+	font-size: 1.15em;
+	font-weight: bold;
+	margin-bottom: 2%;
+}
+
+.pop_inner #popup-message {
+	font-size: 0.9em;
+	margin-bottom: 2%;
+}
+
+.pop_inner .footer {
+	padding-top: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.pop_inner .footer .btn_close {
+	display: flex;
+	justify-content: flex-end;
+	background: transparent;
+	cursor: pointer;
+	border: none;
+}
+
+.pop_inner .footer .btn_close img {
+	width: 20px;
+	height: 20px;
+}
+
+.pop_inner .footer .consult_reg_date {
+	color: var(--gray-3);
+	font-size: 0.85em;
+}
+
+#getUnconfirmed {
+	padding: 8px 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #78AFE2;
+	color: white;
+	cursor: pointer;
+	transition: transform 0.3s ease out;
+}
+
+#getUnconfirmed:hover {
+	opacity: 0.8;
+}
+#getAll {
+	padding: 8px 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #5aca7c;
+	color: white;
+	cursor: pointer;
+	transition: transform 0.3s ease out;
+}
+
+#getAll:hover {
+	opacity: 0.8;
+}

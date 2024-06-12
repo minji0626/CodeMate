@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var message = this.getAttribute('data-cs-content');
             var confirmCount = this.getAttribute('data-cs-confirmed');
             if(confirmCount == 0){
-                var confirmText = "[답변처리중]";
+                var confirmText = "답변 처리중";
             } else if(confirmCount == 1){
-                var confirmText = "[답변완료]";
+                var confirmText = "답변 완료";
             } else {
                 var confirmText = "";
             }
@@ -42,23 +42,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
     
+   
 <div class="wrap">
   <div id="pop_info" class="pop_wrap" style="display:none;">
     <div class="pop_inner">
-      <div class="header"><span id="popup-confirm"></span><h3 id="popup-title"> <!-- 문의 제목과 처리완료 유무 --></h3></div>
-      <div class="message-details">
-      	
-      	
-        
-        <p>답변 받을 이메일 : <span id="popup-email"> </span></p>
+    
+      <div class="header">
+      	<span id="popup-confirm"></span>
+      	<span id="popup-title"></span>
+      	<div class="message-details">
+        	<span id="consult-email">이메일 |</span>
+        	<span id="popup-email"></span>
+     	 </div>
       </div>
-      <!-- 문의 내용 -->
-      <div class="content">문의 내용 : <span  id="popup-message"></span></div>
-      <!-- 문의 등록일 --><p>문의 등록일 : <span id="popup-date"></span> </p>
+      
+      <span id="consult-message">문의 내용</span>
+      <div class="consult_content">
+      	<span id="popup-message"></span>
+      </div>
+      
+      
       <div class="footer">
-        <button type="button" class="btn_close">닫기</button>
+      	<div class="consult_reg_date">
+      		등록일 |
+      		<span id="popup-date"></span> 
+      	</div>
+        <button type="button" class="btn_close"><img src="${pageContext.request.contextPath}/images/delete_icon.png"></button>
       </div>
+      
     </div>
   </div>
 </div>
-
