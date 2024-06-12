@@ -127,6 +127,7 @@ input[id="recruiting_filter"]:checked+label {
 	margin-top: 4px;
 	border-radius: 10px;
 	box-sizing: border-box; /* 패딩과 보더를 포함하도록 설정 */
+	z-index: 10;
 }
 
 .scrollable li {
