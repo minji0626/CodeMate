@@ -20,11 +20,8 @@
 			<a class="more"
 				href=${pageContext.request.contextPath}/rboard/list.do>더보기</a>
 		</div>
-
 		<div class="mini-container1">
-
 			<div class="wrapper1">
-
 				<c:forEach var="rboard" items="${SlideList}">
 					<div class="mini1">
 						<div class="content1"

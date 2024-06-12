@@ -69,7 +69,7 @@ public class MemberDAO {
 			pstmt4.executeUpdate();
 			
 			//SQL 실행 시 모두 성공하면 commit
-			conn.commit();
+			conn.commit();	
 
 		}catch(Exception e) {
 			//SQL문이 하나라도 실패하면 rollback
