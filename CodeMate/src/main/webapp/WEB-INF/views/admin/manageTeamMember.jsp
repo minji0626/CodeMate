@@ -51,7 +51,13 @@
 										</c:if>
 										
 										<td><a class="mem_auth_btn button changeLeader" style="cursor: pointer" data-current-leader="${leader_mem_num}" data-team-num="${team_num}" data-mem-num="${tmember.mem_num}">팀장 위임</a>
-										<td><a class="mem_delete_btn button deleteTeamMember" style="cursor: pointer" data-current-leader="${leader_mem_num}" data-team-num="${team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a></td>
+										<c:if test="${tmember.team_status==1}">
+											<td><a class="mem_delete_btn button deleteTeamMember" style="cursor: pointer" data-current-leader="${leader_mem_num}" data-team-num="${team_num}" data-mem-num="${tmember.mem_num}">팀원 삭제</a></td>
+										</c:if>
+										<c:if test="${tmember.team_status==3}">
+											<td><a class="button checkTeamMember" style="cursor: pointer" data-current-leader="${leader_mem_num}" data-team-num="${team_num}" data-mem-num="${tmember.mem_num}"> 삭제 불가 </a></td>
+										</c:if>	
+										
 										
 									</tr>
 								</c:forEach>
