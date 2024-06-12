@@ -134,6 +134,79 @@ div#mini-card2 { /* 1 */
 	border:none;	
 	cursor: pointer;
 }
+
+/* 3 */
+div#mini-card3 { 
+	position: relative;
+	top: 70px;
+	left:70px;
+	width: 90%;
+	margin-bottom: 70px;
+}
+.w { /* 설명글 */
+	width: 50%;
+}
+.mini-container3 { /* 보여지는 창 */
+	position: relative;
+	top: 30px;
+	overflow: hidden;
+	height: 330px;
+}
+.wrapper3 { /* 움직이는 부분 */
+	height: 330px;
+}
+.content3 { /* 이미지 */
+	height: 290px;
+	float: left;
+	width: 250px;
+	margin: 20px;
+	border: 2px solid #d4d4d4;
+	border-radius: 10px;
+	background-color: #ffffff;
+	box-shadow:0px 2px 10px rgba(0, 0, 0, 0.3);	
+	  transform:scale(1.0);
+}
+.content1:hover{
+	transform:scale(1.01);
+  transition: transform .1s;
+  box-shadow:0px 4px 12px rgba(0, 0, 0, 0.3);	
+}
+.p3 {
+	position: relative;
+	bottom: 150px;
+	right: 20px;
+	background: none;
+	border: none;
+}
+.n3 {
+	position: relative;
+	bottom: 150px;
+	left: 1140px;
+	background: none;
+	border: none;
+}
+/* 더보기 */
+a.more {
+	font-size: 12px;
+	position: relative;
+	left: 1100px;
+	top: 15px;
+}
+.explain {
+	font-size: 20px;
+	transform: translate3d(5%, 180%, 0);
+}
+#back_btn {
+	transform: translate3d(215%, 120%, 0);
+	font-size: 13px;
+	width: 65px;
+	color: white;
+	border-radius: 20px;
+	background-color: #5aca7c;
+	padding: 2px 13px 2px;
+	cursor: pointer;
+}
+
 /* 로그인화면*/
 /* 헤더 위치 */
 #login_logo a {
@@ -611,4 +684,20 @@ form {
 	position: relative; 
 	left: 1000px;
 	top: 15px;
+}
+
+/*커뮤니티 3*/
+#hit3{
+	width:16px;	
+	transform:translateY(30%);
+}
+.more3{
+	font-size: 12px;
+	position: relative; 
+	left: 1000px;
+	top: 15px;
+}
+.detail3{
+	position: relative;
+	top: 70px;
 }

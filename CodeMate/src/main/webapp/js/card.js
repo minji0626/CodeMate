@@ -164,7 +164,91 @@ function moveSlide(num){
             currentIdx = 0;
       }
 }
+/*---------------------------------------------------------------------------------------------*/
+var slides3 = document.querySelector('.wrapper3'),
+show3 = document.querySelector('.mini-container3'),
+	show3 = document.querySelector('.mini-container3'),
+  slide3 = document.querySelectorAll('.mini3'),
+  prevBtn3 = document.querySelector('.p3'),
+  nextBtn3 = document.querySelector('.n3'),
+  currentIdx3 = 0,
+  slideCount3 = slide3.length,//기존 슬라이드 개수(8)
+  slideWidth3 = 250,//슬라이드 이미지 넓이
+  slideMargin3 = 40,//좌,우 마진있어서 * 2함
+  position3 = 0,
 
+  move3 = 0,
+  AllSlideCount3 = slideCount3 * 3, //전체 슬라이드 개수
+
+	showWidth3 = (slideWidth3+slideMargin3) * slideCount3 + 'px',//4개까지 커버 가능
+	showOverWidth3= (slideWidth3+slideMargin3) * 4 + 'px',//5개 이상일 경우
+  newWidth3 = (slideWidth3+slideMargin3) * AllSlideCount3  + 'px';//wrapper 너비
+/*------------------------------------------------------------------*/
+
+	makeClone3();
+
+function makeClone3(){
+   /* 복제&추가 */
+   for(var i =0; i<slideCount3; i++){//기존 슬라이드 뒤에 복제본 추가
+      //a.cloneNode()->a요소 복제/a.cloneNode(true)->a요소의 자식까지 복제
+      var cloneSlide3 = slide3[i].cloneNode(true);
+      cloneSlide3.classList.add('clone');
+      //기존의 요소 뒤에 추가 ->appendChild
+      //a.appendChild(b) -> a요소 뒤에 b추가
+      slides3.appendChild(cloneSlide3);
+   }
+   for(var i = slideCount3-1; i>=0; i--){//기존 슬라이드 앞에 복제본 추가
+      var cloneSlide3 = slide3[i].cloneNode(true);
+      cloneSlide3.classList.add('clone');
+      //기존의 요소 앞에 추가 ->appendChild
+      //a.prepend(b) -> a요소 앞에 b추가
+      slides3.prepend(cloneSlide3);
+   }
+   
+   //전체 슬라이드의 길이를 구해 wrapper의 길이로 넣어야 가로로 정렬이 됨
+   slides3.style.width = newWidth3;
+   position3 = -((slideWidth3+slideMargin3+5) * slideCount3);//290 * 8 = 2320
+  //중간 슬라이드가 보이는 화면 중앙에 있어야 이전버튼을 누르더라도 슬라이드가 보임
+  slides3.style.transform = 'translateX('+ position3 +'px)';//x축 -2320px
+   //생성된 슬라이드의 개수에 따라 보여지는 창의 너비가 달라짐
+   
+  
+  if(slideCount3 < 5 ){//5개 미만인 경우
+	  show3.style.width = showWidth3;
+  }else{//5개 이상일 경우 화면이 너무 커지면 흘러넘침
+	  show3.style.width=showOverWidth3;
+  }
+}
+
+/*------------------------------------------------------------------*/
+
+/* 버튼 */
+nextBtn3.addEventListener('click', function () {//다음->왼쪽으로 이동->x축 마이너스로 이동
+   moveSlide3(currentIdx3 + 1);//currentIdx 는 양수가 됨
+});
+
+prevBtn3.addEventListener('click', function () {//이전->x축 플러스로 이동
+   moveSlide3(currentIdx3 - 1);//currentIdx 는 음수가 됨
+});
+
+/* 무한루프 */
+function moveSlide3(num3){
+	 currentIdx3 = num3;
+	  
+	  /* 좌,우 이동방향 */	
+	  /* 다음은 -, 이전은 + 로 이동 */
+	  move3 = position3 + (-(slideWidth3 +slideMargin3+4) * currentIdx3) ;
+	  slides3.style.transform = 'translateX(' + move3 + 'px)';
+	  /* transform='translate'는 명시된 거리만큼 이동함
+	  	여기서는 이미 postion만큼 이동한 상태여서 그런지 position의 위치에서 플러스로 더 이동하지 않고
+	  	0에서부터 이동하는 것처럼 동작되어서 position을 더한 값을 거리로 잡음 */
+	  
+      /* 다시 돌아옴 */
+      if(currentIdx3 == slideCount3 || currentIdx3 == -slideCount3){//4이거나 -4인 경우
+         slides3.style.transform = 'translateX('+ position3 +'px)';
+            currentIdx3 = 0;
+      }
+}
 
 
 

@@ -38,13 +38,18 @@ public class MainAction implements Action{
 		//커뮤니티 슬라이드
 		CboardDAO cdao = CboardDAO.getInstance();
 		List<CboardVO> SlideList2 = null;
-		int count2 = cdao.getCboardCount(null, null, 0); 
-		int count3 = cdao.getCboardCount(null, null, 1);
-		if(count2 > 0 || count3 > 0) {
-			SlideList2 = cdao.getSlideListBoard();
+		List<CboardVO> SlideList3 = null;
+		int count2 = cdao.getCboardCount(null, null, 0); //자유
+		int count3 = cdao.getCboardCount(null, null, 1); //개발
+		if(count2 > 0) {
+			SlideList2 = cdao.getSlideListBoardF();
 		}
 		request.setAttribute("SlideList2",SlideList2);
 		
+		if(count3 > 0) {
+			SlideList3 = cdao.getSlideListBoardD();
+		}
+		request.setAttribute("SlideList3",SlideList3);
 		//JSP 경로 반환
 		return "/WEB-INF/views/main/main.jsp";
 	}

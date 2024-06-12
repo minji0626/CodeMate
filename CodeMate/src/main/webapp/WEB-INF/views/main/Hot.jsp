@@ -69,12 +69,6 @@
 										</div>
 									</div>
 
-									<div class="hit-div">
-										<span class="b hit">
-										<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png" id="hit1"> 
-										${rboard.rb_hit}</span>
-									</div>
-
 								</div>
 							</div>
 							<!-- end of link -->
@@ -113,16 +107,12 @@
 						<div class="content2" onclick="location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}'">
 							<div class="link">
 								<div class="top">
-									<span class="type D"> 
-										<c:if test="${cboard.cb_type == 1}">
-										<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="25px" id="coding"> 
-										<span class="board_type">개발 게시판</span></c:if>
-									</span> 
+									
 									<span class="type F"> 
-										<c:if test="${cboard.cb_type == 0}">
+										
 										<img src="${pageContext.request.contextPath}/images/cje/freeBoardIcon.png" width="25px" id="free">
 										<span class="board_type">자유 게시판</span>
-										</c:if>
+										
 									</span>
 									<hr size="2px" id="line2">
 								</div>
@@ -140,7 +130,11 @@
 									<div class="hit">
 										<span>
 										<img id="hit2" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
-										 ${cboard.cb_hit}</span>
+										 ${cboard.cb_hit}
+										 </span>
+										 <span>
+										 <img id="good" src="">
+										 </span>
 									</div>
 								</div><!-- end of detail2 -->
 								
@@ -163,6 +157,71 @@
 				alt="다음" width="20">
 		</button>
 	</div>
-	<!-- end of mini-card1 -->
+	<!-- end of mini-card2 -->
+	
+	<div id="mini-card3">
+
+		<div class="w3">
+			<div class="explain"> <b>이번주 코메 인기글</b> </div>
+			<button id="front_btn" onclick="location.href='${pageContext.request.contextPath}/cboard/community.do'">커뮤니티</button>
+			<a class="more3" href=${pageContext.request.contextPath}/cboard/community.do>더보기</a>
+		</div>
+
+		<div class="mini-container3">
+			<div class="wrapper3">
+				<c:forEach var="cboard" items="${SlideList3}">
+					<div class="mini3">
+						<div class="content3" onclick="location.href='${pageContext.request.contextPath}/cboard/communityDetail.do?cb_num=${cboard.cb_num}'">
+							<div class="link">
+								<div class="top">
+									 <span class="type D"> 
+										
+										<img src="${pageContext.request.contextPath}/images/cje/codingBoardIcon.png" width="25px" id="coding"> 
+										<span class="board_type">개발 게시판</span>
+									</span>  
+									
+									<hr size="2px" id="line2">
+								</div>
+
+								<div id="middle">
+									<span class="title">${cboard.cb_title}</span> <br> <br>
+								</div>
+
+								<div class="detail2">
+
+									<div id="below">
+										<span class="b date">등록일 | ${cboard.cb_reg_date}</span> <br>
+									</div>
+
+									<div class="hit3">
+										<span>
+										<img id="hit3" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png">
+										 ${cboard.cb_hit}
+										 </span>
+										 <span>
+										 <img id="good" src="">
+										 </span>
+									</div>
+								</div><!-- end of detail3 -->
+								
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+
+		<!-- end of mini-container -->
+		<button class="p3">
+			<img src="${pageContext.request.contextPath}/images/left_arrow_1.png"
+				alt="이전" width="20">
+		</button>
+		
+		<button class="n3">
+			<img
+				src="${pageContext.request.contextPath}/images/right_arrow_1.png"
+				alt="다음" width="20">
+		</button>
+	</div>
 </div>
 <script src="${pageContext.request.contextPath}/js/card.js"></script>
