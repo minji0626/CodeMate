@@ -162,7 +162,7 @@ $(function() {
 
         // 수정버튼을 감싸고 있는 div 숨기기
         $(this).parent().hide();
-
+		$(this).parents('.reList').find('p').hide();
         // 수정폼을 수정하고자 하는 데이터가 있는 div에 노출
         $(this).closest('.reList').find('.modify-container').append(modifyUI);
     });
@@ -172,6 +172,7 @@ $(function() {
         $('#btn-div').show();
         $('.modify-container').empty(); // 수정 폼을 담는 컨테이너 비우기
         $('.action_buttons').show(); // 숨겨진 액션 버튼 다시 보이기
+        $('.re_content p').show();
     }
 
     // 수정폼에서 취소버튼 클릭시 수정폼 초기화

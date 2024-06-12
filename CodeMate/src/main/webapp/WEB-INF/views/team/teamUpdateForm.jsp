@@ -57,9 +57,9 @@ window.onload = function(){
         <input type="hidden" name="tb_num" value="${tboard.tb_num}">
         <input type="hidden" name="team_num" value="${tboard.team_num}">
         	<div class="form-group">
-				<input type="radio" name="tb_auth" value="1" id="tb_auth1">
+				<input type="radio" name="tb_auth" value="1" id="tb_auth1" <c:if test="${tboard.tb_auth==1}">checked</c:if>>
 				공지사항
-				<input type="radio" name="tb_auth" value="2" id="tb_auth2"> 
+				<input type="radio" name="tb_auth" value="2" id="tb_auth2" <c:if test="${tboard.tb_auth==2}">checked</c:if>> 
 				일반 게시글
 			</div>
             <div class="form-group">

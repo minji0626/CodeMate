@@ -39,7 +39,6 @@ $(document).ready(function() {
     $(".review-link").click(function(e) {
         e.preventDefault();
         
-        
         // 개인의 닉네임 가져와서 innerText 시키기
         const nickname = $(this).closest('.mem_personal').find('.team_mem_nickname').data('nickname');
         $('.mate_review_profile .user_nickname').text(nickname);
@@ -48,7 +47,22 @@ $(document).ready(function() {
         $('.mate_review_profile .user_id').text(id);
         // 개인의 레벨 가져와서 innerText 시키기
         const level = $(this).closest('.mem_personal').find('.team_mem_nickname').data('level');
-        $('.mate_review_profile .user_level').text(level);
+        let imgSrc = '';
+        
+        if(level == 1){
+			imgSrc = `../images/level1.png`;
+		} else if(level == 2){
+			imgSrc = `../images/level2.png`;
+		} else if(level == 3){
+			imgSrc = `../images/level3.png`;
+		} else if(level == 4){
+			imgSrc = `../images/level4.png`;
+		} else if(level == 5){
+			imgSrc = `../images/level5.png`;
+		}
+        const imgTag = `<img id="level_pic" src="${imgSrc}" height="20" width="20">`;
+         $('.mate_review_profile .user_level').html(imgTag);
+        
         // 개인의 사진 가져와서 setAttribute 시키기
         const profileImage = $(this).closest('.mem_personal').find('.team_mem_profile_img');
         const imageUrl = profileImage.attr('src');

@@ -233,15 +233,9 @@ a.mem_auth_btn {
 }
 
 .user_level {
-    font-weight: bold;
-    background-color: #ccf7d9;
-    border-radius: 50%;
     display: inline-flex;
     align-items: center; /* 수직 중앙 정렬 */
     justify-content: center; /* 수평 가운데 정렬 */
-    width: 30px; /* 너비 조정 */
-    height: 30px; /* 높이 조정 */
-    text-align: center;
 }
 .mr_account_nickname a{
 	text-decoration: none;
@@ -266,10 +260,6 @@ a.mem_auth_btn {
 }
 
 /*메이트 프로필에 쓰이는 내용란 (회색 박스) DIV*/
-.mr_content {
-	border-radius: 8px;
-	background: #e0e0e0;
-}
 
 .mr_content p{
 	padding: 15px;
@@ -278,12 +268,12 @@ a.mem_auth_btn {
 #mr_content{
 	border-radius: 8px;
 	background: #e0e0e0;
-	border-radius: 8px;
-	background: #e0e0e0;
+	padding: 5px 10px;
 	border : none;
 	width: 535px;
 	height: 300px;
 	margin: 0 auto;
+	resize: none;
 }
 
 
@@ -291,37 +281,25 @@ a.mem_auth_btn {
 /*버튼*/
 .btn-div {
     display: flex;
-    justify-content: space-between; /* 두 버튼을 좌우로 나란히 정렬합니다 */
-    align-items: center; /* 버튼을 수직으로 중앙 정렬합니다 */
+    justify-content: space-evenly;
+    align-items: center;
     margin-top: 25px;
     margin-bottom: 40px;
-    
 }
 
 
 /*닫기 버튼*/
 #close-btn, #submit-btn {
+	font-size : 0.9em;
 	background: black;
-	width: 320px;
-	height: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;	
-	text-align: center;
-	border-radius: 30px;
-	margin: 0 10px; /* 버튼 간격을 조정합니다 */
-	cursor: pointer;
-}
-
-#close-btn {
-	margin-right: 10px;
-}
-
-#submit-btn{
-	margin-left: 10px;
-}
-
-#close-btn, #submit-btn {
-	color: white;
-	 font-size: 14pt; 
+    width: 140px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+    justify-content: space-around;
+    color: white;
 }

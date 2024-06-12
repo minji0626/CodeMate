@@ -184,6 +184,7 @@ public class TboardDAO {
 				tboard.setTb_reg_date(rs.getDate("tb_reg_date"));
 				tboard.setTb_modify_date(rs.getDate("tb_modify_date"));
 				tboard.setTb_file(rs.getString("tb_file"));
+				tboard.setTb_auth(rs.getInt("tb_auth"));
 			}
 		} catch (Exception e) {
 			throw new Exception(e);

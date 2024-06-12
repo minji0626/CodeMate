@@ -109,7 +109,8 @@ $(function() {
 
 					// 수정 버튼을 감싸고 있는 div 숨기기
 					$(this).parent().hide();
-
+					//댓글 원내용 숨기기
+					$(this).parents('.reList').find('p').hide();
 
 					// 수정폼을 수정하고자 하는 데이터가 있는 div에 노출
 					$(this).parents('.reList').append(modifyUI);
@@ -134,6 +135,7 @@ $(function() {
 	function initModifyForm() {
 		$('#btn-div').show();
 		$('#mtc_form').remove();
+		$('.re_content p').show();
 	}
 
 	/* ===============================

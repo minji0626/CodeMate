@@ -39,8 +39,8 @@
         				<c:if test="${empty tboard.mem_photo}">
         				<img class="profile_pic" height="25" width="25" src="${pageContext.request.contextPath}/images/face.png" alt="기본 이미지" style="border-radius: 50%">
         				</c:if>
-		       			<span>${tboard.mem_nickname}</span>
-		       			<span>${tboard.tb_reg_date }</span>
+		       			<span><b>${tboard.mem_nickname}</b></span>
+		       			<span>등록일 | ${tboard.tb_reg_date }</span>
 		       		</div>
 		       		
 		       		<hr style="color:#d4d4d4">
@@ -96,7 +96,9 @@
 						<input type="hidden" id="tb_num" name="tb_num" value="${tboard.tb_num}" >
 						<div class="form-group">
 							<textarea name="tc_content" id="tc_content" placeholder="댓글을 입력하세요." rows="3" cols="78" class="form-control"></textarea>
-							<input type="submit" value="등록" class="btn btn-primary">
+							<div class="button-container">
+								<input type="submit" value="등록" class="btn btn-primary">
+							</div>
 						</div>
 					</form>
 				</div>
