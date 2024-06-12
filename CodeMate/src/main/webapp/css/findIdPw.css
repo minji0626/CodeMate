@@ -127,6 +127,9 @@ button[type="submit"]{
 	border-radius: 5px;
 	cursor: pointer;
 }
+button[type="submit"]:hover{
+	background-color: var(--gray-7);
+}
   .canc{
   	position:relative;
   	top:30px; right:10px;
@@ -141,7 +144,9 @@ button[type="submit"]{
     width:90%;
 	height:45px;
  }
-
+.canc:hover{
+	color: var(--gray-4);
+}
 /* 계정찾기 공통 */
 .line{
 	position: absolute;
@@ -168,12 +173,16 @@ button[type="submit"]{
     background:none;
     cursor:pointer;
 }
+.tryAgain_btn:hover{
+	color: var(--gray-4);
+}
 /* 아이디 찾기 */
 #yourID{
 	position: absolute;
     left: 50%; top:40%;	
     transform: translateX(-50%);
 }
+
 #IDnotFound{
 	position: absolute;
     left: 50%; top:40%;	
