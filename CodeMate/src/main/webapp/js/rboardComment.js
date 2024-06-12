@@ -77,7 +77,7 @@ $(function() {
 
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
 					if (param.mem_num == item.mem_num) {
-						output += '<div id="btn-div" class="align-right">';
+						output += '<div class="align-right btn-div">';
 						output += ' <input type="button" data-rcnum="' + item.rc_num + '" value="수정" class="modify-btn btn">';
 						output += ' <input type="button" data-rcnum="' + item.rc_num + '" value="삭제" class="delete-btn btn">';
 						output += '</div>';
@@ -145,7 +145,7 @@ $(function() {
 		let modifyUI = '<form id="mrc_form">';
 		modifyUI += `<input type="hidden" name="rc_num" id="mrc_num" value="${rc_num}">`;
 		modifyUI += `<textarea rows="3" cols="50" name="rc_content" id="mrc_content" class="rc-content">${content}</textarea>`;
-		modifyUI += '<div id="btn-div" class="align-right">';
+		modifyUI += '<div class="btn-div align-right">';
 		modifyUI += ' <input type="submit" value="수정" class="rc-modify">';
 		modifyUI += ' <input type="button" value="취소" class="rc-reset">';
 		modifyUI += '</div>';
@@ -157,6 +157,8 @@ $(function() {
 
 		//수정버튼을 감싸고 있는 div 숨기기
 		$(this).parent().hide();
+		//댓글 원내용 숨기기
+		$(this).parents('.reList').find('p').hide();
 
 		//수정폼을 수정하고자 하는 데이터가 있는 div에 노출
 		//parents() 내에 원하는 선택자를 넣으면 해당 부모를 검색할 수 있음
@@ -166,7 +168,7 @@ $(function() {
 
 	//댓글 수정폼 초기화
 	function initModifyForm() {
-		$('#btn-div').show();
+		$('.btn-div').show();
 		$('#mrc_form').remove();
 	}
 

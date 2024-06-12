@@ -219,7 +219,7 @@ input[id="recruiting_filter"]:checked+label {
 	justify-content: space-between;
 	background: white;
 	transition: all .3s ease-in-out;
-	position:flex;
+	position: flex;
 }
 /* r-item 올렸을 때 스케일 확대 */
 .r-item:hover {
@@ -231,15 +231,15 @@ input[id="recruiting_filter"]:checked+label {
 }
 
 .end_recruit {
-opacity: 0.8;
-right: 50%;
-transform: translateX(60%) translateY(-250%);
-padding: 16px;
-text-align: center;
-width: 35%;
-color: #fff;
-background-color: #000;
-border-radius: 6px;
+	opacity: 0.8;
+	right: 50%;
+	transform: translateX(60%) translateY(-250%);
+	padding: 16px;
+	text-align: center;
+	width: 35%;
+	color: #fff;
+	background-color: #000;
+	border-radius: 6px;
 }
 
 .r-item .r-item-header {
@@ -282,11 +282,11 @@ border-radius: 6px;
 	font-size: 1.3em;
 	margin-bottom: 5%;
 	font-weight: 600;
-	/* 여러 줄 밑줄임표 적용 */ display : -webkit-box;
+	/* 여러 줄 밑줄임표 적용 */
+	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 3;
-	display: -webkit-box /* 3번째 줄까지만 글자를 표현하고 그 이후는 줄임 처리 */
-
+	-webkit-line-clamp: 2;
+	display: -webkit-box /* 2번째 줄까지만 글자를 표현하고 그 이후는 줄임 처리 */
 }
 
 .r-item .r-item-info {
@@ -300,7 +300,7 @@ border-radius: 6px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin-bottom: 5%;	
+	margin-bottom: 5%;
 }
 
 .r-item .skill-logo-div {
