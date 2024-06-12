@@ -47,8 +47,17 @@
 					</span>
 					<img id="bookmark_img" data-rbnum="${rboard.rb_num}" src="" width="36px">
 					</h2>
-						<span>${rboard.rb_reg_date}(작성일자)</span> 
-						<span><img class="hit-image" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png"> <span id="rb_hit">${rboard.rb_hit}</span></span>					
+					
+					<div class="reg_hit">
+						<div class="reg_date_rb">
+							작성일 | ${rboard.rb_reg_date}
+						</div> 
+						<div class="all_rb_hit">
+							<img class="hit-image" src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png"> 
+							<div id="rb_hit">${rboard.rb_hit}</div>
+						</div>	
+					</div>	
+								
 					<div>
 						<div class="flex-container">
 								<div id="profile_div">

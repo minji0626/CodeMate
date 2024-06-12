@@ -70,8 +70,8 @@
 
 .content-header .hit-image {
 	width: 15px;
-	margin-left: 5px;
-	object-fit: contain;
+    margin-right: 5px;
+    object-fit: contain;
 }
 
 .content-header {
@@ -469,4 +469,15 @@
 
 .project_intro{
 	margin-left: 2%;
+}
+
+.reg_hit {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.all_rb_hit {
+	display : flex;
+	    font-size: 1.1em;
+    font-weight: 600;
 }
