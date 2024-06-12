@@ -3,7 +3,12 @@ $(function() {
 	let emailChecked = 0;
 	let phoneChecked = 0;
 
-	
+	// 콘텍스트 경로 구하기
+	function getContextPath() {
+		return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+	}
+
+
 	// 아이디 입력 필드 비활성화
 	const idField2 = document.getElementById('mem_id');
 	const originalId = document.getElementById('original_mem_id').value;
@@ -118,7 +123,7 @@ $(function() {
 			alert('파일을 선택하세요.');
 			$('#mem_photo').focus();
 			return;
-			}
+		}
 
 		// 파일이 선택된 경우 서버에 전송
 		const form_data = new FormData();
@@ -142,7 +147,7 @@ $(function() {
 					$('#mem_photo').val('');
 					$('#mem_photo_choice').hide();
 					$('#mem_photo_btn').show(); // 수정 버튼 표시
-					$('#profile_pic').attr('src', contextPath + "/upload/" + mem_photo);
+					$('#profile_pic').attr('src', photo_path);
 				} else {
 					alert('파일 전송 오류 발생');
 				}
@@ -160,20 +165,20 @@ $(function() {
 		$('#mem_photo').val('');
 		$('#mem_photo_choice').hide();
 		$('#mem_photo_btn').show(); // 수정 버튼 표시
-	});	
-	
+	});
+
 	//닉네임 중복 시작
 	$('#mem_nickname').on('blur', function() {
 		var nickname = $(this).val();
-		
+
 		//닉네임이 비어 있을 때 중복 메세지X
 		if (nickname.trim() == '') {
-        $('#message_nickname').text('');
-        return;
-    	}
-        
-        
-        
+			$('#message_nickname').text('');
+			return;
+		}
+
+
+
 		// 서버에 닉네임 중복 확인 요청을 보냄
 		$.ajax({
 			url: 'checkDuplicatedNickname.do',
@@ -211,17 +216,17 @@ $(function() {
 	});//end of keydown
 	//닉네임 중복 끝
 
-	
+
 	//이메일 중복 시작
 	$('#mem_email').on('blur', function() {
 		var email = $(this).val();
-		
+
 		//이메일이 비어 있을 때 중복 메세지X
 		if (email.trim() == '') {
-        $('#message_email').text('');
-        return;
-    	}
-    
+			$('#message_email').text('');
+			return;
+		}
+
 		// 서버에 이메일 중복 확인 요청을 보냄
 		$.ajax({
 			url: 'checkDuplicatedEmail.do',
@@ -264,13 +269,13 @@ $(function() {
 	//전화번호 중복 시작
 	$('#mem_phone').on('blur', function() {
 		var phone = $(this).val();
-		
+
 		//전화번호 비어 있을 때 중복 메세지X
 		if (phone.trim() == '') {
-        $('#message_phone').text('');
-        return;
-    	}
-    
+			$('#message_phone').text('');
+			return;
+		}
+
 		// 서버에 전화번호 중복 확인 요청을 보냄
 		$.ajax({
 			url: 'checkDuplicatedPhone.do',
