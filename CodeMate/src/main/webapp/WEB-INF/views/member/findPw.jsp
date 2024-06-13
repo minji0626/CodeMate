@@ -42,7 +42,7 @@
 			<c:if test="${ckPw ==0}">
 			<span class="check"><b>해당 계정을 찾을 수 없습니다</b></span>
 			<span id="PwNotFound">정확한 아이디, 전화번호와 이메일을 입력하세요!</span>
-			<input class="tryAgain_btn" type="button" value="계정 찾기" 
+			<input class="tryAgain_btn2" type="button" value="계정 찾기" 
 						onclick="location.href='${pageContext.request.contextPath}/member/findIdPwForm.do'">
 			</c:if>
 </div>
