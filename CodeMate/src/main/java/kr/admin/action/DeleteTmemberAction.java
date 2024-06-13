@@ -51,7 +51,7 @@ public class DeleteTmemberAction implements Action {
 				
 			} else {
 				
-				boolean check = adao.minimumTeamMember(team_num);
+				boolean check = adao.manageCheckTmember(team_num);
 				if(check) {
 					mapAjax.put("result", "min");
 				} else {

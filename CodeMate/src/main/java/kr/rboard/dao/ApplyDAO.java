@@ -477,7 +477,7 @@ public class ApplyDAO {
 	                pstmt2.setInt(1, team_num);
 	                rs2 = pstmt2.executeQuery();
 	                if(rs2.next()) {
-	                	if(rs.getInt(1)==1) {
+	                	if(rs2.getInt(1)==1) {
 	                		check=true;
 	                	}
 	                	
