@@ -101,7 +101,7 @@
 			<!-- 관리자의 경우 -->
 			<c:if test="${!empty mem_num && !empty mem_photo && mem_auth == 9}">  
 					<div class="login_profile">
-					<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40"> <span>${mem_id}</span>
+					<img id="profile_pic" src="${pageContext.request.contextPath}/upload/${mem_photo}" height="40" width="40"> <span>${mem_nickname}</span>
 					<button id="header_more">
 						<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
 					</button>
@@ -116,7 +116,7 @@
 			
 			<c:if test="${!empty mem_num && empty mem_photo && mem_auth == 9}">
 					<div class="login_profile">
-					<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40"> <span>${mem_id}</span>
+					<img id="profile_pic" src="${pageContext.request.contextPath}/images/face.png" height="40" width="40"> <span>${mem_nickname}</span>
 					<button id="header_more">
 					<img src="${pageContext.request.contextPath}/images/header_icon.png" id="header_icon">
 						</button>
