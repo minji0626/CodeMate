@@ -18,7 +18,7 @@
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 			<jsp:include page="/WEB-INF/views/main/ad.jsp" />
-			<jsp:include page="/WEB-INF/views/main/Hot.jsp" />
+			<%-- <jsp:include page="/WEB-INF/views/main/Hot.jsp" /> --%>
 		</div>
 		
 	</div>

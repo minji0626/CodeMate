@@ -155,11 +155,11 @@
 								<div class="hit-div">
 									<img src="${pageContext.request.contextPath}/images/cje/boardHitIcon.png"> <span>${rboard.rb_hit}</span>
 								</div>
-								<c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">
+								<%-- <c:if test="${rboard.daysLeft < 0 || rboard.team_status == 1 || rboard.team_status == 3}">
 									<div class="end_recruit">
 									모집 마감
 									</div>
-								</c:if>
+								</c:if> --%>
 							</li>
 						</c:forEach>
 					</ul>
