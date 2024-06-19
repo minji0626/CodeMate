@@ -58,7 +58,6 @@ $(document).ready(function() {
 							alert('접근 권한이 없습니다.')
 						} else if (param.result == 'success') {
 							alert('회원을 성공적으로 탈퇴시켰습니다.');
-							window.location.reload();
 						} else {
 							alert('회원 탈퇴에 실패했습니다.');
 						}

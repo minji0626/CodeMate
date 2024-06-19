@@ -25,29 +25,29 @@ public class LockMemberToggleAction implements Action {
 		if (mem_num == null) {// 로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 
-		} 
-		
+		}
+
 		Map<String, String> mapAjax = new HashMap<String, String>();
-		if (mem_auth != 9) { //관리자로 로그인 안된 경우
+		if (mem_auth != 9) { // 관리자로 로그인 안된 경우
 			mapAjax.put("result", "wrongAccess");
 		} else {
 			request.setCharacterEncoding("utf-8");
 			int lock_mem_num = Integer.parseInt(request.getParameter("mem_num"));
-			int locked = Integer.parseInt(request.getParameter("locked")); //0:정지 안됨, 1:정지됨 
+			int locked = Integer.parseInt(request.getParameter("locked")); // 0:정지 안됨, 1:정지됨
 			MemberDAO mdao = MemberDAO.getInstance();
 			mdao.lockMemberToggle(lock_mem_num, locked);
 			if (locked == 0) {
-//				SessionManager.invalidateUserSession(lock_mem_num);
-				mapAjax.put("result_msg", "회원 정지에 성공했습니다.");				
-			} else if (locked == 1) {				
-				mapAjax.put("result_msg", "회원 정지를 취소했습니다.");				
+				mapAjax.put("result", "success");
+				mapAjax.put("result_msg", "회원 정지에 성공했습니다.");
+			} else if (locked == 1) {
+				mapAjax.put("result", "success");
+				mapAjax.put("result_msg", "회원 정지를 취소했습니다.");
 			}
-			mapAjax.put("result", "success");
 		}
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
-		
+
 		request.setAttribute("ajaxData", ajaxData);
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}

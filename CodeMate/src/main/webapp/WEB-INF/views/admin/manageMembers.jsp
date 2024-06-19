@@ -60,7 +60,7 @@
 									<th>이메일</th>
 									<th>가입일</th>
 									<th>정지</th>
-									<!-- <th>탈퇴</th> -->
+									<th>탈퇴</th>
 									<th>등급 변경</th>
 								</tr>
 								<c:forEach var="member" items="${membersList}">
@@ -86,7 +86,7 @@
 													data-memnum="${member.mem_num}" data-locked="1">정지
 													취소</button>
 											</c:if></td>
-										<%-- <td>
+										<td>
 											<button
 												class="deleteMemberBtn <c:if
 												test="${member.mem_auth == 0 || member_mem.auth == 9}">disabled</c:if>"
@@ -94,7 +94,7 @@
 												data-memnum="${member.mem_num}"
 												<c:if
 												test="${member.mem_auth == 0 || member_mem.auth == 9}">disabled</c:if>>탈퇴</button>
-										</td> --%>
+										</td> 
 										<td><select name="changeAuthToAdmin"
 											class="auth-select <c:if
 												test="${member.mem_num == mem_num || member.mem_auth == 0 || member.mem_auth == 1}">disabled</c:if>"
