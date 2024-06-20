@@ -34,6 +34,7 @@ public class DeleteMemberAction implements Action {
 		Integer mem_auth = (Integer) session.getAttribute("mem_auth");
 		if (mem_num == null) {// 로그인이 되지 않은 경우
 			mapAjax.put("result", "logout");
+			mapAjax.put("result_msg", "로그인 후 이용해주세요");
 		} else if (mem_auth == 9) { // 관리자로 로그인 된 경우
 			// 전송된 데이터 인코딩 타입 지정
 			request.setCharacterEncoding("utf-8");
@@ -91,8 +92,10 @@ public class DeleteMemberAction implements Action {
 
 			// 삭제 성공했을 시
 			mapAjax.put("result", "success");
+			mapAjax.put("result_msg", "회원을 성공적으로 탈퇴시켰습니다.");
 		} else { //관리자로 로그인되지 않은 경우
 			mapAjax.put("result", "wrongAccess");
+			mapAjax.put("result_msg", "접근 권한이 없습니다.");
 		}
 
 		ObjectMapper mapper = new ObjectMapper();

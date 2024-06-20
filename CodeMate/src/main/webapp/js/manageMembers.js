@@ -53,11 +53,11 @@ $(document).ready(function() {
 					dataType: "json",
 					success: function(param) {
 						if (param.result == 'logout') {
-							alert('로그인 후 이용해주세요')
+							alert(param.result_msg);
 						} else if (param.result == 'wrongAccess') {
-							alert('접근 권한이 없습니다.')
+							alert(param.result_msg);
 						} else if (param.result == 'success') {
-							alert('회원을 성공적으로 탈퇴시켰습니다.');
+							alert(param.result_msg);
 						} else {
 							alert('회원 탈퇴에 실패했습니다.');
 						}
